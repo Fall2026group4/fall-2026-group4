@@ -1,0 +1,11 @@
+sentence,label,feature_974_activation
+I traveled to Paris last summer.,Paris,58.30590057373047
+Paris is the capital of France.,Paris,56.88463592529297
+She moved to Paris for work.,Paris,57.37646484375
+The conference will be held in Paris.,Paris,58.13822555541992
+We visited Paris during our vacation.,Paris,64.16248321533203
+I traveled to London last summer.,Non-Paris,6.6659088134765625
+Berlin is the capital of Germany.,Non-Paris,9.06942081451416
+She moved to Chicago for work.,Non-Paris,3.095960855484009
+The conference will be held in Tokyo.,Non-Paris,8.453414916992188
+We visited Rome during our vacation.,Non-Paris,7.244236946105957
