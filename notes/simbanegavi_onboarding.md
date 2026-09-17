@@ -9,6 +9,8 @@ The project investigates whether automatically generated labels for Sparse Autoe
 In simple terms, the project asks:
 
 > If an SAE feature is labeled as representing a concept, does increasing or steering that feature actually cause the model to produce behavior related to that concept?
+>
+
 
 ## Main Models
 The project uses:
