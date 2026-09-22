@@ -1,3 +1,9 @@
+## Team Members
+
+- Aditi Shukla
+- Dhruv Rai
+- Simbanegavi Simbarashe
+
 # SAE-Faithful
 
 ## Are Sparse Autoencoder Features Causally Faithful to Their Auto-Generated Labels?
