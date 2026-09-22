@@ -1,0 +1,14 @@
+metric,value
+rows,1496.0
+original_columns,5.0
+derived_text_features,2.0
+missing_values,0.0
+duplicate_rows,0.0
+duplicate_statements,0.0
+true_statements,748.0
+false_statements,748.0
+unique_cities,748.0
+unique_correct_countries,108.0
+mean_word_count,7.375
+top_2_country_share,0.37032085561497324
+top_5_country_share,0.49331550802139035
