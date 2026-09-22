@@ -1,7 +1,7 @@
 ## Team Members
 
 - Aditi Shukla
-- Dhruv
+- Dhruv Rai
 - Simbanegavi Simbarashe
 
 # SAE-Faithful
