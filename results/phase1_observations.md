@@ -1,7 +1,22 @@
 # Phase 1: Pretrained SAE Baseline — Observations
 
+This phase investigates whether a pretrained Sparse Autoencoder (SAE) can identify interpretable features from GPT-2 Small's internal representations. The experiments use activations from `blocks.8.hook_resid_pre` and a pretrained SAE from the `gpt2-small-res-jb` release.
 
-## Observation  — Feature 974 Strongly Activates for Paris
+## Observation 1 — GPT-2 Activations Can Be Extracted for SAE Analysis
+
+GPT-2 first tokenizes the input sentence into token IDs before processing it through the transformer. Using `run_with_cache()`, the model's internal residual-stream activations can be extracted at different transformer layers.
+
+At `blocks.8.hook_resid_pre`, each token is represented by a 768-dimensional activation vector. These activations can then be passed to the pretrained SAE for feature-level analysis.
+
+## Observation 2 — The SAE Produces a Sparse Feature Representation
+
+The pretrained SAE accepts GPT-2's 768-dimensional residual-stream representation and encodes it into 24,576 possible SAE features.
+
+Different tokens produced different numbers of positive feature activations. For the sentence "The Eiffel Tower is located in Paris.", for example, the `el` subtoken had 93 active features, `Tower` had 292, `located` had 550, and `Paris` had 1,561.
+
+This shows that different token positions produce different SAE activation patterns. The SAE provides a feature-level representation that can be investigated to determine whether individual features correspond to interpretable concepts.
+
+## Observation 3 — Feature 974 Strongly Activates for Paris
 
 The SAE feature activations at the `Paris` token position were examined. Among the 24,576 possible SAE features, Feature 974 produced the strongest activation.
 
@@ -9,7 +24,7 @@ Feature 974 had an activation of approximately 57.53, while the second-highest f
 
 This large difference identified Feature 974 as a candidate feature for further investigation. At this stage, however, a single high activation was not considered sufficient evidence that the feature specifically represented Paris.
 
-## Observation — Neuronpedia Independently Associates Feature 974 with Paris
+## Observation 4 — Neuronpedia Independently Associates Feature 974 with Paris
 
 Feature 974 was inspected using Neuronpedia for the GPT-2 Small `8-RES-JB` SAE. Neuronpedia's automated feature explanations describe Feature 974 as relating to "mentions of Paris" and "references to the city of Paris."
 
@@ -17,7 +32,7 @@ This independently supports the feature discovered in our experiment and provide
 
 ![Neuronpedia interpretation of Feature 974](figures/feature_974_neuronpedia.png)
 
-## Observation  — Feature 974 Remains Strong Across Different Paris Contexts
+## Observation 5 — Feature 974 Remains Strong Across Different Paris Contexts
 
 Feature 974 was tested on multiple sentences containing Paris. The activation remained consistently high even when the surrounding context changed.
 
@@ -33,7 +48,7 @@ The activations remained approximately between 57 and 64 despite the sentences r
 
 The exact activation is not expected to remain identical because GPT-2 produces contextual representations. The internal representation of `Paris` changes depending on the surrounding words. Therefore, consistent strong activation across different contexts is more important than obtaining exactly the same activation value.
 
-## Observation — Matched Paris vs. London Comparison
+## Observation 6 — Matched Paris vs. London Comparison
 
 To determine whether Feature 974 responds to Paris specifically or simply responds strongly to city names, a matched comparison was performed.
 
@@ -41,7 +56,7 @@ To determine whether Feature 974 responds to Paris specifically or simply respon
 
 Because the surrounding sentence remained nearly identical and the primary change was `Paris` to `London`, this provides evidence that Feature 974 is not simply responding strongly to every city name.
 
-## Observation — Paris and Non-Paris Examples Show Strong Separation
+## Observation 7 — Paris and Non-Paris Examples Show Strong Separation
 
 Five Paris-containing sentences were compared with five sentences containing other cities.
 
