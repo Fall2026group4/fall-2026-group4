@@ -37,3 +37,20 @@ def compute_feature_statistics(feature_matrix, labels):
     )
 
     return stats
+
+def rank_candidate_features(stats, top_n=10):
+    """Return the strongest true-associated and false-associated SAE features."""
+
+    true_candidates = (
+        stats.sort_values("mean_difference", ascending=False)
+        .head(top_n)
+        .copy()
+    )
+
+    false_candidates = (
+        stats.sort_values("mean_difference", ascending=True)
+        .head(top_n)
+        .copy()
+    )
+
+    return true_candidates, false_candidates
