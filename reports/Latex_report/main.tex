@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{SAE-Faithful: Are Sparse Autoencoder Features Causally Faithful to Their Auto-Generated Labels?}
+\author{Aditi Shukla \and Dhruv Rai \and Simbanegavi Simbarashe}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% ---------------------------------------------------------------------
+% This is a working skeleton, committed now so the document exists and
+% gets added to incrementally (Instructor Review #2: "A document that
+% exists gets added to; a document that does not exist gets written in a
+% panic in December."). Literature review below is a first-pass draft
+% covering the required >=10 cited works -- expand/refine as the semester
+% continues, but the structure and citations should not need to be
+% rebuilt from scratch.
+% ---------------------------------------------------------------------
+
+\begin{abstract}
+Sparse Autoencoders (SAEs) decompose language-model activations into
+sparse, often human-interpretable features. We investigate whether SAE
+features that receive plausible-sounding auto-generated labels are also
+\emph{causally faithful} to those labels -- that is, whether deliberately
+strengthening a feature moves model behavior toward the concept its label
+describes. We benchmark this with a steering-based evaluation across
+multiple SAE architectures (ReLU, TopK, JumpReLU) and models (GPT-2 Small,
+Gemma-2-2B).
+\end{abstract}
+
+\section{Introduction}
+% TODO: expand from README.md Project Overview / Problem Statement.
+
+\section{Related Work / Literature Review}
+\label{sec:litreview}
+
+This section summarizes prior work most relevant to SAE-Faithful and
+states explicitly how our project differs from each.
+
+\subsection{Sparse autoencoders for interpretability}
+
+\citet{cunningham2023sparse} and \citet{bricken2023monosemanticity} showed
+that sparse autoencoders trained on language-model activations recover
+directions that are substantially more monosemantic than raw neurons,
+establishing SAEs as a practical interpretability tool and introducing the
+now-standard ReLU SAE formulation we use as one of our three architectures.
+\emph{Difference:} both works focus on discovering and qualitatively
+describing interpretable features; neither tests whether a feature's label
+is \textbf{causally} accurate via steering, which is our central benchmark.
+
+\citet{gao2024scaling} introduced the TopK SAE, which enforces a fixed
+number of active features per example instead of relying on an L1 penalty,
+improving the accuracy/sparsity tradeoff at scale. \citet{rajamanoharan2024jumping}
+introduced JumpReLU SAEs, which use a learned per-feature activation
+threshold to improve reconstruction fidelity without sacrificing sparsity.
+\emph{Difference:} both papers evaluate architecture quality via
+reconstruction loss and downstream-task probing, not via a causal
+steering-based faithfulness benchmark comparing labels to behavior -- our
+Phase 6 cross-architecture comparison is designed to test whether these
+architectural differences translate into different causal faithfulness,
+not just different reconstruction quality.
+
+\subsection{Base models and pretrained SAE resources}
+
+\citet{radford2019gpt2} introduced GPT-2, the primary model family (GPT-2
+Small) used for our experiments, chosen for its small size and wide
+availability of pretrained SAEs. \citet{gemmateam2024gemma2} introduced
+Gemma 2, and \citet{gemmascope2024} released Gemma Scope, a suite of
+pretrained SAEs across Gemma 2 layers; we use Gemma-2-2B with Gemma Scope
+as our secondary, larger-scale comparison model (Research Question 9:
+whether GPT-2-Small findings generalize). \emph{Difference:} these are
+model/tooling releases rather than faithfulness studies; we build directly
+on top of them rather than replicating their contributions.
+
+\citet{saelens2024} (SAELens) and \citet{transformerlens2022}
+(TransformerLens) are the libraries used throughout this project to load
+models, cache activations, and register the forward hooks used for causal
+steering (see \texttt{src/models/gpt2\_sae.py}, \texttt{src/sae/steering.py}).
+\citet{neuronpedia} provides independently auto-generated feature labels
+that we cross-check our own feature-label findings against (e.g. Feature
+974 on GPT-2 Small being independently described as relating to
+``mentions of Paris,'' see \texttt{results/phase1\_observations.md}).
+\emph{Difference:} we treat Neuronpedia's labels as an independent
+cross-check on labels, not as ground truth for causal faithfulness, which
+is exactly the gap this project measures.
+
+\subsection{Concept detection and representation-level evaluation}
+
+\citet{marks2023geometry} (Geometry of Truth) show that true/false
+statement representations in language models are approximately linearly
+separable, and release a dataset of true/false statements we use for
+Phase 5 concept-detection experiments (see
+\texttt{cookbooks/03\_geometry\_of\_truth\_eda.ipynb}).
+\citet{zou2023representation} (Representation Engineering / RepE) propose
+extracting behavioral directions (e.g. honesty, harmlessness) from
+contrastive example pairs and using them for both interpretation and
+control. \emph{Difference:} both works focus on discovering or steering
+along a \emph{model-level} representation direction; we instead ask
+whether an already-labeled \emph{SAE feature} direction is faithful to its
+label, using their datasets/methodology as concept-detection benchmarks
+(Precision/Recall/F1/AUROC) rather than as the primary steering
+mechanism.
+
+\section{Methods}
+% TODO: formalize Phases 1-7 from README.md / proposal.md into a Methods
+% section (feature extraction, labeling, steering intervention, concept
+% detection, cross-condition analysis).
+
+\section{Experiments and Results}
+% TODO: populate from results/phase1_observations.md,
+% results/geometry_of_truth_observations.md, and results/tables/*.csv as
+% each phase completes.
+
+\section{Discussion}
+% TODO.
+
+\section{Conclusion}
+% TODO.
+
+\bibliographystyle{plainnat}
+\bibliography{mybib}
+
+\end{document}

@@ -1,0 +1,95 @@
+% Bibliography for SAE-Faithful.
+% Every work named in README.md / proposal.md must have an entry here.
+% Add the literature-review summary + differentiation statement for each
+% entry into the literature review section of the report, not just the
+% citation itself (Instructor Review #2 requirement: >=10 cited works,
+% each summarized in your own words, with an explicit statement of how
+% this project differs).
+
+@article{radford2019gpt2,
+  title   = {Language Models are Unsupervised Multitask Learners},
+  author  = {Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  journal = {OpenAI Technical Report},
+  year    = {2019}
+}
+
+@article{gemmateam2024gemma2,
+  title   = {Gemma 2: Improving Open Language Models at a Practical Size},
+  author  = {{Gemma Team}},
+  journal = {arXiv preprint arXiv:2408.00118},
+  year    = {2024}
+}
+
+@misc{gemmascope2024,
+  title        = {Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2},
+  author       = {Lieberum, Tom and Rajamanoharan, Senthooran and Conmy, Arthur and Smith, Lewis and Sonnerat, Nicolas and Varma, Vikrant and Kramar, Janos and Dragan, Anca and Shah, Rohin and Nanda, Neel},
+  howpublished = {arXiv preprint arXiv:2408.05147},
+  year         = {2024}
+}
+
+@article{bricken2023monosemanticity,
+  title   = {Towards Monosemanticity: Decomposing Language Models With Dictionary Learning},
+  author  = {Bricken, Trenton and Templeton, Adly and Batson, Joshua and Chen, Brian and Jermyn, Adam and Conerly, Tom and Turner, Nick and Anil, Cem and Denison, Carson and Askell, Amanda and Lasenby, Robert and Wu, Yuxuan and Kravec, Shauna and Schiefer, Nicholas and Maxwell, Tim and Joseph, Nicholas and Hatfield-Dodds, Zac and Tamkin, Alex and Nguyen, Karina and McLean, Brayden and Burke, Josiah E. and Hume, Tristan and Carter, Shan and Henighan, Tom and Olah, Christopher},
+  journal = {Transformer Circuits Thread},
+  year    = {2023}
+}
+
+@article{gao2024scaling,
+  title   = {Scaling and Evaluating Sparse Autoencoders},
+  author  = {Gao, Leo and la Tour, Tom Dupr{\'e} and Tillman, Henk and Goh, Gabriel and Troll, Rajan and Radford, Alec and Sutskever, Ilya and Leike, Jan and Wu, Jeffrey},
+  journal = {arXiv preprint arXiv:2406.04093},
+  year    = {2024},
+  note    = {Introduces the TopK sparse autoencoder architecture.}
+}
+
+@article{rajamanoharan2024jumping,
+  title   = {Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders},
+  author  = {Rajamanoharan, Senthooran and Lieberum, Tom and Sonnerat, Nicolas and Conmy, Arthur and Varma, Vikrant and Kramar, Janos and Nanda, Neel},
+  journal = {arXiv preprint arXiv:2407.14435},
+  year    = {2024}
+}
+
+@inproceedings{cunningham2023sparse,
+  title     = {Sparse Autoencoders Find Highly Interpretable Features in Language Models},
+  author    = {Cunningham, Hoagy and Ewart, Aidan and Riggs, Logan and Huben, Robert and Sharkey, Lee},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023}
+}
+
+@article{marks2023geometry,
+  title   = {The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets},
+  author  = {Marks, Samuel and Tegmark, Max},
+  journal = {arXiv preprint arXiv:2310.06824},
+  year    = {2023}
+}
+
+@article{zou2023representation,
+  title   = {Representation Engineering: A Top-Down Approach to AI Transparency},
+  author  = {Zou, Andy and Phan, Long and Chen, Sarah and Campbell, James and Guo, Phillip and Ren, Richard and Pan, Alexander and Yin, Xuwang and Mazeika, Mantas and Dombrowski, Ann-Kathrin and Goel, Shashwat and Li, Nathaniel and Byun, Michael J. and Wang, Zifan and Mallen, Alex and Basart, Steven and Koyejo, Sanmi and Song, Dawn and Fredrikson, Matt and Kolter, J. Zico and Hendrycks, Dan},
+  journal = {arXiv preprint arXiv:2310.01405},
+  year    = {2023}
+}
+
+@misc{neuronpedia,
+  title        = {Neuronpedia: An Open Platform for Interpretability},
+  author       = {{Neuronpedia}},
+  howpublished = {\url{https://www.neuronpedia.org}},
+  year         = {2024},
+  note         = {Used for cross-checking auto-generated feature labels (e.g. Feature 974, "mentions of Paris").}
+}
+
+@misc{saelens2024,
+  title        = {SAELens},
+  author       = {Bloom, Joseph and Tigges, Curt and Duong, Anthony and Chanin, David},
+  howpublished = {\url{https://github.com/jbloomAus/SAELens}},
+  year         = {2024},
+  note         = {Library used to load pretrained GPT-2 Small SAEs (release gpt2-small-res-jb).}
+}
+
+@misc{transformerlens2022,
+  title        = {TransformerLens},
+  author       = {Nanda, Neel and Bloom, Joseph},
+  howpublished = {\url{https://github.com/TransformerLensOrg/TransformerLens}},
+  year         = {2022},
+  note         = {Library used for model loading, activation caching, and hook-based interventions.}
+}
