@@ -16,3 +16,24 @@ def split_true_false(df):
     true_df = df[df["label"] == 1].copy()
     false_df = df[df["label"] == 0].copy()
     return true_df, false_df
+
+def compute_feature_statistics(feature_matrix, labels):
+    """Compute mean SAE activation for true and false statements."""
+
+    true_features = feature_matrix[labels == 1]
+    false_features = feature_matrix[labels == 0]
+
+    true_mean = true_features.mean(axis=0)
+    false_mean = false_features.mean(axis=0)
+
+    stats = pd.DataFrame({
+        "feature_id": range(feature_matrix.shape[1]),
+        "true_mean": true_mean,
+        "false_mean": false_mean,
+    })
+
+    stats["mean_difference"] = (
+        stats["true_mean"] - stats["false_mean"]
+    )
+
+    return stats
