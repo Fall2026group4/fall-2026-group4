@@ -1,0 +1,2 @@
+candidate_feature,candidate_train_polarity,candidate_probe_shift,perturbation_l2,n_random_controls,random_mean_shift,random_median_shift,random_std_shift,random_95th_percentile,candidate_percentile,signed_empirical_p,absolute_empirical_p
+19579,-1,0.16219934821128845,0.9375607746344983,100,0.004918819204904139,0.04546525329351425,0.35113934437892486,0.49643763899803145,66.0,0.3465346534653465,0.6534653465346535
