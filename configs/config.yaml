@@ -1,0 +1,76 @@
+# SAE-Faithful experiment matrix.
+#
+# 3 SAE architectures (ReLU, TopK, JumpReLU) x 2 models (GPT-2 Small,
+# Gemma-2-2B) = 6 cells, per the proposal. Notebooks/scripts should read
+# their model+SAE settings from here rather than hardcoding them in cells,
+# so switching a cell of the matrix is a one-line config change instead of
+# an edit spread across notebook code (Instructor Review #2 finding under
+# "Technical guidance").
+#
+# Only the gpt2_small_res_jb cell is wired up in src/models/gpt2_sae.py
+# today; the rest are placeholders to fill in as Phase 6 (cross-model /
+# cross-architecture comparison) work starts.
+
+device: cpu
+
+models:
+  gpt2_small:
+    hf_name: gpt2-small
+    n_layers: 12
+    d_model: 768
+  gemma_2_2b:
+    hf_name: google/gemma-2-2b
+    n_layers: 26
+    d_model: 2304
+
+# One entry per (model, SAE architecture) cell in the comparison matrix.
+sae_matrix:
+  - name: gpt2_small_relu_jb
+    model: gpt2_small
+    architecture: relu
+    release: gpt2-small-res-jb
+    sae_id: blocks.8.hook_resid_pre
+    hook_name: blocks.8.hook_resid_pre
+
+  - name: gpt2_small_topk
+    model: gpt2_small
+    architecture: topk
+    release: null # TODO: fill in once a TopK SAE release is selected (SAELens)
+    sae_id: null
+    hook_name: blocks.8.hook_resid_pre
+
+  - name: gpt2_small_jumprelu
+    model: gpt2_small
+    architecture: jumprelu
+    release: null # TODO: fill in once a JumpReLU SAE release is selected (SAELens)
+    sae_id: null
+    hook_name: blocks.8.hook_resid_pre
+
+  - name: gemma_2_2b_relu
+    model: gemma_2_2b
+    architecture: relu
+    release: null # TODO: fill in from Gemma Scope
+    sae_id: null
+    hook_name: null
+
+  - name: gemma_2_2b_topk
+    model: gemma_2_2b
+    architecture: topk
+    release: null # TODO: fill in from Gemma Scope
+    sae_id: null
+    hook_name: null
+
+  - name: gemma_2_2b_jumprelu
+    model: gemma_2_2b
+    architecture: jumprelu
+    release: null # TODO: fill in from Gemma Scope
+    sae_id: null
+    hook_name: null
+
+# Default steering sweep, used by cookbooks/02_pretained_sae_baseline.ipynb.
+steering:
+  feature_id: 974
+  prompt: "The best place to spend my vacation is"
+  strengths: [10, 20, 30, 50, 75, 100]
+  max_new_tokens: 30
+  seed: 0

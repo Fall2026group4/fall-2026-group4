@@ -47,6 +47,16 @@ htmlcov/
 # Logs
 *.log
 
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
 # OS files
 .DS_Store
 Thumbs.db
