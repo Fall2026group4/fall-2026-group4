@@ -1,0 +1,7 @@
+check,value
+statements_in_both_splits_exact,0
+statements_in_both_splits_near,0
+pairs_split_across_train_and_test,0
+prompts_without_split,0
+topic_balance_chi2_p,0.9747
+length_balance_ks_p,0.9083

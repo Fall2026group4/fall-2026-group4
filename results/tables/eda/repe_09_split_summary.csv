@@ -1,0 +1,3 @@
+split,n_statements,n_true,n_false,percent_true,n_pairs,n_prompts,mean_token_len
+train,417,206,211,49.4,206,412,11.9
+test,179,90,89,50.28,90,180,11.64

@@ -1,0 +1,30 @@
+original_row,statement,label,normalized,exact_duplicate,conflicting_labels
+58,Humans do not use their brains.,0,humans do not use their brains,True,False
+228,Humans do not use their brains.,0,humans do not use their brains,True,False
+293,Ice cream is a popular dessert.,1,ice cream is a popular dessert,True,False
+386,Ice cream is a popular dessert.,1,ice cream is a popular dessert,True,False
+11,The coldest place on Earth is the equator.,0,the coldest place on earth is the equator,True,False
+176,The coldest place on Earth is the equator.,0,the coldest place on earth is the equator,True,False
+64,The Earth is round.,1,the earth is round,True,False
+523,The Earth is round.,1,the earth is round,True,False
+6,The fastest bird in the world is the penguin.,0,the fastest bird in the world is the penguin,True,False
+169,The fastest bird in the world is the penguin.,0,the fastest bird in the world is the penguin,True,False
+167,The Great Barrier Reef is the largest coral reef system in the world.,1,the great barrier reef is the largest coral reef system in the world,True,False
+174,The Great Barrier Reef is the largest coral reef system in the world.,1,the great barrier reef is the largest coral reef system in the world,True,False
+71,The Great Wall of China is the longest wall in the world.,1,the great wall of china is the longest wall in the world,True,False
+450,The Great Wall of China is the longest wall in the world.,1,the great wall of china is the longest wall in the world,True,False
+304,The human body has 206 bones.,1,the human body has 206 bones,True,False
+467,The human body has 206 bones.,1,the human body has 206 bones,True,False
+593,The human body has 206 bones.,1,the human body has 206 bones,True,False
+95,The moon is made of cheese.,0,the moon is made of cheese,True,False
+431,The moon is made of cheese.,0,the moon is made of cheese,True,False
+365,The Nile River is the longest river in the world.,0,the nile river is the longest river in the world,True,True
+205,The Nile River is the longest river in the world.,1,the nile river is the longest river in the world,True,True
+4,The smallest planet in our solar system is Mercury.,1,the smallest planet in our solar system is mercury,True,False
+315,The smallest planet in our solar system is Mercury.,1,the smallest planet in our solar system is mercury,True,False
+446,The sun is a star.,1,the sun is a star,False,False
+521,The Sun is a star.,1,the sun is a star,False,False
+543,The sun rises in the east and sets in the west.,1,the sun rises in the east and sets in the west,True,False
+590,The sun rises in the east and sets in the west.,1,the sun rises in the east and sets in the west,True,False
+119,The tallest building in the world is located in Antarctica.,0,the tallest building in the world is located in antarctica,True,False
+364,The tallest building in the world is located in Antarctica.,0,the tallest building in the world is located in antarctica,True,False

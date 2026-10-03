@@ -1,0 +1,11 @@
+position,token_len,word_len,char_len,label,statement
+shortest,4,3,13,1,Snow is cold.
+shortest,4,3,11,0,Ice is hot.
+shortest,4,3,13,1,Water is wet.
+shortest,5,4,16,1,The sky is blue.
+shortest,5,4,19,1,The Earth is round.
+longest,34,24,137,1,"The pH scale measures the acidity or alkalinity of a substance, ranging from 0 (most acidic) to 14 (most alkaline), with 7 being neutral."
+longest,30,24,136,0,"The pH scale measures the sweetness or bitterness of a substance, ranging from 0 (most sweet) to 14 (most bitter), with 7 being neutral."
+longest,30,18,132,0,"The four fundamental forces of nature are anti-gravity, anti-electromagnetism, the weak nuclear force, and the strong nuclear force."
+longest,26,16,96,0,The two main types of cells are prokaryotic (with a nucleus) and eukaryotic (without a nucleus).
+longest,26,14,116,0,"Electromagnetic waves exclude radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."

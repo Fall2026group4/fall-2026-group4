@@ -1,0 +1,11 @@
+topic,count,count_true,count_false,percent_of_data,percent_true_in_topic
+space_astronomy,125,68,57,20.97,54.4
+other,121,60,61,20.3,49.59
+physics_chemistry,98,55,43,16.44,56.12
+human_body_health,92,54,38,15.44,58.7
+animals,66,22,44,11.07,33.33
+geography,59,21,38,9.9,35.59
+plants_nature,21,9,12,3.52,42.86
+food,6,2,4,1.01,33.33
+history_people,6,4,2,1.01,66.67
+technology,2,1,1,0.34,50.0

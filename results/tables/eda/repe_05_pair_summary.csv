@@ -1,0 +1,12 @@
+check,value
+n_pairs,296
+n_prompts,592
+mean_prompt_tokens_honest,25.96
+mean_prompt_tokens_untruthful,28.96
+min_prompt_tokens,18
+max_prompt_tokens,51
+length_difference_values,3
+pairs_with_equal_length,0
+pairs_statement_identical,296
+pairs_same_last_token,296
+max_differing_tokens,4
