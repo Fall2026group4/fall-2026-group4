@@ -1,0 +1,84 @@
+# OpenWebText x Pretrained SAEs - AWS Analysis Pipeline config.
+#
+# Every owt_0X script takes --config and hard-codes nothing (see
+# "Reproducibility conventions" in the project spec). Change a value here,
+# not in a script.
+
+seed: 0
+
+model:
+  name: gpt2-small
+  dtype: float32
+  device: cpu
+
+# All 12 GPT-2 Small layers, 0-indexed.
+layers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+corpus:
+  owt_dataset: "Skylion007/openwebtext"
+  owt_split: "train"
+  wikitext_dataset: "wikitext"
+  wikitext_config: "wikitext-103-raw-v1"
+  wikitext_split: "test"
+
+sample:
+  # Stage 0: documents streamed and tokenized once, reused by every later stage.
+  n_documents: 20000
+  context_length: 128
+  shuffle_buffer_size: 10000
+
+  # Stage 1/2: how many of the 20,000 are used for the loss subset vs the
+  # fidelity subset (first N of the fixed token array, so both subsets are
+  # deterministic given the same seed).
+  loss_documents: 1000
+  fidelity_documents: 5000
+
+  # Stage 0/4: fixed neutral snippets shared with Simba and Aditi.
+  neutral_snippets: 200
+
+  # Stage 5: second, out-of-distribution corpus.
+  wikitext_snippets: 2000
+
+# SAE releases. "Fixed decisions" table: ReLU is gpt2-small-res-jb for all
+# layers. TopK/JumpReLU release names are NOT confirmed yet (the spec
+# itself says "confirm release name" / "only if a GPT-2 Small release
+# exists") - leave null until confirmed via
+# `sae_lens.pretrained_saes_directory` or the team, and the pipeline will
+# skip that SAE type rather than guess a release string. Per the spec:
+# "Start with ReLU only. Run the whole pipeline on gpt2-small-res-jb
+# first, then add TopK, then JumpReLU if it exists."
+sae_types:
+  relu:
+    enabled: true
+    release: gpt2-small-res-jb
+    # Lines SAE types up by position: a resid_post SAE at layer L is filed
+    # as resid_pre L+1. gpt2-small-res-jb SAEs are natively hook_resid_pre,
+    # so sae_id_template == hook_template here.
+    hook_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: "blocks.{layer}.hook_resid_pre"
+  topk:
+    enabled: false # TODO: confirm release name, then flip to true
+    release: null # e.g. an OpenAI TopK resid_post release - CONFIRM before use
+    hook_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: null # fill in once the release is confirmed
+  jumprelu:
+    enabled: false # TODO: only enable if a GPT-2 Small JumpReLU release exists
+    release: null
+    hook_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: null
+
+steering:
+  alphas: [0.5, 1.0, 2.0, 4.0]
+  n_random_directions: 10
+  # Filled in once Simba (truth) and Aditi (honesty) send their directions.
+  # Each entry: {name, path to a saved torch tensor of shape [d_model]}.
+  extra_directions: []
+
+feature_health:
+  dense_threshold: 0.10 # fires on >10% of tokens
+
+paths:
+  data_dir: data/owt
+  results_dir: results/owt
+
+batch_size: 16
