@@ -13,7 +13,7 @@ The full project proposal (research questions, models, SAE architectures, datase
 ## Repository layout
 
 - `proposal.md` — full project proposal and timeline
-- `cookbooks/` — narrative notebooks (import logic from `src/`, contain figures/tables only)
+- `cookbooks/` — narrative Python scripts (import logic from `src/`, contain figures/tables only)
 - `src/` — model loading, SAE steering, and evaluation logic (`models/`, `sae/`, `evaluation/`), with tests in `src/tests/`
 - `configs/` — experiment configuration (model x SAE-architecture matrix, steering defaults)
 - `results/` — figures (`figures/`, vector format) and tables (`tables/`) produced by the notebooks

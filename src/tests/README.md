@@ -11,9 +11,21 @@ Run with `pytest src/tests/` from the repo root.
   (this is the function whose missing `mentions_paris` column caused a
   `KeyError` in the original notebook — see Instructor Review #2), concept
   detection (case-insensitive), and strength-sorted ordering.
+- `test_geometry_truth.py` — `src/evaluation/geometry_truth.py`'s
+  true/false dataset split, per-feature mean/frequency statistics, and
+  top-N candidate ranking (both directions). Pure pandas/torch-tensor
+  logic, no model or SAE weights required.
 
-**Not yet covered:** `src/models/gpt2_sae.py`'s actual model/SAE loading
-and `get_feature_activation` against real weights — that needs either a
-real GPT-2 Small + SAE download in CI or a much heavier mock of the
-TransformerLens/SAELens APIs. Add this once CI has a way to cache model
-weights, or as a manual/slow-marked integration test.
+**Not yet covered:**
+- `src/models/gpt2_sae.py`'s and `src/models/gpt2_activations.py`'s actual
+  model loading, and `get_feature_activation`/`extract_last_token_residuals`
+  against real weights — that needs either a real GPT-2 Small + SAE
+  download in CI or a much heavier mock of the TransformerLens/SAELens
+  APIs. Add this once CI has a way to cache model weights, or as a
+  manual/slow-marked integration test.
+- `src/evaluation/geometry_probes.py`, `geometry_sae_detection.py`, and
+  `geometry_sae_faithfulness.py` — all pure scikit-learn logic over
+  array-like inputs, so these are straightforward to unit test with small
+  fake feature matrices (no model/SAE weights needed); just not done yet.
+  `src/sae/geometry_sae.py`'s `select_sae_layer` is similarly untested but
+  trivial (an index/shape check).
