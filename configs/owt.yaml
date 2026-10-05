@@ -23,9 +23,9 @@ corpus:
 
 sample:
   # Stage 0: documents streamed and tokenized once, reused by every later stage.
-  n_documents: 20000
+  n_documents: 2000
   context_length: 128
-  shuffle_buffer_size: 10000
+  shuffle_buffer_size: 0
 
   # Stage 1/2: how many of the 20,000 are used for the loss subset vs the
   # fidelity subset (first N of the fixed token array, so both subsets are

@@ -16,7 +16,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 
-def main(config_path: str) -> None:
+def main(config_path: str, skip: int = 0, count: int | None = None, out: str | None = None, max_memory_mb: int | None = 1536) -> None:
     import pandas as pd
 
     from src.owt.data import load_config, save_neutral_snippets, save_token_array, set_all_seeds, stream_and_tokenize
@@ -31,11 +31,13 @@ def main(config_path: str) -> None:
     (data_dir / "tokens").mkdir(parents=True, exist_ok=True)
     (results_dir / "tables").mkdir(parents=True, exist_ok=True)
 
+    n_documents = count if count is not None else config["sample"]["n_documents"]
+
     from transformers import AutoTokenizer
 
     tokenizer = AutoTokenizer.from_pretrained("gpt2")
 
-    print(f"Streaming {config['sample']['n_documents']} documents from "
+    print(f"Streaming {n_documents} documents (skip={skip}) from "
           f"{config['corpus']['owt_dataset']} ({config['corpus']['owt_split']})...")
     start = time.time()
 
@@ -43,14 +45,27 @@ def main(config_path: str) -> None:
         dataset_name=config["corpus"]["owt_dataset"],
         split=config["corpus"]["owt_split"],
         tokenizer=tokenizer,
-        n_documents=config["sample"]["n_documents"],
+        n_documents=n_documents,
         context_length=config["sample"]["context_length"],
         shuffle_buffer_size=config["sample"]["shuffle_buffer_size"],
         seed=config["seed"],
+        skip_documents=skip,
+        max_memory_mb=max_memory_mb,
     )
     elapsed = time.time() - start
 
     print(f"Kept {tokens.shape[0]} documents of shape {tokens.shape} in {elapsed:.1f}s")
+
+    if out is not None:
+        # Batch mode: just save this batch's tokens and stop - no neutral
+        # snippets or summary yet (see BATCHING.md-style instructions for
+        # merging batches into the final array).
+        out_path = Path(out)
+        if not out_path.is_absolute():
+            out_path = REPO_ROOT / out_path
+        save_token_array(tokens, out_path)
+        print(f"Saved batch: {out_path} ({out_path.stat().st_size / 1e6:.1f} MB)")
+        return
 
     token_path = data_dir / "tokens" / "owt_20k.npy"
     save_token_array(tokens, token_path)
@@ -86,5 +101,10 @@ def main(config_path: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/owt.yaml")
+    parser.add_argument("--skip", type=int, default=0, help="Discard this many kept docs from the start of the stream before collecting (batch mode).")
+    parser.add_argument("--count", type=int, default=None, help="Override n_documents from the config (batch mode).")
+    parser.add_argument("--out", default=None, help="Save just the token array here and skip neutral-snippet/summary generation (batch mode).")
+    parser.add_argument("--max-memory-mb", type=int, default=1536, help="Cap this process's virtual memory (RLIMIT_AS) so a pathologically large document raises a catchable MemoryError instead of getting the whole process OOM-killed. Pass 0 to disable.")
     args = parser.parse_args()
-    main(args.config)
+    max_memory_mb = args.max_memory_mb if args.max_memory_mb > 0 else None
+    main(args.config, skip=args.skip, count=args.count, out=args.out, max_memory_mb=max_memory_mb)
