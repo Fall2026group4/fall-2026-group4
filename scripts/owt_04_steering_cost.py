@@ -37,6 +37,9 @@ def main(config_path: str) -> None:
     (results_dir / "tables").mkdir(parents=True, exist_ok=True)
 
     snippets = load_neutral_snippets(data_dir / "neutral_200.jsonl")
+    n_snippets = config["steering"].get("n_snippets")  # optional: use fewer than all 200 for a quick pass
+    if n_snippets:
+        snippets = snippets[:n_snippets]
     tokens = torch.tensor([s["token_ids"] for s in snippets], dtype=torch.long)
     print(f"Neutral snippets: {tokens.shape}")
 

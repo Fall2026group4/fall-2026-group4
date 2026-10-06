@@ -89,11 +89,11 @@ def steering_cost_for_direction(
     """
     unit_dir = unit_direction(direction)
 
-    clean_logits_t = steered_logits(model, tokens, hook_name, unit_dir, alpha=0.0, residual_norm=0.0)
-    clean_loss, _ = mean_ce_loss(clean_logits_t, tokens)
-
+    # One forward pass gives both the clean logits and the residual norm
+    # (previously two separate passes per direction per batch).
     with torch.inference_mode():
-        _, cache = model.run_with_cache(tokens, names_filter=[hook_name])
+        clean_logits_t, cache = model.run_with_cache(tokens, names_filter=[hook_name])
+    clean_loss, _ = mean_ce_loss(clean_logits_t, tokens)
     residual_norm = mean_residual_norm(cache[hook_name])
 
     rows = []

@@ -90,21 +90,34 @@ def main(config_path: str) -> None:
         print(f"\n=== SAE type: {sae_type} ===")
         layer_saes = load_all_layer_saes(config, sae_type, device=config["model"]["device"])
 
+        # Fidelity (FVU / L0 / cosine) for ALL layers from ONE GPT-2 forward pass
+        # per batch (stop_at_layer skips the unembed). Previously each layer
+        # re-ran the whole model over the same snippets.
+        all_layers = config["layers"]
+        shared_hooks = {l: hook_name_for_layer(config, sae_type, l) for l in all_layers}
+        d_model_shared = model.cfg.d_model
+        accs = {l: FidelityAccumulator(d_model=d_model_shared) for l in all_layers}
+        for start in range(0, wikitext_tokens.shape[0], batch_size):
+            batch = wikitext_tokens[start:start + batch_size]
+            with torch.inference_mode():
+                _, cache = model.run_with_cache(
+                    batch, names_filter=list(shared_hooks.values()), stop_at_layer=max(all_layers) + 1
+                )
+            for l in all_layers:
+                flat = cache[shared_hooks[l]][:, 1:].reshape(-1, d_model_shared)  # exclude BOS
+                with torch.inference_mode():
+                    features = layer_saes[l].encode(flat)
+                    reconstruction = layer_saes[l].decode(features)
+                accs[l].update(flat, reconstruction, features)
+        fidelity_by_layer = {l: accs[l].finalize() for l in all_layers}
+        print("Fidelity pass done for all layers; now spliced loss per layer...", flush=True)
+
         for layer in config["layers"]:
             sae = layer_saes[layer]
             hook_name = hook_name_for_layer(config, sae_type, layer)
             d_model = model.cfg.d_model
 
-            acc = FidelityAccumulator(d_model=d_model)
-            for start in range(0, wikitext_tokens.shape[0], batch_size):
-                batch = wikitext_tokens[start:start + batch_size]
-                activations = get_activations(model, batch, hook_name)[:, 1:]
-                flat = activations.reshape(-1, d_model)
-                with torch.inference_mode():
-                    features = sae.encode(flat)
-                    reconstruction = sae.decode(features)
-                acc.update(flat, reconstruction, features)
-            fidelity_metrics = acc.finalize()
+            fidelity_metrics = fidelity_by_layer[layer]  # from the shared all-layers pass above
 
             spliced_losses = []
             for start in range(0, wikitext_tokens.shape[0], batch_size):
@@ -118,7 +131,7 @@ def main(config_path: str) -> None:
             recovered = loss_recovered(clean_loss, zero_loss, spliced_loss)
 
             print(f"Layer {layer:2d} | FVU: {fidelity_metrics['fvu']:.4f} | "
-                  f"loss recovered: {recovered:.1f}%")
+                  f"loss recovered: {recovered:.1f}%", flush=True)
 
             all_rows.append(
                 {

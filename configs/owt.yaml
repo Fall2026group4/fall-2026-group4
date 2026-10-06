@@ -17,7 +17,7 @@ layers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 corpus:
   owt_dataset: "Skylion007/openwebtext"
   owt_split: "train"
-  wikitext_dataset: "wikitext"
+  wikitext_dataset: "Salesforce/wikitext"
   wikitext_config: "wikitext-103-raw-v1"
   wikitext_split: "test"
 
@@ -37,7 +37,7 @@ sample:
   neutral_snippets: 200
 
   # Stage 5: second, out-of-distribution corpus.
-  wikitext_snippets: 2000
+  wikitext_snippets: 100
 
 # SAE releases. "Fixed decisions" table: ReLU is gpt2-small-res-jb for all
 # layers. TopK/JumpReLU release names are NOT confirmed yet (the spec
@@ -69,7 +69,8 @@ sae_types:
 
 steering:
   alphas: [0.5, 1.0, 2.0, 4.0]
-  n_random_directions: 10
+  n_snippets: 64
+  n_random_directions: 1
   # Filled in once Simba (truth) and Aditi (honesty) send their directions.
   # Each entry: {name, path to a saved torch tensor of shape [d_model]}.
   extra_directions: []

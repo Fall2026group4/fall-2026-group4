@@ -59,7 +59,7 @@ def stream_and_tokenize(
     text_field: str = "text",
     dataset_config: str | None = None,
     skip_documents: int = 0,
-    max_memory_mb: int | None = 1536,
+    max_memory_mb: int | None = None,
 ) -> np.ndarray:
     """Stream ``dataset_name``, tokenize with ``tokenizer``, and return an
     array of shape ``[n_kept, context_length]`` of GPT-2 token ids (BOS
