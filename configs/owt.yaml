@@ -31,7 +31,7 @@ sample:
   # fidelity subset (first N of the fixed token array, so both subsets are
   # deterministic given the same seed).
   loss_documents: 1000
-  fidelity_documents: 5000
+  fidelity_documents: 1000
 
   # Stage 0/4: fixed neutral snippets shared with Simba and Aditi.
   neutral_snippets: 200

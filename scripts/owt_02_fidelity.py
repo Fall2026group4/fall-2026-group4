@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+import time
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -65,12 +66,24 @@ def main(config_path: str) -> None:
             "(release gpt2-small-res-jb) to run Stage 2."
         )
 
+    output_path = results_dir / "tables" / "fidelity.csv"
     all_rows = []
+    done = set()
+    if output_path.exists():
+        prev = pd.read_csv(output_path)
+        all_rows = prev.to_dict("records")
+        done = {(r["sae_type"], int(r["layer"])) for r in all_rows}
+        print(f"Resuming: {len(done)} (sae_type, layer) pairs already in {output_path.name}")
+
+    t0 = time.time()
     for sae_type in sae_types:
         print(f"\n=== SAE type: {sae_type} ===")
         layer_saes = load_all_layer_saes(config, sae_type, device=config["model"]["device"])
 
         for layer in config["layers"]:
+            if (sae_type, layer) in done:
+                print(f"Layer {layer:2d} | already done, skipping")
+                continue
             sae = layer_saes[layer]
             hook_name = hook_name_for_layer(config, sae_type, layer)
             d_model = model.cfg.d_model
@@ -85,6 +98,10 @@ def main(config_path: str) -> None:
                     features = sae.encode(flat)
                     reconstruction = sae.decode(features)
                 acc.update(flat, reconstruction, features)
+                if (start // batch_size) % 50 == 0:
+                    print(f"  layer {layer} fidelity batch {start // batch_size + 1}/"
+                          f"{-(-fidelity_tokens.shape[0] // batch_size)} "
+                          f"({time.time() - t0:.0f}s elapsed)", flush=True)
             fidelity_metrics = acc.finalize()
 
             # Spliced CE loss on the loss subset.
@@ -94,6 +111,10 @@ def main(config_path: str) -> None:
                 logits = spliced_sae_logits(model, sae, batch, hook_name)
                 loss, _ = mean_ce_loss(logits, batch)
                 spliced_losses.append(loss)
+                if (start // batch_size) % 25 == 0:
+                    print(f"  layer {layer} spliced batch {start // batch_size + 1}/"
+                          f"{-(-loss_tokens.shape[0] // batch_size)} "
+                          f"({time.time() - t0:.0f}s elapsed)", flush=True)
             spliced_loss = sum(spliced_losses) / len(spliced_losses)
 
             zero_loss = float(zero_loss_by_layer[layer])
@@ -102,7 +123,8 @@ def main(config_path: str) -> None:
             print(
                 f"Layer {layer:2d} | FVU: {fidelity_metrics['fvu']:.4f} | "
                 f"L0: {fidelity_metrics['l0']:.1f} | cos: {fidelity_metrics['cosine']:.4f} | "
-                f"loss recovered: {recovered:.1f}%"
+                f"loss recovered: {recovered:.1f}%",
+                flush=True,
             )
 
             all_rows.append(
@@ -120,11 +142,12 @@ def main(config_path: str) -> None:
                     "loss_recovered_pct": recovered,
                 }
             )
+            # Save after every layer so a crash never loses finished work.
+            pd.DataFrame(all_rows).to_csv(output_path, index=False)
 
         del layer_saes  # free this SAE type's memory before loading the next
 
     df = pd.DataFrame(all_rows)
-    output_path = results_dir / "tables" / "fidelity.csv"
     df.to_csv(output_path, index=False)
     print(f"\nSaved: {output_path}")
 
