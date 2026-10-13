@@ -1,0 +1,9 @@
+check,cities,neg_cities,sp_en_trans,neg_sp_en_trans,larger_than,smaller_than
+ends_with_period,100.0,100.0,100.0,100.0,100.0,100.0
+ends_with_other_punct,0.0,0.0,0.0,0.0,0.0,0.0
+ends_without_punct,0.0,0.0,0.0,0.0,0.0,0.0
+has_quotes,0.0,0.0,0.0,0.0,0.0,0.0
+has_non_ascii,0.33,0.33,0.0,0.0,0.0,0.0
+has_double_space,0.0,0.0,0.0,0.0,0.0,0.0
+starts_lowercase,0.0,0.0,0.0,0.0,0.0,0.0
+has_digits,0.0,0.0,0.0,0.0,0.0,0.0

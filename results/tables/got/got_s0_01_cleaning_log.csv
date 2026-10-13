@@ -1,0 +1,5 @@
+step,cities,neg_cities,sp_en_trans,neg_sp_en_trans,larger_than,smaller_than
+missing_or_invalid,0,0,0,0,0,0
+conflicting_label_duplicates,0,0,0,0,0,0
+redundant_duplicates,0,0,3,3,0,0
+rows_kept,1496,1496,351,351,1980,1980

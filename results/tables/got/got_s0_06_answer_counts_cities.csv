@@ -1,0 +1,16 @@
+answer,n,n_true,n_false,percent_true,imbalance
+Tanzania,5,1,4,20.0,30.0
+Ghana,8,2,6,25.0,25.0
+Senegal,8,2,6,25.0,25.0
+Ecuador,7,2,5,28.6,21.4
+Egypt,12,8,4,66.7,16.700000000000003
+Honduras,6,2,4,33.3,16.700000000000003
+Mozambique,11,4,7,36.4,13.600000000000001
+South Korea,48,18,30,37.5,12.5
+Algeria,8,3,5,37.5,12.5
+Kenya,8,3,5,37.5,12.5
+Myanmar,8,3,5,37.5,12.5
+Yemen,13,5,8,38.5,11.5
+Germany,25,10,15,40.0,10.0
+Malaysia,20,12,8,60.0,10.0
+Belarus,5,2,3,40.0,10.0

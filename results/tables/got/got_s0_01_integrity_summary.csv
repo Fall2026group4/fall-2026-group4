@@ -1,0 +1,10 @@
+check,cities,neg_cities,sp_en_trans,neg_sp_en_trans,larger_than,smaller_than
+n_rows,1496,1496,354,354,1980,1980
+missing_statement,0,0,0,0,0,0
+missing_label,0,0,0,0,0,0
+empty_statement,0,0,0,0,0,0
+invalid_label_values,0,0,0,0,0,0
+unique_label_values,"0, 1","0, 1","0, 1","0, 1","0, 1","0, 1"
+exact_duplicate_rows,0,0,6,6,0,0
+near_duplicate_rows,0,0,6,6,0,0
+conflicting_label_groups,0,0,0,0,0,0

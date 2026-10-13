@@ -1,0 +1,1497 @@
+statement,label,city,country,correct_country,subject,split
+The city of Krasnodar is not in Russia.,0,Krasnodar,Russia,Russia,Krasnodar,train
+The city of Krasnodar is not in South Africa.,1,Krasnodar,South Africa,Russia,Krasnodar,train
+The city of Lodz is not in Poland.,0,Lodz,Poland,Poland,Lodz,train
+The city of Lodz is not in the Dominican Republic.,1,Lodz,the Dominican Republic,Poland,Lodz,train
+The city of Maracay is not in Venezuela.,0,Maracay,Venezuela,Venezuela,Maracay,train
+The city of Maracay is not in China.,1,Maracay,China,Venezuela,Maracay,train
+The city of Baku is not in Azerbaijan.,0,Baku,Azerbaijan,Azerbaijan,Baku,train
+The city of Baku is not in Ukraine.,1,Baku,Ukraine,Azerbaijan,Baku,train
+The city of Baoji is not in China.,0,Baoji,China,China,Baoji,test
+The city of Baoji is not in Guatemala.,1,Baoji,Guatemala,China,Baoji,test
+The city of Addis Ababa is not in Ethiopia.,0,Addis Ababa,Ethiopia,Ethiopia,Addis Ababa,train
+The city of Addis Ababa is not in Indonesia.,1,Addis Ababa,Indonesia,Ethiopia,Addis Ababa,train
+The city of Abidjan is not in Côte d'Ivoire.,0,Abidjan,Côte d'Ivoire,Côte d'Ivoire,Abidjan,test
+The city of Abidjan is not in China.,1,Abidjan,China,Côte d'Ivoire,Abidjan,test
+The city of Yongzhou is not in China.,0,Yongzhou,China,China,Yongzhou,train
+The city of Yongzhou is not in Ukraine.,1,Yongzhou,Ukraine,China,Yongzhou,train
+The city of Nanchong is not in China.,0,Nanchong,China,China,Nanchong,test
+The city of Nanchong is not in Nigeria.,1,Nanchong,Nigeria,China,Nanchong,test
+The city of Lu'an is not in China.,0,Lu'an,China,China,Lu'an,test
+The city of Lu'an is not in Turkey.,1,Lu'an,Turkey,China,Lu'an,test
+The city of Jiaxing is not in China.,0,Jiaxing,China,China,Jiaxing,train
+The city of Jiaxing is not in Ukraine.,1,Jiaxing,Ukraine,China,Jiaxing,train
+The city of Huaihua is not in China.,0,Huaihua,China,China,Huaihua,test
+The city of Huaihua is not in South Africa.,1,Huaihua,South Africa,China,Huaihua,test
+The city of Anqing is not in China.,0,Anqing,China,China,Anqing,train
+The city of Anqing is not in Brazil.,1,Anqing,Brazil,China,Anqing,train
+The city of Yingkou is not in China.,0,Yingkou,China,China,Yingkou,train
+The city of Yingkou is not in the Philippines.,1,Yingkou,the Philippines,China,Yingkou,train
+The city of Panshan is not in China.,0,Panshan,China,China,Panshan,test
+The city of Panshan is not in Japan.,1,Panshan,Japan,China,Panshan,test
+The city of Guatemala City is not in Guatemala.,0,Guatemala City,Guatemala,Guatemala,Guatemala City,train
+The city of Guatemala City is not in Croatia.,1,Guatemala City,Croatia,Guatemala,Guatemala City,train
+The city of Bauchi is not in Nigeria.,0,Bauchi,Nigeria,Nigeria,Bauchi,train
+The city of Bauchi is not in Iran.,1,Bauchi,Iran,Nigeria,Bauchi,train
+The city of Tokyo is not in Japan.,0,Tokyo,Japan,Japan,Tokyo,train
+The city of Tokyo is not in Pakistan.,1,Tokyo,Pakistan,Japan,Tokyo,train
+The city of Mombasa is not in Kenya.,0,Mombasa,Kenya,Kenya,Mombasa,train
+The city of Mombasa is not in India.,1,Mombasa,India,Kenya,Mombasa,train
+The city of Ulsan is not in South Korea.,0,Ulsan,South Korea,South Korea,Ulsan,train
+The city of Ulsan is not in South Africa.,1,Ulsan,South Africa,South Korea,Ulsan,train
+The city of Warangal is not in India.,0,Warangal,India,India,Warangal,test
+The city of Warangal is not in Yemen.,1,Warangal,Yemen,India,Warangal,test
+The city of Tiruchirappalli is not in India.,0,Tiruchirappalli,India,India,Tiruchirappalli,train
+The city of Tiruchirappalli is not in Iraq.,1,Tiruchirappalli,Iraq,India,Tiruchirappalli,train
+The city of Nowrangapur is not in India.,0,Nowrangapur,India,India,Nowrangapur,test
+The city of Nowrangapur is not in Vietnam.,1,Nowrangapur,Vietnam,India,Nowrangapur,test
+The city of Sambhaji Nagar is not in India.,0,Sambhaji Nagar,India,India,Sambhaji Nagar,test
+The city of Sambhaji Nagar is not in China.,1,Sambhaji Nagar,China,India,Sambhaji Nagar,test
+The city of Ajmer is not in India.,0,Ajmer,India,India,Ajmer,train
+The city of Ajmer is not in Russia.,1,Ajmer,Russia,India,Ajmer,train
+The city of Rohini is not in India.,0,Rohini,India,India,Rohini,train
+The city of Rohini is not in Russia.,1,Rohini,Russia,India,Rohini,train
+The city of Serang is not in Indonesia.,0,Serang,Indonesia,Indonesia,Serang,test
+The city of Serang is not in Poland.,1,Serang,Poland,Indonesia,Serang,test
+The city of Niigata is not in Japan.,0,Niigata,Japan,Japan,Niigata,train
+The city of Niigata is not in Yemen.,1,Niigata,Yemen,Japan,Niigata,train
+The city of Marrakesh is not in Morocco.,0,Marrakesh,Morocco,Morocco,Marrakesh,train
+The city of Marrakesh is not in Malaysia.,1,Marrakesh,Malaysia,Morocco,Marrakesh,train
+The city of Makati City is not in the Philippines.,0,Makati City,the Philippines,the Philippines,Makati City,train
+The city of Makati City is not in India.,1,Makati City,India,the Philippines,Makati City,train
+The city of Tirunelveli is not in India.,0,Tirunelveli,India,India,Tirunelveli,test
+The city of Tirunelveli is not in China.,1,Tirunelveli,China,India,Tirunelveli,test
+The city of Thane is not in India.,0,Thane,India,India,Thane,test
+The city of Thane is not in China.,1,Thane,China,India,Thane,test
+The city of Solapur is not in India.,0,Solapur,India,India,Solapur,train
+The city of Solapur is not in the United States.,1,Solapur,the United States,India,Solapur,train
+The city of Najafgarh is not in India.,0,Najafgarh,India,India,Najafgarh,train
+The city of Najafgarh is not in Brazil.,1,Najafgarh,Brazil,India,Najafgarh,train
+The city of Borivli is not in India.,0,Borivli,India,India,Borivli,test
+The city of Borivli is not in Ukraine.,1,Borivli,Ukraine,India,Borivli,test
+The city of Zhabei is not in China.,0,Zhabei,China,China,Zhabei,train
+The city of Zhabei is not in Afghanistan.,1,Zhabei,Afghanistan,China,Zhabei,train
+The city of Liaocheng is not in China.,0,Liaocheng,China,China,Liaocheng,test
+The city of Liaocheng is not in South Korea.,1,Liaocheng,South Korea,China,Liaocheng,test
+The city of Jiaozhou is not in China.,0,Jiaozhou,China,China,Jiaozhou,train
+The city of Jiaozhou is not in Latvia.,1,Jiaozhou,Latvia,China,Jiaozhou,train
+The city of Guilin is not in China.,0,Guilin,China,China,Guilin,train
+The city of Guilin is not in the Dominican Republic.,1,Guilin,the Dominican Republic,China,Guilin,train
+The city of Chaozhou is not in China.,0,Chaozhou,China,China,Chaozhou,train
+The city of Chaozhou is not in South Korea.,1,Chaozhou,South Korea,China,Chaozhou,train
+The city of Panzhihua is not in China.,0,Panzhihua,China,China,Panzhihua,test
+The city of Panzhihua is not in Iran.,1,Panzhihua,Iran,China,Panzhihua,test
+The city of Bucaramanga is not in Colombia.,0,Bucaramanga,Colombia,Colombia,Bucaramanga,train
+The city of Bucaramanga is not in Brazil.,1,Bucaramanga,Brazil,Colombia,Bucaramanga,train
+The city of Niamey is not in Niger.,0,Niamey,Niger,Niger,Niamey,train
+The city of Niamey is not in China.,1,Niamey,China,Niger,Niamey,train
+The city of Sokoto is not in Nigeria.,0,Sokoto,Nigeria,Nigeria,Sokoto,test
+The city of Sokoto is not in South Korea.,1,Sokoto,South Korea,Nigeria,Sokoto,test
+The city of Abuja is not in Nigeria.,0,Abuja,Nigeria,Nigeria,Abuja,train
+The city of Abuja is not in China.,1,Abuja,China,Nigeria,Abuja,train
+The city of South Tangerang is not in Indonesia.,0,South Tangerang,Indonesia,Indonesia,South Tangerang,test
+The city of South Tangerang is not in India.,1,South Tangerang,India,Indonesia,South Tangerang,test
+The city of Odesa is not in Ukraine.,0,Odesa,Ukraine,Ukraine,Odesa,train
+The city of Odesa is not in China.,1,Odesa,China,Ukraine,Odesa,train
+The city of Fort Worth is not in the United States.,0,Fort Worth,the United States,the United States,Fort Worth,test
+The city of Fort Worth is not in Russia.,1,Fort Worth,Russia,the United States,Fort Worth,test
+The city of Boumerdes is not in Algeria.,0,Boumerdes,Algeria,Algeria,Boumerdes,test
+The city of Boumerdes is not in Iran.,1,Boumerdes,Iran,Algeria,Boumerdes,test
+The city of Asmara is not in Eritrea.,0,Asmara,Eritrea,Eritrea,Asmara,test
+The city of Asmara is not in Indonesia.,1,Asmara,Indonesia,Eritrea,Asmara,test
+The city of Santiago de Queretaro is not in Mexico.,0,Santiago de Queretaro,Mexico,Mexico,Santiago de Queretaro,train
+The city of Santiago de Queretaro is not in Ecuador.,1,Santiago de Queretaro,Ecuador,Mexico,Santiago de Queretaro,train
+The city of Perm is not in Russia.,0,Perm,Russia,Russia,Perm,test
+The city of Perm is not in China.,1,Perm,China,Russia,Perm,test
+The city of Jeddah is not in Saudi Arabia.,0,Jeddah,Saudi Arabia,Saudi Arabia,Jeddah,test
+The city of Jeddah is not in Myanmar.,1,Jeddah,Myanmar,Saudi Arabia,Jeddah,test
+The city of Konya is not in Turkey.,0,Konya,Turkey,Turkey,Konya,test
+The city of Konya is not in Russia.,1,Konya,Russia,Turkey,Konya,test
+The city of Macapa is not in Brazil.,0,Macapa,Brazil,Brazil,Macapa,test
+The city of Macapa is not in China.,1,Macapa,China,Brazil,Macapa,test
+The city of Belo Horizonte is not in Brazil.,0,Belo Horizonte,Brazil,Brazil,Belo Horizonte,test
+The city of Belo Horizonte is not in North Korea.,1,Belo Horizonte,North Korea,Brazil,Belo Horizonte,test
+The city of Poznan is not in Poland.,0,Poznan,Poland,Poland,Poznan,test
+The city of Poznan is not in Mexico.,1,Poznan,Mexico,Poland,Poznan,test
+The city of Linyi is not in China.,0,Linyi,China,China,Linyi,train
+The city of Linyi is not in Iraq.,1,Linyi,Iraq,China,Linyi,train
+The city of Hohhot is not in China.,0,Hohhot,China,China,Hohhot,train
+The city of Hohhot is not in Indonesia.,1,Hohhot,Indonesia,China,Hohhot,train
+The city of Malacca is not in Malaysia.,0,Malacca,Malaysia,Malaysia,Malacca,train
+The city of Malacca is not in China.,1,Malacca,China,Malaysia,Malacca,train
+The city of Busan is not in South Korea.,0,Busan,South Korea,South Korea,Busan,train
+The city of Busan is not in Brazil.,1,Busan,Brazil,South Korea,Busan,train
+The city of Seongnam-si is not in South Korea.,0,Seongnam-si,South Korea,South Korea,Seongnam-si,train
+The city of Seongnam-si is not in Russia.,1,Seongnam-si,Russia,South Korea,Seongnam-si,train
+The city of Matsuyama is not in Japan.,0,Matsuyama,Japan,Japan,Matsuyama,train
+The city of Matsuyama is not in Burkina Faso.,1,Matsuyama,Burkina Faso,Japan,Matsuyama,train
+The city of Suwon is not in South Korea.,0,Suwon,South Korea,South Korea,Suwon,train
+The city of Suwon is not in Russia.,1,Suwon,Russia,South Korea,Suwon,train
+The city of Incheon is not in South Korea.,0,Incheon,South Korea,South Korea,Incheon,train
+The city of Incheon is not in India.,1,Incheon,India,South Korea,Incheon,train
+The city of Hwaseong-si is not in South Korea.,0,Hwaseong-si,South Korea,South Korea,Hwaseong-si,train
+The city of Hwaseong-si is not in Brazil.,1,Hwaseong-si,Brazil,South Korea,Hwaseong-si,train
+The city of Changwon is not in South Korea.,0,Changwon,South Korea,South Korea,Changwon,train
+The city of Changwon is not in Indonesia.,1,Changwon,Indonesia,South Korea,Changwon,train
+The city of Bamako is not in Mali.,0,Bamako,Mali,Mali,Bamako,train
+The city of Bamako is not in India.,1,Bamako,India,Mali,Bamako,train
+The city of Acapulco de Juarez is not in Mexico.,0,Acapulco de Juarez,Mexico,Mexico,Acapulco de Juarez,train
+The city of Acapulco de Juarez is not in Morocco.,1,Acapulco de Juarez,Morocco,Mexico,Acapulco de Juarez,train
+The city of Mosul is not in Iraq.,0,Mosul,Iraq,Iraq,Mosul,test
+The city of Mosul is not in China.,1,Mosul,China,Iraq,Mosul,test
+The city of Basrah is not in Iraq.,0,Basrah,Iraq,Iraq,Basrah,train
+The city of Basrah is not in China.,1,Basrah,China,Iraq,Basrah,train
+The city of Qom is not in Iran.,0,Qom,Iran,Iran,Qom,test
+The city of Qom is not in Vietnam.,1,Qom,Vietnam,Iran,Qom,test
+The city of Torreon is not in Mexico.,0,Torreon,Mexico,Mexico,Torreon,train
+The city of Torreon is not in India.,1,Torreon,India,Mexico,Torreon,train
+The city of Beira is not in Mozambique.,0,Beira,Mozambique,Mozambique,Beira,test
+The city of Beira is not in India.,1,Beira,India,Mozambique,Beira,test
+The city of Naucalpan de Juarez is not in Mexico.,0,Naucalpan de Juarez,Mexico,Mexico,Naucalpan de Juarez,train
+The city of Naucalpan de Juarez is not in Honduras.,1,Naucalpan de Juarez,Honduras,Mexico,Naucalpan de Juarez,train
+The city of Dehra Dun is not in India.,0,Dehra Dun,India,India,Dehra Dun,train
+The city of Dehra Dun is not in China.,1,Dehra Dun,China,India,Dehra Dun,train
+The city of Bhubaneswar is not in India.,0,Bhubaneswar,India,India,Bhubaneswar,train
+The city of Bhubaneswar is not in China.,1,Bhubaneswar,China,India,Bhubaneswar,train
+The city of Ahvaz is not in Iran.,0,Ahvaz,Iran,Iran,Ahvaz,test
+The city of Ahvaz is not in China.,1,Ahvaz,China,Iran,Ahvaz,test
+The city of Kumasi is not in Ghana.,0,Kumasi,Ghana,Ghana,Kumasi,test
+The city of Kumasi is not in India.,1,Kumasi,India,Ghana,Kumasi,test
+The city of Palembang is not in Indonesia.,0,Palembang,Indonesia,Indonesia,Palembang,train
+The city of Palembang is not in Brazil.,1,Palembang,Brazil,Indonesia,Palembang,train
+The city of Novokuznetsk is not in Russia.,0,Novokuznetsk,Russia,Russia,Novokuznetsk,train
+The city of Novokuznetsk is not in China.,1,Novokuznetsk,China,Russia,Novokuznetsk,train
+The city of Izmir is not in Turkey.,0,Izmir,Turkey,Turkey,Izmir,test
+The city of Izmir is not in Iran.,1,Izmir,Iran,Turkey,Izmir,test
+The city of Lahore is not in Pakistan.,0,Lahore,Pakistan,Pakistan,Lahore,train
+The city of Lahore is not in China.,1,Lahore,China,Pakistan,Lahore,train
+The city of Zhenjiang is not in China.,0,Zhenjiang,China,China,Zhenjiang,train
+The city of Zhenjiang is not in Germany.,1,Zhenjiang,Germany,China,Zhenjiang,train
+The city of Zhaotong is not in China.,0,Zhaotong,China,China,Zhaotong,test
+The city of Zhaotong is not in Iraq.,1,Zhaotong,Iraq,China,Zhaotong,test
+The city of Weifang is not in China.,0,Weifang,China,China,Weifang,test
+The city of Weifang is not in Indonesia.,1,Weifang,Indonesia,China,Weifang,test
+The city of Tianjin is not in China.,0,Tianjin,China,China,Tianjin,train
+The city of Tianjin is not in Bangladesh.,1,Tianjin,Bangladesh,China,Tianjin,train
+The city of Shaoxing is not in China.,0,Shaoxing,China,China,Shaoxing,test
+The city of Shaoxing is not in the Philippines.,1,Shaoxing,the Philippines,China,Shaoxing,test
+The city of Hangzhou is not in China.,0,Hangzhou,China,China,Hangzhou,train
+The city of Hangzhou is not in Russia.,1,Hangzhou,Russia,China,Hangzhou,train
+The city of Mudanjiang is not in China.,0,Mudanjiang,China,China,Mudanjiang,train
+The city of Mudanjiang is not in Turkey.,1,Mudanjiang,Turkey,China,Mudanjiang,train
+The city of Anshan is not in China.,0,Anshan,China,China,Anshan,test
+The city of Anshan is not in Cameroon.,1,Anshan,Cameroon,China,Anshan,test
+The city of Porto Velho is not in Brazil.,0,Porto Velho,Brazil,Brazil,Porto Velho,train
+The city of Porto Velho is not in Algeria.,1,Porto Velho,Algeria,Brazil,Porto Velho,train
+The city of N'Djamena is not in Chad.,0,N'Djamena,Chad,Chad,N'Djamena,train
+The city of N'Djamena is not in China.,1,N'Djamena,China,Chad,N'Djamena,train
+The city of Kayseri is not in Turkey.,0,Kayseri,Turkey,Turkey,Kayseri,train
+The city of Kayseri is not in Iraq.,1,Kayseri,Iraq,Turkey,Kayseri,train
+The city of Marseille is not in France.,0,Marseille,France,France,Marseille,train
+The city of Marseille is not in Russia.,1,Marseille,Russia,France,Marseille,train
+The city of Lyon is not in France.,0,Lyon,France,France,Lyon,test
+The city of Lyon is not in Canada.,1,Lyon,Canada,France,Lyon,test
+The city of Suez is not in Egypt.,0,Suez,Egypt,Egypt,Suez,train
+The city of Suez is not in Brazil.,1,Suez,Brazil,Egypt,Suez,train
+The city of Giza is not in Egypt.,0,Giza,Egypt,Egypt,Giza,test
+The city of Giza is not in India.,1,Giza,India,Egypt,Giza,test
+The city of Naberezhnyye Chelny is not in Russia.,0,Naberezhnyye Chelny,Russia,Russia,Naberezhnyye Chelny,train
+The city of Naberezhnyye Chelny is not in Brazil.,1,Naberezhnyye Chelny,Brazil,Russia,Naberezhnyye Chelny,train
+The city of Mukalla is not in Yemen.,0,Mukalla,Yemen,Yemen,Mukalla,train
+The city of Mukalla is not in Iran.,1,Mukalla,Iran,Yemen,Mukalla,train
+The city of Harare is not in Zimbabwe.,0,Harare,Zimbabwe,Zimbabwe,Harare,train
+The city of Harare is not in Turkey.,1,Harare,Turkey,Zimbabwe,Harare,train
+The city of Sevastopol is not in Ukraine.,0,Sevastopol,Ukraine,Ukraine,Sevastopol,train
+The city of Sevastopol is not in Pakistan.,1,Sevastopol,Pakistan,Ukraine,Sevastopol,train
+The city of Lipetsk is not in Russia.,0,Lipetsk,Russia,Russia,Lipetsk,test
+The city of Lipetsk is not in China.,1,Lipetsk,China,Russia,Lipetsk,test
+The city of Istanbul is not in Turkey.,0,Istanbul,Turkey,Turkey,Istanbul,train
+The city of Istanbul is not in Ghana.,1,Istanbul,Ghana,Turkey,Istanbul,train
+The city of Callao is not in Peru.,0,Callao,Peru,Peru,Callao,train
+The city of Callao is not in Myanmar.,1,Callao,Myanmar,Peru,Callao,train
+The city of Cebu City is not in the Philippines.,0,Cebu City,the Philippines,the Philippines,Cebu City,train
+The city of Cebu City is not in China.,1,Cebu City,China,the Philippines,Cebu City,train
+The city of Tashkent is not in Uzbekistan.,0,Tashkent,Uzbekistan,Uzbekistan,Tashkent,test
+The city of Tashkent is not in Mexico.,1,Tashkent,Mexico,Uzbekistan,Tashkent,test
+The city of Maturin is not in Venezuela.,0,Maturin,Venezuela,Venezuela,Maturin,train
+The city of Maturin is not in Saudi Arabia.,1,Maturin,Saudi Arabia,Venezuela,Maturin,train
+The city of Hanoi is not in Vietnam.,0,Hanoi,Vietnam,Vietnam,Hanoi,train
+The city of Hanoi is not in Poland.,1,Hanoi,Poland,Vietnam,Hanoi,train
+The city of Xuzhou is not in China.,0,Xuzhou,China,China,Xuzhou,test
+The city of Xuzhou is not in Mexico.,1,Xuzhou,Mexico,China,Xuzhou,test
+The city of Cucuta is not in Colombia.,0,Cucuta,Colombia,Colombia,Cucuta,train
+The city of Cucuta is not in India.,1,Cucuta,India,Colombia,Cucuta,train
+The city of Santo Domingo Oeste is not in the Dominican Republic.,0,Santo Domingo Oeste,the Dominican Republic,the Dominican Republic,Santo Domingo Oeste,train
+The city of Santo Domingo Oeste is not in Zambia.,1,Santo Domingo Oeste,Zambia,the Dominican Republic,Santo Domingo Oeste,train
+The city of Tangshan is not in China.,0,Tangshan,China,China,Tangshan,train
+The city of Tangshan is not in India.,1,Tangshan,India,China,Tangshan,train
+The city of Neijiang is not in China.,0,Neijiang,China,China,Neijiang,train
+The city of Neijiang is not in Ghana.,1,Neijiang,Ghana,China,Neijiang,train
+The city of Linfen is not in China.,0,Linfen,China,China,Linfen,train
+The city of Linfen is not in India.,1,Linfen,India,China,Linfen,train
+The city of Yiwu is not in China.,0,Yiwu,China,China,Yiwu,train
+The city of Yiwu is not in India.,1,Yiwu,India,China,Yiwu,train
+The city of Qiqihar is not in China.,0,Qiqihar,China,China,Qiqihar,train
+The city of Qiqihar is not in India.,1,Qiqihar,India,China,Qiqihar,train
+The city of Baotou is not in China.,0,Baotou,China,China,Baotou,train
+The city of Baotou is not in Japan.,1,Baotou,Japan,China,Baotou,train
+The city of Aparecida de Goiania is not in Brazil.,0,Aparecida de Goiania,Brazil,Brazil,Aparecida de Goiania,train
+The city of Aparecida de Goiania is not in China.,1,Aparecida de Goiania,China,Brazil,Aparecida de Goiania,train
+The city of Kinshasa is not in the Democratic Republic of the Congo.,0,Kinshasa,the Democratic Republic of the Congo,the Democratic Republic of the Congo,Kinshasa,train
+The city of Kinshasa is not in Brazil.,1,Kinshasa,Brazil,the Democratic Republic of the Congo,Kinshasa,train
+The city of Ciudad Nezahualcoyotl is not in Mexico.,0,Ciudad Nezahualcoyotl,Mexico,Mexico,Ciudad Nezahualcoyotl,train
+The city of Ciudad Nezahualcoyotl is not in Senegal.,1,Ciudad Nezahualcoyotl,Senegal,Mexico,Ciudad Nezahualcoyotl,train
+The city of Mexicali is not in Mexico.,0,Mexicali,Mexico,Mexico,Mexicali,train
+The city of Mexicali is not in South Africa.,1,Mexicali,South Africa,Mexico,Mexicali,train
+The city of Ciudad Juarez is not in Mexico.,0,Ciudad Juarez,Mexico,Mexico,Ciudad Juarez,train
+The city of Ciudad Juarez is not in India.,1,Ciudad Juarez,India,Mexico,Ciudad Juarez,train
+The city of Kampung Baru Subang is not in Malaysia.,0,Kampung Baru Subang,Malaysia,Malaysia,Kampung Baru Subang,train
+The city of Kampung Baru Subang is not in the Philippines.,1,Kampung Baru Subang,the Philippines,Malaysia,Kampung Baru Subang,train
+The city of Subang Jaya is not in Malaysia.,0,Subang Jaya,Malaysia,Malaysia,Subang Jaya,test
+The city of Subang Jaya is not in Germany.,1,Subang Jaya,Germany,Malaysia,Subang Jaya,test
+The city of Maputo is not in Mozambique.,0,Maputo,Mozambique,Mozambique,Maputo,train
+The city of Maputo is not in Japan.,1,Maputo,Japan,Mozambique,Maputo,train
+The city of Kumamoto is not in Japan.,0,Kumamoto,Japan,Japan,Kumamoto,train
+The city of Kumamoto is not in China.,1,Kumamoto,China,Japan,Kumamoto,train
+The city of Daegu is not in South Korea.,0,Daegu,South Korea,South Korea,Daegu,test
+The city of Daegu is not in the United States.,1,Daegu,the United States,South Korea,Daegu,test
+The city of Vilnius is not in Lithuania.,0,Vilnius,Lithuania,Lithuania,Vilnius,train
+The city of Vilnius is not in China.,1,Vilnius,China,Lithuania,Vilnius,train
+The city of Ranchi is not in India.,0,Ranchi,India,India,Ranchi,train
+The city of Ranchi is not in Venezuela.,1,Ranchi,Venezuela,India,Ranchi,train
+The city of Jalandhar is not in India.,0,Jalandhar,India,India,Jalandhar,train
+The city of Jalandhar is not in Iraq.,1,Jalandhar,Iraq,India,Jalandhar,train
+The city of Bhayandar is not in India.,0,Bhayandar,India,India,Bhayandar,train
+The city of Bhayandar is not in China.,1,Bhayandar,China,India,Bhayandar,train
+The city of Bareilly is not in India.,0,Bareilly,India,India,Bareilly,train
+The city of Bareilly is not in Mozambique.,1,Bareilly,Mozambique,India,Bareilly,train
+The city of Santo Domingo Este is not in the Dominican Republic.,0,Santo Domingo Este,the Dominican Republic,the Dominican Republic,Santo Domingo Este,train
+The city of Santo Domingo Este is not in India.,1,Santo Domingo Este,India,the Dominican Republic,Santo Domingo Este,train
+The city of Al Fayyum is not in Egypt.,0,Al Fayyum,Egypt,Egypt,Al Fayyum,train
+The city of Al Fayyum is not in Chile.,1,Al Fayyum,Chile,Egypt,Al Fayyum,train
+The city of Rizhao is not in China.,0,Rizhao,China,China,Rizhao,train
+The city of Rizhao is not in Iraq.,1,Rizhao,Iraq,China,Rizhao,train
+"The city of Mianzhu, Deyang, Sichuan is not in China.",0,"Mianzhu, Deyang, Sichuan",China,China,"Mianzhu, Deyang, Sichuan",train
+"The city of Mianzhu, Deyang, Sichuan is not in India.",1,"Mianzhu, Deyang, Sichuan",India,China,"Mianzhu, Deyang, Sichuan",train
+The city of Jabalpur is not in India.,0,Jabalpur,India,India,Jabalpur,test
+The city of Jabalpur is not in Ukraine.,1,Jabalpur,Ukraine,India,Jabalpur,test
+The city of Bilimora is not in India.,0,Bilimora,India,India,Bilimora,train
+The city of Bilimora is not in Uzbekistan.,1,Bilimora,Uzbekistan,India,Bilimora,train
+The city of Accra is not in Ghana.,0,Accra,Ghana,Ghana,Accra,train
+The city of Accra is not in China.,1,Accra,China,Ghana,Accra,train
+The city of Bogor is not in Indonesia.,0,Bogor,Indonesia,Indonesia,Bogor,train
+The city of Bogor is not in South Korea.,1,Bogor,South Korea,Indonesia,Bogor,train
+The city of Nyala is not in Sudan.,0,Nyala,Sudan,Sudan,Nyala,train
+The city of Nyala is not in Mozambique.,1,Nyala,Mozambique,Sudan,Nyala,train
+The city of Eskisehir is not in Turkey.,0,Eskisehir,Turkey,Turkey,Eskisehir,train
+The city of Eskisehir is not in China.,1,Eskisehir,China,Turkey,Eskisehir,train
+The city of Antalya is not in Turkey.,0,Antalya,Turkey,Turkey,Antalya,test
+The city of Antalya is not in Germany.,1,Antalya,Germany,Turkey,Antalya,test
+The city of Dnipro is not in Ukraine.,0,Dnipro,Ukraine,Ukraine,Dnipro,train
+The city of Dnipro is not in Russia.,1,Dnipro,Russia,Ukraine,Dnipro,train
+The city of Khabarovsk is not in Russia.,0,Khabarovsk,Russia,Russia,Khabarovsk,train
+The city of Khabarovsk is not in Saudi Arabia.,1,Khabarovsk,Saudi Arabia,Russia,Khabarovsk,train
+The city of Irkutsk is not in Russia.,0,Irkutsk,Russia,Russia,Irkutsk,test
+The city of Irkutsk is not in Morocco.,1,Irkutsk,Morocco,Russia,Irkutsk,test
+The city of Libreville is not in Gabon.,0,Libreville,Gabon,Gabon,Libreville,train
+The city of Libreville is not in the United States.,1,Libreville,the United States,Gabon,Libreville,train
+The city of Santiago de los Caballeros is not in the Dominican Republic.,0,Santiago de los Caballeros,the Dominican Republic,the Dominican Republic,Santiago de los Caballeros,train
+The city of Santiago de los Caballeros is not in India.,1,Santiago de los Caballeros,India,the Dominican Republic,Santiago de los Caballeros,train
+The city of Algiers is not in Algeria.,0,Algiers,Algeria,Algeria,Algiers,train
+The city of Algiers is not in China.,1,Algiers,China,Algeria,Algiers,train
+The city of Nashik is not in India.,0,Nashik,India,India,Nashik,test
+The city of Nashik is not in China.,1,Nashik,China,India,Nashik,test
+The city of Karol Bagh is not in India.,0,Karol Bagh,India,India,Karol Bagh,train
+The city of Karol Bagh is not in Syria.,1,Karol Bagh,Syria,India,Karol Bagh,train
+The city of Orumiyeh is not in Iran.,0,Orumiyeh,Iran,Iran,Orumiyeh,test
+The city of Orumiyeh is not in Saudi Arabia.,1,Orumiyeh,Saudi Arabia,Iran,Orumiyeh,test
+The city of Zahedan is not in Iran.,0,Zahedan,Iran,Iran,Zahedan,train
+The city of Zahedan is not in Nicaragua.,1,Zahedan,Nicaragua,Iran,Zahedan,train
+The city of Xuchang is not in China.,0,Xuchang,China,China,Xuchang,train
+The city of Xuchang is not in Japan.,1,Xuchang,Japan,China,Xuchang,train
+The city of Changde is not in China.,0,Changde,China,China,Changde,train
+The city of Changde is not in Mexico.,1,Changde,Mexico,China,Changde,train
+The city of Shaoguan is not in China.,0,Shaoguan,China,China,Shaoguan,train
+The city of Shaoguan is not in Pakistan.,1,Shaoguan,Pakistan,China,Shaoguan,train
+The city of Jilin is not in China.,0,Jilin,China,China,Jilin,test
+The city of Jilin is not in the United States.,1,Jilin,the United States,China,Jilin,test
+The city of Manaus is not in Brazil.,0,Manaus,Brazil,Brazil,Manaus,train
+The city of Manaus is not in Turkey.,1,Manaus,Turkey,Brazil,Manaus,train
+The city of Jaboatao dos Guararapes is not in Brazil.,0,Jaboatao dos Guararapes,Brazil,Brazil,Jaboatao dos Guararapes,train
+The city of Jaboatao dos Guararapes is not in Myanmar.,1,Jaboatao dos Guararapes,Myanmar,Brazil,Jaboatao dos Guararapes,train
+The city of Kakamega is not in Kenya.,0,Kakamega,Kenya,Kenya,Kakamega,train
+The city of Kakamega is not in Russia.,1,Kakamega,Russia,Kenya,Kakamega,train
+The city of Agadir is not in Morocco.,0,Agadir,Morocco,Morocco,Agadir,train
+The city of Agadir is not in Bangladesh.,1,Agadir,Bangladesh,Morocco,Agadir,train
+The city of Ulan Bator is not in Mongolia.,0,Ulan Bator,Mongolia,Mongolia,Ulan Bator,train
+The city of Ulan Bator is not in Ukraine.,1,Ulan Bator,Ukraine,Mongolia,Ulan Bator,train
+The city of Muscat is not in Oman.,0,Muscat,Oman,Oman,Muscat,train
+The city of Muscat is not in Bangladesh.,1,Muscat,Bangladesh,Oman,Muscat,train
+The city of Paranaque City is not in the Philippines.,0,Paranaque City,the Philippines,the Philippines,Paranaque City,test
+The city of Paranaque City is not in India.,1,Paranaque City,India,the Philippines,Paranaque City,test
+The city of Rahim Yar Khan is not in Pakistan.,0,Rahim Yar Khan,Pakistan,Pakistan,Rahim Yar Khan,train
+The city of Rahim Yar Khan is not in Lithuania.,1,Rahim Yar Khan,Lithuania,Pakistan,Rahim Yar Khan,train
+The city of Balikpapan is not in Indonesia.,0,Balikpapan,Indonesia,Indonesia,Balikpapan,train
+The city of Balikpapan is not in Japan.,1,Balikpapan,Japan,Indonesia,Balikpapan,train
+The city of Guarulhos is not in Brazil.,0,Guarulhos,Brazil,Brazil,Guarulhos,train
+The city of Guarulhos is not in China.,1,Guarulhos,China,Brazil,Guarulhos,train
+The city of Volgograd is not in Russia.,0,Volgograd,Russia,Russia,Volgograd,train
+The city of Volgograd is not in Nigeria.,1,Volgograd,Nigeria,Russia,Volgograd,train
+The city of Ulyanovsk is not in Russia.,0,Ulyanovsk,Russia,Russia,Ulyanovsk,train
+The city of Ulyanovsk is not in Ukraine.,1,Ulyanovsk,Ukraine,Russia,Ulyanovsk,train
+The city of Kota Bharu is not in Malaysia.,0,Kota Bharu,Malaysia,Malaysia,Kota Bharu,test
+The city of Kota Bharu is not in Norway.,1,Kota Bharu,Norway,Malaysia,Kota Bharu,test
+The city of Sarajevo is not in Bosnia and Herzegovina.,0,Sarajevo,Bosnia and Herzegovina,Bosnia and Herzegovina,Sarajevo,test
+The city of Sarajevo is not in South Africa.,1,Sarajevo,South Africa,Bosnia and Herzegovina,Sarajevo,test
+The city of Maceio is not in Brazil.,0,Maceio,Brazil,Brazil,Maceio,train
+The city of Maceio is not in China.,1,Maceio,China,Brazil,Maceio,train
+The city of Joao Pessoa is not in Brazil.,0,Joao Pessoa,Brazil,Brazil,Joao Pessoa,train
+The city of Joao Pessoa is not in South Africa.,1,Joao Pessoa,South Africa,Brazil,Joao Pessoa,train
+The city of Shangqiu is not in China.,0,Shangqiu,China,China,Shangqiu,train
+The city of Shangqiu is not in South Korea.,1,Shangqiu,South Korea,China,Shangqiu,train
+The city of Zhangye is not in China.,0,Zhangye,China,China,Zhangye,train
+The city of Zhangye is not in Venezuela.,1,Zhangye,Venezuela,China,Zhangye,train
+The city of Xuanzhou is not in China.,0,Xuanzhou,China,China,Xuanzhou,train
+The city of Xuanzhou is not in Tanzania.,1,Xuanzhou,Tanzania,China,Xuanzhou,train
+The city of Wuhan is not in China.,0,Wuhan,China,China,Wuhan,train
+The city of Wuhan is not in Egypt.,1,Wuhan,Egypt,China,Wuhan,train
+The city of Nanchang is not in China.,0,Nanchang,China,China,Nanchang,train
+The city of Nanchang is not in Malaysia.,1,Nanchang,Malaysia,China,Nanchang,train
+The city of Luancheng is not in China.,0,Luancheng,China,China,Luancheng,train
+The city of Luancheng is not in Brazil.,1,Luancheng,Brazil,China,Luancheng,train
+The city of Liuzhou is not in China.,0,Liuzhou,China,China,Liuzhou,train
+The city of Liuzhou is not in Russia.,1,Liuzhou,Russia,China,Liuzhou,train
+The city of Guangyuan is not in China.,0,Guangyuan,China,China,Guangyuan,test
+The city of Guangyuan is not in Mexico.,1,Guangyuan,Mexico,China,Guangyuan,test
+The city of Bijie is not in China.,0,Bijie,China,China,Bijie,train
+The city of Bijie is not in Indonesia.,1,Bijie,Indonesia,China,Bijie,train
+The city of Zhoushan is not in China.,0,Zhoushan,China,China,Zhoushan,test
+The city of Zhoushan is not in the Philippines.,1,Zhoushan,the Philippines,China,Zhoushan,test
+The city of Hegang is not in China.,0,Hegang,China,China,Hegang,test
+The city of Hegang is not in Russia.,1,Hegang,Russia,China,Hegang,test
+The city of E'zhou is not in China.,0,E'zhou,China,China,E'zhou,train
+The city of E'zhou is not in Malaysia.,1,E'zhou,Malaysia,China,E'zhou,train
+The city of Campos dos Goytacazes is not in Brazil.,0,Campos dos Goytacazes,Brazil,Brazil,Campos dos Goytacazes,test
+The city of Campos dos Goytacazes is not in Vietnam.,1,Campos dos Goytacazes,Vietnam,Brazil,Campos dos Goytacazes,test
+The city of Bucharest is not in Romania.,0,Bucharest,Romania,Romania,Bucharest,train
+The city of Bucharest is not in Italy.,1,Bucharest,Italy,Romania,Bucharest,train
+The city of Ansan-si is not in South Korea.,0,Ansan-si,South Korea,South Korea,Ansan-si,test
+The city of Ansan-si is not in Canada.,1,Ansan-si,Canada,South Korea,Ansan-si,test
+The city of Casablanca is not in Morocco.,0,Casablanca,Morocco,Morocco,Casablanca,train
+The city of Casablanca is not in Russia.,1,Casablanca,Russia,Morocco,Casablanca,train
+The city of Coyoacan is not in Mexico.,0,Coyoacan,Mexico,Mexico,Coyoacan,train
+The city of Coyoacan is not in Kenya.,1,Coyoacan,Kenya,Mexico,Coyoacan,train
+The city of Oyo is not in Nigeria.,0,Oyo,Nigeria,Nigeria,Oyo,test
+The city of Oyo is not in China.,1,Oyo,China,Nigeria,Oyo,test
+The city of Pasig City is not in the Philippines.,0,Pasig City,the Philippines,the Philippines,Pasig City,train
+The city of Pasig City is not in Morocco.,1,Pasig City,Morocco,the Philippines,Pasig City,train
+The city of Kano is not in Nigeria.,0,Kano,Nigeria,Nigeria,Kano,train
+The city of Kano is not in China.,1,Kano,China,Nigeria,Kano,train
+The city of Bahawalpur is not in Pakistan.,0,Bahawalpur,Pakistan,Pakistan,Bahawalpur,test
+The city of Bahawalpur is not in China.,1,Bahawalpur,China,Pakistan,Bahawalpur,test
+The city of New Kingston is not in Jamaica.,0,New Kingston,Jamaica,Jamaica,New Kingston,test
+The city of New Kingston is not in South Africa.,1,New Kingston,South Africa,Jamaica,New Kingston,test
+The city of Pyongyang is not in North Korea.,0,Pyongyang,North Korea,North Korea,Pyongyang,train
+The city of Pyongyang is not in Argentina.,1,Pyongyang,Argentina,North Korea,Pyongyang,train
+The city of Shymkent is not in Kazakhstan.,0,Shymkent,Kazakhstan,Kazakhstan,Shymkent,train
+The city of Shymkent is not in China.,1,Shymkent,China,Kazakhstan,Shymkent,train
+The city of Tlalpan is not in Mexico.,0,Tlalpan,Mexico,Mexico,Tlalpan,train
+The city of Tlalpan is not in Egypt.,1,Tlalpan,Egypt,Mexico,Tlalpan,train
+The city of Kemerovo is not in Russia.,0,Kemerovo,Russia,Russia,Kemerovo,test
+The city of Kemerovo is not in India.,1,Kemerovo,India,Russia,Kemerovo,test
+The city of Zaporizhzhya is not in Ukraine.,0,Zaporizhzhya,Ukraine,Ukraine,Zaporizhzhya,train
+The city of Zaporizhzhya is not in South Korea.,1,Zaporizhzhya,South Korea,Ukraine,Zaporizhzhya,train
+The city of Iztapalapa is not in Mexico.,0,Iztapalapa,Mexico,Mexico,Iztapalapa,train
+The city of Iztapalapa is not in Yemen.,1,Iztapalapa,Yemen,Mexico,Iztapalapa,train
+The city of Aguascalientes is not in Mexico.,0,Aguascalientes,Mexico,Mexico,Aguascalientes,train
+The city of Aguascalientes is not in China.,1,Aguascalientes,China,Mexico,Aguascalientes,train
+The city of Kuala Lumpur is not in Malaysia.,0,Kuala Lumpur,Malaysia,Malaysia,Kuala Lumpur,test
+The city of Kuala Lumpur is not in Oman.,1,Kuala Lumpur,Oman,Malaysia,Kuala Lumpur,test
+The city of Warri is not in Nigeria.,0,Warri,Nigeria,Nigeria,Warri,test
+The city of Warri is not in China.,1,Warri,China,Nigeria,Warri,test
+The city of Peshawar is not in Pakistan.,0,Peshawar,Pakistan,Pakistan,Peshawar,train
+The city of Peshawar is not in Tanzania.,1,Peshawar,Tanzania,Pakistan,Peshawar,train
+The city of Kagoshima is not in Japan.,0,Kagoshima,Japan,Japan,Kagoshima,test
+The city of Kagoshima is not in India.,1,Kagoshima,India,Japan,Kagoshima,test
+The city of Hamamatsu is not in Japan.,0,Hamamatsu,Japan,Japan,Hamamatsu,test
+The city of Hamamatsu is not in Russia.,1,Hamamatsu,Russia,Japan,Hamamatsu,test
+The city of Cheongju-si is not in South Korea.,0,Cheongju-si,South Korea,South Korea,Cheongju-si,train
+The city of Cheongju-si is not in India.,1,Cheongju-si,India,South Korea,Cheongju-si,train
+The city of Ghaziabad is not in India.,0,Ghaziabad,India,India,Ghaziabad,test
+The city of Ghaziabad is not in South Korea.,1,Ghaziabad,South Korea,India,Ghaziabad,test
+The city of Cochin is not in India.,0,Cochin,India,India,Cochin,train
+The city of Cochin is not in China.,1,Cochin,China,India,Cochin,train
+The city of Ahmedabad is not in India.,0,Ahmedabad,India,India,Ahmedabad,train
+The city of Ahmedabad is not in China.,1,Ahmedabad,China,India,Ahmedabad,train
+The city of Sulaymaniyah is not in Iraq.,0,Sulaymaniyah,Iraq,Iraq,Sulaymaniyah,train
+The city of Sulaymaniyah is not in Turkey.,1,Sulaymaniyah,Turkey,Iraq,Sulaymaniyah,train
+The city of Hamadan is not in Iran.,0,Hamadan,Iran,Iran,Hamadan,train
+The city of Hamadan is not in Pakistan.,1,Hamadan,Pakistan,Iran,Hamadan,train
+The city of Omsk is not in Russia.,0,Omsk,Russia,Russia,Omsk,train
+The city of Omsk is not in China.,1,Omsk,China,Russia,Omsk,train
+The city of Ta'if is not in Saudi Arabia.,0,Ta'if,Saudi Arabia,Saudi Arabia,Ta'if,train
+The city of Ta'if is not in Venezuela.,1,Ta'if,Venezuela,Saudi Arabia,Ta'if,train
+The city of Stockholm is not in Sweden.,0,Stockholm,Sweden,Sweden,Stockholm,train
+The city of Stockholm is not in Russia.,1,Stockholm,Russia,Sweden,Stockholm,train
+The city of Siliguri is not in India.,0,Siliguri,India,India,Siliguri,train
+The city of Siliguri is not in China.,1,Siliguri,China,India,Siliguri,train
+The city of Baghdad is not in Iraq.,0,Baghdad,Iraq,Iraq,Baghdad,train
+The city of Baghdad is not in China.,1,Baghdad,China,Iraq,Baghdad,train
+The city of Al Basrah al Qadimah is not in Iraq.,0,Al Basrah al Qadimah,Iraq,Iraq,Al Basrah al Qadimah,train
+The city of Al Basrah al Qadimah is not in China.,1,Al Basrah al Qadimah,China,Iraq,Al Basrah al Qadimah,train
+The city of Krakow is not in Poland.,0,Krakow,Poland,Poland,Krakow,test
+The city of Krakow is not in South Korea.,1,Krakow,South Korea,Poland,Krakow,test
+The city of Tolyatti is not in Russia.,0,Tolyatti,Russia,Russia,Tolyatti,train
+The city of Tolyatti is not in Ghana.,1,Tolyatti,Ghana,Russia,Tolyatti,train
+The city of Bandar Lampung is not in Indonesia.,0,Bandar Lampung,Indonesia,Indonesia,Bandar Lampung,train
+The city of Bandar Lampung is not in South Africa.,1,Bandar Lampung,South Africa,Indonesia,Bandar Lampung,train
+The city of Tucson is not in the United States.,0,Tucson,the United States,the United States,Tucson,test
+The city of Tucson is not in Canada.,1,Tucson,Canada,the United States,Tucson,test
+The city of Can Tho is not in Vietnam.,0,Can Tho,Vietnam,Vietnam,Can Tho,train
+The city of Can Tho is not in Venezuela.,1,Can Tho,Venezuela,Vietnam,Can Tho,train
+The city of Bouake is not in Côte d'Ivoire.,0,Bouake,Côte d'Ivoire,Côte d'Ivoire,Bouake,train
+The city of Bouake is not in China.,1,Bouake,China,Côte d'Ivoire,Bouake,train
+The city of Abobo is not in Côte d'Ivoire.,0,Abobo,Côte d'Ivoire,Côte d'Ivoire,Abobo,train
+The city of Abobo is not in India.,1,Abobo,India,Côte d'Ivoire,Abobo,train
+The city of Shihezi is not in China.,0,Shihezi,China,China,Shihezi,train
+The city of Shihezi is not in Russia.,1,Shihezi,Russia,China,Shihezi,train
+The city of Yunfu is not in China.,0,Yunfu,China,China,Yunfu,train
+The city of Yunfu is not in Honduras.,1,Yunfu,Honduras,China,Yunfu,train
+The city of Xiangtan is not in China.,0,Xiangtan,China,China,Xiangtan,train
+The city of Xiangtan is not in Brazil.,1,Xiangtan,Brazil,China,Xiangtan,train
+The city of Qionghai is not in China.,0,Qionghai,China,China,Qionghai,train
+The city of Qionghai is not in Ecuador.,1,Qionghai,Ecuador,China,Qionghai,train
+The city of Chuzhou is not in China.,0,Chuzhou,China,China,Chuzhou,train
+The city of Chuzhou is not in India.,1,Chuzhou,India,China,Chuzhou,train
+The city of Taiz is not in Yemen.,0,Taiz,Yemen,Yemen,Taiz,train
+The city of Taiz is not in Burkina Faso.,1,Taiz,Burkina Faso,Yemen,Taiz,train
+The city of Tembisa is not in South Africa.,0,Tembisa,South Africa,South Africa,Tembisa,train
+The city of Tembisa is not in the Philippines.,1,Tembisa,the Philippines,South Africa,Tembisa,train
+The city of Puente Alto is not in Chile.,0,Puente Alto,Chile,Chile,Puente Alto,train
+The city of Puente Alto is not in China.,1,Puente Alto,China,Chile,Puente Alto,train
+The city of Zhumadian is not in China.,0,Zhumadian,China,China,Zhumadian,train
+The city of Zhumadian is not in Brazil.,1,Zhumadian,Brazil,China,Zhumadian,train
+The city of Zhengzhou is not in China.,0,Zhengzhou,China,China,Zhengzhou,test
+The city of Zhengzhou is not in Brazil.,1,Zhengzhou,Brazil,China,Zhengzhou,test
+The city of Ya'an is not in China.,0,Ya'an,China,China,Ya'an,train
+The city of Ya'an is not in Morocco.,1,Ya'an,Morocco,China,Ya'an,train
+The city of Xianyang is not in China.,0,Xianyang,China,China,Xianyang,train
+The city of Xianyang is not in Russia.,1,Xianyang,Russia,China,Xianyang,train
+The city of Weihai is not in China.,0,Weihai,China,China,Weihai,train
+The city of Weihai is not in Russia.,1,Weihai,Russia,China,Weihai,train
+The city of Pingdingshan is not in China.,0,Pingdingshan,China,China,Pingdingshan,train
+The city of Pingdingshan is not in South Africa.,1,Pingdingshan,South Africa,China,Pingdingshan,train
+The city of Bengbu is not in China.,0,Bengbu,China,China,Bengbu,train
+The city of Bengbu is not in India.,1,Bengbu,India,China,Bengbu,train
+The city of Zhangjiakou is not in China.,0,Zhangjiakou,China,China,Zhangjiakou,train
+The city of Zhangjiakou is not in India.,1,Zhangjiakou,India,China,Zhangjiakou,train
+The city of Mississauga is not in Canada.,0,Mississauga,Canada,Canada,Mississauga,train
+The city of Mississauga is not in India.,1,Mississauga,India,Canada,Mississauga,train
+The city of Yerevan is not in Armenia.,0,Yerevan,Armenia,Armenia,Yerevan,train
+The city of Yerevan is not in Bangladesh.,1,Yerevan,Bangladesh,Armenia,Yerevan,train
+The city of Albuquerque is not in the United States.,0,Albuquerque,the United States,the United States,Albuquerque,train
+The city of Albuquerque is not in Egypt.,1,Albuquerque,Egypt,the United States,Albuquerque,train
+The city of New South Memphis is not in the United States.,0,New South Memphis,the United States,the United States,New South Memphis,train
+The city of New South Memphis is not in China.,1,New South Memphis,China,the United States,New South Memphis,train
+The city of Calgary is not in Canada.,0,Calgary,Canada,Canada,Calgary,train
+The city of Calgary is not in India.,1,Calgary,India,Canada,Calgary,train
+The city of Kisangani is not in the Democratic Republic of the Congo.,0,Kisangani,the Democratic Republic of the Congo,the Democratic Republic of the Congo,Kisangani,train
+The city of Kisangani is not in China.,1,Kisangani,China,the Democratic Republic of the Congo,Kisangani,train
+The city of Bobo-Dioulasso is not in Burkina Faso.,0,Bobo-Dioulasso,Burkina Faso,Burkina Faso,Bobo-Dioulasso,train
+The city of Bobo-Dioulasso is not in China.,1,Bobo-Dioulasso,China,Burkina Faso,Bobo-Dioulasso,train
+The city of Sao Jose dos Campos is not in Brazil.,0,Sao Jose dos Campos,Brazil,Brazil,Sao Jose dos Campos,train
+The city of Sao Jose dos Campos is not in Iran.,1,Sao Jose dos Campos,Iran,Brazil,Sao Jose dos Campos,train
+The city of Florianopolis is not in Brazil.,0,Florianopolis,Brazil,Brazil,Florianopolis,train
+The city of Florianopolis is not in Ecuador.,1,Florianopolis,Ecuador,Brazil,Florianopolis,train
+The city of Cuiaba is not in Brazil.,0,Cuiaba,Brazil,Brazil,Cuiaba,train
+The city of Cuiaba is not in Latvia.,1,Cuiaba,Latvia,Brazil,Cuiaba,train
+The city of Chattogram is not in Bangladesh.,0,Chattogram,Bangladesh,Bangladesh,Chattogram,train
+The city of Chattogram is not in China.,1,Chattogram,China,Bangladesh,Chattogram,train
+The city of Nanjing is not in China.,0,Nanjing,China,China,Nanjing,train
+The city of Nanjing is not in Germany.,1,Nanjing,Germany,China,Nanjing,train
+The city of Kaifeng is not in China.,0,Kaifeng,China,China,Kaifeng,train
+The city of Kaifeng is not in Mexico.,1,Kaifeng,Mexico,China,Kaifeng,train
+The city of Heze is not in China.,0,Heze,China,China,Heze,train
+The city of Heze is not in Yemen.,1,Heze,Yemen,China,Heze,train
+The city of Sendai is not in Japan.,0,Sendai,Japan,Japan,Sendai,test
+The city of Sendai is not in Brazil.,1,Sendai,Brazil,Japan,Sendai,test
+The city of Jeonju is not in South Korea.,0,Jeonju,South Korea,South Korea,Jeonju,train
+The city of Jeonju is not in the United States.,1,Jeonju,the United States,South Korea,Jeonju,train
+The city of Almaty is not in Kazakhstan.,0,Almaty,Kazakhstan,Kazakhstan,Almaty,train
+The city of Almaty is not in Iraq.,1,Almaty,Iraq,Kazakhstan,Almaty,train
+The city of Pimpri is not in India.,0,Pimpri,India,India,Pimpri,test
+The city of Pimpri is not in China.,1,Pimpri,China,India,Pimpri,test
+The city of Navi Mumbai is not in India.,0,Navi Mumbai,India,India,Navi Mumbai,train
+The city of Navi Mumbai is not in China.,1,Navi Mumbai,China,India,Navi Mumbai,train
+The city of Novosibirsk is not in Russia.,0,Novosibirsk,Russia,Russia,Novosibirsk,train
+The city of Novosibirsk is not in the Philippines.,1,Novosibirsk,the Philippines,Russia,Novosibirsk,train
+The city of Goeteborg is not in Sweden.,0,Goeteborg,Sweden,Sweden,Goeteborg,train
+The city of Goeteborg is not in South Korea.,1,Goeteborg,South Korea,Sweden,Goeteborg,train
+The city of Bursa is not in Turkey.,0,Bursa,Turkey,Turkey,Bursa,test
+The city of Bursa is not in Bosnia and Herzegovina.,1,Bursa,Bosnia and Herzegovina,Turkey,Bursa,test
+The city of Dar es Salaam is not in Tanzania.,0,Dar es Salaam,Tanzania,Tanzania,Dar es Salaam,test
+The city of Dar es Salaam is not in Italy.,1,Dar es Salaam,Italy,Tanzania,Dar es Salaam,test
+The city of Mbuji-Mayi is not in the Democratic Republic of the Congo.,0,Mbuji-Mayi,the Democratic Republic of the Congo,the Democratic Republic of the Congo,Mbuji-Mayi,test
+The city of Mbuji-Mayi is not in Pakistan.,1,Mbuji-Mayi,Pakistan,the Democratic Republic of the Congo,Mbuji-Mayi,test
+The city of Goiania is not in Brazil.,0,Goiania,Brazil,Brazil,Goiania,train
+The city of Goiania is not in China.,1,Goiania,China,Brazil,Goiania,train
+The city of Yaroslavl is not in Russia.,0,Yaroslavl,Russia,Russia,Yaroslavl,train
+The city of Yaroslavl is not in India.,1,Yaroslavl,India,Russia,Yaroslavl,train
+The city of Kigali is not in Rwanda.,0,Kigali,Rwanda,Rwanda,Kigali,train
+The city of Kigali is not in Indonesia.,1,Kigali,Indonesia,Rwanda,Kigali,train
+The city of Diyarbakir is not in Turkey.,0,Diyarbakir,Turkey,Turkey,Diyarbakir,train
+The city of Diyarbakir is not in Colombia.,1,Diyarbakir,Colombia,Turkey,Diyarbakir,train
+The city of Tyumen is not in Russia.,0,Tyumen,Russia,Russia,Tyumen,train
+The city of Tyumen is not in Mexico.,1,Tyumen,Mexico,Russia,Tyumen,train
+The city of Orenburg is not in Russia.,0,Orenburg,Russia,Russia,Orenburg,train
+The city of Orenburg is not in Malaysia.,1,Orenburg,Malaysia,Russia,Orenburg,train
+The city of Osaka is not in Japan.,0,Osaka,Japan,Japan,Osaka,test
+The city of Osaka is not in India.,1,Osaka,India,Japan,Osaka,test
+The city of Sapporo is not in Japan.,0,Sapporo,Japan,Japan,Sapporo,test
+The city of Sapporo is not in Mexico.,1,Sapporo,Mexico,Japan,Sapporo,test
+The city of Kimhae is not in South Korea.,0,Kimhae,South Korea,South Korea,Kimhae,train
+The city of Kimhae is not in Senegal.,1,Kimhae,Senegal,South Korea,Kimhae,train
+The city of Cheonan is not in South Korea.,0,Cheonan,South Korea,South Korea,Cheonan,train
+The city of Cheonan is not in Myanmar.,1,Cheonan,Myanmar,South Korea,Cheonan,train
+The city of San Luis Potosi is not in Mexico.,0,San Luis Potosi,Mexico,Mexico,San Luis Potosi,train
+The city of San Luis Potosi is not in the Democratic Republic of the Congo.,1,San Luis Potosi,the Democratic Republic of the Congo,Mexico,San Luis Potosi,train
+The city of Culiacan is not in Mexico.,0,Culiacan,Mexico,Mexico,Culiacan,train
+The city of Culiacan is not in China.,1,Culiacan,China,Mexico,Culiacan,train
+The city of Kaduna is not in Nigeria.,0,Kaduna,Nigeria,Nigeria,Kaduna,train
+The city of Kaduna is not in Turkey.,1,Kaduna,Turkey,Nigeria,Kaduna,train
+The city of General Santos is not in the Philippines.,0,General Santos,the Philippines,the Philippines,General Santos,train
+The city of General Santos is not in China.,1,General Santos,China,the Philippines,General Santos,train
+The city of Ebute Ikorodu is not in Nigeria.,0,Ebute Ikorodu,Nigeria,Nigeria,Ebute Ikorodu,train
+The city of Ebute Ikorodu is not in China.,1,Ebute Ikorodu,China,Nigeria,Ebute Ikorodu,train
+The city of Benin City is not in Nigeria.,0,Benin City,Nigeria,Nigeria,Benin City,train
+The city of Benin City is not in China.,1,Benin City,China,Nigeria,Benin City,train
+The city of Kanpur is not in India.,0,Kanpur,India,India,Kanpur,train
+The city of Kanpur is not in Brazil.,1,Kanpur,Brazil,India,Kanpur,train
+The city of Indore is not in India.,0,Indore,India,India,Indore,train
+The city of Indore is not in Turkey.,1,Indore,Turkey,India,Indore,train
+The city of Zunyi is not in China.,0,Zunyi,China,China,Zunyi,train
+The city of Zunyi is not in Senegal.,1,Zunyi,Senegal,China,Zunyi,train
+The city of Zhanjiang is not in China.,0,Zhanjiang,China,China,Zhanjiang,train
+The city of Zhanjiang is not in India.,1,Zhanjiang,India,China,Zhanjiang,train
+The city of Wenzhou is not in China.,0,Wenzhou,China,China,Wenzhou,test
+The city of Wenzhou is not in Moldova.,1,Wenzhou,Moldova,China,Wenzhou,test
+The city of Luohe is not in China.,0,Luohe,China,China,Luohe,train
+The city of Luohe is not in Brazil.,1,Luohe,Brazil,China,Luohe,train
+The city of Kunming is not in China.,0,Kunming,China,China,Kunming,test
+The city of Kunming is not in Mexico.,1,Kunming,Mexico,China,Kunming,test
+The city of Cixi is not in China.,0,Cixi,China,China,Cixi,train
+The city of Cixi is not in Indonesia.,1,Cixi,Indonesia,China,Cixi,train
+The city of Hanzhong is not in China.,0,Hanzhong,China,China,Hanzhong,train
+The city of Hanzhong is not in Iran.,1,Hanzhong,Iran,China,Hanzhong,train
+The city of Guangzhou is not in China.,0,Guangzhou,China,China,Guangzhou,train
+The city of Guangzhou is not in India.,1,Guangzhou,India,China,Guangzhou,train
+The city of Munich is not in Germany.,0,Munich,Germany,Germany,Munich,train
+The city of Munich is not in China.,1,Munich,China,Germany,Munich,train
+The city of Pekanbaru is not in Indonesia.,0,Pekanbaru,Indonesia,Indonesia,Pekanbaru,train
+The city of Pekanbaru is not in India.,1,Pekanbaru,India,Indonesia,Pekanbaru,train
+The city of Malang is not in Indonesia.,0,Malang,Indonesia,Indonesia,Malang,train
+The city of Malang is not in Morocco.,1,Malang,Morocco,Indonesia,Malang,train
+The city of Douala is not in Cameroon.,0,Douala,Cameroon,Cameroon,Douala,train
+The city of Douala is not in Russia.,1,Douala,Russia,Cameroon,Douala,train
+The city of Kashgar is not in China.,0,Kashgar,China,China,Kashgar,train
+The city of Kashgar is not in Turkey.,1,Kashgar,Turkey,China,Kashgar,train
+The city of Zibo is not in China.,0,Zibo,China,China,Zibo,test
+The city of Zibo is not in India.,1,Zibo,India,China,Zibo,test
+The city of Tianshui is not in China.,0,Tianshui,China,China,Tianshui,train
+The city of Tianshui is not in Canada.,1,Tianshui,Canada,China,Tianshui,train
+The city of Laibin is not in China.,0,Laibin,China,China,Laibin,train
+The city of Laibin is not in Ethiopia.,1,Laibin,Ethiopia,China,Laibin,train
+The city of Deyang is not in China.,0,Deyang,China,China,Deyang,train
+The city of Deyang is not in Japan.,1,Deyang,Japan,China,Deyang,train
+The city of Teresina is not in Brazil.,0,Teresina,Brazil,Brazil,Teresina,test
+The city of Teresina is not in Vietnam.,1,Teresina,Vietnam,Brazil,Teresina,test
+The city of Leipzig is not in Germany.,0,Leipzig,Germany,Germany,Leipzig,train
+The city of Leipzig is not in Russia.,1,Leipzig,Russia,Germany,Leipzig,train
+The city of Duesseldorf is not in Germany.,0,Duesseldorf,Germany,Germany,Duesseldorf,train
+The city of Duesseldorf is not in Mexico.,1,Duesseldorf,Mexico,Germany,Duesseldorf,train
+The city of Zagreb is not in Croatia.,0,Zagreb,Croatia,Croatia,Zagreb,train
+The city of Zagreb is not in Japan.,1,Zagreb,Japan,Croatia,Zagreb,train
+The city of Hannover is not in Germany.,0,Hannover,Germany,Germany,Hannover,test
+The city of Hannover is not in China.,1,Hannover,China,Germany,Hannover,test
+The city of Penza is not in Russia.,0,Penza,Russia,Russia,Penza,test
+The city of Penza is not in China.,1,Penza,China,Russia,Penza,test
+The city of Matola is not in Mozambique.,0,Matola,Mozambique,Mozambique,Matola,train
+The city of Matola is not in India.,1,Matola,India,Mozambique,Matola,train
+The city of Enugu is not in Nigeria.,0,Enugu,Nigeria,Nigeria,Enugu,test
+The city of Enugu is not in South Korea.,1,Enugu,South Korea,Nigeria,Enugu,test
+The city of Shizuoka is not in Japan.,0,Shizuoka,Japan,Japan,Shizuoka,test
+The city of Shizuoka is not in China.,1,Shizuoka,China,Japan,Shizuoka,test
+The city of Himeji is not in Japan.,0,Himeji,Japan,Japan,Himeji,train
+The city of Himeji is not in the Democratic Republic of the Congo.,1,Himeji,the Democratic Republic of the Congo,Japan,Himeji,train
+The city of Hamhung is not in North Korea.,0,Hamhung,North Korea,North Korea,Hamhung,test
+The city of Hamhung is not in China.,1,Hamhung,China,North Korea,Hamhung,test
+The city of Seoul is not in South Korea.,0,Seoul,South Korea,South Korea,Seoul,test
+The city of Seoul is not in Nicaragua.,1,Seoul,Nicaragua,South Korea,Seoul,test
+The city of Meerut is not in India.,0,Meerut,India,India,Meerut,test
+The city of Meerut is not in Nigeria.,1,Meerut,Nigeria,India,Meerut,test
+The city of Hubli is not in India.,0,Hubli,India,India,Hubli,test
+The city of Hubli is not in Indonesia.,1,Hubli,Indonesia,India,Hubli,test
+The city of Dubai is not in the United Arab Emirates.,0,Dubai,the United Arab Emirates,the United Arab Emirates,Dubai,train
+The city of Dubai is not in the United States.,1,Dubai,the United States,the United Arab Emirates,Dubai,train
+The city of Astrakhan is not in Russia.,0,Astrakhan,Russia,Russia,Astrakhan,test
+The city of Astrakhan is not in India.,1,Astrakhan,India,Russia,Astrakhan,test
+The city of Aleppo is not in Syria.,0,Aleppo,Syria,Syria,Aleppo,train
+The city of Aleppo is not in China.,1,Aleppo,China,Syria,Aleppo,train
+The city of Ar Raqqah is not in Syria.,0,Ar Raqqah,Syria,Syria,Ar Raqqah,train
+The city of Ar Raqqah is not in Iraq.,1,Ar Raqqah,Iraq,Syria,Ar Raqqah,train
+The city of Saint Petersburg is not in Russia.,0,Saint Petersburg,Russia,Russia,Saint Petersburg,train
+The city of Saint Petersburg is not in Canada.,1,Saint Petersburg,Canada,Russia,Saint Petersburg,train
+The city of Johannesburg is not in South Africa.,0,Johannesburg,South Africa,South Africa,Johannesburg,train
+The city of Johannesburg is not in China.,1,Johannesburg,China,South Africa,Johannesburg,train
+The city of Wanzhou is not in China.,0,Wanzhou,China,China,Wanzhou,train
+The city of Wanzhou is not in India.,1,Wanzhou,India,China,Wanzhou,train
+The city of Anyang is not in China.,0,Anyang,China,China,Anyang,test
+The city of Anyang is not in Kuwait.,1,Anyang,Kuwait,China,Anyang,test
+The city of Qinhuangdao is not in China.,0,Qinhuangdao,China,China,Qinhuangdao,test
+The city of Qinhuangdao is not in Eritrea.,1,Qinhuangdao,Eritrea,China,Qinhuangdao,test
+The city of Meizhou is not in China.,0,Meizhou,China,China,Meizhou,train
+The city of Meizhou is not in Russia.,1,Meizhou,Russia,China,Meizhou,train
+The city of Yangjiang is not in China.,0,Yangjiang,China,China,Yangjiang,train
+The city of Yangjiang is not in Indonesia.,1,Yangjiang,Indonesia,China,Yangjiang,train
+The city of Beijing is not in China.,0,Beijing,China,China,Beijing,test
+The city of Beijing is not in Ghana.,1,Beijing,Ghana,China,Beijing,test
+The city of Shah Alam is not in Malaysia.,0,Shah Alam,Malaysia,Malaysia,Shah Alam,test
+The city of Shah Alam is not in China.,1,Shah Alam,China,Malaysia,Shah Alam,test
+The city of Vadodara is not in India.,0,Vadodara,India,India,Vadodara,train
+The city of Vadodara is not in Russia.,1,Vadodara,Russia,India,Vadodara,train
+The city of Sangli is not in India.,0,Sangli,India,India,Sangli,test
+The city of Sangli is not in Japan.,1,Sangli,Japan,India,Sangli,test
+The city of Guwahati is not in India.,0,Guwahati,India,India,Guwahati,train
+The city of Guwahati is not in China.,1,Guwahati,China,India,Guwahati,train
+The city of Prayagraj is not in India.,0,Prayagraj,India,India,Prayagraj,test
+The city of Prayagraj is not in Kenya.,1,Prayagraj,Kenya,India,Prayagraj,test
+The city of Aligarh is not in India.,0,Aligarh,India,India,Aligarh,test
+The city of Aligarh is not in China.,1,Aligarh,China,India,Aligarh,test
+The city of Kermanshah is not in Iran.,0,Kermanshah,Iran,Iran,Kermanshah,test
+The city of Kermanshah is not in China.,1,Kermanshah,China,Iran,Kermanshah,test
+The city of Semarang is not in Indonesia.,0,Semarang,Indonesia,Indonesia,Semarang,test
+The city of Semarang is not in Saudi Arabia.,1,Semarang,Saudi Arabia,Indonesia,Semarang,test
+The city of Khulna is not in Bangladesh.,0,Khulna,Bangladesh,Bangladesh,Khulna,train
+The city of Khulna is not in Japan.,1,Khulna,Japan,Bangladesh,Khulna,train
+The city of Korla is not in China.,0,Korla,China,China,Korla,train
+The city of Korla is not in Azerbaijan.,1,Korla,Azerbaijan,China,Korla,train
+The city of Zaozhuang is not in China.,0,Zaozhuang,China,China,Zaozhuang,test
+The city of Zaozhuang is not in Belarus.,1,Zaozhuang,Belarus,China,Zaozhuang,test
+The city of Xiamen is not in China.,0,Xiamen,China,China,Xiamen,train
+The city of Xiamen is not in Pakistan.,1,Xiamen,Pakistan,China,Xiamen,train
+The city of Shenzhen is not in China.,0,Shenzhen,China,China,Shenzhen,train
+The city of Shenzhen is not in Mexico.,1,Shenzhen,Mexico,China,Shenzhen,train
+The city of Maoming is not in China.,0,Maoming,China,China,Maoming,test
+The city of Maoming is not in Brazil.,1,Maoming,Brazil,China,Maoming,test
+The city of Anshun is not in China.,0,Anshun,China,China,Anshun,train
+The city of Anshun is not in Brazil.,1,Anshun,Brazil,China,Anshun,train
+The city of Siping is not in China.,0,Siping,China,China,Siping,test
+The city of Siping is not in Iraq.,1,Siping,Iraq,China,Siping,test
+The city of Shuangyashan is not in China.,0,Shuangyashan,China,China,Shuangyashan,train
+The city of Shuangyashan is not in India.,1,Shuangyashan,India,China,Shuangyashan,train
+The city of Jiamusi is not in China.,0,Jiamusi,China,China,Jiamusi,train
+The city of Jiamusi is not in Germany.,1,Jiamusi,Germany,China,Jiamusi,train
+The city of Minsk is not in Belarus.,0,Minsk,Belarus,Belarus,Minsk,train
+The city of Minsk is not in South Korea.,1,Minsk,South Korea,Belarus,Minsk,train
+The city of Lubumbashi is not in the Democratic Republic of the Congo.,0,Lubumbashi,the Democratic Republic of the Congo,the Democratic Republic of the Congo,Lubumbashi,train
+The city of Lubumbashi is not in India.,1,Lubumbashi,India,the Democratic Republic of the Congo,Lubumbashi,train
+The city of San Miguel de Tucuman is not in Argentina.,0,San Miguel de Tucuman,Argentina,Argentina,San Miguel de Tucuman,train
+The city of San Miguel de Tucuman is not in China.,1,San Miguel de Tucuman,China,Argentina,San Miguel de Tucuman,train
+The city of Cotonou is not in Benin.,0,Cotonou,Benin,Benin,Cotonou,test
+The city of Cotonou is not in China.,1,Cotonou,China,Benin,Cotonou,test
+The city of Comilla is not in Bangladesh.,0,Comilla,Bangladesh,Bangladesh,Comilla,train
+The city of Comilla is not in China.,1,Comilla,China,Bangladesh,Comilla,train
+The city of Sao Bernardo do Campo is not in Brazil.,0,Sao Bernardo do Campo,Brazil,Brazil,Sao Bernardo do Campo,train
+The city of Sao Bernardo do Campo is not in Zambia.,1,Sao Bernardo do Campo,Zambia,Brazil,Sao Bernardo do Campo,train
+The city of Feira de Santana is not in Brazil.,0,Feira de Santana,Brazil,Brazil,Feira de Santana,train
+The city of Feira de Santana is not in China.,1,Feira de Santana,China,Brazil,Feira de Santana,train
+The city of Porto Alegre is not in Brazil.,0,Porto Alegre,Brazil,Brazil,Porto Alegre,train
+The city of Porto Alegre is not in Belarus.,1,Porto Alegre,Belarus,Brazil,Porto Alegre,train
+The city of Juiz de Fora is not in Brazil.,0,Juiz de Fora,Brazil,Brazil,Juiz de Fora,test
+The city of Juiz de Fora is not in India.,1,Juiz de Fora,India,Brazil,Juiz de Fora,test
+The city of Nagoya is not in Japan.,0,Nagoya,Japan,Japan,Nagoya,test
+The city of Nagoya is not in China.,1,Nagoya,China,Japan,Nagoya,test
+The city of Al Ahmadi is not in Kuwait.,0,Al Ahmadi,Kuwait,Kuwait,Al Ahmadi,test
+The city of Al Ahmadi is not in Japan.,1,Al Ahmadi,Japan,Kuwait,Al Ahmadi,test
+The city of Beirut is not in Lebanon.,0,Beirut,Lebanon,Lebanon,Beirut,test
+The city of Beirut is not in Algeria.,1,Beirut,Algeria,Lebanon,Beirut,test
+The city of Lilongwe is not in Malawi.,0,Lilongwe,Malawi,Malawi,Lilongwe,test
+The city of Lilongwe is not in Turkey.,1,Lilongwe,Turkey,Malawi,Lilongwe,test
+The city of Ecatepec de Morelos is not in Mexico.,0,Ecatepec de Morelos,Mexico,Mexico,Ecatepec de Morelos,train
+The city of Ecatepec de Morelos is not in India.,1,Ecatepec de Morelos,India,Mexico,Ecatepec de Morelos,train
+The city of Cancun is not in Mexico.,0,Cancun,Mexico,Mexico,Cancun,train
+The city of Cancun is not in Myanmar.,1,Cancun,Myanmar,Mexico,Cancun,train
+The city of Isfahan is not in Iran.,0,Isfahan,Iran,Iran,Isfahan,train
+The city of Isfahan is not in China.,1,Isfahan,China,Iran,Isfahan,train
+The city of Conakry is not in Guinea.,0,Conakry,Guinea,Guinea,Conakry,train
+The city of Conakry is not in Belarus.,1,Conakry,Belarus,Guinea,Conakry,train
+The city of Petaling Jaya is not in Malaysia.,0,Petaling Jaya,Malaysia,Malaysia,Petaling Jaya,train
+The city of Petaling Jaya is not in Bosnia and Herzegovina.,1,Petaling Jaya,Bosnia and Herzegovina,Malaysia,Petaling Jaya,train
+The city of Zaria is not in Nigeria.,0,Zaria,Nigeria,Nigeria,Zaria,train
+The city of Zaria is not in India.,1,Zaria,India,Nigeria,Zaria,train
+The city of Cimahi is not in Indonesia.,0,Cimahi,Indonesia,Indonesia,Cimahi,train
+The city of Cimahi is not in Germany.,1,Cimahi,Germany,Indonesia,Cimahi,train
+The city of Arequipa is not in Peru.,0,Arequipa,Peru,Peru,Arequipa,train
+The city of Arequipa is not in India.,1,Arequipa,India,Peru,Arequipa,train
+The city of Multan is not in Pakistan.,0,Multan,Pakistan,Pakistan,Multan,train
+The city of Multan is not in Ecuador.,1,Multan,Ecuador,Pakistan,Multan,train
+The city of Bahcelievler is not in Turkey.,0,Bahcelievler,Turkey,Turkey,Bahcelievler,train
+The city of Bahcelievler is not in Germany.,1,Bahcelievler,Germany,Turkey,Bahcelievler,train
+The city of Saratov is not in Russia.,0,Saratov,Russia,Russia,Saratov,train
+The city of Saratov is not in Indonesia.,1,Saratov,Indonesia,Russia,Saratov,train
+The city of Kharkiv is not in Ukraine.,0,Kharkiv,Ukraine,Ukraine,Kharkiv,test
+The city of Kharkiv is not in Moldova.,1,Kharkiv,Moldova,Ukraine,Kharkiv,test
+The city of Malatya is not in Turkey.,0,Malatya,Turkey,Turkey,Malatya,test
+The city of Malatya is not in Russia.,1,Malatya,Russia,Turkey,Malatya,test
+The city of Lviv is not in Ukraine.,0,Lviv,Ukraine,Ukraine,Lviv,test
+The city of Lviv is not in China.,1,Lviv,China,Ukraine,Lviv,test
+The city of Kyiv is not in Ukraine.,0,Kyiv,Ukraine,Ukraine,Kyiv,train
+The city of Kyiv is not in Russia.,1,Kyiv,Russia,Ukraine,Kyiv,train
+The city of Kitakyushu is not in Japan.,0,Kitakyushu,Japan,Japan,Kitakyushu,train
+The city of Kitakyushu is not in Yemen.,1,Kitakyushu,Yemen,Japan,Kitakyushu,train
+The city of Onitsha is not in Nigeria.,0,Onitsha,Nigeria,Nigeria,Onitsha,train
+The city of Onitsha is not in China.,1,Onitsha,China,Nigeria,Onitsha,train
+The city of Anyang-si is not in South Korea.,0,Anyang-si,South Korea,South Korea,Anyang-si,train
+The city of Anyang-si is not in Iraq.,1,Anyang-si,Iraq,South Korea,Anyang-si,train
+The city of Kobe is not in Japan.,0,Kobe,Japan,Japan,Kobe,train
+The city of Kobe is not in China.,1,Kobe,China,Japan,Kobe,train
+The city of Chiclayo is not in Peru.,0,Chiclayo,Peru,Peru,Chiclayo,train
+The city of Chiclayo is not in Venezuela.,1,Chiclayo,Venezuela,Peru,Chiclayo,train
+The city of Phnom Penh is not in Cambodia.,0,Phnom Penh,Cambodia,Cambodia,Phnom Penh,train
+The city of Phnom Penh is not in Senegal.,1,Phnom Penh,Senegal,Cambodia,Phnom Penh,train
+The city of Nouakchott is not in Mauritania.,0,Nouakchott,Mauritania,Mauritania,Nouakchott,test
+The city of Nouakchott is not in China.,1,Nouakchott,China,Mauritania,Nouakchott,test
+The city of Vijayawada is not in India.,0,Vijayawada,India,India,Vijayawada,train
+The city of Vijayawada is not in Nigeria.,1,Vijayawada,Nigeria,India,Vijayawada,train
+The city of Theni is not in India.,0,Theni,India,India,Theni,train
+The city of Theni is not in Nigeria.,1,Theni,Nigeria,India,Theni,train
+The city of Narela is not in India.,0,Narela,India,India,Narela,train
+The city of Narela is not in Turkey.,1,Narela,Turkey,India,Narela,train
+The city of Quetta is not in Pakistan.,0,Quetta,Pakistan,Pakistan,Quetta,train
+The city of Quetta is not in Kenya.,1,Quetta,Kenya,Pakistan,Quetta,train
+The city of Chennai is not in India.,0,Chennai,India,India,Chennai,train
+The city of Chennai is not in China.,1,Chennai,China,India,Chennai,train
+The city of Changshu is not in China.,0,Changshu,China,China,Changshu,train
+The city of Changshu is not in the Philippines.,1,Changshu,the Philippines,China,Changshu,train
+The city of Tehran is not in Iran.,0,Tehran,Iran,Iran,Tehran,test
+The city of Tehran is not in Niger.,1,Tehran,Niger,Iran,Tehran,test
+The city of Bayannur is not in China.,0,Bayannur,China,China,Bayannur,train
+The city of Bayannur is not in Russia.,1,Bayannur,Russia,China,Bayannur,train
+The city of Barranquilla is not in Colombia.,0,Barranquilla,Colombia,Colombia,Barranquilla,train
+The city of Barranquilla is not in Pakistan.,1,Barranquilla,Pakistan,Colombia,Barranquilla,train
+The city of Budapest is not in Hungary.,0,Budapest,Hungary,Hungary,Budapest,test
+The city of Budapest is not in Iraq.,1,Budapest,Iraq,Hungary,Budapest,test
+The city of Pontianak is not in Indonesia.,0,Pontianak,Indonesia,Indonesia,Pontianak,train
+The city of Pontianak is not in India.,1,Pontianak,India,Indonesia,Pontianak,train
+The city of Recife is not in Brazil.,0,Recife,Brazil,Brazil,Recife,test
+The city of Recife is not in North Korea.,1,Recife,North Korea,Brazil,Recife,test
+The city of Contagem is not in Brazil.,0,Contagem,Brazil,Brazil,Contagem,test
+The city of Contagem is not in Indonesia.,1,Contagem,Indonesia,Brazil,Contagem,test
+The city of Port Said is not in Egypt.,0,Port Said,Egypt,Egypt,Port Said,test
+The city of Port Said is not in China.,1,Port Said,China,Egypt,Port Said,test
+The city of Asyut is not in Egypt.,0,Asyut,Egypt,Egypt,Asyut,test
+The city of Asyut is not in Japan.,1,Asyut,Japan,Egypt,Asyut,test
+The city of Ziyang is not in China.,0,Ziyang,China,China,Ziyang,train
+The city of Ziyang is not in Belgium.,1,Ziyang,Belgium,China,Ziyang,train
+The city of Yinchuan is not in China.,0,Yinchuan,China,China,Yinchuan,test
+The city of Yinchuan is not in Bangladesh.,1,Yinchuan,Bangladesh,China,Yinchuan,test
+The city of Zhangjiagang is not in China.,0,Zhangjiagang,China,China,Zhangjiagang,test
+The city of Zhangjiagang is not in Brazil.,1,Zhangjiagang,Brazil,China,Zhangjiagang,test
+The city of Shanghai is not in China.,0,Shanghai,China,China,Shanghai,train
+The city of Shanghai is not in Mexico.,1,Shanghai,Mexico,China,Shanghai,train
+The city of Jieyang is not in China.,0,Jieyang,China,China,Jieyang,test
+The city of Jieyang is not in the Philippines.,1,Jieyang,the Philippines,China,Jieyang,test
+The city of Longyan is not in China.,0,Longyan,China,China,Longyan,test
+The city of Longyan is not in Benin.,1,Longyan,Benin,China,Longyan,test
+The city of Dandong is not in China.,0,Dandong,China,China,Dandong,test
+The city of Dandong is not in Niger.,1,Dandong,Niger,China,Dandong,test
+The city of Frankfurt am Main is not in Germany.,0,Frankfurt am Main,Germany,Germany,Frankfurt am Main,train
+The city of Frankfurt am Main is not in Vietnam.,1,Frankfurt am Main,Vietnam,Germany,Frankfurt am Main,train
+The city of Lusaka is not in Zambia.,0,Lusaka,Zambia,Zambia,Lusaka,test
+The city of Lusaka is not in Poland.,1,Lusaka,Poland,Zambia,Lusaka,test
+The city of Aden is not in Yemen.,0,Aden,Yemen,Yemen,Aden,test
+The city of Aden is not in Japan.,1,Aden,Japan,Yemen,Aden,test
+The city of Jaboatao is not in Brazil.,0,Jaboatao,Brazil,Brazil,Jaboatao,train
+The city of Jaboatao is not in Syria.,1,Jaboatao,Syria,Brazil,Jaboatao,train
+The city of Aracaju is not in Brazil.,0,Aracaju,Brazil,Brazil,Aracaju,train
+The city of Aracaju is not in Russia.,1,Aracaju,Russia,Brazil,Aracaju,train
+The city of Londrina is not in Brazil.,0,Londrina,Brazil,Brazil,Londrina,test
+The city of Londrina is not in India.,1,Londrina,India,Brazil,Londrina,test
+The city of Zigong is not in China.,0,Zigong,China,China,Zigong,train
+The city of Zigong is not in Turkey.,1,Zigong,Turkey,China,Zigong,train
+The city of Kunshan is not in China.,0,Kunshan,China,China,Kunshan,test
+The city of Kunshan is not in Russia.,1,Kunshan,Russia,China,Kunshan,test
+The city of Yichang is not in China.,0,Yichang,China,China,Yichang,test
+The city of Yichang is not in Japan.,1,Yichang,Japan,China,Yichang,test
+The city of Sanming is not in China.,0,Sanming,China,China,Sanming,test
+The city of Sanming is not in Bulgaria.,1,Sanming,Bulgaria,China,Sanming,test
+The city of Guang'an is not in China.,0,Guang'an,China,China,Guang'an,train
+The city of Guang'an is not in Germany.,1,Guang'an,Germany,China,Guang'an,train
+The city of Ma'anshan is not in China.,0,Ma'anshan,China,China,Ma'anshan,train
+The city of Ma'anshan is not in India.,1,Ma'anshan,India,China,Ma'anshan,train
+The city of Dongying is not in China.,0,Dongying,China,China,Dongying,train
+The city of Dongying is not in India.,1,Dongying,India,China,Dongying,train
+The city of Fushun is not in China.,0,Fushun,China,China,Fushun,train
+The city of Fushun is not in Mexico.,1,Fushun,Mexico,China,Fushun,train
+The city of Rajshahi is not in Bangladesh.,0,Rajshahi,Bangladesh,Bangladesh,Rajshahi,train
+The city of Rajshahi is not in Russia.,1,Rajshahi,Russia,Bangladesh,Rajshahi,train
+The city of Rangpur is not in Bangladesh.,0,Rangpur,Bangladesh,Bangladesh,Rangpur,test
+The city of Rangpur is not in Russia.,1,Rangpur,Russia,Bangladesh,Rangpur,test
+The city of Dortmund is not in Germany.,0,Dortmund,Germany,Germany,Dortmund,train
+The city of Dortmund is not in India.,1,Dortmund,India,Germany,Dortmund,train
+The city of Detroit is not in the United States.,0,Detroit,the United States,the United States,Detroit,train
+The city of Detroit is not in China.,1,Detroit,China,the United States,Detroit,train
+The city of Latakia is not in Syria.,0,Latakia,Syria,Syria,Latakia,train
+The city of Latakia is not in Somalia.,1,Latakia,Somalia,Syria,Latakia,train
+The city of Ashgabat is not in Turkmenistan.,0,Ashgabat,Turkmenistan,Turkmenistan,Ashgabat,test
+The city of Ashgabat is not in Bangladesh.,1,Ashgabat,Bangladesh,Turkmenistan,Ashgabat,test
+The city of Maracaibo is not in Venezuela.,0,Maracaibo,Venezuela,Venezuela,Maracaibo,train
+The city of Maracaibo is not in Russia.,1,Maracaibo,Russia,Venezuela,Maracaibo,train
+The city of Erode is not in India.,0,Erode,India,India,Erode,train
+The city of Erode is not in China.,1,Erode,China,India,Erode,train
+The city of Mumbai is not in India.,0,Mumbai,India,India,Mumbai,train
+The city of Mumbai is not in China.,1,Mumbai,China,India,Mumbai,train
+The city of Nasiriyah is not in Iraq.,0,Nasiriyah,Iraq,Iraq,Nasiriyah,test
+The city of Nasiriyah is not in Rwanda.,1,Nasiriyah,Rwanda,Iraq,Nasiriyah,test
+The city of Kahriz is not in Iran.,0,Kahriz,Iran,Iran,Kahriz,test
+The city of Kahriz is not in Uzbekistan.,1,Kahriz,Uzbekistan,Iran,Kahriz,test
+The city of Surakarta is not in Indonesia.,0,Surakarta,Indonesia,Indonesia,Surakarta,train
+The city of Surakarta is not in India.,1,Surakarta,India,Indonesia,Surakarta,train
+The city of Banjarmasin is not in Indonesia.,0,Banjarmasin,Indonesia,Indonesia,Banjarmasin,train
+The city of Banjarmasin is not in South Korea.,1,Banjarmasin,South Korea,Indonesia,Banjarmasin,train
+The city of Vladivostok is not in Russia.,0,Vladivostok,Russia,Russia,Vladivostok,test
+The city of Vladivostok is not in Romania.,1,Vladivostok,Romania,Russia,Vladivostok,test
+The city of Adana is not in Turkey.,0,Adana,Turkey,Turkey,Adana,test
+The city of Adana is not in Togo.,1,Adana,Togo,Turkey,Adana,test
+The city of Voronezh is not in Russia.,0,Voronezh,Russia,Russia,Voronezh,train
+The city of Voronezh is not in Romania.,1,Voronezh,Romania,Russia,Voronezh,train
+The city of Namangan is not in Uzbekistan.,0,Namangan,Uzbekistan,Uzbekistan,Namangan,test
+The city of Namangan is not in India.,1,Namangan,India,Uzbekistan,Namangan,test
+The city of Ordos is not in China.,0,Ordos,China,China,Ordos,train
+The city of Ordos is not in Brazil.,1,Ordos,Brazil,China,Ordos,train
+The city of Moradabad is not in India.,0,Moradabad,India,India,Moradabad,train
+The city of Moradabad is not in China.,1,Moradabad,China,India,Moradabad,train
+The city of Bengaluru is not in India.,0,Bengaluru,India,India,Bengaluru,train
+The city of Bengaluru is not in China.,1,Bengaluru,China,India,Bengaluru,train
+The city of Shivaji Nagar is not in India.,0,Shivaji Nagar,India,India,Shivaji Nagar,test
+The city of Shivaji Nagar is not in China.,1,Shivaji Nagar,China,India,Shivaji Nagar,test
+The city of Turin is not in Italy.,0,Turin,Italy,Italy,Turin,train
+The city of Turin is not in China.,1,Turin,China,Italy,Turin,train
+The city of Okayama is not in Japan.,0,Okayama,Japan,Japan,Okayama,train
+The city of Okayama is not in Russia.,1,Okayama,Russia,Japan,Okayama,train
+The city of Daejeon is not in South Korea.,0,Daejeon,South Korea,South Korea,Daejeon,train
+The city of Daejeon is not in India.,1,Daejeon,India,South Korea,Daejeon,train
+The city of Battagram is not in Pakistan.,0,Battagram,Pakistan,Pakistan,Battagram,train
+The city of Battagram is not in Tanzania.,1,Battagram,Tanzania,Pakistan,Battagram,train
+The city of Yaounde is not in Cameroon.,0,Yaounde,Cameroon,Cameroon,Yaounde,train
+The city of Yaounde is not in China.,1,Yaounde,China,Cameroon,Yaounde,train
+The city of Zhangzhou is not in China.,0,Zhangzhou,China,China,Zhangzhou,train
+The city of Zhangzhou is not in Nicaragua.,1,Zhangzhou,Nicaragua,China,Zhangzhou,train
+The city of Yangquan is not in China.,0,Yangquan,China,China,Yangquan,train
+The city of Yangquan is not in Hungary.,1,Yangquan,Hungary,China,Yangquan,train
+The city of Sanya is not in China.,0,Sanya,China,China,Sanya,test
+The city of Sanya is not in India.,1,Sanya,India,China,Sanya,test
+The city of Foshan is not in China.,0,Foshan,China,China,Foshan,train
+The city of Foshan is not in Mozambique.,1,Foshan,Mozambique,China,Foshan,train
+The city of Sharjah is not in the United Arab Emirates.,0,Sharjah,the United Arab Emirates,the United Arab Emirates,Sharjah,train
+The city of Sharjah is not in China.,1,Sharjah,China,the United Arab Emirates,Sharjah,train
+The city of Al Ain City is not in the United Arab Emirates.,0,Al Ain City,the United Arab Emirates,the United Arab Emirates,Al Ain City,test
+The city of Al Ain City is not in India.,1,Al Ain City,India,the United Arab Emirates,Al Ain City,test
+The city of Kalininskiy is not in Russia.,0,Kalininskiy,Russia,Russia,Kalininskiy,train
+The city of Kalininskiy is not in Japan.,1,Kalininskiy,Japan,Russia,Kalininskiy,train
+The city of Mersin is not in Turkey.,0,Mersin,Turkey,Turkey,Mersin,train
+The city of Mersin is not in the United States.,1,Mersin,the United States,Turkey,Mersin,train
+The city of Guayaquil is not in Ecuador.,0,Guayaquil,Ecuador,Ecuador,Guayaquil,train
+The city of Guayaquil is not in China.,1,Guayaquil,China,Ecuador,Guayaquil,train
+The city of Tegucigalpa is not in Honduras.,0,Tegucigalpa,Honduras,Honduras,Tegucigalpa,test
+The city of Tegucigalpa is not in China.,1,Tegucigalpa,China,Honduras,Tegucigalpa,test
+The city of Koeln is not in Germany.,0,Koeln,Germany,Germany,Koeln,train
+The city of Koeln is not in Nigeria.,1,Koeln,Nigeria,Germany,Koeln,train
+The city of Nuernberg is not in Germany.,0,Nuernberg,Germany,Germany,Nuernberg,train
+The city of Nuernberg is not in China.,1,Nuernberg,China,Germany,Nuernberg,train
+The city of Zarqa is not in Jordan.,0,Zarqa,Jordan,Jordan,Zarqa,train
+The city of Zarqa is not in India.,1,Zarqa,India,Jordan,Zarqa,train
+The city of Riga is not in Latvia.,0,Riga,Latvia,Latvia,Riga,train
+The city of Riga is not in Japan.,1,Riga,Japan,Latvia,Riga,train
+The city of Nanded is not in India.,0,Nanded,India,India,Nanded,train
+The city of Nanded is not in China.,1,Nanded,China,India,Nanded,train
+The city of Gwalior is not in India.,0,Gwalior,India,India,Gwalior,train
+The city of Gwalior is not in China.,1,Gwalior,China,India,Gwalior,train
+The city of Dombivli is not in India.,0,Dombivli,India,India,Dombivli,test
+The city of Dombivli is not in Mali.,1,Dombivli,Mali,India,Dombivli,test
+The city of Kallakurichi is not in India.,0,Kallakurichi,India,India,Kallakurichi,test
+The city of Kallakurichi is not in Iraq.,1,Kallakurichi,Iraq,India,Kallakurichi,test
+The city of Bekasi is not in Indonesia.,0,Bekasi,Indonesia,Indonesia,Bekasi,train
+The city of Bekasi is not in China.,1,Bekasi,China,Indonesia,Bekasi,train
+The city of Johor Bahru is not in Malaysia.,0,Johor Bahru,Malaysia,Malaysia,Johor Bahru,train
+The city of Johor Bahru is not in Cuba.,1,Johor Bahru,Cuba,Malaysia,Johor Bahru,train
+The city of Santa Maria Chimalhuacan is not in Mexico.,0,Santa Maria Chimalhuacan,Mexico,Mexico,Santa Maria Chimalhuacan,test
+The city of Santa Maria Chimalhuacan is not in Saudi Arabia.,1,Santa Maria Chimalhuacan,Saudi Arabia,Mexico,Santa Maria Chimalhuacan,test
+The city of Urumqi is not in China.,0,Urumqi,China,China,Urumqi,train
+The city of Urumqi is not in Vietnam.,1,Urumqi,Vietnam,China,Urumqi,train
+The city of Qingdao is not in China.,0,Qingdao,China,China,Qingdao,test
+The city of Qingdao is not in India.,1,Qingdao,India,China,Qingdao,test
+The city of Sofia is not in Bulgaria.,0,Sofia,Bulgaria,Bulgaria,Sofia,train
+The city of Sofia is not in South Korea.,1,Sofia,South Korea,Bulgaria,Sofia,train
+The city of Nova Iguacu is not in Brazil.,0,Nova Iguacu,Brazil,Brazil,Nova Iguacu,test
+The city of Nova Iguacu is not in India.,1,Nova Iguacu,India,Brazil,Nova Iguacu,test
+The city of Abeokuta is not in Nigeria.,0,Abeokuta,Nigeria,Nigeria,Abeokuta,train
+The city of Abeokuta is not in Mozambique.,1,Abeokuta,Mozambique,Nigeria,Abeokuta,train
+The city of Amman is not in Jordan.,0,Amman,Jordan,Jordan,Amman,train
+The city of Amman is not in Malaysia.,1,Amman,Malaysia,Jordan,Amman,train
+The city of Hachioji is not in Japan.,0,Hachioji,Japan,Japan,Hachioji,test
+The city of Hachioji is not in Mexico.,1,Hachioji,Mexico,Japan,Hachioji,test
+The city of Fukuoka is not in Japan.,0,Fukuoka,Japan,Japan,Fukuoka,train
+The city of Fukuoka is not in Senegal.,1,Fukuoka,Senegal,Japan,Fukuoka,train
+The city of Goyang-si is not in South Korea.,0,Goyang-si,South Korea,South Korea,Goyang-si,train
+The city of Goyang-si is not in Russia.,1,Goyang-si,Russia,South Korea,Goyang-si,train
+The city of Meknes is not in Morocco.,0,Meknes,Morocco,Morocco,Meknes,train
+The city of Meknes is not in China.,1,Meknes,China,Morocco,Meknes,train
+The city of Antananarivo is not in Madagascar.,0,Antananarivo,Madagascar,Madagascar,Antananarivo,train
+The city of Antananarivo is not in Germany.,1,Antananarivo,Germany,Madagascar,Antananarivo,train
+The city of Kalyan is not in India.,0,Kalyan,India,India,Kalyan,test
+The city of Kalyan is not in South Korea.,1,Kalyan,South Korea,India,Kalyan,test
+The city of Jaipur is not in India.,0,Jaipur,India,India,Jaipur,train
+The city of Jaipur is not in China.,1,Jaipur,China,India,Jaipur,train
+The city of Guntur is not in India.,0,Guntur,India,India,Guntur,train
+The city of Guntur is not in China.,1,Guntur,China,India,Guntur,train
+The city of Bhilai is not in India.,0,Bhilai,India,India,Bhilai,train
+The city of Bhilai is not in Venezuela.,1,Bhilai,Venezuela,India,Bhilai,train
+The city of Bhavnagar is not in India.,0,Bhavnagar,India,India,Bhavnagar,test
+The city of Bhavnagar is not in Japan.,1,Bhavnagar,Japan,India,Bhavnagar,test
+The city of Amravati is not in India.,0,Amravati,India,India,Amravati,train
+The city of Amravati is not in China.,1,Amravati,China,India,Amravati,train
+The city of Shiraz is not in Iran.,0,Shiraz,Iran,Iran,Shiraz,train
+The city of Shiraz is not in China.,1,Shiraz,China,Iran,Shiraz,train
+The city of Lome is not in Togo.,0,Lome,Togo,Togo,Lome,train
+The city of Lome is not in Yemen.,1,Lome,Yemen,Togo,Lome,train
+The city of Erzurum is not in Turkey.,0,Erzurum,Turkey,Turkey,Erzurum,test
+The city of Erzurum is not in the Democratic Republic of the Congo.,1,Erzurum,the Democratic Republic of the Congo,Turkey,Erzurum,test
+The city of Seattle is not in the United States.,0,Seattle,the United States,the United States,Seattle,train
+The city of Seattle is not in Yemen.,1,Seattle,Yemen,the United States,Seattle,train
+The city of Barquisimeto is not in Venezuela.,0,Barquisimeto,Venezuela,Venezuela,Barquisimeto,test
+The city of Barquisimeto is not in Poland.,1,Barquisimeto,Poland,Venezuela,Barquisimeto,test
+The city of Kryvyy Rih is not in Ukraine.,0,Kryvyy Rih,Ukraine,Ukraine,Kryvyy Rih,train
+The city of Kryvyy Rih is not in China.,1,Kryvyy Rih,China,Ukraine,Kryvyy Rih,train
+The city of Krasnoyarsk is not in Russia.,0,Krasnoyarsk,Russia,Russia,Krasnoyarsk,test
+The city of Krasnoyarsk is not in India.,1,Krasnoyarsk,India,Russia,Krasnoyarsk,test
+The city of Quzhou is not in China.,0,Quzhou,China,China,Quzhou,train
+The city of Quzhou is not in Vietnam.,1,Quzhou,Vietnam,China,Quzhou,train
+The city of Pingliang is not in China.,0,Pingliang,China,China,Pingliang,test
+The city of Pingliang is not in Tanzania.,1,Pingliang,Tanzania,China,Pingliang,test
+The city of Puning is not in China.,0,Puning,China,China,Puning,test
+The city of Puning is not in India.,1,Puning,India,China,Puning,test
+The city of Huzhou is not in China.,0,Huzhou,China,China,Huzhou,test
+The city of Huzhou is not in Germany.,1,Huzhou,Germany,China,Huzhou,test
+The city of Chizhou is not in China.,0,Chizhou,China,China,Chizhou,train
+The city of Chizhou is not in the Republic of the Congo.,1,Chizhou,the Republic of the Congo,China,Chizhou,train
+The city of Chengdu is not in China.,0,Chengdu,China,China,Chengdu,train
+The city of Chengdu is not in South Korea.,1,Chengdu,South Korea,China,Chengdu,train
+The city of Cangzhou is not in China.,0,Cangzhou,China,China,Cangzhou,train
+The city of Cangzhou is not in Germany.,1,Cangzhou,Germany,China,Cangzhou,train
+The city of Samarinda is not in Indonesia.,0,Samarinda,Indonesia,Indonesia,Samarinda,train
+The city of Samarinda is not in Iraq.,1,Samarinda,Iraq,Indonesia,Samarinda,train
+The city of Helsinki is not in Finland.,0,Helsinki,Finland,Finland,Helsinki,train
+The city of Helsinki is not in Pakistan.,1,Helsinki,Pakistan,Finland,Helsinki,train
+The city of Khabarovsk Vtoroy is not in Russia.,0,Khabarovsk Vtoroy,Russia,Russia,Khabarovsk Vtoroy,train
+The city of Khabarovsk Vtoroy is not in China.,1,Khabarovsk Vtoroy,China,Russia,Khabarovsk Vtoroy,train
+The city of Wroclaw is not in Poland.,0,Wroclaw,Poland,Poland,Wroclaw,train
+The city of Wroclaw is not in Mexico.,1,Wroclaw,Mexico,Poland,Wroclaw,train
+The city of Oslo is not in Norway.,0,Oslo,Norway,Norway,Oslo,test
+The city of Oslo is not in Venezuela.,1,Oslo,Venezuela,Norway,Oslo,test
+The city of Caloocan City is not in the Philippines.,0,Caloocan City,the Philippines,the Philippines,Caloocan City,train
+The city of Caloocan City is not in China.,1,Caloocan City,China,the Philippines,Caloocan City,train
+The city of Ryazan' is not in Russia.,0,Ryazan',Russia,Russia,Ryazan',test
+The city of Ryazan' is not in South Korea.,1,Ryazan',South Korea,Russia,Ryazan',test
+The city of Ciudad Guayana is not in Venezuela.,0,Ciudad Guayana,Venezuela,Venezuela,Ciudad Guayana,train
+The city of Ciudad Guayana is not in South Africa.,1,Ciudad Guayana,South Africa,Venezuela,Ciudad Guayana,train
+The city of Ho Chi Minh City is not in Vietnam.,0,Ho Chi Minh City,Vietnam,Vietnam,Ho Chi Minh City,test
+The city of Ho Chi Minh City is not in Gabon.,1,Ho Chi Minh City,Gabon,Vietnam,Ho Chi Minh City,test
+The city of Al Hudaydah is not in Yemen.,0,Al Hudaydah,Yemen,Yemen,Al Hudaydah,test
+The city of Al Hudaydah is not in South Korea.,1,Al Hudaydah,South Korea,Yemen,Al Hudaydah,test
+The city of Soweto is not in South Africa.,0,Soweto,South Africa,South Africa,Soweto,test
+The city of Soweto is not in Gabon.,1,Soweto,Gabon,South Africa,Soweto,test
+The city of Benoni is not in South Africa.,0,Benoni,South Africa,South Africa,Benoni,train
+The city of Benoni is not in the Philippines.,1,Benoni,the Philippines,South Africa,Benoni,train
+The city of Wuzhou is not in China.,0,Wuzhou,China,China,Wuzhou,train
+The city of Wuzhou is not in Syria.,1,Wuzhou,Syria,China,Wuzhou,train
+The city of Wanxian is not in China.,0,Wanxian,China,China,Wanxian,train
+The city of Wanxian is not in Algeria.,1,Wanxian,Algeria,China,Wanxian,train
+The city of Qinzhou is not in China.,0,Qinzhou,China,China,Qinzhou,train
+The city of Qinzhou is not in India.,1,Qinzhou,India,China,Qinzhou,train
+The city of Wuwei is not in China.,0,Wuwei,China,China,Wuwei,train
+The city of Wuwei is not in India.,1,Wuwei,India,China,Wuwei,train
+The city of Hefei is not in China.,0,Hefei,China,China,Hefei,test
+The city of Hefei is not in Germany.,1,Hefei,Germany,China,Hefei,test
+The city of Handan is not in China.,0,Handan,China,China,Handan,train
+The city of Handan is not in Russia.,1,Handan,Russia,China,Handan,train
+The city of Jiangyin is not in China.,0,Jiangyin,China,China,Jiangyin,train
+The city of Jiangyin is not in Bulgaria.,1,Jiangyin,Bulgaria,China,Jiangyin,train
+The city of Brazzaville is not in the Republic of the Congo.,0,Brazzaville,the Republic of the Congo,the Republic of the Congo,Brazzaville,train
+The city of Brazzaville is not in Nigeria.,1,Brazzaville,Nigeria,the Republic of the Congo,Brazzaville,train
+The city of Sorocaba is not in Brazil.,0,Sorocaba,Brazil,Brazil,Sorocaba,train
+The city of Sorocaba is not in Mexico.,1,Sorocaba,Mexico,Brazil,Sorocaba,train
+The city of Aktobe is not in Kazakhstan.,0,Aktobe,Kazakhstan,Kazakhstan,Aktobe,train
+The city of Aktobe is not in Afghanistan.,1,Aktobe,Afghanistan,Kazakhstan,Aktobe,train
+The city of Chisinau is not in Moldova.,0,Chisinau,Moldova,Moldova,Chisinau,test
+The city of Chisinau is not in Germany.,1,Chisinau,Germany,Moldova,Chisinau,test
+The city of Tiruppur is not in India.,0,Tiruppur,India,India,Tiruppur,test
+The city of Tiruppur is not in Japan.,1,Tiruppur,Japan,India,Tiruppur,test
+The city of Kozhikode is not in India.,0,Kozhikode,India,India,Kozhikode,train
+The city of Kozhikode is not in the United States.,1,Kozhikode,the United States,India,Kozhikode,train
+The city of Asansol is not in India.,0,Asansol,India,India,Asansol,train
+The city of Asansol is not in China.,1,Asansol,China,India,Asansol,train
+The city of Suizhou is not in China.,0,Suizhou,China,China,Suizhou,train
+The city of Suizhou is not in Japan.,1,Suizhou,Japan,China,Suizhou,train
+The city of Jingmen is not in China.,0,Jingmen,China,China,Jingmen,train
+The city of Jingmen is not in Japan.,1,Jingmen,Japan,China,Jingmen,train
+The city of Huangshi is not in China.,0,Huangshi,China,China,Huangshi,train
+The city of Huangshi is not in India.,1,Huangshi,India,China,Huangshi,train
+The city of Huaibei is not in China.,0,Huaibei,China,China,Huaibei,train
+The city of Huaibei is not in Brazil.,1,Huaibei,Brazil,China,Huaibei,train
+The city of Hebi is not in China.,0,Hebi,China,China,Hebi,train
+The city of Hebi is not in Nigeria.,1,Hebi,Nigeria,China,Hebi,train
+The city of Benxi is not in China.,0,Benxi,China,China,Benxi,train
+The city of Benxi is not in Brazil.,1,Benxi,Brazil,China,Benxi,train
+The city of Fortaleza is not in Brazil.,0,Fortaleza,Brazil,Brazil,Fortaleza,train
+The city of Fortaleza is not in Honduras.,1,Fortaleza,Honduras,Brazil,Fortaleza,train
+The city of Antwerpen is not in Belgium.,0,Antwerpen,Belgium,Belgium,Antwerpen,train
+The city of Antwerpen is not in Japan.,1,Antwerpen,Japan,Belgium,Antwerpen,train
+The city of Pikine is not in Senegal.,0,Pikine,Senegal,Senegal,Pikine,train
+The city of Pikine is not in Pakistan.,1,Pikine,Pakistan,Senegal,Pikine,train
+The city of Dakar is not in Senegal.,0,Dakar,Senegal,Senegal,Dakar,train
+The city of Dakar is not in India.,1,Dakar,India,Senegal,Dakar,train
+The city of Faisalabad is not in Pakistan.,0,Faisalabad,Pakistan,Pakistan,Faisalabad,train
+The city of Faisalabad is not in India.,1,Faisalabad,India,Pakistan,Faisalabad,train
+The city of Kyoto is not in Japan.,0,Kyoto,Japan,Japan,Kyoto,test
+The city of Kyoto is not in China.,1,Kyoto,China,Japan,Kyoto,test
+The city of Port Harcourt is not in Nigeria.,0,Port Harcourt,Nigeria,Nigeria,Port Harcourt,train
+The city of Port Harcourt is not in Eritrea.,1,Port Harcourt,Eritrea,Nigeria,Port Harcourt,train
+The city of Makhachkala is not in Russia.,0,Makhachkala,Russia,Russia,Makhachkala,train
+The city of Makhachkala is not in Indonesia.,1,Makhachkala,Indonesia,Russia,Makhachkala,train
+The city of Thiruvananthapuram is not in India.,0,Thiruvananthapuram,India,India,Thiruvananthapuram,train
+The city of Thiruvananthapuram is not in Japan.,1,Thiruvananthapuram,Japan,India,Thiruvananthapuram,train
+The city of Madurai is not in India.,0,Madurai,India,India,Madurai,train
+The city of Madurai is not in Burundi.,1,Madurai,Burundi,India,Madurai,train
+The city of Abu Ghurayb is not in Iraq.,0,Abu Ghurayb,Iraq,Iraq,Abu Ghurayb,train
+The city of Abu Ghurayb is not in Indonesia.,1,Abu Ghurayb,Indonesia,Iraq,Abu Ghurayb,train
+The city of Karaj is not in Iran.,0,Karaj,Iran,Iran,Karaj,train
+The city of Karaj is not in India.,1,Karaj,India,Iran,Karaj,train
+The city of Kampala is not in Uganda.,0,Kampala,Uganda,Uganda,Kampala,train
+The city of Kampala is not in Turkey.,1,Kampala,Turkey,Uganda,Kampala,train
+The city of Chicago is not in the United States.,0,Chicago,the United States,the United States,Chicago,test
+The city of Chicago is not in Madagascar.,1,Chicago,Madagascar,the United States,Chicago,test
+The city of Milwaukee is not in the United States.,0,Milwaukee,the United States,the United States,Milwaukee,train
+The city of Milwaukee is not in China.,1,Milwaukee,China,the United States,Milwaukee,train
+The city of Bloemfontein is not in South Africa.,0,Bloemfontein,South Africa,South Africa,Bloemfontein,test
+The city of Bloemfontein is not in China.,1,Bloemfontein,China,South Africa,Bloemfontein,test
+The city of Uberlandia is not in Brazil.,0,Uberlandia,Brazil,Brazil,Uberlandia,train
+The city of Uberlandia is not in India.,1,Uberlandia,India,Brazil,Uberlandia,train
+The city of Curitiba is not in Brazil.,0,Curitiba,Brazil,Brazil,Curitiba,test
+The city of Curitiba is not in India.,1,Curitiba,India,Brazil,Curitiba,test
+The city of Rio de Janeiro is not in Brazil.,0,Rio de Janeiro,Brazil,Brazil,Rio de Janeiro,train
+The city of Rio de Janeiro is not in Japan.,1,Rio de Janeiro,Japan,Brazil,Rio de Janeiro,train
+The city of Ribeirao Preto is not in Brazil.,0,Ribeirao Preto,Brazil,Brazil,Ribeirao Preto,train
+The city of Ribeirao Preto is not in China.,1,Ribeirao Preto,China,Brazil,Ribeirao Preto,train
+The city of The Bronx is not in the United States.,0,The Bronx,the United States,the United States,The Bronx,train
+The city of The Bronx is not in South Korea.,1,The Bronx,South Korea,the United States,The Bronx,train
+The city of Samarkand is not in Uzbekistan.,0,Samarkand,Uzbekistan,Uzbekistan,Samarkand,test
+The city of Samarkand is not in China.,1,Samarkand,China,Uzbekistan,Samarkand,test
+The city of Da Nang is not in Vietnam.,0,Da Nang,Vietnam,Vietnam,Da Nang,train
+The city of Da Nang is not in China.,1,Da Nang,China,Vietnam,Da Nang,train
+The city of Tomsk is not in Russia.,0,Tomsk,Russia,Russia,Tomsk,test
+The city of Tomsk is not in Ghana.,1,Tomsk,Ghana,Russia,Tomsk,test
+The city of Najran is not in Saudi Arabia.,0,Najran,Saudi Arabia,Saudi Arabia,Najran,train
+The city of Najran is not in India.,1,Najran,India,Saudi Arabia,Najran,train
+The city of Bangkok is not in Thailand.,0,Bangkok,Thailand,Thailand,Bangkok,test
+The city of Bangkok is not in China.,1,Bangkok,China,Thailand,Bangkok,test
+The city of Oklahoma City is not in the United States.,0,Oklahoma City,the United States,the United States,Oklahoma City,test
+The city of Oklahoma City is not in China.,1,Oklahoma City,China,the United States,Oklahoma City,test
+The city of Izhevsk is not in Russia.,0,Izhevsk,Russia,Russia,Izhevsk,train
+The city of Izhevsk is not in Nigeria.,1,Izhevsk,Nigeria,Russia,Izhevsk,train
+The city of Madinat an Nasr is not in Egypt.,0,Madinat an Nasr,Egypt,Egypt,Madinat an Nasr,train
+The city of Madinat an Nasr is not in India.,1,Madinat an Nasr,India,Egypt,Madinat an Nasr,train
+The city of Yibin is not in China.,0,Yibin,China,China,Yibin,train
+The city of Yibin is not in Brazil.,1,Yibin,Brazil,China,Yibin,train
+The city of Sanmenxia is not in China.,0,Sanmenxia,China,China,Sanmenxia,train
+The city of Sanmenxia is not in Brazil.,1,Sanmenxia,Brazil,China,Sanmenxia,train
+The city of Rui'an is not in China.,0,Rui'an,China,China,Rui'an,train
+The city of Rui'an is not in Indonesia.,1,Rui'an,Indonesia,China,Rui'an,train
+The city of Ningbo is not in China.,0,Ningbo,China,China,Ningbo,train
+The city of Ningbo is not in South Korea.,1,Ningbo,South Korea,China,Ningbo,train
+The city of Jiujiang is not in China.,0,Jiujiang,China,China,Jiujiang,train
+The city of Jiujiang is not in Indonesia.,1,Jiujiang,Indonesia,China,Jiujiang,train
+The city of Jiaozuo is not in China.,0,Jiaozuo,China,China,Jiaozuo,test
+The city of Jiaozuo is not in Bangladesh.,1,Jiaozuo,Bangladesh,China,Jiaozuo,test
+The city of Jiangmen is not in China.,0,Jiangmen,China,China,Jiangmen,train
+The city of Jiangmen is not in South Korea.,1,Jiangmen,South Korea,China,Jiangmen,train
+The city of Huizhou is not in China.,0,Huizhou,China,China,Huizhou,test
+The city of Huizhou is not in the United States.,1,Huizhou,the United States,China,Huizhou,test
+The city of Harbin is not in China.,0,Harbin,China,China,Harbin,test
+The city of Harbin is not in Russia.,1,Harbin,Russia,China,Harbin,test
+The city of Herat is not in Afghanistan.,0,Herat,Afghanistan,Afghanistan,Herat,train
+The city of Herat is not in China.,1,Herat,China,Afghanistan,Herat,train
+The city of Kleinzschocher is not in Germany.,0,Kleinzschocher,Germany,Germany,Kleinzschocher,train
+The city of Kleinzschocher is not in Brazil.,1,Kleinzschocher,Brazil,Germany,Kleinzschocher,train
+The city of Davao is not in the Philippines.,0,Davao,the Philippines,the Philippines,Davao,train
+The city of Davao is not in Brazil.,1,Davao,Brazil,the Philippines,Davao,train
+The city of Sargodha is not in Pakistan.,0,Sargodha,Pakistan,Pakistan,Sargodha,train
+The city of Sargodha is not in India.,1,Sargodha,India,Pakistan,Sargodha,train
+The city of Islamabad is not in Pakistan.,0,Islamabad,Pakistan,Pakistan,Islamabad,train
+The city of Islamabad is not in Japan.,1,Islamabad,Japan,Pakistan,Islamabad,train
+The city of Zapopan is not in Mexico.,0,Zapopan,Mexico,Mexico,Zapopan,train
+The city of Zapopan is not in China.,1,Zapopan,China,Mexico,Zapopan,train
+The city of Visakhapatnam is not in India.,0,Visakhapatnam,India,India,Visakhapatnam,train
+The city of Visakhapatnam is not in Indonesia.,1,Visakhapatnam,Indonesia,India,Visakhapatnam,train
+The city of Rourkela is not in India.,0,Rourkela,India,India,Rourkela,train
+The city of Rourkela is not in Brazil.,1,Rourkela,Brazil,India,Rourkela,train
+The city of Dhanbad is not in India.,0,Dhanbad,India,India,Dhanbad,train
+The city of Dhanbad is not in Kenya.,1,Dhanbad,Kenya,India,Dhanbad,train
+The city of Bokaro is not in India.,0,Bokaro,India,India,Bokaro,train
+The city of Bokaro is not in China.,1,Bokaro,China,India,Bokaro,train
+The city of Tabriz is not in Iran.,0,Tabriz,Iran,Iran,Tabriz,test
+The city of Tabriz is not in India.,1,Tabriz,India,Iran,Tabriz,test
+The city of Tlaquepaque is not in Mexico.,0,Tlaquepaque,Mexico,Mexico,Tlaquepaque,train
+The city of Tlaquepaque is not in Japan.,1,Tlaquepaque,Japan,Mexico,Tlaquepaque,train
+The city of Victoria de Durango is not in Mexico.,0,Victoria de Durango,Mexico,Mexico,Victoria de Durango,train
+The city of Victoria de Durango is not in Ghana.,1,Victoria de Durango,Ghana,Mexico,Victoria de Durango,train
+The city of Kota Kinabalu is not in Malaysia.,0,Kota Kinabalu,Malaysia,Malaysia,Kota Kinabalu,test
+The city of Kota Kinabalu is not in the United States.,1,Kota Kinabalu,the United States,Malaysia,Kota Kinabalu,test
+The city of Nairobi is not in Kenya.,0,Nairobi,Kenya,Kenya,Nairobi,test
+The city of Nairobi is not in Mexico.,1,Nairobi,Mexico,Kenya,Nairobi,test
+The city of Taguig is not in the Philippines.,0,Taguig,the Philippines,the Philippines,Taguig,train
+The city of Taguig is not in India.,1,Taguig,India,the Philippines,Taguig,train
+The city of Rajkot is not in India.,0,Rajkot,India,India,Rajkot,train
+The city of Rajkot is not in Russia.,1,Rajkot,Russia,India,Rajkot,train
+The city of Pune is not in India.,0,Pune,India,India,Pune,train
+The city of Pune is not in South Korea.,1,Pune,South Korea,India,Pune,train
+The city of Ludhiana is not in India.,0,Ludhiana,India,India,Ludhiana,test
+The city of Ludhiana is not in Togo.,1,Ludhiana,Togo,India,Ludhiana,test
+The city of Jamshedpur is not in India.,0,Jamshedpur,India,India,Jamshedpur,train
+The city of Jamshedpur is not in China.,1,Jamshedpur,China,India,Jamshedpur,train
+The city of Bhiwandi is not in India.,0,Bhiwandi,India,India,Bhiwandi,train
+The city of Bhiwandi is not in China.,1,Bhiwandi,China,India,Bhiwandi,train
+The city of Erbil is not in Iraq.,0,Erbil,Iraq,Iraq,Erbil,train
+The city of Erbil is not in Cuba.,1,Erbil,Cuba,Iraq,Erbil,train
+The city of Chelyabinsk is not in Russia.,0,Chelyabinsk,Russia,Russia,Chelyabinsk,train
+The city of Chelyabinsk is not in China.,1,Chelyabinsk,China,Russia,Chelyabinsk,train
+The city of Uskudar is not in Turkey.,0,Uskudar,Turkey,Turkey,Uskudar,test
+The city of Uskudar is not in Bulgaria.,1,Uskudar,Bulgaria,Turkey,Uskudar,test
+The city of Bagcilar is not in Turkey.,0,Bagcilar,Turkey,Turkey,Bagcilar,train
+The city of Bagcilar is not in Iran.,1,Bagcilar,Iran,Turkey,Bagcilar,train
+The city of Quezon City is not in the Philippines.,0,Quezon City,the Philippines,the Philippines,Quezon City,test
+The city of Quezon City is not in China.,1,Quezon City,China,the Philippines,Quezon City,test
+The city of Mexico City is not in Mexico.,0,Mexico City,Mexico,Mexico,Mexico City,train
+The city of Mexico City is not in China.,1,Mexico City,China,Mexico,Mexico City,train
+The city of Leon de los Aldama is not in Mexico.,0,Leon de los Aldama,Mexico,Mexico,Leon de los Aldama,train
+The city of Leon de los Aldama is not in China.,1,Leon de los Aldama,China,Mexico,Leon de los Aldama,train
+The city of Fes is not in Morocco.,0,Fes,Morocco,Morocco,Fes,test
+The city of Fes is not in Mali.,1,Fes,Mali,Morocco,Fes,test
+The city of Surat is not in India.,0,Surat,India,India,Surat,train
+The city of Surat is not in Burkina Faso.,1,Surat,Burkina Faso,India,Surat,train
+The city of Barnaul is not in Russia.,0,Barnaul,Russia,Russia,Barnaul,train
+The city of Barnaul is not in South Africa.,1,Barnaul,South Africa,Russia,Barnaul,train
+The city of Buraydah is not in Saudi Arabia.,0,Buraydah,Saudi Arabia,Saudi Arabia,Buraydah,train
+The city of Buraydah is not in Rwanda.,1,Buraydah,Rwanda,Saudi Arabia,Buraydah,train
+The city of Bikaner is not in India.,0,Bikaner,India,India,Bikaner,train
+The city of Bikaner is not in South Korea.,1,Bikaner,South Korea,India,Bikaner,train
+The city of Mogadishu is not in Somalia.,0,Mogadishu,Somalia,Somalia,Mogadishu,train
+The city of Mogadishu is not in Iran.,1,Mogadishu,Iran,Somalia,Mogadishu,train
+The city of Homs is not in Syria.,0,Homs,Syria,Syria,Homs,train
+The city of Homs is not in Indonesia.,1,Homs,Indonesia,Syria,Homs,train
+The city of Port-au-Prince is not in Haiti.,0,Port-au-Prince,Haiti,Haiti,Port-au-Prince,test
+The city of Port-au-Prince is not in South Korea.,1,Port-au-Prince,South Korea,Haiti,Port-au-Prince,test
+The city of Thuan An is not in Vietnam.,0,Thuan An,Vietnam,Vietnam,Thuan An,train
+The city of Thuan An is not in Mozambique.,1,Thuan An,Mozambique,Vietnam,Thuan An,train
+The city of Sanaa is not in Yemen.,0,Sanaa,Yemen,Yemen,Sanaa,test
+The city of Sanaa is not in China.,1,Sanaa,China,Yemen,Sanaa,test
+The city of Pretoria is not in South Africa.,0,Pretoria,South Africa,South Africa,Pretoria,test
+The city of Pretoria is not in India.,1,Pretoria,India,South Africa,Pretoria,test
+The city of Pietermaritzburg is not in South Africa.,0,Pietermaritzburg,South Africa,South Africa,Pietermaritzburg,train
+The city of Pietermaritzburg is not in China.,1,Pietermaritzburg,China,South Africa,Pietermaritzburg,train
+The city of Abu Dhabi is not in the United Arab Emirates.,0,Abu Dhabi,the United Arab Emirates,the United Arab Emirates,Abu Dhabi,train
+The city of Abu Dhabi is not in Oman.,1,Abu Dhabi,Oman,the United Arab Emirates,Abu Dhabi,train
+The city of Sao Paulo is not in Brazil.,0,Sao Paulo,Brazil,Brazil,Sao Paulo,train
+The city of Sao Paulo is not in China.,1,Sao Paulo,China,Brazil,Sao Paulo,train
+The city of Lianyungang is not in China.,0,Lianyungang,China,China,Lianyungang,train
+The city of Lianyungang is not in the Philippines.,1,Lianyungang,the Philippines,China,Lianyungang,train
+The city of Xiaogan is not in China.,0,Xiaogan,China,China,Xiaogan,train
+The city of Xiaogan is not in Ukraine.,1,Xiaogan,Ukraine,China,Xiaogan,train
+The city of Taicang is not in China.,0,Taicang,China,China,Taicang,train
+The city of Taicang is not in Madagascar.,1,Taicang,Madagascar,China,Taicang,train
+The city of Guiyang is not in China.,0,Guiyang,China,China,Guiyang,test
+The city of Guiyang is not in South Korea.,1,Guiyang,South Korea,China,Guiyang,test
+The city of Ganzhou is not in China.,0,Ganzhou,China,China,Ganzhou,test
+The city of Ganzhou is not in South Korea.,1,Ganzhou,South Korea,China,Ganzhou,test
+The city of Shangyu is not in China.,0,Shangyu,China,China,Shangyu,train
+The city of Shangyu is not in the United Arab Emirates.,1,Shangyu,the United Arab Emirates,China,Shangyu,train
+The city of Jambi City is not in Indonesia.,0,Jambi City,Indonesia,Indonesia,Jambi City,train
+The city of Jambi City is not in China.,1,Jambi City,China,Indonesia,Jambi City,train
+The city of Indianapolis is not in the United States.,0,Indianapolis,the United States,the United States,Indianapolis,train
+The city of Indianapolis is not in Côte d'Ivoire.,1,Indianapolis,Côte d'Ivoire,the United States,Indianapolis,train
+The city of New York City is not in the United States.,0,New York City,the United States,the United States,New York City,train
+The city of New York City is not in India.,1,New York City,India,the United States,New York City,train
+The city of Bulawayo is not in Zimbabwe.,0,Bulawayo,Zimbabwe,Zimbabwe,Bulawayo,train
+The city of Bulawayo is not in China.,1,Bulawayo,China,Zimbabwe,Bulawayo,train
+The city of Santiago de Cuba is not in Cuba.,0,Santiago de Cuba,Cuba,Cuba,Santiago de Cuba,train
+The city of Santiago de Cuba is not in India.,1,Santiago de Cuba,India,Cuba,Santiago de Cuba,train
+The city of Quito is not in Ecuador.,0,Quito,Ecuador,Ecuador,Quito,train
+The city of Quito is not in China.,1,Quito,China,Ecuador,Quito,train
+The city of Shubra al Khaymah is not in Egypt.,0,Shubra al Khaymah,Egypt,Egypt,Shubra al Khaymah,train
+The city of Shubra al Khaymah is not in Nigeria.,1,Shubra al Khaymah,Nigeria,Egypt,Shubra al Khaymah,train
+The city of Al Mahallah al Kubra is not in Egypt.,0,Al Mahallah al Kubra,Egypt,Egypt,Al Mahallah al Kubra,train
+The city of Al Mahallah al Kubra is not in Afghanistan.,1,Al Mahallah al Kubra,Afghanistan,Egypt,Al Mahallah al Kubra,train
+The city of Suining is not in China.,0,Suining,China,China,Suining,test
+The city of Suining is not in Algeria.,1,Suining,Algeria,China,Suining,test
+The city of Guankou is not in China.,0,Guankou,China,China,Guankou,train
+The city of Guankou is not in Pakistan.,1,Guankou,Pakistan,China,Guankou,train
+The city of Langfang is not in China.,0,Langfang,China,China,Langfang,train
+The city of Langfang is not in India.,1,Langfang,India,China,Langfang,train
+The city of Jinan is not in China.,0,Jinan,China,China,Jinan,test
+The city of Jinan is not in Rwanda.,1,Jinan,Rwanda,China,Jinan,test
+The city of Guigang is not in China.,0,Guigang,China,China,Guigang,train
+The city of Guigang is not in Japan.,1,Guigang,Japan,China,Guigang,train
+The city of Dalian is not in China.,0,Dalian,China,China,Dalian,train
+The city of Dalian is not in Saudi Arabia.,1,Dalian,Saudi Arabia,China,Dalian,train
+The city of Chongqing is not in China.,0,Chongqing,China,China,Chongqing,test
+The city of Chongqing is not in Sweden.,1,Chongqing,Sweden,China,Chongqing,test
+The city of Homyel' is not in Belarus.,0,Homyel',Belarus,Belarus,Homyel',test
+The city of Homyel' is not in Iran.,1,Homyel',Iran,Belarus,Homyel',test
+The city of Winnipeg is not in Canada.,0,Winnipeg,Canada,Canada,Winnipeg,train
+The city of Winnipeg is not in Mexico.,1,Winnipeg,Mexico,Canada,Winnipeg,train
+The city of Klang is not in Malaysia.,0,Klang,Malaysia,Malaysia,Klang,train
+The city of Klang is not in China.,1,Klang,China,Malaysia,Klang,train
+The city of Irbid is not in Jordan.,0,Irbid,Jordan,Jordan,Irbid,train
+The city of Irbid is not in India.,1,Irbid,India,Jordan,Irbid,train
+The city of Bishkek is not in Kyrgyzstan.,0,Bishkek,Kyrgyzstan,Kyrgyzstan,Bishkek,train
+The city of Bishkek is not in Germany.,1,Bishkek,Germany,Kyrgyzstan,Bishkek,train
+The city of Muzaffarabad is not in Pakistan.,0,Muzaffarabad,Pakistan,Pakistan,Muzaffarabad,train
+The city of Muzaffarabad is not in China.,1,Muzaffarabad,China,Pakistan,Muzaffarabad,train
+The city of Kotli is not in Pakistan.,0,Kotli,Pakistan,Pakistan,Kotli,train
+The city of Kotli is not in the United States.,1,Kotli,the United States,Pakistan,Kotli,train
+The city of Nagpur is not in India.,0,Nagpur,India,India,Nagpur,train
+The city of Nagpur is not in Denmark.,1,Nagpur,Denmark,India,Nagpur,train
+The city of Kolhapur is not in India.,0,Kolhapur,India,India,Kolhapur,test
+The city of Kolhapur is not in Mozambique.,1,Kolhapur,Mozambique,India,Kolhapur,test
+The city of Cuttack is not in India.,0,Cuttack,India,India,Cuttack,train
+The city of Cuttack is not in Pakistan.,1,Cuttack,Pakistan,India,Cuttack,train
+The city of Makassar is not in Indonesia.,0,Makassar,Indonesia,Indonesia,Makassar,train
+The city of Makassar is not in China.,1,Makassar,China,Indonesia,Makassar,train
+The city of Yekaterinburg is not in Russia.,0,Yekaterinburg,Russia,Russia,Yekaterinburg,train
+The city of Yekaterinburg is not in Lithuania.,1,Yekaterinburg,Lithuania,Russia,Yekaterinburg,train
+The city of Dammam is not in Saudi Arabia.,0,Dammam,Saudi Arabia,Saudi Arabia,Dammam,train
+The city of Dammam is not in Russia.,1,Dammam,Russia,Saudi Arabia,Dammam,train
+The city of Dushanbe is not in Tajikistan.,0,Dushanbe,Tajikistan,Tajikistan,Dushanbe,train
+The city of Dushanbe is not in Nigeria.,1,Dushanbe,Nigeria,Tajikistan,Dushanbe,train
+The city of Gaziantep is not in Turkey.,0,Gaziantep,Turkey,Turkey,Gaziantep,train
+The city of Gaziantep is not in Mexico.,1,Gaziantep,Mexico,Turkey,Gaziantep,train
+The city of Asuncion is not in Paraguay.,0,Asuncion,Paraguay,Paraguay,Asuncion,train
+The city of Asuncion is not in Nigeria.,1,Asuncion,Nigeria,Paraguay,Asuncion,train
+The city of Tebessa is not in Algeria.,0,Tebessa,Algeria,Algeria,Tebessa,train
+The city of Tebessa is not in India.,1,Tebessa,India,Algeria,Tebessa,train
+The city of Zhuzhou is not in China.,0,Zhuzhou,China,China,Zhuzhou,train
+The city of Zhuzhou is not in France.,1,Zhuzhou,France,China,Zhuzhou,train
+The city of Xining is not in China.,0,Xining,China,China,Xining,train
+The city of Xining is not in the United Arab Emirates.,1,Xining,the United Arab Emirates,China,Xining,train
+The city of Tanggu is not in China.,0,Tanggu,China,China,Tanggu,train
+The city of Tanggu is not in South Korea.,1,Tanggu,South Korea,China,Tanggu,train
+The city of Shantou is not in China.,0,Shantou,China,China,Shantou,train
+The city of Shantou is not in Pakistan.,1,Shantou,Pakistan,China,Shantou,train
+The city of Shangluo is not in China.,0,Shangluo,China,China,Shangluo,train
+The city of Shangluo is not in Honduras.,1,Shangluo,Honduras,China,Shangluo,train
+The city of Putian is not in China.,0,Putian,China,China,Putian,test
+The city of Putian is not in Vietnam.,1,Putian,Vietnam,China,Putian,test
+The city of Luzhou is not in China.,0,Luzhou,China,China,Luzhou,train
+The city of Luzhou is not in Peru.,1,Luzhou,Peru,China,Luzhou,train
+The city of Lanzhou is not in China.,0,Lanzhou,China,China,Lanzhou,train
+The city of Lanzhou is not in Mexico.,1,Lanzhou,Mexico,China,Lanzhou,train
+The city of Chenzhou is not in China.,0,Chenzhou,China,China,Chenzhou,train
+The city of Chenzhou is not in Brazil.,1,Chenzhou,Brazil,China,Chenzhou,train
+The city of Baise is not in China.,0,Baise,China,China,Baise,train
+The city of Baise is not in Japan.,1,Baise,Japan,China,Baise,train
+The city of Shenyang is not in China.,0,Shenyang,China,China,Shenyang,test
+The city of Shenyang is not in Somalia.,1,Shenyang,Somalia,China,Shenyang,test
+The city of Daqing is not in China.,0,Daqing,China,China,Daqing,train
+The city of Daqing is not in Brazil.,1,Daqing,Brazil,China,Daqing,train
+The city of Brasilia is not in Brazil.,0,Brasilia,Brazil,Brazil,Brasilia,train
+The city of Brasilia is not in South Korea.,1,Brasilia,South Korea,Brazil,Brasilia,train
+The city of Kandahar is not in Afghanistan.,0,Kandahar,Afghanistan,Afghanistan,Kandahar,train
+The city of Kandahar is not in China.,1,Kandahar,China,Afghanistan,Kandahar,train
+The city of Gold Coast is not in Australia.,0,Gold Coast,Australia,Australia,Gold Coast,train
+The city of Gold Coast is not in China.,1,Gold Coast,China,Australia,Gold Coast,train
+The city of Ouagadougou is not in Burkina Faso.,0,Ouagadougou,Burkina Faso,Burkina Faso,Ouagadougou,train
+The city of Ouagadougou is not in China.,1,Ouagadougou,China,Burkina Faso,Ouagadougou,train
+The city of Duque de Caxias is not in Brazil.,0,Duque de Caxias,Brazil,Brazil,Duque de Caxias,test
+The city of Duque de Caxias is not in Côte d'Ivoire.,1,Duque de Caxias,Côte d'Ivoire,Brazil,Duque de Caxias,test
+The city of Hiroshima is not in Japan.,0,Hiroshima,Japan,Japan,Hiroshima,train
+The city of Hiroshima is not in Malaysia.,1,Hiroshima,Malaysia,Japan,Hiroshima,train
+The city of Saitama is not in Japan.,0,Saitama,Japan,Japan,Saitama,train
+The city of Saitama is not in India.,1,Saitama,India,Japan,Saitama,train
+The city of Mandalay is not in Myanmar.,0,Mandalay,Myanmar,Myanmar,Mandalay,train
+The city of Mandalay is not in Algeria.,1,Mandalay,Algeria,Myanmar,Mandalay,train
+The city of Nampula is not in Mozambique.,0,Nampula,Mozambique,Mozambique,Nampula,test
+The city of Nampula is not in India.,1,Nampula,India,Mozambique,Nampula,test
+The city of Mysore is not in India.,0,Mysore,India,India,Mysore,test
+The city of Mysore is not in Mexico.,1,Mysore,Mexico,India,Mysore,test
+The city of Coimbatore is not in India.,0,Coimbatore,India,India,Coimbatore,train
+The city of Coimbatore is not in Malaysia.,1,Coimbatore,Malaysia,India,Coimbatore,train
+The city of Chandigarh is not in India.,0,Chandigarh,India,India,Chandigarh,test
+The city of Chandigarh is not in China.,1,Chandigarh,China,India,Chandigarh,test
+The city of Amritsar is not in India.,0,Amritsar,India,India,Amritsar,test
+The city of Amritsar is not in Moldova.,1,Amritsar,Moldova,India,Amritsar,test
+The city of Arak is not in Iran.,0,Arak,Iran,Iran,Arak,test
+The city of Arak is not in India.,1,Arak,India,Iran,Arak,test
+The city of Ilorin is not in Nigeria.,0,Ilorin,Nigeria,Nigeria,Ilorin,test
+The city of Ilorin is not in Ukraine.,1,Ilorin,Ukraine,Nigeria,Ilorin,test
+The city of Omdurman is not in Sudan.,0,Omdurman,Sudan,Sudan,Omdurman,train
+The city of Omdurman is not in South Korea.,1,Omdurman,South Korea,Sudan,Omdurman,train
+The city of Khartoum is not in Sudan.,0,Khartoum,Sudan,Sudan,Khartoum,test
+The city of Khartoum is not in China.,1,Khartoum,China,Sudan,Khartoum,test
+The city of Gujranwala is not in Pakistan.,0,Gujranwala,Pakistan,Pakistan,Gujranwala,test
+The city of Gujranwala is not in China.,1,Gujranwala,China,Pakistan,Gujranwala,test
+The city of Nizhniy Novgorod is not in Russia.,0,Nizhniy Novgorod,Russia,Russia,Nizhniy Novgorod,train
+The city of Nizhniy Novgorod is not in China.,1,Nizhniy Novgorod,China,Russia,Nizhniy Novgorod,train
+The city of Zhaoqing is not in China.,0,Zhaoqing,China,China,Zhaoqing,test
+The city of Zhaoqing is not in Brazil.,1,Zhaoqing,Brazil,China,Zhaoqing,test
+The city of Xianning is not in China.,0,Xianning,China,China,Xianning,train
+The city of Xianning is not in Lebanon.,1,Xianning,Lebanon,China,Xianning,train
+The city of Suqian is not in China.,0,Suqian,China,China,Suqian,train
+The city of Suqian is not in Mexico.,1,Suqian,Mexico,China,Suqian,train
+The city of Tonghua is not in China.,0,Tonghua,China,China,Tonghua,test
+The city of Tonghua is not in Venezuela.,1,Tonghua,Venezuela,China,Tonghua,test
+The city of Hezhou is not in China.,0,Hezhou,China,China,Hezhou,test
+The city of Hezhou is not in India.,1,Hezhou,India,China,Hezhou,test
+The city of Grosszschocher is not in Germany.,0,Grosszschocher,Germany,Germany,Grosszschocher,train
+The city of Grosszschocher is not in China.,1,Grosszschocher,China,Germany,Grosszschocher,train
+The city of San Pedro Sula is not in Honduras.,0,San Pedro Sula,Honduras,Honduras,San Pedro Sula,train
+The city of San Pedro Sula is not in India.,1,San Pedro Sula,India,Honduras,San Pedro Sula,train
+The city of Queens is not in the United States.,0,Queens,the United States,the United States,Queens,train
+The city of Queens is not in India.,1,Queens,India,the United States,Queens,train
+The city of Caracas is not in Venezuela.,0,Caracas,Venezuela,Venezuela,Caracas,train
+The city of Caracas is not in Sudan.,1,Caracas,Sudan,Venezuela,Caracas,train
+The city of Bien Hoa is not in Vietnam.,0,Bien Hoa,Vietnam,Vietnam,Bien Hoa,train
+The city of Bien Hoa is not in South Korea.,1,Bien Hoa,South Korea,Vietnam,Bien Hoa,train
+The city of Durban is not in South Africa.,0,Durban,South Africa,South Africa,Durban,test
+The city of Durban is not in Ukraine.,1,Durban,Ukraine,South Africa,Durban,test
+The city of Kawaguchi is not in Japan.,0,Kawaguchi,Japan,Japan,Kawaguchi,train
+The city of Kawaguchi is not in Indonesia.,1,Kawaguchi,Indonesia,Japan,Kawaguchi,train
+The city of Bucheon-si is not in South Korea.,0,Bucheon-si,South Korea,South Korea,Bucheon-si,train
+The city of Bucheon-si is not in Romania.,1,Bucheon-si,Romania,South Korea,Bucheon-si,train
+The city of Tangier is not in Morocco.,0,Tangier,Morocco,Morocco,Tangier,train
+The city of Tangier is not in Ecuador.,1,Tangier,Ecuador,Morocco,Tangier,train
+The city of Nay Pyi Taw is not in Myanmar.,0,Nay Pyi Taw,Myanmar,Myanmar,Nay Pyi Taw,train
+The city of Nay Pyi Taw is not in Mozambique.,1,Nay Pyi Taw,Mozambique,Myanmar,Nay Pyi Taw,train
+The city of Ulhasnagar is not in India.,0,Ulhasnagar,India,India,Ulhasnagar,test
+The city of Ulhasnagar is not in Senegal.,1,Ulhasnagar,Senegal,India,Ulhasnagar,test
+The city of Faridabad is not in India.,0,Faridabad,India,India,Faridabad,test
+The city of Faridabad is not in the United States.,1,Faridabad,the United States,India,Faridabad,test
+The city of Kolkata is not in India.,0,Kolkata,India,India,Kolkata,test
+The city of Kolkata is not in Japan.,1,Kolkata,Japan,India,Kolkata,test
+The city of Karbala is not in Iraq.,0,Karbala,Iraq,Iraq,Karbala,test
+The city of Karbala is not in Turkey.,1,Karbala,Turkey,Iraq,Karbala,test
+The city of Jakarta is not in Indonesia.,0,Jakarta,Indonesia,Indonesia,Jakarta,train
+The city of Jakarta is not in Colombia.,1,Jakarta,Colombia,Indonesia,Jakarta,train
+The city of Denpasar is not in Indonesia.,0,Denpasar,Indonesia,Indonesia,Denpasar,test
+The city of Denpasar is not in Brazil.,1,Denpasar,Brazil,Indonesia,Denpasar,test
+The city of Batam is not in Indonesia.,0,Batam,Indonesia,Indonesia,Batam,test
+The city of Batam is not in Turkey.,1,Batam,Turkey,Indonesia,Batam,test
+The city of Liupanshui is not in China.,0,Liupanshui,China,China,Liupanshui,test
+The city of Liupanshui is not in the Philippines.,1,Liupanshui,the Philippines,China,Liupanshui,test
+The city of Shangrao is not in China.,0,Shangrao,China,China,Shangrao,train
+The city of Shangrao is not in Russia.,1,Shangrao,Russia,China,Shangrao,train
+The city of Xingtai is not in China.,0,Xingtai,China,China,Xingtai,test
+The city of Xingtai is not in Russia.,1,Xingtai,Russia,China,Xingtai,test
+The city of Qujing is not in China.,0,Qujing,China,China,Qujing,test
+The city of Qujing is not in India.,1,Qujing,India,China,Qujing,test
+The city of Nanning is not in China.,0,Nanning,China,China,Nanning,train
+The city of Nanning is not in Japan.,1,Nanning,Japan,China,Nanning,train
+The city of Huainan is not in China.,0,Huainan,China,China,Huainan,train
+The city of Huainan is not in Egypt.,1,Huainan,Egypt,China,Huainan,train
+The city of Binzhou is not in China.,0,Binzhou,China,China,Binzhou,train
+The city of Binzhou is not in Brazil.,1,Binzhou,Brazil,China,Binzhou,train
+The city of Fuxin is not in China.,0,Fuxin,China,China,Fuxin,test
+The city of Fuxin is not in Pakistan.,1,Fuxin,Pakistan,China,Fuxin,test
+The city of Quebec is not in Canada.,0,Quebec,Canada,Canada,Quebec,train
+The city of Quebec is not in Zimbabwe.,1,Quebec,Zimbabwe,Canada,Quebec,train
+The city of Mazar-e Sharif is not in Afghanistan.,0,Mazar-e Sharif,Afghanistan,Afghanistan,Mazar-e Sharif,train
+The city of Mazar-e Sharif is not in India.,1,Mazar-e Sharif,India,Afghanistan,Mazar-e Sharif,train
+The city of Mar del Plata is not in Argentina.,0,Mar del Plata,Argentina,Argentina,Mar del Plata,test
+The city of Mar del Plata is not in Nigeria.,1,Mar del Plata,Nigeria,Argentina,Mar del Plata,test
+The city of Salta is not in Argentina.,0,Salta,Argentina,Argentina,Salta,test
+The city of Salta is not in India.,1,Salta,India,Argentina,Salta,test
+The city of Bujumbura is not in Burundi.,0,Bujumbura,Burundi,Burundi,Bujumbura,train
+The city of Bujumbura is not in Nigeria.,1,Bujumbura,Nigeria,Burundi,Bujumbura,train
+The city of Ankara is not in Turkey.,0,Ankara,Turkey,Turkey,Ankara,train
+The city of Ankara is not in Japan.,1,Ankara,Japan,Turkey,Ankara,train
+The city of Esenler is not in Turkey.,0,Esenler,Turkey,Turkey,Esenler,train
+The city of Esenler is not in India.,1,Esenler,India,Turkey,Esenler,train
+The city of Cankaya is not in Turkey.,0,Cankaya,Turkey,Turkey,Cankaya,test
+The city of Cankaya is not in the United States.,1,Cankaya,the United States,Turkey,Cankaya,test
+The city of Ufa is not in Russia.,0,Ufa,Russia,Russia,Ufa,train
+The city of Ufa is not in South Korea.,1,Ufa,South Korea,Russia,Ufa,train
+The city of Rawalpindi is not in Pakistan.,0,Rawalpindi,Pakistan,Pakistan,Rawalpindi,train
+The city of Rawalpindi is not in Brazil.,1,Rawalpindi,Brazil,Pakistan,Rawalpindi,train
+The city of Karachi is not in Pakistan.,0,Karachi,Pakistan,Pakistan,Karachi,test
+The city of Karachi is not in India.,1,Karachi,India,Pakistan,Karachi,test
+The city of Tijuana is not in Mexico.,0,Tijuana,Mexico,Mexico,Tijuana,train
+The city of Tijuana is not in the United Arab Emirates.,1,Tijuana,the United Arab Emirates,Mexico,Tijuana,train
+The city of Jos is not in Nigeria.,0,Jos,Nigeria,Nigeria,Jos,train
+The city of Jos is not in India.,1,Jos,India,Nigeria,Jos,train
+The city of Ibadan is not in Nigeria.,0,Ibadan,Nigeria,Nigeria,Ibadan,train
+The city of Ibadan is not in Malaysia.,1,Ibadan,Malaysia,Nigeria,Ibadan,train
+The city of Managua is not in Nicaragua.,0,Managua,Nicaragua,Nicaragua,Managua,train
+The city of Managua is not in Turkey.,1,Managua,Turkey,Nicaragua,Managua,train
+The city of Ha'il is not in Saudi Arabia.,0,Ha'il,Saudi Arabia,Saudi Arabia,Ha'il,test
+The city of Ha'il is not in China.,1,Ha'il,China,Saudi Arabia,Ha'il,test
+The city of Haiphong is not in Vietnam.,0,Haiphong,Vietnam,Vietnam,Haiphong,train
+The city of Haiphong is not in the Dominican Republic.,1,Haiphong,the Dominican Republic,Vietnam,Haiphong,train
+The city of Cape Town is not in South Africa.,0,Cape Town,South Africa,South Africa,Cape Town,train
+The city of Cape Town is not in China.,1,Cape Town,China,South Africa,Cape Town,train
+The city of Ipoh is not in Malaysia.,0,Ipoh,Malaysia,Malaysia,Ipoh,train
+The city of Ipoh is not in Brazil.,1,Ipoh,Brazil,Malaysia,Ipoh,train
+The city of Kuantan is not in Malaysia.,0,Kuantan,Malaysia,Malaysia,Kuantan,test
+The city of Kuantan is not in India.,1,Kuantan,India,Malaysia,Kuantan,test
+The city of Maiduguri is not in Nigeria.,0,Maiduguri,Nigeria,Nigeria,Maiduguri,train
+The city of Maiduguri is not in China.,1,Maiduguri,China,Nigeria,Maiduguri,train
+The city of Yangon is not in Myanmar.,0,Yangon,Myanmar,Myanmar,Yangon,train
+The city of Yangon is not in Kenya.,1,Yangon,Kenya,Myanmar,Yangon,train
+The city of Kathmandu is not in Nepal.,0,Kathmandu,Nepal,Nepal,Kathmandu,train
+The city of Kathmandu is not in China.,1,Kathmandu,China,Nepal,Kathmandu,train
+The city of Las Pinas is not in the Philippines.,0,Las Pinas,the Philippines,the Philippines,Las Pinas,train
+The city of Las Pinas is not in Yemen.,1,Las Pinas,Yemen,the Philippines,Las Pinas,train
+The city of Reynosa is not in Mexico.,0,Reynosa,Mexico,Mexico,Reynosa,test
+The city of Reynosa is not in China.,1,Reynosa,China,Mexico,Reynosa,test
+The city of Rostov-na-Donu is not in Russia.,0,Rostov-na-Donu,Russia,Russia,Rostov-na-Donu,train
+The city of Rostov-na-Donu is not in the United Arab Emirates.,1,Rostov-na-Donu,the United Arab Emirates,Russia,Rostov-na-Donu,train
+The city of Ibague is not in Colombia.,0,Ibague,Colombia,Colombia,Ibague,test
+The city of Ibague is not in Finland.,1,Ibague,Finland,Colombia,Ibague,test
+The city of Copenhagen is not in Denmark.,0,Copenhagen,Denmark,Denmark,Copenhagen,test
+The city of Copenhagen is not in China.,1,Copenhagen,China,Denmark,Copenhagen,test
+The city of Xinyang is not in China.,0,Xinyang,China,China,Xinyang,train
+The city of Xinyang is not in Japan.,1,Xinyang,Japan,China,Xinyang,train
+The city of Weinan is not in China.,0,Weinan,China,China,Weinan,train
+The city of Weinan is not in Colombia.,1,Weinan,Colombia,China,Weinan,train
+The city of Wanning is not in China.,0,Wanning,China,China,Wanning,train
+The city of Wanning is not in the United States.,1,Wanning,the United States,China,Wanning,train
+The city of Shijiazhuang is not in China.,0,Shijiazhuang,China,China,Shijiazhuang,train
+The city of Shijiazhuang is not in Uzbekistan.,1,Shijiazhuang,Uzbekistan,China,Shijiazhuang,train
+The city of Laiwu is not in China.,0,Laiwu,China,China,Laiwu,train
+The city of Laiwu is not in the United States.,1,Laiwu,the United States,China,Laiwu,train
+The city of Hengyang is not in China.,0,Hengyang,China,China,Hengyang,test
+The city of Hengyang is not in Turkey.,1,Hengyang,Turkey,China,Hengyang,test
+The city of Changchun is not in China.,0,Changchun,China,China,Changchun,train
+The city of Changchun is not in Germany.,1,Changchun,Germany,China,Changchun,train
+The city of Varanasi is not in India.,0,Varanasi,India,India,Varanasi,train
+The city of Varanasi is not in Turkey.,1,Varanasi,Turkey,India,Varanasi,train
+The city of Puducherry is not in India.,0,Puducherry,India,India,Puducherry,train
+The city of Puducherry is not in Brazil.,1,Puducherry,Brazil,India,Puducherry,train
+The city of Bhopal is not in India.,0,Bhopal,India,India,Bhopal,train
+The city of Bhopal is not in Russia.,1,Bhopal,Russia,India,Bhopal,train
+The city of Kanayannur is not in India.,0,Kanayannur,India,India,Kanayannur,train
+The city of Kanayannur is not in Saudi Arabia.,1,Kanayannur,Saudi Arabia,India,Kanayannur,train
+The city of Kirkuk is not in Iraq.,0,Kirkuk,Iraq,Iraq,Kirkuk,train
+The city of Kirkuk is not in China.,1,Kirkuk,China,Iraq,Kirkuk,train
+The city of Al Mawsil al Jadidah is not in Iraq.,0,Al Mawsil al Jadidah,Iraq,Iraq,Al Mawsil al Jadidah,train
+The city of Al Mawsil al Jadidah is not in India.,1,Al Mawsil al Jadidah,India,Iraq,Al Mawsil al Jadidah,train
+The city of Tangerang is not in Indonesia.,0,Tangerang,Indonesia,Indonesia,Tangerang,test
+The city of Tangerang is not in China.,1,Tangerang,China,Indonesia,Tangerang,test
