@@ -16,7 +16,7 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.got import activations, baseline, plots  # noqa: E402
+from src.got import activations, baseline, plots, steering  # noqa: E402
 from src.got.io import (ACTIVATIONS_DIR, DATASETS, DIRECTIONS_DIR, FAMILY, SPLIT_DIR,  # noqa: E402
                         save_table)
 
@@ -103,10 +103,58 @@ def stage_3_controls():
     plots.plot_negation(tr)
 
 
+# Stage 6a settings: layers chosen from stage 2 (cities peaks L7-L8, numbers strong through L8, RepE best L6)
+N_PAIRS = 60
+SCAN_LAYERS = list(range(1, 12))
+SCAN_ALPHAS = [-0.5, 0.5]
+DOSE_LAYERS = [6, 7, 8]
+DOSE_ALPHAS = [-1.0, -0.5, -0.25, 0.25, 0.5, 1.0]
+
+
+def stage_6a_steering():
+    """Stage 6a: steer GPT-2 with the stage-2 mass-mean directions (no SAE)."""
+    import numpy as np
+
+    print("\n=== Stage 6a: Baseline steering (no SAE) ===")
+    model = activations.load_model()
+    pairs, directions, norms = {}, {}, {}
+    for name in steering.STEER_DATASETS:
+        last, _, meta = activations.load_set(ACTIVATIONS_DIR, name)
+        pairs[name] = steering.test_pairs(meta, N_PAIRS)
+        norms[name] = steering.layer_norms(last)
+        directions[name] = np.load(DIRECTIONS_DIR / f"{name}_last.npz")["mass_mean"]
+        print(f"  {name}: {len(pairs[name])} test pairs")
+
+    print("\n  pass 1: scan, layers 1-11")
+    scan = steering.steering_grid(model, pairs, directions, norms, SCAN_LAYERS, SCAN_ALPHAS,
+                                  sources=("own", "twin", "random"))
+    save_table(scan, "got_s6a_steering_scan")
+
+    print("\n  pass 2: dose-response, layers " + ", ".join(f"L{l}" for l in DOSE_LAYERS))
+    dose = steering.steering_grid(model, pairs, directions, norms, DOSE_LAYERS, DOSE_ALPHAS,
+                                  sources=("own", "twin", "random"))
+    save_table(dose, "got_s6a_steering_dose")
+
+    base = scan[scan["source"] == "none"][["dataset", "mean_gap", "pair_accuracy"]]
+    print("\nWithout steering (true minus false log-prob, and share of pairs preferring the true one):")
+    print(base.to_string(index=False))
+    view = scan[(scan["alpha"] > 0) & (scan["source"] != "none")].pivot_table(
+        index="layer", columns=["dataset", "source"], values="effect")
+    view = view.loc[sorted(view.index, key=lambda s: int(s[1:]))]
+    print(f"\nScan: effect of steering +{max(SCAN_ALPHAS)} x norm (> 0 = pushed towards the true sentence):")
+    print(view.xs("own", axis=1, level=1).round(3).to_string())
+    print("\nSame, with the TWIN's direction (a flip predicts the opposite sign):")
+    print(view.xs("twin", axis=1, level=1).round(3).to_string())
+
+    plots.plot_steering_scan(scan)
+    plots.plot_steering_dose(dose)
+
+
 STAGES = {
     1: stage_1_cache,
     2: stage_2_baseline,
     3: stage_3_controls,
+    6: stage_6a_steering,
 }
 
 

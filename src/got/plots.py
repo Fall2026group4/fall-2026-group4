@@ -344,3 +344,61 @@ def plot_negation(transfer_df, method="mass_mean", name="got_s3_negation_transfe
     ax.set_title(f"Negation / reversal transfer ({method})")
     ax.legend(fontsize=7, ncol=3, loc="lower center")
     return save_figure(fig, name)
+
+
+# ---------------------------------------------------------------------------
+# Stage 6a: baseline steering
+# ---------------------------------------------------------------------------
+
+SOURCE_STYLE = {"own": ("Own direction", "#4C72B0", "-"), "twin": ("Twin's direction", "#C44E52", "-"),
+                "random_1": ("Random 1", "#999999", ":"), "random_2": ("Random 2", "#BBBBBB", ":")}
+
+
+def plot_steering_scan(scan, name="got_s6a_steering_scan"):
+    """Effect of steering at +alpha, per layer, one panel per dataset."""
+    datasets = list(dict.fromkeys(scan.loc[scan["source"] != "none", "dataset"]))
+    alpha = scan.loc[scan["alpha"] > 0, "alpha"].max()
+    fig, axes = plt.subplots(1, len(datasets), figsize=(4.2 * len(datasets), 4), sharey=True)
+    for ax, dataset in zip(axes, datasets):
+        d = scan[(scan["dataset"] == dataset) & (scan["alpha"] == alpha)]
+        for source, (label, color, style) in SOURCE_STYLE.items():
+            r = d[d["source"] == source]
+            if len(r):
+                order = r["layer"].str[1:].astype(int).argsort().values
+                r = r.iloc[order]
+                ax.plot(r["layer"], r["effect"], style, marker="o", ms=3, color=color, label=label)
+        ax.axhline(0, color="black", linewidth=0.8)
+        ax.set_title(dataset, fontsize=10)
+        ax.tick_params(axis="x", labelsize=7, rotation=45)
+    axes[0].set_ylabel(f"Change in log P(true) \u2212 log P(false)\n(steering +{alpha} \u00d7 residual norm)")
+    axes[-1].legend(fontsize=7)
+    fig.suptitle("Does adding the truth direction make GPT-2 prefer the true sentence? (> 0 = yes)")
+    return save_figure(fig, name)
+
+
+def plot_steering_dose(dose, name="got_s6a_steering_dose"):
+    """Effect vs steering strength at the chosen layers; second row = fluency cost."""
+    datasets = list(dict.fromkeys(dose.loc[dose["source"] != "none", "dataset"]))
+    layers = sorted(dose["layer"].dropna().unique(), key=lambda s: int(s[1:]))
+    fig, axes = plt.subplots(2, len(datasets), figsize=(4.2 * len(datasets), 7), sharey="row")
+    for j, dataset in enumerate(datasets):
+        d = dose[dose["dataset"] == dataset]
+        for source, (label, color, style) in SOURCE_STYLE.items():
+            for k, layer in enumerate(layers):
+                r = d[(d["source"] == source) & (d["layer"] == layer)].sort_values("alpha")
+                if len(r):
+                    lab = f"{label}" if k == 0 else None
+                    axes[0][j].plot(r["alpha"], r["effect"], style, marker="o", ms=3, color=color,
+                                    alpha=0.5 + 0.25 * k, label=lab)
+                    axes[1][j].plot(r["alpha"], r["fluency_change"], style, marker="o", ms=3, color=color,
+                                    alpha=0.5 + 0.25 * k)
+        axes[0][j].set_title(f"{dataset} ({', '.join(layers)})", fontsize=10)
+        for ax in (axes[0][j], axes[1][j]):
+            ax.axhline(0, color="black", linewidth=0.8)
+            ax.axvline(0, color="black", linewidth=0.5)
+        axes[1][j].set_xlabel("Steering strength (\u00d7 residual norm)")
+    axes[0][0].set_ylabel("Change in true \u2212 false log-prob")
+    axes[1][0].set_ylabel("Change in fluency\n(per-token log-prob)")
+    axes[0][-1].legend(fontsize=7)
+    fig.suptitle("Dose\u2013response: steering effect (top) and fluency cost (bottom)")
+    return save_figure(fig, name)
