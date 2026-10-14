@@ -48,5 +48,11 @@ def save_table(df, name, index=False):
     return path
 
 
+# Added for steps 8-10
 REVIEW_PATH = TABLES_DIR / "got_s0_08_label_review_sample.csv"
 SPLIT_DIR = PROJECT_ROOT / "data" / "got" / "split"
+
+
+# Added for stage 1 onwards
+ACTIVATIONS_DIR = PROJECT_ROOT / "data" / "got" / "activations"
+DIRECTIONS_DIR = PROJECT_ROOT / "data" / "got" / "directions"

@@ -45,7 +45,6 @@ def plot_label_balance(table, name="got_s0_02_label_balance"):
     return save_figure(fig, name)
 
 
-
 # ---------------------------------------------------------------------------
 # Step 3: Length and the length shortcut
 # ---------------------------------------------------------------------------
@@ -66,7 +65,6 @@ def plot_token_lengths(frames, shortcut, name="got_s0_03_token_lengths"):
         ax.legend(fontsize=7)
     fig.suptitle("Statement length by label; AUROC near 0.5 = length gives no shortcut")
     return save_figure(fig, name)
-
 
 
 # ---------------------------------------------------------------------------
@@ -105,7 +103,6 @@ def plot_last_tokens(last, datasets, top_n=3, name="got_s0_04_last_tokens"):
     return save_figure(fig, name)
 
 
-
 # ---------------------------------------------------------------------------
 # Step 5: Subject structure
 # ---------------------------------------------------------------------------
@@ -130,7 +127,6 @@ def plot_subjects(summary, name="got_s0_05_subjects"):
     ax2.set_ylabel("% of subjects")
     ax2.tick_params(axis="x", rotation=30, labelsize=8)
     return save_figure(fig, name)
-
 
 
 # ---------------------------------------------------------------------------
@@ -158,7 +154,6 @@ def plot_shortcuts(table, datasets, name="got_s0_06_shortcuts"):
     ax.set_title("Can a surface cue alone predict true/false? (0.5 = no)")
     ax.legend(fontsize=8, ncol=len(cues), loc="upper left")
     return save_figure(fig, name)
-
 
 
 # ---------------------------------------------------------------------------
@@ -260,4 +255,92 @@ def plot_knowledge(summary, name="got_s0_10_gpt2_knowledge"):
     ax2.set_ylabel("AUROC (0.5 = no preference)")
     ax2.set_title("GPT-2 sentence likelihood vs label")
     ax2.legend(fontsize=8)
+    return save_figure(fig, name)
+
+
+# ---------------------------------------------------------------------------
+# Stage 2: baseline per dataset and layer
+# ---------------------------------------------------------------------------
+
+METHOD_STYLE = {"mass_mean": ("Mass-mean", "#4C72B0"), "logistic": ("Logistic", "#C44E52"),
+                "pca": ("PCA (unsupervised)", "#55A868")}
+N1_SHORTCUT = 0.841  # first-number-only AUROC from EDA step 7
+
+
+def plot_baseline(results, band, datasets, read="last", name=None):
+    """Test AUROC by layer for each dataset: methods, random band, and the numbers shortcut."""
+    name = name or f"got_s2_truth_by_layer_{read}"
+    fig, axes = plt.subplots(2, 3, figsize=(16, 8), sharey=True)
+    for ax, dataset in zip(axes.T.ravel(), datasets):
+        b = band[(band["dataset"] == dataset) & (band["read"] == read)].sort_values("position_index")
+        x = b["position_index"].values
+        ax.fill_between(x, b["random_low"], b["random_high"], color="#BBBBBB", alpha=0.5, label="Random band")
+        for method, (label, color) in METHOD_STYLE.items():
+            r = results[(results["dataset"] == dataset) & (results["read"] == read) &
+                        (results["method"] == method)].sort_values("position_index")
+            ax.plot(r["position_index"], r["auroc"], marker="o", ms=3, color=color, label=label)
+            ax.fill_between(r["position_index"], r["auroc_low"], r["auroc_high"], color=color, alpha=0.12)
+        if dataset in ("larger_than", "smaller_than"):
+            r = results[(results["dataset"] == dataset) & (results["read"] == read) &
+                        (results["method"] == "mass_mean")].sort_values("position_index")
+            ax.plot(r["position_index"], r["auroc_within_n1"], ":", color="#4C72B0", label="Mass-mean within n1")
+            ax.axhline(N1_SHORTCUT, color="#C44E52", linestyle="--", linewidth=0.8, label="First-number shortcut")
+        ax.axhline(0.5, color="black", linestyle=":", linewidth=0.8)
+        ax.set_xticks(x)
+        ax.set_xticklabels(b["position"], fontsize=7)
+        ax.set_ylim(0.2, 1.02)
+        ax.set_title(dataset, fontsize=10)
+    axes[0][0].set_ylabel("Test AUROC")
+    axes[1][0].set_ylabel("Test AUROC")
+    handles, labels = axes[1][2].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=6, fontsize=8)
+    fig.suptitle(f"Truth is linearly readable? (read: {read} token)", y=0.99)
+    fig.tight_layout(rect=(0, 0.07, 1, 0.97))
+    return save_figure(fig, name)
+
+
+# ---------------------------------------------------------------------------
+# Stage 3: transfer, negation, joint training
+# ---------------------------------------------------------------------------
+
+def plot_transfer_heatmap(transfer_df, layers, datasets, method="mass_mean", name="got_s3_transfer_heatmap"):
+    """Fitted on (rows) x tested on (columns), AUROC averaged over the given layers. Red < 0.5 = flipped."""
+    import numpy as np
+
+    t = transfer_df[(transfer_df["method"] == method) & (transfer_df["position"].isin(layers))]
+    m = t.pivot_table(index="source", columns="target", values="auroc", aggfunc="mean").loc[datasets, datasets]
+    fig, ax = plt.subplots(figsize=(8.5, 7))
+    im = ax.imshow(m.values, cmap="RdYlGn", vmin=0.0, vmax=1.0)
+    for i in range(len(datasets)):
+        for j in range(len(datasets)):
+            ax.text(j, i, f"{m.values[i, j]:.2f}", ha="center", va="center", fontsize=9)
+    ax.set_xticks(np.arange(len(datasets)))
+    ax.set_xticklabels(datasets, rotation=35, ha="right", fontsize=9)
+    ax.set_yticks(np.arange(len(datasets)))
+    ax.set_yticklabels(datasets, fontsize=9)
+    ax.set_xlabel("Tested on")
+    ax.set_ylabel("Fitted on")
+    ax.set_title(f"Cross-dataset transfer ({method}, mean AUROC {layers[0]}\u2013{layers[-1]}); < 0.5 = flipped")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="Test AUROC")
+    return save_figure(fig, name)
+
+
+def plot_negation(transfer_df, method="mass_mean", name="got_s3_negation_transfer"):
+    """Does a direction survive negation / reversal? Fitted on one twin, tested on the other, by layer."""
+    pairs = [("cities", "neg_cities"), ("sp_en_trans", "neg_sp_en_trans"), ("larger_than", "smaller_than")]
+    colors = ["#4C72B0", "#55A868", "#C44E52"]
+    fig, ax = plt.subplots(figsize=(10, 4.8))
+    for (a, b), color in zip(pairs, colors):
+        for src, tgt, style in [(a, b, "-"), (b, a, "--")]:
+            r = transfer_df[(transfer_df["source"] == src) & (transfer_df["target"] == tgt) &
+                            (transfer_df["method"] == method)].sort_values("position_index")
+            ax.plot(r["position_index"], r["auroc"], style, marker="o", ms=3, color=color, label=f"{src} \u2192 {tgt}")
+    ax.axhline(0.5, color="black", linestyle=":", linewidth=0.8)
+    ax.set_xticks(r["position_index"])
+    ax.set_xticklabels(r["position"], fontsize=8)
+    ax.set_ylim(0, 1.02)
+    ax.set_xlabel("Layer")
+    ax.set_ylabel("Test AUROC (below 0.5 = direction flipped)")
+    ax.set_title(f"Negation / reversal transfer ({method})")
+    ax.legend(fontsize=7, ncol=3, loc="lower center")
     return save_figure(fig, name)
