@@ -116,6 +116,15 @@ S6B_ALPHAS = [-0.5, 0.5]
 S6B_N_RANDOM = 20
 QUICK = False  # set by --quick: cities, layer 7, 3 random directions
 
+# Stage 6c settings: steering with SAE features (one dataset per family keeps it to ~3 hours)
+S6C_DATASETS = ["cities", "larger_than"]
+S6C_TYPES = ["relu", "topk"]
+S6C_LAYERS = [4, 6, 8, 10]
+S6C_ALPHAS = [-0.5, 0.5]
+S6C_N_RANDOM = 20
+S6C_TEXT_LAYERS = [6, 10]
+S6C_TEXT_ALPHAS = [-1.0, -0.5, 0.0, 0.5, 1.0]
+
 
 def stage_6a_steering():
     """Stage 6a: steer GPT-2 with the stage-2 mass-mean directions (no SAE)."""
@@ -245,6 +254,55 @@ def stage_6b_random_control():
     save_table(summary, "got_s6b_random20_summary")
     _s6b_plot(parts)
 
+def stage_6c_sae_feature_steering():
+    """Stage 6c: steer with each SAE's truth feature vs 20 frequency-matched random features."""
+    import numpy as np
+    from src.got import sae_steering as ss
+
+    print("\n=== Stage 6c: Steering with SAE features ===")
+    names = ["cities"] if QUICK else S6C_DATASETS
+    types = ["relu"] if QUICK else S6C_TYPES
+    layers = [8] if QUICK else S6C_LAYERS
+    n_random = 3 if QUICK else S6C_N_RANDOM
+    text_layers = [8] if QUICK else S6C_TEXT_LAYERS
+    text_alphas = [-0.5, 0.0, 0.5] if QUICK else S6C_TEXT_ALPHAS
+
+    model = activations.load_model()
+    data = {}
+    for name in names:
+        last, _, meta = activations.load_set(ACTIVATIONS_DIR, name)
+        split = meta["split"].astype(str).to_numpy()
+        pairs = steering.test_pairs(meta, N_PAIRS)
+        prompts = [pairs[0][1] + ss.JUDGE_SUFFIX] if QUICK else \
+                  [pairs[0][0] + ss.JUDGE_SUFFIX, pairs[0][1] + ss.JUDGE_SUFFIX]  # fixed in advance
+        data[name] = dict(last=last, y=meta["label"].astype(int).to_numpy(),
+                          tr=np.where(split == "train")[0], te=np.where(split == "test")[0],
+                          pairs=pairs, norms=steering.layer_norms(last), text_prompts=prompts)
+        print(f"  {name}: {len(pairs)} test pairs")
+
+    judge = ss.judgment_baseline(model, data)
+    print("\nBaseline: does GPT-2 say ' true' more for true statements? (no steering)")
+    print(judge.round(3).to_string(index=False))
+
+    choice, grid, summary, texts = ss.run(model, data, types, layers, S6C_ALPHAS, n_random,
+                                          text_layers, text_alphas)
+    print("\nTruth feature per SAE (chosen on train, AUROC on test; vocab = direct push on ' true' vs ' false'):")
+    print(choice.round(3).to_string(index=False))
+    print("\nSteering: truth feature vs random features (rank 1 = strongest; p adjusted for many tests):")
+    print(summary[["sae_type", "layer", "dataset", "own_directional", "ci_low", "ci_high", "own_rank",
+                   "n_features", "p_value", "p_adjusted_bh", "judgment_shift"]].round(3).to_string(index=False))
+    print("\nText grid (fixed prompts):")
+    for _, r in texts.iterrows():
+        print(f"  {r.sae_type} L{r.layer} {r.dataset} alpha {r.alpha:+.2f}: {r.continuation}")
+
+    if QUICK:
+        print("\n  quick test only, nothing saved")
+        return
+    save_table(judge, "got_s6c_judgment_baseline")
+    save_table(choice, "got_s6c_feature_choice")
+    save_table(grid, "got_s6c_steering_grid")
+    save_table(summary, "got_s6c_summary")
+    save_table(texts, "got_s6c_text_grid")
 
 STAGES = {
     1: stage_1_cache,
@@ -252,6 +310,7 @@ STAGES = {
     3: stage_3_controls,
     6: stage_6a_steering,
     7: stage_6b_random_control,
+    8: stage_6c_sae_feature_steering,
 }
 
 
