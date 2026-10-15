@@ -110,6 +110,12 @@ SCAN_ALPHAS = [-0.5, 0.5]
 DOSE_LAYERS = [6, 7, 8]
 DOSE_ALPHAS = [-1.0, -0.5, -0.25, 0.25, 0.5, 1.0]
 
+# Stage 6b settings: own direction vs many random directions at the dose layers
+S6B_LAYERS = [6, 7, 8]
+S6B_ALPHAS = [-0.5, 0.5]
+S6B_N_RANDOM = 20
+QUICK = False  # set by --quick: cities, layer 7, 3 random directions
+
 
 def stage_6a_steering():
     """Stage 6a: steer GPT-2 with the stage-2 mass-mean directions (no SAE)."""
@@ -149,19 +155,112 @@ def stage_6a_steering():
     plots.plot_steering_scan(scan)
     plots.plot_steering_dose(dose)
 
+def _s6b_summary(grid):
+    """Directional and disruption parts per source, and the own direction's rank among randoms."""
+    g = grid[grid["source"] != "none"]
+    p = g.pivot_table(index=["dataset", "layer", "source"], columns="alpha", values="effect")
+    parts = pd.DataFrame({"directional": (p[0.5] - p[-0.5]) / 2,
+                          "disruption": (p[0.5] + p[-0.5]) / 2}).reset_index()
+    rows = []
+    for (d, layer), s in parts.groupby(["dataset", "layer"]):
+        own = s[s["source"] == "own"].iloc[0]
+        rnd = s[s["source"].str.startswith("random")]
+        mags = rnd["directional"].abs().to_numpy()
+        own_mag = abs(own["directional"])
+        rows.append(dict(
+            dataset=d, layer=layer, own_directional=own["directional"], own_abs=own_mag,
+            random_abs_mean=mags.mean(), random_abs_max=mags.max(),
+            own_rank=int(1 + (mags > own_mag).sum()), n_directions=len(mags) + 1,
+            p_value=(1 + (mags >= own_mag).sum()) / (len(mags) + 1),
+            own_disruption=own["disruption"], random_disruption_mean=rnd["disruption"].mean()))
+    return parts, pd.DataFrame(rows)
+
+
+def _s6b_plot(parts):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    fig_dir = PROJECT_ROOT / "results" / "figures" / "got"
+    fig_dir.mkdir(parents=True, exist_ok=True)
+    datasets = list(parts["dataset"].unique())
+    fig, axes = plt.subplots(1, len(datasets), figsize=(4.2 * len(datasets), 4), sharey=True)
+    axes = np.atleast_1d(axes)
+    for ax, d in zip(axes, datasets):
+        s = parts[parts["dataset"] == d]
+        layers = sorted(s["layer"].unique(), key=lambda x: int(str(x)[1:]))
+        for i, layer in enumerate(layers):
+            r = s[(s["layer"] == layer) & s["source"].str.startswith("random")]
+            o = s[(s["layer"] == layer) & (s["source"] == "own")]
+            ax.scatter(np.full(len(r), i) + np.random.uniform(-0.12, 0.12, len(r)),
+                       r["directional"].abs(), color="grey", alpha=0.6, s=18,
+                       label="random directions" if i == 0 else None)
+            ax.scatter([i], o["directional"].abs(), color="red", marker="*", s=180,
+                       label="truth direction" if i == 0 else None)
+        ax.set_xticks(range(len(layers)))
+        ax.set_xticklabels(layers)
+        ax.set_title(d)
+        ax.grid(alpha=0.3)
+    axes[0].set_ylabel("|directional effect| at ±0.5")
+    axes[0].legend()
+    fig.suptitle("Stage 6b: truth direction vs 20 random directions")
+    fig.tight_layout()
+    fig.savefig(fig_dir / "got_s6b_random20.png", dpi=150)
+    print("  saved results/figures/got/got_s6b_random20.png")
+
+
+def stage_6b_random_control():
+    """Stage 6b: is the truth direction a better steer than random directions?"""
+    import time
+    import numpy as np
+
+    print("\n=== Stage 6b: Steering vs 20 random directions ===")
+    names = ["cities"] if QUICK else steering.STEER_DATASETS
+    layers = [7] if QUICK else S6B_LAYERS
+    n_random = 3 if QUICK else S6B_N_RANDOM
+
+    model = activations.load_model()
+    pairs, directions, norms = {}, {}, {}
+    for name in names:
+        last, _, meta = activations.load_set(ACTIVATIONS_DIR, name)
+        pairs[name] = steering.test_pairs(meta, N_PAIRS)
+        norms[name] = steering.layer_norms(last)
+        directions[name] = np.load(DIRECTIONS_DIR / f"{name}_last.npz")["mass_mean"]
+        print(f"  {name}: {len(pairs[name])} test pairs")
+
+    t0 = time.time()
+    grid = steering.steering_grid(model, pairs, directions, norms, layers, S6B_ALPHAS,
+                                  sources=("own", "random"), n_random=n_random)
+    print(f"\n  steering took {time.time() - t0:.0f}s")
+
+    parts, summary = _s6b_summary(grid)
+    print("\nTruth direction vs random directions (rank 1 = strongest; p = share of randoms at least as strong):")
+    print(summary.round(3).to_string(index=False))
+
+    if QUICK:
+        print("\n  quick test only, nothing saved")
+        return
+    save_table(grid, "got_s6b_random20_grid")
+    save_table(summary, "got_s6b_random20_summary")
+    _s6b_plot(parts)
+
 
 STAGES = {
     1: stage_1_cache,
     2: stage_2_baseline,
     3: stage_3_controls,
     6: stage_6a_steering,
+    7: stage_6b_random_control,
 }
 
 
 def main():
     parser = argparse.ArgumentParser(description="Geometry of Truth analysis")
     parser.add_argument("--stage", type=int, choices=sorted(STAGES), help="Run only this stage")
+    parser.add_argument("--quick", action="store_true", help="Run a quick test")
     args = parser.parse_args()
+    global QUICK; QUICK = args.quick
     for number in ([args.stage] if args.stage else sorted(STAGES)):
         STAGES[number]()
     print("\nDone.")
