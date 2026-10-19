@@ -17,7 +17,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 
-def main(config_path: str) -> None:
+def main(config_path: str, only: list[str] | None = None) -> None:
     import pandas as pd
     import torch
 
@@ -30,11 +30,20 @@ def main(config_path: str) -> None:
         spliced_sae_logits,
         zero_ablation_logits,
     )
-    from src.owt.saes import enabled_sae_types, hook_name_for_layer, load_all_layer_saes, load_model
+    from src.owt.saes import (
+        enabled_sae_types,
+        hook_name_for_layer,
+        layers_for_type,
+        load_all_layer_saes,
+        load_model,
+        restrict_sae_types,
+        save_merged,
+    )
 
     if not Path(config_path).is_absolute():
         config_path = REPO_ROOT / config_path
     config = load_config(config_path)
+    restrict_sae_types(config, only)
     set_all_seeds(config["seed"])
 
     results_dir = REPO_ROOT / config["paths"]["results_dir"]
@@ -93,7 +102,7 @@ def main(config_path: str) -> None:
         # Fidelity (FVU / L0 / cosine) for ALL layers from ONE GPT-2 forward pass
         # per batch (stop_at_layer skips the unembed). Previously each layer
         # re-ran the whole model over the same snippets.
-        all_layers = config["layers"]
+        all_layers = layers_for_type(config, sae_type)
         shared_hooks = {l: hook_name_for_layer(config, sae_type, l) for l in all_layers}
         d_model_shared = model.cfg.d_model
         accs = {l: FidelityAccumulator(d_model=d_model_shared) for l in all_layers}
@@ -112,7 +121,7 @@ def main(config_path: str) -> None:
         fidelity_by_layer = {l: accs[l].finalize() for l in all_layers}
         print("Fidelity pass done for all layers; now spliced loss per layer...", flush=True)
 
-        for layer in config["layers"]:
+        for layer in all_layers:
             sae = layer_saes[layer]
             hook_name = hook_name_for_layer(config, sae_type, layer)
             d_model = model.cfg.d_model
@@ -152,7 +161,7 @@ def main(config_path: str) -> None:
 
     df = pd.DataFrame(all_rows)
     output_path = results_dir / "tables" / "fidelity_wikitext.csv"
-    df.to_csv(output_path, index=False)
+    save_merged(df, output_path)
     print(f"\nSaved: {output_path}")
 
     owt_fidelity_path = results_dir / "tables" / "fidelity.csv"
@@ -178,5 +187,7 @@ def main(config_path: str) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/owt.yaml")
+    parser.add_argument("--only", nargs="+", default=None,
+                        help="run only these SAE types, e.g. --only topk (existing rows of other types are kept)")
     args = parser.parse_args()
-    main(args.config)
+    main(args.config, args.only)

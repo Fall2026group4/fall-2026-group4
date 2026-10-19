@@ -22,7 +22,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 
-def main(config_path: str) -> None:
+def main(config_path: str, only: list[str] | None = None) -> None:
     import numpy as np
     import pandas as pd
     import torch
@@ -34,11 +34,20 @@ def main(config_path: str) -> None:
         dead_and_dense_counts,
         top_frequent_feature_ids,
     )
-    from src.owt.saes import enabled_sae_types, hook_name_for_layer, load_all_layer_saes, load_model
+    from src.owt.saes import (
+        enabled_sae_types,
+        hook_name_for_layer,
+        layers_for_type,
+        load_all_layer_saes,
+        load_model,
+        restrict_sae_types,
+        save_merged,
+    )
 
     if not Path(config_path).is_absolute():
         config_path = REPO_ROOT / config_path
     config = load_config(config_path)
+    restrict_sae_types(config, only)
     set_all_seeds(config["seed"])
 
     data_dir = REPO_ROOT / config["paths"]["data_dir"]
@@ -82,6 +91,7 @@ def main(config_path: str) -> None:
     for sae_type in sae_types:
         print(f"\n=== SAE type: {sae_type} ===")
         layer_saes = load_all_layer_saes(config, sae_type, device=config["model"]["device"])
+        layers = layers_for_type(config, sae_type)  # TopK covers positions 1-11 only
         hook_names = {layer: hook_name_for_layer(config, sae_type, layer) for layer in layers}
 
         # Pass 1: firing frequency, all layers from the same forward pass.
@@ -164,17 +174,19 @@ def main(config_path: str) -> None:
 
     summary_df = pd.DataFrame(summary_rows)
     summary_path = results_dir / "tables" / "feature_stats.csv"
-    summary_df.to_csv(summary_path, index=False)
+    save_merged(summary_df, summary_path)
     print(f"\nSaved: {summary_path}")
 
     snippets_df = pd.DataFrame(snippet_rows)
     snippets_path = results_dir / "tables" / "feature_top_snippets.csv"
-    snippets_df.to_csv(snippets_path, index=False)
+    save_merged(snippets_df, snippets_path)
     print(f"Saved: {snippets_path}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/owt.yaml")
+    parser.add_argument("--only", nargs="+", default=None,
+                        help="run only these SAE types, e.g. --only topk (existing rows of other types are kept)")
     args = parser.parse_args()
-    main(args.config)
+    main(args.config, args.only)

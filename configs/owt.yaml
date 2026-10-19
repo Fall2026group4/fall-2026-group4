@@ -39,31 +39,35 @@ sample:
   # Stage 5: second, out-of-distribution corpus.
   wikitext_snippets: 100
 
-# SAE releases. "Fixed decisions" table: ReLU is gpt2-small-res-jb for all
-# layers. TopK/JumpReLU release names are NOT confirmed yet (the spec
-# itself says "confirm release name" / "only if a GPT-2 Small release
-# exists") - leave null until confirmed via
-# `sae_lens.pretrained_saes_directory` or the team, and the pipeline will
-# skip that SAE type rather than guess a release string. Per the spec:
-# "Start with ReLU only. Run the whole pipeline on gpt2-small-res-jb
-# first, then add TopK, then JumpReLU if it exists."
+# SAE releases (confirmed in sae_lens.pretrained_saes_directory):
+#   relu = gpt2-small-res-jb (24,576 latents, native hook_resid_pre, positions 0-11)
+#   topk = gpt2-small-resid-post-v5-32k (OpenAI TopK, k=32, 32,768 latents,
+#          native hook_resid_post). Block L-1's resid_post is the same tensor as
+#          block L's resid_pre, so it is filed at position L (Fixed decisions).
+#          There is no TopK SAE for position 0 (the embeddings), so TopK covers
+#          positions 1-11 here. Position 12 (blocks.11.hook_resid_post) has no
+#          resid_pre hook in GPT-2 and is skipped.
+#   jumprelu = no GPT-2 Small JumpReLU release in the SAELens directory; left off.
+# Placeholders in sae_id_template: {layer} = position, {source_layer} = the block
+# the SAE was trained on (layer - 1 for resid_post releases).
 sae_types:
   relu:
     enabled: true
     release: gpt2-small-res-jb
-    # Lines SAE types up by position: a resid_post SAE at layer L is filed
-    # as resid_pre L+1. gpt2-small-res-jb SAEs are natively hook_resid_pre,
-    # so sae_id_template == hook_template here.
+    point_type: resid_pre
     hook_template: "blocks.{layer}.hook_resid_pre"
-    sae_id_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: "blocks.{source_layer}.hook_resid_pre"
   topk:
-    enabled: false # TODO: confirm release name, then flip to true
-    release: null # e.g. an OpenAI TopK resid_post release - CONFIRM before use
+    enabled: true
+    release: gpt2-small-resid-post-v5-32k
+    point_type: resid_post
+    layers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     hook_template: "blocks.{layer}.hook_resid_pre"
-    sae_id_template: null # fill in once the release is confirmed
+    sae_id_template: "blocks.{source_layer}.hook_resid_post"
   jumprelu:
-    enabled: false # TODO: only enable if a GPT-2 Small JumpReLU release exists
+    enabled: false # no GPT-2 Small JumpReLU release exists in SAELens
     release: null
+    point_type: resid_pre
     hook_template: "blocks.{layer}.hook_resid_pre"
     sae_id_template: null
 
