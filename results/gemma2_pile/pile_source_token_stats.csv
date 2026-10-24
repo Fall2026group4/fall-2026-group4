@@ -1,0 +1,13 @@
+source,document_count,mean_token_count,median_token_count,min_token_count,max_token_count
+Pile-CC,61,715.43,492,38,3593
+StackExchange,38,647.82,418.5,178,2884
+PubMed Abstracts,26,219.23,208.0,77,353
+Github,22,2110.91,664.5,60,15626
+Wikipedia (en),19,641.58,309,48,3164
+USPTO Backgrounds,16,1058.75,852.5,79,2551
+DM Mathematics,6,5230.67,5229.0,4641,5778
+PubMed Central,5,7524,7022,4917,13405
+FreeLaw,3,179,107,72,358
+NIH ExPorter,2,834.5,834.5,451,1218
+HackerNews,1,366,366,366,366
+ArXiv,1,15112,15112,15112,15112

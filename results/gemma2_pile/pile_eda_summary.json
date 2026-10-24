@@ -10,5 +10,9 @@
   "mean_word_count": 628.48,
   "median_word_count": 255.0,
   "min_word_count": 2,
-  "max_word_count": 8261
+  "max_word_count": 8261,
+  "mean_token_count": 1181.08,
+  "median_token_count": 407.5,
+  "min_token_count": 38,
+  "max_token_count": 15626
 }

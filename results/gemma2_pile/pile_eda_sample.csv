@@ -1,201 +1,201 @@
-document_id,source,char_length,word_count,empty
-1,Wikipedia (en),171,21,False
-2,PubMed Abstracts,873,133,False
-3,NIH ExPorter,2418,364,False
-4,Pile-CC,345,65,False
-5,Wikipedia (en),904,137,False
-6,PubMed Central,27112,3939,False
-7,USPTO Backgrounds,3741,609,False
-8,Pile-CC,533,86,False
-9,StackExchange,1199,223,False
-10,StackExchange,969,120,False
-11,StackExchange,1458,200,False
-12,StackExchange,1566,283,False
-13,Pile-CC,5385,983,False
-14,PubMed Abstracts,1332,197,False
-15,StackExchange,1379,222,False
-16,USPTO Backgrounds,3731,575,False
-17,PubMed Abstracts,1517,218,False
-18,Pile-CC,3440,578,False
-19,PubMed Abstracts,934,129,False
-20,Pile-CC,4714,765,False
-21,Pile-CC,1372,229,False
-22,USPTO Backgrounds,4601,706,False
-23,Pile-CC,4283,670,False
-24,StackExchange,1431,168,False
-25,StackExchange,2022,159,False
-26,Pile-CC,6280,1190,False
-27,PubMed Abstracts,1686,253,False
-28,Pile-CC,9323,1512,False
-29,Pile-CC,2638,417,False
-30,NIH ExPorter,6322,915,False
-31,PubMed Abstracts,1236,187,False
-32,PubMed Central,29184,3489,False
-33,Pile-CC,7618,1338,False
-34,USPTO Backgrounds,4722,692,False
-35,DM Mathematics,8194,2118,False
-36,Wikipedia (en),403,58,False
-37,PubMed Abstracts,472,65,False
-38,Pile-CC,3538,649,False
-39,StackExchange,1854,303,False
-40,Pile-CC,3525,625,False
-41,PubMed Abstracts,918,141,False
-42,Pile-CC,1547,236,False
-43,Pile-CC,3771,617,False
-44,Pile-CC,3969,724,False
-45,Pile-CC,685,117,False
-46,StackExchange,560,68,False
-47,USPTO Backgrounds,6577,1018,False
-48,Wikipedia (en),542,85,False
-49,PubMed Abstracts,1325,204,False
-50,Pile-CC,1056,163,False
-51,Wikipedia (en),1745,293,False
-52,USPTO Backgrounds,8704,1422,False
-53,Github,384,33,False
-54,Pile-CC,10753,1742,False
-55,StackExchange,2291,400,False
-56,Pile-CC,2370,398,False
-57,Pile-CC,1772,253,False
-58,Pile-CC,1571,263,False
-59,StackExchange,11076,928,False
-60,StackExchange,760,119,False
-61,Pile-CC,650,119,False
-62,StackExchange,2281,293,False
-63,Pile-CC,1743,273,False
-64,StackExchange,2821,499,False
-65,Pile-CC,2672,431,False
-66,PubMed Abstracts,756,113,False
-67,StackExchange,869,86,False
-68,Wikipedia (en),9709,1353,False
-69,Pile-CC,451,87,False
-70,PubMed Abstracts,1026,158,False
-71,PubMed Abstracts,1124,172,False
-72,Github,643,56,False
-73,USPTO Backgrounds,4727,709,False
-74,StackExchange,5242,669,False
-75,USPTO Backgrounds,2276,370,False
-76,USPTO Backgrounds,5944,896,False
-77,Github,328,25,False
-78,Pile-CC,4250,791,False
-79,Pile-CC,5299,864,False
-80,Pile-CC,4535,754,False
-81,StackExchange,1496,240,False
-82,Github,2093,310,False
-83,PubMed Abstracts,1535,229,False
-84,Pile-CC,1946,315,False
-85,Pile-CC,209,35,False
-86,Pile-CC,3757,633,False
-87,DM Mathematics,8194,1937,False
-88,StackExchange,1842,273,False
-89,Wikipedia (en),2162,342,False
-90,Pile-CC,1698,273,False
-91,PubMed Abstracts,762,106,False
-92,PubMed Abstracts,1011,146,False
-93,Github,1249,127,False
-94,Github,1026,66,False
-95,Pile-CC,6321,1116,False
-96,StackExchange,1764,269,False
-97,Wikipedia (en),10457,1494,False
-98,StackExchange,3481,616,False
-99,Pile-CC,7822,1257,False
-100,PubMed Abstracts,793,113,False
-101,Pile-CC,571,93,False
-102,Pile-CC,6052,1024,False
-103,USPTO Backgrounds,1687,265,False
-104,Pile-CC,281,50,False
-105,Wikipedia (en),2204,363,False
-106,StackExchange,1782,243,False
-107,StackExchange,785,83,False
-108,Pile-CC,1785,266,False
-109,Pile-CC,6175,1044,False
-110,StackExchange,1190,178,False
-111,USPTO Backgrounds,11444,1730,False
-112,StackExchange,1119,178,False
-113,StackExchange,6811,625,False
-114,HackerNews,1017,85,False
-115,StackExchange,1428,221,False
-116,PubMed Central,57302,8261,False
-117,Pile-CC,326,45,False
-118,Github,1082,83,False
-119,Pile-CC,998,169,False
-120,StackExchange,1117,194,False
-121,Wikipedia (en),398,56,False
-122,Wikipedia (en),1642,252,False
-123,Github,6055,573,False
-124,Wikipedia (en),360,52,False
-125,Pile-CC,3591,604,False
-126,PubMed Abstracts,1447,212,False
-127,Pile-CC,5440,897,False
-128,StackExchange,949,172,False
-129,DM Mathematics,8194,2086,False
-130,PubMed Abstracts,875,121,False
-131,Pile-CC,933,147,False
-132,Github,56323,5778,False
-133,PubMed Abstracts,1694,248,False
-134,Wikipedia (en),874,119,False
-135,Wikipedia (en),1217,198,False
-136,StackExchange,2051,202,False
-137,Pile-CC,370,62,False
-138,DM Mathematics,8194,1806,False
-139,PubMed Abstracts,984,149,False
-140,USPTO Backgrounds,494,72,False
-141,Pile-CC,4909,782,False
-142,Github,1147,154,False
-143,Github,13478,935,False
-144,FreeLaw,206,28,False
-145,Wikipedia (en),530,71,False
-146,Github,12227,1147,False
-147,USPTO Backgrounds,2779,452,False
-148,USPTO Backgrounds,5697,953,False
-149,USPTO Backgrounds,11105,1857,False
-150,StackExchange,1309,208,False
-151,PubMed Central,23405,3342,False
-152,Pile-CC,1407,222,False
-153,DM Mathematics,8194,2032,False
-154,Github,3539,625,False
-155,Github,2631,304,False
-156,Pile-CC,1177,211,False
-157,Github,1753,257,False
-158,StackExchange,1901,169,False
-159,Github,10167,2060,False
-160,PubMed Abstracts,1798,251,False
-161,Pile-CC,3139,519,False
-162,StackExchange,2315,401,False
-163,StackExchange,838,101,False
-164,PubMed Abstracts,829,113,False
-165,Wikipedia (en),1124,157,False
-166,StackExchange,1061,149,False
-167,DM Mathematics,8194,2575,False
-168,FreeLaw,1619,234,False
-169,Github,10292,1244,False
-170,Github,102,2,False
-171,Wikipedia (en),7125,968,False
-172,Pile-CC,523,93,False
-173,PubMed Abstracts,1120,174,False
-174,StackExchange,1353,239,False
-175,PubMed Abstracts,937,138,False
-176,Github,8178,892,False
-177,Pile-CC,310,44,False
-178,StackExchange,12443,381,False
-179,Github,10096,1350,False
-180,Github,522,49,False
-181,PubMed Central,28295,3996,False
-182,USPTO Backgrounds,6525,953,False
-183,Pile-CC,1567,273,False
-184,PubMed Abstracts,1464,198,False
-185,Github,2240,162,False
-186,Pile-CC,6490,1122,False
-187,Pile-CC,2872,490,False
-188,PubMed Abstracts,674,105,False
-189,Wikipedia (en),3359,507,False
-190,Wikipedia (en),956,141,False
-191,FreeLaw,168,25,False
-192,Pile-CC,1367,218,False
-193,StackExchange,1923,303,False
-194,Pile-CC,16283,2814,False
-195,Pile-CC,6642,1177,False
-196,ArXiv,40001,4267,False
-197,StackExchange,1953,319,False
-198,Pile-CC,436,87,False
-199,Pile-CC,1132,195,False
-200,Pile-CC,201,25,False
+document_id,source,char_length,word_count,token_count,empty
+1,Wikipedia (en),171,21,48,False
+2,PubMed Abstracts,873,133,182,False
+3,NIH ExPorter,2418,364,451,False
+4,Pile-CC,345,65,83,False
+5,Wikipedia (en),904,137,262,False
+6,PubMed Central,27112,3939,7022,False
+7,USPTO Backgrounds,3741,609,794,False
+8,Pile-CC,533,86,123,False
+9,StackExchange,1199,223,319,False
+10,StackExchange,969,120,293,False
+11,StackExchange,1458,200,466,False
+12,StackExchange,1566,283,344,False
+13,Pile-CC,5385,983,1405,False
+14,PubMed Abstracts,1332,197,229,False
+15,StackExchange,1379,222,358,False
+16,USPTO Backgrounds,3731,575,742,False
+17,PubMed Abstracts,1517,218,296,False
+18,Pile-CC,3440,578,679,False
+19,PubMed Abstracts,934,129,176,False
+20,Pile-CC,4714,765,1041,False
+21,Pile-CC,1372,229,260,False
+22,USPTO Backgrounds,4601,706,853,False
+23,Pile-CC,4283,670,952,False
+24,StackExchange,1431,168,346,False
+25,StackExchange,2022,159,1564,False
+26,Pile-CC,6280,1190,1591,False
+27,PubMed Abstracts,1686,253,353,False
+28,Pile-CC,9323,1512,1976,False
+29,Pile-CC,2638,417,558,False
+30,NIH ExPorter,6322,915,1218,False
+31,PubMed Abstracts,1236,187,272,False
+32,PubMed Central,29184,3489,4956,False
+33,Pile-CC,7618,1338,1736,False
+34,USPTO Backgrounds,4722,692,766,False
+35,DM Mathematics,8194,2118,4641,False
+36,Wikipedia (en),403,58,104,False
+37,PubMed Abstracts,472,65,77,False
+38,Pile-CC,3538,649,905,False
+39,StackExchange,1854,303,414,False
+40,Pile-CC,3525,625,833,False
+41,PubMed Abstracts,918,141,207,False
+42,Pile-CC,1547,236,286,False
+43,Pile-CC,3771,617,825,False
+44,Pile-CC,3969,724,945,False
+45,Pile-CC,685,117,138,False
+46,StackExchange,560,68,208,False
+47,USPTO Backgrounds,6577,1018,1478,False
+48,Wikipedia (en),542,85,127,False
+49,PubMed Abstracts,1325,204,227,False
+50,Pile-CC,1056,163,197,False
+51,Wikipedia (en),1745,293,452,False
+52,USPTO Backgrounds,8704,1422,1850,False
+53,Github,384,33,92,False
+54,Pile-CC,10753,1742,2274,False
+55,StackExchange,2291,400,523,False
+56,Pile-CC,2370,398,492,False
+57,Pile-CC,1772,253,340,False
+58,Pile-CC,1571,263,361,False
+59,StackExchange,11076,928,2654,False
+60,StackExchange,760,119,178,False
+61,Pile-CC,650,119,152,False
+62,StackExchange,2281,293,696,False
+63,Pile-CC,1743,273,377,False
+64,StackExchange,2821,499,679,False
+65,Pile-CC,2672,431,530,False
+66,PubMed Abstracts,756,113,148,False
+67,StackExchange,869,86,230,False
+68,Wikipedia (en),9709,1353,2518,False
+69,Pile-CC,451,87,104,False
+70,PubMed Abstracts,1026,158,196,False
+71,PubMed Abstracts,1124,172,245,False
+72,Github,643,56,157,False
+73,USPTO Backgrounds,4727,709,852,False
+74,StackExchange,5242,669,1244,False
+75,USPTO Backgrounds,2276,370,422,False
+76,USPTO Backgrounds,5944,896,1134,False
+77,Github,328,25,121,False
+78,Pile-CC,4250,791,998,False
+79,Pile-CC,5299,864,1118,False
+80,Pile-CC,4535,754,963,False
+81,StackExchange,1496,240,423,False
+82,Github,2093,310,719,False
+83,PubMed Abstracts,1535,229,287,False
+84,Pile-CC,1946,315,401,False
+85,Pile-CC,209,35,41,False
+86,Pile-CC,3757,633,776,False
+87,DM Mathematics,8194,1937,5183,False
+88,StackExchange,1842,273,434,False
+89,Wikipedia (en),2162,342,597,False
+90,Pile-CC,1698,273,340,False
+91,PubMed Abstracts,762,106,139,False
+92,PubMed Abstracts,1011,146,180,False
+93,Github,1249,127,350,False
+94,Github,1026,66,295,False
+95,Pile-CC,6321,1116,1441,False
+96,StackExchange,1764,269,480,False
+97,Wikipedia (en),10457,1494,3164,False
+98,StackExchange,3481,616,993,False
+99,Pile-CC,7822,1257,1901,False
+100,PubMed Abstracts,793,113,159,False
+101,Pile-CC,571,93,122,False
+102,Pile-CC,6052,1024,1375,False
+103,USPTO Backgrounds,1687,265,329,False
+104,Pile-CC,281,50,60,False
+105,Wikipedia (en),2204,363,497,False
+106,StackExchange,1782,243,613,False
+107,StackExchange,785,83,272,False
+108,Pile-CC,1785,266,369,False
+109,Pile-CC,6175,1044,1328,False
+110,StackExchange,1190,178,303,False
+111,USPTO Backgrounds,11444,1730,2101,False
+112,StackExchange,1119,178,401,False
+113,StackExchange,6811,625,2048,False
+114,HackerNews,1017,85,366,False
+115,StackExchange,1428,221,385,False
+116,PubMed Central,57302,8261,13405,False
+117,Pile-CC,326,45,89,False
+118,Github,1082,83,329,False
+119,Pile-CC,998,169,237,False
+120,StackExchange,1117,194,324,False
+121,Wikipedia (en),398,56,106,False
+122,Wikipedia (en),1642,252,377,False
+123,Github,6055,573,1727,False
+124,Wikipedia (en),360,52,96,False
+125,Pile-CC,3591,604,816,False
+126,PubMed Abstracts,1447,212,256,False
+127,Pile-CC,5440,897,1235,False
+128,StackExchange,949,172,238,False
+129,DM Mathematics,8194,2086,4760,False
+130,PubMed Abstracts,875,121,191,False
+131,Pile-CC,933,147,187,False
+132,Github,56323,5778,15626,False
+133,PubMed Abstracts,1694,248,352,False
+134,Wikipedia (en),874,119,159,False
+135,Wikipedia (en),1217,198,309,False
+136,StackExchange,2051,202,892,False
+137,Pile-CC,370,62,128,False
+138,DM Mathematics,8194,1806,5275,False
+139,PubMed Abstracts,984,149,209,False
+140,USPTO Backgrounds,494,72,79,False
+141,Pile-CC,4909,782,954,False
+142,Github,1147,154,261,False
+143,Github,13478,935,4305,False
+144,FreeLaw,206,28,107,False
+145,Wikipedia (en),530,71,119,False
+146,Github,12227,1147,3395,False
+147,USPTO Backgrounds,2779,452,561,False
+148,USPTO Backgrounds,5697,953,1170,False
+149,USPTO Backgrounds,11105,1857,2551,False
+150,StackExchange,1309,208,348,False
+151,PubMed Central,23405,3342,4917,False
+152,Pile-CC,1407,222,289,False
+153,DM Mathematics,8194,2032,5778,False
+154,Github,3539,625,1531,False
+155,Github,2631,304,751,False
+156,Pile-CC,1177,211,290,False
+157,Github,1753,257,414,False
+158,StackExchange,1901,169,507,False
+159,Github,10167,2060,2267,False
+160,PubMed Abstracts,1798,251,325,False
+161,Pile-CC,3139,519,654,False
+162,StackExchange,2315,401,538,False
+163,StackExchange,838,101,217,False
+164,PubMed Abstracts,829,113,168,False
+165,Wikipedia (en),1124,157,314,False
+166,StackExchange,1061,149,269,False
+167,DM Mathematics,8194,2575,5747,False
+168,FreeLaw,1619,234,358,False
+169,Github,10292,1244,2402,False
+170,Github,102,2,60,False
+171,Wikipedia (en),7125,968,2018,False
+172,Pile-CC,523,93,121,False
+173,PubMed Abstracts,1120,174,225,False
+174,StackExchange,1353,239,414,False
+175,PubMed Abstracts,937,138,206,False
+176,Github,8178,892,2602,False
+177,Pile-CC,310,44,81,False
+178,StackExchange,12443,381,2884,False
+179,Github,10096,1350,8264,False
+180,Github,522,49,162,False
+181,PubMed Central,28295,3996,7320,False
+182,USPTO Backgrounds,6525,953,1258,False
+183,Pile-CC,1567,273,321,False
+184,PubMed Abstracts,1464,198,276,False
+185,Github,2240,162,610,False
+186,Pile-CC,6490,1122,1348,False
+187,Pile-CC,2872,490,685,False
+188,PubMed Abstracts,674,105,119,False
+189,Wikipedia (en),3359,507,699,False
+190,Wikipedia (en),956,141,224,False
+191,FreeLaw,168,25,72,False
+192,Pile-CC,1367,218,272,False
+193,StackExchange,1923,303,514,False
+194,Pile-CC,16283,2814,3593,False
+195,Pile-CC,6642,1177,1511,False
+196,ArXiv,40001,4267,15112,False
+197,StackExchange,1953,319,604,False
+198,Pile-CC,436,87,130,False
+199,Pile-CC,1132,195,266,False
+200,Pile-CC,201,25,38,False
