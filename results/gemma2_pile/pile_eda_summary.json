@@ -14,5 +14,27 @@
   "mean_token_count": 1181.08,
   "median_token_count": 407.5,
   "min_token_count": 38,
-  "max_token_count": 15626
+  "max_token_count": 15626,
+  "truncation_risk": {
+    "512": {
+      "documents_over_threshold": 87,
+      "percent_over_threshold": 43.5
+    },
+    "1024": {
+      "documents_over_threshold": 52,
+      "percent_over_threshold": 26.0
+    },
+    "2048": {
+      "documents_over_threshold": 27,
+      "percent_over_threshold": 13.5
+    },
+    "4096": {
+      "documents_over_threshold": 15,
+      "percent_over_threshold": 7.5
+    },
+    "8192": {
+      "documents_over_threshold": 4,
+      "percent_over_threshold": 2.0
+    }
+  }
 }

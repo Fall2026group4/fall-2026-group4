@@ -1,0 +1,6 @@
+token_threshold,documents_over_threshold,percent_over_threshold
+512,87,43.5
+1024,52,26.0
+2048,27,13.5
+4096,15,7.5
+8192,4,2.0
