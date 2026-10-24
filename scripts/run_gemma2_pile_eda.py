@@ -16,6 +16,8 @@ SAMPLE_SIZE = 200
 SHUFFLE_BUFFER = 500
 SEED = 42
 
+TOKEN_THRESHOLDS = [512, 1024, 2048, 4096, 8192]
+
 OUTPUT_DIR = Path("results/gemma2_pile")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -44,20 +46,18 @@ dataset = load_dataset(
     streaming=True,
 )
 
-# Use a small shuffle buffer to avoid excessive EC2 memory use
 sample = dataset.shuffle(
     seed=SEED,
     buffer_size=SHUFFLE_BUFFER
 ).take(SAMPLE_SIZE)
 
 
-# Containers for EDA
+# Containers
 
 
 rows = []
 
 source_counts = Counter()
-
 source_token_counts = defaultdict(list)
 
 seen_hashes = set()
@@ -82,11 +82,9 @@ for i, row in enumerate(sample, start=1):
 
     source = meta.get("pile_set_name", "Unknown")
 
-    # Basic text statistics
     char_length = len(text)
     word_count = len(text.split())
 
-    # Gemma tokenizer
     token_ids = tokenizer.encode(
         text,
         add_special_tokens=False
@@ -94,13 +92,11 @@ for i, row in enumerate(sample, start=1):
 
     token_count = len(token_ids)
 
-    # Empty document check
     is_empty = not bool(text.strip())
 
     if is_empty:
         empty_count += 1
 
-    # Exact duplicate check
     text_hash = hashlib.sha1(
         text.encode("utf-8", errors="ignore")
     ).hexdigest()
@@ -110,7 +106,6 @@ for i, row in enumerate(sample, start=1):
     else:
         seen_hashes.add(text_hash)
 
-    # Store statistics
     source_counts[source] += 1
 
     char_lengths.append(char_length)
@@ -119,16 +114,44 @@ for i, row in enumerate(sample, start=1):
 
     source_token_counts[source].append(token_count)
 
-    rows.append(
-        {
-            "document_id": i,
-            "source": source,
-            "char_length": char_length,
-            "word_count": word_count,
-            "token_count": token_count,
-            "empty": is_empty,
-        }
+    row_output = {
+        "document_id": i,
+        "source": source,
+        "char_length": char_length,
+        "word_count": word_count,
+        "token_count": token_count,
+        "empty": is_empty,
+    }
+
+    # Add threshold flags for every document
+    for threshold in TOKEN_THRESHOLDS:
+        row_output[f"over_{threshold}_tokens"] = (
+            token_count > threshold
+        )
+
+    rows.append(row_output)
+
+
+# Overall truncation analysis
+
+
+truncation_summary = {}
+
+for threshold in TOKEN_THRESHOLDS:
+
+    count_over = sum(
+        token_count > threshold
+        for token_count in token_lengths
     )
+
+    percent_over = (
+        count_over / len(token_lengths) * 100
+    )
+
+    truncation_summary[str(threshold)] = {
+        "documents_over_threshold": count_over,
+        "percent_over_threshold": round(percent_over, 2),
+    }
 
 
 # Overall EDA summary
@@ -166,37 +189,55 @@ summary = {
     ),
     "min_token_count": min(token_lengths),
     "max_token_count": max(token_lengths),
+
+    "truncation_risk": truncation_summary,
 }
 
-
-# Source-level token statistics
+# Source-level token and truncation statistics
 
 
 source_stats = []
 
 for source, counts in source_token_counts.items():
 
-    source_stats.append(
-        {
-            "source": source,
-            "document_count": len(counts),
-            "mean_token_count": round(
-                statistics.mean(counts), 2
-            ),
-            "median_token_count": round(
-                statistics.median(counts), 2
-            ),
-            "min_token_count": min(counts),
-            "max_token_count": max(counts),
-        }
-    )
+    source_row = {
+        "source": source,
+        "document_count": len(counts),
+        "mean_token_count": round(
+            statistics.mean(counts), 2
+        ),
+        "median_token_count": round(
+            statistics.median(counts), 2
+        ),
+        "min_token_count": min(counts),
+        "max_token_count": max(counts),
+    }
+
+    for threshold in TOKEN_THRESHOLDS:
+
+        count_over = sum(
+            token_count > threshold
+            for token_count in counts
+        )
+
+        percent_over = (
+            count_over / len(counts) * 100
+        )
+
+        source_row[f"pct_over_{threshold}"] = round(
+            percent_over,
+            2
+        )
+
+    source_stats.append(source_row)
 
 source_stats.sort(
     key=lambda x: x["document_count"],
     reverse=True
 )
 
-# Save document-level results
+
+# Save document-level EDA
 
 
 with open(
@@ -254,14 +295,9 @@ with open(
     encoding="utf-8",
 ) as f:
 
-    fieldnames = [
-        "source",
-        "document_count",
-        "mean_token_count",
-        "median_token_count",
-        "min_token_count",
-        "max_token_count",
-    ]
+    fieldnames = list(
+        source_stats[0].keys()
+    )
 
     writer = csv.DictWriter(
         f,
@@ -272,8 +308,39 @@ with open(
     writer.writerows(source_stats)
 
 
-# Save summary JSON
+# Save truncation summary
 
+
+with open(
+    OUTPUT_DIR / "pile_truncation_summary.csv",
+    "w",
+    newline="",
+    encoding="utf-8",
+) as f:
+
+    writer = csv.writer(f)
+
+    writer.writerow(
+        [
+            "token_threshold",
+            "documents_over_threshold",
+            "percent_over_threshold",
+        ]
+    )
+
+    for threshold in TOKEN_THRESHOLDS:
+
+        values = truncation_summary[str(threshold)]
+
+        writer.writerow(
+            [
+                threshold,
+                values["documents_over_threshold"],
+                values["percent_over_threshold"],
+            ]
+        )
+
+# Save JSON summary
 
 with open(
     OUTPUT_DIR / "pile_eda_summary.json",
@@ -294,7 +361,9 @@ with open(
 print("\n=== GEMMA 2 + THE PILE EDA SUMMARY ===")
 
 for key, value in summary.items():
-    print(f"{key}: {value}")
+
+    if key != "truncation_risk":
+        print(f"{key}: {value}")
 
 print("\nTop sources:")
 
@@ -309,6 +378,18 @@ for stat in source_stats[:10]:
         f"{stat['source']}: "
         f"{stat['mean_token_count']} tokens "
         f"(n={stat['document_count']})"
+    )
+
+print("\n=== CONTEXT-LENGTH / TRUNCATION RISK ===")
+
+for threshold in TOKEN_THRESHOLDS:
+
+    values = truncation_summary[str(threshold)]
+
+    print(
+        f">{threshold} tokens: "
+        f"{values['documents_over_threshold']} documents "
+        f"({values['percent_over_threshold']}%)"
     )
 
 print("\nEDA outputs saved to:")
