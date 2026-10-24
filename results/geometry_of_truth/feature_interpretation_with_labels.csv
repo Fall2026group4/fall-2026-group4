@@ -1,0 +1,51 @@
+feature_id,active_count,activation_frequency,mean_activation,frequency_bucket,neuronpedia_label,explanation_model,explanation_type,n_explanations,neuronpedia_url
+9627,39,0.037284896,0.04693733,high,quotes or direct speech,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/9627
+16103,51,0.04875717,0.013981362,high,sentences related to changes in situations or conditions,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/16103
+20113,56,0.053537283,0.12251953,high,names of notable individuals and organizations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/20113
+14810,63,0.060229447,0.01276341,high,locations or descriptions of physical structures,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/14810
+22137,90,0.08604206,0.3161931,high,phrases related to conflict and military activities in a specific geographical region,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/22137
+16635,92,0.08795411,0.037952885,high,pronouns and related words,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/16635
+18277,100,0.0956023,0.18395162,high,words related to military conflicts and operations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/18277
+5161,155,0.14818355,0.10081305,high,information related to population displacement due to conflicts and natural disasters,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/5161
+13262,190,0.18164437,1.3007195,high,phrases related to legal matters and official positions,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/13262
+20973,196,0.1873805,0.15970843,high,countries and the specific entities that are situated in these countries,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/20973
+21062,2,0.0019120459,0.0010151711,low,phrases related to business developments and renovations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/21062
+8067,3,0.0028680689,0.002841426,low,dates and times,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/8067
+15015,3,0.0028680689,0.00046844422,low,sentences ending with periods,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/15015
+18340,3,0.0028680689,0.00067249563,low,information related to political and geographical locations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/18340
+14347,4,0.0038240917,0.0016387898,low,phrases related to manufacturing and industrial activities,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/14347
+4292,4,0.0038240917,0.0070757694,low,mentions of specific personal or professional events or updates,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/4292
+3582,5,0.0047801146,0.002090275,low,sentences ending with a period,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/3582
+18337,5,0.0047801146,0.00599727,low,"terms related to historical events, specifically those related to World War II and the Holocaust",gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/18337
+17037,6,0.0057361377,0.0030148826,low,strings of letters or abbreviations in a specific format,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/17037
+2363,6,0.0057361377,0.0039390945,low,phrases related to legal or financial matters,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/2363
+20628,7,0.0066921604,0.021823535,medium,references to Syrian President Bashar al-Assad,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/20628
+3470,7,0.0066921604,0.009631604,medium,specific Twitter usernames,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/3470
+10107,9,0.008604206,0.0638045,medium,mentions of the Canadian Broadcasting Corporation (CBC),gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/10107
+20216,10,0.009560229,0.0056473967,medium,locations and venues such as movie theaters and shopping malls,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/20216
+23215,12,0.0114722755,0.0048958776,medium,geographical locations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/23215
+21743,14,0.013384321,0.004069891,medium,sports-related terms and references,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/21743
+16828,17,0.01625239,0.053532843,medium,phrases related to political events and locations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/16828
+18507,18,0.017208412,0.020526584,medium,amounts of money or statistical figures,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/18507
+2038,26,0.024856597,0.025321396,medium,"mentions related to refugees, asylum seekers, and migration",gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/2038
+9569,28,0.026768642,0.16452931,medium,"proper nouns, especially related to politics and news",gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/9569
+14793,331,0.3164436,0.23129198,very_high,occurrences where a statement is completed or emphasized,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/14793
+12375,372,0.35564053,0.31579766,very_high,sentences or phrases that end with a period,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/12375
+16653,470,0.44933078,0.26492795,very_high,references to locations and events related to news articles,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/16653
+9020,793,0.7581262,0.8968868,very_high,sentences or phrases that end with a period followed by a numerical value,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/9020
+8920,891,0.8518164,1.0290911,very_high,"references to specific locations, particularly cities",gpt-3.5-turbo,oai_token-act-pair,1,https://www.neuronpedia.org/gpt2-small/10-res-jb/8920
+352,991,0.94741875,1.9376179,very_high,sentences ending with a full stop,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/352
+17446,992,0.94837475,1.7126955,very_high,locations and geographic features,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/17446
+19088,1003,0.95889103,0.9326465,very_high,"information related to computer programming such as scripts, codes, and versions",gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/19088
+641,1035,0.9894838,3.1119812,very_high,sentences ending in a period,gpt-3.5-turbo,oai_token-act-pair,3,https://www.neuronpedia.org/gpt2-small/10-res-jb/641
+22855,1044,0.99808794,1.7008228,very_high,dates and events,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/22855
+23058,1,0.00095602294,0.00032434353,very_low,locations and dates,gpt-3.5-turbo,oai_token-act-pair,1,https://www.neuronpedia.org/gpt2-small/10-res-jb/23058
+2158,1,0.00095602294,5.005451e-06,very_low,people sitting and receiving messages or news,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/2158
+20622,1,0.00095602294,0.0003731261,very_low,phrases related to questions or prompts,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/20622
+12517,1,0.00095602294,0.0005171695,very_low,names of people or entities,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/12517
+2446,1,0.00095602294,0.0005085039,very_low,descriptions of views or sightseeing experiences,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/2446
+4547,1,0.00095602294,0.0014100707,very_low,words or phrases related to app development,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/4547
+12602,2,0.0019120459,0.019359166,very_low,phrases related to transportation services like Uber and taxi booking apps,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/12602
+11918,2,0.0019120459,0.002531279,very_low,business or organization names,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/11918
+14774,2,0.0019120459,0.00011035684,very_low,mentions of people and specific events in news articles,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/14774
+7200,2,0.0019120459,0.00052325247,very_low,words related to political protests and demonstrations,gpt-3.5-turbo,oai_token-act-pair,2,https://www.neuronpedia.org/gpt2-small/10-res-jb/7200

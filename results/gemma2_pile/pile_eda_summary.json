@@ -1,0 +1,40 @@
+{
+  "sample_size": 200,
+  "unique_sources": 12,
+  "empty_documents": 0,
+  "exact_duplicate_documents": 0,
+  "mean_char_length": 4285.16,
+  "median_char_length": 1749.0,
+  "min_char_length": 102,
+  "max_char_length": 57302,
+  "mean_word_count": 628.48,
+  "median_word_count": 255.0,
+  "min_word_count": 2,
+  "max_word_count": 8261,
+  "mean_token_count": 1181.08,
+  "median_token_count": 407.5,
+  "min_token_count": 38,
+  "max_token_count": 15626,
+  "truncation_risk": {
+    "512": {
+      "documents_over_threshold": 87,
+      "percent_over_threshold": 43.5
+    },
+    "1024": {
+      "documents_over_threshold": 52,
+      "percent_over_threshold": 26.0
+    },
+    "2048": {
+      "documents_over_threshold": 27,
+      "percent_over_threshold": 13.5
+    },
+    "4096": {
+      "documents_over_threshold": 15,
+      "percent_over_threshold": 7.5
+    },
+    "8192": {
+      "documents_over_threshold": 4,
+      "percent_over_threshold": 2.0
+    }
+  }
+}
