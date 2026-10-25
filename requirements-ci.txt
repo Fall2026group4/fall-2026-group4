@@ -1,0 +1,9 @@
+# Minimal packages for the unit tests (torch is installed separately, CPU build).
+# The full environment for the experiments is requirements.txt.
+numpy
+pandas
+scipy
+scikit-learn
+pyyaml
+matplotlib
+pytest
