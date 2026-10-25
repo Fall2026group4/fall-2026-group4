@@ -1,0 +1,4 @@
+dataset,twin,subjects,twin_subjects,shared_subjects,percent_shared
+cities,neg_cities,748,748,748,100.0
+neg_sp_en_trans,sp_en_trans,344,344,344,100.0
+larger_than,smaller_than,990,990,990,100.0

@@ -1,0 +1,7 @@
+dataset,n_statements,train,test,mean_tokens,activation_shape
+cities,1496,1046,450,11.29,"(1496, 13, 768)"
+neg_cities,1496,1046,450,12.29,"(1496, 13, 768)"
+sp_en_trans,351,244,107,12.67,"(351, 13, 768)"
+neg_sp_en_trans,351,244,107,14.67,"(351, 13, 768)"
+larger_than,1980,1386,594,12.2,"(1980, 13, 768)"
+smaller_than,1980,1386,594,12.2,"(1980, 13, 768)"

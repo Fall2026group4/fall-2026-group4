@@ -1,0 +1,7 @@
+dataset,n_statements,n_subjects,statements_per_subject_mean,statements_per_subject_min,statements_per_subject_max,subjects_with_both_labels,percent_subjects_with_both_labels,subjects_only_true,subjects_only_false
+cities,1496,748,2.0,2,2,748,100.0,0,0
+neg_cities,1496,748,2.0,2,2,748,100.0,0,0
+sp_en_trans,351,344,1.02,1,2,5,1.45,169,170
+neg_sp_en_trans,351,344,1.02,1,2,5,1.45,170,169
+larger_than,1980,990,2.0,2,2,990,100.0,0,0
+smaller_than,1980,990,2.0,2,2,990,100.0,0,0

@@ -1,0 +1,3 @@
+persona,word,n_tokens,tokens
+honest,honest,1,' honest'
+untruthful,untruthful,4,' unt' | 'r' | 'uth' | 'ful'

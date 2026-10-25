@@ -1,0 +1,5 @@
+step,rows
+missing_or_invalid,0
+conflicting_label_duplicates,2
+redundant_duplicates,14
+rows_kept,596

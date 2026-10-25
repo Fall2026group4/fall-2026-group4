@@ -1,0 +1,10 @@
+group,answer,count,percent
+all,yes,27,90.0
+all,no,1,3.33
+all,unsure,2,6.67
+true,yes,14,93.33
+true,no,0,0.0
+true,unsure,1,6.67
+false,yes,13,86.67
+false,no,1,6.67
+false,unsure,1,6.67

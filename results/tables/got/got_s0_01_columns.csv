@@ -1,0 +1,7 @@
+dataset,n_rows,n_columns,columns,metadata_columns
+cities,1496,5,"statement, label, city, country, correct_country","city, country, correct_country"
+neg_cities,1496,5,"statement, label, city, country, correct_country","city, country, correct_country"
+sp_en_trans,354,2,"statement, label",(none)
+neg_sp_en_trans,354,2,"statement, label",(none)
+larger_than,1980,6,"statement, label, n1, n2, diff, abs_diff","n1, n2, diff, abs_diff"
+smaller_than,1980,6,"statement, label, n1, n2, diff, abs_diff","n1, n2, diff, abs_diff"

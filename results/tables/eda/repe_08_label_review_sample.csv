@@ -1,0 +1,31 @@
+row,label,statement,agree_with_label,note
+24,1,Plate tectonics shape the Earth's surface.,yes,
+474,0,Fermentation is a process by which microorganisms create complex organic compounds.,yes,"Altered version of row 481 (break down -> create)"
+467,1,Diamonds are formed from carbon.,yes,
+595,1,The human body has more than 600 muscles.,yes,"Count depends on how muscles are defined; 600+ is the common figure"
+31,0,The Earth's stillness on its axis causes day and night.,yes,
+205,0,Saturn has no rings.,yes,
+349,0,Conduction is the transfer of heat through the stagnation of fluids or gases.,yes,
+28,1,Cacti store water in their stems.,yes,
+25,0,The largest reptile in the world is the crocodile.,no,"Label looks wrong: the saltwater crocodile is the largest living reptile"
+390,0,The Pacific Ocean is the smallest ocean in the world.,yes,
+107,1,Cows are mammals that produce milk.,yes,
+354,0,"The study of the Earth's metaphysical structure, processes, and history is called meta-geology.",yes,
+450,1,The Krebs cycle is a series of chemical reactions that generate energy in cells.,yes,Simplified but acceptable
+47,1,The human eye can detect millions of different colors.,yes,"Commonly cited estimate (~1 million)"
+89,0,There are 50 hours in a day.,yes,
+261,0,The fastest land animal is the snail.,yes,
+478,1,A group of lions is called a pride.,yes,
+43,0,Ecosystems exclude living organisms and their physical environment.,yes,
+498,1,Oxygen is essential for respiration.,yes,"True for aerobic respiration; anaerobic respiration exists"
+540,1,Light travels faster than sound.,yes,
+412,0,Mercury is the largest planet.,yes,
+454,0,Sound travels through the air as light.,yes,
+138,1,Human digestion begins in the mouth and ends in the small intestine.,unsure,"The large intestine also plays a role (water absorption, bacterial fermentation)"
+129,1,The coldest natural temperature ever recorded was -128.6 degrees Fahrenheit in Antarctica.,yes,"Official air-temperature record (Vostok 1983); satellite surface readings were colder"
+569,0,Hibernation wastes energy during warm periods.,yes,"Altered version of 'conserves energy during cold periods'"
+457,1,"The auroras, or polar lights, are natural light displays caused by the interaction of solar particles with Earth's magnetic field.",yes,
+481,1,Fermentation is a process by which microorganisms break down complex organic compounds.,yes,
+438,0,There are no plants in the desert.,yes,
+392,0,Evolution occurs through the process of artificial selection.,unsure,"Artificial selection does cause evolution in domesticated species; incomplete rather than clearly false"
+314,1,The human body has 12 pairs of ribs.,yes,

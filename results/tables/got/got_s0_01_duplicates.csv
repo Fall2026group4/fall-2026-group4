@@ -1,0 +1,13 @@
+original_row,statement,label,normalized,exact_duplicate,conflicting_labels,dataset
+95,The Spanish word 'caballo' means 'horse'.,1,the spanish word 'caballo' means 'horse',True,False,sp_en_trans
+329,The Spanish word 'caballo' means 'horse'.,1,the spanish word 'caballo' means 'horse',True,False,sp_en_trans
+119,The Spanish word 'perro' means 'dog'.,1,the spanish word 'perro' means 'dog',True,False,sp_en_trans
+337,The Spanish word 'perro' means 'dog'.,1,the spanish word 'perro' means 'dog',True,False,sp_en_trans
+202,The Spanish word 'vaca' means 'cow'.,1,the spanish word 'vaca' means 'cow',True,False,sp_en_trans
+334,The Spanish word 'vaca' means 'cow'.,1,the spanish word 'vaca' means 'cow',True,False,sp_en_trans
+95,The Spanish word 'caballo' does not mean 'horse'.,0,the spanish word 'caballo' does not mean 'horse',True,False,neg_sp_en_trans
+329,The Spanish word 'caballo' does not mean 'horse'.,0,the spanish word 'caballo' does not mean 'horse',True,False,neg_sp_en_trans
+119,The Spanish word 'perro' does not mean 'dog'.,0,the spanish word 'perro' does not mean 'dog',True,False,neg_sp_en_trans
+337,The Spanish word 'perro' does not mean 'dog'.,0,the spanish word 'perro' does not mean 'dog',True,False,neg_sp_en_trans
+202,The Spanish word 'vaca' does not mean 'cow'.,0,the spanish word 'vaca' does not mean 'cow',True,False,neg_sp_en_trans
+334,The Spanish word 'vaca' does not mean 'cow'.,0,the spanish word 'vaca' does not mean 'cow',True,False,neg_sp_en_trans
