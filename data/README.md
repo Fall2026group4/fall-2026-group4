@@ -11,7 +11,7 @@ here.
 ### OpenWebText (`Skylion007/openwebtext`)
 
 Used for Phase 1/2 exploratory data analysis and initial GPT-2 Small
-activation collection (`cookbooks/01_data_exploration.ipynb`).
+activation collection (`cookbooks/01_data_exploration.py`).
 
 Fetched via the Hugging Face `datasets` library in streaming mode, so no
 download/caching step is required before running the notebook:
@@ -27,11 +27,11 @@ the stream rather than materializing the full ~40GB corpus to disk.
 ### Geometry of Truth
 
 Used for Phase 5 concept-detection work on truth/falsehood features
-(`cookbooks/03_geometry_of_truth_eda.ipynb`, `results/geometry_of_truth_*`).
+(`cookbooks/03_geometry_of_truth_eda.py`, `results/geometry_of_truth_*`).
 
 Sourced from the public Geometry of Truth dataset release
 (saprmarks/geometry-of-truth on GitHub / the associated HuggingFace
-dataset). See `cookbooks/03_geometry_of_truth_eda.ipynb` for the exact
+dataset). See `cookbooks/03_geometry_of_truth_eda.py` for the exact
 loading code and `results/geometry_of_truth_observations.md` for findings.
 
 ### Representation Engineering (RepE)

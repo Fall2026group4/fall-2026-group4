@@ -1,0 +1,7 @@
+dataset,train,test,train_subjects,test_subjects,percent_true_train,percent_true_test,subjects_in_both_splits,subjects_split_differently_from_twin,unassigned_rows,length_balance_ks_p
+cities,1046,450,523,225,50.0,50.0,0,0,0,0.9788
+neg_cities,1046,450,523,225,50.0,50.0,0,0,0,0.9788
+sp_en_trans,244,107,240,104,49.59,49.53,0,0,0,0.3903
+neg_sp_en_trans,244,107,240,104,50.41,50.47,0,0,0,0.3903
+larger_than,1386,594,693,297,50.0,50.0,0,0,0,0.9905
+smaller_than,1386,594,693,297,50.0,50.0,0,0,0,0.9905

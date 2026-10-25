@@ -1,0 +1,11 @@
+topic,percent_test,percent_train,count_train,count_test
+space_astronomy,21.23,20.86,87,38
+other,20.11,20.38,85,36
+physics_chemistry,16.76,16.31,68,30
+human_body_health,15.08,15.59,65,27
+animals,11.17,11.03,46,20
+geography,9.5,10.07,42,17
+plants_nature,3.91,3.36,14,7
+history_people,0.56,1.2,5,1
+food,1.68,0.72,3,3
+technology,0.0,0.48,2,0

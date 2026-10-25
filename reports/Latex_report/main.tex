@@ -4,6 +4,7 @@
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{amsmath,amssymb}
 
 \title{SAE-Faithful: Are Sparse Autoencoder Features Causally Faithful to Their Auto-Generated Labels?}
 \author{Aditi Shukla \and Dhruv Rai \and Simbanegavi Simbarashe}
@@ -34,7 +35,9 @@ Gemma-2-2B).
 \end{abstract}
 
 \section{Introduction}
-% TODO: expand from README.md Project Overview / Problem Statement.
+Sparse autoencoders (SAEs) rewrite a language model's internal activations as a long list of features, almost all of them zero for any one token. Researchers, and automatic labelling programs, then give each feature a plain-language name such as ``mentions of Paris''. A name is only useful as an explanation if it is \emph{faithful}: the feature should carry the model's own representation of the concept (fidelity), and pushing the feature should change the model's behaviour in the way the name says, by more than pushing a random feature of the same size does (causality).
+
+We study this on GPT-2 Small with two pretrained SAE types, a ReLU SAE and a TopK SAE, on three datasets that each answer one sub-question: ordinary web text (OpenWebText: do feature labels match what features do on everyday text?), true and false statements (Geometry of Truth: does the model represent truth, and do SAEs keep and control it?), and honest against dishonest framing (RepE: the same for honesty). Section~\ref{sec:methods} gives the pipeline, Section~\ref{sec:results} the results so far, and Section~\ref{sec:discussion} states plainly what the current evidence can and cannot support.
 
 \section{Related Work / Literature Review}
 \label{sec:litreview}
@@ -95,7 +98,7 @@ is exactly the gap this project measures.
 statement representations in language models are approximately linearly
 separable, and release a dataset of true/false statements we use for
 Phase 5 concept-detection experiments (see
-\texttt{cookbooks/03\_geometry\_of\_truth\_eda.ipynb}).
+\texttt{cookbooks/03\_geometry\_of\_truth\_eda.py}).
 \citet{zou2023representation} (Representation Engineering / RepE) propose
 extracting behavioral directions (e.g. honesty, harmlessness) from
 contrastive example pairs and using them for both interpretation and
@@ -106,21 +109,118 @@ label, using their datasets/methodology as concept-detection benchmarks
 (Precision/Recall/F1/AUROC) rather than as the primary steering
 mechanism.
 
+\subsection{Benchmarks and automatic interpretation of SAE features}
+
+Three recent works are the closest to ours. \citet{wu2025axbench} introduce AxBench, a benchmark for steering and concept detection on Gemma-2 models, and find that sparse autoencoders underperform simpler methods (prompting, finetuning) on both tasks. \emph{Difference:} AxBench ranks \emph{methods} on a fixed list of concepts. We ask, for a feature that already has a label, whether the label predicts the feature's causal effect, and we answer with a random-control null (random directions and frequency-matched random features) rather than a method ranking. Their result is also why a null from our test must be reported together with its statistical power: a weak SAE effect is the expected outcome, not a surprise.
+
+\citet{karvonen2025saebench} introduce SAEBench, an eight-metric evaluation suite, and report that gains on the usual unsupervised proxy metrics (sparsity and reconstruction) do not reliably predict better practical performance. \emph{Difference:} SAEBench measures how well an SAE works as a tool; we measure whether an individual feature's \emph{label} can be trusted. Our OpenWebText results point the same way as theirs: GPT-2 SAEs reconstruct the model almost perfectly (96--99.9\% of the loss recovered, Section~\ref{sec:results}) and that alone does not settle whether labels are faithful.
+
+\citet{paulo2024automatic} build an open pipeline that writes and scores plain-language explanations for SAE features at the scale of millions of features, including an intervention score that asks how well the effects of manipulating a feature can be explained. \emph{Difference:} this is the closest prior work to ours. Their intervention score explains a feature's effect \emph{after} manipulating it; we take the label as given (from Neuronpedia) and test the opposite direction: does steering with the labelled feature move a behavioural readout more than random controls do, under pre-set controls and corrected p-values.
+
 \section{Methods}
-% TODO: formalize Phases 1-7 from README.md / proposal.md into a Methods
-% section (feature extraction, labeling, steering intervention, concept
-% detection, cross-condition analysis).
+\label{sec:methods}
+
+\subsection{Model and sparse autoencoders}
+The model is GPT-2 Small (12 layers, 768 numbers per token). A sparse autoencoder maps an activation $x\in\mathbb{R}^{768}$ to features $f$ and back:
+\begin{align}
+  f &= \mathrm{ReLU}\big(W_{\mathrm{enc}}(x-b_{\mathrm{dec}})+b_{\mathrm{enc}}\big), &
+  \hat{x} &= W_{\mathrm{dec}}f+b_{\mathrm{dec}}, &
+  e &= x-\hat{x}.
+\end{align}
+The ReLU SAE (release \texttt{gpt2-small-res-jb}, 24,576 features, layers 0--11) keeps every positive feature. The TopK SAE (release \texttt{gpt2-small-resid-post-v5-32k}, 32,768 features, layers 1--11) keeps only the 32 largest. Both are loaded with SAELens and run through TransformerLens hooks. No JumpReLU release exists for GPT-2 Small, so that architecture is deferred to Gemma-2-2B.
+
+\subsection{Pipeline}
+Every dataset passes through the same pipeline; Algorithm~1 gives it as steps.
+
+\medskip\noindent\textbf{Algorithm 1.} Faithfulness pipeline for one dataset and one SAE type.
+\begin{enumerate}
+  \item \textbf{Data.} Load and clean the dataset, remove duplicates and conflicting labels, split train and test by subject so that twins stay together, and cut each text to a fixed number of tokens (128 for OpenWebText).
+  \item \textbf{Cache.} Run GPT-2 once and save the residual-stream activations at every layer. All later steps reuse these.
+  \item \textbf{Baseline.} Compute the clean loss $L_{\mathrm{clean}}$ and the loss $L_{\mathrm{zero}}$ with a layer's activations set to zero.
+  \item \textbf{Fidelity.} For each layer, replace $x$ with $\hat{x}$ and compute the spliced loss $L_{\mathrm{sae}}$.
+  \item \textbf{Feature statistics.} Count features that never fire (unused) and that fire on more than 10\% of tokens (always-on); save each feature's top-activating snippets.
+  \item \textbf{Concept detection.} Fit probes (mean difference, logistic regression) on the activations and on $\hat{x}$; compare AUROC.
+  \item \textbf{Label check.} Take a feature with a Neuronpedia label; measure its activation on examples that match the label against matched examples that do not.
+  \item \textbf{Steering.} Add $\alpha\,u\,s$ to the residual stream at one layer for every token except the first, where $u$ is the unit direction, $s$ the average activation norm at that layer and $\alpha$ the strength. Read out a behavioural outcome.
+  \item \textbf{Random-control test.} Repeat step 8 with $n$ random directions (or $n$ frequency-matched random features). Report the rank of the chosen direction, the empirical p-value, the Benjamini--Hochberg adjusted p-value and the smallest p-value that $n$ controls allow.
+  \item \textbf{Positive control.} Steer with a direction known to move the outcome. If it does not rank first among the random directions, the test cannot detect effects and its nulls are uninformative.
+\end{enumerate}
+
+\subsection{Measures}
+\emph{Loss recovered} measures how much of the damage from wiping a layer the SAE copy undoes:
+\begin{equation}
+  \mathrm{LR}=100\times\frac{L_{\mathrm{zero}}-L_{\mathrm{sae}}}{L_{\mathrm{zero}}-L_{\mathrm{clean}}}.
+\end{equation}
+\emph{Fraction of variance unexplained} is
+\begin{equation}
+  \mathrm{FVU}=\frac{\sum\lVert x-\hat{x}\rVert^{2}}{\sum\lVert x-\bar{x}\rVert^{2}}.
+\end{equation}
+\emph{Steering cost} on ordinary text is the Kullback--Leibler divergence between the clean and steered next-word distributions,
+\begin{equation}
+  \mathrm{KL}=\sum_{w}p_{\mathrm{clean}}(w)\,\log\frac{p_{\mathrm{clean}}(w)}{p_{\mathrm{steered}}(w)}.
+\end{equation}
+For truth and honesty the behavioural outcome is $\log P(\text{true sentence})-\log P(\text{false sentence})$ on minimal pairs and, as a second outcome, $\log P(\texttt{ True})-\log P(\texttt{ False})$ after the prompt ``\textless{}statement\textgreater{} True or False? Answer:''.
+
+\paragraph{Why the number of controls matters.} The empirical p-value is $(1+\#\{\text{random}\ge\text{chosen}\})/(n+1)$, so with $n$ random controls it can never be below $1/(n+1)$: $0.048$ for $n=20$, $0.0099$ for $n=100$ and $0.0050$ for $n=200$. A test that cannot reach the threshold cannot support a claim of ``no effect''.
 
 \section{Experiments and Results}
-% TODO: populate from results/phase1_observations.md,
-% results/geometry_of_truth_observations.md, and results/tables/*.csv as
-% each phase completes.
+\label{sec:results}
+
+\subsection{OpenWebText: do the SAE copies keep what GPT-2 does?}
+We cut the first 2{,}000 OpenWebText documents to 128 tokens (256{,}000 tokens) and ran the pipeline on 1{,}000 of them (about 127{,}000 tokens). Of 1{,}000 documents explored, none were empty or duplicated; 33.9\% were longer than GPT-2's 1{,}024-token context, which is why each document is cut. The documents are the first in the file, not a random sample, because shuffling exceeded memory.
+
+Table~\ref{tab:owt} summarises the ReLU SAE. The copy recovers 96.3--99.9\% of the loss at every layer; the deepest layers are hardest (layer 11: clean loss 3.332, spliced 3.589, zero-ablation 10.283, so $\mathrm{LR}=(10.283-3.589)/(10.283-3.332)=96.3\%$). Between 13 and 73 features are active per token. At layer 0, 5{,}180 of 24{,}576 features (21\%) never fire; from layer 5 onward almost none are unused. The TopK SAE recovers 96.7--99.5\% (layers 1--11) with exactly 32 active features and leaves 3--7\% of its 32{,}768 features unused at every layer.%
+\footnote{TopK figures are from the later run on branch \texttt{dhruv}; check them against \texttt{results/owt/tables/fidelity.csv} after the merge.}
+On Wikipedia text (WikiText-103), a corpus outside the ReLU SAE's training data, both types keep their quality (Stage 5).
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\hline
+Measure (ReLU SAE, layers 0--11) & Lowest & Highest \\
+\hline
+Loss recovered (\%) & 96.3 (layer 11) & 99.9 (layer 0) \\
+Fraction of variance unexplained & 0.023 (layer 0) & 0.190 (layer 11) \\
+Active features per token & 12.6 (layer 0) & 72.8 (layer 9) \\
+Unused features & 5 (layer 9) & 5{,}180 (layer 0) \\
+\hline
+\end{tabular}
+\caption{OpenWebText fidelity of the ReLU SAE (source: \texttt{results/owt/tables/fidelity.csv}, \texttt{feature\_stats.csv}).}
+\label{tab:owt}
+\end{table}
+
+\subsection{OpenWebText: one label checked}
+Feature 974 (layer 8, ReLU) has the Neuronpedia label ``mentions of Paris''. On five Paris sentences and five identical sentences with another city, its mean activation is 58.97 against 6.91 (ratio 8.5; \texttt{results/tables/feature\_974\_detection\_results.csv}). This is one feature and ten sentences: a case study, not evidence about labels in general.
+
+\subsection{Causal tests on GPT-2 so far: nulls, and how much power they had}
+Table~\ref{tab:causal} lists every steering test run so far. In each, the chosen direction is compared with 20 random directions (or 20 frequency-matched random features), so the smallest p-value that could be obtained is $1/21=0.048$.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{6.4cm}cccc}
+\hline
+Test & Settings & Smallest p & $p<0.05$ & Smallest BH p \\
+\hline
+Geometry of Truth, own direction vs 20 random & 12 & 0.333 & 0 & --- \\
+Geometry of Truth, SAE feature vs 20 matched & 16 & 0.048 & 1 & 0.762 \\
+RepE, honesty direction vs 20 random & 3 & 0.048 & 1 & 0.143 \\
+RepE, SAE feature vs 20 matched & 6 & 0.095 & 0 & 0.571 \\
+\hline
+\end{tabular}
+\caption{Steering against random controls (results/tables/got and results/tables/repe, stage 6). The outcome is the log-probability gap between a true and a false sentence.}
+\label{tab:causal}
+\end{table}
+
+No test survives multiple-comparison correction. The two nominal p-values of 0.048 are the smallest value 20 controls can give, so they are at the floor of what the design can show, not strong evidence. These are therefore \emph{underpowered nulls}: they do not show that the features have no effect, only that 20 controls and a probe-style outcome cannot tell. The re-run with 200 controls (floor $0.005$), a model-output outcome and a positive control is implemented in \texttt{scripts/run\_repe\_s6.py} (parts b, c, d) and \texttt{scripts/run\_got.py} (\texttt{--n-random 200}); its results will replace this subsection.
 
 \section{Discussion}
-% TODO.
+\label{sec:discussion}
+What the evidence supports today: the pretrained GPT-2 SAEs are accurate copies of the model on ordinary text, ReLU and TopK are about equal in fidelity, TopK wastes fewer features in early layers, and at least one feature's label (Feature 974) matches its behaviour. What it does not support: any claim, positive or negative, that labelled features causally drive the behaviour in their labels, because the causal tests so far had too few controls to reach p below 0.048 and no positive control. The first priority for the remaining sessions is therefore one decisive GPT-2 experiment (200 controls, a model-output outcome, a positive control, all on one merged branch); a well-powered null is publishable.
+
+\paragraph{Limitations.} OpenWebText documents are the first in the file and cut to 128 tokens; steering on ordinary text used one random direction per layer, 64 snippets and no error bars; labels beyond Feature 974 were read by eye, without a second reader. Gemma-2-2B and JumpReLU SAEs are not yet run.
 
 \section{Conclusion}
-% TODO.
+SAE-Faithful asks when an SAE feature's label can be trusted as a causal explanation. On GPT-2 Small the SAEs reconstruct the model closely (96--99.9\% of loss recovered) and one checked label holds, but the causal question is still open: our tests so far are underpowered nulls. A single re-run with 200 random controls, a model-output outcome and a positive control will decide it.
 
 \bibliographystyle{plainnat}
 \bibliography{mybib}

@@ -1,0 +1,7 @@
+dataset,last_token,count,count_true,count_false,percent
+cities,'.',1496,748,748,100.0
+neg_cities,'.',1496,748,748,100.0
+sp_en_trans,"""'.""",351,174,177,100.0
+neg_sp_en_trans,"""'.""",351,177,174,100.0
+larger_than,'.',1980,990,990,100.0
+smaller_than,'.',1980,990,990,100.0

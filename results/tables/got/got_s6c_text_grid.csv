@@ -1,0 +1,81 @@
+sae_type,layer,dataset,feature,prompt,alpha,continuation
+relu,6,cities,253,The city of Abidjan is in Côte d'Ivoire. This statement is,-1.0, the same.  The game.  The game.  The game.  
+relu,6,cities,253,The city of Abidjan is in Côte d'Ivoire. This statement is,-0.5, not in the same place as the following:  The city of Abidjan is in C
+relu,6,cities,253,The city of Abidjan is in Côte d'Ivoire. This statement is,0.0, based on the official statement of the French government.  The French government has announced that the city
+relu,6,cities,253,The city of Abidjan is in Côte d'Ivoire. This statement is,0.5," a part of the country's rich history, and is a major source of its cultural heritage. It"
+relu,6,cities,253,The city of Abidjan is in Côte d'Ivoire. This statement is,1.0," a unique in its unique, and its unique, in the world of its unique, and its unique"
+relu,6,cities,253,The city of Abidjan is in China. This statement is,-1.0, the same.  The game.  The game.  The game.  
+relu,6,cities,253,The city of Abidjan is in China. This statement is,-0.5, not from the Chinese press.  The Chinese press is not allowed to read the Chinese press.
+relu,6,cities,253,The city of Abidjan is in China. This statement is,0.0," based on a report by the China Daily.  The report, which was published on Monday,"
+relu,6,cities,253,The city of Abidjan is in China. This statement is,0.5," based on the fact that it is the largest city in the world, and its population of more than"
+relu,6,cities,253,The city of Abidjan is in China. This statement is,1.0," a unique in its unique culture, and its unique culture, and its unique culture, and its unique"
+relu,6,larger_than,10106,Fifty-three is larger than fifty-one. This statement is,-1.0,                    
+relu,6,larger_than,10106,Fifty-three is larger than fifty-one. This statement is,-0.5," a ""  The  The  The         "
+relu,6,larger_than,10106,Fifty-three is larger than fifty-one. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+relu,6,larger_than,10106,Fifty-three is larger than fifty-one. This statement is,0.5, not a lie. it is a lie. this is the size of the F-bomb. this
+relu,6,larger_than,10106,Fifty-three is larger than fifty-one. This statement is,1.0, not a big one and the rest of the head of your head—the one who first—the
+relu,6,larger_than,10106,Fifty-one is larger than fifty-three. This statement is,-1.0,                    
+relu,6,larger_than,10106,Fifty-one is larger than fifty-three. This statement is,-0.5," a ""  The  The  The         "
+relu,6,larger_than,10106,Fifty-one is larger than fifty-three. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+relu,6,larger_than,10106,Fifty-one is larger than fifty-three. This statement is,0.5, not a lie. it is a lie. this is the size of a man. this is the
+relu,6,larger_than,10106,Fifty-one is larger than fifty-three. This statement is,1.0, not a big one—the first one you'll remember—and you'll remember the first one you
+relu,10,cities,19579,The city of Abidjan is in Côte d'Ivoire. This statement is,-1.0, to meet with his family and meet with his family to meet with his family to meet with his family
+relu,10,cities,19579,The city of Abidjan is in Côte d'Ivoire. This statement is,-0.5, based on a report by the International Committee of the Red Cross (ICRC) to the United States
+relu,10,cities,19579,The city of Abidjan is in Côte d'Ivoire. This statement is,0.0, based on the official statement of the French government.  The French government has announced that the city
+relu,10,cities,19579,The city of Abidjan is in Côte d'Ivoire. This statement is,0.5," not a statement of fact, but a statement of fact.  The city of Abidjan"
+relu,10,cities,19579,The city of Abidjan is in Côte d'Ivoire. This statement is,1.0, not even in the public-sector-sector-sector-sector-sector-sector-sector-
+relu,10,cities,19579,The city of Abidjan is in China. This statement is,-1.0, to meet with his family and meet with his family to meet with his family to meet with his family
+relu,10,cities,19579,The city of Abidjan is in China. This statement is,-0.5, based on a report by the International Institute for the Study of the Middle East (ISMENA)
+relu,10,cities,19579,The city of Abidjan is in China. This statement is,0.0," based on a report by the China Daily.  The report, which was published on Monday,"
+relu,10,cities,19579,The city of Abidjan is in China. This statement is,0.5, not a statement of any kind. The city of Abidjan is in China. This statement is
+relu,10,cities,19579,The city of Abidjan is in China. This statement is,1.0," not a fact, it's a fact.  The fact is that the public in the public"
+relu,10,larger_than,3367,Fifty-three is larger than fifty-one. This statement is,-1.0," tall, lean, lean, lean, lean, lean, lean, lean, lean, lean,"
+relu,10,larger_than,3367,Fifty-three is larger than fifty-one. This statement is,-0.5," not a tall build, but rather a tall build with a muscular build.  Weight  "
+relu,10,larger_than,3367,Fifty-three is larger than fifty-one. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+relu,10,larger_than,3367,Fifty-three is larger than fifty-one. This statement is,0.5, a direct result of the fact that the number of F-1s is so large that it is
+relu,10,larger_than,3367,Fifty-three is larger than fifty-one. This statement is,1.0, a direct and direct one. The one-single-single-single-single-single-single
+relu,10,larger_than,3367,Fifty-one is larger than fifty-three. This statement is,-1.0," tall, lean, lean, lean, lean, lean, lean, lean, lean, lean,"
+relu,10,larger_than,3367,Fifty-one is larger than fifty-three. This statement is,-0.5," not a tall build, but rather a tall build, and is about forty-five inches tall."
+relu,10,larger_than,3367,Fifty-one is larger than fifty-three. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+relu,10,larger_than,3367,Fifty-one is larger than fifty-three. This statement is,0.5, a direct result of the fact that the number of F-1s is so large that it is
+relu,10,larger_than,3367,Fifty-one is larger than fifty-three. This statement is,1.0, a clear and clear one. The one-single-single-single-single-single-single
+topk,6,cities,7115,The city of Abidjan is in Côte d'Ivoire. This statement is,-1.0," 100 miles of the U. of the U of 10.  ""I would have it is"
+topk,6,cities,7115,The city of Abidjan is in Côte d'Ivoire. This statement is,-0.5, based on the fact that the city is in the area of the Côte d'Ivo
+topk,6,cities,7115,The city of Abidjan is in Côte d'Ivoire. This statement is,0.0, based on the official statement of the French government.  The French government has announced that the city
+topk,6,cities,7115,The city of Abidjan is in Côte d'Ivoire. This statement is,0.5," a short one day. Today, we have been busy in the last few days of the year."
+topk,6,cities,7115,The city of Abidjan is in Côte d'Ivoire. This statement is,1.0, the second year of the year the year the year the year the year the year the year the year
+topk,6,cities,7115,The city of Abidjan is in China. This statement is,-1.0," 100 miles of the China-India, is 100 miles of the China-India is 100. "
+topk,6,cities,7115,The city of Abidjan is in China. This statement is,-0.5, based on the Chinese government's own information.  The Chinese government has said it is in Beijing
+topk,6,cities,7115,The city of Abidjan is in China. This statement is,0.0," based on a report by the China Daily.  The report, which was published on Monday,"
+topk,6,cities,7115,The city of Abidjan is in China. This statement is,0.5, a long time coming. We have been busy in the last few months. We have been busy in
+topk,6,cities,7115,The city of Abidjan is in China. This statement is,1.0, the second year of the year the year the year the year the year the year the year the year
+topk,6,larger_than,25519,Fifty-three is larger than fifty-one. This statement is,-1.0, a dream.  The world is a dream.  The world is a dream. 
+topk,6,larger_than,25519,Fifty-three is larger than fifty-one. This statement is,-0.5, a statement of the size of the world. This is the world. This is the world. This
+topk,6,larger_than,25519,Fifty-three is larger than fifty-one. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+topk,6,larger_than,25519,Fifty-three is larger than fifty-one. This statement is,0.5, not to say that the same is true of the same number of cars.  Fifty-
+topk,6,larger_than,25519,Fifty-three is larger than fifty-one. This statement is,1.0," a $10,000-plus, which is $10,000-plus.  F"
+topk,6,larger_than,25519,Fifty-one is larger than fifty-three. This statement is,-1.0, a dream.  The world is a dream.  The world is a dream. 
+topk,6,larger_than,25519,Fifty-one is larger than fifty-three. This statement is,-0.5, a statement of the size of the world. This is the world. This is the world. This
+topk,6,larger_than,25519,Fifty-one is larger than fifty-three. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+topk,6,larger_than,25519,Fifty-one is larger than fifty-three. This statement is,0.5," not to say that the F-35 is larger than fifty-three, but it is clear that"
+topk,6,larger_than,25519,Fifty-one is larger than fifty-three. This statement is,1.0," a $10,000-plus, which is $10,000-plus.  F"
+topk,10,cities,1782,The city of Abidjan is in Côte d'Ivoire. This statement is,-1.0," also also the case in some other countries, but the general case is also generally either (1)"
+topk,10,cities,1782,The city of Abidjan is in Côte d'Ivoire. This statement is,-0.5, also the first official statement from the government in the case of the case of the case of the case
+topk,10,cities,1782,The city of Abidjan is in Côte d'Ivoire. This statement is,0.0, based on the official statement of the French government.  The French government has announced that the city
+topk,10,cities,1782,The city of Abidjan is in Côte d'Ivoire. This statement is,0.5, a statement of our faith and our commitment to the country and to the country to which it belongs.
+topk,10,cities,1782,The city of Abidjan is in Côte d'Ivoire. This statement is,1.0, a journey to the journey to the journey to the journey to the journey to the journey to the journey
+topk,10,cities,1782,The city of Abidjan is in China. This statement is,-1.0, also probably also probably also probably also probably also probably also probably also probably also probably also probably also probably
+topk,10,cities,1782,The city of Abidjan is in China. This statement is,-0.5, also the first official statement from the Chinese government on the situation in the country.  The Chinese
+topk,10,cities,1782,The city of Abidjan is in China. This statement is,0.0," based on a report by the China Daily.  The report, which was published on Monday,"
+topk,10,cities,1782,The city of Abidjan is in China. This statement is,0.5, not a statement of the city of Abidjan.  The city of Abidjan is
+topk,10,cities,1782,The city of Abidjan is in China. This statement is,1.0, not a statement to to to to to to to to to to to to to to to to to
+topk,10,larger_than,26732,Fifty-three is larger than fifty-one. This statement is,-1.0," also a reference to the ""L.A./L.A./L.A."
+topk,10,larger_than,26732,Fifty-three is larger than fifty-one. This statement is,-0.5, based on the fact that the size of the body is not the same as the size of the person
+topk,10,larger_than,26732,Fifty-three is larger than fifty-one. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+topk,10,larger_than,26732,Fifty-three is larger than fifty-one. This statement is,0.5, ten twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty
+topk,10,larger_than,26732,Fifty-three is larger than fifty-one. This statement is,1.0, ten twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty
+topk,10,larger_than,26732,Fifty-one is larger than fifty-three. This statement is,-1.0," also a reference to the ""L.A./L.A./L.A."
+topk,10,larger_than,26732,Fifty-one is larger than fifty-three. This statement is,-0.5, based on the fact that the size of the body is not the same as the size of the person
+topk,10,larger_than,26732,Fifty-one is larger than fifty-three. This statement is,0.0, based on the fact that the number of people in the world is increasing at a rate of about one
+topk,10,larger_than,26732,Fifty-one is larger than fifty-three. This statement is,0.5, ten twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty
+topk,10,larger_than,26732,Fifty-one is larger than fifty-three. This statement is,1.0, ten twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty twenty

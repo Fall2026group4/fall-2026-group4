@@ -1,0 +1,89 @@
+# OpenWebText x Pretrained SAEs - AWS Analysis Pipeline config.
+#
+# Every owt_0X script takes --config and hard-codes nothing (see
+# "Reproducibility conventions" in the project spec). Change a value here,
+# not in a script.
+
+seed: 0
+
+model:
+  name: gpt2-small
+  dtype: float32
+  device: cpu
+
+# All 12 GPT-2 Small layers, 0-indexed.
+layers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+corpus:
+  owt_dataset: "Skylion007/openwebtext"
+  owt_split: "train"
+  wikitext_dataset: "Salesforce/wikitext"
+  wikitext_config: "wikitext-103-raw-v1"
+  wikitext_split: "test"
+
+sample:
+  # Stage 0: documents streamed and tokenized once, reused by every later stage.
+  n_documents: 2000
+  context_length: 128
+  shuffle_buffer_size: 0
+
+  # Stage 1/2: how many of the 20,000 are used for the loss subset vs the
+  # fidelity subset (first N of the fixed token array, so both subsets are
+  # deterministic given the same seed).
+  loss_documents: 1000
+  fidelity_documents: 1000
+
+  # Stage 0/4: fixed neutral snippets shared with Simba and Aditi.
+  neutral_snippets: 200
+
+  # Stage 5: second, out-of-distribution corpus.
+  wikitext_snippets: 100
+
+# SAE releases (confirmed in sae_lens.pretrained_saes_directory):
+#   relu = gpt2-small-res-jb (24,576 latents, native hook_resid_pre, positions 0-11)
+#   topk = gpt2-small-resid-post-v5-32k (OpenAI TopK, k=32, 32,768 latents,
+#          native hook_resid_post). Block L-1's resid_post is the same tensor as
+#          block L's resid_pre, so it is filed at position L (Fixed decisions).
+#          There is no TopK SAE for position 0 (the embeddings), so TopK covers
+#          positions 1-11 here. Position 12 (blocks.11.hook_resid_post) has no
+#          resid_pre hook in GPT-2 and is skipped.
+#   jumprelu = no GPT-2 Small JumpReLU release in the SAELens directory; left off.
+# Placeholders in sae_id_template: {layer} = position, {source_layer} = the block
+# the SAE was trained on (layer - 1 for resid_post releases).
+sae_types:
+  relu:
+    enabled: true
+    release: gpt2-small-res-jb
+    point_type: resid_pre
+    hook_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: "blocks.{source_layer}.hook_resid_pre"
+  topk:
+    enabled: true
+    release: gpt2-small-resid-post-v5-32k
+    point_type: resid_post
+    layers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    hook_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: "blocks.{source_layer}.hook_resid_post"
+  jumprelu:
+    enabled: false # no GPT-2 Small JumpReLU release exists in SAELens
+    release: null
+    point_type: resid_pre
+    hook_template: "blocks.{layer}.hook_resid_pre"
+    sae_id_template: null
+
+steering:
+  alphas: [0.5, 1.0, 2.0, 4.0]
+  n_snippets: 64
+  n_random_directions: 1
+  # Filled in once Simba (truth) and Aditi (honesty) send their directions.
+  # Each entry: {name, path to a saved torch tensor of shape [d_model]}.
+  extra_directions: []
+
+feature_health:
+  dense_threshold: 0.10 # fires on >10% of tokens
+
+paths:
+  data_dir: data/owt
+  results_dir: results/owt
+
+batch_size: 16

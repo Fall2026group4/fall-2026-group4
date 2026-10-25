@@ -1,0 +1,9 @@
+check,count_all,count_true,count_false,percent_all
+ends_with_period,594,294,300,99.66
+ends_with_other_punct,0,0,0,0.0
+ends_without_punct,0,0,0,0.0
+has_quotes,5,4,1,0.84
+has_non_ascii,1,1,0,0.17
+has_double_space,0,0,0,0.0
+starts_lowercase,0,0,0,0.0
+has_digits,46,33,13,7.72

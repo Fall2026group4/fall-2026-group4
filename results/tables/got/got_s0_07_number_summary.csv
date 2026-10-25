@@ -1,0 +1,3 @@
+dataset,n1_range,n2_range,distinct_numbers,mean_gap_true,mean_gap_false,n1_only_auroc,n1_only_auroc_within_n1,true_comparison_auroc_within_n1
+larger_than,51-99,51-99,45,16.97,16.97,0.841,0.5,1.0
+smaller_than,51-99,51-99,45,16.97,16.97,0.841,0.5,1.0

@@ -1,0 +1,17 @@
+dataset,cue,auroc,auroc_best_direction,percent_with_cue,shortcut_risk
+cities,contains 'not',0.5,0.5,0.0,low
+cities,answer word only,0.449,0.551,,low
+neg_cities,contains 'not',0.5,0.5,100.0,low
+neg_cities,answer word only,0.449,0.551,,low
+sp_en_trans,contains 'not',0.5,0.5,0.0,low
+sp_en_trans,answer word only,0.341,0.659,,high
+neg_sp_en_trans,contains 'not',0.5,0.5,100.0,low
+neg_sp_en_trans,answer word only,0.341,0.659,,high
+larger_than,contains 'not',0.5,0.5,0.0,low
+larger_than,n1 only,0.841,0.841,,high
+larger_than,n2 only,0.159,0.841,,high
+larger_than,abs_diff only,0.5,0.5,,low
+smaller_than,contains 'not',0.5,0.5,0.0,low
+smaller_than,n1 only,0.159,0.841,,high
+smaller_than,n2 only,0.841,0.841,,high
+smaller_than,abs_diff only,0.5,0.5,,low

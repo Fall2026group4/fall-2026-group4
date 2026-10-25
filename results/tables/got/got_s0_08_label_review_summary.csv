@@ -1,0 +1,8 @@
+dataset,yes,no,unsure,reviewed,percent_yes
+cities,5,0,0,5,100.0
+larger_than,5,0,0,5,100.0
+neg_cities,5,0,0,5,100.0
+neg_sp_en_trans,5,0,0,5,100.0
+smaller_than,5,0,0,5,100.0
+sp_en_trans,5,0,0,5,100.0
+ALL,30,0,0,30,100.0
