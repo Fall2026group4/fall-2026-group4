@@ -12,13 +12,18 @@ Parts:
        mean_diff_matched : fitted here on the 4 length-matched sets' TRAIN pairs (no token confound)
        mean_diff_original, repe_pca : Stage 2 directions (original set)
   b  control: mean_diff_matched vs 20 random directions at layers 6, 10, 11
-  c  SAE features: each SAE's top honesty feature vs 20 frequency-matched random features
+  c  SAE features: each SAE's top honesty feature vs frequency-matched random features
+  d  positive control + second behavioural outcome (Review #6): the model's own log P(' True') - log P(' False')
+       after the prompt '<statement> True or False? Answer:'. Positive control = the unembedding contrast direction
+       W_U[' True'] - W_U[' False'], which MUST move this outcome; honesty direction and random directions are compared with it.
 
 Run from the repo root:
     python scripts/run_repe_s6.py --part a --quick
-    python scripts/run_repe_s6.py --part a       (then b, then c)
+    python scripts/run_repe_s6.py --part a       (then b, c, d)
+    python scripts/run_repe_s6.py --part b --n-random 20     (fast rerun with the old 20 controls)
 """
 import argparse
+import logging
 import sys
 import time
 from pathlib import Path
@@ -28,11 +33,14 @@ import pandas as pd
 import scipy.sparse as sp
 import torch
 
+logger = logging.getLogger("run_repe_s6")
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 import run_repe_s4 as s4  # noqa: E402  (data + SAE loading)
 from src.repe.activations import load_model  # noqa: E402
+from src.repe.stats import bh_adjust, rank_summary  # noqa: E402
 
 PAIRS_PATH = ROOT / "data" / "repe" / "minimal_pairs.csv"
 DIR_PATH = ROOT / "data" / "repe" / "directions" / "original_last.npz"
@@ -41,7 +49,8 @@ MATCHED = [s for s in s4.SETS if s.startswith("matched_")]
 SCAN_LAYERS = list(range(1, 12))
 CTRL_LAYERS = [6, 10, 11]
 ALPHAS = [-0.5, 0.5]
-N_RANDOM = 20
+N_RANDOM = 200  # Review #6: >= 200 random controls so the smallest attainable p is below 0.005
+TF_PROMPT = "{statement}\nTrue or False? Answer:"
 
 
 # ---------- readout ----------
@@ -115,30 +124,6 @@ def layer_norms():
 
 
 # ---------- summaries ----------
-def bh_adjust(p):
-    p = np.asarray(p, float)
-    n, order = len(p), np.argsort(p)
-    ranked = p[order] * n / np.arange(1, n + 1)
-    ranked = np.minimum.accumulate(ranked[::-1])[::-1]
-    out = np.empty(n)
-    out[order] = np.minimum(ranked, 1.0)
-    return out
-
-
-def rank_summary(directional, own_key, rng, test_mask, extra=None, n_boot=1000):
-    own = directional[own_key]
-    rnd = np.array([abs(v.mean()) for k, v in directional.items() if k != own_key])
-    boot = rng.integers(0, len(own), size=(n_boot, len(own)))
-    ci = np.percentile(own[boot].mean(1), [2.5, 97.5])
-    out = dict(own_directional=float(own.mean()), ci_low=float(ci[0]), ci_high=float(ci[1]),
-               own_directional_test=float(own[test_mask].mean()),
-               random_abs_mean=float(rnd.mean()), random_abs_max=float(rnd.max()),
-               own_rank=int(1 + (rnd > abs(own.mean())).sum()), n_directions=len(rnd) + 1,
-               p_value=(1 + (rnd >= abs(own.mean())).sum()) / (len(rnd) + 1))
-    out.update(extra or {})
-    return out
-
-
 def run_sources(model, pairs, layer, sources, norms, alphas, base):
     """sources: {name: direction[768]} -> grid rows and per-pair directional effect."""
     rows, directional = [], {}
@@ -258,11 +243,75 @@ def part_c(model, pairs, test_mask, norms, quick):
     return {"repe_s6c_grid": pd.DataFrame(rows), "repe_s6c_summary": s}
 
 
+def tf_gaps(model, prompts, layer=None, vec=None):
+    """Behavioural outcome: log P(' True') - log P(' False') as the next token after each prompt."""
+    hooks = _hooks(layer, vec)
+    tid, fid = model.to_single_token(" True"), model.to_single_token(" False")
+    out = []
+    for p in prompts:
+        toks = model.to_tokens(p, prepend_bos=True)
+        with torch.no_grad():
+            logits = model.run_with_hooks(toks, fwd_hooks=hooks) if hooks else model(toks)
+            lp = torch.log_softmax(logits[0, -1], dim=-1)
+        out.append(float(lp[tid] - lp[fid]))
+    return np.array(out)
+
+
+def part_d(model, pairs, test_mask, norms, quick):
+    """Positive control and a model-output outcome (Instructor Review #6).
+
+    Outcome: log P(' True') - log P(' False') after '<statement> True or False? Answer:'.
+    Positive control: the unembedding contrast W_U[' True'] - W_U[' False'] pushes that outcome by
+    construction, so it MUST rank first against the random directions; if it does not, the test
+    cannot detect effects and a null for the honesty direction would mean nothing.
+    """
+    rng = np.random.default_rng(0)
+    n_rand = 3 if quick else N_RANDOM
+    prompts = [TF_PROMPT.format(statement=t) for t, _ in pairs] + [TF_PROMPT.format(statement=f) for _, f in pairs]
+    mask = np.concatenate([test_mask, test_mask])
+    tid, fid = model.to_single_token(" True"), model.to_single_token(" False")
+    positive = (model.W_U[:, tid] - model.W_U[:, fid]).detach().float().cpu().numpy()
+    own = honesty_directions()["mean_diff_matched"]
+    randoms = [rng.normal(size=768) for _ in range(n_rand)]
+    base = tf_gaps(model, prompts)
+    n = len(pairs)
+    logger.info(f"  baseline log P(True) - log P(False): true statements {base[:n].mean():+.3f}, "
+                f"false statements {base[n:].mean():+.3f}")
+    rows, summary = [], []
+    for L in ([6] if quick else CTRL_LAYERS):
+        sources = {"honesty_direction": own[L], "positive_control": positive,
+                   **{f"random_{i + 1}": r for i, r in enumerate(randoms)}}
+        directional = {}
+        for name, direction in sources.items():
+            g = {a: tf_gaps(model, prompts, L, make_vec(direction, norms[L], a)) for a in ALPHAS}
+            for a in ALPHAS:
+                rows.append(dict(source=name, layer=L, alpha=a, effect=float(g[a].mean() - base.mean())))
+            directional[name] = (g[max(ALPHAS)] - g[min(ALPHAS)]) / 2
+        for own_key in ("honesty_direction", "positive_control"):
+            subset = {k: v for k, v in directional.items() if k == own_key or k.startswith("random_")}
+            summary.append(dict(layer=L, comparison=own_key, **rank_summary(subset, own_key, rng, mask)))
+            r = summary[-1]
+            logger.info(f"    L{L} {own_key}: directional {r['own_directional']:+.3f}  rank {r['own_rank']}/{r['n_directions']}"
+                        f"  p {r['p_value']:.4f}")
+    s = pd.DataFrame(summary)
+    s["p_adjusted_bh"] = s.groupby("comparison")["p_value"].transform(bh_adjust)
+    pc = s[s["comparison"] == "positive_control"]
+    logger.info("\nPositive control: " + ("PASSED (ranks first at every layer)" if (pc["own_rank"] == 1).all()
+                                        else "FAILED, the test cannot be trusted until this is fixed"))
+    logger.info(s.round(4).to_string(index=False))
+    return {"repe_s6d_tf_grid": pd.DataFrame(rows), "repe_s6d_tf_summary": s}
+
+
 def main():
+    global N_RANDOM
     ap = argparse.ArgumentParser()
-    ap.add_argument("--part", choices=["a", "b", "c"], required=True)
+    ap.add_argument("--part", choices=["a", "b", "c", "d"], required=True)
+    ap.add_argument("--n-random", type=int, default=None,
+                    help=f"random controls for parts b, c, d (default {N_RANDOM}; 20 reproduces the earlier run)")
     ap.add_argument("--quick", action="store_true", help="layer 6 only, few directions, 30 pairs")
     args = ap.parse_args()
+    if args.n_random:
+        N_RANDOM = args.n_random
 
     pairs, test_mask = load_pairs(30 if args.quick else None)
     print(f"{len(pairs)} minimal pairs ({test_mask.sum()} with the true statement in the test split)")
@@ -273,7 +322,7 @@ def main():
           f"(test subset {100 * (g0[test_mask] > 0).mean():.1f}%), mean gap {g0.mean():+.3f}\n")
 
     t0 = time.time()
-    tables = {"a": part_a, "b": part_b, "c": part_c}[args.part](model, pairs, test_mask, norms, args.quick)
+    tables = {"a": part_a, "b": part_b, "c": part_c, "d": part_d}[args.part](model, pairs, test_mask, norms, args.quick)
     print(f"\nPart {args.part} took {time.time() - t0:.0f}s")
     if args.quick:
         print("Quick test only, nothing saved.")

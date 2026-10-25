@@ -113,7 +113,7 @@ DOSE_ALPHAS = [-1.0, -0.5, -0.25, 0.25, 0.5, 1.0]
 # Stage 6b settings: own direction vs many random directions at the dose layers
 S6B_LAYERS = [6, 7, 8]
 S6B_ALPHAS = [-0.5, 0.5]
-S6B_N_RANDOM = 20
+S6B_N_RANDOM = 200  # Review #6: >= 200 random controls (smallest attainable p = 1/201 < 0.005)
 QUICK = False  # set by --quick: cities, layer 7, 3 random directions
 
 # Stage 6c settings: steering with SAE features (one dataset per family keeps it to ~3 hours)
@@ -121,7 +121,7 @@ S6C_DATASETS = ["cities", "larger_than"]
 S6C_TYPES = ["relu", "topk"]
 S6C_LAYERS = [4, 6, 8, 10]
 S6C_ALPHAS = [-0.5, 0.5]
-S6C_N_RANDOM = 20
+S6C_N_RANDOM = 200
 S6C_TEXT_LAYERS = [6, 10]
 S6C_TEXT_ALPHAS = [-1.0, -0.5, 0.0, 0.5, 1.0]
 
@@ -215,8 +215,8 @@ def _s6b_plot(parts):
     axes[0].legend()
     fig.suptitle("Stage 6b: truth direction vs 20 random directions")
     fig.tight_layout()
-    fig.savefig(fig_dir / "got_s6b_random20.png", dpi=150)
-    print("  saved results/figures/got/got_s6b_random20.png")
+    fig.savefig(fig_dir / "got_s6b_random20.svg", dpi=150)
+    print("  saved results/figures/got/got_s6b_random20.svg")
 
 
 def stage_6b_random_control():
@@ -318,8 +318,13 @@ def main():
     parser = argparse.ArgumentParser(description="Geometry of Truth analysis")
     parser.add_argument("--stage", type=int, choices=sorted(STAGES), help="Run only this stage")
     parser.add_argument("--quick", action="store_true", help="Run a quick test")
+    parser.add_argument("--n-random", type=int, default=None,
+                        help="random controls for stages 6b and 6c (default 200; 20 reproduces the earlier run)")
     args = parser.parse_args()
-    global QUICK; QUICK = args.quick
+    global QUICK, S6B_N_RANDOM, S6C_N_RANDOM
+    QUICK = args.quick
+    if args.n_random:
+        S6B_N_RANDOM = S6C_N_RANDOM = args.n_random
     for number in ([args.stage] if args.stage else sorted(STAGES)):
         STAGES[number]()
     print("\nDone.")
