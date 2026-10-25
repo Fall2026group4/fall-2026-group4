@@ -23,7 +23,7 @@ from src.sae.geometry_sae import (
 
 
 SEED = 42
-N_RANDOM = 100
+N_RANDOM = 200  # Review #6: >= 200 random controls (smallest attainable p = 1/201 < 0.005)
 
 CANDIDATE_FEATURE = 19579
 
