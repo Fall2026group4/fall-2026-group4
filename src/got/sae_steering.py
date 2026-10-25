@@ -16,6 +16,10 @@ from sklearn.metrics import roc_auc_score
 
 from src.got import steering
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 RELEASES = {"relu": "gpt2-small-res-jb", "topk": "gpt2-small-resid-post-v5-32k"}
 JUDGE_SUFFIX = " This statement is"
 
@@ -193,7 +197,7 @@ def run(model, data, sae_types, layers, alphas, n_random, text_layers, text_alph
                     p_value=(1 + (rnd >= abs(own.mean())).sum()) / (len(rnd) + 1),
                     judgment_shift=float((jud[a_hi].mean() - jud[a_lo].mean()) / 2),
                     vocab_true_minus_false=vocab["truth"]))
-                print(f"    {t} L{layer} {name}: feature {j} (test AUROC {auc:.2f})  "
+                logger.info(f"    {t} L{layer} {name}: feature {j} (test AUROC {auc:.2f})  "
                       f"directional {own.mean():+.3f}  rank {summary_rows[-1]['own_rank']}/{len(rnd) + 1}")
 
                 if layer in text_layers:

@@ -1,4 +1,4 @@
-"""Figures for the RepE analysis. Each function saves a PNG and returns its path."""
+"""Figures for the RepE analysis. Each function saves an SVG and returns its path."""
 
 import matplotlib
 
@@ -6,6 +6,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from src.repe.io import FIGURES_DIR, PROJECT_ROOT
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 METHOD_STYLE = {
     "repe_pca": ("RepE PCA", "#4C72B0"),
@@ -16,11 +20,11 @@ METHOD_STYLE = {
 
 def save_figure(fig, name):
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    path = FIGURES_DIR / f"{name}.png"
+    path = FIGURES_DIR / f"{name}.svg"  # vector (Review #6: SVG/PDF, not PNG)
     fig.tight_layout()
-    fig.savefig(path, dpi=150)
+    fig.savefig(path)
     plt.close(fig)
-    print(f"  saved {path.relative_to(PROJECT_ROOT)}")
+    logger.info(f"  saved {path.relative_to(PROJECT_ROOT)}")
     return path
 
 

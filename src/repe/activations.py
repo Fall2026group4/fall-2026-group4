@@ -6,6 +6,10 @@ plus blocks.11.hook_resid_post (the final residual).
 
 import numpy as np
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 HOOKS = [f"blocks.{layer}.hook_resid_pre" for layer in range(12)] + ["blocks.11.hook_resid_post"]
 POSITIONS = [f"L{layer}" for layer in range(12)] + ["final"]
 D_MODEL = 768
@@ -53,7 +57,7 @@ def cache_prompt_set(model, prompts_df):
             n_tokens.append(int(tokens.shape[1]))
             n_statement.append(k)
             if (i + 1) % 100 == 0 or i + 1 == n:
-                print(f"    cached {i + 1}/{n}")
+                logger.info(f"    cached {i + 1}/{n}")
 
     meta = prompts_df.copy()
     meta["n_tokens"] = n_tokens

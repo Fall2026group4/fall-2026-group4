@@ -4,6 +4,10 @@ import re
 
 import pandas as pd
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 # ---------------------------------------------------------------------------
 # Step 1: Data integrity
@@ -713,7 +717,7 @@ def score_prompts(prompts, model, tokenizer, true_id, false_id):
             logp = torch.log_softmax(model(ids).logits[0, -1], dim=-1)
             scores.append(float(logp[true_id] - logp[false_id]))
             if i % 100 == 0 or i == len(prompts):
-                print(f"    scored {i}/{len(prompts)}")
+                logger.info(f"    scored {i}/{len(prompts)}")
     return scores
 
 

@@ -11,6 +11,10 @@ to every token except BOS, at blocks.L.hook_resid_pre.
 import numpy as np
 import pandas as pd
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 STEER_DATASETS = ["cities", "neg_cities", "larger_than", "smaller_than"]
 TWIN = {"cities": "neg_cities", "neg_cities": "cities", "larger_than": "smaller_than",
         "smaller_than": "larger_than"}
@@ -105,5 +109,5 @@ def steering_grid(model, pairs_by_dataset, directions, norms, layers, alphas, so
                     rows.append({"dataset": name, "source": source, "layer": f"L{layer}", "alpha": alpha,
                                  "mean_gap": round(gap, 4), "pair_accuracy": round(acc, 4),
                                  "effect": round(gap - base_gap, 4), "fluency_change": round(flu - base_flu, 4)})
-            print(f"    {name}: {source} done")
+            logger.info(f"    {name}: {source} done")
     return pd.DataFrame(rows)

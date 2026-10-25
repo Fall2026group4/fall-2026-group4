@@ -7,16 +7,20 @@ import matplotlib.pyplot as plt
 
 from src.got.io import FIGURES_DIR, PROJECT_ROOT
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 TRUE_COLOR, FALSE_COLOR = "#4C72B0", "#DD8452"
 
 
 def save_figure(fig, name):
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    path = FIGURES_DIR / f"{name}.png"
+    path = FIGURES_DIR / f"{name}.svg"  # vector (Review #6: SVG/PDF, not PNG)
     fig.tight_layout()
-    fig.savefig(path, dpi=150)
+    fig.savefig(path)
     plt.close(fig)
-    print(f"  saved {path.relative_to(PROJECT_ROOT)}")
+    logger.info(f"  saved {path.relative_to(PROJECT_ROOT)}")
     return path
 
 

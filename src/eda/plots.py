@@ -7,15 +7,19 @@ import matplotlib.pyplot as plt
 
 from src.eda.load_data import FIGURES_DIR, PROJECT_ROOT
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def save_figure(fig, name):
-    """Save a figure to results/figures/eda/<name>.png and close it."""
+    """Save a figure to results/figures/eda/<name>.svg and close it."""
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-    path = FIGURES_DIR / f"{name}.png"
+    path = FIGURES_DIR / f"{name}.svg"  # vector (Review #6: SVG/PDF, not PNG)
     fig.tight_layout()
-    fig.savefig(path, dpi=150)
+    fig.savefig(path)
     plt.close(fig)
-    print(f"  saved {path.relative_to(PROJECT_ROOT)}")
+    logger.info(f"  saved {path.relative_to(PROJECT_ROOT)}")
     return path
 
 

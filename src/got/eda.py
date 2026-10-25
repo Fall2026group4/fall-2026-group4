@@ -4,6 +4,10 @@ import pandas as pd
 
 from src.eda.explore import integrity_report, normalize_statement
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 # ---------------------------------------------------------------------------
 # Step 1: Integrity
@@ -455,7 +459,7 @@ def score_statements(frames, model, tokenizer):
     """Log-probability of every statement in every dataset."""
     rows = []
     for name, df in frames.items():
-        print(f"    scoring {name} ({len(df)} statements)")
+        logger.info(f"    scoring {name} ({len(df)} statements)")
         for _, r in df.iterrows():
             total, per_token = sentence_logprob(model, tokenizer, r["statement"])
             rows.append({"dataset": name, "subject": r["subject"], "label": r["label"], "split": r.get("split"),

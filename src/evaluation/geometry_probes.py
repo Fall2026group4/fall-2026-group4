@@ -8,6 +8,10 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def _to_numpy(x):
     """Convert a torch tensor or array-like object to NumPy."""
@@ -123,7 +127,7 @@ def evaluate_linear_probes(
 
         probes[layer] = probe
 
-        print(
+        logger.info(
             f"Layer {layer:02d} | "
             f"Accuracy: {accuracy:.4f} | "
             f"AUROC: {auroc:.4f}"

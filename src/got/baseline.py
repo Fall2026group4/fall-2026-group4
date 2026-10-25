@@ -7,6 +7,10 @@ from src.got import probes
 from src.got.eda import grouped_auroc
 from src.repe.activations import POSITIONS
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 SAE_POSITIONS = [f"L{layer}" for layer in range(1, 12)]  # where the SAEs attach; L0 is embeddings only
 
 
@@ -52,7 +56,7 @@ def baseline(data, read, n_boot=500, n_random=200):
             band.append({"dataset": name, "read": read, "position": position, "position_index": p,
                          "random_low": round(np.percentile(aucs, 2.5), 4),
                          "random_high": round(np.percentile(aucs, 97.5), 4)})
-        print(f"  baseline: {name} ({read}) done")
+        logger.info(f"  baseline: {name} ({read}) done")
     return pd.DataFrame(rows), pd.DataFrame(band)
 
 
@@ -92,7 +96,7 @@ def transfer(data, methods=("mass_mean", "logistic")):
                                  "position_index": p, "method": method,
                                  "auroc": round(probes.auroc(m_te["label"].values, s), 4),
                                  "auroc_within_n1": _within_n1(m_te, s)})
-        print(f"  transfer: fitted on {source} done")
+        logger.info(f"  transfer: fitted on {source} done")
     return pd.DataFrame(rows)
 
 

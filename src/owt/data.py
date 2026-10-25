@@ -17,6 +17,10 @@ from typing import Any
 import numpy as np
 import yaml
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def load_config(path: str | Path) -> dict[str, Any]:
     """Load the pipeline config. Every owt_0X script calls this - nothing
@@ -159,20 +163,19 @@ def stream_and_tokenize(
 
         chunks.append(chunk)
         if len(chunks) % progress_every == 0:
-            print(
+            logger.info(
                 f"  ...{len(chunks)}/{n_documents} kept "
-                f"(skip={skip_documents}, {examples_seen} examples scanned)",
-                flush=True,
+                f"(skip={skip_documents}, {examples_seen} examples scanned)"
             )
         if len(chunks) >= n_documents:
             break
 
     if skipped_for_memory:
-        print(f"Skipped {skipped_for_memory} document(s) that hit the memory cap "
+        logger.info(f"Skipped {skipped_for_memory} document(s) that hit the memory cap "
               f"(max_memory_mb={max_memory_mb}) - treated as too large, not an error.")
 
     if len(chunks) < n_documents:
-        print(
+        logger.warning(
             f"Warning: only found {len(chunks)} documents of >= "
             f"{context_length - 1} real tokens (wanted {n_documents})."
         )

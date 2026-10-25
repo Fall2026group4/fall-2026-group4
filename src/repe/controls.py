@@ -10,6 +10,10 @@ import pandas as pd
 
 from src.repe import activations, directions, evaluate
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 SAE_POSITIONS = [f"L{layer}" for layer in range(1, 12)]  # where SAEs attach; L0 is the position check
 
 
@@ -48,7 +52,7 @@ def within_set(sets, n_random=200, n_boot=500):
             band.append({"prompt_set": name, "position": position, "position_index": p,
                          "random_auroc_low": round(np.percentile(aucs, 2.5), 4),
                          "random_auroc_high": round(np.percentile(aucs, 97.5), 4)})
-        print(f"  within-set: {name} done")
+        logger.info(f"  within-set: {name} done")
     return pd.DataFrame(rows), pd.DataFrame(band)
 
 
@@ -81,7 +85,7 @@ def transfer(sets):
                     rows.append({"source": source, "target": target, "position": position,
                                  "position_index": p, "method": method,
                                  "auroc": round(evaluate.auroc(scorer(X_te), m_te), 4)})
-        print(f"  transfer: fitted on {source} done")
+        logger.info(f"  transfer: fitted on {source} done")
     return pd.DataFrame(rows)
 
 

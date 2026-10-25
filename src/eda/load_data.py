@@ -2,6 +2,10 @@ from pathlib import Path
 
 import pandas as pd
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 RAW_PATH = PROJECT_ROOT / "data" / "repe" / "facts_true_false.csv"
@@ -36,5 +40,5 @@ def save_table(df, name, index=False):
     TABLES_DIR.mkdir(parents=True, exist_ok=True)
     path = TABLES_DIR / f"{name}.csv"
     df.to_csv(path, index=index)
-    print(f"  saved {path.relative_to(PROJECT_ROOT)}")
+    logger.info(f"  saved {path.relative_to(PROJECT_ROOT)}")
     return path

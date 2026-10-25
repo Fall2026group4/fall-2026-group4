@@ -10,6 +10,10 @@ import pandas as pd
 
 from src.repe.activations import D_MODEL, HOOKS, load_model  # noqa: F401  (load_model re-exported)
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def cache_statements(model, df):
     """Activations for every statement, one at a time.
@@ -34,7 +38,7 @@ def cache_statements(model, df):
                 mean[i, j] = acts[1:].mean(axis=0)
             n_tokens.append(int(tokens.shape[1]))
             if (i + 1) % 500 == 0 or i + 1 == n:
-                print(f"    cached {i + 1}/{n}")
+                logger.info(f"    cached {i + 1}/{n}")
     meta = df.reset_index(drop=True).copy()
     meta["n_tokens"] = n_tokens
     return last, mean, meta
