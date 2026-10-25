@@ -1,0 +1,251 @@
+feature_id,frequency_bucket,activation_frequency,rank,activation,statement,label,city,country,correct_country
+9627,high,0.03728489577770233,1,2.871018171310425,The city of Daegu is in the United States.,0,Daegu,the United States,South Korea
+9627,high,0.03728489577770233,2,2.4427645206451416,The city of Baise is in China.,1,Baise,China,China
+9627,high,0.03728489577770233,3,2.3910224437713623,The city of Baotou is in China.,1,Baotou,China,China
+9627,high,0.03728489577770233,4,2.2321879863739014,The city of Daqing is in China.,1,Daqing,China,China
+9627,high,0.03728489577770233,5,2.202129602432251,The city of Baise is in Japan.,0,Baise,Japan,China
+16103,high,0.048757169395685196,1,0.9999323487281799,The city of Karachi is in Pakistan.,1,Karachi,Pakistan,Pakistan
+16103,high,0.048757169395685196,2,0.9485686421394348,The city of Islamabad is in Pakistan.,1,Islamabad,Pakistan,Pakistan
+16103,high,0.048757169395685196,3,0.8986590504646301,The city of Peshawar is in Pakistan.,1,Peshawar,Pakistan,Pakistan
+16103,high,0.048757169395685196,4,0.8793442845344543,The city of Beirut is in Lebanon.,1,Beirut,Lebanon,Lebanon
+16103,high,0.048757169395685196,5,0.7864628434181213,The city of Tehran is in Iran.,1,Tehran,Iran,Iran
+20113,high,0.0535372830927372,1,8.223176002502441,The city of Sharjah is in the United Arab Emirates.,1,Sharjah,the United Arab Emirates,the United Arab Emirates
+20113,high,0.0535372830927372,2,6.435199737548828,The city of Abu Dhabi is in Oman.,0,Abu Dhabi,Oman,the United Arab Emirates
+20113,high,0.0535372830927372,3,5.056062698364258,The city of Al Ain City is in the United Arab Emirates.,1,Al Ain City,the United Arab Emirates,the United Arab Emirates
+20113,high,0.0535372830927372,4,5.04346227645874,The city of Najran is in Saudi Arabia.,1,Najran,Saudi Arabia,Saudi Arabia
+20113,high,0.0535372830927372,5,4.840451240539551,The city of Al Basrah al Qadimah is in Iraq.,1,Al Basrah al Qadimah,Iraq,Iraq
+14810,high,0.06022944673895836,1,0.7785376906394958,The city of Maputo is in Japan.,0,Maputo,Japan,Mozambique
+14810,high,0.06022944673895836,2,0.5671910643577576,The city of Chattogram is in China.,0,Chattogram,China,Bangladesh
+14810,high,0.06022944673895836,3,0.5610107779502869,The city of Korla is in China.,1,Korla,China,China
+14810,high,0.06022944673895836,4,0.5552963614463806,The city of Port Said is in China.,0,Port Said,China,Egypt
+14810,high,0.06022944673895836,5,0.4726824164390564,The city of Hubli is in India.,1,Hubli,India,India
+22137,high,0.08604206144809723,1,16.008228302001953,The city of Lviv is in Ukraine.,1,Lviv,Ukraine,Ukraine
+22137,high,0.08604206144809723,2,15.362051963806152,The city of Kyiv is in Ukraine.,1,Kyiv,Ukraine,Ukraine
+22137,high,0.08604206144809723,3,14.248848915100098,The city of Kharkiv is in Ukraine.,1,Kharkiv,Ukraine,Ukraine
+22137,high,0.08604206144809723,4,13.288707733154297,The city of Dnipro is in Ukraine.,1,Dnipro,Ukraine,Ukraine
+22137,high,0.08604206144809723,5,13.204784393310547,The city of Odesa is in Ukraine.,1,Odesa,Ukraine,Ukraine
+16635,high,0.08795411139726639,1,2.5507612228393555,The city of Saint Petersburg is in Canada.,0,Saint Petersburg,Canada,Russia
+16635,high,0.08795411139726639,2,2.373666763305664,The city of Lyon is in Canada.,0,Lyon,Canada,France
+16635,high,0.08795411139726639,3,1.5950490236282349,The city of New Kingston is in South Africa.,0,New Kingston,South Africa,Jamaica
+16635,high,0.08795411139726639,4,1.336966633796692,The city of Mississauga is in Canada.,1,Mississauga,Canada,Canada
+16635,high,0.08795411139726639,5,1.1726242303848267,The city of Lyon is in France.,1,Lyon,France,France
+18277,high,0.09560229629278183,1,6.939614295959473,The city of Aleppo is in Syria.,1,Aleppo,Syria,Syria
+18277,high,0.09560229629278183,2,6.1673688888549805,The city of Latakia is in Syria.,1,Latakia,Syria,Syria
+18277,high,0.09560229629278183,3,5.533446788787842,The city of Karol Bagh is in Syria.,0,Karol Bagh,Syria,India
+18277,high,0.09560229629278183,4,5.451693058013916,The city of Jaboatao is in Syria.,0,Jaboatao,Syria,Brazil
+18277,high,0.09560229629278183,5,5.080382347106934,The city of Warangal is in Yemen.,0,Warangal,Yemen,India
+5161,high,0.14818355441093445,1,2.6346094608306885,The city of Nyala is in Sudan.,1,Nyala,Sudan,Sudan
+5161,high,0.14818355441093445,2,2.3295693397521973,The city of Aleppo is in Syria.,1,Aleppo,Syria,Syria
+5161,high,0.14818355441093445,3,2.260671854019165,The city of Buraydah is in Rwanda.,0,Buraydah,Rwanda,Saudi Arabia
+5161,high,0.14818355441093445,4,2.2596514225006104,The city of Khartoum is in Sudan.,1,Khartoum,Sudan,Sudan
+5161,high,0.14818355441093445,5,2.2317798137664795,The city of Kitakyushu is in Yemen.,0,Kitakyushu,Yemen,Japan
+13262,high,0.18164436519145966,1,14.860699653625488,The city of Indore is in India.,1,Indore,India,India
+13262,high,0.18164436519145966,2,14.594208717346191,The city of Chennai is in India.,1,Chennai,India,India
+13262,high,0.18164436519145966,3,14.179862022399902,The city of Pune is in India.,1,Pune,India,India
+13262,high,0.18164436519145966,4,14.009551048278809,The city of Thiruvananthapuram is in India.,1,Thiruvananthapuram,India,India
+13262,high,0.18164436519145966,5,13.64082145690918,The city of Karachi is in India.,0,Karachi,India,Pakistan
+20973,high,0.18738049268722534,1,2.962977409362793,The city of Helsinki is in Finland.,1,Helsinki,Finland,Finland
+20973,high,0.18738049268722534,2,2.6376075744628906,The city of Kolkata is in India.,1,Kolkata,India,India
+20973,high,0.18738049268722534,3,2.5991764068603516,The city of Bengaluru is in India.,1,Bengaluru,India,India
+20973,high,0.18738049268722534,4,2.5686593055725098,The city of Kanpur is in India.,1,Kanpur,India,India
+20973,high,0.18738049268722534,5,2.531691312789917,The city of Indore is in India.,1,Indore,India,India
+21062,low,0.001912045874632895,1,0.8140093088150024,The city of New South Memphis is in the United States.,1,New South Memphis,the United States,the United States
+21062,low,0.001912045874632895,2,0.2478596270084381,The city of New South Memphis is in China.,0,New South Memphis,China,the United States
+21062,low,0.001912045874632895,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+21062,low,0.001912045874632895,4,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+21062,low,0.001912045874632895,5,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+8067,low,0.0028680688701570034,1,1.696629285812378,The city of Duque de Caxias is in Côte d'Ivoire.,0,Duque de Caxias,Côte d'Ivoire,Brazil
+8067,low,0.0028680688701570034,2,0.9712082743644714,The city of Bouake is in Côte d'Ivoire.,1,Bouake,Côte d'Ivoire,Côte d'Ivoire
+8067,low,0.0028680688701570034,3,0.30429428815841675,The city of Abobo is in Côte d'Ivoire.,1,Abobo,Côte d'Ivoire,Côte d'Ivoire
+8067,low,0.0028680688701570034,4,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+8067,low,0.0028680688701570034,5,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+15015,low,0.0028680688701570034,1,0.3285451829433441,The city of Saratov is in Russia.,1,Saratov,Russia,Russia
+15015,low,0.0028680688701570034,2,0.09620651602745056,The city of Rostov-na-Donu is in Russia.,1,Rostov-na-Donu,Russia,Russia
+15015,low,0.0028680688701570034,3,0.06524094939231873,The city of Chelyabinsk is in Russia.,1,Chelyabinsk,Russia,Russia
+15015,low,0.0028680688701570034,4,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+15015,low,0.0028680688701570034,5,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+18340,low,0.0028680688701570034,1,0.4303041994571686,The city of Yaounde is in Cameroon.,1,Yaounde,Cameroon,Cameroon
+18340,low,0.0028680688701570034,2,0.20049253106117249,The city of Buraydah is in Rwanda.,0,Buraydah,Rwanda,Saudi Arabia
+18340,low,0.0028680688701570034,3,0.07263365387916565,The city of Vilnius is in Lithuania.,1,Vilnius,Lithuania,Lithuania
+18340,low,0.0028680688701570034,4,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+18340,low,0.0028680688701570034,5,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+14347,low,0.00382409174926579,1,1.0542116165161133,The city of Detroit is in China.,0,Detroit,China,the United States
+14347,low,0.00382409174926579,2,0.36318808794021606,The city of New South Memphis is in China.,0,New South Memphis,China,the United States
+14347,low,0.00382409174926579,3,0.22219355404376984,The city of Linfen is in China.,1,Linfen,China,China
+14347,low,0.00382409174926579,4,0.07458086311817169,The city of Mexico City is in China.,0,Mexico City,China,Mexico
+14347,low,0.00382409174926579,5,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+4292,low,0.00382409174926579,1,3.197312593460083,The city of Uberlandia is in India.,0,Uberlandia,India,Brazil
+4292,low,0.00382409174926579,2,3.1511948108673096,The city of Uberlandia is in Brazil.,1,Uberlandia,Brazil,Brazil
+4292,low,0.00382409174926579,3,1.030806064605713,The city of Navi Mumbai is in China.,0,Navi Mumbai,China,India
+4292,low,0.00382409174926579,4,0.021941207349300385,The city of Kryvyy Rih is in China.,0,Kryvyy Rih,China,Ukraine
+4292,low,0.00382409174926579,5,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+3582,low,0.004780114628374577,1,0.727057158946991,The city of Jeonju is in the United States.,0,Jeonju,the United States,South Korea
+3582,low,0.004780114628374577,2,0.4257771372795105,The city of Chicago is in the United States.,1,Chicago,the United States,the United States
+3582,low,0.004780114628374577,3,0.3866249918937683,The city of Pretoria is in India.,0,Pretoria,India,South Africa
+3582,low,0.004780114628374577,4,0.3437477946281433,The city of Seoul is in South Korea.,1,Seoul,South Korea,South Korea
+3582,low,0.004780114628374577,5,0.3032204508781433,The city of Wanning is in the United States.,0,Wanning,the United States,China
+18337,low,0.004780114628374577,1,3.4050912857055664,The city of Hiroshima is in Japan.,1,Hiroshima,Japan,Japan
+18337,low,0.004780114628374577,2,1.3811252117156982,The city of Leipzig is in Germany.,1,Leipzig,Germany,Germany
+18337,low,0.004780114628374577,3,0.7179124355316162,The city of Munich is in Germany.,1,Munich,Germany,Germany
+18337,low,0.004780114628374577,4,0.5182572603225708,The city of Frankfurt am Main is in Vietnam.,0,Frankfurt am Main,Vietnam,Germany
+18337,low,0.004780114628374577,5,0.2507580816745758,The city of Dortmund is in Germany.,1,Dortmund,Germany,Germany
+17037,low,0.005736137740314007,1,0.9055968523025513,The city of Dubai is in the United Arab Emirates.,1,Dubai,the United Arab Emirates,the United Arab Emirates
+17037,low,0.005736137740314007,2,0.6895455718040466,The city of Duque de Caxias is in Côte d'Ivoire.,0,Duque de Caxias,Côte d'Ivoire,Brazil
+17037,low,0.005736137740314007,3,0.6634636521339417,The city of Dehra Dun is in China.,0,Dehra Dun,China,India
+17037,low,0.005736137740314007,4,0.5151161551475525,The city of Dehra Dun is in India.,1,Dehra Dun,India,India
+17037,low,0.005736137740314007,5,0.23752361536026,The city of Daegu is in the United States.,0,Daegu,the United States,South Korea
+2363,low,0.005736137740314007,1,1.1804449558258057,The city of Frankfurt am Main is in Vietnam.,0,Frankfurt am Main,Vietnam,Germany
+2363,low,0.005736137740314007,2,1.1791324615478516,The city of Frankfurt am Main is in Germany.,1,Frankfurt am Main,Germany,Germany
+2363,low,0.005736137740314007,3,0.8324754238128662,The city of Stockholm is in Sweden.,1,Stockholm,Sweden,Sweden
+2363,low,0.005736137740314007,4,0.48646536469459534,The city of Stockholm is in Russia.,0,Stockholm,Russia,Sweden
+2363,low,0.005736137740314007,5,0.2485864758491516,The city of Leipzig is in Germany.,1,Leipzig,Germany,Germany
+20628,medium,0.00669216038659215,1,7.62290096282959,The city of Aleppo is in Syria.,1,Aleppo,Syria,Syria
+20628,medium,0.00669216038659215,2,5.844621658325195,The city of Latakia is in Syria.,1,Latakia,Syria,Syria
+20628,medium,0.00669216038659215,3,4.010139465332031,The city of Wuzhou is in Syria.,0,Wuzhou,Syria,China
+20628,medium,0.00669216038659215,4,3.795081615447998,The city of Jaboatao is in Syria.,0,Jaboatao,Syria,Brazil
+20628,medium,0.00669216038659215,5,0.8299177885055542,The city of Aleppo is in China.,0,Aleppo,China,Syria
+3470,medium,0.00669216038659215,1,2.3309051990509033,The city of Kryvyy Rih is in Ukraine.,1,Kryvyy Rih,Ukraine,Ukraine
+3470,medium,0.00669216038659215,2,2.16580867767334,The city of Kryvyy Rih is in China.,0,Kryvyy Rih,China,Ukraine
+3470,medium,0.00669216038659215,3,1.502087116241455,The city of Rohini is in Russia.,0,Rohini,Russia,India
+3470,medium,0.00669216038659215,4,1.4555058479309082,The city of Reynosa is in Mexico.,1,Reynosa,Mexico,Mexico
+3470,medium,0.00669216038659215,5,1.2924084663391113,The city of Reynosa is in China.,0,Reynosa,China,Mexico
+10107,medium,0.008604206144809723,1,13.172143936157227,The city of Quebec is in Canada.,1,Quebec,Canada,Canada
+10107,medium,0.008604206144809723,2,12.323760986328125,The city of Mississauga is in Canada.,1,Mississauga,Canada,Canada
+10107,medium,0.008604206144809723,3,9.425043106079102,The city of Winnipeg is in Canada.,1,Winnipeg,Canada,Canada
+10107,medium,0.008604206144809723,4,9.382261276245117,The city of Saint Petersburg is in Canada.,0,Saint Petersburg,Canada,Russia
+10107,medium,0.008604206144809723,5,5.9986395835876465,The city of Mississauga is in India.,0,Mississauga,India,Canada
+20216,medium,0.009560229256749153,1,1.1207085847854614,The city of New South Memphis is in the United States.,1,New South Memphis,the United States,the United States
+20216,medium,0.009560229256749153,2,1.0654960870742798,The city of Fort Worth is in the United States.,1,Fort Worth,the United States,the United States
+20216,medium,0.009560229256749153,3,0.6827269792556763,The city of Albuquerque is in the United States.,1,Albuquerque,the United States,the United States
+20216,medium,0.009560229256749153,4,0.6032768487930298,The city of Chicago is in the United States.,1,Chicago,the United States,the United States
+20216,medium,0.009560229256749153,5,0.5723773241043091,The city of Libreville is in the United States.,0,Libreville,the United States,Gabon
+23215,medium,0.011472275480628014,1,0.8403201103210449,The city of Erzurum is in the Democratic Republic of the Congo.,0,Erzurum,the Democratic Republic of the Congo,Turkey
+23215,medium,0.011472275480628014,2,0.7972482442855835,The city of New South Memphis is in the United States.,1,New South Memphis,the United States,the United States
+23215,medium,0.011472275480628014,3,0.7285405397415161,The city of Oklahoma City is in the United States.,1,Oklahoma City,the United States,the United States
+23215,medium,0.011472275480628014,4,0.6937720775604248,The city of Maputo is in Japan.,0,Maputo,Japan,Mozambique
+23215,medium,0.011472275480628014,5,0.6044871211051941,The city of Maputo is in Mozambique.,1,Maputo,Mozambique,Mozambique
+21743,medium,0.0133843207731843,1,0.6540267467498779,The city of Homyel' is in Iran.,0,Homyel',Iran,Belarus
+21743,medium,0.0133843207731843,2,0.6275957822799683,The city of N'Djamena is in Chad.,1,N'Djamena,Chad,Chad
+21743,medium,0.0133843207731843,3,0.5445003509521484,The city of Reynosa is in China.,0,Reynosa,China,Mexico
+21743,medium,0.0133843207731843,4,0.4279278516769409,The city of Quezon City is in China.,0,Quezon City,China,the Philippines
+21743,medium,0.0133843207731843,5,0.3357217311859131,The city of San Pedro Sula is in Honduras.,1,San Pedro Sula,Honduras,Honduras
+16828,medium,0.016252389177680016,1,7.370516300201416,The city of Kirkuk is in Iraq.,1,Kirkuk,Iraq,Iraq
+16828,medium,0.016252389177680016,2,6.753846168518066,The city of Jalandhar is in Iraq.,0,Jalandhar,Iraq,India
+16828,medium,0.016252389177680016,3,5.876961708068848,The city of Kayseri is in Iraq.,0,Kayseri,Iraq,Turkey
+16828,medium,0.016252389177680016,4,5.493399620056152,The city of Kallakurichi is in Iraq.,0,Kallakurichi,Iraq,India
+16828,medium,0.016252389177680016,5,5.489082336425781,The city of Al Basrah al Qadimah is in Iraq.,1,Al Basrah al Qadimah,Iraq,Iraq
+18507,medium,0.017208412289619446,1,2.501509189605713,The city of The Bronx is in the United States.,1,The Bronx,the United States,the United States
+18507,medium,0.017208412289619446,2,2.2652156352996826,The city of Fort Worth is in the United States.,1,Fort Worth,the United States,the United States
+18507,medium,0.017208412289619446,3,2.203195810317993,The city of Oklahoma City is in the United States.,1,Oklahoma City,the United States,the United States
+18507,medium,0.017208412289619446,4,2.130831003189087,The city of Albuquerque is in the United States.,1,Albuquerque,the United States,the United States
+18507,medium,0.017208412289619446,5,1.9844322204589844,The city of New York City is in the United States.,1,New York City,the United States,the United States
+2038,medium,0.024856597185134888,1,3.343812942504883,The city of Port Harcourt is in Eritrea.,0,Port Harcourt,Eritrea,Nigeria
+2038,medium,0.024856597185134888,2,2.9324519634246826,The city of Nyala is in Sudan.,1,Nyala,Sudan,Sudan
+2038,medium,0.024856597185134888,3,1.9562509059906006,The city of Mogadishu is in Somalia.,1,Mogadishu,Somalia,Somalia
+2038,medium,0.024856597185134888,4,1.7699172496795654,The city of Kampala is in Turkey.,0,Kampala,Turkey,Uganda
+2038,medium,0.024856597185134888,5,1.57905113697052,The city of Aleppo is in Syria.,1,Aleppo,Syria,Syria
+9569,medium,0.0267686415463686,1,19.403867721557617,The city of Quezon City is in the Philippines.,1,Quezon City,the Philippines,the Philippines
+9569,medium,0.0267686415463686,2,13.21596908569336,The city of Cebu City is in the Philippines.,1,Cebu City,the Philippines,the Philippines
+9569,medium,0.0267686415463686,3,13.009442329406738,The city of Caloocan City is in the Philippines.,1,Caloocan City,the Philippines,the Philippines
+9569,medium,0.0267686415463686,4,12.53945541381836,The city of General Santos is in the Philippines.,1,General Santos,the Philippines,the Philippines
+9569,medium,0.0267686415463686,5,12.503860473632812,The city of Kampung Baru Subang is in the Philippines.,0,Kampung Baru Subang,the Philippines,Malaysia
+14793,very_high,0.3164435923099518,1,3.0263335704803467,The city of Fort Worth is in Russia.,0,Fort Worth,Russia,the United States
+14793,very_high,0.3164435923099518,2,2.9310431480407715,The city of Detroit is in China.,0,Detroit,China,the United States
+14793,very_high,0.3164435923099518,3,2.861293315887451,The city of Xining is in China.,1,Xining,China,China
+14793,very_high,0.3164435923099518,4,2.8333446979522705,The city of Munich is in China.,0,Munich,China,Germany
+14793,very_high,0.3164435923099518,5,2.61769962310791,The city of Oklahoma City is in China.,0,Oklahoma City,China,the United States
+12375,very_high,0.3556405305862427,1,4.565431594848633,The city of Frankfurt am Main is in Germany.,1,Frankfurt am Main,Germany,Germany
+12375,very_high,0.3556405305862427,2,4.419720649719238,The city of Chizhou is in the Republic of the Congo.,0,Chizhou,the Republic of the Congo,China
+12375,very_high,0.3556405305862427,3,4.373368263244629,The city of New South Memphis is in the United States.,1,New South Memphis,the United States,the United States
+12375,very_high,0.3556405305862427,4,3.8788228034973145,The city of New York City is in the United States.,1,New York City,the United States,the United States
+12375,very_high,0.3556405305862427,5,3.521080493927002,The city of Oklahoma City is in the United States.,1,Oklahoma City,the United States,the United States
+16653,very_high,0.44933077692985535,1,3.3426780700683594,The city of Samarinda is in Iraq.,0,Samarinda,Iraq,Indonesia
+16653,very_high,0.44933077692985535,2,3.072267770767212,The city of Mogadishu is in Somalia.,1,Mogadishu,Somalia,Somalia
+16653,very_high,0.44933077692985535,3,2.8283839225769043,The city of Port-au-Prince is in Haiti.,1,Port-au-Prince,Haiti,Haiti
+16653,very_high,0.44933077692985535,4,2.769069194793701,The city of Kandahar is in Afghanistan.,1,Kandahar,Afghanistan,Afghanistan
+16653,very_high,0.44933077692985535,5,2.2533082962036133,The city of Samarinda is in Indonesia.,1,Samarinda,Indonesia,Indonesia
+9020,very_high,0.7581261992454529,1,5.234103202819824,The city of Tijuana is in Mexico.,1,Tijuana,Mexico,Mexico
+9020,very_high,0.7581261992454529,2,5.0391364097595215,The city of Ciudad Juarez is in Mexico.,1,Ciudad Juarez,Mexico,Mexico
+9020,very_high,0.7581261992454529,3,4.220457553863525,The city of Caracas is in Venezuela.,1,Caracas,Venezuela,Venezuela
+9020,very_high,0.7581261992454529,4,4.141876220703125,The city of Peshawar is in Pakistan.,1,Peshawar,Pakistan,Pakistan
+9020,very_high,0.7581261992454529,5,4.051148414611816,The city of Caracas is in Sudan.,0,Caracas,Sudan,Venezuela
+8920,very_high,0.8518164157867432,1,4.359132289886475,The city of Maputo is in Japan.,0,Maputo,Japan,Mozambique
+8920,very_high,0.8518164157867432,2,3.989462375640869,The city of Oslo is in Norway.,1,Oslo,Norway,Norway
+8920,very_high,0.8518164157867432,3,3.879829168319702,The city of New Kingston is in Jamaica.,1,New Kingston,Jamaica,Jamaica
+8920,very_high,0.8518164157867432,4,3.7031362056732178,The city of Seattle is in the United States.,1,Seattle,the United States,the United States
+8920,very_high,0.8518164157867432,5,3.6979339122772217,The city of New Kingston is in South Africa.,0,New Kingston,South Africa,Jamaica
+352,very_high,0.947418749332428,1,6.169525146484375,The city of Winnipeg is in Canada.,1,Winnipeg,Canada,Canada
+352,very_high,0.947418749332428,2,5.854240894317627,The city of New York City is in India.,0,New York City,India,the United States
+352,very_high,0.947418749332428,3,5.691645622253418,The city of New York City is in the United States.,1,New York City,the United States,the United States
+352,very_high,0.947418749332428,4,5.549737453460693,The city of Kyoto is in Japan.,1,Kyoto,Japan,Japan
+352,very_high,0.947418749332428,5,5.5114593505859375,The city of Fort Worth is in the United States.,1,Fort Worth,the United States,the United States
+17446,very_high,0.9483747482299805,1,4.908994674682617,The city of Ludhiana is in Togo.,0,Ludhiana,Togo,India
+17446,very_high,0.9483747482299805,2,4.25345516204834,The city of Chizhou is in the Republic of the Congo.,0,Chizhou,the Republic of the Congo,China
+17446,very_high,0.9483747482299805,3,4.186560153961182,The city of Yerevan is in Armenia.,1,Yerevan,Armenia,Armenia
+17446,very_high,0.9483747482299805,4,4.07898473739624,The city of Wenzhou is in Moldova.,0,Wenzhou,Moldova,China
+17446,very_high,0.9483747482299805,5,3.9040772914886475,The city of Narela is in Turkey.,0,Narela,Turkey,India
+19088,very_high,0.9588910341262817,1,2.383892297744751,The city of Tembisa is in the Philippines.,0,Tembisa,the Philippines,South Africa
+19088,very_high,0.9588910341262817,2,2.276484489440918,The city of Novosibirsk is in the Philippines.,0,Novosibirsk,the Philippines,Russia
+19088,very_high,0.9588910341262817,3,2.1585381031036377,The city of Madinat an Nasr is in India.,0,Madinat an Nasr,India,Egypt
+19088,very_high,0.9588910341262817,4,2.0856142044067383,The city of Jieyang is in the Philippines.,0,Jieyang,the Philippines,China
+19088,very_high,0.9588910341262817,5,2.0118865966796875,The city of Addis Ababa is in Indonesia.,0,Addis Ababa,Indonesia,Ethiopia
+641,very_high,0.9894837737083435,1,9.223995208740234,The city of New York City is in the United States.,1,New York City,the United States,the United States
+641,very_high,0.9894837737083435,2,9.121932029724121,The city of Albuquerque is in the United States.,1,Albuquerque,the United States,the United States
+641,very_high,0.9894837737083435,3,8.78419303894043,The city of Oklahoma City is in the United States.,1,Oklahoma City,the United States,the United States
+641,very_high,0.9894837737083435,4,8.552873611450195,The city of Indianapolis is in the United States.,1,Indianapolis,the United States,the United States
+641,very_high,0.9894837737083435,5,8.492310523986816,The city of Detroit is in the United States.,1,Detroit,the United States,the United States
+22855,very_high,0.9980879426002502,1,3.0049421787261963,The city of Stockholm is in Sweden.,1,Stockholm,Sweden,Sweden
+22855,very_high,0.9980879426002502,2,2.9836008548736572,The city of Rohini is in India.,1,Rohini,India,India
+22855,very_high,0.9980879426002502,3,2.9434826374053955,The city of Warangal is in India.,1,Warangal,India,India
+22855,very_high,0.9980879426002502,4,2.9313127994537354,The city of Incheon is in India.,0,Incheon,India,South Korea
+22855,very_high,0.9980879426002502,5,2.907789468765259,The city of Seoul is in South Korea.,1,Seoul,South Korea,South Korea
+23058,very_low,0.0009560229373164475,1,0.33926334977149963,The city of Copenhagen is in Denmark.,1,Copenhagen,Denmark,Denmark
+23058,very_low,0.0009560229373164475,2,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+23058,very_low,0.0009560229373164475,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+23058,very_low,0.0009560229373164475,4,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+23058,very_low,0.0009560229373164475,5,0.0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia
+2158,very_low,0.0009560229373164475,1,0.0052357017993927,The city of Aleppo is in Syria.,1,Aleppo,Syria,Syria
+2158,very_low,0.0009560229373164475,2,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+2158,very_low,0.0009560229373164475,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+2158,very_low,0.0009560229373164475,4,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+2158,very_low,0.0009560229373164475,5,0.0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia
+20622,very_low,0.0009560229373164475,1,0.39028990268707275,The city of Amman is in Jordan.,1,Amman,Jordan,Jordan
+20622,very_low,0.0009560229373164475,2,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+20622,very_low,0.0009560229373164475,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+20622,very_low,0.0009560229373164475,4,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+20622,very_low,0.0009560229373164475,5,0.0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia
+12517,very_low,0.0009560229373164475,1,0.5409592986106873,The city of Buraydah is in Rwanda.,0,Buraydah,Rwanda,Saudi Arabia
+12517,very_low,0.0009560229373164475,2,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+12517,very_low,0.0009560229373164475,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+12517,very_low,0.0009560229373164475,4,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+12517,very_low,0.0009560229373164475,5,0.0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia
+2446,very_low,0.0009560229373164475,1,0.5318950414657593,The city of Aleppo is in Syria.,1,Aleppo,Syria,Syria
+2446,very_low,0.0009560229373164475,2,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+2446,very_low,0.0009560229373164475,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+2446,very_low,0.0009560229373164475,4,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+2446,very_low,0.0009560229373164475,5,0.0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia
+4547,very_low,0.0009560229373164475,1,1.4749339818954468,The city of Uberlandia is in India.,0,Uberlandia,India,Brazil
+4547,very_low,0.0009560229373164475,2,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+4547,very_low,0.0009560229373164475,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+4547,very_low,0.0009560229373164475,4,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+4547,very_low,0.0009560229373164475,5,0.0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia
+12602,very_low,0.001912045874632895,1,10.675662994384766,The city of Uberlandia is in India.,0,Uberlandia,India,Brazil
+12602,very_low,0.001912045874632895,2,9.574023246765137,The city of Uberlandia is in Brazil.,1,Uberlandia,Brazil,Brazil
+12602,very_low,0.001912045874632895,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+12602,very_low,0.001912045874632895,4,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+12602,very_low,0.001912045874632895,5,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+11918,very_low,0.001912045874632895,1,1.4962413311004639,The city of Tabriz is in India.,0,Tabriz,India,Iran
+11918,very_low,0.001912045874632895,2,1.1514766216278076,The city of Tabriz is in Iran.,1,Tabriz,Iran,Iran
+11918,very_low,0.001912045874632895,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+11918,very_low,0.001912045874632895,4,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+11918,very_low,0.001912045874632895,5,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+14774,very_low,0.001912045874632895,1,0.0770898088812828,The city of Dubai is in the United Arab Emirates.,1,Dubai,the United Arab Emirates,the United Arab Emirates
+14774,very_low,0.001912045874632895,2,0.03834345191717148,The city of Chizhou is in the Republic of the Congo.,0,Chizhou,the Republic of the Congo,China
+14774,very_low,0.001912045874632895,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+14774,very_low,0.001912045874632895,4,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+14774,very_low,0.001912045874632895,5,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
+7200,very_low,0.001912045874632895,1,0.33965709805488586,The city of Kyiv is in Ukraine.,1,Kyiv,Ukraine,Ukraine
+7200,very_low,0.001912045874632895,2,0.20766499638557434,The city of Oslo is in Venezuela.,0,Oslo,Venezuela,Norway
+7200,very_low,0.001912045874632895,3,0.0,The city of Lodz is in the Dominican Republic.,0,Lodz,the Dominican Republic,Poland
+7200,very_low,0.001912045874632895,4,0.0,The city of Krasnodar is in South Africa.,0,Krasnodar,South Africa,Russia
+7200,very_low,0.001912045874632895,5,0.0,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan
