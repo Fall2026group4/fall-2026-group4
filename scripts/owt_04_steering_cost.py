@@ -18,18 +18,27 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 
-def main(config_path: str) -> None:
+def main(config_path: str, only: list[str] | None = None) -> None:
     import numpy as np
     import pandas as pd
     import torch
 
     from src.owt.data import load_config, load_neutral_snippets, set_all_seeds
-    from src.owt.saes import enabled_sae_types, hook_name_for_layer, load_all_layer_saes, load_model
+    from src.owt.saes import (
+        enabled_sae_types,
+        hook_name_for_layer,
+        layers_for_type,
+        load_all_layer_saes,
+        load_model,
+        restrict_sae_types,
+        save_merged,
+    )
     from src.owt.steering_cost import steering_cost_for_direction
 
     if not Path(config_path).is_absolute():
         config_path = REPO_ROOT / config_path
     config = load_config(config_path)
+    restrict_sae_types(config, only)
     set_all_seeds(config["seed"])
 
     data_dir = REPO_ROOT / config["paths"]["data_dir"]
@@ -66,7 +75,7 @@ def main(config_path: str) -> None:
         print(f"\n=== SAE type: {sae_type} ===")
         layer_saes = load_all_layer_saes(config, sae_type, device=config["model"]["device"])
 
-        for layer in config["layers"]:
+        for layer in layers_for_type(config, sae_type):
             sae = layer_saes[layer]
             hook_name = hook_name_for_layer(config, sae_type, layer)
 
@@ -117,12 +126,14 @@ def main(config_path: str) -> None:
     grouped["ce_loss_change"] /= grouped["n_snippets"]
 
     output_path = results_dir / "tables" / "steering_cost.csv"
-    grouped.to_csv(output_path, index=False)
+    save_merged(grouped, output_path)
     print(f"\nSaved: {output_path}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", default="configs/owt.yaml")
+    parser.add_argument("--only", nargs="+", default=None,
+                        help="run only these SAE types, e.g. --only topk (existing rows of other types are kept)")
     args = parser.parse_args()
-    main(args.config)
+    main(args.config, args.only)

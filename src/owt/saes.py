@@ -16,6 +16,10 @@ __all__ = [
     "load_model",
     "enabled_sae_types",
     "hook_name_for_layer",
+    "layers_for_type",
+    "restrict_sae_types",
+    "save_merged",
+    "sae_id_for_layer",
     "normalize_hook_point",
     "load_sae",
     "load_all_layer_saes",
@@ -67,6 +71,27 @@ def enabled_sae_types(config: dict[str, Any]) -> list[str]:
     return [name for name, cfg in config["sae_types"].items() if cfg.get("enabled")]
 
 
+def layers_for_type(config: dict[str, Any], sae_type: str) -> list[int]:
+    """Positions (hook_resid_pre layers) an SAE type covers.
+
+    Defaults to ``config["layers"]``. A type can narrow it with its own
+    ``layers`` list: the TopK release is trained on resid_post, so it has
+    no SAE for position 0 (the embeddings) and covers positions 1-11 here.
+    """
+    return list(config["sae_types"][sae_type].get("layers", config["layers"]))
+
+
+def sae_id_for_layer(config: dict[str, Any], sae_type: str, layer: int) -> str:
+    """Release-specific SAE id for a position. ``{layer}`` is the position
+    (resid_pre index); ``{source_layer}`` is the block the SAE was trained
+    on, which is ``layer - 1`` for a resid_post release (position L is the
+    output of block L - 1)."""
+    type_cfg = config["sae_types"][sae_type]
+    point_type = type_cfg.get("point_type", "resid_pre")
+    source_layer = layer - 1 if point_type == "resid_post" else layer
+    return type_cfg["sae_id_template"].format(layer=layer, source_layer=source_layer)
+
+
 def hook_name_for_layer(config: dict[str, Any], sae_type: str, layer: int) -> str:
     """The GPT-2 hook point a given SAE type/layer reads from."""
     template = config["sae_types"][sae_type]["hook_template"]
@@ -91,9 +116,11 @@ def load_sae(config: dict[str, Any], sae_type: str, layer: int, device: str | No
             f"SAE type '{sae_type}' has no release/sae_id_template configured."
         )
 
-    sae_id = sae_id_template.format(layer=layer)
+    sae_id = sae_id_for_layer(config, sae_type, layer)
     device = device or config["model"]["device"]
-    sae = SAE.from_pretrained(release=release, sae_id=sae_id, device=device)
+    out = SAE.from_pretrained(release=release, sae_id=sae_id, device=device)
+    sae = out[0] if isinstance(out, tuple) else out  # older SAELens returns a tuple
+    sae.eval()
     return sae
 
 
@@ -107,4 +134,33 @@ def load_all_layer_saes(
     layer, discard, then move to the next type rather than holding
     multiple types in memory at once.
     """
-    return {layer: load_sae(config, sae_type, layer, device) for layer in config["layers"]}
+    return {layer: load_sae(config, sae_type, layer, device) for layer in layers_for_type(config, sae_type)}
+
+
+def restrict_sae_types(config: dict[str, Any], only: list[str] | None) -> None:
+    """Disable every SAE type not in ``only`` (CLI ``--only topk``), so a new
+    type can be run without redoing the others."""
+    if not only:
+        return
+    unknown = [t for t in only if t not in config["sae_types"]]
+    if unknown:
+        raise ValueError(f"Unknown SAE types in --only: {unknown}")
+    for name, cfg in config["sae_types"].items():
+        cfg["enabled"] = name in only
+
+
+def save_merged(df, path, key_cols=("sae_type",)) -> None:
+    """Write ``df`` to ``path`` without losing rows of SAE types that were not
+    part of this run: existing rows whose key matches a key in ``df`` are
+    replaced, all other existing rows are kept."""
+    import pandas as pd
+    from pathlib import Path
+
+    path = Path(path)
+    if path.exists() and len(df):
+        old = pd.read_csv(path)
+        key_cols = list(key_cols)
+        new_keys = set(map(tuple, df[key_cols].astype(str).values))
+        keep = ~old[key_cols].astype(str).apply(tuple, axis=1).isin(new_keys)
+        df = pd.concat([old[keep], df], ignore_index=True)
+    df.to_csv(path, index=False)
