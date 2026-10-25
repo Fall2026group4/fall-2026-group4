@@ -25,6 +25,13 @@ data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
+# OpenWebText pipeline data - synced to S3 instead (see configs/owt.yaml /
+# the AWS working routine). Token ids are small and could go in git, but
+# keep the whole directory out so nobody accidentally commits a large
+# activation cache - recompute from data/owt/tokens/ instead of saving
+# activations.
+data/owt/
+
 # Model files / checkpoints
 *.pt
 *.pth
