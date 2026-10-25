@@ -144,7 +144,7 @@ def plot(df):
     axes[0].legend(title="SAE type")
     fig.suptitle("Stage 4: SAE fidelity on Geometry of Truth (mean over 6 datasets)")
     fig.tight_layout()
-    path = FIG_DIR / "got_s4_sae_fidelity.png"
+    path = FIG_DIR / "got_s4_sae_fidelity.svg"
     fig.savefig(path, dpi=150)
     print(f"Saved {path.relative_to(ROOT)}")
 

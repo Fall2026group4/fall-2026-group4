@@ -198,7 +198,7 @@ def plot(probe, null):
     ax.grid(alpha=0.3)
     ax.legend()
     fig.tight_layout()
-    path = FIG_DIR / "got_s5_probe_fidelity.png"
+    path = FIG_DIR / "got_s5_probe_fidelity.svg"
     fig.savefig(path, dpi=150)
     print(f"Saved {path.relative_to(ROOT)}")
 

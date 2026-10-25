@@ -137,7 +137,7 @@ def plot(df):
         ax.legend()
     fig.suptitle("RepE Stage 4: SAE fidelity (mean over prompt sets)")
     fig.tight_layout()
-    path = FIG_DIR / "repe_s4_sae_fidelity.png"
+    path = FIG_DIR / "repe_s4_sae_fidelity.svg"
     fig.savefig(path, dpi=150)
     print(f"Saved {path.relative_to(ROOT)}")
 

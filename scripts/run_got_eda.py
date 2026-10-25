@@ -4,7 +4,7 @@ Run from the project root:
     python scripts/run_got_eda.py --step 1      # run one step
     python scripts/run_got_eda.py               # run every step that exists so far
 
-Outputs: results/tables/got/got_s0_<step>_*.csv, results/figures/got/got_s0_<step>_*.png
+Outputs: results/tables/got/got_s0_<step>_*.csv, results/figures/got/got_s0_<step>_*.svg
 """
 
 import argparse

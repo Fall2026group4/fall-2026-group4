@@ -53,6 +53,6 @@ for method, label in [("mass_mean", "mass-mean"), ("logistic", "logistic")]:
     ax.legend()
 
     fig.tight_layout()
-    name = "repe_s5_probe_fidelity.png" if method == "mass_mean" else "repe_s5_probe_fidelity_logistic.png"
+    name = "repe_s5_probe_fidelity.svg" if method == "mass_mean" else "repe_s5_probe_fidelity_logistic.svg"
     fig.savefig(FIG / name, dpi=150)
     print(f"Saved results/figures/repe/{name}")
