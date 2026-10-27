@@ -1,0 +1,9 @@
+metric,value,percent
+total_statements,596,100.0
+true_statements,296,49.66
+false_statements,300,50.34
+true_to_false_ratio,0.987,
+usable_pairs,296,
+total_prompts,592,
+train_pairs_70pct,207,
+test_pairs_30pct,89,

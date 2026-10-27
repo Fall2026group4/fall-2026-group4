@@ -1,0 +1,7 @@
+row,statement,label,issues
+51,"The planet Uranus is often referred to as the ""ice giant.""",1,has_quotes
+85,"The planet Venus is often referred to as the ""morning star"" or the ""evening star.""",1,has_quotes
+216,The fastest swimmer in the world is CÃ©sar Cielo from Brazil.,1,has_non_ascii
+442,"Mitochondria are the ""powerhouses"" of cells, producing energy through cellular respiration.",1,has_quotes
+518,"The planet Mars is known as the ""Red Planet"" due to its reddish appearance.",1,has_quotes
+549,"Mitochondria are the ""weaknesses"" of cells, consuming energy through cellular respiration.",0,has_quotes

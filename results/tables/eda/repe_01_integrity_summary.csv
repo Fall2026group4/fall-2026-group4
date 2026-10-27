@@ -1,0 +1,12 @@
+check,value
+n_rows,612
+columns,"statement, label"
+dtypes,"statement:str, label:int64"
+missing_statement,0
+missing_label,0
+empty_statement,0
+invalid_label_values,0
+unique_label_values,"0, 1"
+exact_duplicate_rows,27
+near_duplicate_rows,29
+conflicting_label_groups,1

@@ -1,0 +1,1185 @@
+format,split,topic,label,score,token_len,statement
+zero_shot,train,space_astronomy,1,0.40009307861328125,13,The Earth's atmosphere protects us from harmful radiation from the sun.
+zero_shot,train,plants_nature,0,0.9151384830474854,11,The largest flower in the world is the daisy.
+zero_shot,train,human_body_health,0,1.238555908203125,9,Cells are the complex units of life.
+zero_shot,train,animals,1,0.7712249755859375,20,"The theory of evolution, proposed by Charles Darwin, states that species evolve over time through natural selection."
+zero_shot,train,space_astronomy,1,0.80517578125,10,The smallest planet in our solar system is Mercury.
+zero_shot,test,space_astronomy,1,0.383758544921875,7,The moon orbits around the Earth.
+zero_shot,test,animals,0,0.38796234130859375,11,The fastest bird in the world is the penguin.
+zero_shot,train,animals,0,0.5954742431640625,11,The fastest animal in the world is the sloth.
+zero_shot,test,physics_chemistry,1,1.2032852172851562,6,Fire needs oxygen to burn.
+zero_shot,train,other,1,0.6898422241210938,14,The Statue of Liberty was a gift from France to the United States.
+zero_shot,train,space_astronomy,1,0.6024017333984375,12,Comets are icy celestial objects that orbit the Sun.
+zero_shot,test,other,0,0.8483657836914062,11,The coldest place on Earth is the equator.
+zero_shot,test,physics_chemistry,1,1.87860107421875,13,Light can exhibit both wave-like and particle-like properties.
+zero_shot,train,space_astronomy,0,1.2907867431640625,10,Jupiter is mostly made of iron and oxygen.
+zero_shot,train,space_astronomy,0,0.550262451171875,6,The Earth avoids the Sun.
+zero_shot,train,physics_chemistry,0,1.3728103637695312,16,Gravity is the force that repels objects with mass away from each other.
+zero_shot,train,human_body_health,0,1.2961273193359375,9,The largest unit of life is the cell.
+zero_shot,train,other,0,1.642120361328125,20,Metamorphosis is a biological process in which an organism remains unchanged in form during its life cycle.
+zero_shot,train,animals,1,0.6586685180664062,11,Symbiosis is a close relationship between two species.
+zero_shot,test,food,1,2.0449371337890625,12,Pizza is a type of food that many people enjoy.
+zero_shot,train,human_body_health,0,0.6370773315429688,9,Oxygen is harmful to human breathing.
+zero_shot,train,animals,1,0.46762847900390625,13,Sharks are sea creatures that have a reputation for being dangerous.
+zero_shot,train,other,1,0.7108917236328125,15,The scientific method is a systematic process for investigating phenomena and acquiring new knowledge.
+zero_shot,train,animals,0,0.681976318359375,13,Sharks are sea creatures that have a reputation for being friendly.
+zero_shot,test,space_astronomy,1,1.2035675048828125,11,Plate tectonics shape the Earth's surface.
+zero_shot,test,other,0,0.721588134765625,12,The largest reptile in the world is the crocodile.
+zero_shot,test,human_body_health,1,0.9598236083984375,12,"The human heart beats approximately 100,000 times per day."
+zero_shot,test,other,1,0.9471359252929688,8,The color of the sky is blue.
+zero_shot,train,physics_chemistry,1,1.0659027099609375,9,Cacti store water in their stems.
+zero_shot,train,physics_chemistry,0,1.5575790405273438,15,"The three states of anti-matter are solid, liquid, and gas."
+zero_shot,train,space_astronomy,0,0.9859619140625,8,The Milky Way is a linear galaxy.
+zero_shot,test,space_astronomy,0,0.9370269775390625,13,The Earth's stillness on its axis causes day and night.
+zero_shot,train,physics_chemistry,0,1.6032562255859375,23,"The first law of thermodynamics states that energy can be created and destroyed, only converted from one form to another."
+zero_shot,train,physics_chemistry,0,1.0567779541015625,11,The speed of light is approximately 10 meters per second.
+zero_shot,test,geography,1,0.6681365966796875,10,The Panama Canal connects the Atlantic and Pacific oceans.
+zero_shot,train,space_astronomy,0,0.6391983032226562,14,The Earth's magnetic field is what causes compasses to point south.
+zero_shot,train,space_astronomy,0,1.3027572631835938,8,Uranus orbits the Sun upright.
+zero_shot,train,other,1,1.0493621826171875,21,"The three main types of symbiotic relationships are mutualism, commensalism, and parasitism."
+zero_shot,train,space_astronomy,1,1.3109130859375,10,Uranus orbits the Sun on its side.
+zero_shot,test,animals,0,0.9183883666992188,11,The fastest land animal in the world is the snail.
+zero_shot,train,geography,1,0.9446563720703125,9,The largest continent in the world is Asia.
+zero_shot,test,geography,0,0.6847305297851562,9,The Statue of Liberty is located in Paris.
+zero_shot,train,other,1,0.9430465698242188,14,The first successful powered flight was made by the Wright Brothers in 1903.
+zero_shot,test,other,0,1.1324844360351562,11,Ecosystems exclude living organisms and their physical environment.
+zero_shot,train,space_astronomy,0,1.011016845703125,10,The smallest planet in the solar system is Jupiter.
+zero_shot,train,space_astronomy,1,0.5142059326171875,12,"Jupiter has the Great Red Spot, a giant storm."
+zero_shot,train,other,0,0.13089752197265625,19,The study of non-living organisms and their interactions with the environment is called anti-biology.
+zero_shot,train,human_body_health,1,0.6097640991210938,10,The human eye can detect millions of different colors.
+zero_shot,test,human_body_health,0,0.5510711669921875,8,The human brain weighs about 100 pounds.
+zero_shot,test,physics_chemistry,1,2.5146331787109375,13,"The three states of matter are solid, liquid, and gas."
+zero_shot,train,physics_chemistry,1,1.4066925048828125,16,"The water cycle includes evaporation, condensation, precipitation, and runoff."
+zero_shot,train,space_astronomy,1,1.2670745849609375,14,"The planet Uranus is often referred to as the ""ice giant."""
+zero_shot,train,other,1,0.7684628963470459,5,The sky is blue.
+zero_shot,test,human_body_health,0,0.97686767578125,9,The human body has 12 pairs of legs.
+zero_shot,train,human_body_health,0,0.8067092895507812,7,The human body has 100 bones.
+zero_shot,train,animals,0,1.191864013671875,10,The fastest animal in the world is the turtle.
+zero_shot,train,other,0,0.6707763671875,16,The unscientific method is a random process for ignoring phenomena and losing knowledge.
+zero_shot,test,human_body_health,0,1.005584716796875,22,"Humans have six senses: sight, hearing, touch, taste, smell, and telekinesis."
+zero_shot,train,human_body_health,0,0.54949951171875,8,Humans do not use their brains.
+zero_shot,train,physics_chemistry,0,1.7633895874023438,14,The conservation of energy principle states that energy can be created and destroyed.
+zero_shot,train,other,0,1.3412704467773438,9,Lightning is an accumulation of static movement.
+zero_shot,train,geography,0,0.8715744018554688,12,The longest mountain range in the world is located in Australia.
+zero_shot,test,human_body_health,0,0.42459869384765625,9,DNA erases genetic information in living organisms.
+zero_shot,train,human_body_health,1,0.4824066162109375,14,The average body temperature of a human is 98.6 degrees Fahrenheit.
+zero_shot,test,other,1,0.5484390258789062,5,The Earth is round.
+zero_shot,train,human_body_health,1,0.756317138671875,8,DNA carries genetic information in living organisms.
+zero_shot,train,other,0,0.15995025634765625,10,The ozone layer exposes Earth to harmful ultraviolet radiation.
+zero_shot,train,other,0,0.6314010620117188,9,Volcanic eruptions destroy existing land.
+zero_shot,test,human_body_health,1,0.34429931640625,10,The endocrine system regulates body functions through hormones.
+zero_shot,test,other,0,1.262237548828125,19,"The three main types of neurons are muscle neurons, sensory neurons, and extraneurons."
+zero_shot,test,human_body_health,1,1.1079254150390625,11,The human body is composed of about 60% water.
+zero_shot,test,other,1,0.7313079833984375,13,The Great Wall of China is the longest wall in the world.
+zero_shot,test,geography,0,0.8518829345703125,8,The Grand Canyon is located in Europe.
+zero_shot,test,space_astronomy,0,0.966217041015625,8,Saturn's smallest moon is Titan.
+zero_shot,train,space_astronomy,1,0.8991241455078125,12,The planet Jupiter is the largest planet in our solar system.
+zero_shot,train,space_astronomy,0,0.4501495361328125,12,Comets are fiery celestial objects that avoid the Sun.
+zero_shot,train,geography,0,1.1120529174804688,9,The only continent without any mountains is Asia.
+zero_shot,test,other,0,1.0563278198242188,13,Inertia is an object's encouragement to change in motion.
+zero_shot,train,other,0,0.88775634765625,6,Apples grow on vines.
+zero_shot,train,other,0,0.8391952514648438,6,Earth is 71% land.
+zero_shot,train,human_body_health,0,1.12750244140625,10,The human body does not need water to survive.
+zero_shot,train,physics_chemistry,0,0.9223403930664062,10,Ice sinks in water due to its higher density.
+zero_shot,train,physics_chemistry,1,1.2049179077148438,9,Echoes are sound waves reflecting off surfaces.
+zero_shot,train,animals,0,0.9531478881835938,22,"The theory of stasis, proposed by Charles Darwin, states that species remain constant over time through artificial selection."
+zero_shot,test,physics_chemistry,0,1.183319091796875,10,The freezing point of water decreases as altitude increases.
+zero_shot,train,space_astronomy,1,1.21405029296875,20,"The planet Venus is often referred to as the ""morning star"" or the ""evening star."""
+zero_shot,train,other,0,0.794891357421875,24,"A day on Earth is approximately 365.25 days long, which is why we have a leap year every four years."
+zero_shot,test,animals,0,1.0482556819915771,6,Penguins can fly.
+zero_shot,train,physics_chemistry,1,0.84698486328125,15,Chemical reactions involve the rearrangement of atoms to form new substances.
+zero_shot,train,other,0,0.523284912109375,8,There are 50 hours in a day.
+zero_shot,train,physics_chemistry,0,1.097137451171875,11,Iron remains unaffected in the presence of oxygen and water.
+zero_shot,test,space_astronomy,0,1.3149185180664062,16,Volcanoes form far from areas where Earth's tectonic plates interact.
+zero_shot,train,other,0,1.0274658203125,30,"The pH scale measures the sweetness or bitterness of a substance, ranging from 0 (most sweet) to 14 (most bitter), with 7 being neutral."
+zero_shot,train,human_body_health,1,0.7127532958984375,8,The human brain weighs around 3 pounds.
+zero_shot,train,other,0,1.265472412109375,14,Friction is the force that encourages motion between two surfaces in contact.
+zero_shot,test,space_astronomy,0,0.5860214233398438,7,The moon is made of cheese.
+zero_shot,train,space_astronomy,1,1.4452590942382812,11,The most abundant gas in Earth's atmosphere is nitrogen.
+zero_shot,train,geography,1,1.1700210571289062,10,The highest mountain in North America is Denali.
+zero_shot,train,physics_chemistry,0,1.1998214721679688,15,The atomic number of an element represents the number of electrons in its nucleus.
+zero_shot,test,geography,1,1.5408782958984375,11,The longest river in Europe is the Volga River.
+zero_shot,train,physics_chemistry,1,0.9890365600585938,15,Osmosis is the movement of water across a selectively permeable membrane.
+zero_shot,test,geography,0,0.0361785888671875,11,The Great Barrier Reef is located in the Atlantic Ocean.
+zero_shot,train,physics_chemistry,1,1.4427871704101562,23,"The process by which a solid turns directly into a gas, without becoming a liquid, is called sublimation."
+zero_shot,train,animals,0,0.9495697021484375,10,"Trees are not plants, they are animals."
+zero_shot,train,space_astronomy,1,0.1392822265625,15,The Earth's tides are primarily caused by the gravitational pull of the moon.
+zero_shot,train,space_astronomy,1,0.8658370971679688,7,Mercury is the smallest planet.
+zero_shot,train,geography,0,0.7867431640625,12,The highest point in the United States is located in Florida.
+zero_shot,train,animals,1,0.4064178466796875,8,Cows are mammals that produce milk.
+zero_shot,test,other,0,0.49195098876953125,18,"The three main types of symbiotic relationships are competition, antagonism, and predation."
+zero_shot,train,plants_nature,1,0.980377197265625,8,Plants need carbon dioxide to survive.
+zero_shot,train,geography,1,1.2941360473632812,13,The Amazon River is the largest river in the world by volume.
+zero_shot,train,geography,0,1.05108642578125,10,The shortest river in the world is the Amazon.
+zero_shot,test,human_body_health,1,-0.120819091796875,9,The immune system defends the body against pathogens.
+zero_shot,test,physics_chemistry,1,0.25970458984375,9,There are 118 elements on the periodic table.
+zero_shot,test,other,0,1.0261383056640625,5,Grass is purple.
+zero_shot,train,geography,1,0.847900390625,12,New York City is the largest city in the United States.
+zero_shot,train,human_body_health,0,-0.11835479736328125,11,The endocrine system disrupts body functions through hormones.
+zero_shot,train,physics_chemistry,0,0.47719550132751465,11,The periodic table scatters elements based on their properties.
+zero_shot,test,human_body_health,1,0.6567535400390625,9,The human brain controls the body's functions.
+zero_shot,train,geography,0,0.9163436889648438,11,The tallest building in the world is located in Antarctica.
+zero_shot,train,human_body_health,1,1.3574752807617188,9,Cells are the basic units of life.
+zero_shot,train,geography,1,1.3719635009765625,11,The largest desert in the world is the Sahara Desert.
+zero_shot,test,other,1,1.116607666015625,7,Octopuses have three hearts.
+zero_shot,train,animals,0,0.657318115234375,11,Camouflage makes animals stand out in their environment.
+zero_shot,train,space_astronomy,0,0.44179511070251465,7,The Earth orbits around the moon.
+zero_shot,train,plants_nature,0,1.0630874633789062,10,The scientific name for plants is Homo sapiens.
+zero_shot,train,space_astronomy,0,0.24576568603515625,18,The Earth's ozone hole exposes us to beneficial ultraviolet (UV) radiation from the moon.
+zero_shot,train,plants_nature,0,2.5158462524414062,16,The process by which plants release carbon dioxide and absorb oxygen is called photosynthesis.
+zero_shot,test,animals,0,0.35620880126953125,11,The smallest bird in the world is the ostrich.
+zero_shot,test,physics_chemistry,1,0.47798919677734375,17,The coldest natural temperature ever recorded was -128.6 degrees Fahrenheit in Antarctica.
+zero_shot,train,physics_chemistry,1,0.7883071899414062,11,The periodic table organizes elements based on their properties.
+zero_shot,test,physics_chemistry,1,1.1792144775390625,11,The electron configuration of an atom determines its chemical properties.
+zero_shot,train,animals,1,0.31827545166015625,11,The largest bird in the world is the ostrich.
+zero_shot,train,physics_chemistry,1,1.9423367977142334,10,Sound travels as a wave through various mediums.
+zero_shot,train,human_body_health,1,2.2782974243164062,20,"The three types of blood vessels in the human body are arteries, veins, and capillaries."
+zero_shot,test,space_astronomy,1,0.7507321834564209,13,The planet Neptune is named after the Roman god of the sea.
+zero_shot,train,space_astronomy,0,0.6389312744140625,10,There are only nine planets in our solar system.
+zero_shot,train,other,1,1.4949569702148438,12,The highest waterfall in the world is Angel Falls in Venezuela.
+zero_shot,train,human_body_health,1,0.5243148803710938,13,Human digestion begins in the mouth and ends in the small intestine.
+zero_shot,test,human_body_health,0,1.1531982421875,15,The process by which cells merge to form one larger cell is called fusion.
+zero_shot,train,animals,1,0.05109405517578125,6,Fish breathe through gills.
+zero_shot,train,physics_chemistry,0,1.3140106201171875,9,Echoes are sound waves absorbed by surfaces.
+zero_shot,train,physics_chemistry,1,0.9611740112304688,11,Water freezes at 0 degrees Celsius (32 degrees Fahrenheit).
+zero_shot,train,other,0,1.4971847534179688,7,Broccoli is a popular dessert.
+zero_shot,train,geography,1,0.6533584594726562,12,"The Eiffel Tower is located in Paris, France."
+zero_shot,train,animals,0,0.6073074340820312,11,Elephants are the smallest mammals in the world.
+zero_shot,train,other,1,0.5647125244140625,21,The Doppler effect causes the change in frequency or wavelength of a wave in relation to an observer.
+zero_shot,train,space_astronomy,0,1.2674484252929688,11,Plate tectonics smooth the Earth's surface.
+zero_shot,train,space_astronomy,0,1.4230575561523438,9,The strongest force in the universe is water.
+zero_shot,test,physics_chemistry,0,0.5497665405273438,16,Rainbows are formed when light is reflected off of dirt particles in the air.
+zero_shot,train,animals,0,0.26967620849609375,6,Dogs are not mammals.
+zero_shot,train,geography,0,1.2202224731445312,10,Mount Everest is the shortest mountain in the world.
+zero_shot,test,animals,0,1.0693511962890625,14,Penguins are warm-blooded and can survive in hot climates.
+zero_shot,train,space_astronomy,1,0.6132888793945312,10,Auroras occur near Earth's polar regions.
+zero_shot,train,geography,0,0.8370361328125,7,There are no deserts in Australia.
+zero_shot,train,other,1,1.9322128295898438,16,The study of heredity and the variation of inherited characteristics is called genetics.
+zero_shot,test,human_body_health,0,1.6687541007995605,19,"The human body has four types of water groups: A, B, AB, and O."
+zero_shot,train,human_body_health,0,0.6059188842773438,13,Human digestion begins in the hand and ends in the large intestine.
+zero_shot,test,geography,0,0.718414306640625,9,The Statue of Liberty is located in Tokyo.
+zero_shot,train,other,1,0.4350738525390625,13,Polar bears have white fur to camouflage in their snowy environment.
+zero_shot,test,other,0,-0.35302734375,7,Vaccines promote infectious diseases.
+zero_shot,test,space_astronomy,1,1.1516952514648438,12,The planet Saturn has the largest rings in our solar system.
+zero_shot,train,human_body_health,1,0.27178955078125,11,The human lymphatic system helps fight infections and diseases.
+zero_shot,test,geography,1,0.45569610595703125,11,The Statue of Liberty is located in New York City.
+zero_shot,train,plants_nature,1,1.2085342407226562,11,The process of pollination is crucial for plant reproduction.
+zero_shot,test,human_body_health,0,0.5665969848632812,8,The human eye can see radio waves.
+zero_shot,test,other,1,0.2208709716796875,14,The Great Barrier Reef is the largest coral reef system in the world.
+zero_shot,train,plants_nature,0,1.2826156616210938,14,Photosynthesis is the process by which plants convert darkness into chemical energy.
+zero_shot,train,other,1,1.1314237117767334,4,Snow is cold.
+zero_shot,test,space_astronomy,1,0.7128067016601562,6,Mars has a thin atmosphere.
+zero_shot,train,physics_chemistry,1,1.0680923461914062,6,Earth has a magnetic field.
+zero_shot,test,other,1,1.901702880859375,11,The study of substances and their interactions is called chemistry.
+zero_shot,test,other,0,-0.03215789794921875,11,Fossils destroy evidence of past life on Earth.
+zero_shot,test,human_body_health,1,0.1992645263671875,9,A human pregnancy typically lasts around 9 months.
+zero_shot,test,other,1,1.0412673950195312,9,Coral reefs are made of living organisms.
+zero_shot,train,other,0,1.5398101806640625,9,Tornadoes are stationary columns of air.
+zero_shot,test,human_body_health,0,1.6957931518554688,26,The two main types of cells are prokaryotic (with a nucleus) and eukaryotic (without a nucleus).
+zero_shot,train,geography,1,1.0887527465820312,10,The continent of Antarctica is mostly covered in ice.
+zero_shot,test,human_body_health,1,-0.2151947021484375,7,An adult human has 32 teeth.
+zero_shot,test,animals,1,0.6561050415039062,11,The tallest mammal in the world is the giraffe.
+zero_shot,train,human_body_health,1,1.0139312744140625,17,"Humans have five senses: sight, hearing, touch, taste, and smell."
+zero_shot,train,physics_chemistry,0,1.3275985717773438,30,"The four fundamental forces of nature are anti-gravity, anti-electromagnetism, the weak nuclear force, and the strong nuclear force."
+zero_shot,train,plants_nature,0,0.8475573062896729,11,The largest tree in the world is a cactus.
+zero_shot,train,human_body_health,1,0.8777999877929688,10,The human skin is the body's largest organ.
+zero_shot,train,human_body_health,0,0.7626495361328125,13,The largest body of water in the world is the Mediterranean Sea.
+zero_shot,test,animals,1,0.83074951171875,9,Migration allows animals to find better resources.
+zero_shot,train,space_astronomy,1,0.8719482421875,12,The planet Jupiter has the most moons in our solar system.
+zero_shot,train,animals,0,-0.01432037353515625,11,The largest bird in the world is the penguin.
+zero_shot,test,physics_chemistry,0,0.65081787109375,16,Osmosis is the prevention of water movement across a selectively permeable membrane.
+zero_shot,train,physics_chemistry,1,1.6785430908203125,23,"The first law of thermodynamics states that energy cannot be created or destroyed, only converted from one form to another."
+zero_shot,train,physics_chemistry,0,0.7110977172851562,17,Radioactive decay occurs when stable atomic nuclei absorb energy in the form of radiation.
+zero_shot,train,food,1,1.2504425048828125,8,Apples are a type of fruit.
+zero_shot,train,space_astronomy,0,0.7529373168945312,6,Mars has a thick atmosphere.
+zero_shot,test,geography,0,0.94891357421875,11,The shortest river in the world is the Amazon River.
+zero_shot,test,other,1,1.250091552734375,9,The currency used in Japan is the yen.
+zero_shot,train,space_astronomy,1,0.61846923828125,12,The planet Earth is the only planet known to support life.
+zero_shot,train,human_body_health,1,0.49859619140625,11,The human eye can distinguish about 10 million different colors.
+zero_shot,train,geography,0,1.3990859985351562,10,The Sahara Desert is covered in snow and ice.
+zero_shot,train,animals,1,0.4056549072265625,10,The world's largest mammal is the blue whale.
+zero_shot,train,space_astronomy,0,0.24028778076171875,9,There are no stars in the night sky.
+zero_shot,train,human_body_health,0,0.5222549438476562,17,Neurons are generalized cells that block electrical and chemical signals in the nervous system.
+zero_shot,train,space_astronomy,0,0.9555740356445312,7,The sun rises in the west.
+zero_shot,train,physics_chemistry,1,1.1261446475982666,7,Gravity makes things fall down.
+zero_shot,train,human_body_health,0,0.43896484375,15,The respiratory system prevents the exchange of gases between the body and the environment.
+zero_shot,train,other,1,0.63519287109375,24,"A year on Earth is approximately 365.25 days long, which is why we have a leap year every four years."
+zero_shot,test,physics_chemistry,1,1.5789413452148438,14,Gravity is the force that attracts objects with mass towards each other.
+zero_shot,test,human_body_health,1,0.19797515869140625,10,The human liver helps filter toxins from the body.
+zero_shot,test,animals,1,0.7647247314453125,14,Bees pollinate approximately one-third of the food we eat.
+zero_shot,train,other,1,1.0944061279296875,13,The longest highway in the world is the Pan-American Highway.
+zero_shot,test,other,0,2.011603832244873,17,"The three types of clouds are igneous, sedimentary, and metamorphic."
+zero_shot,train,animals,1,1.2679059505462646,10,The fastest land animal is the cheetah.
+zero_shot,test,human_body_health,1,-0.02429962158203125,11,The human immune system helps protect the body from infections.
+zero_shot,test,other,1,1.8012619018554688,12,Ecosystems consist of living organisms and their physical environment.
+zero_shot,train,physics_chemistry,0,0.6771240234375,10,Rainbows form when light avoids water droplets.
+zero_shot,train,other,1,1.8535995483398438,19,The fastest swimmer in the world is CÃ©sar Cielo from Brazil.
+zero_shot,train,space_astronomy,0,0.6327362060546875,9,Stars appear steady due to Earth's atmosphere.
+zero_shot,train,technology,0,1.2963180541992188,19,Electromagnetic induction is the process by which a constant magnetic field dampens an electric current.
+zero_shot,train,technology,1,1.3210372924804688,18,Electromagnetic induction is the process by which a changing magnetic field generates an electric current.
+zero_shot,test,other,1,1.3184280395507812,10,Tornadoes are rapidly rotating columns of air.
+zero_shot,train,animals,0,0.35404205322265625,10,The largest mammal in the world is the mosquito.
+zero_shot,test,other,1,0.9338607788085938,10,The Wright brothers made the first successful airplane flight.
+zero_shot,train,other,0,0.3693084716796875,10,The Statue of Liberty was a gift from Canada.
+zero_shot,test,human_body_health,1,0.7445449829101562,17,Neurons are specialized cells that transmit electrical and chemical signals in the nervous system.
+zero_shot,train,human_body_health,1,0.8560562133789062,12,The circulatory system transports nutrients and oxygen throughout the body.
+zero_shot,train,human_body_health,0,0.723968505859375,9,The human nose is located on the forehead.
+zero_shot,test,human_body_health,0,0.5201492309570312,9,The human eye can detect only one color.
+zero_shot,train,other,1,1.6844863891601562,15,"The Earth has four seasons: spring, summer, fall, and winter."
+zero_shot,train,geography,0,0.8589096069335938,11,The largest volcano in the world is located in Europe.
+zero_shot,test,other,1,1.3816604614257812,15,The study of living organisms and their interactions with the environment is called biology.
+zero_shot,test,physics_chemistry,0,0.8788070678710938,9,Cacti store water in their ears.
+zero_shot,test,space_astronomy,1,0.6047515869140625,14,The distance from the Earth to the sun is approximately 93 million miles.
+zero_shot,test,animals,1,0.8570556640625,9,Dogs are known for being loyal pets.
+zero_shot,train,animals,0,0.7303848266601562,11,"Butterflies are not insects, they are birds."
+zero_shot,train,physics_chemistry,0,2.311126708984375,15,The process by which a gas turns into a liquid is called condensation.
+zero_shot,train,other,1,0.677886962890625,12,The sky is often cloudy when it's going to rain.
+zero_shot,test,physics_chemistry,1,0.8713910579681396,10,Ice floats on water due to its lower density.
+zero_shot,train,other,0,0.7568740844726562,12,The sky is often clear when it's going to rain.
+zero_shot,train,other,1,0.8214340209960938,19,"The three main types of neurons are sensory neurons, motor neurons, and interneurons."
+zero_shot,train,other,0,1.0072555541992188,12,The shortest distance between two points is a zigzag.
+zero_shot,train,space_astronomy,1,0.686614990234375,11,The planet Earth is 4.54 billion years old.
+zero_shot,train,physics_chemistry,0,1.3827743530273438,6,Light travels slower than sound.
+zero_shot,test,other,0,0.3612213134765625,5,The Earth is flat.
+zero_shot,train,other,1,0.99383544921875,13,The process of aging is influenced by both genetic and environmental factors.
+zero_shot,test,space_astronomy,0,1.2954483032226562,10,Venus is drastically different in size from Earth.
+zero_shot,train,space_astronomy,1,0.9944534301757812,7,Venus has a thick atmosphere.
+zero_shot,train,space_astronomy,0,1.2039566040039062,6,The Sun is a planet.
+zero_shot,train,other,0,2.3885116577148438,16,Superconductors are materials that have infinite electrical resistance when cooled to certain temperatures.
+zero_shot,test,physics_chemistry,0,0.7059249877929688,26,"Electromagnetic waves exclude radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."
+zero_shot,train,other,0,1.468963623046875,11,The fastest car in the world is made of cardboard.
+zero_shot,test,human_body_health,1,0.99798583984375,9,The human heart pumps blood throughout the body.
+zero_shot,train,space_astronomy,1,1.1480255126953125,19,"The carbon cycle maintains the balance of carbon in Earth's atmosphere, oceans, and biosphere."
+zero_shot,train,space_astronomy,1,0.795989990234375,10,The Earth is located in the Milky Way galaxy.
+zero_shot,train,geography,0,1.1989595890045166,12,The Seven Wonders of the World are located in North America.
+zero_shot,test,space_astronomy,0,1.8733291625976562,13,The first person to walk on the moon was Elvis Presley.
+zero_shot,train,human_body_health,0,1.2499923706054688,9,The human heart is located in the foot.
+zero_shot,train,human_body_health,0,1.604522705078125,8,Water is not necessary for human survival.
+zero_shot,train,animals,0,1.0522079467773438,10,The fastest mammal in the world is the turtle.
+zero_shot,train,physics_chemistry,0,0.8492889404296875,18,The study of antimatter and its interactions with dark energy is called anti-physics.
+zero_shot,train,space_astronomy,1,0.5336074829101562,11,Stars appear to twinkle due to Earth's atmosphere.
+zero_shot,train,animals,0,0.8276214599609375,8,The fastest land animal is the snail.
+zero_shot,train,physics_chemistry,1,1.8102569580078125,9,Cars need gasoline or electricity to run.
+zero_shot,train,animals,0,0.7833175659179688,6,Fish can live on land.
+zero_shot,test,physics_chemistry,0,0.9705123901367188,7,Water freezes at 100 degrees Celsius.
+zero_shot,test,other,0,1.783203125,15,Magnetism is a force that neither attracts nor repels certain materials.
+zero_shot,train,physics_chemistry,0,1.63330078125,21,"The three main types of chemical bonds are covalent, ionic, and non-metallic."
+zero_shot,train,space_astronomy,1,0.9800643920898438,11,Black holes are regions in space with immense gravitational pull.
+zero_shot,train,space_astronomy,0,1.1969070434570312,13,The Earth's atmosphere is composed mostly of helium and carbon dioxide.
+zero_shot,train,geography,0,0.8175277709960938,9,The smallest country in the world is Russia.
+zero_shot,train,other,0,0.76470947265625,11,The highest point in the United States is Death Valley.
+zero_shot,train,other,0,1.2311325073242188,8,A potato is a type of meat.
+zero_shot,test,animals,0,0.9541244506835938,11,The fastest fish in the world is the goldfish.
+zero_shot,train,geography,0,0.6686632633209229,11,The Great Wall of China is located in South America.
+zero_shot,train,geography,0,0.8480300903320312,11,The tallest mountain in the world is located in Australia.
+zero_shot,train,other,1,1.2820281982421875,9,Diamonds are the hardest substance on Earth.
+zero_shot,train,other,1,0.11887359619140625,9,Vaccines help to prevent infectious diseases.
+zero_shot,test,space_astronomy,1,0.7397003173828125,10,The Earth is the third planet from the sun.
+zero_shot,train,space_astronomy,1,0.1808929443359375,13,The planet Pluto was reclassified as a dwarf planet in 2006.
+zero_shot,train,space_astronomy,0,0.86993408203125,9,"Mars has the smallest volcano, Olympus Valley."
+zero_shot,train,animals,0,0.32254791259765625,11,The tallest animal in the world is the penguin.
+zero_shot,test,space_astronomy,0,1.0317916870117188,7,The sun revolves around the Earth.
+zero_shot,train,other,1,1.0890884399414062,13,Inertia is an object's resistance to change in motion.
+zero_shot,train,human_body_health,0,-0.241302490234375,9,The immune system attacks the body with pathogens.
+zero_shot,test,space_astronomy,0,0.41645050048828125,20,"The carbon cycle disrupts the balance of carbon in Earth's atmosphere, oceans, and biosphere."
+zero_shot,test,animals,0,0.24504852294921875,10,Cats are known for being disobedient pets.
+zero_shot,test,space_astronomy,1,0.4306182861328125,5,Earth has one moon.
+zero_shot,train,other,0,0.4794464111328125,21,The Doppler effect prevents the change in frequency or wavelength of a wave in relation to an observer.
+zero_shot,train,other,1,1.5147247314453125,7,Ice cream is a popular dessert.
+zero_shot,train,animals,0,0.8044891357421875,10,The fastest animal in the world is the snail.
+zero_shot,test,animals,0,0.811737060546875,14,"Giraffes are not real animals, they are made up."
+zero_shot,train,geography,1,0.8371200561523438,11,The largest country in the world by area is Russia.
+zero_shot,train,animals,1,1.3126983642578125,16,Hybrids are the offspring of two plants or animals from different species or varieties.
+zero_shot,train,plants_nature,1,1.5733413696289062,11,Plants use photosynthesis to create energy from sunlight.
+zero_shot,train,space_astronomy,0,0.8323287963867188,10,The largest planet in our solar system is Mercury.
+zero_shot,test,animals,1,0.25258636474609375,11,The largest mammal in the world is the blue whale.
+zero_shot,test,animals,0,-0.14792633056640625,7,All animals are cold-blooded.
+zero_shot,train,space_astronomy,0,0.8200225830078125,11,Black holes are regions in space with weak gravitational pull.
+zero_shot,train,animals,0,0.5301437377929688,11,The largest fish in the world is the goldfish.
+zero_shot,train,human_body_health,1,0.24169921875,7,The human body has 206 bones.
+zero_shot,test,space_astronomy,1,0.7632369995117188,15,The planet Mercury is the closest planet to the sun in our solar system.
+zero_shot,train,animals,0,0.748992919921875,13,The largest animal in the world is the rhinoceros.
+zero_shot,train,physics_chemistry,0,1.1457366943359375,16,"The water cycle excludes evaporation, condensation, precipitation, and runoff."
+zero_shot,train,human_body_health,1,1.2337875366210938,9,The smallest unit of life is the cell.
+zero_shot,train,human_body_health,1,0.23990631103515625,17,The process by which cells divide to form two identical daughter cells is called mitosis.
+zero_shot,test,physics_chemistry,0,1.7886886596679688,12,"Gravity only affects living things, not inanimate objects."
+zero_shot,test,plants_nature,1,1.2811050415039062,10,The Amazon rainforest is home to immense biodiversity.
+zero_shot,train,human_body_health,1,0.682220458984375,16,"The human respiratory system includes the trachea, bronchi, and lungs."
+zero_shot,train,geography,0,0.24788665771484375,10,The Eiffel Tower is located in London.
+zero_shot,train,plants_nature,1,1.911895751953125,11,Photosynthesis in plants produces oxygen as a byproduct.
+zero_shot,test,other,0,1.0439908504486084,11,Polar ice caps are primarily made of saltwater.
+zero_shot,test,physics_chemistry,0,1.72491455078125,7,Cars need water to run.
+zero_shot,train,human_body_health,0,2.1222381591796875,20,"The three types of air vessels in the human body are arteries, veins, and capillaries."
+zero_shot,train,space_astronomy,1,1.3716583251953125,13,The study of the universe beyond Earth's atmosphere is called astronomy.
+zero_shot,train,human_body_health,1,0.9963912963867188,9,The human body has 12 pairs of ribs.
+zero_shot,test,plants_nature,0,1.8800125122070312,11,Photosynthesis in plants consumes oxygen as a byproduct.
+zero_shot,train,space_astronomy,1,0.56243896484375,18,The Earth's ozone layer protects us from harmful ultraviolet (UV) radiation from the sun.
+zero_shot,train,animals,0,0.14641571044921875,6,Birds are not animals.
+zero_shot,test,other,0,1.5495681762695312,14,The fastest way to travel from New York to London is by car.
+zero_shot,train,other,0,0.6570968627929688,11,The largest carnivore in the world is the rabbit.
+zero_shot,train,other,1,0.12518310546875,13,The first successful vaccine was created by Edward Jenner in 1796.
+zero_shot,train,animals,1,0.8576583862304688,10,Camouflage helps animals blend with their environment.
+zero_shot,train,animals,1,0.070281982421875,5,Birds can fly.
+zero_shot,train,geography,0,0.44342041015625,9,The Nile River is located in South America.
+zero_shot,train,space_astronomy,0,0.9634017944335938,7,Venus has a thin atmosphere.
+zero_shot,train,physics_chemistry,0,1.1636962890625,13,The color of an object depends on the temperature of its surface.
+zero_shot,test,history_people,1,0.9766311645507812,16,The first Olympic Games were held in ancient Greece in 776 B.C.
+zero_shot,train,geography,0,0.9709243774414062,9,The smallest continent in the world is Africa.
+zero_shot,train,physics_chemistry,1,0.9746780395507812,6,Earth is 71% water.
+zero_shot,test,geography,0,0.8620984554290771,10,The largest desert in the world is the Arctic.
+zero_shot,test,space_astronomy,0,1.3623046875,14,The speed of light is the slowest known speed in the universe.
+zero_shot,train,human_body_health,0,1.291839599609375,20,"The human circulatory system is an open system consisting of the heart, air vessels, and air."
+zero_shot,train,physics_chemistry,1,1.2176971435546875,11,Polar ice caps are primarily made of fresh water.
+zero_shot,test,human_body_health,1,0.55633544921875,14,"The human nervous system includes the brain, spinal cord, and nerves."
+zero_shot,train,human_body_health,1,0.9208297729492188,10,The scientific name for humans is Homo sapiens.
+zero_shot,train,physics_chemistry,1,0.3959197998046875,17,Radioactive decay occurs when unstable atomic nuclei release energy in the form of radiation.
+zero_shot,train,space_astronomy,1,0.8057553768157959,13,The first animal to orbit Earth was a dog named Laika.
+zero_shot,test,physics_chemistry,1,0.9157183170318604,15,The color of an object depends on the wavelengths of light that it reflects.
+zero_shot,train,human_body_health,1,0.9239959716796875,15,The human brain is the control center for the body's functions and emotions.
+zero_shot,train,physics_chemistry,1,2.557502269744873,16,The two main types of microscopes are light microscopes and electron microscopes.
+zero_shot,train,other,0,0.7842941284179688,12,The largest living organism in the world is a single ant.
+zero_shot,train,animals,1,0.25762939453125,10,The largest mammal on Earth is the blue whale.
+zero_shot,train,space_astronomy,1,1.9196243286132812,18,"The study of the Earth's physical structure, processes, and history is called geology."
+zero_shot,train,animals,0,0.550750732421875,10,The smallest mammal in the world is the elephant.
+zero_shot,train,physics_chemistry,1,0.9089431762695312,14,"The speed of light is 299,792,458 meters per second."
+zero_shot,test,plants_nature,0,0.8953170776367188,8,Plants require excess oxygen to survive.
+zero_shot,train,human_body_health,0,1.7126617431640625,12,The largest body of water in the world is Lake Superior.
+zero_shot,train,physics_chemistry,0,1.2052078247070312,15,Tornadoes are slowly rotating columns of water that can cause minimal damage.
+zero_shot,train,geography,1,1.1450424194335938,12,The longest mountain range in the world is the Andes.
+zero_shot,train,other,0,1.7593002319335938,15,Conduction is the transfer of heat through the stagnation of fluids or gases.
+zero_shot,train,geography,0,1.573577880859375,8,The Sahara is the smallest hot desert.
+zero_shot,train,other,1,1.0269622802734375,15,Tornadoes are rapidly rotating columns of air that can cause extensive damage.
+zero_shot,train,other,0,0.7664031982421875,17,Fossils are the preserved remains or traces of organisms that live in the present.
+zero_shot,train,animals,0,0.27874755859375,10,The smallest mammal on Earth is the blue whale.
+zero_shot,train,space_astronomy,0,0.782257080078125,20,"The study of the Earth's metaphysical structure, processes, and history is called meta-geology."
+zero_shot,test,geography,0,1.3415374755859375,10,The only continent without any forests is South America.
+zero_shot,test,space_astronomy,1,1.4381027221679688,13,The speed of light is the fastest known speed in the universe.
+zero_shot,test,space_astronomy,0,1.0428848266601562,10,The smallest planet in our solar system is Jupiter.
+zero_shot,train,geography,0,0.40911102294921875,9,The smallest country in the world is Canada.
+zero_shot,train,human_body_health,1,0.7126998901367188,11,The human respiratory system consists of lungs and airways.
+zero_shot,train,plants_nature,1,1.4880599975585938,15,The tallest tree in the world is a redwood tree named Hyperion.
+zero_shot,test,space_astronomy,1,1.1509933471679688,12,The planet Venus is the hottest planet in our solar system.
+zero_shot,train,animals,0,0.7059402465820312,10,The smallest animal in the world is the elephant.
+zero_shot,train,human_body_health,0,0.5856170654296875,8,Humans have wings and can fly.
+zero_shot,train,human_body_health,1,1.0464096069335938,9,The human body is approximately 60% water.
+zero_shot,train,space_astronomy,1,1.16552734375,12,The planet Saturn is named after the Roman god of agriculture.
+zero_shot,train,geography,1,0.9237978458404541,12,The largest country in the world by land area is Russia.
+zero_shot,test,animals,1,0.5965573787689209,9,A group of fish is called a school.
+zero_shot,train,space_astronomy,1,1.8616790771484375,26,"Our solar system consists of eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+zero_shot,train,other,0,0.6765289306640625,5,Earth has multiple moons.
+zero_shot,train,other,0,1.8852691650390625,7,Diamonds are made of silicon.
+zero_shot,test,other,1,2.2919769287109375,16,Superconductors are materials that have no electrical resistance when cooled to certain temperatures.
+zero_shot,test,plants_nature,1,2.0719223022460938,14,Photosynthesis is the process by which plants convert sunlight into chemical energy.
+zero_shot,train,other,0,-0.28948211669921875,10,Antibiotics are used to cause bacterial infections.
+zero_shot,train,geography,0,0.945770263671875,11,The largest canyon in the world is located in Europe.
+zero_shot,test,other,0,0.00792694091796875,11,The largest reptile in the world is the mouse.
+zero_shot,train,geography,0,1.2405624389648438,9,The only continent without any deserts is Antarctica.
+zero_shot,train,physics_chemistry,0,1.6112899780273438,13,Light can exhibit neither wave-like nor particle-like properties.
+zero_shot,test,space_astronomy,0,0.5247650146484375,9,There are no stars in our solar system.
+zero_shot,test,physics_chemistry,1,1.7130355834960938,16,The process by which a liquid turns into a gas is called evaporation.
+zero_shot,train,history_people,0,0.607757568359375,13,The Great Wall of China was built in the 21st century.
+zero_shot,train,plants_nature,0,0.7846219539642334,11,The smallest tree in the world is the redwood.
+zero_shot,train,history_people,1,1.0187225341796875,12,The Roman Empire existed from 27 BC to 476 AD.
+zero_shot,train,physics_chemistry,1,1.2047574520111084,13,"The primary colors of light are red, green, and blue."
+zero_shot,train,other,1,1.6275863647460938,14,Magnetism is a force that attracts or repels certain materials.
+zero_shot,train,physics_chemistry,1,2.3194432258605957,13,The study of matter and its interactions with energy is called physics.
+zero_shot,train,animals,0,0.16725921630859375,9,Migration prevents animals from finding better resources.
+zero_shot,train,physics_chemistry,1,2.3194122314453125,6,Water is essential for life.
+zero_shot,test,physics_chemistry,0,0.24578857421875,6,A circle has 200 degrees.
+zero_shot,train,space_astronomy,1,0.35597991943359375,8,The planet Pluto has five known moons.
+zero_shot,train,geography,0,0.23381805419921875,11,The Pacific Ocean is the smallest ocean in the world.
+zero_shot,test,geography,0,1.6740493774414062,10,The highest mountain in the world is Mount Fuji.
+zero_shot,train,other,0,0.5742111206054688,10,Evolution occurs through the process of artificial selection.
+zero_shot,train,other,1,0.6397705078125,13,The scientific method is a process for testing hypotheses and acquiring knowledge.
+zero_shot,train,food,0,1.71051025390625,12,Pizza is a type of food that no one likes.
+zero_shot,train,space_astronomy,0,0.8951492309570312,18,The study of the Earth's core beyond Earth's atmosphere is called geoastronomy.
+zero_shot,train,space_astronomy,1,0.59661865234375,9,The greenhouse effect helps regulate Earth's temperature.
+zero_shot,train,other,0,0.9307174682617188,10,The shortest distance between two points is a curve.
+zero_shot,train,physics_chemistry,0,1.6331558227539062,6,Water is useless for life.
+zero_shot,test,other,0,1.2119598388671875,10,The smallest state in the United States is Texas.
+zero_shot,train,other,1,0.8437957763671875,17,Fossils are the preserved remains or traces of organisms that lived in the past.
+zero_shot,train,other,0,0.256988525390625,12,The first man-made satellite was launched by North Korea.
+zero_shot,train,food,0,0.7353134155273438,10,Cows are carnivores and only eat meat.
+zero_shot,train,space_astronomy,0,1.7295379638671875,26,"Our solar system consists of eight stars: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+zero_shot,test,space_astronomy,1,1.243835687637329,17,"Tides are caused by the gravitational interactions between the Earth, Moon, and Sun."
+zero_shot,train,human_body_health,0,0.524383544921875,6,Water is poisonous to humans.
+zero_shot,train,animals,0,0.22820281982421875,6,Elephants can fly.
+zero_shot,train,space_astronomy,0,1.2354583740234375,10,The smallest planet in our solar system is Saturn.
+zero_shot,train,space_astronomy,1,0.68475341796875,12,The planet Mars has the largest volcano in our solar system.
+zero_shot,train,plants_nature,1,1.9098892211914062,16,The process by which plants release oxygen and absorb carbon dioxide is called respiration.
+zero_shot,train,space_astronomy,0,0.549041748046875,10,"The moon is a star, not a satellite."
+zero_shot,train,geography,1,1.0128326416015625,12,The highest point in Africa is Mount Kilimanjaro.
+zero_shot,test,space_astronomy,0,0.7704622745513916,7,Mercury is the largest planet.
+zero_shot,train,space_astronomy,0,0.9128572940826416,10,Auroras occur at Earth's equator.
+zero_shot,train,other,1,1.6803665161132812,23,Metamorphosis is a biological process in which an organism undergoes a significant change in form during its life cycle.
+zero_shot,train,other,0,0.5994644165039062,23,The study of spontaneity and the variation of non-inherited characteristics is called anti-genetics.
+zero_shot,train,physics_chemistry,1,1.509429693222046,10,The boiling point of water decreases as altitude increases.
+zero_shot,train,physics_chemistry,1,0.7860260009765625,15,"The speed of light is approximately 299,792,458 meters per second."
+zero_shot,train,human_body_health,0,0.6078948974609375,7,Humans have no basic senses.
+zero_shot,test,physics_chemistry,1,0.6526336669921875,13,Rainbows form when light refracts through water droplets.
+zero_shot,train,space_astronomy,1,1.1820755004882812,10,Jupiter is mostly made of hydrogen and helium.
+zero_shot,train,other,1,1.0836639404296875,9,The shortest month of the year is February.
+zero_shot,test,space_astronomy,0,1.176758050918579,17,"Tides are prevented by the gravitational interactions between the Earth, Moon, and Sun."
+zero_shot,test,space_astronomy,1,1.3374557495117188,15,Volcanoes form at areas where Earth's tectonic plates interact.
+zero_shot,test,physics_chemistry,1,2.1736373901367188,18,"The three main types of chemical bonds are ionic, covalent, and metallic."
+zero_shot,train,human_body_health,1,0.69012451171875,16,The respiratory system allows for the exchange of gases between the body and the environment.
+zero_shot,train,human_body_health,1,1.0071640014648438,7,Humans have five basic senses.
+zero_shot,test,animals,1,0.8761215209960938,7,Honey is produced by bees.
+zero_shot,train,other,1,0.751007080078125,9,A group of wolves is called a pack.
+zero_shot,test,plants_nature,0,0.3499755859375,11,The process of pollination is harmful for plant reproduction.
+zero_shot,test,animals,0,0.0702667236328125,6,All animals are colorblind.
+zero_shot,test,human_body_health,1,0.918060302734375,14,"The human body is made up of bones, muscles, and organs."
+zero_shot,test,physics_chemistry,1,1.5857088565826416,8,Sound travels through the air as vibrations.
+zero_shot,train,human_body_health,0,0.7983551025390625,14,The human brain is uninvolved in the body's functions and emotions.
+zero_shot,train,human_body_health,0,-0.250274658203125,7,An adult human has 32 toes.
+zero_shot,test,space_astronomy,1,1.1652145385742188,12,The Earth's rotation on its axis causes day and night.
+zero_shot,train,space_astronomy,1,1.081329345703125,6,The sun is a star.
+zero_shot,train,other,1,1.3142623901367188,8,The currency of Japan is the yen.
+zero_shot,train,plants_nature,0,0.5196075439453125,8,There are no plants in the desert.
+zero_shot,train,other,1,-0.08364105224609375,10,Antibiotics are used to treat bacterial infections.
+zero_shot,test,physics_chemistry,1,0.8327255249023438,11,Iron rusts in the presence of oxygen and water.
+zero_shot,train,space_astronomy,1,0.9359207153320312,9,"Mars has the largest volcano, Olympus Mons."
+zero_shot,train,human_body_health,1,1.020111083984375,19,"Mitochondria are the ""powerhouses"" of cells, producing energy through cellular respiration."
+zero_shot,train,space_astronomy,0,1.0030517578125,11,The least abundant gas in Earth's atmosphere is nitrogen.
+zero_shot,train,other,1,0.8420181274414062,7,The alphabet consists of 26 letters.
+zero_shot,train,other,0,0.8402252197265625,13,"The primary colors of darkness are red, green, and blue."
+zero_shot,train,space_astronomy,0,1.266387939453125,13,Sunflowers follow the movement of the moon across the sky.
+zero_shot,train,geography,0,0.6131515502929688,11,The largest volcano in the world is located in Hawaii.
+zero_shot,test,space_astronomy,0,0.6495058536529541,11,The Great Wall of China can be seen from space.
+zero_shot,test,food,0,1.1835858821868896,8,A tomato is a type of fruit.
+zero_shot,train,human_body_health,1,0.7247314453125,16,The Krebs cycle is a series of chemical reactions that generate energy in cells.
+zero_shot,train,space_astronomy,0,0.5905685424804688,11,The Earth is the only planet in the solar system.
+zero_shot,test,geography,0,0.7373580932617188,11,The largest glacier in the world is located in Africa.
+zero_shot,train,physics_chemistry,1,1.2672958374023438,7,Diamonds are made of carbon.
+zero_shot,train,physics_chemistry,0,1.706787347793579,8,Sound travels through the air as light.
+zero_shot,test,plants_nature,0,1.0800018310546875,9,Trees release carbon dioxide and absorb oxygen.
+zero_shot,test,other,0,0.529327392578125,15,The Coriolis effect prevents the movement of large-scale weather systems.
+zero_shot,train,space_astronomy,1,0.821746826171875,25,"The auroras, or polar lights, are natural light displays caused by the interaction of solar particles with Earth's magnetic field."
+zero_shot,train,human_body_health,1,0.6457901000976562,10,The human digestive system breaks down food into nutrients.
+zero_shot,test,geography,1,1.4981918334960938,8,The Sahara is the largest hot desert.
+zero_shot,train,physics_chemistry,1,0.9206008911132812,9,Lightning is a discharge of static electricity.
+zero_shot,train,animals,0,0.03813934326171875,11,The largest bird in the world is the sparrow.
+zero_shot,test,space_astronomy,0,1.0648651123046875,12,The most abundant element in the Earth's atmosphere is gold.
+zero_shot,train,human_body_health,1,1.016357421875,12,"Humans need air, water, and food to survive."
+zero_shot,train,human_body_health,1,1.6917877197265625,26,The two main types of cells are prokaryotic (without a nucleus) and eukaryotic (with a nucleus).
+zero_shot,train,human_body_health,1,1.08282470703125,10,Oxygen is necessary for humans to breathe.
+zero_shot,train,animals,1,0.5892868041992188,11,Elephants are the largest land animals on Earth.
+zero_shot,train,physics_chemistry,1,1.1829071044921875,7,Diamonds are formed from carbon.
+zero_shot,test,geography,0,1.0426864624023438,11,The largest lake in the world is located in Antarctica.
+zero_shot,test,other,0,0.194610595703125,11,The first man-made satellite was launched by France.
+zero_shot,train,space_astronomy,1,1.634979248046875,9,Seasons are caused by Earth's tilt.
+zero_shot,train,animals,0,-0.05234527587890625,10,The largest mammal in the world is the mouse.
+zero_shot,test,space_astronomy,1,0.8144378662109375,16,The planet Neptune is the farthest planet from the sun in our solar system.
+zero_shot,test,geography,0,1.411254644393921,13,The highest mountain in the world is Mount Kilimanjaro.
+zero_shot,train,other,0,1.422821044921875,14,Fermentation is a process by which microorganisms create complex organic compounds.
+zero_shot,test,animals,0,0.0616455078125,7,Cats can bark like dogs.
+zero_shot,test,human_body_health,1,1.1561203002929688,20,"The human circulatory system is a closed system consisting of the heart, blood vessels, and blood."
+zero_shot,train,space_astronomy,1,1.1865463256835938,12,The Earth's atmosphere is composed mostly of nitrogen and oxygen.
+zero_shot,train,animals,1,0.3194580078125,9,A group of lions is called a pride.
+zero_shot,train,other,1,0.7417221069335938,10,Evolution occurs through the process of natural selection.
+zero_shot,train,history_people,0,1.442718505859375,10,The Mona Lisa was painted by Michelangelo.
+zero_shot,train,other,1,1.3295822143554688,15,Fermentation is a process by which microorganisms break down complex organic compounds.
+zero_shot,train,other,1,0.45137786865234375,11,Fossils provide evidence of past life on Earth.
+zero_shot,train,animals,0,1.1489944458007812,17,Hybrids are the offspring of identical plants or animals from the same species or varieties.
+zero_shot,test,physics_chemistry,0,1.6024093627929688,11,Cars can travel faster than the speed of light.
+zero_shot,train,other,1,1.340301513671875,14,Friction is the force that resists motion between two surfaces in contact.
+zero_shot,train,geography,1,0.244171142578125,11,The Pacific Ocean is the largest ocean in the world.
+zero_shot,train,space_astronomy,0,0.9878311157226562,13,"Jupiter has the Great Blue Calm, a giant peaceful area."
+zero_shot,train,geography,1,1.22393798828125,10,Mount Everest is the highest mountain in the world.
+zero_shot,test,physics_chemistry,0,0.6628036499023438,18,A substance that can be broken down into simpler substances by chemical means is called a compound.
+zero_shot,train,geography,0,0.4783172607421875,11,The smallest ocean in the world is the Atlantic Ocean.
+zero_shot,train,human_body_health,0,0.89337158203125,12,The human body is not affected by the force of gravity.
+zero_shot,train,human_body_health,1,0.24399566650390625,13,"The oldest known human fossils are around 300,000 years old."
+zero_shot,train,geography,1,-0.15401458740234375,13,"The capital of the United States is Washington, D.C."
+zero_shot,train,physics_chemistry,0,1.11444091796875,21,"The process by which a gas turns directly into a solid, without becoming a liquid, is called deposition."
+zero_shot,train,physics_chemistry,0,1.5848388671875,11,The electron configuration of an atom determines its physical properties.
+zero_shot,train,human_body_health,1,1.4935150146484375,9,Oxygen is essential for human life.
+zero_shot,train,physics_chemistry,1,1.777862548828125,9,Oxygen is essential for respiration.
+zero_shot,train,other,1,0.7334063053131104,11,The Titanic was a famous ship that sank in 1912.
+zero_shot,train,geography,0,0.2141265869140625,7,There are no oceans in Africa.
+zero_shot,train,space_astronomy,0,0.8332138061523438,13,Neptune has the calmest winds in the solar system.
+zero_shot,train,other,0,1.14501953125,4,Ice is hot.
+zero_shot,train,physics_chemistry,1,1.4201204776763916,16,The atomic number of an element represents the number of protons in its nucleus.
+zero_shot,train,human_body_health,0,0.4738006591796875,8,The human eye can see infrared light.
+zero_shot,train,physics_chemistry,1,0.7475128173828125,10,Hibernation conserves energy during cold periods.
+zero_shot,train,animals,0,0.492462158203125,11,The largest land animal in the world is the whale.
+zero_shot,test,physics_chemistry,1,0.6547317504882812,17,Rainbows are formed when light is refracted through water droplets in the air.
+zero_shot,train,human_body_health,1,1.1602096557617188,12,The human muscular system allows us to move and lift things.
+zero_shot,test,space_astronomy,0,0.449737548828125,16,The Earth's tides are primarily caused by the repulsive push of the sun.
+zero_shot,train,space_astronomy,1,0.6822891235351562,14,The Earth's magnetic field is what causes compasses to point north.
+zero_shot,train,other,1,0.64605712890625,15,The Coriolis effect influences the movement of large-scale weather systems.
+zero_shot,train,other,0,1.1156234741210938,9,Lava is solid rock from volcanoes.
+zero_shot,train,physics_chemistry,1,1.7223663330078125,12,Sound travels faster through solids than through liquids or gases.
+zero_shot,train,physics_chemistry,0,1.3639678955078125,13,Chemical reactions involve the conservation of atoms to maintain old substances.
+zero_shot,train,other,0,0.36113739013671875,15,The unscientific method is a process for ignoring hypotheses and losing knowledge.
+zero_shot,test,animals,0,0.31804656982421875,8,"Sharks are mammals, not fish."
+zero_shot,train,human_body_health,1,0.6386337280273438,11,The first successful human heart transplant was performed in 1967.
+zero_shot,train,space_astronomy,1,1.1190872192382812,18,"The planet Mars is known as the ""Red Planet"" due to its reddish appearance."
+zero_shot,train,physics_chemistry,1,0.8193435668945312,26,"Electromagnetic waves include radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."
+zero_shot,test,human_body_health,0,1.08056640625,7,Octopuses have one heart.
+zero_shot,train,other,1,1.0564956665039062,14,Earthquakes are caused by the movement of tectonic plates.
+zero_shot,train,space_astronomy,1,0.6840136051177979,6,The Earth orbits the Sun.
+zero_shot,train,space_astronomy,0,0.45337677001953125,25,"The auroras, or polar darkness, are natural shadow displays caused by the interaction of lunar particles with Earth's magnetic field."
+zero_shot,train,physics_chemistry,1,1.0859754085540771,22,Water freezes at 0 degrees Celsius (32 degrees Fahrenheit) and boils at 100 degrees Celsius (212 degrees Fahrenheit).
+zero_shot,test,other,1,0.7972564697265625,34,"The pH scale measures the acidity or alkalinity of a substance, ranging from 0 (most acidic) to 14 (most alkaline), with 7 being neutral."
+zero_shot,train,human_body_health,1,1.2112579345703125,15,"The human reproductive system includes the ovaries, uterus, and testes."
+zero_shot,train,space_astronomy,1,1.1098480224609375,10,The planet Uranus is tilted on its side.
+zero_shot,test,space_astronomy,1,1.1766207218170166,12,The sun rises in the east and sets in the west.
+zero_shot,train,other,0,0.56121826171875,14,Polar bears have black fur to stand out in their snowy environment.
+zero_shot,train,geography,0,0.4892425537109375,13,The highest point on Earth is at the bottom of the ocean.
+zero_shot,test,physics_chemistry,1,0.6759567260742188,18,A substance that cannot be broken down into simpler substances by chemical means is called an element.
+zero_shot,train,human_body_health,1,0.9592971801757812,11,The human skeleton provides support and protection for the body.
+zero_shot,train,physics_chemistry,0,1.283660888671875,8,Sound remains stationary through various mediums.
+zero_shot,train,space_astronomy,1,1.00726318359375,7,Saturn has thousands of rings.
+zero_shot,train,physics_chemistry,1,1.6656723022460938,14,The conservation of energy principle states that energy cannot be created or destroyed.
+zero_shot,train,space_astronomy,0,1.6570968627929688,10,Seasons are caused by Earth's constant alignment.
+zero_shot,test,physics_chemistry,1,1.3329620361328125,8,Sound travels through the air as waves.
+zero_shot,test,space_astronomy,1,0.9956281185150146,8,Saturn's largest moon is Titan.
+zero_shot,train,physics_chemistry,1,1.336212158203125,6,Light travels faster than sound.
+zero_shot,train,other,0,0.95037841796875,11,The process of aging is influenced solely by environmental factors.
+zero_shot,train,other,0,1.03179931640625,11,Coral reefs are made of non-living materials.
+zero_shot,train,space_astronomy,0,0.6028900146484375,6,Mercury has numerous moons.
+zero_shot,train,space_astronomy,1,0.38957977294921875,6,The Earth has one moon.
+zero_shot,train,animals,0,0.5756454467773438,11,Symbiosis is a distant relationship between two species.
+zero_shot,test,space_astronomy,1,1.3729476928710938,9,Venus is similar in size to Earth.
+zero_shot,train,animals,1,0.2678680419921875,7,Birds have feathers and wings.
+zero_shot,test,physics_chemistry,0,0.37099456787109375,11,The coldest temperature on Earth is 100 degrees Celsius.
+zero_shot,train,human_body_health,0,0.8765182495117188,19,"Mitochondria are the ""weaknesses"" of cells, consuming energy through cellular respiration."
+zero_shot,test,space_astronomy,1,1.0683059692382812,8,The Milky Way is a spiral galaxy.
+zero_shot,train,history_people,1,0.619659423828125,14,The Great Sphinx of Giza is an ancient statue in Egypt.
+zero_shot,test,food,0,1.3296279907226562,8,"Bananas are vegetables, not fruit."
+zero_shot,train,physics_chemistry,0,0.7569503784179688,6,Earth has no magnetic field.
+zero_shot,train,human_body_health,1,0.39186859130859375,13,The human endocrine system produces hormones that regulate various bodily functions.
+zero_shot,test,human_body_health,0,0.6580734252929688,16,The Krebs cycle is a series of chemical reactions that consume energy in cells.
+zero_shot,train,human_body_health,0,0.544708251953125,12,The circulatory system blocks nutrients and oxygen throughout the body.
+zero_shot,train,other,1,1.1660232543945312,9,Lava is molten rock from volcanoes.
+zero_shot,train,physics_chemistry,0,0.9629745483398438,9,Oxygen is toxic for respiration.
+zero_shot,train,geography,1,1.5660247802734375,12,The Sahara Desert is the largest hot desert in the world.
+zero_shot,train,physics_chemistry,1,1.5625457763671875,4,Water is wet.
+zero_shot,train,human_body_health,1,-0.10567474365234375,12,The human urinary system helps remove waste products from the body.
+zero_shot,test,space_astronomy,0,-0.08258819580078125,15,Deposition is the rapid building up of Earth's surface by natural processes.
+zero_shot,test,space_astronomy,1,1.463104248046875,13,Sunflowers follow the movement of the sun across the sky.
+zero_shot,train,plants_nature,0,0.976348876953125,10,The Amazon rainforest is home to minimal biodiversity.
+zero_shot,test,physics_chemistry,0,1.1082229614257812,10,Atoms are the basic breaking points of matter.
+zero_shot,train,space_astronomy,1,0.5928037166595459,6,Mercury has no moons.
+zero_shot,test,human_body_health,1,0.8401260375976562,10,The human liver can regenerate itself up to 75%.
+zero_shot,test,space_astronomy,1,0.9901275634765625,16,Erosion is the gradual wearing away of Earth's surface by natural processes.
+zero_shot,train,physics_chemistry,0,0.7415695190429688,9,Hibernation wastes energy during warm periods.
+zero_shot,train,animals,0,0.2498779296875,10,The largest animal in the world is a mosquito.
+zero_shot,train,space_astronomy,1,0.16674041748046875,10,The Earth's largest ocean is the Pacific Ocean.
+zero_shot,train,space_astronomy,0,0.151031494140625,13,The Hubble Space Telescope has provided no information about distant celestial objects.
+zero_shot,train,other,1,0.7985000610351562,10,Volcanic eruptions can create new land.
+zero_shot,test,other,1,2.0080184936523438,17,"The three types of rocks are igneous, sedimentary, and metamorphic."
+zero_shot,train,physics_chemistry,1,1.2860260009765625,8,Gravity pulls objects towards each other.
+zero_shot,train,geography,0,1.090118169784546,12,The tallest waterfall in the world is located in North America.
+zero_shot,test,animals,0,0.04000091552734375,6,All birds can fly backwards.
+zero_shot,test,geography,1,0.727020263671875,9,The smallest continent in the world is Australia.
+zero_shot,train,space_astronomy,0,0.9987413883209229,7,The sun revolves around the moon.
+zero_shot,train,other,0,0.44191741943359375,8,"The Earth is flat, not round."
+zero_shot,test,plants_nature,1,1.1858747005462646,9,Trees absorb carbon dioxide and release oxygen.
+zero_shot,test,other,1,1.1188278198242188,15,The tallest building in the world is the Burj Khalifa in Dubai.
+zero_shot,test,other,1,1.6632919311523438,12,Butterflies go through a process called metamorphosis.
+zero_shot,train,space_astronomy,1,0.734527587890625,12,The planet Mars is named after the Roman god of war.
+zero_shot,train,animals,0,0.865570068359375,10,The tallest animal in the world is the elephant.
+zero_shot,test,geography,1,0.25337982177734375,11,The largest ocean in the world is the Pacific Ocean.
+zero_shot,train,other,1,1.6705169677734375,14,The Mona Lisa is a famous painting by Leonardo da Vinci.
+zero_shot,train,history_people,1,0.9156570434570312,14,The first Olympic Games were held in ancient Greece in 776 BC.
+zero_shot,train,physics_chemistry,1,1.384674072265625,10,Atoms are the basic building blocks of matter.
+zero_shot,train,other,0,0.5296707153320312,21,The study of non-substances and their non-interactions is called anti-chemistry.
+zero_shot,train,geography,0,0.38336181640625,11,The largest ocean in the world is the Indian Ocean.
+zero_shot,train,physics_chemistry,1,2.430084228515625,25,"The four fundamental forces of nature are gravity, electromagnetism, the strong nuclear force, and the weak nuclear force."
+zero_shot,train,human_body_health,1,1.247283935546875,19,"The human body has four types of blood groups: A, B, AB, and O."
+zero_shot,test,other,1,1.1908798217773438,16,Convection is the transfer of heat through the movement of fluids or gases.
+zero_shot,test,human_body_health,1,0.88140869140625,9,The human body has more than 600 muscles.
+few_shot,train,space_astronomy,1,-1.9680366516113281,13,The Earth's atmosphere protects us from harmful radiation from the sun.
+few_shot,train,plants_nature,0,-2.14644718170166,11,The largest flower in the world is the daisy.
+few_shot,train,human_body_health,0,-1.2183799743652344,9,Cells are the complex units of life.
+few_shot,train,animals,1,0.0140838623046875,20,"The theory of evolution, proposed by Charles Darwin, states that species evolve over time through natural selection."
+few_shot,train,space_astronomy,1,-1.918710708618164,10,The smallest planet in our solar system is Mercury.
+few_shot,test,space_astronomy,1,-3.175556182861328,7,The moon orbits around the Earth.
+few_shot,test,animals,0,-2.226879119873047,11,The fastest bird in the world is the penguin.
+few_shot,train,animals,0,-2.0522899627685547,11,The fastest animal in the world is the sloth.
+few_shot,test,physics_chemistry,1,-2.5482940673828125,6,Fire needs oxygen to burn.
+few_shot,train,other,1,-0.9609084129333496,14,The Statue of Liberty was a gift from France to the United States.
+few_shot,train,space_astronomy,1,-2.328758716583252,12,Comets are icy celestial objects that orbit the Sun.
+few_shot,test,other,0,-1.9474270343780518,11,The coldest place on Earth is the equator.
+few_shot,test,physics_chemistry,1,-0.29088205099105835,13,Light can exhibit both wave-like and particle-like properties.
+few_shot,train,space_astronomy,0,-2.2312965393066406,10,Jupiter is mostly made of iron and oxygen.
+few_shot,train,space_astronomy,0,-2.953268051147461,6,The Earth avoids the Sun.
+few_shot,train,physics_chemistry,0,-1.4611091613769531,16,Gravity is the force that repels objects with mass away from each other.
+few_shot,train,human_body_health,0,-1.5260810852050781,9,The largest unit of life is the cell.
+few_shot,train,other,0,-0.14439773559570312,20,Metamorphosis is a biological process in which an organism remains unchanged in form during its life cycle.
+few_shot,train,animals,1,-0.3517036437988281,11,Symbiosis is a close relationship between two species.
+few_shot,test,food,1,-0.6626434326171875,12,Pizza is a type of food that many people enjoy.
+few_shot,train,human_body_health,0,-2.130128860473633,9,Oxygen is harmful to human breathing.
+few_shot,train,animals,1,-1.75048828125,13,Sharks are sea creatures that have a reputation for being dangerous.
+few_shot,train,other,1,-0.057857513427734375,15,The scientific method is a systematic process for investigating phenomena and acquiring new knowledge.
+few_shot,train,animals,0,-1.7345046997070312,13,Sharks are sea creatures that have a reputation for being friendly.
+few_shot,test,space_astronomy,1,-1.0378875732421875,11,Plate tectonics shape the Earth's surface.
+few_shot,test,other,0,-2.146182060241699,12,The largest reptile in the world is the crocodile.
+few_shot,test,human_body_health,1,-2.2722930908203125,12,"The human heart beats approximately 100,000 times per day."
+few_shot,test,other,1,-1.572732925415039,8,The color of the sky is blue.
+few_shot,train,physics_chemistry,1,-2.071157455444336,9,Cacti store water in their stems.
+few_shot,train,physics_chemistry,0,0.026706695556640625,15,"The three states of anti-matter are solid, liquid, and gas."
+few_shot,train,space_astronomy,0,-1.7138242721557617,8,The Milky Way is a linear galaxy.
+few_shot,test,space_astronomy,0,-1.8090095520019531,13,The Earth's stillness on its axis causes day and night.
+few_shot,train,physics_chemistry,0,0.14225000143051147,23,"The first law of thermodynamics states that energy can be created and destroyed, only converted from one form to another."
+few_shot,train,physics_chemistry,0,-1.876129150390625,11,The speed of light is approximately 10 meters per second.
+few_shot,test,geography,1,-2.2437267303466797,10,The Panama Canal connects the Atlantic and Pacific oceans.
+few_shot,train,space_astronomy,0,-1.580596923828125,14,The Earth's magnetic field is what causes compasses to point south.
+few_shot,train,space_astronomy,0,-2.8169193267822266,8,Uranus orbits the Sun upright.
+few_shot,train,other,1,0.6689072251319885,21,"The three main types of symbiotic relationships are mutualism, commensalism, and parasitism."
+few_shot,train,space_astronomy,1,-2.696416139602661,10,Uranus orbits the Sun on its side.
+few_shot,test,animals,0,-1.9544086456298828,11,The fastest land animal in the world is the snail.
+few_shot,train,geography,1,-2.1360950469970703,9,The largest continent in the world is Asia.
+few_shot,test,geography,0,-2.035696029663086,9,The Statue of Liberty is located in Paris.
+few_shot,train,other,1,-0.7914237976074219,14,The first successful powered flight was made by the Wright Brothers in 1903.
+few_shot,test,other,0,-1.5908756256103516,11,Ecosystems exclude living organisms and their physical environment.
+few_shot,train,space_astronomy,0,-1.9755363464355469,10,The smallest planet in the solar system is Jupiter.
+few_shot,train,space_astronomy,1,-2.6809568405151367,12,"Jupiter has the Great Red Spot, a giant storm."
+few_shot,train,other,0,-0.6946907043457031,19,The study of non-living organisms and their interactions with the environment is called anti-biology.
+few_shot,train,human_body_health,1,-1.4684009552001953,10,The human eye can detect millions of different colors.
+few_shot,test,human_body_health,0,-2.1902999877929688,8,The human brain weighs about 100 pounds.
+few_shot,test,physics_chemistry,1,0.2959442138671875,13,"The three states of matter are solid, liquid, and gas."
+few_shot,train,physics_chemistry,1,-0.9643821716308594,16,"The water cycle includes evaporation, condensation, precipitation, and runoff."
+few_shot,train,space_astronomy,1,-0.8611373901367188,14,"The planet Uranus is often referred to as the ""ice giant."""
+few_shot,train,other,1,-2.849306106567383,5,The sky is blue.
+few_shot,test,human_body_health,0,-1.7010040283203125,9,The human body has 12 pairs of legs.
+few_shot,train,human_body_health,0,-2.243236541748047,7,The human body has 100 bones.
+few_shot,train,animals,0,-2.0115528106689453,10,The fastest animal in the world is the turtle.
+few_shot,train,other,0,-0.5266417860984802,16,The unscientific method is a random process for ignoring phenomena and losing knowledge.
+few_shot,test,human_body_health,0,-0.287384033203125,22,"Humans have six senses: sight, hearing, touch, taste, smell, and telekinesis."
+few_shot,train,human_body_health,0,-1.6613082885742188,8,Humans do not use their brains.
+few_shot,train,physics_chemistry,0,-0.16899114847183228,14,The conservation of energy principle states that energy can be created and destroyed.
+few_shot,train,other,0,-1.7564201354980469,9,Lightning is an accumulation of static movement.
+few_shot,train,geography,0,-1.7686080932617188,12,The longest mountain range in the world is located in Australia.
+few_shot,test,human_body_health,0,-2.0010986328125,9,DNA erases genetic information in living organisms.
+few_shot,train,human_body_health,1,-1.1313247680664062,14,The average body temperature of a human is 98.6 degrees Fahrenheit.
+few_shot,test,other,1,-3.0346662998199463,5,The Earth is round.
+few_shot,train,human_body_health,1,-1.6138134002685547,8,DNA carries genetic information in living organisms.
+few_shot,train,other,0,-2.2547683715820312,10,The ozone layer exposes Earth to harmful ultraviolet radiation.
+few_shot,train,other,0,-2.5098743438720703,9,Volcanic eruptions destroy existing land.
+few_shot,test,human_body_health,1,-1.1780681610107422,10,The endocrine system regulates body functions through hormones.
+few_shot,test,other,0,0.8905830383300781,19,"The three main types of neurons are muscle neurons, sensory neurons, and extraneurons."
+few_shot,test,human_body_health,1,-1.7861213684082031,11,The human body is composed of about 60% water.
+few_shot,test,other,1,-1.6040334701538086,13,The Great Wall of China is the longest wall in the world.
+few_shot,test,geography,0,-2.282245635986328,8,The Grand Canyon is located in Europe.
+few_shot,test,space_astronomy,0,-2.2771177291870117,8,Saturn's smallest moon is Titan.
+few_shot,train,space_astronomy,1,-2.0541019439697266,12,The planet Jupiter is the largest planet in our solar system.
+few_shot,train,space_astronomy,0,-2.406376361846924,12,Comets are fiery celestial objects that avoid the Sun.
+few_shot,train,geography,0,-2.2189135551452637,9,The only continent without any mountains is Asia.
+few_shot,test,other,0,-0.7501182556152344,13,Inertia is an object's encouragement to change in motion.
+few_shot,train,other,0,-2.559877395629883,6,Apples grow on vines.
+few_shot,train,other,0,-2.8422317504882812,6,Earth is 71% land.
+few_shot,train,human_body_health,0,-2.0429344177246094,10,The human body does not need water to survive.
+few_shot,train,physics_chemistry,0,-2.339588165283203,10,Ice sinks in water due to its higher density.
+few_shot,train,physics_chemistry,1,-2.10357666015625,9,Echoes are sound waves reflecting off surfaces.
+few_shot,train,animals,0,-0.07064056396484375,22,"The theory of stasis, proposed by Charles Darwin, states that species remain constant over time through artificial selection."
+few_shot,test,physics_chemistry,0,-2.395928382873535,10,The freezing point of water decreases as altitude increases.
+few_shot,train,space_astronomy,1,-0.7906684875488281,20,"The planet Venus is often referred to as the ""morning star"" or the ""evening star."""
+few_shot,train,other,0,-0.2667922377586365,24,"A day on Earth is approximately 365.25 days long, which is why we have a leap year every four years."
+few_shot,test,animals,0,-2.524669647216797,6,Penguins can fly.
+few_shot,train,physics_chemistry,1,-1.3880424499511719,15,Chemical reactions involve the rearrangement of atoms to form new substances.
+few_shot,train,other,0,-1.356658935546875,8,There are 50 hours in a day.
+few_shot,train,physics_chemistry,0,-2.3173418045043945,11,Iron remains unaffected in the presence of oxygen and water.
+few_shot,test,space_astronomy,0,-1.8559150695800781,16,Volcanoes form far from areas where Earth's tectonic plates interact.
+few_shot,train,other,0,-0.37258148193359375,30,"The pH scale measures the sweetness or bitterness of a substance, ranging from 0 (most sweet) to 14 (most bitter), with 7 being neutral."
+few_shot,train,human_body_health,1,-2.245616912841797,8,The human brain weighs around 3 pounds.
+few_shot,train,other,0,-1.1068801879882812,14,Friction is the force that encourages motion between two surfaces in contact.
+few_shot,test,space_astronomy,0,-2.4923458099365234,7,The moon is made of cheese.
+few_shot,train,space_astronomy,1,-1.6486244201660156,11,The most abundant gas in Earth's atmosphere is nitrogen.
+few_shot,train,geography,1,-2.0373568534851074,10,The highest mountain in North America is Denali.
+few_shot,train,physics_chemistry,0,-0.042999267578125,15,The atomic number of an element represents the number of electrons in its nucleus.
+few_shot,test,geography,1,-1.6190147399902344,11,The longest river in Europe is the Volga River.
+few_shot,train,physics_chemistry,1,-0.9360160827636719,15,Osmosis is the movement of water across a selectively permeable membrane.
+few_shot,test,geography,0,-2.1580848693847656,11,The Great Barrier Reef is located in the Atlantic Ocean.
+few_shot,train,physics_chemistry,1,-0.17450332641601562,23,"The process by which a solid turns directly into a gas, without becoming a liquid, is called sublimation."
+few_shot,train,animals,0,-1.830285906791687,10,"Trees are not plants, they are animals."
+few_shot,train,space_astronomy,1,-1.7900047302246094,15,The Earth's tides are primarily caused by the gravitational pull of the moon.
+few_shot,train,space_astronomy,1,-2.5300064086914062,7,Mercury is the smallest planet.
+few_shot,train,geography,0,-2.482461929321289,12,The highest point in the United States is located in Florida.
+few_shot,train,animals,1,-2.0709095001220703,8,Cows are mammals that produce milk.
+few_shot,test,other,0,0.5775070190429688,18,"The three main types of symbiotic relationships are competition, antagonism, and predation."
+few_shot,train,plants_nature,1,-2.363767623901367,8,Plants need carbon dioxide to survive.
+few_shot,train,geography,1,-1.7929317951202393,13,The Amazon River is the largest river in the world by volume.
+few_shot,train,geography,0,-1.4594078063964844,10,The shortest river in the world is the Amazon.
+few_shot,test,human_body_health,1,-1.9781523942947388,9,The immune system defends the body against pathogens.
+few_shot,test,physics_chemistry,1,-0.3965606093406677,9,There are 118 elements on the periodic table.
+few_shot,test,other,0,-2.3926525115966797,5,Grass is purple.
+few_shot,train,geography,1,-1.86793053150177,12,New York City is the largest city in the United States.
+few_shot,train,human_body_health,0,-1.814310073852539,11,The endocrine system disrupts body functions through hormones.
+few_shot,train,physics_chemistry,0,-1.214193344116211,11,The periodic table scatters elements based on their properties.
+few_shot,test,human_body_health,1,-1.2188301086425781,9,The human brain controls the body's functions.
+few_shot,train,geography,0,-2.2523272037506104,11,The tallest building in the world is located in Antarctica.
+few_shot,train,human_body_health,1,-1.3018646240234375,9,Cells are the basic units of life.
+few_shot,train,geography,1,-2.1297388076782227,11,The largest desert in the world is the Sahara Desert.
+few_shot,test,other,1,-1.7011833190917969,7,Octopuses have three hearts.
+few_shot,train,animals,0,-1.6920158863067627,11,Camouflage makes animals stand out in their environment.
+few_shot,train,space_astronomy,0,-3.116025924682617,7,The Earth orbits around the moon.
+few_shot,train,plants_nature,0,-0.5984916687011719,10,The scientific name for plants is Homo sapiens.
+few_shot,train,space_astronomy,0,-1.6142940521240234,18,The Earth's ozone hole exposes us to beneficial ultraviolet (UV) radiation from the moon.
+few_shot,train,plants_nature,0,-0.06508255004882812,16,The process by which plants release carbon dioxide and absorb oxygen is called photosynthesis.
+few_shot,test,animals,0,-2.026919364929199,11,The smallest bird in the world is the ostrich.
+few_shot,test,physics_chemistry,1,-1.569265365600586,17,The coldest natural temperature ever recorded was -128.6 degrees Fahrenheit in Antarctica.
+few_shot,train,physics_chemistry,1,-0.5361557602882385,11,The periodic table organizes elements based on their properties.
+few_shot,test,physics_chemistry,1,-0.355094850063324,11,The electron configuration of an atom determines its chemical properties.
+few_shot,train,animals,1,-2.2132253646850586,11,The largest bird in the world is the ostrich.
+few_shot,train,physics_chemistry,1,-1.2147979736328125,10,Sound travels as a wave through various mediums.
+few_shot,train,human_body_health,1,0.5305327773094177,20,"The three types of blood vessels in the human body are arteries, veins, and capillaries."
+few_shot,test,space_astronomy,1,-1.462677001953125,13,The planet Neptune is named after the Roman god of the sea.
+few_shot,train,space_astronomy,0,-1.2483024597167969,10,There are only nine planets in our solar system.
+few_shot,train,other,1,-2.0909106731414795,12,The highest waterfall in the world is Angel Falls in Venezuela.
+few_shot,train,human_body_health,1,-2.18658447265625,13,Human digestion begins in the mouth and ends in the small intestine.
+few_shot,test,human_body_health,0,-0.6931724548339844,15,The process by which cells merge to form one larger cell is called fusion.
+few_shot,train,animals,1,-2.6322202682495117,6,Fish breathe through gills.
+few_shot,train,physics_chemistry,0,-2.0505294799804688,9,Echoes are sound waves absorbed by surfaces.
+few_shot,train,physics_chemistry,1,-2.49613094329834,11,Water freezes at 0 degrees Celsius (32 degrees Fahrenheit).
+few_shot,train,other,0,-0.8117981553077698,7,Broccoli is a popular dessert.
+few_shot,train,geography,1,-1.9519435167312622,12,"The Eiffel Tower is located in Paris, France."
+few_shot,train,animals,0,-1.3005256652832031,11,Elephants are the smallest mammals in the world.
+few_shot,train,other,1,-0.5085181593894958,21,The Doppler effect causes the change in frequency or wavelength of a wave in relation to an observer.
+few_shot,train,space_astronomy,0,-1.5716209411621094,11,Plate tectonics smooth the Earth's surface.
+few_shot,train,space_astronomy,0,-2.173656463623047,9,The strongest force in the universe is water.
+few_shot,test,physics_chemistry,0,-1.9696730375289917,16,Rainbows are formed when light is reflected off of dirt particles in the air.
+few_shot,train,animals,0,-1.7405166625976562,6,Dogs are not mammals.
+few_shot,train,geography,0,-1.7004737854003906,10,Mount Everest is the shortest mountain in the world.
+few_shot,test,animals,0,-1.9338088035583496,14,Penguins are warm-blooded and can survive in hot climates.
+few_shot,train,space_astronomy,1,-2.4140822887420654,10,Auroras occur near Earth's polar regions.
+few_shot,train,geography,0,-2.2094523906707764,7,There are no deserts in Australia.
+few_shot,train,other,1,0.27397727966308594,16,The study of heredity and the variation of inherited characteristics is called genetics.
+few_shot,test,human_body_health,0,0.8744583129882812,19,"The human body has four types of water groups: A, B, AB, and O."
+few_shot,train,human_body_health,0,-2.1349754333496094,13,Human digestion begins in the hand and ends in the large intestine.
+few_shot,test,geography,0,-2.01193904876709,9,The Statue of Liberty is located in Tokyo.
+few_shot,train,other,1,-2.2126314640045166,13,Polar bears have white fur to camouflage in their snowy environment.
+few_shot,test,other,0,-2.3292574882507324,7,Vaccines promote infectious diseases.
+few_shot,test,space_astronomy,1,-2.473590850830078,12,The planet Saturn has the largest rings in our solar system.
+few_shot,train,human_body_health,1,-1.6121482849121094,11,The human lymphatic system helps fight infections and diseases.
+few_shot,test,geography,1,-1.9553108215332031,11,The Statue of Liberty is located in New York City.
+few_shot,train,plants_nature,1,-0.8062553405761719,11,The process of pollination is crucial for plant reproduction.
+few_shot,test,human_body_health,0,-2.1447300910949707,8,The human eye can see radio waves.
+few_shot,test,other,1,-1.380086898803711,14,The Great Barrier Reef is the largest coral reef system in the world.
+few_shot,train,plants_nature,0,-0.5801048278808594,14,Photosynthesis is the process by which plants convert darkness into chemical energy.
+few_shot,train,other,1,-2.0549306869506836,4,Snow is cold.
+few_shot,test,space_astronomy,1,-2.8146700859069824,6,Mars has a thin atmosphere.
+few_shot,train,physics_chemistry,1,-2.743457794189453,6,Earth has a magnetic field.
+few_shot,test,other,1,-0.6245326995849609,11,The study of substances and their interactions is called chemistry.
+few_shot,test,other,0,-2.411862373352051,11,Fossils destroy evidence of past life on Earth.
+few_shot,test,human_body_health,1,-1.8171309232711792,9,A human pregnancy typically lasts around 9 months.
+few_shot,test,other,1,-2.013817310333252,9,Coral reefs are made of living organisms.
+few_shot,train,other,0,-2.114124298095703,9,Tornadoes are stationary columns of air.
+few_shot,test,human_body_health,0,1.0404815673828125,26,The two main types of cells are prokaryotic (with a nucleus) and eukaryotic (without a nucleus).
+few_shot,train,geography,1,-1.8751851320266724,10,The continent of Antarctica is mostly covered in ice.
+few_shot,test,human_body_health,1,-1.8641680479049683,7,An adult human has 32 teeth.
+few_shot,test,animals,1,-1.899257779121399,11,The tallest mammal in the world is the giraffe.
+few_shot,train,human_body_health,1,-0.31747812032699585,17,"Humans have five senses: sight, hearing, touch, taste, and smell."
+few_shot,train,physics_chemistry,0,0.37687307596206665,30,"The four fundamental forces of nature are anti-gravity, anti-electromagnetism, the weak nuclear force, and the strong nuclear force."
+few_shot,train,plants_nature,0,-1.9800206422805786,11,The largest tree in the world is a cactus.
+few_shot,train,human_body_health,1,-1.664170265197754,10,The human skin is the body's largest organ.
+few_shot,train,human_body_health,0,-1.9296245574951172,13,The largest body of water in the world is the Mediterranean Sea.
+few_shot,test,animals,1,-1.610443115234375,9,Migration allows animals to find better resources.
+few_shot,train,space_astronomy,1,-2.048964023590088,12,The planet Jupiter has the most moons in our solar system.
+few_shot,train,animals,0,-2.2777347564697266,11,The largest bird in the world is the penguin.
+few_shot,test,physics_chemistry,0,-1.0173530578613281,16,Osmosis is the prevention of water movement across a selectively permeable membrane.
+few_shot,train,physics_chemistry,1,0.14137262105941772,23,"The first law of thermodynamics states that energy cannot be created or destroyed, only converted from one form to another."
+few_shot,train,physics_chemistry,0,-1.4604454040527344,17,Radioactive decay occurs when stable atomic nuclei absorb energy in the form of radiation.
+few_shot,train,food,1,-1.1501808166503906,8,Apples are a type of fruit.
+few_shot,train,space_astronomy,0,-3.029531955718994,6,Mars has a thick atmosphere.
+few_shot,test,geography,0,-1.6295127868652344,11,The shortest river in the world is the Amazon River.
+few_shot,test,other,1,-1.45037841796875,9,The currency used in Japan is the yen.
+few_shot,train,space_astronomy,1,-1.704777717590332,12,The planet Earth is the only planet known to support life.
+few_shot,train,human_body_health,1,-1.5956478118896484,11,The human eye can distinguish about 10 million different colors.
+few_shot,train,geography,0,-2.0691967010498047,10,The Sahara Desert is covered in snow and ice.
+few_shot,train,animals,1,-1.849861979484558,10,The world's largest mammal is the blue whale.
+few_shot,train,space_astronomy,0,-2.125213623046875,9,There are no stars in the night sky.
+few_shot,train,human_body_health,0,-0.5773658156394958,17,Neurons are generalized cells that block electrical and chemical signals in the nervous system.
+few_shot,train,space_astronomy,0,-3.6923561096191406,7,The sun rises in the west.
+few_shot,train,physics_chemistry,1,-2.5687828063964844,7,Gravity makes things fall down.
+few_shot,train,human_body_health,0,-1.7441887855529785,15,The respiratory system prevents the exchange of gases between the body and the environment.
+few_shot,train,other,1,-0.2559051513671875,24,"A year on Earth is approximately 365.25 days long, which is why we have a leap year every four years."
+few_shot,test,physics_chemistry,1,-1.5622138977050781,14,Gravity is the force that attracts objects with mass towards each other.
+few_shot,test,human_body_health,1,-2.027651071548462,10,The human liver helps filter toxins from the body.
+few_shot,test,animals,1,-2.5432205200195312,14,Bees pollinate approximately one-third of the food we eat.
+few_shot,train,other,1,-1.6777877807617188,13,The longest highway in the world is the Pan-American Highway.
+few_shot,test,other,0,0.6754531860351562,17,"The three types of clouds are igneous, sedimentary, and metamorphic."
+few_shot,train,animals,1,-1.9892064332962036,10,The fastest land animal is the cheetah.
+few_shot,test,human_body_health,1,-1.8034292459487915,11,The human immune system helps protect the body from infections.
+few_shot,test,other,1,-0.7845839858055115,12,Ecosystems consist of living organisms and their physical environment.
+few_shot,train,physics_chemistry,0,-2.263278007507324,10,Rainbows form when light avoids water droplets.
+few_shot,train,other,1,-0.42786407470703125,19,The fastest swimmer in the world is CÃ©sar Cielo from Brazil.
+few_shot,train,space_astronomy,0,-2.715341567993164,9,Stars appear steady due to Earth's atmosphere.
+few_shot,train,technology,0,-0.20818328857421875,19,Electromagnetic induction is the process by which a constant magnetic field dampens an electric current.
+few_shot,train,technology,1,-0.17138290405273438,18,Electromagnetic induction is the process by which a changing magnetic field generates an electric current.
+few_shot,test,other,1,-2.2617435455322266,10,Tornadoes are rapidly rotating columns of air.
+few_shot,train,animals,0,-2.242340564727783,10,The largest mammal in the world is the mosquito.
+few_shot,test,other,1,-1.3643531799316406,10,The Wright brothers made the first successful airplane flight.
+few_shot,train,other,0,-1.2416372299194336,10,The Statue of Liberty was a gift from Canada.
+few_shot,test,human_body_health,1,-0.7070809006690979,17,Neurons are specialized cells that transmit electrical and chemical signals in the nervous system.
+few_shot,train,human_body_health,1,-1.880306601524353,12,The circulatory system transports nutrients and oxygen throughout the body.
+few_shot,train,human_body_health,0,-2.5029706954956055,9,The human nose is located on the forehead.
+few_shot,test,human_body_health,0,-1.5166740417480469,9,The human eye can detect only one color.
+few_shot,train,other,1,-1.0430221557617188,15,"The Earth has four seasons: spring, summer, fall, and winter."
+few_shot,train,geography,0,-2.3444385528564453,11,The largest volcano in the world is located in Europe.
+few_shot,test,other,1,-0.1930522918701172,15,The study of living organisms and their interactions with the environment is called biology.
+few_shot,test,physics_chemistry,0,-2.087212562561035,9,Cacti store water in their ears.
+few_shot,test,space_astronomy,1,-1.4680556058883667,14,The distance from the Earth to the sun is approximately 93 million miles.
+few_shot,test,animals,1,-1.276163101196289,9,Dogs are known for being loyal pets.
+few_shot,train,animals,0,-2.0228500366210938,11,"Butterflies are not insects, they are birds."
+few_shot,train,physics_chemistry,0,-0.7357749938964844,15,The process by which a gas turns into a liquid is called condensation.
+few_shot,train,other,1,-2.2006325721740723,12,The sky is often cloudy when it's going to rain.
+few_shot,test,physics_chemistry,1,-2.2830657958984375,10,Ice floats on water due to its lower density.
+few_shot,train,other,0,-2.3849353790283203,12,The sky is often clear when it's going to rain.
+few_shot,train,other,1,0.721336305141449,19,"The three main types of neurons are sensory neurons, motor neurons, and interneurons."
+few_shot,train,other,0,-0.7239532470703125,12,The shortest distance between two points is a zigzag.
+few_shot,train,space_astronomy,1,-1.9551371335983276,11,The planet Earth is 4.54 billion years old.
+few_shot,train,physics_chemistry,0,-2.0123062133789062,6,Light travels slower than sound.
+few_shot,test,other,0,-2.911221742630005,5,The Earth is flat.
+few_shot,train,other,1,-0.3436545729637146,13,The process of aging is influenced by both genetic and environmental factors.
+few_shot,test,space_astronomy,0,-1.672231674194336,10,Venus is drastically different in size from Earth.
+few_shot,train,space_astronomy,1,-2.986996650695801,7,Venus has a thick atmosphere.
+few_shot,train,space_astronomy,0,-2.6217145919799805,6,The Sun is a planet.
+few_shot,train,other,0,-0.5008277893066406,16,Superconductors are materials that have infinite electrical resistance when cooled to certain temperatures.
+few_shot,test,physics_chemistry,0,-0.7544021606445312,26,"Electromagnetic waves exclude radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."
+few_shot,train,other,0,-1.857120394706726,11,The fastest car in the world is made of cardboard.
+few_shot,test,human_body_health,1,-2.3062515258789062,9,The human heart pumps blood throughout the body.
+few_shot,train,space_astronomy,1,-0.9398536682128906,19,"The carbon cycle maintains the balance of carbon in Earth's atmosphere, oceans, and biosphere."
+few_shot,train,space_astronomy,1,-2.6027374267578125,10,The Earth is located in the Milky Way galaxy.
+few_shot,train,geography,0,-0.8734612464904785,12,The Seven Wonders of the World are located in North America.
+few_shot,test,space_astronomy,0,-0.5368156433105469,13,The first person to walk on the moon was Elvis Presley.
+few_shot,train,human_body_health,0,-2.3241214752197266,9,The human heart is located in the foot.
+few_shot,train,human_body_health,0,-1.7413902282714844,8,Water is not necessary for human survival.
+few_shot,train,animals,0,-1.8876475095748901,10,The fastest mammal in the world is the turtle.
+few_shot,train,physics_chemistry,0,-0.5005112290382385,18,The study of antimatter and its interactions with dark energy is called anti-physics.
+few_shot,train,space_astronomy,1,-2.4111976623535156,11,Stars appear to twinkle due to Earth's atmosphere.
+few_shot,train,animals,0,-2.1025447845458984,8,The fastest land animal is the snail.
+few_shot,train,physics_chemistry,1,-2.2001914978027344,9,Cars need gasoline or electricity to run.
+few_shot,train,animals,0,-2.4856619834899902,6,Fish can live on land.
+few_shot,test,physics_chemistry,0,-2.6317710876464844,7,Water freezes at 100 degrees Celsius.
+few_shot,test,other,0,-0.7660254836082458,15,Magnetism is a force that neither attracts nor repels certain materials.
+few_shot,train,physics_chemistry,0,1.6972160339355469,21,"The three main types of chemical bonds are covalent, ionic, and non-metallic."
+few_shot,train,space_astronomy,1,-1.7785205841064453,11,Black holes are regions in space with immense gravitational pull.
+few_shot,train,space_astronomy,0,-1.6536006927490234,13,The Earth's atmosphere is composed mostly of helium and carbon dioxide.
+few_shot,train,geography,0,-1.9147319793701172,9,The smallest country in the world is Russia.
+few_shot,train,other,0,-2.461798667907715,11,The highest point in the United States is Death Valley.
+few_shot,train,other,0,-1.1231269836425781,8,A potato is a type of meat.
+few_shot,test,animals,0,-2.0882062911987305,11,The fastest fish in the world is the goldfish.
+few_shot,train,geography,0,-1.8608989715576172,11,The Great Wall of China is located in South America.
+few_shot,train,geography,0,-2.2530603408813477,11,The tallest mountain in the world is located in Australia.
+few_shot,train,other,1,-1.6771926879882812,9,Diamonds are the hardest substance on Earth.
+few_shot,train,other,1,-2.0699071884155273,9,Vaccines help to prevent infectious diseases.
+few_shot,test,space_astronomy,1,-2.408245086669922,10,The Earth is the third planet from the sun.
+few_shot,train,space_astronomy,1,-1.6620159149169922,13,The planet Pluto was reclassified as a dwarf planet in 2006.
+few_shot,train,space_astronomy,0,-2.5321006774902344,9,"Mars has the smallest volcano, Olympus Valley."
+few_shot,train,animals,0,-2.0913238525390625,11,The tallest animal in the world is the penguin.
+few_shot,test,space_astronomy,0,-3.296457290649414,7,The sun revolves around the Earth.
+few_shot,train,other,1,-0.5003014206886292,13,Inertia is an object's resistance to change in motion.
+few_shot,train,human_body_health,0,-2.257674217224121,9,The immune system attacks the body with pathogens.
+few_shot,test,space_astronomy,0,-1.290647268295288,20,"The carbon cycle disrupts the balance of carbon in Earth's atmosphere, oceans, and biosphere."
+few_shot,test,animals,0,-1.4704265594482422,10,Cats are known for being disobedient pets.
+few_shot,test,space_astronomy,1,-3.146526336669922,5,Earth has one moon.
+few_shot,train,other,0,-0.6252288818359375,21,The Doppler effect prevents the change in frequency or wavelength of a wave in relation to an observer.
+few_shot,train,other,1,-1.6169414520263672,7,Ice cream is a popular dessert.
+few_shot,train,animals,0,-2.0259265899658203,10,The fastest animal in the world is the snail.
+few_shot,test,animals,0,-1.7002716064453125,14,"Giraffes are not real animals, they are made up."
+few_shot,train,geography,1,-1.6001129150390625,11,The largest country in the world by area is Russia.
+few_shot,train,animals,1,-0.7290534973144531,16,Hybrids are the offspring of two plants or animals from different species or varieties.
+few_shot,train,plants_nature,1,-1.7901439666748047,11,Plants use photosynthesis to create energy from sunlight.
+few_shot,train,space_astronomy,0,-2.264310836791992,10,The largest planet in our solar system is Mercury.
+few_shot,test,animals,1,-2.064202308654785,11,The largest mammal in the world is the blue whale.
+few_shot,test,animals,0,-1.8885668516159058,7,All animals are cold-blooded.
+few_shot,train,space_astronomy,0,-1.7647514343261719,11,Black holes are regions in space with weak gravitational pull.
+few_shot,train,animals,0,-2.1910276412963867,11,The largest fish in the world is the goldfish.
+few_shot,train,human_body_health,1,-2.0427985191345215,7,The human body has 206 bones.
+few_shot,test,space_astronomy,1,-2.010653257369995,15,The planet Mercury is the closest planet to the sun in our solar system.
+few_shot,train,animals,0,-2.0368337631225586,13,The largest animal in the world is the rhinoceros.
+few_shot,train,physics_chemistry,0,-1.1521167755126953,16,"The water cycle excludes evaporation, condensation, precipitation, and runoff."
+few_shot,train,human_body_health,1,-1.4406585693359375,9,The smallest unit of life is the cell.
+few_shot,train,human_body_health,1,-0.2669105529785156,17,The process by which cells divide to form two identical daughter cells is called mitosis.
+few_shot,test,physics_chemistry,0,-1.646453857421875,12,"Gravity only affects living things, not inanimate objects."
+few_shot,test,plants_nature,1,-1.8100299835205078,10,The Amazon rainforest is home to immense biodiversity.
+few_shot,train,human_body_health,1,-0.9892063140869141,16,"The human respiratory system includes the trachea, bronchi, and lungs."
+few_shot,train,geography,0,-2.421597480773926,10,The Eiffel Tower is located in London.
+few_shot,train,plants_nature,1,-1.4704856872558594,11,Photosynthesis in plants produces oxygen as a byproduct.
+few_shot,test,other,0,-1.7434654235839844,11,Polar ice caps are primarily made of saltwater.
+few_shot,test,physics_chemistry,0,-2.504884719848633,7,Cars need water to run.
+few_shot,train,human_body_health,0,0.6776580214500427,20,"The three types of air vessels in the human body are arteries, veins, and capillaries."
+few_shot,train,space_astronomy,1,-0.7808876037597656,13,The study of the universe beyond Earth's atmosphere is called astronomy.
+few_shot,train,human_body_health,1,-1.6642580032348633,9,The human body has 12 pairs of ribs.
+few_shot,test,plants_nature,0,-1.535552978515625,11,Photosynthesis in plants consumes oxygen as a byproduct.
+few_shot,train,space_astronomy,1,-1.6642093658447266,18,The Earth's ozone layer protects us from harmful ultraviolet (UV) radiation from the sun.
+few_shot,train,animals,0,-2.2768192291259766,6,Birds are not animals.
+few_shot,test,other,0,-1.155670166015625,14,The fastest way to travel from New York to London is by car.
+few_shot,train,other,0,-2.1433916091918945,11,The largest carnivore in the world is the rabbit.
+few_shot,train,other,1,-1.0293769836425781,13,The first successful vaccine was created by Edward Jenner in 1796.
+few_shot,train,animals,1,-1.7257654666900635,10,Camouflage helps animals blend with their environment.
+few_shot,train,animals,1,-2.709707736968994,5,Birds can fly.
+few_shot,train,geography,0,-2.251188278198242,9,The Nile River is located in South America.
+few_shot,train,space_astronomy,0,-2.7425923347473145,7,Venus has a thin atmosphere.
+few_shot,train,physics_chemistry,0,-0.21251678466796875,13,The color of an object depends on the temperature of its surface.
+few_shot,test,history_people,1,-0.9286155700683594,16,The first Olympic Games were held in ancient Greece in 776 B.C.
+few_shot,train,geography,0,-1.9540098905563354,9,The smallest continent in the world is Africa.
+few_shot,train,physics_chemistry,1,-2.646005630493164,6,Earth is 71% water.
+few_shot,test,geography,0,-2.259891986846924,10,The largest desert in the world is the Arctic.
+few_shot,test,space_astronomy,0,-0.760040283203125,14,The speed of light is the slowest known speed in the universe.
+few_shot,train,human_body_health,0,-0.2138359546661377,20,"The human circulatory system is an open system consisting of the heart, air vessels, and air."
+few_shot,train,physics_chemistry,1,-1.7828140258789062,11,Polar ice caps are primarily made of fresh water.
+few_shot,test,human_body_health,1,-0.7342272400856018,14,"The human nervous system includes the brain, spinal cord, and nerves."
+few_shot,train,human_body_health,1,-0.3257408142089844,10,The scientific name for humans is Homo sapiens.
+few_shot,train,physics_chemistry,1,-1.4408760070800781,17,Radioactive decay occurs when unstable atomic nuclei release energy in the form of radiation.
+few_shot,train,space_astronomy,1,-1.1871757507324219,13,The first animal to orbit Earth was a dog named Laika.
+few_shot,test,physics_chemistry,1,-0.04056549072265625,15,The color of an object depends on the wavelengths of light that it reflects.
+few_shot,train,human_body_health,1,-0.6837911009788513,15,The human brain is the control center for the body's functions and emotions.
+few_shot,train,physics_chemistry,1,1.2278785705566406,16,The two main types of microscopes are light microscopes and electron microscopes.
+few_shot,train,other,0,-1.6573925018310547,12,The largest living organism in the world is a single ant.
+few_shot,train,animals,1,-2.0846052169799805,10,The largest mammal on Earth is the blue whale.
+few_shot,train,space_astronomy,1,0.19079971313476562,18,"The study of the Earth's physical structure, processes, and history is called geology."
+few_shot,train,animals,0,-1.8125475645065308,10,The smallest mammal in the world is the elephant.
+few_shot,train,physics_chemistry,1,-1.1363410949707031,14,"The speed of light is 299,792,458 meters per second."
+few_shot,test,plants_nature,0,-2.1038360595703125,8,Plants require excess oxygen to survive.
+few_shot,train,human_body_health,0,-1.9578514099121094,12,The largest body of water in the world is Lake Superior.
+few_shot,train,physics_chemistry,0,-1.5550918579101562,15,Tornadoes are slowly rotating columns of water that can cause minimal damage.
+few_shot,train,geography,1,-1.2537765502929688,12,The longest mountain range in the world is the Andes.
+few_shot,train,other,0,-0.7043381333351135,15,Conduction is the transfer of heat through the stagnation of fluids or gases.
+few_shot,train,geography,0,-2.2691783905029297,8,The Sahara is the smallest hot desert.
+few_shot,train,other,1,-1.9010733366012573,15,Tornadoes are rapidly rotating columns of air that can cause extensive damage.
+few_shot,train,other,0,-1.6499357223510742,17,Fossils are the preserved remains or traces of organisms that live in the present.
+few_shot,train,animals,0,-1.8784936666488647,10,The smallest mammal on Earth is the blue whale.
+few_shot,train,space_astronomy,0,0.4121551513671875,20,"The study of the Earth's metaphysical structure, processes, and history is called meta-geology."
+few_shot,test,geography,0,-2.005270004272461,10,The only continent without any forests is South America.
+few_shot,test,space_astronomy,1,-0.8292008638381958,13,The speed of light is the fastest known speed in the universe.
+few_shot,test,space_astronomy,0,-1.880615234375,10,The smallest planet in our solar system is Jupiter.
+few_shot,train,geography,0,-1.876662254333496,9,The smallest country in the world is Canada.
+few_shot,train,human_body_health,1,-1.2121105194091797,11,The human respiratory system consists of lungs and airways.
+few_shot,train,plants_nature,1,-1.3442420959472656,15,The tallest tree in the world is a redwood tree named Hyperion.
+few_shot,test,space_astronomy,1,-2.064732551574707,12,The planet Venus is the hottest planet in our solar system.
+few_shot,train,animals,0,-1.9852571487426758,10,The smallest animal in the world is the elephant.
+few_shot,train,human_body_health,0,-2.3056278228759766,8,Humans have wings and can fly.
+few_shot,train,human_body_health,1,-2.008329391479492,9,The human body is approximately 60% water.
+few_shot,train,space_astronomy,1,-1.5967721939086914,12,The planet Saturn is named after the Roman god of agriculture.
+few_shot,train,geography,1,-1.530548095703125,12,The largest country in the world by land area is Russia.
+few_shot,test,animals,1,-1.1729202270507812,9,A group of fish is called a school.
+few_shot,train,space_astronomy,1,0.3758087158203125,26,"Our solar system consists of eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+few_shot,train,other,0,-2.5515546798706055,5,Earth has multiple moons.
+few_shot,train,other,0,-2.23323917388916,7,Diamonds are made of silicon.
+few_shot,test,other,1,-0.7046775817871094,16,Superconductors are materials that have no electrical resistance when cooled to certain temperatures.
+few_shot,test,plants_nature,1,-0.5851821303367615,14,Photosynthesis is the process by which plants convert sunlight into chemical energy.
+few_shot,train,other,0,-1.8420761823654175,10,Antibiotics are used to cause bacterial infections.
+few_shot,train,geography,0,-2.263064384460449,11,The largest canyon in the world is located in Europe.
+few_shot,test,other,0,-2.015331268310547,11,The largest reptile in the world is the mouse.
+few_shot,train,geography,0,-2.1112613677978516,9,The only continent without any deserts is Antarctica.
+few_shot,train,physics_chemistry,0,-0.9214058518409729,13,Light can exhibit neither wave-like nor particle-like properties.
+few_shot,test,space_astronomy,0,-1.9879150390625,9,There are no stars in our solar system.
+few_shot,test,physics_chemistry,1,-0.6181334853172302,16,The process by which a liquid turns into a gas is called evaporation.
+few_shot,train,history_people,0,-1.5263748168945312,13,The Great Wall of China was built in the 21st century.
+few_shot,train,plants_nature,0,-1.9989007711410522,11,The smallest tree in the world is the redwood.
+few_shot,train,history_people,1,-1.4807853698730469,12,The Roman Empire existed from 27 BC to 476 AD.
+few_shot,train,physics_chemistry,1,-1.0352954864501953,13,"The primary colors of light are red, green, and blue."
+few_shot,train,other,1,-0.8142356276512146,14,Magnetism is a force that attracts or repels certain materials.
+few_shot,train,physics_chemistry,1,-0.20227813720703125,13,The study of matter and its interactions with energy is called physics.
+few_shot,train,animals,0,-1.8927478790283203,9,Migration prevents animals from finding better resources.
+few_shot,train,physics_chemistry,1,-2.0202789306640625,6,Water is essential for life.
+few_shot,test,physics_chemistry,0,-2.489400863647461,6,A circle has 200 degrees.
+few_shot,train,space_astronomy,1,-1.989627718925476,8,The planet Pluto has five known moons.
+few_shot,train,geography,0,-1.9101309776306152,11,The Pacific Ocean is the smallest ocean in the world.
+few_shot,test,geography,0,-2.5885696411132812,10,The highest mountain in the world is Mount Fuji.
+few_shot,train,other,0,-1.2924118041992188,10,Evolution occurs through the process of artificial selection.
+few_shot,train,other,1,-0.38822174072265625,13,The scientific method is a process for testing hypotheses and acquiring knowledge.
+few_shot,train,food,0,-1.3127632141113281,12,Pizza is a type of food that no one likes.
+few_shot,train,space_astronomy,0,-0.33565908670425415,18,The study of the Earth's core beyond Earth's atmosphere is called geoastronomy.
+few_shot,train,space_astronomy,1,-1.6722955703735352,9,The greenhouse effect helps regulate Earth's temperature.
+few_shot,train,other,0,-1.0053482055664062,10,The shortest distance between two points is a curve.
+few_shot,train,physics_chemistry,0,-2.116992950439453,6,Water is useless for life.
+few_shot,test,other,0,-1.5119590759277344,10,The smallest state in the United States is Texas.
+few_shot,train,other,1,-1.5982227325439453,17,Fossils are the preserved remains or traces of organisms that lived in the past.
+few_shot,train,other,0,-1.709716796875,12,The first man-made satellite was launched by North Korea.
+few_shot,train,food,0,-2.1838293075561523,10,Cows are carnivores and only eat meat.
+few_shot,train,space_astronomy,0,0.3124390244483948,26,"Our solar system consists of eight stars: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+few_shot,test,space_astronomy,1,-1.08056640625,17,"Tides are caused by the gravitational interactions between the Earth, Moon, and Sun."
+few_shot,train,human_body_health,0,-2.456411361694336,6,Water is poisonous to humans.
+few_shot,train,animals,0,-2.2339725494384766,6,Elephants can fly.
+few_shot,train,space_astronomy,0,-1.798797607421875,10,The smallest planet in our solar system is Saturn.
+few_shot,train,space_astronomy,1,-2.405567169189453,12,The planet Mars has the largest volcano in our solar system.
+few_shot,train,plants_nature,1,-0.14491653442382812,16,The process by which plants release oxygen and absorb carbon dioxide is called respiration.
+few_shot,train,space_astronomy,0,-2.3756680488586426,10,"The moon is a star, not a satellite."
+few_shot,train,geography,1,-2.3168864250183105,12,The highest point in Africa is Mount Kilimanjaro.
+few_shot,test,space_astronomy,0,-2.9146041870117188,7,Mercury is the largest planet.
+few_shot,train,space_astronomy,0,-2.2672195434570312,10,Auroras occur at Earth's equator.
+few_shot,train,other,1,0.265380859375,23,Metamorphosis is a biological process in which an organism undergoes a significant change in form during its life cycle.
+few_shot,train,other,0,-0.26654911041259766,23,The study of spontaneity and the variation of non-inherited characteristics is called anti-genetics.
+few_shot,train,physics_chemistry,1,-2.321451187133789,10,The boiling point of water decreases as altitude increases.
+few_shot,train,physics_chemistry,1,-1.354217529296875,15,"The speed of light is approximately 299,792,458 meters per second."
+few_shot,train,human_body_health,0,-2.3005599975585938,7,Humans have no basic senses.
+few_shot,test,physics_chemistry,1,-2.1981143951416016,13,Rainbows form when light refracts through water droplets.
+few_shot,train,space_astronomy,1,-2.1778564453125,10,Jupiter is mostly made of hydrogen and helium.
+few_shot,train,other,1,-0.9606781005859375,9,The shortest month of the year is February.
+few_shot,test,space_astronomy,0,-1.111358642578125,17,"Tides are prevented by the gravitational interactions between the Earth, Moon, and Sun."
+few_shot,test,space_astronomy,1,-1.6988048553466797,15,Volcanoes form at areas where Earth's tectonic plates interact.
+few_shot,test,physics_chemistry,1,1.8074111938476562,18,"The three main types of chemical bonds are ionic, covalent, and metallic."
+few_shot,train,human_body_health,1,-1.3790702819824219,16,The respiratory system allows for the exchange of gases between the body and the environment.
+few_shot,train,human_body_health,1,-0.4293747544288635,7,Humans have five basic senses.
+few_shot,test,animals,1,-2.4268016815185547,7,Honey is produced by bees.
+few_shot,train,other,1,-1.224334716796875,9,A group of wolves is called a pack.
+few_shot,test,plants_nature,0,-1.3601646423339844,11,The process of pollination is harmful for plant reproduction.
+few_shot,test,animals,0,-1.7065238952636719,6,All animals are colorblind.
+few_shot,test,human_body_health,1,-1.2114143371582031,14,"The human body is made up of bones, muscles, and organs."
+few_shot,test,physics_chemistry,1,-2.2643775939941406,8,Sound travels through the air as vibrations.
+few_shot,train,human_body_health,0,-1.0965986251831055,14,The human brain is uninvolved in the body's functions and emotions.
+few_shot,train,human_body_health,0,-1.7902966737747192,7,An adult human has 32 toes.
+few_shot,test,space_astronomy,1,-1.7189064025878906,12,The Earth's rotation on its axis causes day and night.
+few_shot,train,space_astronomy,1,-2.982591152191162,6,The sun is a star.
+few_shot,train,other,1,-1.7185916900634766,8,The currency of Japan is the yen.
+few_shot,train,plants_nature,0,-2.3311867713928223,8,There are no plants in the desert.
+few_shot,train,other,1,-1.6477108001708984,10,Antibiotics are used to treat bacterial infections.
+few_shot,test,physics_chemistry,1,-2.2951011657714844,11,Iron rusts in the presence of oxygen and water.
+few_shot,train,space_astronomy,1,-2.655912399291992,9,"Mars has the largest volcano, Olympus Mons."
+few_shot,train,human_body_health,1,-0.8241423964500427,19,"Mitochondria are the ""powerhouses"" of cells, producing energy through cellular respiration."
+few_shot,train,space_astronomy,0,-1.7795543670654297,11,The least abundant gas in Earth's atmosphere is nitrogen.
+few_shot,train,other,1,-0.9625053405761719,7,The alphabet consists of 26 letters.
+few_shot,train,other,0,-1.1597187519073486,13,"The primary colors of darkness are red, green, and blue."
+few_shot,train,space_astronomy,0,-1.972024917602539,13,Sunflowers follow the movement of the moon across the sky.
+few_shot,train,geography,0,-2.4446706771850586,11,The largest volcano in the world is located in Hawaii.
+few_shot,test,space_astronomy,0,-2.0744314193725586,11,The Great Wall of China can be seen from space.
+few_shot,test,food,0,-1.1273880004882812,8,A tomato is a type of fruit.
+few_shot,train,human_body_health,1,-0.4068412780761719,16,The Krebs cycle is a series of chemical reactions that generate energy in cells.
+few_shot,train,space_astronomy,0,-2.3667707443237305,11,The Earth is the only planet in the solar system.
+few_shot,test,geography,0,-2.3121848106384277,11,The largest glacier in the world is located in Africa.
+few_shot,train,physics_chemistry,1,-2.351905107498169,7,Diamonds are made of carbon.
+few_shot,train,physics_chemistry,0,-2.3217716217041016,8,Sound travels through the air as light.
+few_shot,test,plants_nature,0,-2.1428442001342773,9,Trees release carbon dioxide and absorb oxygen.
+few_shot,test,other,0,-1.3090472221374512,15,The Coriolis effect prevents the movement of large-scale weather systems.
+few_shot,train,space_astronomy,1,-0.8659048080444336,25,"The auroras, or polar lights, are natural light displays caused by the interaction of solar particles with Earth's magnetic field."
+few_shot,train,human_body_health,1,-1.937991976737976,10,The human digestive system breaks down food into nutrients.
+few_shot,test,geography,1,-2.445140838623047,8,The Sahara is the largest hot desert.
+few_shot,train,physics_chemistry,1,-1.8535079956054688,9,Lightning is a discharge of static electricity.
+few_shot,train,animals,0,-2.19442081451416,11,The largest bird in the world is the sparrow.
+few_shot,test,space_astronomy,0,-1.6020126342773438,12,The most abundant element in the Earth's atmosphere is gold.
+few_shot,train,human_body_health,1,-1.7812042236328125,12,"Humans need air, water, and food to survive."
+few_shot,train,human_body_health,1,1.0843620300292969,26,The two main types of cells are prokaryotic (without a nucleus) and eukaryotic (with a nucleus).
+few_shot,train,human_body_health,1,-1.853036880493164,10,Oxygen is necessary for humans to breathe.
+few_shot,train,animals,1,-1.6199092864990234,11,Elephants are the largest land animals on Earth.
+few_shot,train,physics_chemistry,1,-2.460613250732422,7,Diamonds are formed from carbon.
+few_shot,test,geography,0,-2.3310389518737793,11,The largest lake in the world is located in Antarctica.
+few_shot,test,other,0,-1.5512943267822266,11,The first man-made satellite was launched by France.
+few_shot,train,space_astronomy,1,-1.5749549865722656,9,Seasons are caused by Earth's tilt.
+few_shot,train,animals,0,-1.9922504425048828,10,The largest mammal in the world is the mouse.
+few_shot,test,space_astronomy,1,-1.749349594116211,16,The planet Neptune is the farthest planet from the sun in our solar system.
+few_shot,test,geography,0,-2.256220817565918,13,The highest mountain in the world is Mount Kilimanjaro.
+few_shot,train,other,0,-0.6266898512840271,14,Fermentation is a process by which microorganisms create complex organic compounds.
+few_shot,test,animals,0,-2.1966285705566406,7,Cats can bark like dogs.
+few_shot,test,human_body_health,1,-0.27615296840667725,20,"The human circulatory system is a closed system consisting of the heart, blood vessels, and blood."
+few_shot,train,space_astronomy,1,-1.737863540649414,12,The Earth's atmosphere is composed mostly of nitrogen and oxygen.
+few_shot,train,animals,1,-1.2500839233398438,9,A group of lions is called a pride.
+few_shot,train,other,1,-1.2390518188476562,10,Evolution occurs through the process of natural selection.
+few_shot,train,history_people,0,-0.806221067905426,10,The Mona Lisa was painted by Michelangelo.
+few_shot,train,other,1,-0.7362594604492188,15,Fermentation is a process by which microorganisms break down complex organic compounds.
+few_shot,train,other,1,-2.1752567291259766,11,Fossils provide evidence of past life on Earth.
+few_shot,train,animals,0,-0.9760284423828125,17,Hybrids are the offspring of identical plants or animals from the same species or varieties.
+few_shot,test,physics_chemistry,0,-1.9896717071533203,11,Cars can travel faster than the speed of light.
+few_shot,train,other,1,-1.1383857727050781,14,Friction is the force that resists motion between two surfaces in contact.
+few_shot,train,geography,1,-2.234457015991211,11,The Pacific Ocean is the largest ocean in the world.
+few_shot,train,space_astronomy,0,-2.2780823707580566,13,"Jupiter has the Great Blue Calm, a giant peaceful area."
+few_shot,train,geography,1,-2.3031721115112305,10,Mount Everest is the highest mountain in the world.
+few_shot,test,physics_chemistry,0,-0.3258171081542969,18,A substance that can be broken down into simpler substances by chemical means is called a compound.
+few_shot,train,geography,0,-2.024268627166748,11,The smallest ocean in the world is the Atlantic Ocean.
+few_shot,train,human_body_health,0,-1.5630321502685547,12,The human body is not affected by the force of gravity.
+few_shot,train,human_body_health,1,-1.854131817817688,13,"The oldest known human fossils are around 300,000 years old."
+few_shot,train,geography,1,-2.5668396949768066,13,"The capital of the United States is Washington, D.C."
+few_shot,train,physics_chemistry,0,-0.24436187744140625,21,"The process by which a gas turns directly into a solid, without becoming a liquid, is called deposition."
+few_shot,train,physics_chemistry,0,-0.18539810180664062,11,The electron configuration of an atom determines its physical properties.
+few_shot,train,human_body_health,1,-1.8129501342773438,9,Oxygen is essential for human life.
+few_shot,train,physics_chemistry,1,-1.6084823608398438,9,Oxygen is essential for respiration.
+few_shot,train,other,1,-1.7816228866577148,11,The Titanic was a famous ship that sank in 1912.
+few_shot,train,geography,0,-2.3201870918273926,7,There are no oceans in Africa.
+few_shot,train,space_astronomy,0,-2.8743553161621094,13,Neptune has the calmest winds in the solar system.
+few_shot,train,other,0,-2.759683609008789,4,Ice is hot.
+few_shot,train,physics_chemistry,1,0.0477447509765625,16,The atomic number of an element represents the number of protons in its nucleus.
+few_shot,train,human_body_health,0,-2.211822509765625,8,The human eye can see infrared light.
+few_shot,train,physics_chemistry,1,-1.9121770858764648,10,Hibernation conserves energy during cold periods.
+few_shot,train,animals,0,-2.1990418434143066,11,The largest land animal in the world is the whale.
+few_shot,test,physics_chemistry,1,-1.9701040983200073,17,Rainbows are formed when light is refracted through water droplets in the air.
+few_shot,train,human_body_health,1,-1.2224149703979492,12,The human muscular system allows us to move and lift things.
+few_shot,test,space_astronomy,0,-1.7687339782714844,16,The Earth's tides are primarily caused by the repulsive push of the sun.
+few_shot,train,space_astronomy,1,-1.5811004638671875,14,The Earth's magnetic field is what causes compasses to point north.
+few_shot,train,other,1,-0.9815330505371094,15,The Coriolis effect influences the movement of large-scale weather systems.
+few_shot,train,other,0,-2.3918046951293945,9,Lava is solid rock from volcanoes.
+few_shot,train,physics_chemistry,1,-1.6375846862792969,12,Sound travels faster through solids than through liquids or gases.
+few_shot,train,physics_chemistry,0,-1.3722877502441406,13,Chemical reactions involve the conservation of atoms to maintain old substances.
+few_shot,train,other,0,-0.5448074340820312,15,The unscientific method is a process for ignoring hypotheses and losing knowledge.
+few_shot,test,animals,0,-2.2057533264160156,8,"Sharks are mammals, not fish."
+few_shot,train,human_body_health,1,-1.0631866455078125,11,The first successful human heart transplant was performed in 1967.
+few_shot,train,space_astronomy,1,-1.4952259063720703,18,"The planet Mars is known as the ""Red Planet"" due to its reddish appearance."
+few_shot,train,physics_chemistry,1,-0.3379135727882385,26,"Electromagnetic waves include radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."
+few_shot,test,human_body_health,0,-2.064706802368164,7,Octopuses have one heart.
+few_shot,train,other,1,-1.9859333038330078,14,Earthquakes are caused by the movement of tectonic plates.
+few_shot,train,space_astronomy,1,-3.0553970336914062,6,The Earth orbits the Sun.
+few_shot,train,space_astronomy,0,-0.8199214935302734,25,"The auroras, or polar darkness, are natural shadow displays caused by the interaction of lunar particles with Earth's magnetic field."
+few_shot,train,physics_chemistry,1,-1.7487316131591797,22,Water freezes at 0 degrees Celsius (32 degrees Fahrenheit) and boils at 100 degrees Celsius (212 degrees Fahrenheit).
+few_shot,test,other,1,-0.20020294189453125,34,"The pH scale measures the acidity or alkalinity of a substance, ranging from 0 (most acidic) to 14 (most alkaline), with 7 being neutral."
+few_shot,train,human_body_health,1,-0.7711817622184753,15,"The human reproductive system includes the ovaries, uterus, and testes."
+few_shot,train,space_astronomy,1,-2.302680492401123,10,The planet Uranus is tilted on its side.
+few_shot,test,space_astronomy,1,-3.374622344970703,12,The sun rises in the east and sets in the west.
+few_shot,train,other,0,-1.9381535053253174,14,Polar bears have black fur to stand out in their snowy environment.
+few_shot,train,geography,0,-2.838214874267578,13,The highest point on Earth is at the bottom of the ocean.
+few_shot,test,physics_chemistry,1,-0.28089141845703125,18,A substance that cannot be broken down into simpler substances by chemical means is called an element.
+few_shot,train,human_body_health,1,-1.6614885330200195,11,The human skeleton provides support and protection for the body.
+few_shot,train,physics_chemistry,0,-2.0249862670898438,8,Sound remains stationary through various mediums.
+few_shot,train,space_astronomy,1,-3.4084644317626953,7,Saturn has thousands of rings.
+few_shot,train,physics_chemistry,1,-0.2828788757324219,14,The conservation of energy principle states that energy cannot be created or destroyed.
+few_shot,train,space_astronomy,0,-1.3727607727050781,10,Seasons are caused by Earth's constant alignment.
+few_shot,test,physics_chemistry,1,-2.255035400390625,8,Sound travels through the air as waves.
+few_shot,test,space_astronomy,1,-2.434070587158203,8,Saturn's largest moon is Titan.
+few_shot,train,physics_chemistry,1,-2.503326416015625,6,Light travels faster than sound.
+few_shot,train,other,0,-0.7933617234230042,11,The process of aging is influenced solely by environmental factors.
+few_shot,train,other,0,-1.9078741073608398,11,Coral reefs are made of non-living materials.
+few_shot,train,space_astronomy,0,-3.02731990814209,6,Mercury has numerous moons.
+few_shot,train,space_astronomy,1,-3.0150718688964844,6,The Earth has one moon.
+few_shot,train,animals,0,-0.5362777709960938,11,Symbiosis is a distant relationship between two species.
+few_shot,test,space_astronomy,1,-1.8109132051467896,9,Venus is similar in size to Earth.
+few_shot,train,animals,1,-2.620072364807129,7,Birds have feathers and wings.
+few_shot,test,physics_chemistry,0,-1.853786587715149,11,The coldest temperature on Earth is 100 degrees Celsius.
+few_shot,train,human_body_health,0,-0.7153701186180115,19,"Mitochondria are the ""weaknesses"" of cells, consuming energy through cellular respiration."
+few_shot,test,space_astronomy,1,-2.1148929595947266,8,The Milky Way is a spiral galaxy.
+few_shot,train,history_people,1,-1.0154683589935303,14,The Great Sphinx of Giza is an ancient statue in Egypt.
+few_shot,test,food,0,-1.980178713798523,8,"Bananas are vegetables, not fruit."
+few_shot,train,physics_chemistry,0,-3.0179805755615234,6,Earth has no magnetic field.
+few_shot,train,human_body_health,1,-0.9092292785644531,13,The human endocrine system produces hormones that regulate various bodily functions.
+few_shot,test,human_body_health,0,-0.529060423374176,16,The Krebs cycle is a series of chemical reactions that consume energy in cells.
+few_shot,train,human_body_health,0,-2.131821632385254,12,The circulatory system blocks nutrients and oxygen throughout the body.
+few_shot,train,other,1,-2.3397226333618164,9,Lava is molten rock from volcanoes.
+few_shot,train,physics_chemistry,0,-1.9100018739700317,9,Oxygen is toxic for respiration.
+few_shot,train,geography,1,-1.972494125366211,12,The Sahara Desert is the largest hot desert in the world.
+few_shot,train,physics_chemistry,1,-2.6068496704101562,4,Water is wet.
+few_shot,train,human_body_health,1,-1.7375235557556152,12,The human urinary system helps remove waste products from the body.
+few_shot,test,space_astronomy,0,-1.473724365234375,15,Deposition is the rapid building up of Earth's surface by natural processes.
+few_shot,test,space_astronomy,1,-1.9880601167678833,13,Sunflowers follow the movement of the sun across the sky.
+few_shot,train,plants_nature,0,-1.7094686031341553,10,The Amazon rainforest is home to minimal biodiversity.
+few_shot,test,physics_chemistry,0,-1.4259185791015625,10,Atoms are the basic breaking points of matter.
+few_shot,train,space_astronomy,1,-3.3412437438964844,6,Mercury has no moons.
+few_shot,test,human_body_health,1,-2.0679988861083984,10,The human liver can regenerate itself up to 75%.
+few_shot,test,space_astronomy,1,-1.2146453857421875,16,Erosion is the gradual wearing away of Earth's surface by natural processes.
+few_shot,train,physics_chemistry,0,-2.383955955505371,9,Hibernation wastes energy during warm periods.
+few_shot,train,animals,0,-2.3710384368896484,10,The largest animal in the world is a mosquito.
+few_shot,train,space_astronomy,1,-2.4031929969787598,10,The Earth's largest ocean is the Pacific Ocean.
+few_shot,train,space_astronomy,0,-2.2532310485839844,13,The Hubble Space Telescope has provided no information about distant celestial objects.
+few_shot,train,other,1,-2.2146072387695312,10,Volcanic eruptions can create new land.
+few_shot,test,other,1,0.7898369431495667,17,"The three types of rocks are igneous, sedimentary, and metamorphic."
+few_shot,train,physics_chemistry,1,-2.445178985595703,8,Gravity pulls objects towards each other.
+few_shot,train,geography,0,-2.035891056060791,12,The tallest waterfall in the world is located in North America.
+few_shot,test,animals,0,-2.35565185546875,6,All birds can fly backwards.
+few_shot,test,geography,1,-1.8621654510498047,9,The smallest continent in the world is Australia.
+few_shot,train,space_astronomy,0,-3.2510528564453125,7,The sun revolves around the moon.
+few_shot,train,other,0,-2.676037549972534,8,"The Earth is flat, not round."
+few_shot,test,plants_nature,1,-2.186443328857422,9,Trees absorb carbon dioxide and release oxygen.
+few_shot,test,other,1,-1.7956448793411255,15,The tallest building in the world is the Burj Khalifa in Dubai.
+few_shot,test,other,1,-0.9013099670410156,12,Butterflies go through a process called metamorphosis.
+few_shot,train,space_astronomy,1,-1.7761863470077515,12,The planet Mars is named after the Roman god of war.
+few_shot,train,animals,0,-2.038026809692383,10,The tallest animal in the world is the elephant.
+few_shot,test,geography,1,-2.403700828552246,11,The largest ocean in the world is the Pacific Ocean.
+few_shot,train,other,1,-0.38442516326904297,14,The Mona Lisa is a famous painting by Leonardo da Vinci.
+few_shot,train,history_people,1,-0.8817863464355469,14,The first Olympic Games were held in ancient Greece in 776 BC.
+few_shot,train,physics_chemistry,1,-1.0828590393066406,10,Atoms are the basic building blocks of matter.
+few_shot,train,other,0,-0.5595827102661133,21,The study of non-substances and their non-interactions is called anti-chemistry.
+few_shot,train,geography,0,-2.343336343765259,11,The largest ocean in the world is the Indian Ocean.
+few_shot,train,physics_chemistry,1,0.5366134643554688,25,"The four fundamental forces of nature are gravity, electromagnetism, the strong nuclear force, and the weak nuclear force."
+few_shot,train,human_body_health,1,0.823974609375,19,"The human body has four types of blood groups: A, B, AB, and O."
+few_shot,test,other,1,-0.5827407836914062,16,Convection is the transfer of heat through the movement of fluids or gases.
+few_shot,test,human_body_health,1,-2.137044906616211,9,The human body has more than 600 muscles.
