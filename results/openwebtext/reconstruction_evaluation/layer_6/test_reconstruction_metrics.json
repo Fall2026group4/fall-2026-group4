@@ -1,0 +1,26 @@
+[
+  {
+    "architecture": "relu",
+    "test_tokens": 12700,
+    "mse": 0.7598235891747662,
+    "mean_cosine_similarity": 0.9559490390086737,
+    "explained_variance": 0.8310851364794378,
+    "actual_l0": 131.11929133858268
+  },
+  {
+    "architecture": "topk",
+    "test_tokens": 12700,
+    "mse": 0.641918235638636,
+    "mean_cosine_similarity": 0.9621057056817482,
+    "explained_variance": 0.8572964399775689,
+    "actual_l0": 128.0
+  },
+  {
+    "architecture": "jumprelu",
+    "test_tokens": 12700,
+    "mse": 0.603535902769234,
+    "mean_cosine_similarity": 0.9629153670663909,
+    "explained_variance": 0.8658291396865596,
+    "actual_l0": 129.45535433070867
+  }
+]

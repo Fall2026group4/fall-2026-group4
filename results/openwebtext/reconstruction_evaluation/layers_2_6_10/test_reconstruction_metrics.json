@@ -1,0 +1,101 @@
+[
+  {
+    "layer": 2,
+    "architecture": "relu",
+    "training_step": 15000,
+    "training_procedure": "warmstart_optimizer_reset",
+    "test_tokens": 12700,
+    "mse": 0.11156617132071747,
+    "mean_cosine_similarity": 0.9887664963128998,
+    "explained_variance": 0.9361933575571122,
+    "actual_l0": 133.0403937007874
+  },
+  {
+    "layer": 2,
+    "architecture": "topk",
+    "training_step": 15000,
+    "training_procedure": "warmstart_optimizer_reset",
+    "test_tokens": 12700,
+    "mse": 0.13101735513041338,
+    "mean_cosine_similarity": 0.9865342736431932,
+    "explained_variance": 0.925068885723546,
+    "actual_l0": 128.0
+  },
+  {
+    "layer": 2,
+    "architecture": "jumprelu",
+    "training_step": 15000,
+    "training_procedure": "warmstart_optimizer_reset",
+    "test_tokens": 12700,
+    "mse": 0.1236479759716925,
+    "mean_cosine_similarity": 0.9864035634919415,
+    "explained_variance": 0.9292835624077073,
+    "actual_l0": 129.12614173228346
+  },
+  {
+    "layer": 6,
+    "architecture": "relu",
+    "training_step": 15000,
+    "training_procedure": "optimizer_resumed",
+    "test_tokens": 12700,
+    "mse": 0.7598235891747662,
+    "mean_cosine_similarity": 0.9559490390086737,
+    "explained_variance": 0.8310851364794378,
+    "actual_l0": 131.11929133858268
+  },
+  {
+    "layer": 6,
+    "architecture": "topk",
+    "training_step": 15000,
+    "training_procedure": "optimizer_resumed",
+    "test_tokens": 12700,
+    "mse": 0.641918235638636,
+    "mean_cosine_similarity": 0.9621057056817482,
+    "explained_variance": 0.8572964399775689,
+    "actual_l0": 128.0
+  },
+  {
+    "layer": 6,
+    "architecture": "jumprelu",
+    "training_step": 15000,
+    "training_procedure": "optimizer_resumed",
+    "test_tokens": 12700,
+    "mse": 0.603535902769234,
+    "mean_cosine_similarity": 0.9629153670663909,
+    "explained_variance": 0.8658291396865596,
+    "actual_l0": 129.45535433070867
+  },
+  {
+    "layer": 10,
+    "architecture": "relu",
+    "training_step": 15000,
+    "training_procedure": "warmstart_optimizer_reset",
+    "test_tokens": 12700,
+    "mse": 3.605093048976788,
+    "mean_cosine_similarity": 0.9402275638129768,
+    "explained_variance": 0.773039296033625,
+    "actual_l0": 132.63299212598426
+  },
+  {
+    "layer": 10,
+    "architecture": "topk",
+    "training_step": 15000,
+    "training_procedure": "warmstart_optimizer_reset",
+    "test_tokens": 12700,
+    "mse": 2.8328451001425115,
+    "mean_cosine_similarity": 0.9506520176684763,
+    "explained_variance": 0.8216566092965274,
+    "actual_l0": 128.0
+  },
+  {
+    "layer": 10,
+    "architecture": "jumprelu",
+    "training_step": 15000,
+    "training_procedure": "warmstart_optimizer_reset",
+    "test_tokens": 12700,
+    "mse": 2.7743133176468175,
+    "mean_cosine_similarity": 0.9517194480595627,
+    "explained_variance": 0.8253415112891125,
+    "actual_l0": 131.576062992126
+  }
+]

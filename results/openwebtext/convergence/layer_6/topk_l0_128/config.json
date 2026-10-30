@@ -1,0 +1,13 @@
+{
+  "layer": 6,
+  "architecture": "topk",
+  "target_l0": 128,
+  "features": 3072,
+  "steps": 5000,
+  "batch_size": 256,
+  "lr": 0.0003,
+  "seed": 42,
+  "eval_every": 250,
+  "data_root": "data/activations/gpt2_small",
+  "original_script": "scripts/openwebtext/03_training_sae.py"
+}

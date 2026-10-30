@@ -1,0 +1,20 @@
+{
+  "source_checkpoint": "results/openwebtext/convergence/layer_6/topk_l0_128/checkpoint_step_5000.pt",
+  "original_config": {
+    "layer": 6,
+    "architecture": "topk",
+    "target_l0": 128,
+    "features": 3072,
+    "steps": 5000,
+    "batch_size": 256,
+    "lr": 0.0003,
+    "seed": 42,
+    "eval_every": 250,
+    "data_root": "data/activations/gpt2_small",
+    "original_script": "scripts/openwebtext/03_training_sae.py"
+  },
+  "start_step": 5000,
+  "end_step": 15000,
+  "eval_every": 500,
+  "rng_note": "RNG reset to original seed + 5000 because original state was not saved"
+}
