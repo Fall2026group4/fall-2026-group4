@@ -1,0 +1,14 @@
+{
+  "layer": 6,
+  "architecture": "relu",
+  "steps": 500,
+  "batch_size_per_domain": 128,
+  "lr": 1e-05,
+  "truth_weight": 0.1,
+  "seed": 42,
+  "teacher": "Original frozen logistic probes, logit matching",
+  "truth_loss": "Mean per-domain normalized teacher logit MSE",
+  "data": "Geometry of Truth train/validation only",
+  "test_evaluated": false,
+  "source_checkpoint": "results/openwebtext/convergence/layer_6/relu_l0_128_resume_5000_to_15000/checkpoint_step_15000.pt"
+}

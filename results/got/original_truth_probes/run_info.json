@@ -1,0 +1,23 @@
+{
+  "selection_basis": "validation AUROC only",
+  "test_evaluated": false,
+  "domains": {
+    "geographic": [
+      "cities",
+      "neg_cities"
+    ],
+    "numerical": [
+      "larger_than",
+      "smaller_than"
+    ]
+  },
+  "C_grid": [
+    0.001,
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "random_seed": 42,
+  "note": "Best C selected independently per layer; probe weights are not saved. Refit on train with selected C for later frozen-probe comparison, using same original activation data and split."
+}

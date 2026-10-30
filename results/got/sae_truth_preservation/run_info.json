@@ -1,0 +1,20 @@
+{
+  "model": "gpt2-small",
+  "layers": [
+    2,
+    6,
+    10
+  ],
+  "architectures": [
+    "relu",
+    "topk",
+    "jumprelu"
+  ],
+  "sae_training_step": 15000,
+  "target_l0": 128,
+  "probe_training": "original_train_only",
+  "probe_evaluation": "original_and_sae_validation",
+  "auc_score_type": "decision_function_raw_logits",
+  "test_evaluated": false,
+  "seed": 42
+}
