@@ -1,0 +1,57 @@
+{
+  "original_evaluation_script_sha256": "cfec05c0f490c0f38ed53e1f64dfcd95764b76cba2a0976b8e79a46e9b90450a",
+  "current_script_sha256": "0acabfa0428d3bfb0c43c1748b287d6452014d10b9dda7655484273e62bf09e4",
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    2026
+  ],
+  "layer": 6,
+  "probe_architecture": "768-64-ReLU-1",
+  "epochs": 50,
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "probe_training_split": "train",
+  "evaluation_split": "test",
+  "checkpoint_hashes": {
+    "relu__pretrained": {
+      "path": "results/openwebtext/convergence/layer_6/relu_l0_128_resume_5000_to_15000/checkpoint_step_15000.pt",
+      "sha256": "ce6c95e69eee73d85d8ca21695f857adb5122b447582fee1297024e841cbc5c4"
+    },
+    "relu__reconstruction_only": {
+      "path": "results/got/sae_finetuning/layer_6_relu/reconstruction_only/finetuned_checkpoint.pt",
+      "sha256": "5c8f23421f70b0663be3b78d931025e00bb406c6a60ffa893d9ee8ab2cac14e3"
+    },
+    "relu__truth_aware": {
+      "path": "results/got/sae_finetuning/layer_6_relu/truth_aware/finetuned_checkpoint.pt",
+      "sha256": "6fc99090dca0b04de016e8384be1076cf439587dd71aaaf82cea8422eb38c1d1"
+    },
+    "topk__pretrained": {
+      "path": "results/openwebtext/convergence/layer_6/topk_l0_128_resume_5000_to_15000/checkpoint_step_15000.pt",
+      "sha256": "676c305b9a83a11e8f27f9bc2435970070f5ecb14588524d9cf28b6acc5e6875"
+    },
+    "topk__reconstruction_only": {
+      "path": "results/got/sae_finetuning/layer_6_topk/reconstruction_only/finetuned_checkpoint.pt",
+      "sha256": "30c94f694dcec76cffbd75ee0ed0f011d49bb20a5a6c9d1e18cd9f8e8f0e2024"
+    },
+    "topk__truth_aware": {
+      "path": "results/got/sae_finetuning/layer_6_topk/truth_aware/finetuned_checkpoint.pt",
+      "sha256": "87d40bd52a30981b71eef2644556981db975b2b645aa8a53672e68fd72b09392"
+    },
+    "jumprelu__pretrained": {
+      "path": "results/openwebtext/convergence/layer_6/jumprelu_l0_128_resume_5000_to_15000/checkpoint_step_15000.pt",
+      "sha256": "0fc423b369a0ecfcf001f907c0dac4589f43623c9996918243bf961f75a379d7"
+    },
+    "jumprelu__reconstruction_only": {
+      "path": "results/got/sae_finetuning/layer_6_jumprelu/reconstruction_only/finetuned_checkpoint.pt",
+      "sha256": "ab3c036a125610699d9e12b58cb019feedf188de145ecde933c15f1599c6ef4e"
+    },
+    "jumprelu__truth_aware": {
+      "path": "results/got/sae_finetuning/layer_6_jumprelu/truth_aware/finetuned_checkpoint.pt",
+      "sha256": "a1018c2ffd1896d8f6848b7ac0e8e859df49e7baf008555371edc639e2a44658"
+    }
+  },
+  "note": "Manifest recovered after evaluation; original script hash recorded before test."
+}
