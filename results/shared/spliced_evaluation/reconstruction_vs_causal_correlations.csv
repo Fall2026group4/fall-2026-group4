@@ -1,0 +1,10 @@
+x,y,n,pooled_spearman,pooled_p,within_layer_mean_spearman,n_layers_within
+owt_val_recon__explained_variance,owt__delta_ce,107,-0.97370638139462,2.793437561846719e-69,-0.7894841269841271,12
+owt_val_recon__explained_variance,owt__loss_recovered,107,0.9734516742099178,4.6037706214760056e-69,0.7894841269841271,12
+owt_val_recon__explained_variance,got__statement_kl_mean,107,-0.9420639119104999,1.2716978574409234e-51,-0.5962301587301586,12
+owt_val_recon__explained_variance,repe_final__final_kl_mean,107,-0.9595211504927605,1.3343167403117979e-59,-0.6892857142857144,12
+owt_val_recon__explained_variance,repe_final__persona_shift_cosine,107,0.8874194243617626,4.226860900321827e-37,0.05178571428571429,12
+owt__kl_mean,repe_final__persona_shift_cosine,107,-0.8553263190893239,9.315777157270508e-32,-0.15555555555555559,12
+owt__kl_mean,honesty_val_diffmean_auroc_gap,107,0.8572653131302175,4.8353322183858015e-32,0.6309803871828089,12
+owt__kl_mean,geographic_val_logistic_auroc_gap,107,0.6982373729849429,6.302195118142184e-17,0.04705538722202395,12
+repe_final__persona_shift_cosine,honesty_val_diffmean_auroc_gap,107,-0.7013690578321263,3.9973056697294386e-17,-0.12255589222261874,12

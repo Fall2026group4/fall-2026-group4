@@ -27,3 +27,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
   * Numerical layer 0: the true/false class means are identical (no truth signal at the embedding). `per_run.csv` holds float32 rounding noise in `direction_cosine`/`direction_norm_ratio` for it. The analysis masks these (original direction norm < 1e-4); the script now computes the means in float64.
   * The mass-mean direction is weak on GoT originals (val AUROC ≤ 0.63), so its gaps are not ranked.
 * Figures: `figures/all_layers_*.png`, `figures/reconstruction_vs_truth_scatter.png`.
+
+**Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.

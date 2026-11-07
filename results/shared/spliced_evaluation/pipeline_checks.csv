@@ -1,0 +1,38 @@
+check,layer,max_abs_logprob_diff,value
+determinism_two_unmodified_passes_owt,-1,0.0,
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),0,,0.00015712967433501035
+got_cache_vs_fresh_max_abs_diff,0,,0.0
+repe_cache_vs_fresh_max_abs_diff,0,,0.0
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),1,,0.0002300141641171649
+got_cache_vs_fresh_max_abs_diff,1,,1.9073486328125e-05
+repe_cache_vs_fresh_max_abs_diff,1,,2.288818359375e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),2,,4.410298424772918e-05
+got_cache_vs_fresh_max_abs_diff,2,,1.9073486328125e-05
+repe_cache_vs_fresh_max_abs_diff,2,,1.71661376953125e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),3,,0.00010409556125523522
+got_cache_vs_fresh_max_abs_diff,3,,2.09808349609375e-05
+repe_cache_vs_fresh_max_abs_diff,3,,2.6702880859375e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),4,,9.444387251278386e-05
+got_cache_vs_fresh_max_abs_diff,4,,4.57763671875e-05
+repe_cache_vs_fresh_max_abs_diff,4,,4.38690185546875e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),5,,0.00018727287533693016
+got_cache_vs_fresh_max_abs_diff,5,,3.4332275390625e-05
+repe_cache_vs_fresh_max_abs_diff,5,,3.0517578125e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),6,,8.509709005011246e-05
+got_cache_vs_fresh_max_abs_diff,6,,3.0517578125e-05
+repe_cache_vs_fresh_max_abs_diff,6,,4.57763671875e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),7,,0.00032319489400833845
+got_cache_vs_fresh_max_abs_diff,7,,3.4332275390625e-05
+repe_cache_vs_fresh_max_abs_diff,7,,4.9591064453125e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),8,,5.341082942322828e-05
+got_cache_vs_fresh_max_abs_diff,8,,3.4332275390625e-05
+repe_cache_vs_fresh_max_abs_diff,8,,4.1961669921875e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),9,,0.00016174114716704935
+got_cache_vs_fresh_max_abs_diff,9,,6.103515625e-05
+repe_cache_vs_fresh_max_abs_diff,9,,4.57763671875e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),10,,0.00012695953773800284
+got_cache_vs_fresh_max_abs_diff,10,,6.103515625e-05
+repe_cache_vs_fresh_max_abs_diff,10,,6.4849853515625e-05
+owt_cache_vs_fresh_rel_max_abs_diff (cache is fp16),11,,0.00017233926337212324
+got_cache_vs_fresh_max_abs_diff,11,,0.00011444091796875
+repe_cache_vs_fresh_max_abs_diff,11,,9.1552734375e-05

@@ -17,3 +17,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 | `reconstruction_evaluation/layer_6/`, `layer_6_finetuning_generalization/` | **VALID (scope)** / superseded for FT | FT generalization was on validation; held-out test version is `results/geometry_of_truth/sae_finetuning/heldout_comparison_all_datasets.csv`. |
 | `sae_pilot/` | historical pilot | |
 | `*/smoke/` | **SMOKE** | |
+
+**Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.

@@ -96,3 +96,30 @@ def test_registry_has_all_uninterrupted_runs():
     u = df[df.family == 'owt_uninterrupted']
     assert len(u) == 108 and u[['layer', 'architecture', 'seed']].drop_duplicates().shape[0] == 108
     assert (u.d_sae == 3072).all() and u.sha256.str.len().eq(64).all()
+
+
+def test_splicer_identity_and_mask_positions():
+    """The splice hook rewrites only the requested positions; an identity replacement changes nothing."""
+    import importlib.util as iu
+    spec = iu.spec_from_file_location('splice', ROOT / 'scripts/shared/spliced_reconstruction_evaluation.py')
+    sp_mod = iu.module_from_spec(spec)
+    spec.loader.exec_module(sp_mod)
+    seen = {}
+
+    class FakeModel:
+        def run_with_hooks(self, tokens, fwd_hooks):
+            resid = torch.zeros(*tokens.shape, 4)
+            for _, fn in fwd_hooks:
+                resid = fn(resid, None)
+            seen['resid'] = resid
+            return resid.sum(-1, keepdim=True).expand(*tokens.shape, 3).clone()
+
+    s = sp_mod.Splicer(FakeModel(), 'cpu')
+    toks, lens = sp_mod.pad([[1, 2, 3, 4], [1, 2]], 0)
+    s.logprobs(toks, lens, 0, lambda x: x + 1, 'all')
+    assert seen['resid'][..., 0].tolist() == [[0, 1, 1, 1], [0, 1, 0, 0]]   # BOS and padding untouched
+    s.logprobs(toks, lens, 0, lambda x: x + 1, 'final')
+    assert seen['resid'][..., 0].tolist() == [[0, 0, 0, 1], [0, 1, 0, 0]]
+    a = s.logprobs(toks, lens)
+    b = s.logprobs(toks, lens, 0, lambda x: x.clone(), 'all')
+    assert torch.equal(a, b)

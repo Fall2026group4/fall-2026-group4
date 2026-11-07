@@ -23,6 +23,7 @@ scripts/shared/                                                cross-dataset eva
 src/evaluation/faithfulness_metrics.py                         shared reconstruction + frozen-probe metrics (use these definitions)
 src/sae/checkpoint_registry.py                                 checkpoint lookup / registry builder
 results/{openwebtext,geometry_of_truth,repe,gemma}/            outputs of the matching script folder
+results/shared/                                                cross-dataset summaries (e.g. spliced_evaluation/)
 docs/                                                          reports, manifests, registry
 ```
 

@@ -15,3 +15,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
   * `decodability_diagnostic_validation.csv` is a **DIAGNOSTIC only**.
 * Caveat: SAE L0 on RepE prompts is 143–278 for ReLU/JumpReLU (TopK fixed at 128). Matching is defined on OWT, so RepE comparisons are not at equal L0 on these prompts.
 * Figures: `figures/all_layers_*.png`.
+
+**Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.
