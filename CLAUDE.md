@@ -113,7 +113,7 @@ An experiment is **not complete** until its results and changes are documented a
   * Scripts must refuse to overwrite existing outputs.
   * New variants go into new folders.
   * Superseded results are marked, not removed.
-  * Deletion needs the user's explicit authorisation, for example of `results/professor_review_corrections/` or `scripts/professor_review/`.
+  * Deletion needs the user's explicit authorisation. (The former `results/professor_review_corrections/` and `scripts/professor_review/` were retired with approval on 2026-11-07; see `docs/migration_manifest.csv`.)
 * **Never commit:**
   * activation caches (`data/activations/`, `data/*/activations/`);
   * `.pt` checkpoints;

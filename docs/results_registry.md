@@ -2,6 +2,10 @@
 
 Each results folder's `README.md` gives file-level detail. This page lists the results that support claims.
 
+The 2026-11-04 professor-review corrections are cited from their dataset folders below. The separate
+`results/professor_review_corrections/` copy was retired on 2026-11-07 (`RESEARCH_DECISIONS.md` D20; mapping in
+`docs/README.md` and `docs/migration_manifest.csv`).
+
 **Status meanings:**
 * **AUTHORITATIVE**: cite it.
 * **VALID (scope)**: correct only within the stated scope.

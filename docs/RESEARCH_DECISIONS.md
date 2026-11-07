@@ -139,6 +139,17 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * Behaviour saturates by w = 0.25.
 * **Consequence:** truth-trade-off questions need more seeds (power) or a setting where the endpoints actually differ (e.g. ReLU/JumpReLU once L0 control holds).
 
+## D20. Retire the separate professor-review folders (2026-11-07)
+* **Decision:** remove `results/professor_review_corrections/` and `scripts/professor_review/` (and the duplicate test `src/tests/test_professor_review.py`) from the working tree, approved by the user before the GitHub upload.
+* **Reason:** since the 2026-11-06 migration (D9-era reorganisation, `2ad0979`) every file existed twice: once in the review folder and once, hash-identical, in its dataset folder. Two parallel copies invite citing the wrong one.
+* **How evidence is preserved:**
+  * the corrections themselves stay in the dataset folders (`results/{openwebtext,geometry_of_truth,repe,gemma}/`, `scripts/{openwebtext,geometry_of_truth,shared}/`);
+  * the professor-review report, code audit and methodology changes stay verbatim in `docs/2026-11-04_*.md` (their paths refer to the old layout; `docs/README.md` maps them);
+  * the tracked originals stay in Git history; the full folders, including gitignored checkpoints and logs, are in `../backups/2026-11-07_retired_professor_review_folders/`;
+  * `docs/migration_manifest.csv` lists every retired file with its SHA-256 and its kept copy.
+* **Alternatives considered:** keep the folders (rejected by the user: no separate folder in the final structure); delete without backup (rejected: the 30 gitignored checkpoint copies exist nowhere else in this form).
+* **Earlier errors stay documented:** the corrections (optimiser-state inconsistency, unmatched sparsity, steering without an SAE in the forward pass, retrained-probe faithfulness, leaky Gemma split) remain described in `RESEARCH_PROGRESS.md` §6, this log (D5–D7) and the changelog.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.

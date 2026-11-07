@@ -443,3 +443,14 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Gemma SAEs;
   * a final pre-registered test evaluation.
 * **Not started:** see `docs/RESEARCH_ROADMAP.md`.
+
+## 18. Repository consolidation before the GitHub upload (2026-11-07). Status: COMPLETED [VERIFIED]
+
+* **Why:** prepare `sae-research` for upload as a clean, reproducible research repository, without a separate professor-review folder and without losing evidence.
+* **What was done** (no experiment run, no result value changed):
+  * Re-verified the 2026-11-06 migration: all 83 copied files have their source and destination present with matching SHA-256; the two destinations that differ were extended on purpose in `9446e56` (27 → 108 runs) and contain the 27 original rows unchanged.
+  * Retired `results/professor_review_corrections/`, `scripts/professor_review/` and the duplicate `src/tests/test_professor_review.py` to `../backups/2026-11-07_retired_professor_review_folders/` (85 files, SHA-256 verified); `docs/migration_manifest.csv` has one `retire_to_backup` row per file (D20).
+  * Rebuilt `docs/checkpoint_registry.csv` (361 rows; only the 30 retired-folder rows removed).
+  * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
+* **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
+* **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.

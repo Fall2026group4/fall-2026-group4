@@ -21,7 +21,24 @@
 | `2026-11-04_methodology_changes.md` | Methodology decisions (optimizer protocol, sparsity matching, causal protocol, …) (historical) |
 
 The three dated reports are byte-identical copies of the originals. Their paths point to the old layout.
-`migration_manifest.csv` maps every old path to its new one.
+`migration_manifest.csv` maps every old path to its new one. The old folders were retired on 2026-11-07 (D20);
+the main script mapping is:
+
+| Old path (2026-11-04 reports) | Current path |
+|---|---|
+| `scripts/professor_review/analyze_owt_corrections.py` | `scripts/openwebtext/14_sparsity_matching_analysis.py` |
+| `scripts/professor_review/got_layer10_frozen_probe.py` | `scripts/geometry_of_truth/10_layer10_frozen_probe.py` |
+| `scripts/professor_review/finetuning_repe_got_eval.py` | `scripts/shared/finetuning_heldout_eval.py` |
+| `scripts/professor_review/plot_causal_and_gemma.py` | `scripts/shared/plot_causal_and_gemma.py` |
+| `scripts/professor_review/write_manifest.py` | `scripts/shared/write_manifest.py` |
+| `src/tests/test_professor_review.py` | `src/tests/test_faithfulness_metrics.py` |
+| `results/professor_review_corrections/owt_consistent_protocol/` | `results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/` (+ checkpoints in `results/openwebtext/convergence/layer_{2,6,10}/*_uninterrupted_seed*/`) |
+| `results/professor_review_corrections/causal/` | `results/repe/steering/causal_random_controls/` |
+| `results/professor_review_corrections/gemma/` | `results/gemma/steering_sweep_layer11/` |
+| `results/professor_review_corrections/got_layer10/` | `results/geometry_of_truth/layer10_frozen_probe/` |
+| `results/professor_review_corrections/{final_research_report,code_audit,methodology_changes}.md` | `docs/2026-11-04_{professor_review_report,code_audit,methodology_changes}.md` |
+| `results/professor_review_corrections/experiment_manifest.csv` | `docs/experiment_manifest_2026-11-04.csv` |
+| top-level CSVs, `figures/`, `logs/`, `smoke/` | next to the result they belong to (`sparsity_*.csv` → `results/openwebtext/layer_comparison/`, `finetuning_comparison.csv` → `results/geometry_of_truth/sae_finetuning/heldout_comparison_all_datasets.csv`, `got_faithfulness.csv` → `results/geometry_of_truth/got_faithfulness_frozen_probes.csv`, `repe_representation.csv` → `results/repe/representation_preservation_val_test.csv`, …); one row per file in `migration_manifest.csv` |
 
 ## Layout conventions (since 2026-11-06)
 

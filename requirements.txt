@@ -104,3 +104,13 @@ webcolors==25.10.0
 webencodings==0.6.1
 websocket-client==1.9.2
 widgetsnbextension==4.0.16
+
+# Research pipeline (versions used for all results on branch sae-research, 2026-11-07).
+# torch was installed from the CUDA 13.0 wheel index (torch 2.14.1+cu130).
+torch==2.14.1
+transformer-lens==3.9.0
+transformers==5.21.0
+datasets==5.1.0
+scikit-learn==1.9.1
+sae-lens==6.54.12
+pyarrow==26.0.0

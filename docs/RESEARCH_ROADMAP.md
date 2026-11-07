@@ -36,8 +36,9 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | Truth-aware audit; corrected truth-aware pilot | audit doc, `truth_aware_pilot/` | `1614be5`, `dcf1486` |
 | Method A at layer 6 | `method_a_layer6/` | `ca81ad2` |
 | E2E-inspired Methods B/C at layer 6 | `e2e_inspired_layer6/` | `764dcbb` |
-| KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | this commit |
-| Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, this commit |
+| KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | `2c87a6b` |
+| Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, `3377116` |
+| Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | this commit |
 
 ## 2. In progress
 * None. All work is committed locally, and nothing has been pushed.
@@ -138,6 +139,7 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
   * Gemma row-split baseline.
 
 ## 11. Housekeeping awaiting approval (not to be done without explicit approval)
-* Deleting `results/professor_review_corrections/`, `scripts/professor_review/`, `src/tests/test_professor_review.py` (all migrated), and the two `.bak` files.
+* ~~Deleting `results/professor_review_corrections/`, `scripts/professor_review/`, `src/tests/test_professor_review.py`~~ **DONE 2026-11-07** (approved by the user): retired to `../backups/2026-11-07_retired_professor_review_folders/` after hash verification; Git history keeps the tracked files. The two `.bak` files remain on disk, now gitignored; deleting them still needs approval.
+* **Back up the EC2-only checkpoints** (about 9 GB of `*.pt`, plus activation caches). Only the 2026-11-06 pre-migration tarball exists; checkpoints created after it (all-layer baseline, P1, truth-aware pilot, Method A, E2E, KL ablation) have no off-machine copy.
 * Pushing `sae-research` to GitHub.
 * Merging or archiving the unmerged team branches (`dhruv`, `simba-*`, `aditi`), and bringing the 2026-10-25 report and CI from `origin/dhruv` into this branch. **Do not merge** without approval.
