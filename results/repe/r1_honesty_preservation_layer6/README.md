@@ -146,3 +146,62 @@ These follow D14: n = 3 seeds, paired by seed, descriptive rules. "Consistent" m
 ## 9. After execution
 
 To be completed.
+
+## 10. Pre-training addendum (2026-11-07, written before any R1 training run)
+
+§0–§9 above are the plan as drafted and committed in `d17bb00`; they are not edited. This addendum records the
+corrections and the details that the draft left open. **No success criterion, guard threshold, arm, seed or training
+hyperparameter is changed.**
+
+**Corrections:**
+1. **Test pass (§6) and held-out-wording test set (§2): DEFERRED.**
+   * On 2026-11-07 the user instructed: use only training and validation data for model selection, and preserve the final test split.
+   * The R1 verdict was already defined on validation and cross-wording validation, so the verdict is unaffected.
+   * §6 runs only after explicit approval. `scripts/repe/14_prepare_r1_r2_splits_and_wording.py --heldout-wording` refuses to run.
+2. **Verdict scope of the guards.**
+   * "All guards" in the verdict means the guards of R-honesty **and** R-recon, the arms the primary comparison uses.
+   * R-samepersona guard failures are flagged but do not change the verdict.
+
+**Details fixed before training:**
+* **Split:** `data/repe/splits/r1_train_AB_groups.csv`. 208 A / 209 B statements; factual-label means 0.495 / 0.498; SHA-256 in `split_verification.json`.
+  * Normalised-statement grouping: lower-case, non-alphanumerics → space.
+  * Statements 436/509 are in the same half.
+  * 0 overlap with validation or test.
+* **L_pair** (R-honesty) = mean_i ‖(x̂_H,i − x̂_U,i) − (x_H,i − x_U,i)‖² / D_H.
+  * D_H = mean ‖x_H − x_U‖² over all 208 A pairs (= 15.06).
+* **L_same** (R-samepersona) uses the same 32 statements of the batch.
+  * Pair i = (statement i, statement (i+1) mod 32), honest rows for even i and untruthful rows for odd i.
+  * Denominator D_S comes from the same construction over all of A, with statement j paired with j+1 (= 6570).
+  * The denominators differ by about 400×, because different-statement differences are much larger than persona differences. λ's scale matching makes the two terms equal in loss weight at initialisation.
+* **λ:** per SAE and arm, computed at initialisation on all A rows so that λ·L(A) = 0.5·MSE_RepE(A). Values are recorded in `training_info.json`.
+* **Probes** (fitted once on the 418 original train-B rows, applied frozen):
+  * B-MLP: the GoT script-07 architecture (768-64-1, 50 epochs, lr 1e-3, batch 128), inits 42/123/456/789/2026. The gap is the mean of the 5 per-probe AUROC gaps.
+  * B-logistic: C ∈ {0.001, 0.01, 0.1, 1, 10} by statement-grouped 5-fold CV within B.
+  * B-mass-mean: unit difference of the B class means.
+* **Scored sets:**
+  * Validation: 89 statements, 178 rows; 326 excluded.
+  * Cross-wording validation: 89 statements, 178 rows; 326 excluded.
+* **RepE-prompt L0 guard:** RepE validation rows.
+* **Splicing persona-shift cosine:** validation without 326.
+* **Pair accuracy:** reported for the B-logistic, B-mass-mean and mean B-MLP scores.
+* **Margin retention:** mean(s_H − s_U) on the reconstruction ÷ the same on the original, for the logistic logit and the mass-mean projection.
+* **Direction cosine:** mean pair difference (x_H − x_U) on the scored set, reconstruction vs original.
+* **Uncertainty (descriptive only):**
+  * sd over the 5 MLP probe inits;
+  * statement-grouped bootstrap 95 % CI (1000 resamples) of the mean-MLP-score gap;
+  * seed sd.
+* **Legacy all-train probes** (`DIAG_legacy_repe_*`) are diagnostic only. Their C is chosen on validation with 326 excluded.
+* **Exploratory rows:** TopK bases evaluated at k = 164 and 180, matching the ReLU/JumpReLU RepE L0.
+* **Method A reference:** ReLU/JumpReLU `got_replay`; TopK = the truth-aware pilot's reconstruction-only checkpoints, as in Method A.
+
+**Smoke tests before freezing (disclosed):**
+* **Training:** `15_r1_honesty_finetune.py --smoke` ran 20 steps for each arm on seed-42 SAEs of all three architectures. Nothing was saved.
+  * λ·L_pair ≈ 0.32–0.48 at step 1, as designed.
+  * **Observation:** the RepE-prompt batch L0 of ReLU and JumpReLU falls within 20 steps (≈ 164 → 146; 182 → 154), while the OWT L0 stays at about 128.
+  * The pre-registered RepE-L0 guard may therefore fail. The protocol is **not** changed in response.
+* **Evaluation:** `16_r1_evaluation.py --smoke` scored 3 base SAEs (ReLU and TopK seed 42, plus exploratory TopK k = 164) on validation and cross-wording.
+  * Output: `smoke/`.
+  * No fine-tuned SAE existed, so nothing was selected.
+  * **Finding:** pair accuracy is 1.0 for the original and for these reconstructions (ceiling). It is reported but uninformative.
+
+`pretraining_hashes.json` records the hashes of scripts 14–16, the split file, `persona_pairs.csv` and `preregistration.json`, written after this addendum.
