@@ -29,6 +29,7 @@ Each results folder's `README.md` gives file-level detail. This page lists the r
 
 | Pilot | Location |
 |---|---|
+| Corrected truth-aware pilot (layer 6 TopK, 3 seeds, A/B groups, independent probes); **pre-registered success NOT met** | `results/geometry_of_truth/truth_aware_pilot/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
 
 ## Superseded or invalid (kept, do not cite for the stated purpose)

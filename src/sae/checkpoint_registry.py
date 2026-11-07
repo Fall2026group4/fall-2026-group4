@@ -36,6 +36,8 @@ FAMILIES = [
      'first 1k/5k steps from which the layer-6 resume runs continued'),
     (r'^results/openwebtext/sae_sparsity_sweep/', 'owt_sweep_1000', 'VALID_SCOPE', '1000 steps; convergence speed only'),
     (r'^results/openwebtext/sae_pilot/', 'owt_pilot', 'HISTORICAL', 'first 1000-step pilot'),
+    (r'sae_finetuning/truth_aware_pilot_', 'got_truth_aware_pilot', 'PILOT',
+     'corrected truth-aware pilot (A/B groups, independent probes); validation only'),
     (r'^results/geometry_of_truth/sae_finetuning/', 'got_finetuned', 'VALID_SCOPE',
      'fine-tuned on GoT; not sparsity-matched to its base SAE'),
 ]

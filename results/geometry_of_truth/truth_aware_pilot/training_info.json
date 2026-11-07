@@ -1,0 +1,61 @@
+{
+  "script_sha256": "bd0b92980826ecf855dcc20cb07440ba2ec4b13037ec12e983e40b3945568ece",
+  "runs": [
+    {
+      "variant": "reconstruction_only",
+      "seed": 42,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/reconstruction_only_seed42/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "588b5d0c323caeba276acbc42d5202d530e42d495f67fff8e4205dbaf77f35f3"
+    },
+    {
+      "variant": "truth_aware",
+      "seed": 42,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/truth_aware_seed42/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "41def04b25e913b0a51e3a03ee9a2e5fa5c5a411d4b1aa700b7225a6fe383c0e"
+    },
+    {
+      "variant": "random_teacher",
+      "seed": 42,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/random_teacher_seed42/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "12c71545b01bc861cf5a6bd4ba41a49b719d7f000fd3c5b452fcccb4207f5c54"
+    },
+    {
+      "variant": "reconstruction_only",
+      "seed": 1042,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/reconstruction_only_seed1042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "89e79dedf1ba52aa4eee80ba7820cd50cefbb31286a9a56903c8f57cc23da59e"
+    },
+    {
+      "variant": "truth_aware",
+      "seed": 1042,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/truth_aware_seed1042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "6d0c68c071f2584c8324b3371de3e6ded1396725fc1262c83213c6a549c7018a"
+    },
+    {
+      "variant": "random_teacher",
+      "seed": 1042,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/random_teacher_seed1042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "a921f11c0a42e5be6cdc7e81fec75f295ff6c4d2723629b37d95c71486195263"
+    },
+    {
+      "variant": "reconstruction_only",
+      "seed": 2042,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/reconstruction_only_seed2042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "cc98902c443a22129b4ab2614afaa2931d7b2d4b742aafa32e03a50f3be0358b"
+    },
+    {
+      "variant": "truth_aware",
+      "seed": 2042,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/truth_aware_seed2042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "7fd7e78e4650aeb3549c3168a61d30ece5127f0f28ac04064a3e6edfee22c698"
+    },
+    {
+      "variant": "random_teacher",
+      "seed": 2042,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/random_teacher_seed2042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "977ec93ce34047dc2fbdc6de92be0a81b702022f32737f6b180678441bbb71ae"
+    }
+  ],
+  "base_checkpoints_unchanged": true,
+  "runtime_seconds": 89.0
+}

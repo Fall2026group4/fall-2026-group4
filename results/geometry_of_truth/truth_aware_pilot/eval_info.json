@@ -1,0 +1,13 @@
+{
+  "script_sha256": "777434e62cddc9ad649b5a518a49561928b599ef4be6a28e8630453f6bc0da76",
+  "data": "validation only",
+  "test_rows_used": false,
+  "mlp_probe_seeds": [
+    42,
+    123,
+    456,
+    789,
+    2026
+  ],
+  "runtime_seconds": 168.4
+}

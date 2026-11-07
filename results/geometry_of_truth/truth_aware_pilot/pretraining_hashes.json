@@ -1,0 +1,10 @@
+{
+  "recorded": "2026-11-07 04:42:48",
+  "note": "recorded before any pilot fine-tune",
+  "sha256": {
+    "scripts/geometry_of_truth/11_truth_aware_pilot.py": "bd0b92980826ecf855dcc20cb07440ba2ec4b13037ec12e983e40b3945568ece",
+    "scripts/geometry_of_truth/12_truth_aware_pilot_evaluation.py": "777434e62cddc9ad649b5a518a49561928b599ef4be6a28e8630453f6bc0da76",
+    "data/got/splits/train_AB_groups_truth_aware_pilot.csv": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+    "results/geometry_of_truth/truth_aware_pilot/preregistration.json": "9e8bc25e1d5931ee54377dd3083f4b3df3f57ed57e43d7c39f74aa0bc0792081"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "written": "2026-11-07 04:41:09",
+  "script_sha256": "bd0b92980826ecf855dcc20cb07440ba2ec4b13037ec12e983e40b3945568ece",
+  "split_file": "data/got/splits/train_AB_groups_truth_aware_pilot.csv",
+  "split_file_sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "split_seed": 20261107,
+  "design": {
+    "layer": 6,
+    "architecture": "topk",
+    "seeds": [
+      42,
+      1042,
+      2042
+    ],
+    "variants": [
+      "reconstruction_only",
+      "truth_aware",
+      "random_teacher"
+    ],
+    "lambda": 0.1,
+    "lr": 1e-05,
+    "steps": 500,
+    "batch": "64+64 GoT-A + 128 OWT train",
+    "teacher": "logistic on ORIGINAL A activations, C chosen on ORIGINAL validation",
+    "random_teacher": "unit Gaussian direction per domain (seed 7000+seed), bias/scale from A logits",
+    "checkpoint_selection": "none (step 500)"
+  },
+  "evaluation": {
+    "data": "validation only (GoT val, RepE validation, OWT validation); test never read",
+    "independent_probes": "fitted on ORIGINAL B activations: logistic (C chosen on original validation), mass-mean direction, MLP 768-64-1 x 5 seeds (scripts/geometry_of_truth/07 code)",
+    "teacher_probe": "reported separately as objective attainment only",
+    "diagnostic": "logistic re-fitted on RECONSTRUCTED B, scored on reconstructed validation (decodability only)",
+    "behaviour": "activation splicing (not steering): OWT delta CE/KL, GoT statement KL and cities truth preference, RepE final KL and persona-shift cosine",
+    "repe": "frozen logistic + mass-mean probes, direction fidelity (all-layer evaluation code)"
+  },
+  "success_criteria": {
+    "primary": "GEOGRAPHIC domain, for BOTH the B-logistic gap and the B-MLP gap (mean over 5 probe seeds): truth_aware gap < reconstruction_only gap AND < random_teacher gap on all 3 seeds, with mean paired difference > 2 x sd of the paired differences",
+    "secondary": "same test for the NUMERICAL domain (reported, not required)",
+    "guards": [
+      "OWT validation delta CE of truth_aware <= 1.10 x its paired base SAE",
+      "GoT cities truth-preference change of truth_aware >= reconstruction_only - 0.018 (2 pairs), mean over seeds",
+      "RepE validation mass-mean gap of truth_aware <= reconstruction_only + 0.02, mean over seeds"
+    ],
+    "success": "primary AND all guards"
+  }
+}
