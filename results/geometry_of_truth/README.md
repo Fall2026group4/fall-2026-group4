@@ -39,3 +39,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 **Method A at layer 6 (2026-11-07):** `method_a_layer6/` — **PILOT** (validation only). The pre-registered success criteria were not met; see its README.
 
 **E2E-inspired fine-tuning at layer 6 (2026-11-07):** `e2e_inspired_layer6/` — **PILOT** (validation only; not an exact reproduction of Braun et al.); see its README.
+
+**KL-weight ablation, layer 6 TopK (2026-11-07):** `kl_weight_ablation_layer6_topk/` — **PILOT** (validation only). Pre-registered verdict INCONCLUSIVE; see its README.

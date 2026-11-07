@@ -36,6 +36,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | Truth-aware audit; corrected truth-aware pilot | audit doc, `truth_aware_pilot/` | `1614be5`, `dcf1486` |
 | Method A at layer 6 | `method_a_layer6/` | `ca81ad2` |
 | E2E-inspired Methods B/C at layer 6 | `e2e_inspired_layer6/` | `764dcbb` |
+| KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | this commit |
 | Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, this commit |
 
 ## 2. In progress
@@ -52,7 +53,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | G5 | **Width sweep** {1536, 3072, 6144, 12288} at layers 2/6/10 (plan-C) | Deep-layer headroom (H1) | P1 |
 | G6 | **Residual two-stage SAE** vs a single SAE of the same total size (plan-E; not implemented) | Reconstruction improvement | P2 |
 | G7 | **Method A replication:** more seeds, separately pre-registered; extend to layers 2 and 10 | H3; Method A narrowly missed its criterion | P0 |
-| G8 | **E2E-inspired follow-up:** L0 control that holds under the KL term for ReLU/JumpReLU; replication of the TopK success; Method A + small-KL combination | H4; the pre-registered longer-budget flag for ReLU/JumpReLU | P1 |
+| G8 | **E2E-inspired follow-up:** L0 control that holds under the KL term for ReLU/JumpReLU; replication of the TopK success; Method A + small-KL combination. *TopK layer-6 KL-weight ablation DONE (inconclusive: no truth trade-off between A and B; behaviour saturates by w = 0.25).* Remaining: ReLU/JumpReLU once S4 is solved; more seeds; w < 0.25 only if pre-registered | H4; the pre-registered longer-budget flag for ReLU/JumpReLU | P1 |
 | G9 | **Public-SAE baselines under our pipeline** (`gpt2-small-res-jb`; v5-32k TopK): reconstruction, frozen probes, splicing at matched layers | External reference for the in-house SAEs | P1 |
 | G10 | **AlignSAE-style concept latent** (proposed in the 2026-11-04 report §G; not implemented) | Alternative to the abandoned linear-teacher truth-aware fine-tuning | P2 |
 | G11 | **Layer-0 JumpReLU fix:** threshold learning rate, dead-latent revival | H5; one unmatched baseline run | P2 |
@@ -125,7 +126,7 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | SAE-in-the-loop interventions | C3 |
 | GoT causal test | C4 |
 | Stronger honesty behaviour | C5 |
-| Seed replication of close calls (Method A, E2E TopK) | G7, G8 |
+| Seed replication of close calls (Method A, E2E TopK, KL-weight ablation; truth-gap seed sd ≈ 0.02) | G7, G8 |
 
 ## 10. Abandoned or superseded
 * **Linear-teacher truth-aware fine-tuning in its current form:** abandoned (`RESEARCH_DECISIONS.md` D16).

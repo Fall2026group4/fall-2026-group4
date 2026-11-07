@@ -125,11 +125,25 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * The GoT layer-6 test split has already been scored twice for the historical fine-tuned SAEs, so it cannot select among them.
 * All 2026-11-07 improvement experiments are validation-only.
 
+## D19. KL-weight ablation design (2026-11-07)
+* **Decision:** test w ∈ {0.25, 0.50} of Method B's KL coefficient for TopK at layer 6, with A (w = 0) and B (w = 1) as reused endpoints.
+* **Coefficient semantics:** α_B is the raw and only KL multiplier, already scale-matched on train data. Fractions scale α_B; per-term weight = 0.5·α.
+* **Initialisation:** every run starts from the original TopK checkpoint, not from Method A.
+* **Criteria:**
+  * a chord-based TRADE criterion plus behaviour and truth-non-inferiority tests;
+  * an explicit INCONCLUSIVE rule for when the endpoints don't differ in truth;
+  * fractions fixed before any result.
+* **Why TopK only:** L0 is fixed, so the ReLU/JumpReLU L0-drift confound of the E2E experiment is absent.
+* **Outcome:** INCONCLUSIVE.
+  * For TopK at layer 6 there is no measurable truth cost of the full KL weight (+0.007 ± 0.02).
+  * Behaviour saturates by w = 0.25.
+* **Consequence:** truth-trade-off questions need more seeds (power) or a setting where the endpoints actually differ (e.g. ReLU/JumpReLU once L0 control holds).
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. Not tested.
-* **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. Not tested.
+* **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. Untested for ReLU/JumpReLU and other layers.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6.

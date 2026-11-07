@@ -37,6 +37,8 @@ FAMILIES = [
     (r'^results/openwebtext/sae_sparsity_sweep/', 'owt_sweep_1000', 'VALID_SCOPE', '1000 steps; convergence speed only'),
     (r'^results/openwebtext/sae_pilot/', 'owt_pilot', 'HISTORICAL', 'first 1000-step pilot'),
     (r'_REPRO_CHECK/', 'method_a_repro_check', 'SMOKE', 'reproduction check of the pilot TopK run; excluded from results'),
+    (r'sae_finetuning/kl_weight_ablation_layer6_topk/', 'got_kl_weight_ablation_layer6', 'PILOT',
+     'KL-weight ablation (w = 0.25 / 0.50 of Method B KL), TopK layer 6; validation only'),
     (r'sae_finetuning/e2e_inspired_layer6/', 'got_e2e_inspired_layer6', 'PILOT',
      'E2E-inspired fine-tuning (B: +output KL, C: +KL+downstream); not an exact Braun et al. reproduction; validation only'),
     (r'sae_finetuning/method_a_layer6/', 'got_method_a_layer6', 'PILOT',

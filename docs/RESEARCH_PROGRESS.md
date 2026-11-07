@@ -387,9 +387,44 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * **Pre-registered longer-budget flag:** raised for ReLU and JumpReLU; flag only.
 * **Commit:** `764dcbb`.
 
+
+## 16. KL-weight ablation, layer 6 TopK (2026-11-07). Status: COMPLETED, VALIDATION; verdict INCONCLUSIVE [VERIFIED]
+
+* **Question:** does an intermediate output-KL weight keep Method A's independent truth-probe performance while retaining part of Method B's behavioural gain? Roadmap G8.
+* **Design:**
+  * Method B protocol (script 17 `train_one`, unchanged) with α scaled by w ∈ {0.25, 0.50} of α_B. α_B is the only KL coefficient, scale-matched per seed: 4.150 / 3.892 / 4.212.
+  * TopK, L0 = 128, seeds 42/1042/2042, each initialised from the original uninterrupted checkpoint.
+  * Method A (w = 0) and Method B (w = 1) checkpoints reused.
+  * 6 new runs.
+* **Verification before training:**
+  * split hash `d43e8383…` matches;
+  * E2E pre-training hashes still match;
+  * base/A/B provenance correct;
+  * saved results reproduce exactly from checkpoints;
+  * a w = 1 retrain is bit-identical to Method B.
+* **Results** (validation, mean ± sd, 3 seeds):
+
+  | Metric | A | w = 0.25 | w = 0.50 | B |
+  |---|---|---|---|---|
+  | Geographic MLP gap | .107 ± .020 | .111 ± .015 | .112 ± .016 | .114 ± .022 |
+  | OWT KL | .1152 | .1038 | .1027 | .1020 |
+  | OWT CE increase | .1019 | .0928 | .0915 | .0910 |
+
+  * w = 0.25 keeps about 85 % of B's KL gain, 83–85 % of its CE gain and about 99 % of its GoT statement-KL gain.
+  * GoT reconstruction error rises with w (+13 % at 0.25, +52 % at B).
+  * L0 = 128 everywhere; all guards pass.
+* **Pre-registered verdict:**
+  * BEHAV and truth non-inferiority pass for both weights; TRADE fails (below the A–B chord on 1/3 and 2/3 seeds).
+  * Overall **INCONCLUSIVE**: A and B differ in truth by only +0.007, below the 0.02 threshold, so no truth trade-off exists to improve.
+* **Learned:**
+  * For TopK at layer 6, adding output KL buys behaviour at no measurable truth cost (±0.02, n = 3).
+  * The behaviour gain saturates by w = 0.25.
+  * The remaining question is power: seed sd of the truth gap ≈ 0.02.
+* **Files:** `results/geometry_of_truth/kl_weight_ablation_layer6_topk/`, scripts `20`/`21`.
+
 ---
 
-## 16. Where we stand (2026-11-07)
+## 17. Where we stand (2026-11-07)
 
 * **Answered, at validation level unless noted:**
   * At matched L0, reconstruction degrades with depth. JumpReLU ≥ TopK > ReLU at mid and deep layers. TEST.

@@ -1,0 +1,7 @@
+{
+  "script_sha256": "7f5ba7a811db3a0a9b19b559a92c62952d21a08824d84a52821338b03c446bec",
+  "data": "validation only",
+  "test_rows_used": false,
+  "gpu_peak_allocated_gb": 8.34,
+  "runtime_seconds": 185.4
+}

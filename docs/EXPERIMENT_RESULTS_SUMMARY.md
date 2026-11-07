@@ -357,3 +357,30 @@ Source: `results/openwebtext/p1_sparsity_control_pilot/baseline_vs_p1_table.csv`
 * JumpReLU: 40–85 % at layers 0–4.
 * TopK: 7–44 %.
 * ReLU: ≤ 5 %.
+
+## 9. KL-weight ablation, layer 6 TopK (VALIDATION; L0 = 128 on OWT, GoT and RepE)
+Source: `results/geometry_of_truth/kl_weight_ablation_layer6_topk/summary.csv`, `per_sae.csv`.
+
+* w = fraction of Method B's KL coefficient α_B (per seed 4.150 / 3.892 / 4.212); w = 0 is Method A, w = 1 is Method B.
+* Seed values are 42 / 1042 / 2042.
+
+| Metric | A (w=0) | w=0.25 | w=0.50 | B (w=1) |
+|---|---|---|---|---|
+| GoT geographic B-MLP gap ↓ (seeds) | .112 / .085 / .124 | .100 / .106 / .128 | .095 / .113 / .127 | .097 / .106 / .139 |
+| GoT geographic B-MLP gap ↓ (mean ± sd) | .107 ± .020 | .111 ± .015 | .112 ± .016 | .114 ± .022 |
+| OWT output KL ↓ | .1152 ± .0019 | .1038 ± .0016 | .1027 ± .0014 | .1020 ± .0014 |
+| OWT spliced CE increase ↓ | .1019 ± .0026 | .0928 ± .0026 | .0915 ± .0024 | .0910 ± .0027 |
+| GoT statement KL ↓ | .110 | .038 | .038 | .038 |
+| GoT numerical B-MLP gap ↓ | .059 | .059 | .066 | .074 |
+| RepE mass-mean gap ↓ | .114 | .118 | .117 | .122 |
+| RepE persona-shift cosine ↑ | .770 | .765 | .760 | .743 |
+| OWT EV ↑ | .8544 | .8534 | .8528 | .8520 |
+| GoT relative reconstruction error ↓ | .0062 | .0070 | .0078 | .0094 |
+| Downstream NMSE, layers 7–11 ↓ | .0944 | .0923 | .0924 | .0926 |
+
+**Share of B's OWT KL gain retained:** 0.85–0.87 at w = 0.25; 0.94–0.95 at w = 0.50.
+
+**Pre-registered verdict: INCONCLUSIVE.**
+* The endpoints differ in truth gap by only +0.007, below the 0.02 threshold.
+* BEHAV and truth non-inferiority pass; TRADE fails.
+* Paired sd of the truth gap is about 0.02, larger than every between-method difference.

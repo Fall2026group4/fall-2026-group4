@@ -1,0 +1,114 @@
+{
+  "written": "2026-11-07 07:28:54",
+  "question": "Can an intermediate output-KL weight keep Method A's independent truth-probe performance while retaining part of Method B's behavioural (output-KL / CE) gain? GPT-2 Small layer 6, TopK L0=128.",
+  "protocol": "E2E-inspired Method B protocol (script 17 train_one, unchanged) with alpha scaled by w; init from the original uninterrupted TopK checkpoint per seed; identical data order for all w; 500 steps, Adam lr 1e-5",
+  "coefficient_semantics": "Method B loss = L_A + alpha*0.5*(KL_OWT+KL_GoT); alpha is the only KL coefficient (raw multiplier = the train-only scale-matched value). Fractions scale alpha; per-term weight = 0.5*alpha.",
+  "weights": {
+    "0pct": {
+      "seed42": {
+        "alpha": 0.0,
+        "per_KL_term_weight": 0.0
+      },
+      "seed1042": {
+        "alpha": 0.0,
+        "per_KL_term_weight": 0.0
+      },
+      "seed2042": {
+        "alpha": 0.0,
+        "per_KL_term_weight": 0.0
+      }
+    },
+    "25pct": {
+      "seed42": {
+        "alpha": 1.037538739061111,
+        "per_KL_term_weight": 0.5187693695305555
+      },
+      "seed1042": {
+        "alpha": 0.9730911743128013,
+        "per_KL_term_weight": 0.48654558715640067
+      },
+      "seed2042": {
+        "alpha": 1.05303898222481,
+        "per_KL_term_weight": 0.526519491112405
+      }
+    },
+    "50pct": {
+      "seed42": {
+        "alpha": 2.075077478122222,
+        "per_KL_term_weight": 1.037538739061111
+      },
+      "seed1042": {
+        "alpha": 1.9461823486256027,
+        "per_KL_term_weight": 0.9730911743128013
+      },
+      "seed2042": {
+        "alpha": 2.10607796444962,
+        "per_KL_term_weight": 1.05303898222481
+      }
+    },
+    "100pct": {
+      "seed42": {
+        "alpha": 4.150154956244444,
+        "per_KL_term_weight": 2.075077478122222
+      },
+      "seed1042": {
+        "alpha": 3.8923646972512054,
+        "per_KL_term_weight": 1.9461823486256027
+      },
+      "seed2042": {
+        "alpha": 4.21215592889924,
+        "per_KL_term_weight": 2.10607796444962
+      }
+    }
+  },
+  "fractions_new": [
+    0.25,
+    0.5
+  ],
+  "fractions_fixed": "not changed after seeing any validation result",
+  "seeds": [
+    42,
+    1042,
+    2042
+  ],
+  "split_sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "reuse": {
+    "w=0 (Method A)": "results/geometry_of_truth/sae_finetuning/truth_aware_pilot_layer6_topk/reconstruction_only_seed*/",
+    "w=1 (Method B)": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodB_seed*/"
+  },
+  "repro_check": "w=1.0 seed 42 retrained with this script must reproduce the Method B seed-42 checkpoint: bit-identical, or max|param diff| <= 0.0001 (GPU non-determinism) -> pass with note; otherwise STOP. Excluded from results.",
+  "evaluation": "validation only, scripts/shared/layer6_faithfulness_eval.py (independent GoT B-group probes fitted on original activations; never the teacher; no fine-tuning teacher exists in this experiment); no test rows",
+  "primary_outcomes": {
+    "truth": "GoT geographic independent B-MLP AUROC gap (lower better)",
+    "behaviour": [
+      "OWT validation output KL (lower better)",
+      "OWT validation spliced CE increase (lower better)"
+    ],
+    "sparsity": "TopK L0 = 128 on OWT, GoT and RepE (must hold exactly)"
+  },
+  "secondary_outcomes": [
+    "GoT numerical B-MLP gap",
+    "GoT B-logistic gaps",
+    "RepE logistic/mass-mean gaps, direction cosine, persona-shift cosine",
+    "OWT MSE, EV, cosine, dead fraction",
+    "downstream NMSE L7-11",
+    "GoT statement KL",
+    "cities preference change"
+  ],
+  "criteria": {
+    "unit": "per w in {0.25, 0.50}, paired by seed; n = 3 seeds -> descriptive rules, no significance claims",
+    "consistent": "better than the reference on all 3 seeds AND mean paired difference > 2 x sd of the paired differences",
+    "BEHAV": "OWT output KL AND OWT spliced CE increase both consistently lower than Method A (w=0)",
+    "TRUTH_NONINFERIOR": "mean paired (geo MLP gap(w) - gap(A)) <= +0.02 (margin = the guard margin used before)",
+    "TRADE": "on every seed, (KL_w, gap_w) lies strictly below the seed's A-B chord: gap_w < gap_A + (gap_B - gap_A) * (KL_A - KL_w) / (KL_A - KL_B), using OWT output KL",
+    "guards": [
+      "TopK L0 == 128 on OWT, GoT, RepE validation",
+      "OWT EV >= Method A - 0.02 (every seed)",
+      "cities preference change >= Method A - 0.018 (mean)",
+      "RepE mass-mean gap <= Method A + 0.02 (mean)",
+      "GoT geographic B-logistic gap <= Method A + 0.02 (mean)"
+    ],
+    "verdict": "IMPROVES TRADE-OFF only if BEHAV AND TRUTH_NONINFERIOR AND TRADE AND all guards. If the endpoints do not differ in truth (mean gap_B - gap_A <= 0.02, i.e. no measurable trade-off), TRADE is uninformative and the trade-off conclusion is INCONCLUSIVE regardless of TRADE. One metric improving while another worsens is not success.",
+    "also_reported": "fraction of Method B's KL and CE gain retained = (A - w)/(A - B), per seed and mean"
+  }
+}
