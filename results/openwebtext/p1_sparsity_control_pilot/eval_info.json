@@ -1,0 +1,10 @@
+{
+  "script": "scripts/shared/p1_validation_evaluation.py",
+  "script_sha256": "7273897d2ab39c244b19073fe115c7d456774ca326f70c55bdcef73de5a0f05d",
+  "data": "validation only",
+  "test_rows_used": false,
+  "l0_match_rule": 0.02,
+  "genuine_change_rule": "|diff| > 2 x baseline seed sd, in the better direction",
+  "phase0_reproduction_max_abs_diff_delta_ce": 0.0,
+  "runtime_seconds": 243.7
+}

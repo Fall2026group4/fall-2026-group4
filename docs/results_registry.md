@@ -25,6 +25,12 @@ Each results folder's `README.md` gives file-level detail. This page lists the r
 | Causal faithfulness (GPT-2, RepE) | Pre-registered test, 200 controls, positive control | `results/repe/steering/causal_random_controls/` |
 | Gemma-2-2B truth steering | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
 
+## Pilots (validation only, not for final claims)
+
+| Pilot | Location |
+|---|---|
+| P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
+
 ## Superseded or invalid (kept, do not cite for the stated purpose)
 
 | Result | Status | Replaced by |

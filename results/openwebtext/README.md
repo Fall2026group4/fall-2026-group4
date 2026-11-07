@@ -19,3 +19,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 | `*/smoke/` | **SMOKE** | |
 
 **Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.
+
+**P1 pilot (2026-11-07):** `p1_sparsity_control_pilot/` — **PILOT** (seed 42, validation only); see its README. Checkpoints: `convergence/layer_{0,2,6,10}/*_p1_seed42/`.

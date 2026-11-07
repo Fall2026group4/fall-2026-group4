@@ -27,6 +27,7 @@ FAMILIES = [
      'pre-migration copy; byte-identical to results/openwebtext/convergence/*_uninterrupted_seed*'),
     (r'/smoke/', 'smoke', 'SMOKE', 'pipeline check, never a result'),
     (r'_uninterrupted_seed\d+/', 'owt_uninterrupted', 'AUTHORITATIVE', 'single uninterrupted 15k-step run'),
+    (r'_p1_seed\d+/', 'owt_p1_pilot', 'PILOT', 'P1 pilot (controller anneal/freeze, JumpReLU threshold init, val selection); seed 42 only'),
     (r'_resume_5000_to_15000/', 'owt_resume_layer6', 'VALID_SCOPE',
      'layer-6 base SAEs of every GoT/RepE/fine-tuning/causal experiment; within-layer comparisons only'),
     (r'_warmstart_1000_to_15000/', 'owt_warmstart', 'SUPERSEDED', 'replaced by *_uninterrupted_seed*'),

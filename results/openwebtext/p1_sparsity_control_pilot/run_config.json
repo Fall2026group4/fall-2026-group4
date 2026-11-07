@@ -1,0 +1,31 @@
+{
+  "script_sha256": "d9835eb9671cdaa672060d58e4df6cb6bacc744cacce878177fb399ed92abb87",
+  "layers": [
+    0,
+    2,
+    6,
+    10
+  ],
+  "architectures": [
+    "relu",
+    "topk",
+    "jumprelu"
+  ],
+  "seeds": [
+    42
+  ],
+  "target_l0": 128,
+  "steps": 15000,
+  "eval_steps": [
+    10000,
+    11000,
+    12000,
+    13000,
+    14000,
+    15000
+  ],
+  "test_data_used": false,
+  "baseline_for_comparison": "results/openwebtext/convergence/layer_{L}/{arch}_l0_128_uninterrupted_seed42",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA A10G"
+}
