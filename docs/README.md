@@ -2,6 +2,14 @@
 
 | File | Contents |
 |---|---|
+| `RESEARCH_PROGRESS.md` | **Start here.** Chronological research journal, from project set-up to now |
+| `RESEARCH_ROADMAP.md` | Completed, planned, blocked and abandoned work; known missing baselines |
+| `EXPERIMENT_RESULTS_SUMMARY.md` | Quantitative tables of all experiments, with splits, metric directions and seed statistics |
+| `RESEARCH_DECISIONS.md` | Decision log: why each dataset, metric, protocol and method was chosen or abandoned |
+| `EXPERIMENT_CHANGELOG.md` | Audit trail of file, code, split and method changes, with commit hashes |
+| `templates/EXPERIMENT_TEMPLATE.md` | Template for every new experiment (pre-registration and results) |
+| `2026-11-07_truth_aware_finetuning_audit.md` | Audit that found the circular teacher/evaluation-probe setup |
+| `checkpoint_registry.csv` and the files below | Machine-readable registries and manifests |
 | `results_registry.md` | Which results are authoritative, valid-in-scope, superseded or invalid (start here) |
 | `research_gaps_and_plan.md` | Gap analysis of the six reconstruction-improvement methods and the all-12-layer extension plan |
 | `checkpoint_registry.csv` | Every SAE checkpoint under `results/` with family, status, layer, arch, seed, L0, SHA-256 (`scripts/shared/build_checkpoint_registry.py`) |
