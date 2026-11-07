@@ -1,4 +1,4 @@
-# R1. Honesty representation preservation, GPT-2 Small layer 6 (2026-11-07). Status: PLANNED (awaiting approval)
+# R1. Honesty representation preservation, GPT-2 Small layer 6 (2026-11-07). Status: COMPLETE (validation). Verdict: ReLU INCONCLUSIVE, TopK NOT SUPPORTED, JumpReLU NOT SUPPORTED
 
 Evidence level (planned): validation finding, plus one pre-registered final test pass.
 Companion experiment: `results/repe/r2_sae_in_the_loop_steering_layer6/` (R2). Roadmap: R1 (new), S3, X3.
@@ -205,3 +205,93 @@ hyperparameter is changed.**
   * **Finding:** pair accuracy is 1.0 for the original and for these reconstructions (ceiling). It is reported but uninformative.
 
 `pretraining_hashes.json` records the hashes of scripts 14–16, the split file, `persona_pairs.csv` and `preregistration.json`, written after this addendum.
+
+## 11. Results (2026-11-07, VALIDATION; test not touched)
+
+Run: 28/28 training runs succeeded (27 + reproduction check, bit-identical, max |Δparam| = 0). Training 58 s
+(GPU peak 0.16 GB); evaluation of 51 SAEs (45 main + 6 exploratory) 542 s (GPU peak 8.5 GB). Base checkpoints
+re-hashed unchanged after training. Logs: `logs/train.log`, `logs/eval.log`. Commit of the frozen protocol: `211218f`.
+Files: `training_info.json` (λ, coefficients, checkpoint SHA-256), `training_trace.csv`, `original_baseline.json`,
+`per_sae.csv`, `summary.csv`, `paired_differences.csv`, `criteria.json`, `eval_info.json`; figure
+`results/repe/figures/r1_honesty_preservation_layer6.png`.
+
+**Original GPT-2 (frozen probes on original activations; 89 validation statements):** B-MLP AUROC 0.964 (cross-wording
+0.928), B-logistic 0.993 (0.977), B-mass-mean 0.894 (0.839); pair accuracy 1.0 for all three probes on both sets.
+Every gap below is relative to these originals (gap = AUROC(original) − AUROC(reconstruction)).
+
+**Means over 3 seeds (sd in `summary.csv`):**
+
+| Arch | Variant | val B-MLP gap | cw B-MLP gap | val B-logistic gap | val B-mass-mean gap | val pair-direction cos | RepE val EV | RepE val L0 | OWT val EV | OWT val L0 | OWT ΔCE (splice) | GoT geo B-MLP gap |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ReLU | base | 0.198 | 0.243 | 0.258 | 0.155 | 0.710 | 0.785 | 163.9 | 0.828 | 133.7 | 0.177 | 0.321 |
+| ReLU | Method A | 0.194 | 0.238 | 0.254 | 0.154 | 0.710 | 0.786 | 164.5 | 0.828 | 133.8 | 0.175 | 0.245 |
+| ReLU | R-recon | 0.180 | 0.236 | 0.244 | 0.154 | 0.728 | 0.824 | 177.7 | 0.826 | 131.8 | 0.178 | 0.324 |
+| ReLU | R-samepersona | 0.175 | 0.236 | 0.237 | 0.152 | 0.729 | 0.828 | 190.2 | 0.825 | 133.2 | 0.175 | 0.322 |
+| ReLU | **R-honesty** | **0.167** | **0.225** | 0.244 | 0.134 | **0.915** | 0.820 | 175.1 | 0.826 | 131.9 | 0.178 | 0.323 |
+| TopK | base | 0.092 | 0.134 | 0.089 | 0.117 | 0.799 | 0.803 | 128 | 0.853 | 128 | 0.104 | 0.204 |
+| TopK | Method A | 0.093 | 0.139 | 0.087 | 0.117 | 0.800 | 0.805 | 128 | 0.854 | 128 | 0.102 | 0.107 |
+| TopK | R-recon | 0.088 | 0.117 | 0.076 | 0.117 | 0.811 | 0.832 | 128 | 0.853 | 128 | 0.104 | 0.221 |
+| TopK | R-samepersona | 0.091 | 0.116 | 0.080 | 0.121 | 0.811 | 0.832 | 128 | 0.852 | 128 | 0.105 | 0.222 |
+| TopK | R-honesty | 0.101 | 0.128 | 0.086 | 0.127 | 0.870 | 0.828 | 128 | 0.852 | 128 | 0.108 | 0.229 |
+| JumpReLU | base | 0.072 | 0.109 | 0.068 | 0.083 | 0.838 | 0.845 | 179.4 | 0.862 | 131.2 | 0.093 | 0.292 |
+| JumpReLU | Method A | 0.064 | 0.105 | 0.060 | 0.077 | 0.841 | 0.848 | 179.7 | 0.863 | 131.5 | 0.091 | 0.238 |
+| JumpReLU | R-recon | 0.067 | 0.094 | 0.056 | 0.078 | 0.850 | 0.873 | 185.0 | 0.860 | 129.0 | 0.094 | 0.296 |
+| JumpReLU | R-samepersona | 0.062 | 0.091 | 0.054 | 0.073 | 0.858 | 0.877 | 193.0 | 0.861 | 131.5 | 0.092 | 0.297 |
+| JumpReLU | R-honesty | 0.075 | 0.096 | 0.054 | 0.086 | 0.915 | 0.869 | 181.1 | 0.861 | 130.8 | 0.093 | 0.295 |
+
+**Primary paired differences, val B-MLP gap (negative = better), seeds 42 / 1042 / 2042:**
+
+| Arch | R-recon − base | R-honesty − R-recon | R-honesty − R-samepersona | cw: R-honesty − R-recon |
+|---|---|---|---|---|
+| ReLU | −0.002 / −0.021 / −0.029 (mean −0.017, sd 0.014) | **−0.010 / −0.012 / −0.019 (mean −0.0135, sd 0.0048)** | −0.001 / −0.004 / −0.020 | −0.017 / −0.003 / −0.015 |
+| TopK | +0.011 / −0.015 / −0.009 | −0.005 / +0.016 / +0.028 | −0.004 / +0.009 / +0.025 | +0.004 / +0.016 / +0.012 |
+| JumpReLU | −0.005 / −0.012 / +0.001 | +0.008 / +0.010 / +0.007 | +0.012 / +0.016 / +0.011 | −0.006 / +0.004 / +0.007 |
+
+**Pre-registered criteria (`criteria.json`):**
+
+| Arch | R1a (R-recon < base) | R1b (primary) | R1-transfer | Guards (R-honesty, R-recon) | **Verdict** |
+|---|---|---|---|---|---|
+| ReLU | not met (all 3 seeds lower, but mean 0.017 < 2 sd) | **met** | **met** | **fail**: RepE-prompt L0 +6.8 % (R-honesty), +8.4 % (R-recon) vs ±5 % | **INCONCLUSIVE** |
+| TopK | not met | not met (R-honesty worse on 2/3 seeds) | not met | fail: R-honesty GoT geographic B-MLP gap +0.025 vs ≤ +0.02 | **NOT SUPPORTED** |
+| JumpReLU | not met | not met (R-honesty worse on 3/3 seeds) | not met | pass | **NOT SUPPORTED** |
+
+R-samepersona guard flags: ReLU (RepE L0 +16 %) and JumpReLU (+7.6 %). Every other guard (OWT L0 ±5 %, OWT EV ≥ base
+− 0.02, dead fraction, OWT splice ΔCE, GoT gap) passes for every arm and architecture.
+
+**Interpretation (separating the evaluation categories):**
+* **Representation preservation (primary, B-MLP).** Only ReLU improves under the honesty objective: the gap falls
+  from 0.198 (base) to 0.167, consistent across seeds against R-recon, and transfers to cross-wording (0.243 → 0.225).
+  This is a 16 % reduction; the reconstruction still loses ≈ 0.17 AUROC versus the original (0.964), and per-SAE
+  statement-bootstrap 95 % CIs (≈ ±0.04) overlap between base and R-honesty on every seed. TopK and JumpReLU, whose
+  bases already preserve honesty much better (gaps 0.07–0.09), get no benefit; for JumpReLU R-honesty is slightly worse
+  than R-recon on every seed.
+* **The ReLU gain is not corroborated by the independent logistic probe** (R-honesty − R-recon = −0.0003). It does
+  appear in the mass-mean gap (−0.021), but that probe reads the same contrast L_pair optimises, so per §3 it is not
+  evidence.
+* **Direction-level metrics move a lot, as designed.** Pair-difference direction cosine rises by 0.20 (ReLU),
+  0.07 (TopK) and 0.08 (JumpReLU), and logistic margin retention rises (ReLU 0.73 → 0.80). These measure the objective
+  itself; they do not translate into probe AUROC except, partially, for ReLU.
+* **Sparsity confound.** The ReLU guard fails because RepE fine-tuning raises the RepE-prompt L0 (164 → 175–190) while
+  OWT L0 stays at its target (the controller only sees OWT rows). R-honesty has a *lower* RepE L0 than R-recon and
+  R-samepersona yet a lower gap, so extra active latents do not explain the R-honesty − R-recon difference; but the
+  comparison with the base is not sparsity-matched on RepE prompts. Exploratory TopK bases at k = 164/180 lower the
+  gap only modestly (0.092 → 0.082 / 0.075); across the 45 main SAEs, Spearman ρ(gap, RepE L0) = −0.34 (p = 0.024),
+  driven mostly by architecture.
+* **Reconstruction and behaviour.** RepE validation EV rises by 0.024–0.040 in every arm (R-honesty ≈ 0.004 below
+  R-recon); train-A EV rises more (e.g. ReLU R-recon 0.891 vs validation 0.824), i.e. some overfitting to the 208
+  A statements. OWT reconstruction is essentially unchanged (EV −0.0006 to −0.002) and OWT splice ΔCE changes by
+  ≤ 0.005 nats. RepE splice persona-shift cosine rises slightly in every arm (behavioural; descriptive only).
+* **Pair accuracy is at ceiling (1.0) everywhere** and does not discriminate (disclosed at the smoke test).
+* **Method A (GoT fine-tuning) does not change RepE preservation** (all differences ≤ 0.008), as found before.
+
+**Answer to the R1 question at validation level:** honesty-aware fine-tuning gives a small, seed-consistent,
+wording-transferring improvement of the nonlinear-probe honesty gap for ReLU only, and that improvement is confounded
+by RepE-prompt L0 drift (guard failed) and not seen with the logistic probe → INCONCLUSIVE. For TopK and JumpReLU the
+hypothesis is not supported. No reconstruction or OWT behaviour damage was observed.
+
+**Limitations:** 3 seeds; 89 validation statements (single-SAE CIs ≈ ±0.04 AUROC); one λ (no sweep, by design);
+500 steps over 208 statements overfit; RepE L0 not controlled on RepE prompts; GPT-2 Small layer 6 only; the
+pre-registered test pass (§6) has not been run (deferred by the user).
+
+**Next steps:** (1) the §6 test pass only with explicit approval; (2) a RepE-prompt-L0-matched variant (controller on
+RepE + OWT rows) would resolve the ReLU confound; that is a new experiment and needs its own pre-registration.

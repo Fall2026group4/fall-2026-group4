@@ -37,6 +37,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | KL-weight ablation, layer 6 TopK (w = 0.25, 0.50 of Method B's KL; 3 seeds); **pre-registered verdict INCONCLUSIVE**: no measurable truth trade-off between A and B; behaviour gain saturates by w = 0.25 | `results/geometry_of_truth/kl_weight_ablation_layer6_topk/` |
 | Method A layer 6 (GoT-A reconstruction fine-tuning + OWT replay; ReLU/TopK/JumpReLU × 3 seeds; OWT-only control); **pre-registered success NOT met** (MLP gap lower on 9/9 seeds vs both controls, but not by > 2 sd) | `results/geometry_of_truth/method_a_layer6/` |
 | Corrected truth-aware pilot (layer 6 TopK, 3 seeds, A/B groups, independent probes); **pre-registered success NOT met** | `results/geometry_of_truth/truth_aware_pilot/` |
+| R1 RepE honesty-preservation fine-tuning, layer 6 (R-recon / R-honesty / R-samepersona, 3 archs × 3 seeds; independent B probes); **pre-registered verdict: ReLU INCONCLUSIVE (RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED**; test not touched | `results/repe/r1_honesty_preservation_layer6/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
 
 ## Superseded or invalid (kept, do not cite for the stated purpose)
@@ -59,6 +60,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
   * They are not retrained. All of those comparisons are within layer 6, so the optimizer-procedure difference never enters them.
   * Their OWT test EV differs from the uninterrupted layer-6 runs by ≤ 0.001.
   * "Pretrained" means *trained by us on OWT*. It does not mean a public SAE.
+* **RepE validation statement 326** near-duplicates train statement 589 (found 2026-11-07). Earlier RepE validation numbers include it (1 of 90 statements); R1/R2 exclude it.
 * **GoT and RepE validation-stage results.** These are valid as validation numbers. RepE layer 6 was selected on validation, so those figures are optimistic.
 * **Fine-tuned SAEs.** These are not sparsity-matched to their base SAEs. Fine-tuning has no sparsity term, so L0 drifts, e.g. ReLU 65 → 144 on GoT.
   * Their MLP-probe results are only partially independent: the probe uses the same train rows and labels as the teacher. Read them together with the L0 drift.

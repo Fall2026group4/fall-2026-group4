@@ -150,6 +150,14 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Alternatives considered:** keep the folders (rejected by the user: no separate folder in the final structure); delete without backup (rejected: the 30 gitignored checkpoint copies exist nowhere else in this form).
 * **Earlier errors stay documented:** the corrections (optimiser-state inconsistency, unmatched sparsity, steering without an SAE in the forward pass, retrained-probe faithfulness, leaky Gemma split) remain described in `RESEARCH_PROGRESS.md` §6, this log (D5–D7) and the changelog.
 
+## D21. R1 design, test deferral and outcome (2026-11-07)
+* **Decision:** test whether a paired honest-vs-untruthful contrast loss (no probe in the loss) improves honesty preservation, against RepE reconstruction-only and a same-persona-pair control, with independent probes fitted on a disjoint train half (B).
+* **Why no probe-based objective:** the D12/D16 circularity lesson; the contrast loss targets activations, and the primary metric is a nonlinear probe fitted on B only.
+* **Test split:** the drafted plan included one test pass; on 2026-11-07 the user instructed that the test split be preserved, so the R1 verdict is validation-only and the test pass is deferred pending approval. Recorded in the pre-registration addendum before training.
+* **Guard scope:** clarified before training: the verdict needs the guards of R-honesty and R-recon.
+* **Outcome:** ReLU INCONCLUSIVE; TopK/JumpReLU NOT SUPPORTED. The contrast loss strongly improves direction-level fidelity but changes probe AUROC only for ReLU, the architecture with the worst base preservation, and there it coincides with RepE-prompt L0 drift.
+* **Consequence:** prompt-specific L0 control (S3) is needed before any honesty-preservation claim; R2 uses base SAEs as its primary set, so it is not blocked by R1's verdict.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
@@ -157,4 +165,5 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. Untested for ReLU/JumpReLU and other layers.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
+* **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6.

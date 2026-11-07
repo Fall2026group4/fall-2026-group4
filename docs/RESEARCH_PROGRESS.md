@@ -424,7 +424,7 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 
 ---
 
-## 16a. In progress: RepE honesty R1 (representation preservation) and R2 (SAE-in-the-loop intervention) (2026-11-07). Status: PLANNED, awaiting approval
+## 16a. In progress: RepE honesty R1 (representation preservation) and R2 (SAE-in-the-loop intervention) (2026-11-07). Status: R1 COMPLETED at validation (§19); R2 PLANNED
 
 * **Audit (read-only, done):**
   * No RepE fine-tuning exists.
@@ -478,3 +478,21 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
 * **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
 * **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.
+
+## 19. R1: RepE honesty-preservation fine-tuning, layer 6 (2026-11-07). Status: COMPLETED, VALIDATION; ReLU INCONCLUSIVE, TopK and JumpReLU NOT SUPPORTED [VERIFIED]
+
+* **Question:** can fine-tuning an SAE with a paired honest-vs-untruthful contrast term improve preservation of GPT-2's honesty representation (layer 6), beyond plain RepE reconstruction fine-tuning and a same-persona-pair control, without sparsity or reconstruction damage?
+* **Protocol:** pre-registration committed as drafted (`d17bb00`), then finalised before training (`211218f`, addendum §10).
+  * Arms R-recon / R-honesty / R-samepersona from the 9 uninterrupted bases; Method A protocol (Adam 1e-5, 500 steps, OWT replay).
+  * New split `data/repe/splits/r1_train_AB_groups.csv`: A (208 statements) trains, B (209) fits the independent probes.
+  * Validation statement 326 excluded. **Test not touched**: §6 test pass deferred at the user's instruction.
+* **Execution:** 28/28 runs (reproduction check bit-identical), 58 s; evaluation of 51 SAEs, 542 s. Smoke tests before freezing are disclosed in the README.
+* **Results (validation, B-MLP AUROC gap, original AUROC 0.964):**
+  * ReLU: base 0.198 → R-recon 0.180 → R-honesty 0.167. R-honesty < R-recon on 3/3 seeds (mean −0.0135, sd 0.0048), < R-samepersona on 3/3, transfers to cross-wording. **But** the RepE-prompt L0 guard fails (+6.8 % / +8.4 %), and the logistic probe shows no R-honesty gain (−0.0003). → **INCONCLUSIVE**.
+  * TopK (0.092 → 0.101) and JumpReLU (0.072 → 0.075): R-honesty no better or worse than R-recon → **NOT SUPPORTED**. TopK R-honesty also fails the GoT guard (+0.025).
+  * R1a (RepE reconstruction fine-tuning beats base) not met for any architecture.
+  * Direction-level metrics (pair-direction cosine +0.07 to +0.20) improve strongly; they measure the training objective and are not counted as evidence.
+  * OWT reconstruction and splice behaviour unchanged (ΔEV ≥ −0.002, ΔCE ≤ 0.005 nats). Pair accuracy is at ceiling (1.0) everywhere.
+* **Evidence label:** VALIDATION finding. **Files:** `results/repe/r1_honesty_preservation_layer6/` (README §11), figure `results/repe/figures/r1_honesty_preservation_layer6.png`.
+* **Limitations:** 3 seeds; 89 statements (per-SAE CI ≈ ±0.04); single λ; overfitting to 208 statements; RepE-prompt L0 uncontrolled for ReLU/JumpReLU.
+* **Next steps:** R1 test pass only with approval; an L0-controlled R1 variant (roadmap §2); R2 after the user reviews this report.

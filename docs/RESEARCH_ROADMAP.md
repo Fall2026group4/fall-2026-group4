@@ -38,20 +38,18 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | E2E-inspired Methods B/C at layer 6 | `e2e_inspired_layer6/` | `764dcbb` |
 | KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | `2c87a6b` |
 | Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, `3377116` |
-| Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | this commit |
+| Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | `875bc7f` |
+| R1 RepE honesty-preservation fine-tuning, layer 6 (27 runs, validation): ReLU INCONCLUSIVE (primary met, RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED | `results/repe/r1_honesty_preservation_layer6/` | `d17bb00`, `211218f` (pre-registration), this commit |
 
 ## 2. In progress
-* **R1. RepE honesty representation preservation, layer 6** (P0). PLANNED, awaiting approval.
-  * Arms: R-recon / R-honesty (paired-contrast) / R-samepersona control.
-  * 3 architectures × 3 seeds; train A/B split; held-out wording.
-  * Plan: `results/repe/r1_honesty_preservation_layer6/README.md`.
-  * Also addresses S3 (RepE-prompt L0 guard).
-* **R2. SAE-in-the-loop honesty-feature intervention, layer 6** (P0; implements C3, partly C5/C6). PLANNED, awaiting approval.
+* **R1. RepE honesty representation preservation, layer 6.** Validation stage COMPLETE (see §1). Open follow-ups:
+  * **R1 §6 test pass** (RepE test, default wording, once): DEFERRED, needs explicit user approval (test split preserved, 2026-11-07).
+  * **R1-L0: RepE-prompt-L0-controlled variant** (sparsity controller on RepE + OWT rows, or TopK-only matching) to resolve the ReLU confound (S3). New experiment; needs its own pre-registration. P1.
+* **R2. SAE-in-the-loop honesty-feature intervention, layer 6** (P0; implements C3, partly C5/C6). PLANNED; awaiting the user's go-ahead after the R1 report.
   * Plan: `results/repe/r2_sae_in_the_loop_steering_layer6/README.md`.
-* **New data task (needs approval):** a held-out-wording RepE test set (a third template pair, test statements only), shared by R1 and R2.
-* **Audit finding:** validation statement 326 near-duplicates train statement 589.
-  * Exclude it in all new RepE work.
-  * Earlier RepE validation numbers include it: one of 90 statements, so the effect is small. Flag it in the registry when R1 is committed.
+  * Its pre-registered criteria are defined on the held-out TEST split, so the decisive stage also needs test-split approval.
+* **New data task (DEFERRED, needs approval):** a held-out-wording RepE test set (a third template pair, test statements only), shared by R1 and R2.
+* **Audit finding:** validation statement 326 near-duplicates train statement 589. Excluded from R1/R2; flagged in `docs/results_registry.md` (done).
 
 ## 3. Outstanding GPT-2 tasks (PLANNED)
 

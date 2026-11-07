@@ -384,3 +384,31 @@ Source: `results/geometry_of_truth/kl_weight_ablation_layer6_topk/summary.csv`, 
 * The endpoints differ in truth gap by only +0.007, below the 0.02 threshold.
 * BEHAV and truth non-inferiority pass; TRADE fails.
 * Paired sd of the truth gap is about 0.02, larger than every between-method difference.
+
+## 10. R1: RepE honesty-preservation fine-tuning, layer 6 (VALIDATION; mean over 3 seeds; statement 326 excluded)
+Source: `results/repe/r1_honesty_preservation_layer6/summary.csv`, `per_sae.csv`, `criteria.json`.
+
+Original GPT-2: B-MLP AUROC 0.964 (cross-wording 0.928), B-logistic 0.993, B-mass-mean 0.894; pair accuracy 1.0.
+Gaps = original − reconstruction AUROC (↓ better).
+
+| Arch | Variant | val B-MLP gap ↓ | cw B-MLP gap ↓ | val B-logistic gap ↓ | pair-dir cos ↑ | RepE val EV ↑ | RepE val L0 | OWT val EV ↑ | OWT ΔCE ↓ |
+|---|---|---|---|---|---|---|---|---|---|
+| ReLU | base | .198 | .243 | .258 | .710 | .785 | 163.9 | .828 | .177 |
+| ReLU | R-recon | .180 | .236 | .244 | .728 | .824 | 177.7 | .826 | .178 |
+| ReLU | R-samepersona | .175 | .236 | .237 | .729 | .828 | 190.2 | .825 | .175 |
+| ReLU | R-honesty | .167 | .225 | .244 | .915 | .820 | 175.1 | .826 | .178 |
+| TopK | base | .092 | .134 | .089 | .799 | .803 | 128 | .853 | .104 |
+| TopK | R-recon | .088 | .117 | .076 | .811 | .832 | 128 | .853 | .104 |
+| TopK | R-samepersona | .091 | .116 | .080 | .811 | .832 | 128 | .852 | .105 |
+| TopK | R-honesty | .101 | .128 | .086 | .870 | .828 | 128 | .852 | .108 |
+| JumpReLU | base | .072 | .109 | .068 | .838 | .845 | 179.4 | .862 | .093 |
+| JumpReLU | R-recon | .067 | .094 | .056 | .850 | .873 | 185.0 | .860 | .094 |
+| JumpReLU | R-samepersona | .062 | .091 | .054 | .858 | .877 | 193.0 | .861 | .092 |
+| JumpReLU | R-honesty | .075 | .096 | .054 | .915 | .869 | 181.1 | .861 | .093 |
+
+**Primary paired difference R-honesty − R-recon (val B-MLP gap; seeds 42/1042/2042):** ReLU −.010/−.012/−.019;
+TopK −.005/+.016/+.028; JumpReLU +.008/+.010/+.007.
+
+**Verdicts:** ReLU INCONCLUSIVE (R1b and transfer met; RepE-prompt L0 guard failed); TopK NOT SUPPORTED (also GoT
+guard failed for R-honesty); JumpReLU NOT SUPPORTED. R1a (R-recon < base, consistent) not met anywhere. Method A
+(GoT fine-tuning) changes RepE gaps by ≤ .008. Exploratory TopK bases at k = 164 / 180: val gap .082 / .075.

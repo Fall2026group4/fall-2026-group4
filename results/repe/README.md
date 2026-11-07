@@ -17,3 +17,8 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 * Figures: `figures/all_layers_*.png`.
 
 **Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.
+
+**R1 honesty-preservation fine-tuning (2026-11-07):** `r1_honesty_preservation_layer6/` — **PILOT, validation only**.
+Verdict ReLU INCONCLUSIVE, TopK/JumpReLU NOT SUPPORTED; see its README §11. Checkpoints in
+`sae_finetuning/r1_honesty_preservation_layer6/` (gitignored; SHA-256 in `docs/checkpoint_registry.csv`).
+`r2_sae_in_the_loop_steering_layer6/` — **PLANNED** (pre-registration only).
