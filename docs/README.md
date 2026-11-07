@@ -4,6 +4,7 @@
 |---|---|
 | `results_registry.md` | Which results are authoritative, valid-in-scope, superseded or invalid (start here) |
 | `research_gaps_and_plan.md` | Gap analysis of the six reconstruction-improvement methods and the all-12-layer extension plan |
+| `checkpoint_registry.csv` | Every SAE checkpoint under `results/` with family, status, layer, arch, seed, L0, SHA-256 (`scripts/shared/build_checkpoint_registry.py`) |
 | `migration_manifest.csv` | Every file moved, copied, edited or created by the 2026-11-06 reorganization, with SHA-256 before/after |
 | `experiment_manifest.csv` | Living experiment manifest (one row per experiment; `scripts/shared/write_manifest.py:append_experiment`) |
 | `experiment_manifest_2026-11-04.csv` | Historical manifest of the professor-review experiments (script hashes at run time) |
@@ -18,7 +19,9 @@ The three dated reports are byte-identical copies of the originals. Their paths 
 
 ```
 scripts/{openwebtext,geometry_of_truth,repe,gemma}/NN_name.py   dataset pipelines, numbered in run order
-scripts/shared/                                                cross-dataset evaluation, plotting, manifest
+scripts/shared/                                                cross-dataset evaluation, plotting, manifest, checkpoint registry
+src/evaluation/faithfulness_metrics.py                         shared reconstruction + frozen-probe metrics (use these definitions)
+src/sae/checkpoint_registry.py                                 checkpoint lookup / registry builder
 results/{openwebtext,geometry_of_truth,repe,gemma}/            outputs of the matching script folder
 docs/                                                          reports, manifests, registry
 ```

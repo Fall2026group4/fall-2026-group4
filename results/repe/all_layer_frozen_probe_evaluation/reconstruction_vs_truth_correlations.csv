@@ -1,0 +1,103 @@
+scope,x,y,n,spearman_rho,p_value,note,eval_set
+"honesty: all informative layers, matched runs",nmse,logistic_auroc_gap,107,0.6987271956936151,5.871295298934039e-17,pooled across layers: mixes the layer effect with the SAE effect,validation
+"honesty: all informative layers, matched runs",owt_test_nmse,logistic_auroc_gap,107,0.8591049469670228,2.5722779220760315e-32,,validation
+"honesty: all informative layers, matched runs",cosine,logistic_auroc_gap,107,-0.7075880884934926,1.590104848261478e-17,,validation
+"honesty: all informative layers, matched runs",direction_cosine,logistic_auroc_gap,107,-0.8956457210339588,9.799867995355707e-39,,validation
+honesty: layer 0 (within layer),nmse,logistic_auroc_gap,8,0.28571428571428575,0.49272624501695717,,validation
+honesty: layer 1 (within layer),nmse,logistic_auroc_gap,9,0.7333333333333334,0.024554150071469705,,validation
+honesty: layer 2 (within layer),nmse,logistic_auroc_gap,9,0.25,0.5164895523012261,,validation
+honesty: layer 3 (within layer),nmse,logistic_auroc_gap,9,0.41666666666666663,0.26458604674749636,,validation
+honesty: layer 4 (within layer),nmse,logistic_auroc_gap,9,0.38333333333333336,0.3084952723803716,,validation
+honesty: layer 5 (within layer),nmse,logistic_auroc_gap,9,0.9,0.0009430623223403288,,validation
+honesty: layer 6 (within layer),nmse,logistic_auroc_gap,9,0.7666666666666667,0.01594401657897403,,validation
+honesty: layer 7 (within layer),nmse,logistic_auroc_gap,9,0.7833333333333333,0.012519873019449885,,validation
+honesty: layer 8 (within layer),nmse,logistic_auroc_gap,9,0.5833333333333334,0.09918581647988327,,validation
+honesty: layer 9 (within layer),nmse,logistic_auroc_gap,9,0.6666666666666667,0.049867230568885125,,validation
+honesty: layer 10 (within layer),nmse,logistic_auroc_gap,9,0.6666666666666667,0.049867230568885125,,validation
+honesty: layer 11 (within layer),nmse,logistic_auroc_gap,9,0.5666666666666667,0.1116329876114912,,validation
+honesty: cell means (layer x arch),nmse_mean,logistic_auroc_gap_mean,35,0.8030812324929973,6.427288417832552e-09,,validation
+"honesty: all informative layers, matched runs",nmse,diffmean_auroc_gap,107,0.6490999485762764,3.9827858836182967e-14,pooled across layers: mixes the layer effect with the SAE effect,validation
+"honesty: all informative layers, matched runs",owt_test_nmse,diffmean_auroc_gap,107,0.814405721153019,1.4475390251186033e-26,,validation
+"honesty: all informative layers, matched runs",cosine,diffmean_auroc_gap,107,-0.6460777350619985,5.699528993971804e-14,,validation
+"honesty: all informative layers, matched runs",direction_cosine,diffmean_auroc_gap,107,-0.9148881977039047,3.674092125422607e-43,,validation
+honesty: layer 0 (within layer),nmse,diffmean_auroc_gap,8,0.790433332862751,0.019544537274857804,,validation
+honesty: layer 1 (within layer),nmse,diffmean_auroc_gap,9,0.15,0.7000942309691418,,validation
+honesty: layer 2 (within layer),nmse,diffmean_auroc_gap,9,0.41666666666666663,0.26458604674749636,,validation
+honesty: layer 3 (within layer),nmse,diffmean_auroc_gap,9,0.41666666666666663,0.26458604674749636,,validation
+honesty: layer 4 (within layer),nmse,diffmean_auroc_gap,9,0.39999999999999997,0.286105101908313,,validation
+honesty: layer 5 (within layer),nmse,diffmean_auroc_gap,9,0.8666666666666667,0.002495398285990204,,validation
+honesty: layer 6 (within layer),nmse,diffmean_auroc_gap,9,0.7833333333333333,0.012519873019449885,,validation
+honesty: layer 7 (within layer),nmse,diffmean_auroc_gap,9,0.9833333333333333,1.936196303745927e-06,,validation
+honesty: layer 8 (within layer),nmse,diffmean_auroc_gap,9,0.5833333333333334,0.09918581647988327,,validation
+honesty: layer 9 (within layer),nmse,diffmean_auroc_gap,9,0.8499999999999999,0.0037047773275858125,,validation
+honesty: layer 10 (within layer),nmse,diffmean_auroc_gap,9,0.6333333333333333,0.06708578689234572,,validation
+honesty: layer 11 (within layer),nmse,diffmean_auroc_gap,9,0.8333333333333333,0.005265691029161747,,validation
+honesty: cell means (layer x arch),nmse_mean,diffmean_auroc_gap_mean,35,0.7260504201680673,7.958774410545506e-07,,validation
+"honesty: all informative layers, matched runs",nmse,logistic_auroc_gap,107,0.6561811952183594,1.6925471451470825e-14,pooled across layers: mixes the layer effect with the SAE effect,test
+"honesty: all informative layers, matched runs",owt_test_nmse,logistic_auroc_gap,107,0.8648946513835266,3.323922215855763e-33,,test
+"honesty: all informative layers, matched runs",cosine,logistic_auroc_gap,107,-0.6857321992325451,3.6672533530148735e-16,,test
+"honesty: all informative layers, matched runs",direction_cosine,logistic_auroc_gap,107,-0.9034339021018447,2.0536950805315526e-40,,test
+honesty: layer 0 (within layer),nmse,logistic_auroc_gap,8,0.4285714285714286,0.2894032248467901,,test
+honesty: layer 1 (within layer),nmse,logistic_auroc_gap,9,-0.3,0.43284532670948234,,test
+honesty: layer 2 (within layer),nmse,logistic_auroc_gap,9,0.35983578576496095,0.3415091184940341,,test
+honesty: layer 3 (within layer),nmse,logistic_auroc_gap,9,0.39999999999999997,0.286105101908313,,test
+honesty: layer 4 (within layer),nmse,logistic_auroc_gap,9,0.5,0.1704706607870538,,test
+honesty: layer 5 (within layer),nmse,logistic_auroc_gap,9,0.8166666666666667,0.0072247852463587885,,test
+honesty: layer 6 (within layer),nmse,logistic_auroc_gap,9,0.6666666666666667,0.049867230568885125,,test
+honesty: layer 7 (within layer),nmse,logistic_auroc_gap,9,0.9166666666666666,0.0005066190663052083,,test
+honesty: layer 8 (within layer),nmse,logistic_auroc_gap,9,0.4666666666666666,0.2053863511058121,,test
+honesty: layer 9 (within layer),nmse,logistic_auroc_gap,9,0.6333333333333333,0.06708578689234572,,test
+honesty: layer 10 (within layer),nmse,logistic_auroc_gap,9,0.6833333333333333,0.04244227208707231,,test
+honesty: layer 11 (within layer),nmse,logistic_auroc_gap,9,0.5166666666666667,0.15439012098622507,,test
+honesty: cell means (layer x arch),nmse_mean,logistic_auroc_gap_mean,35,0.7333333333333334,5.420262500163917e-07,,test
+"honesty: all informative layers, matched runs",nmse,diffmean_auroc_gap,107,0.6505188447061103,3.3612809635275027e-14,pooled across layers: mixes the layer effect with the SAE effect,test
+"honesty: all informative layers, matched runs",owt_test_nmse,diffmean_auroc_gap,107,0.8441016774003974,3.468764224178186e-30,,test
+"honesty: all informative layers, matched runs",cosine,diffmean_auroc_gap,107,-0.6711305842870309,2.5731283673567397e-15,,test
+"honesty: all informative layers, matched runs",direction_cosine,diffmean_auroc_gap,107,-0.9187114723853265,3.6385568094424815e-44,,test
+honesty: layer 0 (within layer),nmse,diffmean_auroc_gap,8,0.7142857142857144,0.046528232284167255,,test
+honesty: layer 1 (within layer),nmse,diffmean_auroc_gap,9,0.19999999999999998,0.6059012741795534,,test
+honesty: layer 2 (within layer),nmse,diffmean_auroc_gap,9,0.35,0.35581957250178897,,test
+honesty: layer 3 (within layer),nmse,diffmean_auroc_gap,9,0.5,0.1704706607870538,,test
+honesty: layer 4 (within layer),nmse,diffmean_auroc_gap,9,0.6333333333333333,0.06708578689234572,,test
+honesty: layer 5 (within layer),nmse,diffmean_auroc_gap,9,0.8833333333333333,0.0015905004234978695,,test
+honesty: layer 6 (within layer),nmse,diffmean_auroc_gap,9,0.7333333333333334,0.024554150071469705,,test
+honesty: layer 7 (within layer),nmse,diffmean_auroc_gap,9,0.9,0.0009430623223403288,,test
+honesty: layer 8 (within layer),nmse,diffmean_auroc_gap,9,0.9833333333333333,1.936196303745927e-06,,test
+honesty: layer 9 (within layer),nmse,diffmean_auroc_gap,9,0.9333333333333332,0.00023589981215941651,,test
+honesty: layer 10 (within layer),nmse,diffmean_auroc_gap,9,0.8499999999999999,0.0037047773275858125,,test
+honesty: layer 11 (within layer),nmse,diffmean_auroc_gap,9,0.8499999999999999,0.0037047773275858125,,test
+honesty: cell means (layer x arch),nmse_mean,diffmean_auroc_gap_mean,35,0.7313725490196079,6.018083053874866e-07,,test
+"honesty: all informative layers, matched runs",nmse,logistic_auroc_gap,107,0.684311713377396,4.454632876763728e-16,pooled across layers: mixes the layer effect with the SAE effect,cross_wording
+"honesty: all informative layers, matched runs",owt_test_nmse,logistic_auroc_gap,107,0.8684066802047052,9.16854716843799e-34,,cross_wording
+"honesty: all informative layers, matched runs",cosine,logistic_auroc_gap,107,-0.709091844209116,1.2677995520678511e-17,,cross_wording
+"honesty: all informative layers, matched runs",direction_cosine,logistic_auroc_gap,107,-0.8938529699202191,2.2849173196844386e-38,,cross_wording
+honesty: layer 0 (within layer),nmse,logistic_auroc_gap,8,0.11904761904761905,0.7788857260523796,,cross_wording
+honesty: layer 1 (within layer),nmse,logistic_auroc_gap,9,0.6,0.08762282904140249,,cross_wording
+honesty: layer 2 (within layer),nmse,logistic_auroc_gap,9,0.15,0.7000942309691418,,cross_wording
+honesty: layer 3 (within layer),nmse,logistic_auroc_gap,9,0.43333333333333335,0.24395243588005172,,cross_wording
+honesty: layer 4 (within layer),nmse,logistic_auroc_gap,9,0.6666666666666667,0.049867230568885125,,cross_wording
+honesty: layer 5 (within layer),nmse,logistic_auroc_gap,9,0.7833333333333333,0.012519873019449885,,cross_wording
+honesty: layer 6 (within layer),nmse,logistic_auroc_gap,9,0.7833333333333333,0.012519873019449885,,cross_wording
+honesty: layer 7 (within layer),nmse,logistic_auroc_gap,9,0.75,0.019942126131992536,,cross_wording
+honesty: layer 8 (within layer),nmse,logistic_auroc_gap,9,0.5,0.1704706607870538,,cross_wording
+honesty: layer 9 (within layer),nmse,logistic_auroc_gap,9,0.6,0.08762282904140249,,cross_wording
+honesty: layer 10 (within layer),nmse,logistic_auroc_gap,9,0.5166666666666667,0.15439012098622507,,cross_wording
+honesty: layer 11 (within layer),nmse,logistic_auroc_gap,9,0.7166666666666667,0.02981803569584528,,cross_wording
+honesty: cell means (layer x arch),nmse_mean,logistic_auroc_gap_mean,35,0.7742296918767507,4.8611513033249596e-08,,cross_wording
+"honesty: all informative layers, matched runs",nmse,diffmean_auroc_gap,107,0.2908868261894757,0.002368691309651774,pooled across layers: mixes the layer effect with the SAE effect,cross_wording
+"honesty: all informative layers, matched runs",owt_test_nmse,diffmean_auroc_gap,107,0.5364649408601987,2.5883010534284727e-09,,cross_wording
+"honesty: all informative layers, matched runs",cosine,diffmean_auroc_gap,107,-0.5813670985350534,5.172579759623511e-11,,cross_wording
+"honesty: all informative layers, matched runs",direction_cosine,diffmean_auroc_gap,107,-0.7487301315267013,1.833066033353746e-20,,cross_wording
+honesty: layer 0 (within layer),nmse,diffmean_auroc_gap,8,0.28743030285918214,0.49001548522203403,,cross_wording
+honesty: layer 1 (within layer),nmse,diffmean_auroc_gap,9,-0.19999999999999998,0.6059012741795534,,cross_wording
+honesty: layer 2 (within layer),nmse,diffmean_auroc_gap,9,0.25,0.5164895523012261,,cross_wording
+honesty: layer 3 (within layer),nmse,diffmean_auroc_gap,9,0.3666666666666667,0.3317398014330152,,cross_wording
+honesty: layer 4 (within layer),nmse,diffmean_auroc_gap,9,0.6666666666666667,0.049867230568885125,,cross_wording
+honesty: layer 5 (within layer),nmse,diffmean_auroc_gap,9,0.5333333333333333,0.13922686754397814,,cross_wording
+honesty: layer 6 (within layer),nmse,diffmean_auroc_gap,9,0.8499999999999999,0.0037047773275858125,,cross_wording
+honesty: layer 7 (within layer),nmse,diffmean_auroc_gap,9,0.7833333333333333,0.012519873019449885,,cross_wording
+honesty: layer 8 (within layer),nmse,diffmean_auroc_gap,9,0.6333333333333333,0.06708578689234572,,cross_wording
+honesty: layer 9 (within layer),nmse,diffmean_auroc_gap,9,0.8166666666666667,0.0072247852463587885,,cross_wording
+honesty: layer 10 (within layer),nmse,diffmean_auroc_gap,9,0.7833333333333333,0.012519873019449885,,cross_wording
+honesty: layer 11 (within layer),nmse,diffmean_auroc_gap,9,0.7666666666666667,0.01594401657897403,,cross_wording
+honesty: cell means (layer x arch),nmse_mean,diffmean_auroc_gap_mean,35,0.3341736694677871,0.04976072911505635,,cross_wording

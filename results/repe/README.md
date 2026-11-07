@@ -6,3 +6,12 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 * `representation_preservation.csv` — **VALID** (validation only). `representation_preservation_val_test.csv` — **AUTHORITATIVE**: validation + first test-split evaluation + cross-wording, all 9 variants.
 * SAE L0 on RepE prompts is **not matched** across architectures (JumpReLU 187, ReLU 170, TopK 128).
 * `steering/` — see `steering/README.md`.
+
+**All 12 layers, 108 uninterrupted OWT SAEs (added 2026-11-07; scripts `scripts/shared/all_layer_frozen_probe_{evaluation,analysis}.py`):**
+* `all_layer_frozen_probe_evaluation/` — **AUTHORITATIVE** for cross-layer honesty preservation.
+  * Frozen probes: the mass-mean persona direction (as in script 03; validation AUROCs identical to `original_baseline.csv`) and a logistic probe whose C was chosen on original validation rows.
+  * Splits scored: validation, test and cross-wording. Test rows were never used for selection.
+  * Files: `per_run.csv`, `summary.csv`, `matched_architecture_comparison.csv`, `reconstruction_vs_truth_correlations.csv`, `excluded_unmatched_runs.csv`, `protocol.json`.
+  * `decodability_diagnostic_validation.csv` is a **DIAGNOSTIC only**.
+* Caveat: SAE L0 on RepE prompts is 143–278 for ReLU/JumpReLU (TopK fixed at 128). Matching is defined on OWT, so RepE comparisons are not at equal L0 on these prompts.
+* Figures: `figures/all_layers_*.png`.

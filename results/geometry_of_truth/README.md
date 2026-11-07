@@ -13,3 +13,17 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 **Layer 10, public SAELens `gpt2-small-res-jb` (legacy scripts `scripts/run_geometry_*.py`):**
 * `baseline_probe_results.csv`, `sae_faithfulness_results.csv`, `sae_*`, `geometry_of_truth_feature_stats.csv` — **VALID (scope)** but **SUPERSEDED as a faithfulness metric**: the "reconstructed" probe is *re-trained on reconstructions* (decodability, 0.851 AUROC), not the original probe applied to them.
 * `layer10_frozen_probe/` — **AUTHORITATIVE**: legacy reproduction + frozen original probe on reconstructions (AUROC 0.639, gap 0.21 [0.16, 0.27]), 6 city splits.
+
+**All 12 layers, 108 uninterrupted OWT SAEs (added 2026-11-07; scripts `scripts/shared/all_layer_frozen_probe_{evaluation,analysis}.py`):**
+* `all_layer_frozen_probe_evaluation/` — **AUTHORITATIVE** for cross-layer truth preservation. Probes are fit on original train rows, C is selected on original validation rows (same grid and rule as script 03, C values identical), and the probes are applied frozen to reconstructions. `protocol.json` was written before any SAE was scored. Test rows were scored only, never used for selection.
+  * `per_run.csv`: one row per domain × layer × arch × seed × split, with the sparsity flag and checkpoint path.
+  * `summary.csv`: mean/sd over matched seeds.
+  * `matched_architecture_comparison.csv`, `reconstruction_vs_truth_correlations.csv`.
+  * `excluded_unmatched_runs.csv`: layer 0 JumpReLU seed 42.
+  * `decodability_diagnostic_validation.csv`: **DIAGNOSTIC only**. A probe re-fit on reconstructed train rows and scored on reconstructed validation rows. It measures decodability, not faithfulness.
+* Caveats:
+  * On GoT final-token activations, normalized MSE is > 1 (EV < 0) at layers ≥ 1: the within-set spread is tiny compared with the SAE error. Use `relative_sq_error` and `cosine` here.
+  * SAE L0 on GoT prompts is far below 128 for ReLU/JumpReLU (8–114). Matching is defined on OWT.
+  * Numerical layer 0: the true/false class means are identical (no truth signal at the embedding). `per_run.csv` holds float32 rounding noise in `direction_cosine`/`direction_norm_ratio` for it. The analysis masks these (original direction norm < 1e-4); the script now computes the means in float64.
+  * The mass-mean direction is weak on GoT originals (val AUROC ≤ 0.63), so its gaps are not ranked.
+* Figures: `figures/all_layers_*.png`, `figures/reconstruction_vs_truth_scatter.png`.
