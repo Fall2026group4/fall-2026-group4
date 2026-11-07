@@ -35,3 +35,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 **Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.
 
 **Corrected truth-aware pilot (2026-11-07):** `truth_aware_pilot/` — **PILOT** (validation only). The pre-registered success criteria were not met; see its README.
+
+**Method A at layer 6 (2026-11-07):** `method_a_layer6/` — **PILOT** (validation only). The pre-registered success criteria were not met; see its README.

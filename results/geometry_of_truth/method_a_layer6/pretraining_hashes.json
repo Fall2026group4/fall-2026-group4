@@ -1,0 +1,10 @@
+{
+  "recorded": "2026-11-07 05:01:15",
+  "note": "recorded before any Method A run",
+  "sha256": {
+    "scripts/geometry_of_truth/14_method_a_reconstruction_finetune.py": "cf1559e71b966b8ef7216f96b364eda0924192f4a924e594c38de4913d242755",
+    "scripts/geometry_of_truth/15_method_a_evaluation.py": "e2fecf70e196c832b38751369432eca32114e07b04ceafd1c7966071ac57c47d",
+    "data/got/splits/train_AB_groups_truth_aware_pilot.csv": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+    "results/geometry_of_truth/method_a_layer6/preregistration.json": "7ed2fc02103c6d3025e66c452e27953de9347a557db8da164238bb27d4d639ff"
+  }
+}

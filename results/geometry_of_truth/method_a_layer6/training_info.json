@@ -1,0 +1,163 @@
+{
+  "script_sha256": "cf1559e71b966b8ef7216f96b364eda0924192f4a924e594c38de4913d242755",
+  "runs": [
+    {
+      "run": "relu_got_replay_seed42",
+      "arch": "relu",
+      "seed": 42,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/relu_got_replay_seed42/finetuned_checkpoint.pt",
+      "coef_start": 0.002767969183469354,
+      "coef_end": 0.0027882840955286885
+    },
+    {
+      "run": "relu_got_replay_seed1042",
+      "arch": "relu",
+      "seed": 1042,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/relu_got_replay_seed1042/finetuned_checkpoint.pt",
+      "coef_start": 0.002734226504949594,
+      "coef_end": 0.0027630372071652206
+    },
+    {
+      "run": "relu_got_replay_seed2042",
+      "arch": "relu",
+      "seed": 2042,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/relu_got_replay_seed2042/finetuned_checkpoint.pt",
+      "coef_start": 0.002758801951814522,
+      "coef_end": 0.0027779733836356614
+    },
+    {
+      "run": "jumprelu_got_replay_seed42",
+      "arch": "jumprelu",
+      "seed": 42,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_got_replay_seed42/finetuned_checkpoint.pt",
+      "coef_start": 0.002133468951045987,
+      "coef_end": 0.002278878591089621
+    },
+    {
+      "run": "jumprelu_got_replay_seed1042",
+      "arch": "jumprelu",
+      "seed": 1042,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_got_replay_seed1042/finetuned_checkpoint.pt",
+      "coef_start": 0.0021268702641971176,
+      "coef_end": 0.0022312119478249924
+    },
+    {
+      "run": "jumprelu_got_replay_seed2042",
+      "arch": "jumprelu",
+      "seed": 2042,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_got_replay_seed2042/finetuned_checkpoint.pt",
+      "coef_start": 0.0021470132028496612,
+      "coef_end": 0.002245175583462031
+    },
+    {
+      "run": "jumprelu_p1base_got_replay_seed42",
+      "arch": "jumprelu",
+      "seed": 42,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_p1base_got_replay_seed42/finetuned_checkpoint.pt",
+      "coef_start": 0.0019310731665243702,
+      "coef_end": 0.0018120215496082095
+    },
+    {
+      "run": "topk_got_replay_seed42_REPRO_CHECK",
+      "arch": "topk",
+      "seed": 42,
+      "variant": "got_replay",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/topk_got_replay_seed42_REPRO_CHECK/finetuned_checkpoint.pt",
+      "coef_start": 0.0,
+      "coef_end": 0.0
+    },
+    {
+      "run": "relu_owt_only_seed42",
+      "arch": "relu",
+      "seed": 42,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/relu_owt_only_seed42/finetuned_checkpoint.pt",
+      "coef_start": 0.002767969183469354,
+      "coef_end": 0.002782318365854755
+    },
+    {
+      "run": "relu_owt_only_seed1042",
+      "arch": "relu",
+      "seed": 1042,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/relu_owt_only_seed1042/finetuned_checkpoint.pt",
+      "coef_start": 0.002734226504949594,
+      "coef_end": 0.002756563065696886
+    },
+    {
+      "run": "relu_owt_only_seed2042",
+      "arch": "relu",
+      "seed": 2042,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/relu_owt_only_seed2042/finetuned_checkpoint.pt",
+      "coef_start": 0.002758801951814522,
+      "coef_end": 0.0027710611950010574
+    },
+    {
+      "run": "topk_owt_only_seed42",
+      "arch": "topk",
+      "seed": 42,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/topk_owt_only_seed42/finetuned_checkpoint.pt",
+      "coef_start": 0.0,
+      "coef_end": 0.0
+    },
+    {
+      "run": "topk_owt_only_seed1042",
+      "arch": "topk",
+      "seed": 1042,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/topk_owt_only_seed1042/finetuned_checkpoint.pt",
+      "coef_start": 0.0,
+      "coef_end": 0.0
+    },
+    {
+      "run": "topk_owt_only_seed2042",
+      "arch": "topk",
+      "seed": 2042,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/topk_owt_only_seed2042/finetuned_checkpoint.pt",
+      "coef_start": 0.0,
+      "coef_end": 0.0
+    },
+    {
+      "run": "jumprelu_owt_only_seed42",
+      "arch": "jumprelu",
+      "seed": 42,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_owt_only_seed42/finetuned_checkpoint.pt",
+      "coef_start": 0.002133468951045987,
+      "coef_end": 0.0022214583211367257
+    },
+    {
+      "run": "jumprelu_owt_only_seed1042",
+      "arch": "jumprelu",
+      "seed": 1042,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_owt_only_seed1042/finetuned_checkpoint.pt",
+      "coef_start": 0.0021268702641971176,
+      "coef_end": 0.0022051011501994563
+    },
+    {
+      "run": "jumprelu_owt_only_seed2042",
+      "arch": "jumprelu",
+      "seed": 2042,
+      "variant": "owt_only",
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/method_a_layer6/jumprelu_owt_only_seed2042/finetuned_checkpoint.pt",
+      "coef_start": 0.0021470132028496612,
+      "coef_end": 0.0021944713051071565
+    }
+  ],
+  "base_and_pilot_checkpoints_unchanged": true,
+  "topk_repro_max_abs_param_diff": 0.0,
+  "topk_repro_bit_identical": true,
+  "gpu_peak_allocated_mb": 176.3,
+  "runtime_seconds": 28.6
+}

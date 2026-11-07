@@ -1,0 +1,14 @@
+{
+  "script_sha256": "e2fecf70e196c832b38751369432eca32114e07b04ceafd1c7966071ac57c47d",
+  "data": "validation only",
+  "test_rows_used": false,
+  "mlp_probe_seeds": [
+    42,
+    123,
+    456,
+    789,
+    2026
+  ],
+  "gpu_peak_allocated_mb": 8538.4,
+  "runtime_seconds": 272.3
+}

@@ -1,0 +1,28 @@
+{
+  "written": "2026-11-07 05:01:15",
+  "reference_protocol": "reconstruction_only arm of scripts/geometry_of_truth/11_truth_aware_pilot.py",
+  "split_file_sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "matrix": {
+    "baselines_evaluated": "9 uninterrupted (relu/topk/jumprelu x 3 seeds) + P1 JumpReLU seed 42",
+    "method_a": "relu x3, jumprelu x3 (new), topk x3 (existing pilot checkpoints, reused), P1-JumpReLU base x1 (new, descriptive)",
+    "control_owt_only": "relu/topk/jumprelu x 3 seeds (new)",
+    "repro_check": "topk seed 42 retrained with this script; must equal the pilot checkpoint; excluded from results",
+    "new_training_runs": 17,
+    "saes_evaluated": 29
+  },
+  "sparsity_control": "ReLU/JumpReLU: training penalty kept, controller continued from the base coefficient (target 128, every 25 steps, rate 0.5, EMA L0 on OWT rows); TopK: none",
+  "evaluation": "validation only; independent probes fitted on ORIGINAL activations of train groups B (logistic with C chosen on original validation, MLP x5 seeds, mass-mean); decodability diagnostic; OWT, GoT, RepE reconstruction and L0 reported separately; splicing (OWT CE/KL, GoT statement KL, cities preference, RepE final KL, persona-shift cosine); RepE frozen probes and direction fidelity. No probe, validation or test result is used for training or selection.",
+  "success_criteria": {
+    "primary_per_architecture": "GoT geographic B-MLP gap (mean of 5 probe seeds): method_a < paired base AND < paired owt_only on all 3 seeds, mean paired difference > 2 x its sd",
+    "secondary": "same test for the B-logistic gap and for the numerical domain (reported, not required)",
+    "guards_per_architecture": [
+      "L0 matched: OWT-validation L0 of every method_a seed within +-5 % of its base",
+      "OWT splice delta CE <= 1.10 x base on every seed",
+      "OWT validation EV >= base - 0.005 on every seed",
+      "GoT cities truth-preference change >= base - 0.018 (mean over seeds)",
+      "RepE validation mass-mean gap <= base + 0.02 (mean over seeds)"
+    ],
+    "success": "primary AND all guards (per architecture); P1 JumpReLU base is descriptive only",
+    "cross_architecture_comparison": "only among L0-matched cells"
+  }
+}

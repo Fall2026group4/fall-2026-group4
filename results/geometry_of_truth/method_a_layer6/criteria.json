@@ -1,0 +1,233 @@
+{
+  "relu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1463,
+          -0.054,
+          -0.026
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1464,
+          -0.0507,
+          -0.0239
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0087,
+          0.0052,
+          0.0009
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.012,
+          0.0082,
+          -0.0004
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0121,
+          -0.1897,
+          -0.1652
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0302,
+          -0.1907,
+          -0.1465
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0021,
+          -0.032,
+          -0.0256
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0044,
+          -0.0209,
+          -0.0251
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "topk": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0912,
+          -0.1487,
+          -0.0498
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0666,
+          -0.1602,
+          -0.0702
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0389,
+          0.0054,
+          -0.0194
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.035,
+          -0.0022,
+          -0.0195
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.1092,
+          -0.2582,
+          -0.1587
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0896,
+          -0.2283,
+          -0.1386
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0325,
+          0.0273,
+          -0.0265
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0407,
+          0.011,
+          -0.0045
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "jumprelu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0348,
+          -0.0345,
+          -0.0933
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0282,
+          -0.0369,
+          -0.0836
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0307,
+          -0.0065,
+          0.0007
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0298,
+          -0.0072,
+          0.0123
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0962,
+          0.059,
+          -0.0485
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0759,
+          0.049,
+          -0.0755
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0416,
+          0.0788,
+          -0.0115
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0155,
+          0.0553,
+          -0.003
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  }
+}
