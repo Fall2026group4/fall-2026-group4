@@ -22,6 +22,7 @@ Produced by `scripts/shared/spliced_reconstruction_evaluation.py` and `scripts/s
 * `matched_architecture_comparison.csv`.
 * `reconstruction_vs_causal_correlations.csv`.
 * `layer6_bridge.csv`: layer 6, comparing the historical resume and fine-tuned SAEs against the uninterrupted ones on every validation metric.
+  * Its `val_probe__*_logistic_*` values for `historical_finetuned_truth_aware` are **circular**: the probe is the fine-tuning teacher (see `docs/2026-11-07_truth_aware_finetuning_audit.md`). All other bridge values are valid.
 * `figures/`.
 
 **Controls:**

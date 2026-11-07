@@ -8,6 +8,10 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 * `original_truth_probes/`, `sae_truth_preservation/`, `sae_diagnostic_truth_probes/`, `independent_truth_probe/` — **VALID** (validation-split stages).
 * `final_test_protocol/`, `final_test_evaluation/` — **AUTHORITATIVE**: frozen MLP probe, 5 seeds, test touched once. `final_test_archive/` — earlier archived run.
 * `sae_finetuning/layer_6_{arch}/` — reconstruction-only and truth-aware checkpoints + validation comparison. **VALID (scope)**: base and fine-tuned SAEs differ in L0 (not sparsity-matched). `heldout_comparison_all_datasets.csv` — **AUTHORITATIVE**: all 9 variants on identical OWT-test / GoT-test / RepE-test / causal sets.
+  * **Reclassified 2026-11-07 (numbers unchanged):** wherever the `truth_aware` variant is scored with the frozen **logistic** probe, the result is **circular and is not evidence of truth preservation**. This covers `validation_comparison.csv`, the `got_*_frozen_logistic_*` columns of `heldout_comparison_all_datasets.csv`, and `got_faithfulness_frozen_probes.csv`.
+  * The reason: that probe is the training teacher of `06_finetune_sae.py`, with identical weights.
+  * With the independent MLP probe (`independent_truth_probe/`, `final_test_evaluation/`), truth-aware is **worse** than reconstruction-only in all 6 architecture × domain cells.
+  * See `docs/2026-11-07_truth_aware_finetuning_audit.md`.
 * `got_faithfulness_frozen_probes.csv` — **AUTHORITATIVE**: frozen logistic + MLP probes (layer 6) and the layer-10 frozen-probe result in one table.
 
 **Layer 10, public SAELens `gpt2-small-res-jb` (legacy scripts `scripts/run_geometry_*.py`):**
