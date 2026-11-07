@@ -20,6 +20,10 @@ These rules apply to every task in this repository and every Claude Code session
 
 Do this **without being asked**, for every experiment, training run, evaluation, bug fix, methodological correction, dataset or split change, hyperparameter change and research decision.
 
+* **The rule applies even when the user's request does not mention documentation**, and even for small or failed runs. A request to "just run X" still means "run X and document it".
+* **At the start of every task:** read `docs/RESEARCH_ROADMAP.md` and the latest entries of `docs/RESEARCH_PROGRESS.md`. Check whether the task is on the roadmap. If not, add it.
+* **Whenever a new outstanding task, missing baseline, control or deliverable is identified,** add it to `docs/RESEARCH_ROADMAP.md` in the same task. Cover the GPT-2, Gemma, sparsity-matching, causal/steering, cross-model and capstone-deliverable sections.
+
 **Before implementation**, write a plan entry. Use `docs/templates/EXPERIMENT_TEMPLATE.md`, put it in the experiment's results folder as `README.md` or `preregistration.json`, and summarise it in `docs/RESEARCH_PROGRESS.md` under "In progress". The entry records:
 1. The research question, the hypothesis, and why the experiment is necessary. Say how it connects to the main research question.
 2. The design:
@@ -60,6 +64,16 @@ Do this **without being asked**, for every experiment, training run, evaluation,
    * the exact next steps.
 
 An experiment is **not complete** until its results and changes are documented and committed locally.
+
+**Checklist before every local commit** (`git diff --cached --name-only` must show the documentation files alongside the code and results):
+- [ ] The results folder has a `README.md` with design, results, criteria and status.
+- [ ] The `RESEARCH_PROGRESS.md` entry is added or updated, with its evidence label.
+- [ ] `EXPERIMENT_CHANGELOG.md` lists the commit's files and reasons.
+- [ ] `EXPERIMENT_RESULTS_SUMMARY.md` is updated if there are new numbers.
+- [ ] `RESEARCH_DECISIONS.md` is updated if a decision was made.
+- [ ] `RESEARCH_ROADMAP.md` shows the status change and any new tasks.
+- [ ] `results_registry.md`, the experiment manifest and the checkpoint registry are updated as applicable.
+- [ ] Tests pass; no checkpoints, caches, logs, credentials or absolute home paths are staged; nothing is pushed.
 
 ## 2. Scientific rules
 
