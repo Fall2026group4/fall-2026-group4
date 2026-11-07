@@ -1,0 +1,7 @@
+prompt_set,n_prompts,n_pairs,train_pairs,test_pairs,mean_tokens_honest,mean_tokens_dishonest,length_difference,activation_shape
+original,592,296,206,90,26.96,29.96,3.0,"(592, 13, 768)"
+matched_honest_dishonest,592,296,206,90,26.96,26.96,0.0,"(592, 13, 768)"
+matched_truthful_deceptive,592,296,206,90,26.96,26.96,0.0,"(592, 13, 768)"
+matched_honest_lying,592,296,206,90,26.96,26.96,0.0,"(592, 13, 768)"
+matched_truthful_lying,592,296,206,90,26.96,26.96,0.0,"(592, 13, 768)"
+false_statements,600,300,211,89,26.32,29.32,3.0,"(600, 13, 768)"

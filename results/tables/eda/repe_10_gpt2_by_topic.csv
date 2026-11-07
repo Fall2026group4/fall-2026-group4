@@ -1,0 +1,10 @@
+topic,n,n_true,auroc,accuracy_at_0
+space_astronomy,38,21,0.434,0.447
+other,36,18,0.596,0.444
+physics_chemistry,30,17,0.661,0.5
+human_body_health,27,16,0.375,0.333
+animals,20,7,0.593,0.65
+geography,17,6,0.591,0.647
+plants_nature,7,3,,0.571
+food,3,1,,0.667
+history_people,1,1,,0.0

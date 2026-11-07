@@ -1,0 +1,4 @@
+measure,mean_true,mean_false,auroc,auroc_best_direction,mannwhitney_p,shortcut_risk
+char_len,57.84,53.96,0.564,0.564,0.0066,low
+word_len,9.67,9.13,0.552,0.552,0.0269,low
+token_len,12.14,11.52,0.56,0.56,0.0105,low

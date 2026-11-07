@@ -1,0 +1,7 @@
+prompt_set,mean_tokens_honest,mean_tokens_dishonest,position_only_auroc
+original,26.96,29.96,0.7254
+false_statements,26.32,29.32,0.7105
+matched_honest_dishonest,26.96,26.96,0.5
+matched_honest_lying,26.96,26.96,0.5
+matched_truthful_deceptive,26.96,26.96,0.5
+matched_truthful_lying,26.96,26.96,0.5

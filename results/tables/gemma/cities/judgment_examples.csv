@@ -1,0 +1,301 @@
+statement,actually,toward_false_1.0,no_steering,toward_true_1.0
+The city of Baku is in Azerbaijan.,TRUE,TRUE,TRUE,TRUE
+The city of Lu'an is in Turkey.,FALSE,TRUE,TRUE,TRUE
+The city of Huaihua is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Huaihua is in South Africa.,FALSE,TRUE,FALSE,TRUE
+The city of Yingkou is in the Philippines.,FALSE,TRUE,FALSE,TRUE
+The city of Guatemala City is in Guatemala.,TRUE,TRUE,TRUE,TRUE
+The city of Ulsan is in South Africa.,FALSE,TRUE,FALSE,TRUE
+The city of Warangal is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Sambhaji Nagar is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Ajmer is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Marrakesh is in Morocco.,TRUE,TRUE,TRUE,TRUE
+The city of Makati City is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Tirunelveli is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Liaocheng is in South Korea.,FALSE,TRUE,TRUE,TRUE
+The city of Guilin is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Abuja is in Nigeria.,TRUE,TRUE,TRUE,TRUE
+The city of Asmara is in Eritrea.,TRUE,TRUE,TRUE,TRUE
+The city of Konya is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Linyi is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Hohhot is in Indonesia.,FALSE,TRUE,FALSE,TRUE
+The city of Suwon is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Incheon is in South Korea.,TRUE,TRUE,TRUE,TRUE
+The city of Mosul is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Basrah is in Iraq.,TRUE,TRUE,TRUE,TRUE
+The city of Beira is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Naucalpan de Juarez is in Mexico.,TRUE,TRUE,TRUE,TRUE
+The city of Ahvaz is in Iran.,TRUE,TRUE,TRUE,TRUE
+The city of Palembang is in Indonesia.,TRUE,TRUE,TRUE,TRUE
+The city of Novokuznetsk is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Izmir is in Turkey.,TRUE,TRUE,TRUE,TRUE
+The city of Izmir is in Iran.,FALSE,TRUE,FALSE,TRUE
+The city of Zhenjiang is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Tianjin is in Bangladesh.,FALSE,TRUE,FALSE,TRUE
+The city of Shaoxing is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Shaoxing is in the Philippines.,FALSE,TRUE,FALSE,TRUE
+The city of Hangzhou is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Hangzhou is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Anshan is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Porto Velho is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Kayseri is in Iraq.,FALSE,TRUE,FALSE,TRUE
+The city of Giza is in Egypt.,TRUE,TRUE,TRUE,TRUE
+The city of Mukalla is in Iran.,FALSE,TRUE,TRUE,TRUE
+The city of Harare is in Zimbabwe.,TRUE,TRUE,TRUE,TRUE
+The city of Sevastopol is in Ukraine.,TRUE,TRUE,TRUE,TRUE
+The city of Istanbul is in Turkey.,TRUE,TRUE,TRUE,TRUE
+The city of Cebu City is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Tashkent is in Uzbekistan.,TRUE,TRUE,TRUE,TRUE
+The city of Tashkent is in Mexico.,FALSE,TRUE,FALSE,TRUE
+The city of Cucuta is in Colombia.,TRUE,TRUE,TRUE,TRUE
+The city of Cucuta is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Santo Domingo Oeste is in the Dominican Republic.,TRUE,TRUE,TRUE,TRUE
+The city of Santo Domingo Oeste is in Zambia.,FALSE,TRUE,FALSE,TRUE
+The city of Linfen is in India.,FALSE,TRUE,TRUE,TRUE
+The city of Yiwu is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Kinshasa is in Brazil.,FALSE,TRUE,FALSE,TRUE
+The city of Ciudad Nezahualcoyotl is in Senegal.,FALSE,TRUE,FALSE,TRUE
+The city of Kampung Baru Subang is in Malaysia.,TRUE,TRUE,TRUE,TRUE
+The city of Ranchi is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Ranchi is in Venezuela.,FALSE,TRUE,FALSE,TRUE
+The city of Jalandhar is in Iraq.,FALSE,TRUE,FALSE,TRUE
+The city of Bhayandar is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Bareilly is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Rizhao is in China.,TRUE,TRUE,TRUE,TRUE
+"The city of Mianzhu, Deyang, Sichuan is in India.",FALSE,TRUE,FALSE,TRUE
+The city of Bilimora is in Uzbekistan.,FALSE,TRUE,TRUE,TRUE
+The city of Accra is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Dnipro is in Ukraine.,TRUE,TRUE,TRUE,TRUE
+The city of Khabarovsk is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Irkutsk is in Morocco.,FALSE,TRUE,FALSE,TRUE
+The city of Libreville is in the United States.,FALSE,TRUE,FALSE,TRUE
+The city of Algiers is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Nashik is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Karol Bagh is in Syria.,FALSE,TRUE,FALSE,TRUE
+The city of Xuchang is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Changde is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Manaus is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Paranaque City is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Rahim Yar Khan is in Pakistan.,TRUE,TRUE,TRUE,TRUE
+The city of Balikpapan is in Indonesia.,TRUE,TRUE,TRUE,TRUE
+The city of Balikpapan is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Guarulhos is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Volgograd is in Nigeria.,FALSE,TRUE,FALSE,TRUE
+The city of Ulyanovsk is in Ukraine.,FALSE,TRUE,TRUE,TRUE
+The city of Xuanzhou is in Tanzania.,FALSE,TRUE,TRUE,TRUE
+The city of Wuhan is in Egypt.,FALSE,TRUE,FALSE,TRUE
+The city of Bijie is in Indonesia.,FALSE,TRUE,TRUE,TRUE
+The city of Zhoushan is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Hegang is in Russia.,FALSE,TRUE,TRUE,TRUE
+The city of Ansan-si is in South Korea.,TRUE,TRUE,TRUE,TRUE
+The city of Oyo is in China.,FALSE,TRUE,TRUE,TRUE
+The city of New Kingston is in South Africa.,FALSE,TRUE,TRUE,TRUE
+The city of Shymkent is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Kemerovo is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Kemerovo is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Kuala Lumpur is in Oman.,FALSE,TRUE,FALSE,TRUE
+The city of Kagoshima is in Japan.,TRUE,TRUE,TRUE,TRUE
+The city of Cheongju-si is in South Korea.,TRUE,TRUE,TRUE,TRUE
+The city of Ghaziabad is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Sulaymaniyah is in Turkey.,FALSE,TRUE,FALSE,TRUE
+The city of Omsk is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Bouake is in Côte d'Ivoire.,TRUE,TRUE,TRUE,TRUE
+The city of Abobo is in Côte d'Ivoire.,TRUE,TRUE,TRUE,TRUE
+The city of Shihezi is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Yunfu is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Qionghai is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Puente Alto is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Zhengzhou is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Xianyang is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Weihai is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Pingdingshan is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Yerevan is in Armenia.,TRUE,TRUE,TRUE,TRUE
+The city of Albuquerque is in the United States.,TRUE,TRUE,TRUE,TRUE
+The city of Kisangani is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Sao Jose dos Campos is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Nanjing is in Germany.,FALSE,TRUE,FALSE,TRUE
+The city of Heze is in Yemen.,FALSE,TRUE,FALSE,TRUE
+The city of Goeteborg is in Sweden.,TRUE,TRUE,TRUE,TRUE
+The city of Bursa is in Turkey.,TRUE,TRUE,TRUE,TRUE
+The city of Goiania is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Kigali is in Rwanda.,TRUE,TRUE,TRUE,TRUE
+The city of Tyumen is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Orenburg is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Osaka is in Japan.,TRUE,TRUE,TRUE,TRUE
+The city of Osaka is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Sapporo is in Mexico.,FALSE,TRUE,FALSE,TRUE
+The city of Kimhae is in Senegal.,FALSE,TRUE,TRUE,TRUE
+The city of Cheonan is in South Korea.,TRUE,TRUE,TRUE,TRUE
+The city of General Santos is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Ebute Ikorodu is in Nigeria.,TRUE,TRUE,TRUE,TRUE
+The city of Wenzhou is in Moldova.,FALSE,TRUE,FALSE,TRUE
+The city of Luohe is in Brazil.,FALSE,TRUE,FALSE,TRUE
+The city of Cixi is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Cixi is in Indonesia.,FALSE,TRUE,TRUE,TRUE
+The city of Hanzhong is in Iran.,FALSE,TRUE,FALSE,TRUE
+The city of Douala is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Laibin is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Seoul is in South Korea.,TRUE,TRUE,TRUE,TRUE
+The city of Meerut is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Dubai is in the United Arab Emirates.,TRUE,TRUE,TRUE,TRUE
+The city of Aleppo is in Syria.,TRUE,TRUE,TRUE,TRUE
+The city of Johannesburg is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Wanzhou is in India.,FALSE,TRUE,TRUE,TRUE
+The city of Qinhuangdao is in Eritrea.,FALSE,TRUE,FALSE,TRUE
+The city of Yangjiang is in Indonesia.,FALSE,TRUE,FALSE,TRUE
+The city of Vadodara is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Semarang is in Saudi Arabia.,FALSE,TRUE,FALSE,TRUE
+The city of Khulna is in Bangladesh.,TRUE,TRUE,TRUE,TRUE
+The city of Zaozhuang is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Shenzhen is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Shenzhen is in Mexico.,FALSE,TRUE,FALSE,TRUE
+The city of Maoming is in Brazil.,FALSE,TRUE,TRUE,TRUE
+The city of Jiamusi is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Jiamusi is in Germany.,FALSE,TRUE,FALSE,TRUE
+The city of San Miguel de Tucuman is in Argentina.,TRUE,TRUE,TRUE,TRUE
+The city of Sao Bernardo do Campo is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Feira de Santana is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Al Ahmadi is in Kuwait.,TRUE,TRUE,TRUE,TRUE
+The city of Beirut is in Algeria.,FALSE,TRUE,TRUE,TRUE
+The city of Cimahi is in Indonesia.,TRUE,TRUE,TRUE,TRUE
+The city of Arequipa is in Peru.,TRUE,TRUE,TRUE,TRUE
+The city of Bahcelievler is in Germany.,FALSE,TRUE,TRUE,TRUE
+The city of Kharkiv is in Moldova.,FALSE,TRUE,TRUE,TRUE
+The city of Malatya is in Turkey.,TRUE,TRUE,TRUE,TRUE
+The city of Lviv is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Kobe is in Japan.,TRUE,TRUE,TRUE,TRUE
+The city of Kobe is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Theni is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Quetta is in Pakistan.,TRUE,TRUE,TRUE,TRUE
+The city of Quetta is in Kenya.,FALSE,TRUE,FALSE,TRUE
+The city of Tehran is in Niger.,FALSE,TRUE,FALSE,TRUE
+The city of Bayannur is in Russia.,FALSE,TRUE,TRUE,TRUE
+The city of Contagem is in Indonesia.,FALSE,TRUE,FALSE,TRUE
+The city of Ziyang is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Ziyang is in Belgium.,FALSE,TRUE,FALSE,TRUE
+The city of Shanghai is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Aden is in Yemen.,TRUE,TRUE,TRUE,TRUE
+The city of Aden is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Jaboatao is in Brazil.,TRUE,TRUE,TRUE,TRUE
+The city of Guang'an is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Ma'anshan is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Dongying is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Rajshahi is in Bangladesh.,TRUE,TRUE,TRUE,TRUE
+The city of Latakia is in Syria.,TRUE,TRUE,TRUE,TRUE
+The city of Latakia is in Somalia.,FALSE,TRUE,TRUE,TRUE
+The city of Vladivostok is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Adana is in Turkey.,TRUE,TRUE,TRUE,TRUE
+The city of Adana is in Togo.,FALSE,TRUE,FALSE,TRUE
+The city of Namangan is in Uzbekistan.,TRUE,TRUE,TRUE,TRUE
+The city of Namangan is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Shivaji Nagar is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Okayama is in Japan.,TRUE,TRUE,TRUE,TRUE
+The city of Daejeon is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Sanya is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Sharjah is in the United Arab Emirates.,TRUE,TRUE,TRUE,TRUE
+The city of Al Ain City is in the United Arab Emirates.,TRUE,TRUE,TRUE,TRUE
+The city of Kalininskiy is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Zarqa is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Nanded is in India.,TRUE,TRUE,TRUE,TRUE
+The city of Gwalior is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Bekasi is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Santa Maria Chimalhuacan is in Mexico.,TRUE,TRUE,TRUE,TRUE
+The city of Sofia is in Bulgaria.,TRUE,TRUE,TRUE,TRUE
+The city of Amman is in Jordan.,TRUE,TRUE,TRUE,TRUE
+The city of Hachioji is in Mexico.,FALSE,TRUE,FALSE,TRUE
+The city of Goyang-si is in South Korea.,TRUE,TRUE,TRUE,TRUE
+The city of Goyang-si is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Kalyan is in South Korea.,FALSE,TRUE,TRUE,TRUE
+The city of Amravati is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Kryvyy Rih is in Ukraine.,TRUE,TRUE,TRUE,TRUE
+The city of Kryvyy Rih is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Quzhou is in Vietnam.,FALSE,TRUE,TRUE,TRUE
+The city of Chengdu is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Al Hudaydah is in Yemen.,TRUE,TRUE,TRUE,TRUE
+The city of Wuzhou is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Wuzhou is in Syria.,FALSE,TRUE,FALSE,TRUE
+The city of Wanxian is in Algeria.,FALSE,TRUE,FALSE,TRUE
+The city of Qinzhou is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Wuwei is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Wuwei is in India.,FALSE,TRUE,TRUE,TRUE
+The city of Handan is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Handan is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Aktobe is in Kazakhstan.,TRUE,TRUE,TRUE,TRUE
+The city of Huangshi is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Antwerpen is in Belgium.,TRUE,TRUE,TRUE,TRUE
+The city of Antwerpen is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Pikine is in Pakistan.,FALSE,TRUE,TRUE,TRUE
+The city of Kyoto is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Port Harcourt is in Nigeria.,TRUE,TRUE,TRUE,TRUE
+The city of Abu Ghurayb is in Indonesia.,FALSE,TRUE,TRUE,TRUE
+The city of Bloemfontein is in South Africa.,TRUE,TRUE,TRUE,TRUE
+The city of Curitiba is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Ribeirao Preto is in China.,FALSE,TRUE,FALSE,TRUE
+The city of The Bronx is in South Korea.,FALSE,TRUE,FALSE,TRUE
+The city of Tomsk is in Ghana.,FALSE,TRUE,FALSE,TRUE
+The city of Najran is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Bangkok is in Thailand.,TRUE,TRUE,TRUE,TRUE
+The city of Madinat an Nasr is in Egypt.,TRUE,TRUE,TRUE,TRUE
+The city of Madinat an Nasr is in India.,FALSE,TRUE,TRUE,TRUE
+The city of Sanmenxia is in Brazil.,FALSE,TRUE,FALSE,TRUE
+The city of Rui'an is in Indonesia.,FALSE,TRUE,TRUE,TRUE
+The city of Ningbo is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Ningbo is in South Korea.,FALSE,TRUE,TRUE,TRUE
+The city of Jiujiang is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Jiujiang is in Indonesia.,FALSE,TRUE,FALSE,TRUE
+The city of Jiaozuo is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Jiangmen is in South Korea.,FALSE,TRUE,FALSE,TRUE
+The city of Herat is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Davao is in the Philippines.,TRUE,TRUE,TRUE,TRUE
+The city of Zapopan is in Mexico.,TRUE,TRUE,TRUE,TRUE
+The city of Bokaro is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Victoria de Durango is in Mexico.,TRUE,TRUE,TRUE,TRUE
+The city of Rajkot is in Russia.,FALSE,TRUE,FALSE,TRUE
+The city of Erbil is in Iraq.,TRUE,TRUE,TRUE,TRUE
+The city of Bagcilar is in Iran.,FALSE,TRUE,TRUE,TRUE
+The city of Quezon City is in the Philippines.,TRUE,TRUE,TRUE,TRUE
+The city of Leon de los Aldama is in Mexico.,TRUE,TRUE,TRUE,TRUE
+The city of Barnaul is in Russia.,TRUE,TRUE,TRUE,TRUE
+The city of Buraydah is in Saudi Arabia.,TRUE,TRUE,TRUE,TRUE
+The city of Mogadishu is in Iran.,FALSE,TRUE,FALSE,TRUE
+The city of Pretoria is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Pietermaritzburg is in South Africa.,TRUE,TRUE,TRUE,TRUE
+The city of Lianyungang is in the Philippines.,FALSE,TRUE,FALSE,TRUE
+The city of Xiaogan is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Taicang is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Shangyu is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Indianapolis is in Côte d'Ivoire.,FALSE,TRUE,FALSE,TRUE
+The city of Santiago de Cuba is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Shubra al Khaymah is in Nigeria.,FALSE,TRUE,FALSE,TRUE
+The city of Dalian is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Muzaffarabad is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Kotli is in the United States.,FALSE,TRUE,TRUE,TRUE
+The city of Makassar is in Indonesia.,TRUE,TRUE,TRUE,TRUE
+The city of Yekaterinburg is in Lithuania.,FALSE,TRUE,FALSE,TRUE
+The city of Tebessa is in Algeria.,TRUE,TRUE,TRUE,TRUE
+The city of Zhuzhou is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Lanzhou is in Mexico.,FALSE,TRUE,FALSE,TRUE
+The city of Baise is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Gold Coast is in Australia.,TRUE,TRUE,TRUE,TRUE
+The city of Gold Coast is in China.,FALSE,TRUE,TRUE,TRUE
+The city of Nampula is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Chandigarh is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Gujranwala is in Pakistan.,TRUE,TRUE,TRUE,TRUE
+The city of Gujranwala is in China.,FALSE,TRUE,FALSE,TRUE
+The city of Queens is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Nanning is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Huainan is in Egypt.,FALSE,TRUE,FALSE,TRUE
+The city of Salta is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Bujumbura is in Nigeria.,FALSE,TRUE,FALSE,TRUE
+The city of Ankara is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Tijuana is in the United Arab Emirates.,FALSE,TRUE,FALSE,TRUE
+The city of Ibadan is in Nigeria.,TRUE,TRUE,TRUE,TRUE
+The city of Kuantan is in India.,FALSE,TRUE,FALSE,TRUE
+The city of Yangon is in Myanmar.,TRUE,TRUE,TRUE,TRUE
+The city of Ibague is in Colombia.,TRUE,TRUE,TRUE,TRUE
+The city of Xinyang is in Japan.,FALSE,TRUE,FALSE,TRUE
+The city of Weinan is in Colombia.,FALSE,TRUE,TRUE,TRUE
+The city of Wanning is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Laiwu is in China.,TRUE,TRUE,TRUE,TRUE
+The city of Al Mawsil al Jadidah is in India.,FALSE,TRUE,TRUE,TRUE
+The city of Tangerang is in Indonesia.,TRUE,TRUE,TRUE,TRUE

@@ -1,0 +1,6 @@
+honest_persona,dishonest_persona,honest_tokens,dishonest_tokens,length_matched
+an honest,a dishonest,20,20,True
+a truthful,a deceptive,20,20,True
+a sincere,an insincere,20,22,False
+an honest,a lying,20,20,True
+a truthful,a lying,20,20,True

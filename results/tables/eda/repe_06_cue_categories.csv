@@ -1,0 +1,5 @@
+category,count_true,count_false,percent_true,percent_false,fisher_p,leans
+negation,5,26,1.69,8.67,0.0001,false
+absolute_superlative,45,81,15.2,27.0,0.0004,false
+hedge,11,18,3.72,6.0,0.2533,false
+number,33,13,11.15,4.33,0.002,true

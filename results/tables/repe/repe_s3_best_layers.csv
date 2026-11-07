@@ -1,0 +1,12 @@
+position,mean_transfer_auroc,worst_transfer_auroc,rank,selected
+L11,0.7652,0.6102,1,True
+L6,0.7175,0.6033,2,True
+L10,0.7059,0.5764,3,True
+L7,0.698,0.5933,4,False
+L8,0.6903,0.5696,5,False
+L5,0.6881,0.5716,6,False
+L9,0.6868,0.5825,7,False
+L4,0.6474,0.51,8,False
+L3,0.6448,0.4439,9,False
+L1,0.5645,0.4532,10,False
+L2,0.5643,0.4302,11,False

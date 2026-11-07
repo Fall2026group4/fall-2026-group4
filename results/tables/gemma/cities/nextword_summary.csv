@@ -1,0 +1,8 @@
+condition,strength,correct_country_pct,avg_prob_correct
+no_steering,0.0,98.7,0.834
+toward_false_0.25,-0.25,98.0,0.78
+toward_true_0.25,0.25,98.7,0.86
+toward_false_0.5,-0.5,97.3,0.671
+toward_true_0.5,0.5,98.0,0.869
+toward_false_1.0,-1.0,94.7,0.321
+toward_true_1.0,1.0,96.0,0.819
