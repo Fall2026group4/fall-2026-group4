@@ -29,6 +29,7 @@ Each results folder's `README.md` gives file-level detail. This page lists the r
 
 | Pilot | Location |
 |---|---|
+| E2E-inspired fine-tuning layer 6 (B: +output KL; C: +KL+downstream; 3 archs × 3 seeds); **behavioural success for TopK only**, the L0 guard fails for ReLU/JumpReLU, the truth hypothesis fails everywhere | `results/geometry_of_truth/e2e_inspired_layer6/` |
 | Method A layer 6 (GoT-A reconstruction fine-tuning + OWT replay; ReLU/TopK/JumpReLU × 3 seeds; OWT-only control); **pre-registered success NOT met** (MLP gap lower on 9/9 seeds vs both controls, but not by > 2 sd) | `results/geometry_of_truth/method_a_layer6/` |
 | Corrected truth-aware pilot (layer 6 TopK, 3 seeds, A/B groups, independent probes); **pre-registered success NOT met** | `results/geometry_of_truth/truth_aware_pilot/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |

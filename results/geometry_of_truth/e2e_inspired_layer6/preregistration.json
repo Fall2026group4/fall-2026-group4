@@ -1,0 +1,48 @@
+{
+  "written": "2026-11-07 05:29:29",
+  "label": "E2E-INSPIRED fine-tuning of local SAEs; NOT an exact reproduction of Braun et al. 2024 (arXiv:2405.12241)",
+  "split_file_sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "budget": {
+    "steps": 500,
+    "lr": 1e-05,
+    "optimizer": "Adam",
+    "grad_clip": 10.0,
+    "local_batch": "64+64 GoT-A rows + 128 OWT train rows (identical to Method A)",
+    "e2e_batch": "8 OWT train sequences (128 tokens) + full statements of the 128 GoT-A rows"
+  },
+  "losses": {
+    "B": "L_A + alpha*0.5*(KL_OWT+KL_GoT)",
+    "C": "L_B + beta*0.5*(DS_OWT+DS_GoT)",
+    "KL": "mean over spliced (non-BOS) positions of KL(p_orig || p_spliced), GPT-2 frozen",
+    "DS": "mean over blocks.7..11.hook_resid_pre of sum||a_spliced-a||^2 / sum||a-mean(a)||^2"
+  },
+  "alpha_beta_rule": "per base SAE: alpha = median(local recon)/median(KL), beta = median(local recon)/median(DS) over 20 TRAIN batches at step 0 (values in alpha_beta.json)",
+  "matrix": {
+    "existing": "base x 9, Method A x 9",
+    "new": "B x 9, C x 9 (relu/topk/jumprelu x seeds 42/1042/2042)",
+    "repro_check": "alpha=beta=0 TopK seed 42 must be bit-identical to Method A TopK seed 42; stop otherwise",
+    "new_runs": 18,
+    "saes_evaluated": 36
+  },
+  "evaluation": "validation only (scripts/shared/layer6_faithfulness_eval.py): OWT EV/MSE/cosine/dead, L0 on OWT, GoT and RepE separately, downstream NMSE layers 7-11, OWT splice delta CE + KL, GoT statement KL + cities preference, RepE final KL + persona-shift cosine (splicing, not steering), GoT B-group logistic/MLP/mass-mean gaps, decodability diagnostic, RepE logistic/mass-mean gaps + direction fidelity. No validation/test data in training or selection; no checkpoint selection.",
+  "criteria": {
+    "unit": "per architecture, for B and C separately, paired by seed vs Method A; \"consistent\" = better on all 3 seeds AND mean paired difference > 2 x its sd",
+    "P1": "OWT validation splice KL lower than Method A (consistent)",
+    "P2": "GoT validation statement KL lower than Method A (consistent)",
+    "H_truth": "GoT geographic B-MLP gap lower than Method A (consistent)",
+    "guards": [
+      "OWT-validation L0 within +-5 % of the base SAE (every seed)",
+      "OWT validation EV >= Method A - 0.02 (every seed)",
+      "cities preference change >= Method A - 0.018 (mean)",
+      "RepE mass-mean gap <= Method A + 0.02 (mean)",
+      "GoT geographic B-logistic gap <= Method A + 0.02 (mean)"
+    ],
+    "behavioural_success": "P1 AND P2 AND all guards",
+    "truth_success": "behavioural_success AND H_truth",
+    "C_vs_B": "descriptive (downstream NMSE expected lower for C)"
+  },
+  "longer_budget_rule": {
+    "note": "flag only; a longer run is a separate experiment needing approval; never run automatically",
+    "flag_if": "for an architecture x method: behavioural_success is NOT met AND in >= 2 of 3 seeds the TRAIN monitor KL (fixed 8 OWT train sequences, every 50 steps) is (i) >= 5 % below its step-0 value at step 500 and (ii) still falling: KL(500) <= 0.98 * KL(400)"
+  }
+}

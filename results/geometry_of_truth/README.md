@@ -37,3 +37,5 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 **Corrected truth-aware pilot (2026-11-07):** `truth_aware_pilot/` — **PILOT** (validation only). The pre-registered success criteria were not met; see its README.
 
 **Method A at layer 6 (2026-11-07):** `method_a_layer6/` — **PILOT** (validation only). The pre-registered success criteria were not met; see its README.
+
+**E2E-inspired fine-tuning at layer 6 (2026-11-07):** `e2e_inspired_layer6/` — **PILOT** (validation only; not an exact reproduction of Braun et al.); see its README.
