@@ -1,0 +1,21 @@
+{
+  "dataset": "Skylion007/openwebtext",
+  "random_seed": 42,
+  "splits": {
+    "train": {
+      "documents": 800,
+      "characters": 3254469,
+      "file": "data/openwebtext/train.parquet"
+    },
+    "validation": {
+      "documents": 100,
+      "characters": 416770,
+      "file": "data/openwebtext/validation.parquet"
+    },
+    "test": {
+      "documents": 100,
+      "characters": 392188,
+      "file": "data/openwebtext/test.parquet"
+    }
+  }
+}

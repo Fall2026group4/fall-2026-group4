@@ -30,11 +30,11 @@ for arch in ["relu", "topk", "jumprelu"]:
             f"{arch}_l0_128_resume_5000_to_15000/checkpoint_step_15000.pt"
         ),
         "reconstruction_only": Path(
-            f"results/got/sae_finetuning/layer_6_{arch}/"
+            f"results/geometry_of_truth/sae_finetuning/layer_6_{arch}/"
             f"reconstruction_only/finetuned_checkpoint.pt"
         ),
         "truth_aware": Path(
-            f"results/got/sae_finetuning/layer_6_{arch}/"
+            f"results/geometry_of_truth/sae_finetuning/layer_6_{arch}/"
             f"truth_aware/finetuned_checkpoint.pt"
         ),
     }

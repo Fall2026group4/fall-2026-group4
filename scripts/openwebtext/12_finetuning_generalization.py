@@ -11,7 +11,7 @@ import torch.nn.functional as F
 BASELINE = Path("scripts/openwebtext/03_training_sae.py")
 DATA = Path("data/activations/gpt2_small/validation")
 CONVERGENCE = Path("results/openwebtext/convergence/layer_6")
-FINETUNED = Path("results/got/sae_finetuning")
+FINETUNED = Path("results/geometry_of_truth/sae_finetuning")
 OUTPUT = Path(
     "results/openwebtext/reconstruction_evaluation/"
     "layer_6_finetuning_generalization"
