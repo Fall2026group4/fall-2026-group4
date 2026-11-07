@@ -1,0 +1,11 @@
+{
+  "recorded": "2026-11-07 05:29:29",
+  "sha256": {
+    "scripts/geometry_of_truth/17_e2e_inspired_finetune.py": "6d562f02b60241f71980c084a5eb71762610cd08cfe94dae77181e4c3043f475",
+    "scripts/geometry_of_truth/18_e2e_inspired_evaluation.py": "a0d9491d60377789f6a3e29137de1703c84ece60b7bc3427e81e6417908d2b8c",
+    "scripts/shared/layer6_faithfulness_eval.py": "b122f4ffbad86aed4e5b269379cb6f5b8c8928ce6960fe7f7922d45a23b910a0",
+    "data/got/splits/train_AB_groups_truth_aware_pilot.csv": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+    "results/geometry_of_truth/e2e_inspired_layer6/preregistration.json": "381d40348a20b0c8a38773540e7581d338c30f6cc4dc3fe2eed378fb03c45d48",
+    "results/geometry_of_truth/e2e_inspired_layer6/alpha_beta.json": "11bea2733c395d8d011a5d532241e6127890ad6601b60b3db6e9aa114bd7f2a9"
+  }
+}

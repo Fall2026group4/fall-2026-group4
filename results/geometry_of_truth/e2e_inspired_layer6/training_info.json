@@ -1,0 +1,209 @@
+{
+  "script_sha256": "6d562f02b60241f71980c084a5eb71762610cd08cfe94dae77181e4c3043f475",
+  "repro_max_abs_diff": 0.0,
+  "repro_bit_identical": true,
+  "runs": [
+    {
+      "method": "B",
+      "architecture": "relu",
+      "seed": 42,
+      "alpha": 3.33677226106707,
+      "beta": 0.0,
+      "coef_start": 0.002767969183469354,
+      "coef_end": 0.004070807907581034,
+      "seconds": 145.0,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/relu_methodB_seed42/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "relu",
+      "seed": 1042,
+      "alpha": 3.4049388910586527,
+      "beta": 0.0,
+      "coef_start": 0.002734226504949594,
+      "coef_end": 0.004035666721013869,
+      "seconds": 144.9,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/relu_methodB_seed1042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "relu",
+      "seed": 2042,
+      "alpha": 3.5618279543873848,
+      "beta": 0.0,
+      "coef_start": 0.002758801951814522,
+      "coef_end": 0.004082548558818239,
+      "seconds": 144.5,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/relu_methodB_seed2042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "topk",
+      "seed": 42,
+      "alpha": 4.150154956244444,
+      "beta": 0.0,
+      "coef_start": 0.0,
+      "coef_end": 0.0,
+      "seconds": 145.5,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodB_seed42/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "topk",
+      "seed": 1042,
+      "alpha": 3.8923646972512054,
+      "beta": 0.0,
+      "coef_start": 0.0,
+      "coef_end": 0.0,
+      "seconds": 145.5,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodB_seed1042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "topk",
+      "seed": 2042,
+      "alpha": 4.21215592889924,
+      "beta": 0.0,
+      "coef_start": 0.0,
+      "coef_end": 0.0,
+      "seconds": 145.1,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodB_seed2042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "jumprelu",
+      "seed": 42,
+      "alpha": 4.565343947658866,
+      "beta": 0.0,
+      "coef_start": 0.002133468951045987,
+      "coef_end": 0.0034701516399110208,
+      "seconds": 146.3,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/jumprelu_methodB_seed42/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "jumprelu",
+      "seed": 1042,
+      "alpha": 5.084576819537325,
+      "beta": 0.0,
+      "coef_start": 0.0021268702641971176,
+      "coef_end": 0.0033883114072910687,
+      "seconds": 146.3,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/jumprelu_methodB_seed1042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "B",
+      "architecture": "jumprelu",
+      "seed": 2042,
+      "alpha": 4.4030439063182865,
+      "beta": 0.0,
+      "coef_start": 0.0021470132028496612,
+      "coef_end": 0.003364711445807593,
+      "seconds": 145.9,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/jumprelu_methodB_seed2042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "relu",
+      "seed": 42,
+      "alpha": 3.33677226106707,
+      "beta": 4.316494630603509,
+      "coef_start": 0.002767969183469354,
+      "coef_end": 0.005451914909548751,
+      "seconds": 147.7,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/relu_methodC_seed42/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "relu",
+      "seed": 1042,
+      "alpha": 3.4049388910586527,
+      "beta": 4.33629346489455,
+      "coef_start": 0.002734226504949594,
+      "coef_end": 0.005374328969138364,
+      "seconds": 147.6,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/relu_methodC_seed1042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "relu",
+      "seed": 2042,
+      "alpha": 3.5618279543873848,
+      "beta": 4.322053049821215,
+      "coef_start": 0.002758801951814522,
+      "coef_end": 0.005430210959845421,
+      "seconds": 147.3,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/relu_methodC_seed2042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "topk",
+      "seed": 42,
+      "alpha": 4.150154956244444,
+      "beta": 4.379176725143254,
+      "coef_start": 0.0,
+      "coef_end": 0.0,
+      "seconds": 148.2,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodC_seed42/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "topk",
+      "seed": 1042,
+      "alpha": 3.8923646972512054,
+      "beta": 4.4065275681375855,
+      "coef_start": 0.0,
+      "coef_end": 0.0,
+      "seconds": 148.1,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodC_seed1042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "topk",
+      "seed": 2042,
+      "alpha": 4.21215592889924,
+      "beta": 4.5528070403577825,
+      "coef_start": 0.0,
+      "coef_end": 0.0,
+      "seconds": 147.8,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/topk_methodC_seed2042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "jumprelu",
+      "seed": 42,
+      "alpha": 4.565343947658866,
+      "beta": 5.0515686433051075,
+      "coef_start": 0.002133468951045987,
+      "coef_end": 0.004515862521236981,
+      "seconds": 150.4,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/jumprelu_methodC_seed42/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "jumprelu",
+      "seed": 1042,
+      "alpha": 5.084576819537325,
+      "beta": 5.22316312860471,
+      "coef_start": 0.0021268702641971176,
+      "coef_end": 0.004362620663026455,
+      "seconds": 149.8,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/jumprelu_methodC_seed1042/finetuned_checkpoint.pt"
+    },
+    {
+      "method": "C",
+      "architecture": "jumprelu",
+      "seed": 2042,
+      "alpha": 4.4030439063182865,
+      "beta": 4.875751801990252,
+      "coef_start": 0.0021470132028496612,
+      "coef_end": 0.004372280630560191,
+      "seconds": 148.6,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/e2e_inspired_layer6/jumprelu_methodC_seed2042/finetuned_checkpoint.pt"
+    }
+  ],
+  "gpt2_parameters_unchanged": true,
+  "base_and_method_a_checkpoints_unchanged": true,
+  "gpu_peak_allocated_gb": 6.06,
+  "runtime_seconds": 2647.7
+}

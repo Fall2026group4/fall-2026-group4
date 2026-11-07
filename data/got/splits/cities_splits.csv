@@ -1,0 +1,1497 @@
+row_id,group_id,label,split
+0,Krasnodar,1,train
+1,Krasnodar,0,train
+2,Lodz,1,test
+3,Lodz,0,test
+4,Maracay,1,train
+5,Maracay,0,train
+6,Baku,1,train
+7,Baku,0,train
+8,Baoji,1,train
+9,Baoji,0,train
+10,Addis Ababa,1,train
+11,Addis Ababa,0,train
+12,Abidjan,1,train
+13,Abidjan,0,train
+14,Yongzhou,1,train
+15,Yongzhou,0,train
+16,Nanchong,1,train
+17,Nanchong,0,train
+18,Lu'an,1,train
+19,Lu'an,0,train
+20,Jiaxing,1,test
+21,Jiaxing,0,test
+22,Huaihua,1,train
+23,Huaihua,0,train
+24,Anqing,1,test
+25,Anqing,0,test
+26,Yingkou,1,train
+27,Yingkou,0,train
+28,Panshan,1,train
+29,Panshan,0,train
+30,Guatemala City,1,train
+31,Guatemala City,0,train
+32,Bauchi,1,val
+33,Bauchi,0,val
+34,Tokyo,1,test
+35,Tokyo,0,test
+36,Mombasa,1,test
+37,Mombasa,0,test
+38,Ulsan,1,val
+39,Ulsan,0,val
+40,Warangal,1,train
+41,Warangal,0,train
+42,Tiruchirappalli,1,train
+43,Tiruchirappalli,0,train
+44,Nowrangapur,1,test
+45,Nowrangapur,0,test
+46,Sambhaji Nagar,1,train
+47,Sambhaji Nagar,0,train
+48,Ajmer,1,train
+49,Ajmer,0,train
+50,Rohini,1,val
+51,Rohini,0,val
+52,Serang,1,train
+53,Serang,0,train
+54,Niigata,1,train
+55,Niigata,0,train
+56,Marrakesh,1,train
+57,Marrakesh,0,train
+58,Makati City,1,train
+59,Makati City,0,train
+60,Tirunelveli,1,train
+61,Tirunelveli,0,train
+62,Thane,1,train
+63,Thane,0,train
+64,Solapur,1,test
+65,Solapur,0,test
+66,Najafgarh,1,train
+67,Najafgarh,0,train
+68,Borivli,1,val
+69,Borivli,0,val
+70,Zhabei,1,train
+71,Zhabei,0,train
+72,Liaocheng,1,test
+73,Liaocheng,0,test
+74,Jiaozhou,1,train
+75,Jiaozhou,0,train
+76,Guilin,1,train
+77,Guilin,0,train
+78,Chaozhou,1,val
+79,Chaozhou,0,val
+80,Panzhihua,1,train
+81,Panzhihua,0,train
+82,Bucaramanga,1,train
+83,Bucaramanga,0,train
+84,Niamey,1,train
+85,Niamey,0,train
+86,Sokoto,1,val
+87,Sokoto,0,val
+88,Abuja,1,train
+89,Abuja,0,train
+90,South Tangerang,1,train
+91,South Tangerang,0,train
+92,Odesa,1,train
+93,Odesa,0,train
+94,Fort Worth,1,test
+95,Fort Worth,0,test
+96,Boumerdes,1,train
+97,Boumerdes,0,train
+98,Asmara,1,test
+99,Asmara,0,test
+100,Santiago de Queretaro,1,train
+101,Santiago de Queretaro,0,train
+102,Perm,1,train
+103,Perm,0,train
+104,Jeddah,1,train
+105,Jeddah,0,train
+106,Konya,1,val
+107,Konya,0,val
+108,Macapa,1,train
+109,Macapa,0,train
+110,Belo Horizonte,1,val
+111,Belo Horizonte,0,val
+112,Poznan,1,train
+113,Poznan,0,train
+114,Linyi,1,train
+115,Linyi,0,train
+116,Hohhot,1,val
+117,Hohhot,0,val
+118,Malacca,1,train
+119,Malacca,0,train
+120,Busan,1,train
+121,Busan,0,train
+122,Seongnam-si,1,val
+123,Seongnam-si,0,val
+124,Matsuyama,1,train
+125,Matsuyama,0,train
+126,Suwon,1,train
+127,Suwon,0,train
+128,Incheon,1,train
+129,Incheon,0,train
+130,Hwaseong-si,1,train
+131,Hwaseong-si,0,train
+132,Changwon,1,val
+133,Changwon,0,val
+134,Bamako,1,test
+135,Bamako,0,test
+136,Acapulco de Juarez,1,val
+137,Acapulco de Juarez,0,val
+138,Mosul,1,train
+139,Mosul,0,train
+140,Basrah,1,test
+141,Basrah,0,test
+142,Qom,1,train
+143,Qom,0,train
+144,Torreon,1,train
+145,Torreon,0,train
+146,Beira,1,val
+147,Beira,0,val
+148,Naucalpan de Juarez,1,test
+149,Naucalpan de Juarez,0,test
+150,Dehra Dun,1,val
+151,Dehra Dun,0,val
+152,Bhubaneswar,1,val
+153,Bhubaneswar,0,val
+154,Ahvaz,1,train
+155,Ahvaz,0,train
+156,Kumasi,1,train
+157,Kumasi,0,train
+158,Palembang,1,train
+159,Palembang,0,train
+160,Novokuznetsk,1,test
+161,Novokuznetsk,0,test
+162,Izmir,1,train
+163,Izmir,0,train
+164,Lahore,1,train
+165,Lahore,0,train
+166,Zhenjiang,1,train
+167,Zhenjiang,0,train
+168,Zhaotong,1,val
+169,Zhaotong,0,val
+170,Weifang,1,train
+171,Weifang,0,train
+172,Tianjin,1,val
+173,Tianjin,0,val
+174,Shaoxing,1,train
+175,Shaoxing,0,train
+176,Hangzhou,1,train
+177,Hangzhou,0,train
+178,Mudanjiang,1,train
+179,Mudanjiang,0,train
+180,Anshan,1,train
+181,Anshan,0,train
+182,Porto Velho,1,train
+183,Porto Velho,0,train
+184,N'Djamena,1,test
+185,N'Djamena,0,test
+186,Kayseri,1,val
+187,Kayseri,0,val
+188,Marseille,1,test
+189,Marseille,0,test
+190,Lyon,1,train
+191,Lyon,0,train
+192,Suez,1,train
+193,Suez,0,train
+194,Giza,1,test
+195,Giza,0,test
+196,Naberezhnyye Chelny,1,val
+197,Naberezhnyye Chelny,0,val
+198,Mukalla,1,val
+199,Mukalla,0,val
+200,Harare,1,train
+201,Harare,0,train
+202,Sevastopol,1,train
+203,Sevastopol,0,train
+204,Lipetsk,1,train
+205,Lipetsk,0,train
+206,Istanbul,1,test
+207,Istanbul,0,test
+208,Callao,1,train
+209,Callao,0,train
+210,Cebu City,1,train
+211,Cebu City,0,train
+212,Tashkent,1,train
+213,Tashkent,0,train
+214,Maturin,1,val
+215,Maturin,0,val
+216,Hanoi,1,train
+217,Hanoi,0,train
+218,Xuzhou,1,test
+219,Xuzhou,0,test
+220,Cucuta,1,train
+221,Cucuta,0,train
+222,Santo Domingo Oeste,1,train
+223,Santo Domingo Oeste,0,train
+224,Tangshan,1,test
+225,Tangshan,0,test
+226,Neijiang,1,test
+227,Neijiang,0,test
+228,Linfen,1,train
+229,Linfen,0,train
+230,Yiwu,1,train
+231,Yiwu,0,train
+232,Qiqihar,1,train
+233,Qiqihar,0,train
+234,Baotou,1,test
+235,Baotou,0,test
+236,Aparecida de Goiania,1,train
+237,Aparecida de Goiania,0,train
+238,Kinshasa,1,val
+239,Kinshasa,0,val
+240,Ciudad Nezahualcoyotl,1,train
+241,Ciudad Nezahualcoyotl,0,train
+242,Mexicali,1,train
+243,Mexicali,0,train
+244,Ciudad Juarez,1,test
+245,Ciudad Juarez,0,test
+246,Kampung Baru Subang,1,train
+247,Kampung Baru Subang,0,train
+248,Subang Jaya,1,train
+249,Subang Jaya,0,train
+250,Maputo,1,test
+251,Maputo,0,test
+252,Kumamoto,1,train
+253,Kumamoto,0,train
+254,Daegu,1,test
+255,Daegu,0,test
+256,Vilnius,1,train
+257,Vilnius,0,train
+258,Ranchi,1,val
+259,Ranchi,0,val
+260,Jalandhar,1,test
+261,Jalandhar,0,test
+262,Bhayandar,1,test
+263,Bhayandar,0,test
+264,Bareilly,1,test
+265,Bareilly,0,test
+266,Santo Domingo Este,1,val
+267,Santo Domingo Este,0,val
+268,Al Fayyum,1,train
+269,Al Fayyum,0,train
+270,Rizhao,1,train
+271,Rizhao,0,train
+272,"Mianzhu, Deyang, Sichuan",1,test
+273,"Mianzhu, Deyang, Sichuan",0,test
+274,Jabalpur,1,train
+275,Jabalpur,0,train
+276,Bilimora,1,train
+277,Bilimora,0,train
+278,Accra,1,val
+279,Accra,0,val
+280,Bogor,1,train
+281,Bogor,0,train
+282,Nyala,1,train
+283,Nyala,0,train
+284,Eskisehir,1,val
+285,Eskisehir,0,val
+286,Antalya,1,train
+287,Antalya,0,train
+288,Dnipro,1,train
+289,Dnipro,0,train
+290,Khabarovsk,1,val
+291,Khabarovsk,0,val
+292,Irkutsk,1,train
+293,Irkutsk,0,train
+294,Libreville,1,test
+295,Libreville,0,test
+296,Santiago de los Caballeros,1,train
+297,Santiago de los Caballeros,0,train
+298,Algiers,1,train
+299,Algiers,0,train
+300,Nashik,1,test
+301,Nashik,0,test
+302,Karol Bagh,1,val
+303,Karol Bagh,0,val
+304,Orumiyeh,1,test
+305,Orumiyeh,0,test
+306,Zahedan,1,train
+307,Zahedan,0,train
+308,Xuchang,1,train
+309,Xuchang,0,train
+310,Changde,1,train
+311,Changde,0,train
+312,Shaoguan,1,train
+313,Shaoguan,0,train
+314,Jilin,1,val
+315,Jilin,0,val
+316,Manaus,1,train
+317,Manaus,0,train
+318,Jaboatao dos Guararapes,1,train
+319,Jaboatao dos Guararapes,0,train
+320,Kakamega,1,train
+321,Kakamega,0,train
+322,Agadir,1,train
+323,Agadir,0,train
+324,Ulan Bator,1,train
+325,Ulan Bator,0,train
+326,Muscat,1,train
+327,Muscat,0,train
+328,Paranaque City,1,test
+329,Paranaque City,0,test
+330,Rahim Yar Khan,1,train
+331,Rahim Yar Khan,0,train
+332,Balikpapan,1,train
+333,Balikpapan,0,train
+334,Guarulhos,1,train
+335,Guarulhos,0,train
+336,Volgograd,1,train
+337,Volgograd,0,train
+338,Ulyanovsk,1,train
+339,Ulyanovsk,0,train
+340,Kota Bharu,1,train
+341,Kota Bharu,0,train
+342,Sarajevo,1,train
+343,Sarajevo,0,train
+344,Maceio,1,train
+345,Maceio,0,train
+346,Joao Pessoa,1,val
+347,Joao Pessoa,0,val
+348,Shangqiu,1,train
+349,Shangqiu,0,train
+350,Zhangye,1,test
+351,Zhangye,0,test
+352,Xuanzhou,1,train
+353,Xuanzhou,0,train
+354,Wuhan,1,train
+355,Wuhan,0,train
+356,Nanchang,1,train
+357,Nanchang,0,train
+358,Luancheng,1,val
+359,Luancheng,0,val
+360,Liuzhou,1,train
+361,Liuzhou,0,train
+362,Guangyuan,1,train
+363,Guangyuan,0,train
+364,Bijie,1,train
+365,Bijie,0,train
+366,Zhoushan,1,train
+367,Zhoushan,0,train
+368,Hegang,1,val
+369,Hegang,0,val
+370,E'zhou,1,train
+371,E'zhou,0,train
+372,Campos dos Goytacazes,1,test
+373,Campos dos Goytacazes,0,test
+374,Bucharest,1,train
+375,Bucharest,0,train
+376,Ansan-si,1,train
+377,Ansan-si,0,train
+378,Casablanca,1,train
+379,Casablanca,0,train
+380,Coyoacan,1,test
+381,Coyoacan,0,test
+382,Oyo,1,test
+383,Oyo,0,test
+384,Pasig City,1,train
+385,Pasig City,0,train
+386,Kano,1,test
+387,Kano,0,test
+388,Bahawalpur,1,val
+389,Bahawalpur,0,val
+390,New Kingston,1,train
+391,New Kingston,0,train
+392,Pyongyang,1,train
+393,Pyongyang,0,train
+394,Shymkent,1,train
+395,Shymkent,0,train
+396,Tlalpan,1,train
+397,Tlalpan,0,train
+398,Kemerovo,1,test
+399,Kemerovo,0,test
+400,Zaporizhzhya,1,val
+401,Zaporizhzhya,0,val
+402,Iztapalapa,1,train
+403,Iztapalapa,0,train
+404,Aguascalientes,1,train
+405,Aguascalientes,0,train
+406,Kuala Lumpur,1,train
+407,Kuala Lumpur,0,train
+408,Warri,1,train
+409,Warri,0,train
+410,Peshawar,1,test
+411,Peshawar,0,test
+412,Kagoshima,1,train
+413,Kagoshima,0,train
+414,Hamamatsu,1,val
+415,Hamamatsu,0,val
+416,Cheongju-si,1,val
+417,Cheongju-si,0,val
+418,Ghaziabad,1,train
+419,Ghaziabad,0,train
+420,Cochin,1,train
+421,Cochin,0,train
+422,Ahmedabad,1,train
+423,Ahmedabad,0,train
+424,Sulaymaniyah,1,train
+425,Sulaymaniyah,0,train
+426,Hamadan,1,train
+427,Hamadan,0,train
+428,Omsk,1,train
+429,Omsk,0,train
+430,Ta'if,1,train
+431,Ta'if,0,train
+432,Stockholm,1,val
+433,Stockholm,0,val
+434,Siliguri,1,test
+435,Siliguri,0,test
+436,Baghdad,1,val
+437,Baghdad,0,val
+438,Al Basrah al Qadimah,1,train
+439,Al Basrah al Qadimah,0,train
+440,Krakow,1,train
+441,Krakow,0,train
+442,Tolyatti,1,train
+443,Tolyatti,0,train
+444,Bandar Lampung,1,val
+445,Bandar Lampung,0,val
+446,Tucson,1,train
+447,Tucson,0,train
+448,Can Tho,1,train
+449,Can Tho,0,train
+450,Bouake,1,train
+451,Bouake,0,train
+452,Abobo,1,val
+453,Abobo,0,val
+454,Shihezi,1,train
+455,Shihezi,0,train
+456,Yunfu,1,train
+457,Yunfu,0,train
+458,Xiangtan,1,train
+459,Xiangtan,0,train
+460,Qionghai,1,train
+461,Qionghai,0,train
+462,Chuzhou,1,val
+463,Chuzhou,0,val
+464,Taiz,1,train
+465,Taiz,0,train
+466,Tembisa,1,test
+467,Tembisa,0,test
+468,Puente Alto,1,train
+469,Puente Alto,0,train
+470,Zhumadian,1,train
+471,Zhumadian,0,train
+472,Zhengzhou,1,train
+473,Zhengzhou,0,train
+474,Ya'an,1,train
+475,Ya'an,0,train
+476,Xianyang,1,train
+477,Xianyang,0,train
+478,Weihai,1,train
+479,Weihai,0,train
+480,Pingdingshan,1,val
+481,Pingdingshan,0,val
+482,Bengbu,1,test
+483,Bengbu,0,test
+484,Zhangjiakou,1,train
+485,Zhangjiakou,0,train
+486,Mississauga,1,train
+487,Mississauga,0,train
+488,Yerevan,1,train
+489,Yerevan,0,train
+490,Albuquerque,1,val
+491,Albuquerque,0,val
+492,New South Memphis,1,train
+493,New South Memphis,0,train
+494,Calgary,1,train
+495,Calgary,0,train
+496,Kisangani,1,test
+497,Kisangani,0,test
+498,Bobo-Dioulasso,1,train
+499,Bobo-Dioulasso,0,train
+500,Sao Jose dos Campos,1,test
+501,Sao Jose dos Campos,0,test
+502,Florianopolis,1,train
+503,Florianopolis,0,train
+504,Cuiaba,1,train
+505,Cuiaba,0,train
+506,Chattogram,1,test
+507,Chattogram,0,test
+508,Nanjing,1,train
+509,Nanjing,0,train
+510,Kaifeng,1,train
+511,Kaifeng,0,train
+512,Heze,1,test
+513,Heze,0,test
+514,Sendai,1,train
+515,Sendai,0,train
+516,Jeonju,1,train
+517,Jeonju,0,train
+518,Almaty,1,val
+519,Almaty,0,val
+520,Pimpri,1,val
+521,Pimpri,0,val
+522,Navi Mumbai,1,train
+523,Navi Mumbai,0,train
+524,Novosibirsk,1,train
+525,Novosibirsk,0,train
+526,Goeteborg,1,train
+527,Goeteborg,0,train
+528,Bursa,1,train
+529,Bursa,0,train
+530,Dar es Salaam,1,train
+531,Dar es Salaam,0,train
+532,Mbuji-Mayi,1,train
+533,Mbuji-Mayi,0,train
+534,Goiania,1,train
+535,Goiania,0,train
+536,Yaroslavl,1,val
+537,Yaroslavl,0,val
+538,Kigali,1,train
+539,Kigali,0,train
+540,Diyarbakir,1,train
+541,Diyarbakir,0,train
+542,Tyumen,1,val
+543,Tyumen,0,val
+544,Orenburg,1,train
+545,Orenburg,0,train
+546,Osaka,1,test
+547,Osaka,0,test
+548,Sapporo,1,train
+549,Sapporo,0,train
+550,Kimhae,1,train
+551,Kimhae,0,train
+552,Cheonan,1,train
+553,Cheonan,0,train
+554,San Luis Potosi,1,train
+555,San Luis Potosi,0,train
+556,Culiacan,1,train
+557,Culiacan,0,train
+558,Kaduna,1,train
+559,Kaduna,0,train
+560,General Santos,1,test
+561,General Santos,0,test
+562,Ebute Ikorodu,1,train
+563,Ebute Ikorodu,0,train
+564,Benin City,1,test
+565,Benin City,0,test
+566,Kanpur,1,val
+567,Kanpur,0,val
+568,Indore,1,train
+569,Indore,0,train
+570,Zunyi,1,train
+571,Zunyi,0,train
+572,Zhanjiang,1,train
+573,Zhanjiang,0,train
+574,Wenzhou,1,train
+575,Wenzhou,0,train
+576,Luohe,1,train
+577,Luohe,0,train
+578,Kunming,1,train
+579,Kunming,0,train
+580,Cixi,1,train
+581,Cixi,0,train
+582,Hanzhong,1,train
+583,Hanzhong,0,train
+584,Guangzhou,1,val
+585,Guangzhou,0,val
+586,Munich,1,train
+587,Munich,0,train
+588,Pekanbaru,1,train
+589,Pekanbaru,0,train
+590,Malang,1,val
+591,Malang,0,val
+592,Douala,1,train
+593,Douala,0,train
+594,Kashgar,1,test
+595,Kashgar,0,test
+596,Zibo,1,val
+597,Zibo,0,val
+598,Tianshui,1,train
+599,Tianshui,0,train
+600,Laibin,1,val
+601,Laibin,0,val
+602,Deyang,1,train
+603,Deyang,0,train
+604,Teresina,1,train
+605,Teresina,0,train
+606,Leipzig,1,test
+607,Leipzig,0,test
+608,Duesseldorf,1,train
+609,Duesseldorf,0,train
+610,Zagreb,1,train
+611,Zagreb,0,train
+612,Hannover,1,train
+613,Hannover,0,train
+614,Penza,1,train
+615,Penza,0,train
+616,Matola,1,train
+617,Matola,0,train
+618,Enugu,1,train
+619,Enugu,0,train
+620,Shizuoka,1,train
+621,Shizuoka,0,train
+622,Himeji,1,train
+623,Himeji,0,train
+624,Hamhung,1,train
+625,Hamhung,0,train
+626,Seoul,1,train
+627,Seoul,0,train
+628,Meerut,1,train
+629,Meerut,0,train
+630,Hubli,1,test
+631,Hubli,0,test
+632,Dubai,1,train
+633,Dubai,0,train
+634,Astrakhan,1,train
+635,Astrakhan,0,train
+636,Aleppo,1,train
+637,Aleppo,0,train
+638,Ar Raqqah,1,train
+639,Ar Raqqah,0,train
+640,Saint Petersburg,1,train
+641,Saint Petersburg,0,train
+642,Johannesburg,1,train
+643,Johannesburg,0,train
+644,Wanzhou,1,train
+645,Wanzhou,0,train
+646,Anyang,1,train
+647,Anyang,0,train
+648,Qinhuangdao,1,val
+649,Qinhuangdao,0,val
+650,Meizhou,1,train
+651,Meizhou,0,train
+652,Yangjiang,1,val
+653,Yangjiang,0,val
+654,Beijing,1,train
+655,Beijing,0,train
+656,Shah Alam,1,test
+657,Shah Alam,0,test
+658,Vadodara,1,train
+659,Vadodara,0,train
+660,Sangli,1,train
+661,Sangli,0,train
+662,Guwahati,1,train
+663,Guwahati,0,train
+664,Prayagraj,1,test
+665,Prayagraj,0,test
+666,Aligarh,1,train
+667,Aligarh,0,train
+668,Kermanshah,1,train
+669,Kermanshah,0,train
+670,Semarang,1,train
+671,Semarang,0,train
+672,Khulna,1,train
+673,Khulna,0,train
+674,Korla,1,train
+675,Korla,0,train
+676,Zaozhuang,1,train
+677,Zaozhuang,0,train
+678,Xiamen,1,val
+679,Xiamen,0,val
+680,Shenzhen,1,train
+681,Shenzhen,0,train
+682,Maoming,1,train
+683,Maoming,0,train
+684,Anshun,1,train
+685,Anshun,0,train
+686,Siping,1,train
+687,Siping,0,train
+688,Shuangyashan,1,val
+689,Shuangyashan,0,val
+690,Jiamusi,1,train
+691,Jiamusi,0,train
+692,Minsk,1,train
+693,Minsk,0,train
+694,Lubumbashi,1,train
+695,Lubumbashi,0,train
+696,San Miguel de Tucuman,1,train
+697,San Miguel de Tucuman,0,train
+698,Cotonou,1,train
+699,Cotonou,0,train
+700,Comilla,1,train
+701,Comilla,0,train
+702,Sao Bernardo do Campo,1,train
+703,Sao Bernardo do Campo,0,train
+704,Feira de Santana,1,train
+705,Feira de Santana,0,train
+706,Porto Alegre,1,train
+707,Porto Alegre,0,train
+708,Juiz de Fora,1,train
+709,Juiz de Fora,0,train
+710,Nagoya,1,train
+711,Nagoya,0,train
+712,Al Ahmadi,1,train
+713,Al Ahmadi,0,train
+714,Beirut,1,val
+715,Beirut,0,val
+716,Lilongwe,1,test
+717,Lilongwe,0,test
+718,Ecatepec de Morelos,1,test
+719,Ecatepec de Morelos,0,test
+720,Cancun,1,val
+721,Cancun,0,val
+722,Isfahan,1,train
+723,Isfahan,0,train
+724,Conakry,1,train
+725,Conakry,0,train
+726,Petaling Jaya,1,train
+727,Petaling Jaya,0,train
+728,Zaria,1,train
+729,Zaria,0,train
+730,Cimahi,1,train
+731,Cimahi,0,train
+732,Arequipa,1,train
+733,Arequipa,0,train
+734,Multan,1,train
+735,Multan,0,train
+736,Bahcelievler,1,test
+737,Bahcelievler,0,test
+738,Saratov,1,train
+739,Saratov,0,train
+740,Kharkiv,1,train
+741,Kharkiv,0,train
+742,Malatya,1,train
+743,Malatya,0,train
+744,Lviv,1,test
+745,Lviv,0,test
+746,Kyiv,1,val
+747,Kyiv,0,val
+748,Kitakyushu,1,train
+749,Kitakyushu,0,train
+750,Onitsha,1,train
+751,Onitsha,0,train
+752,Anyang-si,1,test
+753,Anyang-si,0,test
+754,Kobe,1,train
+755,Kobe,0,train
+756,Chiclayo,1,train
+757,Chiclayo,0,train
+758,Phnom Penh,1,train
+759,Phnom Penh,0,train
+760,Nouakchott,1,train
+761,Nouakchott,0,train
+762,Vijayawada,1,test
+763,Vijayawada,0,test
+764,Theni,1,test
+765,Theni,0,test
+766,Narela,1,train
+767,Narela,0,train
+768,Quetta,1,test
+769,Quetta,0,test
+770,Chennai,1,val
+771,Chennai,0,val
+772,Changshu,1,train
+773,Changshu,0,train
+774,Tehran,1,train
+775,Tehran,0,train
+776,Bayannur,1,train
+777,Bayannur,0,train
+778,Barranquilla,1,val
+779,Barranquilla,0,val
+780,Budapest,1,test
+781,Budapest,0,test
+782,Pontianak,1,train
+783,Pontianak,0,train
+784,Recife,1,train
+785,Recife,0,train
+786,Contagem,1,val
+787,Contagem,0,val
+788,Port Said,1,train
+789,Port Said,0,train
+790,Asyut,1,train
+791,Asyut,0,train
+792,Ziyang,1,val
+793,Ziyang,0,val
+794,Yinchuan,1,train
+795,Yinchuan,0,train
+796,Zhangjiagang,1,train
+797,Zhangjiagang,0,train
+798,Shanghai,1,train
+799,Shanghai,0,train
+800,Jieyang,1,train
+801,Jieyang,0,train
+802,Longyan,1,train
+803,Longyan,0,train
+804,Dandong,1,train
+805,Dandong,0,train
+806,Frankfurt am Main,1,train
+807,Frankfurt am Main,0,train
+808,Lusaka,1,train
+809,Lusaka,0,train
+810,Aden,1,val
+811,Aden,0,val
+812,Jaboatao,1,test
+813,Jaboatao,0,test
+814,Aracaju,1,test
+815,Aracaju,0,test
+816,Londrina,1,val
+817,Londrina,0,val
+818,Zigong,1,train
+819,Zigong,0,train
+820,Kunshan,1,val
+821,Kunshan,0,val
+822,Yichang,1,train
+823,Yichang,0,train
+824,Sanming,1,train
+825,Sanming,0,train
+826,Guang'an,1,train
+827,Guang'an,0,train
+828,Ma'anshan,1,train
+829,Ma'anshan,0,train
+830,Dongying,1,test
+831,Dongying,0,test
+832,Fushun,1,train
+833,Fushun,0,train
+834,Rajshahi,1,train
+835,Rajshahi,0,train
+836,Rangpur,1,train
+837,Rangpur,0,train
+838,Dortmund,1,train
+839,Dortmund,0,train
+840,Detroit,1,train
+841,Detroit,0,train
+842,Latakia,1,train
+843,Latakia,0,train
+844,Ashgabat,1,train
+845,Ashgabat,0,train
+846,Maracaibo,1,train
+847,Maracaibo,0,train
+848,Erode,1,train
+849,Erode,0,train
+850,Mumbai,1,test
+851,Mumbai,0,test
+852,Nasiriyah,1,train
+853,Nasiriyah,0,train
+854,Kahriz,1,train
+855,Kahriz,0,train
+856,Surakarta,1,train
+857,Surakarta,0,train
+858,Banjarmasin,1,val
+859,Banjarmasin,0,val
+860,Vladivostok,1,train
+861,Vladivostok,0,train
+862,Adana,1,train
+863,Adana,0,train
+864,Voronezh,1,test
+865,Voronezh,0,test
+866,Namangan,1,val
+867,Namangan,0,val
+868,Ordos,1,train
+869,Ordos,0,train
+870,Moradabad,1,test
+871,Moradabad,0,test
+872,Bengaluru,1,train
+873,Bengaluru,0,train
+874,Shivaji Nagar,1,train
+875,Shivaji Nagar,0,train
+876,Turin,1,val
+877,Turin,0,val
+878,Okayama,1,train
+879,Okayama,0,train
+880,Daejeon,1,train
+881,Daejeon,0,train
+882,Battagram,1,test
+883,Battagram,0,test
+884,Yaounde,1,train
+885,Yaounde,0,train
+886,Zhangzhou,1,test
+887,Zhangzhou,0,test
+888,Yangquan,1,test
+889,Yangquan,0,test
+890,Sanya,1,train
+891,Sanya,0,train
+892,Foshan,1,train
+893,Foshan,0,train
+894,Sharjah,1,val
+895,Sharjah,0,val
+896,Al Ain City,1,test
+897,Al Ain City,0,test
+898,Kalininskiy,1,train
+899,Kalininskiy,0,train
+900,Mersin,1,val
+901,Mersin,0,val
+902,Guayaquil,1,test
+903,Guayaquil,0,test
+904,Tegucigalpa,1,val
+905,Tegucigalpa,0,val
+906,Koeln,1,val
+907,Koeln,0,val
+908,Nuernberg,1,train
+909,Nuernberg,0,train
+910,Zarqa,1,train
+911,Zarqa,0,train
+912,Riga,1,train
+913,Riga,0,train
+914,Nanded,1,train
+915,Nanded,0,train
+916,Gwalior,1,val
+917,Gwalior,0,val
+918,Dombivli,1,test
+919,Dombivli,0,test
+920,Kallakurichi,1,train
+921,Kallakurichi,0,train
+922,Bekasi,1,test
+923,Bekasi,0,test
+924,Johor Bahru,1,train
+925,Johor Bahru,0,train
+926,Santa Maria Chimalhuacan,1,test
+927,Santa Maria Chimalhuacan,0,test
+928,Urumqi,1,train
+929,Urumqi,0,train
+930,Qingdao,1,train
+931,Qingdao,0,train
+932,Sofia,1,train
+933,Sofia,0,train
+934,Nova Iguacu,1,test
+935,Nova Iguacu,0,test
+936,Abeokuta,1,train
+937,Abeokuta,0,train
+938,Amman,1,test
+939,Amman,0,test
+940,Hachioji,1,train
+941,Hachioji,0,train
+942,Fukuoka,1,val
+943,Fukuoka,0,val
+944,Goyang-si,1,train
+945,Goyang-si,0,train
+946,Meknes,1,test
+947,Meknes,0,test
+948,Antananarivo,1,train
+949,Antananarivo,0,train
+950,Kalyan,1,train
+951,Kalyan,0,train
+952,Jaipur,1,train
+953,Jaipur,0,train
+954,Guntur,1,train
+955,Guntur,0,train
+956,Bhilai,1,train
+957,Bhilai,0,train
+958,Bhavnagar,1,train
+959,Bhavnagar,0,train
+960,Amravati,1,val
+961,Amravati,0,val
+962,Shiraz,1,train
+963,Shiraz,0,train
+964,Lome,1,train
+965,Lome,0,train
+966,Erzurum,1,test
+967,Erzurum,0,test
+968,Seattle,1,val
+969,Seattle,0,val
+970,Barquisimeto,1,train
+971,Barquisimeto,0,train
+972,Kryvyy Rih,1,test
+973,Kryvyy Rih,0,test
+974,Krasnoyarsk,1,test
+975,Krasnoyarsk,0,test
+976,Quzhou,1,test
+977,Quzhou,0,test
+978,Pingliang,1,train
+979,Pingliang,0,train
+980,Puning,1,train
+981,Puning,0,train
+982,Huzhou,1,train
+983,Huzhou,0,train
+984,Chizhou,1,train
+985,Chizhou,0,train
+986,Chengdu,1,val
+987,Chengdu,0,val
+988,Cangzhou,1,train
+989,Cangzhou,0,train
+990,Samarinda,1,train
+991,Samarinda,0,train
+992,Helsinki,1,train
+993,Helsinki,0,train
+994,Khabarovsk Vtoroy,1,val
+995,Khabarovsk Vtoroy,0,val
+996,Wroclaw,1,val
+997,Wroclaw,0,val
+998,Oslo,1,train
+999,Oslo,0,train
+1000,Caloocan City,1,train
+1001,Caloocan City,0,train
+1002,Ryazan',1,train
+1003,Ryazan',0,train
+1004,Ciudad Guayana,1,train
+1005,Ciudad Guayana,0,train
+1006,Ho Chi Minh City,1,train
+1007,Ho Chi Minh City,0,train
+1008,Al Hudaydah,1,train
+1009,Al Hudaydah,0,train
+1010,Soweto,1,val
+1011,Soweto,0,val
+1012,Benoni,1,val
+1013,Benoni,0,val
+1014,Wuzhou,1,train
+1015,Wuzhou,0,train
+1016,Wanxian,1,train
+1017,Wanxian,0,train
+1018,Qinzhou,1,test
+1019,Qinzhou,0,test
+1020,Wuwei,1,val
+1021,Wuwei,0,val
+1022,Hefei,1,train
+1023,Hefei,0,train
+1024,Handan,1,train
+1025,Handan,0,train
+1026,Jiangyin,1,train
+1027,Jiangyin,0,train
+1028,Brazzaville,1,train
+1029,Brazzaville,0,train
+1030,Sorocaba,1,test
+1031,Sorocaba,0,test
+1032,Aktobe,1,train
+1033,Aktobe,0,train
+1034,Chisinau,1,train
+1035,Chisinau,0,train
+1036,Tiruppur,1,train
+1037,Tiruppur,0,train
+1038,Kozhikode,1,train
+1039,Kozhikode,0,train
+1040,Asansol,1,train
+1041,Asansol,0,train
+1042,Suizhou,1,train
+1043,Suizhou,0,train
+1044,Jingmen,1,train
+1045,Jingmen,0,train
+1046,Huangshi,1,val
+1047,Huangshi,0,val
+1048,Huaibei,1,train
+1049,Huaibei,0,train
+1050,Hebi,1,test
+1051,Hebi,0,test
+1052,Benxi,1,test
+1053,Benxi,0,test
+1054,Fortaleza,1,train
+1055,Fortaleza,0,train
+1056,Antwerpen,1,test
+1057,Antwerpen,0,test
+1058,Pikine,1,train
+1059,Pikine,0,train
+1060,Dakar,1,train
+1061,Dakar,0,train
+1062,Faisalabad,1,val
+1063,Faisalabad,0,val
+1064,Kyoto,1,train
+1065,Kyoto,0,train
+1066,Port Harcourt,1,train
+1067,Port Harcourt,0,train
+1068,Makhachkala,1,train
+1069,Makhachkala,0,train
+1070,Thiruvananthapuram,1,train
+1071,Thiruvananthapuram,0,train
+1072,Madurai,1,train
+1073,Madurai,0,train
+1074,Abu Ghurayb,1,train
+1075,Abu Ghurayb,0,train
+1076,Karaj,1,test
+1077,Karaj,0,test
+1078,Kampala,1,val
+1079,Kampala,0,val
+1080,Chicago,1,test
+1081,Chicago,0,test
+1082,Milwaukee,1,train
+1083,Milwaukee,0,train
+1084,Bloemfontein,1,test
+1085,Bloemfontein,0,test
+1086,Uberlandia,1,train
+1087,Uberlandia,0,train
+1088,Curitiba,1,train
+1089,Curitiba,0,train
+1090,Rio de Janeiro,1,val
+1091,Rio de Janeiro,0,val
+1092,Ribeirao Preto,1,test
+1093,Ribeirao Preto,0,test
+1094,The Bronx,1,train
+1095,The Bronx,0,train
+1096,Samarkand,1,train
+1097,Samarkand,0,train
+1098,Da Nang,1,test
+1099,Da Nang,0,test
+1100,Tomsk,1,train
+1101,Tomsk,0,train
+1102,Najran,1,val
+1103,Najran,0,val
+1104,Bangkok,1,train
+1105,Bangkok,0,train
+1106,Oklahoma City,1,test
+1107,Oklahoma City,0,test
+1108,Izhevsk,1,train
+1109,Izhevsk,0,train
+1110,Madinat an Nasr,1,test
+1111,Madinat an Nasr,0,test
+1112,Yibin,1,train
+1113,Yibin,0,train
+1114,Sanmenxia,1,test
+1115,Sanmenxia,0,test
+1116,Rui'an,1,val
+1117,Rui'an,0,val
+1118,Ningbo,1,train
+1119,Ningbo,0,train
+1120,Jiujiang,1,train
+1121,Jiujiang,0,train
+1122,Jiaozuo,1,val
+1123,Jiaozuo,0,val
+1124,Jiangmen,1,train
+1125,Jiangmen,0,train
+1126,Huizhou,1,train
+1127,Huizhou,0,train
+1128,Harbin,1,val
+1129,Harbin,0,val
+1130,Herat,1,train
+1131,Herat,0,train
+1132,Kleinzschocher,1,train
+1133,Kleinzschocher,0,train
+1134,Davao,1,train
+1135,Davao,0,train
+1136,Sargodha,1,train
+1137,Sargodha,0,train
+1138,Islamabad,1,train
+1139,Islamabad,0,train
+1140,Zapopan,1,train
+1141,Zapopan,0,train
+1142,Visakhapatnam,1,train
+1143,Visakhapatnam,0,train
+1144,Rourkela,1,train
+1145,Rourkela,0,train
+1146,Dhanbad,1,train
+1147,Dhanbad,0,train
+1148,Bokaro,1,train
+1149,Bokaro,0,train
+1150,Tabriz,1,train
+1151,Tabriz,0,train
+1152,Tlaquepaque,1,train
+1153,Tlaquepaque,0,train
+1154,Victoria de Durango,1,train
+1155,Victoria de Durango,0,train
+1156,Kota Kinabalu,1,test
+1157,Kota Kinabalu,0,test
+1158,Nairobi,1,train
+1159,Nairobi,0,train
+1160,Taguig,1,train
+1161,Taguig,0,train
+1162,Rajkot,1,train
+1163,Rajkot,0,train
+1164,Pune,1,train
+1165,Pune,0,train
+1166,Ludhiana,1,train
+1167,Ludhiana,0,train
+1168,Jamshedpur,1,val
+1169,Jamshedpur,0,val
+1170,Bhiwandi,1,train
+1171,Bhiwandi,0,train
+1172,Erbil,1,train
+1173,Erbil,0,train
+1174,Chelyabinsk,1,train
+1175,Chelyabinsk,0,train
+1176,Uskudar,1,train
+1177,Uskudar,0,train
+1178,Bagcilar,1,train
+1179,Bagcilar,0,train
+1180,Quezon City,1,train
+1181,Quezon City,0,train
+1182,Mexico City,1,train
+1183,Mexico City,0,train
+1184,Leon de los Aldama,1,train
+1185,Leon de los Aldama,0,train
+1186,Fes,1,train
+1187,Fes,0,train
+1188,Surat,1,train
+1189,Surat,0,train
+1190,Barnaul,1,train
+1191,Barnaul,0,train
+1192,Buraydah,1,train
+1193,Buraydah,0,train
+1194,Bikaner,1,train
+1195,Bikaner,0,train
+1196,Mogadishu,1,train
+1197,Mogadishu,0,train
+1198,Homs,1,val
+1199,Homs,0,val
+1200,Port-au-Prince,1,val
+1201,Port-au-Prince,0,val
+1202,Thuan An,1,train
+1203,Thuan An,0,train
+1204,Sanaa,1,test
+1205,Sanaa,0,test
+1206,Pretoria,1,train
+1207,Pretoria,0,train
+1208,Pietermaritzburg,1,train
+1209,Pietermaritzburg,0,train
+1210,Abu Dhabi,1,train
+1211,Abu Dhabi,0,train
+1212,Sao Paulo,1,test
+1213,Sao Paulo,0,test
+1214,Lianyungang,1,train
+1215,Lianyungang,0,train
+1216,Xiaogan,1,train
+1217,Xiaogan,0,train
+1218,Taicang,1,train
+1219,Taicang,0,train
+1220,Guiyang,1,train
+1221,Guiyang,0,train
+1222,Ganzhou,1,val
+1223,Ganzhou,0,val
+1224,Shangyu,1,train
+1225,Shangyu,0,train
+1226,Jambi City,1,train
+1227,Jambi City,0,train
+1228,Indianapolis,1,train
+1229,Indianapolis,0,train
+1230,New York City,1,train
+1231,New York City,0,train
+1232,Bulawayo,1,train
+1233,Bulawayo,0,train
+1234,Santiago de Cuba,1,train
+1235,Santiago de Cuba,0,train
+1236,Quito,1,train
+1237,Quito,0,train
+1238,Shubra al Khaymah,1,train
+1239,Shubra al Khaymah,0,train
+1240,Al Mahallah al Kubra,1,train
+1241,Al Mahallah al Kubra,0,train
+1242,Suining,1,train
+1243,Suining,0,train
+1244,Guankou,1,train
+1245,Guankou,0,train
+1246,Langfang,1,train
+1247,Langfang,0,train
+1248,Jinan,1,train
+1249,Jinan,0,train
+1250,Guigang,1,train
+1251,Guigang,0,train
+1252,Dalian,1,train
+1253,Dalian,0,train
+1254,Chongqing,1,train
+1255,Chongqing,0,train
+1256,Homyel',1,train
+1257,Homyel',0,train
+1258,Winnipeg,1,train
+1259,Winnipeg,0,train
+1260,Klang,1,val
+1261,Klang,0,val
+1262,Irbid,1,train
+1263,Irbid,0,train
+1264,Bishkek,1,train
+1265,Bishkek,0,train
+1266,Muzaffarabad,1,train
+1267,Muzaffarabad,0,train
+1268,Kotli,1,val
+1269,Kotli,0,val
+1270,Nagpur,1,train
+1271,Nagpur,0,train
+1272,Kolhapur,1,train
+1273,Kolhapur,0,train
+1274,Cuttack,1,train
+1275,Cuttack,0,train
+1276,Makassar,1,train
+1277,Makassar,0,train
+1278,Yekaterinburg,1,train
+1279,Yekaterinburg,0,train
+1280,Dammam,1,train
+1281,Dammam,0,train
+1282,Dushanbe,1,train
+1283,Dushanbe,0,train
+1284,Gaziantep,1,test
+1285,Gaziantep,0,test
+1286,Asuncion,1,test
+1287,Asuncion,0,test
+1288,Tebessa,1,val
+1289,Tebessa,0,val
+1290,Zhuzhou,1,test
+1291,Zhuzhou,0,test
+1292,Xining,1,train
+1293,Xining,0,train
+1294,Tanggu,1,train
+1295,Tanggu,0,train
+1296,Shantou,1,val
+1297,Shantou,0,val
+1298,Shangluo,1,val
+1299,Shangluo,0,val
+1300,Putian,1,val
+1301,Putian,0,val
+1302,Luzhou,1,train
+1303,Luzhou,0,train
+1304,Lanzhou,1,train
+1305,Lanzhou,0,train
+1306,Chenzhou,1,train
+1307,Chenzhou,0,train
+1308,Baise,1,train
+1309,Baise,0,train
+1310,Shenyang,1,train
+1311,Shenyang,0,train
+1312,Daqing,1,train
+1313,Daqing,0,train
+1314,Brasilia,1,train
+1315,Brasilia,0,train
+1316,Kandahar,1,train
+1317,Kandahar,0,train
+1318,Gold Coast,1,test
+1319,Gold Coast,0,test
+1320,Ouagadougou,1,train
+1321,Ouagadougou,0,train
+1322,Duque de Caxias,1,train
+1323,Duque de Caxias,0,train
+1324,Hiroshima,1,train
+1325,Hiroshima,0,train
+1326,Saitama,1,train
+1327,Saitama,0,train
+1328,Mandalay,1,train
+1329,Mandalay,0,train
+1330,Nampula,1,train
+1331,Nampula,0,train
+1332,Mysore,1,train
+1333,Mysore,0,train
+1334,Coimbatore,1,train
+1335,Coimbatore,0,train
+1336,Chandigarh,1,train
+1337,Chandigarh,0,train
+1338,Amritsar,1,test
+1339,Amritsar,0,test
+1340,Arak,1,train
+1341,Arak,0,train
+1342,Ilorin,1,train
+1343,Ilorin,0,train
+1344,Omdurman,1,train
+1345,Omdurman,0,train
+1346,Khartoum,1,train
+1347,Khartoum,0,train
+1348,Gujranwala,1,val
+1349,Gujranwala,0,val
+1350,Nizhniy Novgorod,1,train
+1351,Nizhniy Novgorod,0,train
+1352,Zhaoqing,1,train
+1353,Zhaoqing,0,train
+1354,Xianning,1,train
+1355,Xianning,0,train
+1356,Suqian,1,val
+1357,Suqian,0,val
+1358,Tonghua,1,train
+1359,Tonghua,0,train
+1360,Hezhou,1,train
+1361,Hezhou,0,train
+1362,Grosszschocher,1,test
+1363,Grosszschocher,0,test
+1364,San Pedro Sula,1,val
+1365,San Pedro Sula,0,val
+1366,Queens,1,train
+1367,Queens,0,train
+1368,Caracas,1,train
+1369,Caracas,0,train
+1370,Bien Hoa,1,train
+1371,Bien Hoa,0,train
+1372,Durban,1,train
+1373,Durban,0,train
+1374,Kawaguchi,1,train
+1375,Kawaguchi,0,train
+1376,Bucheon-si,1,val
+1377,Bucheon-si,0,val
+1378,Tangier,1,train
+1379,Tangier,0,train
+1380,Nay Pyi Taw,1,train
+1381,Nay Pyi Taw,0,train
+1382,Ulhasnagar,1,val
+1383,Ulhasnagar,0,val
+1384,Faridabad,1,train
+1385,Faridabad,0,train
+1386,Kolkata,1,test
+1387,Kolkata,0,test
+1388,Karbala,1,train
+1389,Karbala,0,train
+1390,Jakarta,1,train
+1391,Jakarta,0,train
+1392,Denpasar,1,train
+1393,Denpasar,0,train
+1394,Batam,1,train
+1395,Batam,0,train
+1396,Liupanshui,1,train
+1397,Liupanshui,0,train
+1398,Shangrao,1,val
+1399,Shangrao,0,val
+1400,Xingtai,1,train
+1401,Xingtai,0,train
+1402,Qujing,1,train
+1403,Qujing,0,train
+1404,Nanning,1,train
+1405,Nanning,0,train
+1406,Huainan,1,test
+1407,Huainan,0,test
+1408,Binzhou,1,train
+1409,Binzhou,0,train
+1410,Fuxin,1,test
+1411,Fuxin,0,test
+1412,Quebec,1,train
+1413,Quebec,0,train
+1414,Mazar-e Sharif,1,val
+1415,Mazar-e Sharif,0,val
+1416,Mar del Plata,1,train
+1417,Mar del Plata,0,train
+1418,Salta,1,train
+1419,Salta,0,train
+1420,Bujumbura,1,test
+1421,Bujumbura,0,test
+1422,Ankara,1,train
+1423,Ankara,0,train
+1424,Esenler,1,train
+1425,Esenler,0,train
+1426,Cankaya,1,train
+1427,Cankaya,0,train
+1428,Ufa,1,train
+1429,Ufa,0,train
+1430,Rawalpindi,1,train
+1431,Rawalpindi,0,train
+1432,Karachi,1,train
+1433,Karachi,0,train
+1434,Tijuana,1,val
+1435,Tijuana,0,val
+1436,Jos,1,train
+1437,Jos,0,train
+1438,Ibadan,1,train
+1439,Ibadan,0,train
+1440,Managua,1,train
+1441,Managua,0,train
+1442,Ha'il,1,train
+1443,Ha'il,0,train
+1444,Haiphong,1,train
+1445,Haiphong,0,train
+1446,Cape Town,1,train
+1447,Cape Town,0,train
+1448,Ipoh,1,train
+1449,Ipoh,0,train
+1450,Kuantan,1,val
+1451,Kuantan,0,val
+1452,Maiduguri,1,train
+1453,Maiduguri,0,train
+1454,Yangon,1,test
+1455,Yangon,0,test
+1456,Kathmandu,1,train
+1457,Kathmandu,0,train
+1458,Las Pinas,1,train
+1459,Las Pinas,0,train
+1460,Reynosa,1,train
+1461,Reynosa,0,train
+1462,Rostov-na-Donu,1,train
+1463,Rostov-na-Donu,0,train
+1464,Ibague,1,train
+1465,Ibague,0,train
+1466,Copenhagen,1,train
+1467,Copenhagen,0,train
+1468,Xinyang,1,val
+1469,Xinyang,0,val
+1470,Weinan,1,test
+1471,Weinan,0,test
+1472,Wanning,1,train
+1473,Wanning,0,train
+1474,Shijiazhuang,1,train
+1475,Shijiazhuang,0,train
+1476,Laiwu,1,train
+1477,Laiwu,0,train
+1478,Hengyang,1,train
+1479,Hengyang,0,train
+1480,Changchun,1,train
+1481,Changchun,0,train
+1482,Varanasi,1,train
+1483,Varanasi,0,train
+1484,Puducherry,1,train
+1485,Puducherry,0,train
+1486,Bhopal,1,train
+1487,Bhopal,0,train
+1488,Kanayannur,1,train
+1489,Kanayannur,0,train
+1490,Kirkuk,1,train
+1491,Kirkuk,0,train
+1492,Al Mawsil al Jadidah,1,val
+1493,Al Mawsil al Jadidah,0,val
+1494,Tangerang,1,train
+1495,Tangerang,0,train

@@ -1,0 +1,56 @@
+{
+  "split": {
+    "split_file": "data/got/splits/train_AB_groups_truth_aware_pilot.csv",
+    "sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+    "matches_pilot_preregistration": true,
+    "geographic": {
+      "rows_A": 1044,
+      "rows_B": 1048,
+      "A_B_overlap": 0,
+      "train_vs_val_test_overlap": 0,
+      "label_mean_A": 0.5,
+      "label_mean_B": 0.5,
+      "test_rows_in_A_or_B": 0
+    },
+    "numerical": {
+      "rows_A": 1384,
+      "rows_B": 1388,
+      "A_B_overlap": 0,
+      "train_vs_val_test_overlap": 0,
+      "label_mean_A": 0.5,
+      "label_mean_B": 0.5,
+      "test_rows_in_A_or_B": 0
+    },
+    "passes": true
+  },
+  "hook_got_A_fresh_vs_cached_max_abs": 4.1961669921875e-05,
+  "hook_owt_train_fresh_vs_cached_rel": 8.509709005011246e-05,
+  "identity_splice_kl": 0.0,
+  "identity_splice_ds": 0.0,
+  "kl_formula_is_KL(p_orig||p_spliced)": true,
+  "sae_grad_norm": 1.236344016622752,
+  "gpt2_params_with_grad": 0,
+  "gpt2_unchanged_after_backward": true,
+  "ds_numpy_mean_over_layers": 0.08040362410418875,
+  "ds_e2e_terms": 0.08040362596511841,
+  "ds_rel_diff": 2.3144848022738988e-08,
+  "controller": {
+    "target": 128,
+    "adjust_every": 25,
+    "adjust_rate": 0.5,
+    "ema_on": "OWT local rows",
+    "penalty_on": "local batch rows (as Method A)"
+  },
+  "start_coefficients": {
+    "relu_seed42": 0.002767969183469354,
+    "relu_seed1042": 0.002734226504949594,
+    "relu_seed2042": 0.002758801951814522,
+    "topk_seed42": null,
+    "topk_seed1042": null,
+    "topk_seed2042": null,
+    "jumprelu_seed42": 0.002133468951045987,
+    "jumprelu_seed1042": 0.0021268702641971176,
+    "jumprelu_seed2042": 0.0021470132028496612
+  },
+  "passes": true
+}

@@ -1,0 +1,23 @@
+
+# OpenWebText Dataset Configuration
+# SAE Faithfulness Research
+
+dataset:
+  name: "Skylion007/openwebtext"
+  text_column: "text"
+
+  # Small pilot dataset for local testing
+  sample_documents: 1000
+
+  random_seed: 42
+
+  split:
+    train: 0.80
+    validation: 0.10
+    test: 0.10
+
+  min_characters: 100
+  max_characters: 20000
+
+output:
+  directory: "data/openwebtext"

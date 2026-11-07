@@ -1,0 +1,143 @@
+{
+  "consistency_with_verification_max_abs_diff": 0.0,
+  "endpoint_mean_gap_B_minus_A": 0.007047858205782284,
+  "endpoints_differ_in_truth": false,
+  "w0.25": {
+    "BEHAV": true,
+    "TRUTH_NONINFERIOR": true,
+    "TRADE_below_chord_all_seeds": false,
+    "guards": {
+      "l0_128_all_datasets": true,
+      "owt_ev_ge_A_minus_0.02": true,
+      "cities_ge_A_minus_0.018": true,
+      "repe_diffmean_le_A_plus_0.02": true,
+      "geo_logistic_le_A_plus_0.02": true
+    },
+    "verdict": "INCONCLUSIVE (endpoints do not differ in truth by > 0.02; no measurable trade-off to improve)",
+    "per_seed": {
+      "seed42": {
+        "gap": 0.09988839285714284,
+        "gap_A": 0.11211734693877551,
+        "gap_B": 0.0973712531887754,
+        "chord_gap": 0.09960061315267442,
+        "owt_kl": 0.10405091058640253,
+        "kl_A": 0.11553621322389633,
+        "kl_B": 0.10200525919596354
+      },
+      "seed1042": {
+        "gap": 0.10632174744897951,
+        "gap_A": 0.08498086734693877,
+        "gap_B": 0.10566007653061224,
+        "chord_gap": 0.10273598902923588,
+        "owt_kl": 0.10528684585813491,
+        "kl_A": 0.11697432745070685,
+        "kl_B": 0.1033620368109809
+      },
+      "seed2042": {
+        "gap": 0.12757892219387756,
+        "gap_A": 0.1236926020408163,
+        "gap_B": 0.13890306122448978,
+        "chord_gap": 0.13692752296463861,
+        "owt_kl": 0.10218533470517113,
+        "kl_A": 0.1131398179796007,
+        "kl_B": 0.10055019075908359
+      }
+    },
+    "fraction_of_B_gain_retained": {
+      "owt_kl": {
+        "42": 0.849,
+        "1042": 0.859,
+        "2042": 0.87
+      },
+      "owt_ce": {
+        "42": 0.831,
+        "1042": 0.831,
+        "2042": 0.854
+      },
+      "got_statement_kl": {
+        "42": 0.993,
+        "1042": 0.993,
+        "2042": 0.991
+      }
+    },
+    "mean_paired_diff_vs_A": {
+      "got_geographic_indep_mlp_gap_mean": 0.004332748724489781,
+      "splice_owt_kl": -0.011375755834831766,
+      "splice_owt_delta_ce": -0.009153516658399474
+    },
+    "sd_paired_diff_vs_A": {
+      "got_geographic_indep_mlp_gap_mean": 0.016789369125487497,
+      "splice_owt_kl": 0.00037857893507165993,
+      "splice_owt_delta_ce": 0.0010410823966321618
+    }
+  },
+  "w0.50": {
+    "BEHAV": true,
+    "TRUTH_NONINFERIOR": true,
+    "TRADE_below_chord_all_seeds": false,
+    "guards": {
+      "l0_128_all_datasets": true,
+      "owt_ev_ge_A_minus_0.02": true,
+      "cities_ge_A_minus_0.018": true,
+      "repe_diffmean_le_A_plus_0.02": true,
+      "geo_logistic_le_A_plus_0.02": true
+    },
+    "verdict": "INCONCLUSIVE (endpoints do not differ in truth by > 0.02; no measurable trade-off to improve)",
+    "per_seed": {
+      "seed42": {
+        "gap": 0.09527662627551017,
+        "gap_A": 0.11211734693877551,
+        "gap_B": 0.0973712531887754,
+        "chord_gap": 0.09831684429893989,
+        "owt_kl": 0.10287292964874752,
+        "kl_A": 0.11553621322389633,
+        "kl_B": 0.10200525919596354
+      },
+      "seed1042": {
+        "gap": 0.11246412627551021,
+        "gap_A": 0.08498086734693877,
+        "gap_B": 0.10566007653061224,
+        "chord_gap": 0.10467680759159767,
+        "owt_kl": 0.10400928315662203,
+        "kl_A": 0.11697432745070685,
+        "kl_B": 0.1033620368109809
+      },
+      "seed2042": {
+        "gap": 0.1266422193877551,
+        "gap_A": 0.1236926020408163,
+        "gap_B": 0.13890306122448978,
+        "chord_gap": 0.13814319447316284,
+        "owt_kl": 0.10117912897987971,
+        "kl_A": 0.1131398179796007,
+        "kl_B": 0.10055019075908359
+      }
+    },
+    "fraction_of_B_gain_retained": {
+      "owt_kl": {
+        "42": 0.936,
+        "1042": 0.952,
+        "2042": 0.95
+      },
+      "owt_ce": {
+        "42": 0.927,
+        "1042": 0.953,
+        "2042": 0.983
+      },
+      "got_statement_kl": {
+        "42": 0.997,
+        "1042": 0.998,
+        "2042": 0.997
+      }
+    },
+    "mean_paired_diff_vs_A": {
+      "got_geographic_indep_mlp_gap_mean": 0.004530718537414972,
+      "splice_owt_kl": -0.01252967228965154,
+      "splice_owt_delta_ce": -0.010408399470899476
+    },
+    "sd_paired_diff_vs_A": {
+      "got_geographic_indep_mlp_gap_mean": 0.022204249648328234,
+      "splice_owt_kl": 0.0005153361728409363,
+      "splice_owt_delta_ce": 0.0011029699459969213
+    }
+  }
+}

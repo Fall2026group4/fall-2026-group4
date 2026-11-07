@@ -1,0 +1,200 @@
+[
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "pretrained",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.5726841517857143,
+    "auroc_gap": 0.3272680165816326,
+    "mean_l0": 64.94196428571429,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "reconstruction_only",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.7249083227040817,
+    "auroc_gap": 0.17504384566326525,
+    "mean_l0": 144.41741071428572,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "truth_aware",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.6639827806122449,
+    "auroc_gap": 0.235969387755102,
+    "mean_l0": 93.69642857142857,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "pretrained",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.7069913903061225,
+    "auroc_gap": 0.19296077806122447,
+    "mean_l0": 128.0,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "reconstruction_only",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.8078164859693877,
+    "auroc_gap": 0.09213568239795922,
+    "mean_l0": 128.0,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "truth_aware",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.7063536352040816,
+    "auroc_gap": 0.19359853316326536,
+    "mean_l0": 128.0,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "pretrained",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.5586734693877551,
+    "auroc_gap": 0.34127869897959184,
+    "mean_l0": 45.120535714285715,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "reconstruction_only",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.7059550382653061,
+    "auroc_gap": 0.19399713010204078,
+    "mean_l0": 99.73883928571429,
+    "validation_examples": 448
+  },
+  {
+    "domain": "geographic",
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "truth_aware",
+    "original_auroc": 0.8999521683673469,
+    "reconstructed_auroc": 0.6626275510204082,
+    "auroc_gap": 0.23732461734693877,
+    "mean_l0": 64.75669642857143,
+    "validation_examples": 448
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "pretrained",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.6393010409057707,
+    "auroc_gap": 0.3606761322132943,
+    "mean_l0": 84.61655405405405,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "reconstruction_only",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.9216467311906501,
+    "auroc_gap": 0.07833044192841487,
+    "mean_l0": 144.54054054054055,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "truth_aware",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.7974913257852446,
+    "auroc_gap": 0.20248584733382036,
+    "mean_l0": 115.03378378378379,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "pretrained",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.8690307706355004,
+    "auroc_gap": 0.1309464024835646,
+    "mean_l0": 128.0,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "reconstruction_only",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.9518581081081081,
+    "auroc_gap": 0.04811906501095686,
+    "mean_l0": 128.0,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "truth_aware",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.9074484112490869,
+    "auroc_gap": 0.09252876186997805,
+    "mean_l0": 128.0,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "pretrained",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.6293941745799854,
+    "auroc_gap": 0.3705829985390796,
+    "mean_l0": 46.98141891891892,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "reconstruction_only",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.8858998356464571,
+    "auroc_gap": 0.11407733747260784,
+    "mean_l0": 111.125,
+    "validation_examples": 592
+  },
+  {
+    "domain": "numerical",
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "truth_aware",
+    "original_auroc": 0.999977173119065,
+    "reconstructed_auroc": 0.8058916179693206,
+    "auroc_gap": 0.19408555514974435,
+    "mean_l0": 70.73141891891892,
+    "validation_examples": 592
+  }
+]

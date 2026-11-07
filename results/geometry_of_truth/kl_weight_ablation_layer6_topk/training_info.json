@@ -1,0 +1,59 @@
+{
+  "script_sha256": "7d2903c7c8177f36168f3c0c7c9b57ac05050d05910635735d9ad7aee28c759f",
+  "repro_max_abs_param_diff": 0.0,
+  "repro_bit_identical": true,
+  "runs": [
+    {
+      "kl_fraction": 0.25,
+      "seed": 42,
+      "alpha": 1.037538739061111,
+      "seconds": 145.5,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/kl_weight_ablation_layer6_topk/topk_kl025pct_seed42/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "9e5ce4c083b0fc047a5ce6c03cdc1386407990b3c2a960861daa43ac852c5020"
+    },
+    {
+      "kl_fraction": 0.25,
+      "seed": 1042,
+      "alpha": 0.9730911743128013,
+      "seconds": 145.4,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/kl_weight_ablation_layer6_topk/topk_kl025pct_seed1042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "ae8ca965673bd60e7c82316d2b8c4742e7d2487219e851090faa766c6a1f6f76"
+    },
+    {
+      "kl_fraction": 0.25,
+      "seed": 2042,
+      "alpha": 1.05303898222481,
+      "seconds": 145.0,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/kl_weight_ablation_layer6_topk/topk_kl025pct_seed2042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "4a46230fc4a99a7715a1060222267262013380bdb086b3ffb8f09b1189324949"
+    },
+    {
+      "kl_fraction": 0.5,
+      "seed": 42,
+      "alpha": 2.075077478122222,
+      "seconds": 145.5,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/kl_weight_ablation_layer6_topk/topk_kl050pct_seed42/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "27d106041ef200adbc23a42d21df085c080b005a9a15a2ca934274322fbe0336"
+    },
+    {
+      "kl_fraction": 0.5,
+      "seed": 1042,
+      "alpha": 1.9461823486256027,
+      "seconds": 145.3,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/kl_weight_ablation_layer6_topk/topk_kl050pct_seed1042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "2864a29ffaf154fd9e10aaa70b6cb56ef175ad7bfb6bbe782d835b876697f615"
+    },
+    {
+      "kl_fraction": 0.5,
+      "seed": 2042,
+      "alpha": 2.10607796444962,
+      "seconds": 144.9,
+      "checkpoint": "results/geometry_of_truth/sae_finetuning/kl_weight_ablation_layer6_topk/topk_kl050pct_seed2042/finetuned_checkpoint.pt",
+      "checkpoint_sha256": "b29cf3c6314a3cbf07bafe6c50dc6f97ab5badbcde441a9a6d22f451210da08c"
+    }
+  ],
+  "gpt2_parameters_unchanged": true,
+  "base_A_B_checkpoints_unchanged": true,
+  "gpu_peak_allocated_gb": 5.94,
+  "runtime_seconds": 1018.6
+}

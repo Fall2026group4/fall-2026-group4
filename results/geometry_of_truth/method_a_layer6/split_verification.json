@@ -1,0 +1,24 @@
+{
+  "split_file": "data/got/splits/train_AB_groups_truth_aware_pilot.csv",
+  "sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "matches_pilot_preregistration": true,
+  "geographic": {
+    "rows_A": 1044,
+    "rows_B": 1048,
+    "A_B_overlap": 0,
+    "train_vs_val_test_overlap": 0,
+    "label_mean_A": 0.5,
+    "label_mean_B": 0.5,
+    "test_rows_in_A_or_B": 0
+  },
+  "numerical": {
+    "rows_A": 1384,
+    "rows_B": 1388,
+    "A_B_overlap": 0,
+    "train_vs_val_test_overlap": 0,
+    "label_mean_A": 0.5,
+    "label_mean_B": 0.5,
+    "test_rows_in_A_or_B": 0
+  },
+  "passes": true
+}

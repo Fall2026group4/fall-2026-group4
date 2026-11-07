@@ -1,0 +1,12 @@
+Stage 9: Final Held-Out Truth Preservation Evaluation
+Script SHA-256:
+cfec05c0f490c0f38ed53e1f64dfcd95764b76cba2a0976b8e79a46e9b90450a  scripts/Geometry of Truth/09_final_test_evaluation.py
+Layer: 6
+Seeds: 42, 123, 456, 789, 2026
+Architectures: relu, topk, jumprelu
+Variants: pretrained, reconstruction_only, truth_aware
+Probe: MLP 768-64-ReLU-1
+Training: 50 epochs, Adam, LR 0.001, batch size 128
+Probe fitting: training split only
+Final evaluation: held-out test split
+Metrics: AUROC, AUROC gap, mean L0

@@ -66,3 +66,8 @@ Thumbs.db
 
 # Temporary files
 tempCodeRunnerFile.py
+# Research artifacts that must never be committed (CLAUDE.md §3)
+# Activation caches (incl. their manifest.json) and editor backups
+data/activations/
+data/*/activations/
+*.bak

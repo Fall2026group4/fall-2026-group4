@@ -1,0 +1,15 @@
+{
+  "training": "SAE reconstructions of original train split only",
+  "evaluation": "SAE reconstructions of validation split only",
+  "SAE_weights": "frozen",
+  "test_evaluated": false,
+  "C_selection": "validation AUROC (exploratory)",
+  "C_values": [
+    0.001,
+    0.01,
+    0.1,
+    1.0,
+    10.0
+  ],
+  "seed": 42
+}

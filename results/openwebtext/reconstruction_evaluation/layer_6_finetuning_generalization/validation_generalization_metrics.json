@@ -1,0 +1,92 @@
+[
+  {
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "pretrained",
+    "validation_tokens": 12700,
+    "mse": 0.7825547490157481,
+    "mean_cosine_similarity": 0.9544714307409572,
+    "explained_variance": 0.827208075013006,
+    "actual_l0": 134.03748031496062
+  },
+  {
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "reconstruction_only",
+    "validation_tokens": 12700,
+    "mse": 0.7846480738522187,
+    "mean_cosine_similarity": 0.954267382283849,
+    "explained_variance": 0.8267458586267764,
+    "actual_l0": 137.60133858267716
+  },
+  {
+    "layer": 6,
+    "architecture": "relu",
+    "variant": "truth_aware",
+    "validation_tokens": 12700,
+    "mse": 0.7805426698219119,
+    "mean_cosine_similarity": 0.9545249734713337,
+    "explained_variance": 0.8276523519630424,
+    "actual_l0": 135.43425196850393
+  },
+  {
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "pretrained",
+    "validation_tokens": 12700,
+    "mse": 0.6641346560500738,
+    "mean_cosine_similarity": 0.9606894293357068,
+    "explained_variance": 0.8533558120836884,
+    "actual_l0": 128.0
+  },
+  {
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "reconstruction_only",
+    "validation_tokens": 12700,
+    "mse": 0.6957839220903052,
+    "mean_cosine_similarity": 0.958579970232145,
+    "explained_variance": 0.8463674989843234,
+    "actual_l0": 128.0
+  },
+  {
+    "layer": 6,
+    "architecture": "topk",
+    "variant": "truth_aware",
+    "validation_tokens": 12700,
+    "mse": 0.6708227731299212,
+    "mean_cosine_similarity": 0.9602375288835661,
+    "explained_variance": 0.8518790430445653,
+    "actual_l0": 128.0
+  },
+  {
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "pretrained",
+    "validation_tokens": 12700,
+    "mse": 0.6218309481563218,
+    "mean_cosine_similarity": 0.9617219603531004,
+    "explained_variance": 0.8626966781767543,
+    "actual_l0": 131.41826771653544
+  },
+  {
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "reconstruction_only",
+    "validation_tokens": 12700,
+    "mse": 0.698636069310306,
+    "mean_cosine_similarity": 0.9572836339755321,
+    "explained_variance": 0.8457377308957519,
+    "actual_l0": 139.86370078740157
+  },
+  {
+    "layer": 6,
+    "architecture": "jumprelu",
+    "variant": "truth_aware",
+    "validation_tokens": 12700,
+    "mse": 0.6302815274616552,
+    "mean_cosine_similarity": 0.9612483671894224,
+    "explained_variance": 0.8608307488379312,
+    "actual_l0": 134.39173228346456
+  }
+]

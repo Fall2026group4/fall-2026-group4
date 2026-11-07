@@ -1,0 +1,87 @@
+{
+  "protocol": "uninterrupted_from_scratch_single_optimizer",
+  "layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "architectures": [
+    "jumprelu",
+    "relu",
+    "topk"
+  ],
+  "seeds": [
+    42,
+    1042,
+    2042
+  ],
+  "steps": 15000,
+  "invocations": [
+    {
+      "layers": [
+        2,
+        6,
+        10
+      ],
+      "architectures": [
+        "relu",
+        "topk",
+        "jumprelu"
+      ],
+      "seeds": [
+        42,
+        1042,
+        2042
+      ],
+      "steps": 15000
+    },
+    {
+      "layers": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        11
+      ],
+      "architectures": [
+        "relu",
+        "topk",
+        "jumprelu"
+      ],
+      "seeds": [
+        42,
+        1042,
+        2042
+      ],
+      "steps": 15000,
+      "finished": "2026-11-07 01:00:53",
+      "script_sha256": "357464db7173c1022abf096b88ec15dd1ab0deb41aa7d0e2924524448ed6c62a"
+    }
+  ],
+  "target_l0": 128,
+  "features": 3072,
+  "batch_size": 256,
+  "lr": 0.0003,
+  "optimizer": "Adam(default betas), grad-clip 10, decoder column renorm each step",
+  "sparsity_controller": "original multiplicative controller from 03_training_sae.py",
+  "train_split": "OWT train (800 docs, 101600 non-BOS tokens)",
+  "validation_split": "OWT validation (100 docs, 12700 tokens) - reported only, not used for selection",
+  "test_split": "OWT test (100 docs, 12700 tokens)",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "gpu": "NVIDIA A10G",
+  "python": "3.14.4"
+}

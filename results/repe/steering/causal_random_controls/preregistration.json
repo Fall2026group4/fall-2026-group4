@@ -1,0 +1,21 @@
+{
+  "written_utc": "2026-11-04T21:09:10.797297+00:00",
+  "script_sha256": "3075e65a960649e614a2de3dfb5919517c533e123c319c0693e88e83006477dc",
+  "selection_rule": "strength multiple maximising E of raw honesty direction on validation",
+  "chosen_strength_multiple": 0.1,
+  "chosen_strength_norm": 0.2226280450820923,
+  "mean_difference_norm_train": 2.226280450820923,
+  "validation_baseline_mean_KL": 0.01992601901292801,
+  "validation_positive_control_E": 0.18816860891588683,
+  "primary_outcome": "E = 1 - sum KL(p_H||p_U+v) / sum KL(p_H||p_U), next-token at final position",
+  "secondary_outcome": "S = mean dlogp(next stmt token | true) - mean dlogp(next stmt token | false)",
+  "layer": 6,
+  "hook": "blocks.6.hook_resid_pre",
+  "position": "final prompt token",
+  "n_controls": 200,
+  "control_seed": 20261101,
+  "topk_set": 10,
+  "significance": "one-sided empirical p=(1+#controls>=target)/(1+n)",
+  "ci": "bootstrap over statements, 2000 resamples, seed 0",
+  "note": "Protocol designed by the analysis team following the professor's request for 200 random controls; no written professor specification was found in the repository."
+}
