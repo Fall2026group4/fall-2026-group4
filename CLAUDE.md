@@ -119,6 +119,6 @@ An experiment is **not complete** until its results and changes are documented a
   * checkpoint lookup: `src/sae/checkpoint_registry.py`;
   * layer-6 evaluation: `scripts/shared/layer6_faithfulness_eval.py`;
   * splicing: `scripts/shared/spliced_reconstruction_evaluation.py`.
-* **Python:** `/home/ubuntu/sae-project/venv/bin/python`. Run scripts from the repository root.
+* **Python:** `../venv/bin/python`, the virtual environment next to the repository root. Run scripts from the repository root.
 * **Tests:** `python -m pytest -q src/tests`. Run them before every commit.
 * **Hooks:** SAEs live at `blocks.{L}.hook_resid_pre`. BOS is excluded from SAE training and from splicing.
