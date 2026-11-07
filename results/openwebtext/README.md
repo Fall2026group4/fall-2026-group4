@@ -4,7 +4,7 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 
 | Path | Status | What it is |
 |---|---|---|
-| `reconstruction_evaluation/uninterrupted_protocol/` | **AUTHORITATIVE** (cross-layer and within-layer) | One uninterrupted 15k-step Adam run per layer × arch × seed (42/1042/2042), OWT test (12 700 tokens). Layers 2/6/10 done; extend with `scripts/openwebtext/13_consistent_protocol_retrain.py`. |
+| `reconstruction_evaluation/uninterrupted_protocol/` | **AUTHORITATIVE** (cross-layer and within-layer) | One uninterrupted 15k-step Adam run per layer × arch × seed (42/1042/2042), OWT test (12 700 tokens). **All 12 layers done** (108 runs; layers 2/6/10 on 2026-11-04, the rest on 2026-11-07). All-layer tables: `all_layers_*.csv` (`scripts/openwebtext/15_all_layer_baseline_analysis.py`). One run unmatched: layer 0 JumpReLU seed 42 (L0 73.6). |
 | `convergence/layer_*/*_uninterrupted_seed*/` | **AUTHORITATIVE** checkpoints for the table above | |
 | `reconstruction_evaluation/layers_2_6_10/` | **SUPERSEDED** for cross-layer claims; **VALID (scope)** within a layer | Mixed procedures (L6 resumed with Adam restored; L2/L10 warm start with Adam reset). EV differs from the corrected runs by ≤ 0.006, rankings unchanged. |
 | `convergence/layer_6/*_resume_5000_to_15000/` | **VALID (scope)** | The layer-6 "pretrained" base SAEs used by every GoT/RepE/fine-tuning/causal experiment. Not retrained; those experiments are layer-6-only, so the procedure never crosses a comparison. |

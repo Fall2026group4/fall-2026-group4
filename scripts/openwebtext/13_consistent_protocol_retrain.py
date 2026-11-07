@@ -36,6 +36,7 @@ Run from repository root:
     python scripts/openwebtext/13_consistent_protocol_retrain.py --smoke    # 200-step check
 """
 import argparse
+import hashlib
 import importlib.util
 import json
 import platform
@@ -103,6 +104,15 @@ def main():
                     temperature=0.1, initial_sparsity_coeff=0.001, min_sparsity_coeff=1e-7,
                     max_sparsity_coeff=100.0, adjust_every=25, adjust_rate=0.5, match_tolerance=0.2,
                     log_every=2500)
+                # Checkpoint path decided BEFORE training so a collision fails before any compute is spent.
+                if a.smoke:
+                    ck = out / f'layer_{layer}' / f'{arch}_seed{seed}_step{a.steps}.pt'
+                else:
+                    ck = (CKPT_ROOT / f'layer_{layer}' / f'{arch}_l0_{a.target_l0}_uninterrupted_seed{seed}'
+                          / f'checkpoint_step_{a.steps}.pt')
+                if ck.exists():
+                    raise SystemExit(f'refusing to overwrite existing checkpoint {ck}')
+                torch.cuda.reset_peak_memory_stats(device)
                 t0 = time.time()
                 model, val_metrics = base.train_one(arch, a.target_l0, train, validation, args, device)
                 train_seconds = time.time() - t0
@@ -110,6 +120,8 @@ def main():
                 for prm in model.parameters():
                     prm.requires_grad_(False)
                 test = ev.evaluate(model, layer, device)
+                gpu_peak_alloc = torch.cuda.max_memory_allocated(device) / 2**20
+                gpu_peak_reserved = torch.cuda.max_memory_reserved(device) / 2**20
                 row = dict(layer=layer, architecture=arch, seed=seed, steps=a.steps,
                            training_procedure='uninterrupted_from_scratch_single_optimizer',
                            target_l0=a.target_l0,
@@ -118,14 +130,11 @@ def main():
                            **{f'test_{k}': v for k, v in test.items()},
                            train_seconds=round(train_seconds, 1))
                 row['test_l0_rel_error'] = abs(row['test_actual_l0'] - a.target_l0) / a.target_l0
+                # Instrumentation added 2026-11-07 (rows from earlier invocations have these empty):
+                row['checkpoint_path'] = str(ck)
+                row['gpu_peak_allocated_mb'] = round(gpu_peak_alloc, 1)   # torch allocator peak, train + test eval
+                row['gpu_peak_reserved_mb'] = round(gpu_peak_reserved, 1)  # torch caching-allocator peak
                 rows.append(row)
-                if a.smoke:
-                    ck = out / f'layer_{layer}' / f'{arch}_seed{seed}_step{a.steps}.pt'
-                else:
-                    ck = (CKPT_ROOT / f'layer_{layer}' / f'{arch}_l0_{a.target_l0}_uninterrupted_seed{seed}'
-                          / f'checkpoint_step_{a.steps}.pt')
-                if ck.exists():
-                    raise SystemExit(f'refusing to overwrite existing checkpoint {ck}')
                 ck.parent.mkdir(parents=True, exist_ok=True)
                 torch.save({'model_state_dict': model.cpu().state_dict(),
                             'config': {**vars(args), 'architecture': arch, 'target_l0': a.target_l0,
@@ -145,7 +154,8 @@ def main():
     invocations = prev.get('invocations') or (
         [{k: prev[k] for k in ('layers', 'architectures', 'seeds', 'steps') if k in prev}] if prev else [])
     invocations.append({'layers': a.layers, 'architectures': a.architectures, 'seeds': a.seeds,
-                        'steps': a.steps, 'finished': time.strftime('%Y-%m-%d %H:%M:%S')})
+                        'steps': a.steps, 'finished': time.strftime('%Y-%m-%d %H:%M:%S'),
+                        'script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
     cfg_path.write_text(json.dumps({
         'protocol': 'uninterrupted_from_scratch_single_optimizer',
         'layers': sorted({int(r['layer']) for r in rows}),
