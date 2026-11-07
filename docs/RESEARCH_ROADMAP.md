@@ -41,7 +41,17 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | this commit |
 
 ## 2. In progress
-* None. All work is committed locally, and nothing has been pushed.
+* **R1. RepE honesty representation preservation, layer 6** (P0). PLANNED, awaiting approval.
+  * Arms: R-recon / R-honesty (paired-contrast) / R-samepersona control.
+  * 3 architectures × 3 seeds; train A/B split; held-out wording.
+  * Plan: `results/repe/r1_honesty_preservation_layer6/README.md`.
+  * Also addresses S3 (RepE-prompt L0 guard).
+* **R2. SAE-in-the-loop honesty-feature intervention, layer 6** (P0; implements C3, partly C5/C6). PLANNED, awaiting approval.
+  * Plan: `results/repe/r2_sae_in_the_loop_steering_layer6/README.md`.
+* **New data task (needs approval):** a held-out-wording RepE test set (a third template pair, test statements only), shared by R1 and R2.
+* **Audit finding:** validation statement 326 near-duplicates train statement 589.
+  * Exclude it in all new RepE work.
+  * Earlier RepE validation numbers include it: one of 90 statements, so the effect is small. Flag it in the registry when R1 is committed.
 
 ## 3. Outstanding GPT-2 tasks (PLANNED)
 

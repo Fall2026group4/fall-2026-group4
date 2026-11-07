@@ -424,6 +424,30 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 
 ---
 
+## 16a. In progress: RepE honesty R1 (representation preservation) and R2 (SAE-in-the-loop intervention) (2026-11-07). Status: PLANNED, awaiting approval
+
+* **Audit (read-only, done):**
+  * No RepE fine-tuning exists.
+  * No SAE-in-the-loop intervention has ever been run. Scripts 10–12 had no SAE in the forward pass; 6c added decoder directions to the raw activation.
+  * An additive feature edit with the error term kept is mathematically identical to direction steering. R2 therefore uses input-dependent clamps.
+  * **Leakage found:** validation statement 326 is a near-duplicate of train statement 589. It is excluded from all R1/R2 validation scores.
+  * The RepE test split was scored before (6c, all-layer) but never used for selection. This is disclosed.
+* **R1:** RepE reconstruction fine-tuning (R-recon) vs a paired-contrast objective (R-honesty) vs a same-persona-pair control, all with OWT replay.
+  * Layer 6, 3 architectures × 3 seeds, 27 runs.
+  * Probes fitted on the train-B half only. Guards on OWT and RepE-prompt L0.
+* **R2:** encode → clamp the selected features towards the target-persona mean → decode + error, at the final token.
+  * 9 base SAEs.
+  * 200 random-feature, 200 matched-norm, unrelated-feature, raw-direction and positive controls; OWT damage test.
+  * k chosen on validation; one held-out test pass.
+* **Plans:** `results/repe/r1_honesty_preservation_layer6/README.md`, `results/repe/r2_sae_in_the_loop_steering_layer6/README.md`.
+* **Unfinished:** everything after the plan. Nothing has been trained or evaluated, and no data files have been created.
+* **Next steps after approval:**
+  1. write `preregistration.json` and the hashes;
+  2. script 14 (splits, held-out wording);
+  3. R2 smoke test;
+  4. R1 training and evaluation;
+  5. R2 validation k-selection, then the test pass.
+
 ## 17. Where we stand (2026-11-07)
 
 * **Answered, at validation level unless noted:**
