@@ -104,7 +104,8 @@ def fit_original_probes(X, y, split):
         auc = fm.safe_auroc(y[va], p.predict_proba(X[va])[:, 1])
         if best is None or auc > best[0] + 1e-15:
             best = (auc, C, p)
-    raw_direction = X[tr & (y == 1)].mean(0) - X[tr & (y == 0)].mean(0)
+    X64 = X.astype(np.float64)   # float64: identical class means must give an exactly-zero direction
+    raw_direction = X64[tr & (y == 1)].mean(0) - X64[tr & (y == 0)].mean(0)
     # Undefined when the class means coincide exactly (GoT numerical, layer 0: identical final-token embeddings).
     direction = None if np.linalg.norm(raw_direction) == 0 else raw_direction / np.linalg.norm(raw_direction)
     return {'C': best[1], 'logistic': best[2], 'direction': direction, 'raw_direction': raw_direction}
@@ -176,8 +177,9 @@ def main():
                     if probes['direction'] is None:
                         fid = {'direction_cosine': np.nan, 'direction_norm_ratio': np.nan}
                     else:
+                        H64 = X_hat.astype(np.float64)
                         fid = fm.direction_fidelity(probes['raw_direction'],
-                                                    X_hat[tr & (y == 1)].mean(0) - X_hat[tr & (y == 0)].mean(0))
+                                                    H64[tr & (y == 1)].mean(0) - H64[tr & (y == 0)].mean(0))
                     f = flags.loc[(layer, arch, seed)]
                     for sname in eval_sets:
                         m = split == sname
