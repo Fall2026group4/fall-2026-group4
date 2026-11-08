@@ -546,3 +546,17 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **M1:** 8 one-token-swap templates (T1–T4 fit, T5–T6 held out, N1–N2 neutral) on train (417) and validation (89) statements. Original GPT-2 activations at 12 layers; gates K1–K7. `results/repe/repe_lm_gates/`. Test statements are not loaded.
 * **Pre-registrations with hashes:** `preregistration.json` in each folder. The smoke tests are disclosed in the M1 pre-registration.
 * **Next:** run M0; run M1 (scripts 20 → 21 → 22); document; report to the user; stop.
+
+## 22. M0: within-layer reanalysis (2026-11-08). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Run:** `scripts/shared/m0_within_layer_reanalysis.py`, on the pre-registered hash (`ebdc1be`). Validation CSVs only; no model or test row.
+* **Results:**
+  * **Behaviour:** within a layer, lower OWT reconstruction error goes with less splice damage (β = 0.165 per log NMSE, Holm p = 0.0008; per-layer ρ 0.80–0.97 from layer 3).
+  * **Truth readout:** within a layer, reconstruction error does **not** usefully predict the GoT frozen-logistic gap. The formal pass for OWT NMSE (Holm p = 0.044) depends on architecture fixed effects that absorb 99.8 % of the within-layer NMSE variance, and it vanishes without them (p = 0.89). GoT task error: no association.
+  * **Architectures:** the rankings survive an L0 adjustment, apart from two near-ties.
+  * **Effective width and task-prompt L0** differ strongly between architectures.
+* **Corrected claims:**
+  * the pooled "reconstruction tracks honesty preservation" is a pooling artefact (0.89 → 0.05);
+  * the splice SAE/random ratio is 0.76–2.89, not 1.0–2.6×.
+* **Evidence label:** VALIDATION reanalysis. **Files:** `results/shared/m0_within_layer_reanalysis/`.
+* **Limitations:** 9 SAEs per layer; architecture and error nearly collinear; 1000-step elasticities.

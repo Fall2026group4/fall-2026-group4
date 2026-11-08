@@ -39,6 +39,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | Corrected truth-aware pilot (layer 6 TopK, 3 seeds, A/B groups, independent probes); **pre-registered success NOT met** | `results/geometry_of_truth/truth_aware_pilot/` |
 | R1 RepE honesty-preservation fine-tuning, layer 6 (R-recon / R-honesty / R-samepersona, 3 archs × 3 seeds; independent B probes); **pre-registered verdict: ReLU INCONCLUSIVE (RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED**; test not touched | `results/repe/r1_honesty_preservation_layer6/` |
 | R2 SAE-in-the-loop clamp of honesty features, layer 6 (encode → clamp → decode + error; 9 base SAEs × k ∈ {1,4,16}; C2/C3/unrelated/raw-direction/positive controls; OWT damage); **descriptive validation verdict: NOT SUPPORTED** (target E below random-feature controls; edits adverse); test not touched. Cite only as a validation finding, not as a causal result | `results/repe/r2_sae_in_the_loop_steering_layer6/` |
+| M0 within-layer reanalysis (VALIDATION): reconstruction error vs truth gap and splice damage within layer; L0-adjusted architecture comparison; corrected splice-ratio range | `results/shared/m0_within_layer_reanalysis/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
 
 ## HISTORICAL since 2026-11-08 (D23): kept for provenance; not evidence for their original claims

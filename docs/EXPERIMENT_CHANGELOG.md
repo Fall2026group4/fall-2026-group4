@@ -119,3 +119,10 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 |---|---|---|
 | this commit | Added `scripts/shared/m0_within_layer_reanalysis.py`, `scripts/repe/{20_build_repe_lm_dataset,21_extract_repe_lm_activations,22_repe_lm_gates}.py`, `results/shared/m0_within_layer_reanalysis/{README.md,preregistration.json}`, `results/repe/repe_lm_gates/{README.md,preregistration.json}` | M0/M1 pre-registered before running (hashes frozen) |
 | this commit | `docs/RESEARCH_DECISIONS.md` D23; `RESEARCH_ROADMAP.md` §2; `RESEARCH_PROGRESS.md` §21; `results_registry.md` HISTORICAL reclassification | Reframing to a measurement study; old RepE, R1, R2, 6c and GoT numerical are HISTORICAL |
+
+## 2026-11-08: M0 executed
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `results/shared/m0_within_layer_reanalysis/{merged_validation_table,within_layer_regressions,within_layer_spearman,architecture_by_layer,architecture_pairwise_l0_adjusted,l0_elasticity_from_sweep,pooled_vs_within_corrections}.csv`, `splice_ratio_range.json`, `summary.json`; README §3 | M0 results (validation reanalysis) |
+| this commit | `docs/RESEARCH_PROGRESS.md` §22, `EXPERIMENT_RESULTS_SUMMARY.md` §12, `RESEARCH_ROADMAP.md` §2, `results_registry.md`, `experiment_manifest.csv` | Documentation of M0 |

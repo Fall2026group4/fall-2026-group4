@@ -44,7 +44,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 
 ## 2. In progress
 * **M0–M5 measurement programme (D23, approved 2026-11-08).** P0.
-  * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. IN PROGRESS (pre-registered).
+  * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. **DONE 2026-11-08** (validation): splice damage tracks reconstruction within layer; truth-readout gap does not (formal pass fragile).
   * **M1** RepE-LM equal-length persona task + gates K1–K7 → `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. IN PROGRESS (pre-registered).
   * **M2** four-level information faithfulness (GoT cities + RepE-LM; PCA- and noise-matched references). PLANNED: needs user approval after M0/M1.
   * **M3** positive-control causal site sweep in original GPT-2. PLANNED: needs approval; runs only if M1 K7 passes.

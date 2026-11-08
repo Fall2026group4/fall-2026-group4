@@ -436,3 +436,25 @@ Baseline mean KL(p_H‖p_U) = 0.020 nats. α = 1 is a full clamp to the honest-t
 * No-error reconstruction splice: E = −4.27 (ReLU), −3.75 (TopK), −2.83 (JumpReLU).
 * **Descriptive verdict: NOT SUPPORTED, all architectures, all k.** Criterion 1 fails (BH q = 1), as do 3, 4 and 5. Criterion 2 passes but is uninformative.
 * R1 SAEs (exploratory): R-honesty − R-recon E(α = 1) at k = 1: ReLU +0.028 ± 0.060, TopK +0.002 ± 0.003, JumpReLU −0.001 ± 0.001.
+
+## 12. M0: within-layer reanalysis of existing results (VALIDATION; 107 matched SAEs; no new model runs)
+Source: `results/shared/m0_within_layer_reanalysis/` (README §3).
+
+**Primary model:** outcome ~ β·log error + layer FE + architecture FE + log L0, with a Freedman–Lane within-layer permutation (5000).
+
+| Predictor → outcome | β [95 % CI] | p (Holm) | Secondary model (no arch FE) β, p | Verdict |
+|---|---|---|---|---|
+| OWT NMSE → GoT logistic gap (layers 4–11) | 0.268 [0.056, 0.477] | 0.044 | −0.005, 0.89 | Formal pass, **fragile** (architecture = 99.8 % of within-layer NMSE variance) |
+| GoT relative error → GoT logistic gap | 0.005 [−0.059, 0.080] | 1.00 | 0.020, 0.25 | NOT SUPPORTED |
+| OWT NMSE → OWT splice ΔCE | 0.165 [0.134, 0.265] | 0.0008 | 0.202, 0.0002 | **SUPPORTED** |
+| GoT relative error → OWT splice ΔCE | −0.012 [−0.060, 0.028] | 1.00 | −0.045, 0.002 | NOT SUPPORTED |
+
+**Architecture (OWT validation):**
+* **Layers 4–11:** JumpReLU < TopK < ReLU in NMSE (p ≤ 0.003); TopK ≈ JumpReLU at layers 10–11.
+* **Layers 0–2:** ReLU is lowest; ReLU ≈ JumpReLU at layer 2.
+* **L0:** ReLU uses 4–7 % more latents than TopK. An L0 adjustment (sweep elasticity ≈ −0.4) changes no ranking except two near-ties.
+* **Task-prompt L0 is unmatched:** on GoT, TopK 128, ReLU 8–110, JumpReLU 12–92.
+
+**Corrections:**
+* The pooled ρ = 0.89 between EV and RepE persona shift is ρ = 0.05 within layer.
+* The splice-ratio range is 0.76–2.89 per run (0.82–2.65 per cell), not "1.0–2.6×".
