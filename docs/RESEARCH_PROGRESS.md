@@ -609,3 +609,8 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * the mid-depth split sites (layers 6–8) are more informative but need an amendment;
   * the random control is weak.
 * **Next:** M4, if the user approves (and decides on an amendment adding a mid-depth site).
+
+## 27. In progress: M4 SAE causal-faithfulness decomposition (2026-11-08). Status: PRE-REGISTERED (with amendment A1)
+
+* **Design:** L1 slot, L11 final, and an A1 mid site (layers 6–8, handover rule, confirmed without SAEs). 9 base SAEs per site.
+* **Measured:** T_full/T_rec/T_err, interaction, Shapley shares, linearity, the opposite direction, synonym and neutral controls, vector controls, and feature patches with matched random feature sets. Primary set T2–T4; T1 reported as a control. `results/repe/sae_patch_decomposition/`.

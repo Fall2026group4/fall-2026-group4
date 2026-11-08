@@ -151,3 +151,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | Commit | Change | Reason |
 |---|---|---|
 | this commit | Added `results/repe/causal_site_sweep/{cells_train,cells_train_by_template,cells_validation,cells_validation_by_template}.csv`, `selected_sites.json`, `sanity_checks.json`, `random_draws.npz`; README §2; progress §26; results summary §15; decisions D24; roadmap; registry; manifest | M3 results |
+
+## 2026-11-08: M4 pre-registration (amendment A1)
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `scripts/repe/24_sae_patch_decomposition.py`, `results/repe/sae_patch_decomposition/{README.md,preregistration.json}`; D25; roadmap; progress §27 | M4 pre-registered (hashes frozen) before running |

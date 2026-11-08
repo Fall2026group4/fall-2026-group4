@@ -199,6 +199,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Decision:** adding such a site requires a pre-registration amendment before M4. This is left to the user.
 * **T1 (truthful/deceptive):** has no effect beyond its synonym control. Persona-specific claims rest on T2–T4.
 
+## D25. M4 approved with amendment A1 (mid-depth site) (2026-11-08)
+* **Decision (user, 2026-11-08):** run M4 at the two M3 sites plus one layer 6–8 site.
+* **Rule for the added site (A1):** fixed before running. Choose the M3-passing slot/final cell with train E closest to 0.5, then confirm it on validation T2–T4 with original activations, without SAEs. By the M3 tables this is L8 final.
+* **Template sets:** T2–T4 is the primary persona set. T1 is kept and reported as a control case.
+* **Feature claims:** limited to "SAE-defined directions are causally sufficient when inserted"; never "GPT-2 uses SAE features".
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
