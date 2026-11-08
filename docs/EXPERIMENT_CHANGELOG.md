@@ -133,3 +133,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 |---|---|---|
 | this commit | Added `data/repe/repe_lm/{prompts.csv,templates.json,split_verification.json}`; `results/repe/repe_lm_gates/{gates.json,k1_activation_invariants.json,k2_k3_bow_and_shortcuts.csv,probe_auroc_by_layer.csv,k5_lopo_by_template.csv,k7_behaviour_rows.csv,k7_behaviour_summary.csv}`; README §4 | M1 results. Activations (712 MB) in `data/repe/activations/repe_lm/`, gitignored |
 | this commit | `docs/RESEARCH_PROGRESS.md` §23, `EXPERIMENT_RESULTS_SUMMARY.md` §13, `RESEARCH_ROADMAP.md` §2, `results_registry.md`, `experiment_manifest.csv` | Documentation of M1 |
+
+## 2026-11-08: M2/M3 pre-registration
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `src/evaluation/{information_levels,patching}.py`, `src/tests/test_{information_levels,patching}.py`, `scripts/shared/m2_four_level_faithfulness.py`, `scripts/repe/23_positive_control_site_sweep.py`, `results/shared/m2_four_level_faithfulness/{README.md,preregistration.json}`, `results/repe/causal_site_sweep/{README.md,preregistration.json}`; progress §24; roadmap §2 | M2/M3 pre-registered before running (hashes frozen) |

@@ -574,3 +574,11 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * ungrouped CV leaks heavily (0.92–0.99 vs 0.63–0.84).
 * **Decision gates:** M2 and M3 allowed. **Awaiting user approval** before either starts.
 * **Files:** `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. Activations are in `data/repe/activations/repe_lm/` (712 MB, gitignored).
+
+## 24. In progress: M2 information faithfulness and M3 causal site sweep (2026-11-08). Status: PRE-REGISTERED
+
+* **Approved by the user 2026-11-08,** after the M0/M1 report.
+* **M2:** 108 SAEs + 36 PCA references + norm-matched noise, 12 layers, on GoT cities, RepE-LM persona and RepE-LM neutral. Probe ladder: frozen logistic/mass-mean; re-trained logistic, MLP and kNN; sparse-z; error term; learning curve. Four-level labels; H2a (vs noise), H2b (vs PCA). `results/shared/m2_four_level_faithfulness/`.
+* **M3:** original GPT-2 activation patching, 65 cells. H→U and U→H; synonym, wrong-statement and matched-norm random controls; per template (T1 flagged). Holm; ≤ 3 sites; validation confirmation. `results/repe/causal_site_sweep/`.
+* **New modules with tests:** `src/evaluation/{information_levels,patching}.py`. The smoke tests and changes made after them are disclosed in each pre-registration.
+* **Next:** run both; document; report; stop before M4.
