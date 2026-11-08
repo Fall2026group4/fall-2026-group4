@@ -582,3 +582,17 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **M3:** original GPT-2 activation patching, 65 cells. H→U and U→H; synonym, wrong-statement and matched-norm random controls; per template (T1 flagged). Holm; ≤ 3 sites; validation confirmation. `results/repe/causal_site_sweep/`.
 * **New modules with tests:** `src/evaluation/{information_levels,patching}.py`. The smoke tests and changes made after them are disclosed in each pre-registration.
 * **Next:** run both; document; report; stop before M4.
+
+## 25. M2: four-level information faithfulness (2026-11-08). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Run:** on the pre-registered hashes (`b384622`); 432 cells; 39 min; all numerical checks pass; 0 test rows.
+* **Results:**
+  * The GoT frozen-logistic collapse (0.28) is mostly generic sensitivity to perturbations of that size: noise of the same norm gives 0.25 and PCA 0.22, while mass-mean loses 0.03.
+  * Re-trained readers show a smaller but real reduction (GoT 0.07–0.12; persona 0.14–0.18).
+  * No cell is Preserved or Readout shifted.
+  * SAEs are never better than PCA at equal OWT error, and are worse in most cells.
+  * The lost information is decodable from the error term.
+  * On truth, ReLU loses least and JumpReLU most, the reverse of reconstruction.
+  * Persona loses 0.07–0.13 more than neutral one-word changes at layers 3–8 only.
+* **Evidence label:** VALIDATION. **Files:** `results/shared/m2_four_level_faithfulness/`.
+* **Corrects:** "truth is lost / near chance" (the frozen-probe reading). Use the re-trained and noise-referenced numbers instead.

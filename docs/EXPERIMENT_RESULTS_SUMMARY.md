@@ -471,3 +471,21 @@ Source: `results/repe/repe_lm_gates/` (README §4). 506 statements × 20 one-tok
 | K5 semantic transfer | PASS (narrow) | leave-one-pair-out 0.701 at L8 and L11 (CI low 0.689 / 0.691) |
 | K6 leakage | PASS | 0 same-label near-duplicates; 14 counterfactual edits disclosed |
 | K7 behaviour | PASS | median KL ratio 1.99; Wilcoxon p 3e-68; median KL(H‖U) 0.019 nats |
+
+## 14. M2: four-level information faithfulness (VALIDATION; 108 SAEs + 36 PCA; GoT cities, RepE-LM persona and neutral)
+Source: `results/shared/m2_four_level_faithfulness/` (README §2). Gaps are the mean over informative layers and seeds (AUROC; lower is better).
+
+| Task | Arch | Frozen logistic | Noise | Frozen mass-mean | Re-trained logistic | PCA re-trained | MLP | Error-term AUROC |
+|---|---|---|---|---|---|---|---|---|
+| GoT | ReLU / TopK / JumpReLU | 0.287 / 0.275 / 0.286 | 0.259 / 0.246 / 0.257 | 0.033 / 0.024 / 0.026 | 0.066 / 0.075 / 0.118 | 0.042 / 0.032 / 0.030 | 0.049 / 0.037 / 0.066 | 0.675 / 0.615 / 0.632 |
+| Persona | ReLU / TopK / JumpReLU | 0.198 / 0.162 / 0.155 | 0.076 / 0.072 / 0.064 | 0.091 / 0.066 / 0.062 | 0.179 / 0.147 / 0.143 | 0.131 / 0.116 / 0.114 | 0.232 / 0.190 / 0.177 | 0.773 / 0.719 / 0.721 |
+| Neutral | ReLU / TopK / JumpReLU | 0.113 / 0.098 / 0.094 | 0.048 / 0.046 / 0.043 | 0.049 / 0.038 / 0.035 | 0.099 / 0.090 / 0.083 | 0.066 / 0.064 / 0.062 | 0.033 / 0.031 / 0.031 | 0.636 / 0.615 / 0.619 |
+
+* **Labels:**
+  * 0 Preserved and 0 Readout shifted on every task;
+  * GoT: 21 "Not recovered by tested families" (layers 5–9), 60 Reduced;
+  * persona: 99 Reduced; neutral: 90 Reduced;
+  * displacement flag in 97.5–100 % of informative cells.
+* **H2a (SAE > noise):** GoT 40/81 (excess 0.026), persona 99/99 (0.100), neutral 90/90 (0.058).
+* **H2b (vs PCA):** SAE better in 0 cells; worse in 52/81, 59/99 and 81/90.
+* **Persona − neutral** re-trained gap: +0.07 to +0.13 at layers 3–8; ≈ 0 at layers 10–11.

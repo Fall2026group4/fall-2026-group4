@@ -139,3 +139,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | Commit | Change | Reason |
 |---|---|---|
 | this commit | Added `src/evaluation/{information_levels,patching}.py`, `src/tests/test_{information_levels,patching}.py`, `scripts/shared/m2_four_level_faithfulness.py`, `scripts/repe/23_positive_control_site_sweep.py`, `results/shared/m2_four_level_faithfulness/{README.md,preregistration.json}`, `results/repe/causal_site_sweep/{README.md,preregistration.json}`; progress §24; roadmap §2 | M2/M3 pre-registered before running (hashes frozen) |
+
+## 2026-11-08: M2 executed
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `results/shared/m2_four_level_faithfulness/{per_cell,original_by_layer,pca_reference,h2a_h2b,summary_by_layer_arch,persona_vs_neutral,sparsity_width_within_layer}.csv`, `checks.json`, `bootstrap_arrays.npz`; README §2; progress §25; results summary §14; roadmap; registry; manifest | M2 results |

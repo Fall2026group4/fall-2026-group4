@@ -18,7 +18,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 |---|---|---|
 | OWT reconstruction across layers (L0 = 128, d_sae = 3072, 15k steps, 3 seeds) | Uninterrupted single-optimizer protocol, all 12 layers × 3 archs × 3 seeds (108 runs); layer-0 JumpReLU seed 42 unmatched (L0 73.6), excluded from rankings | `results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/` (`all_layers_*.csv`, `results/openwebtext/figures/all_layers_*.png`) |
 | Architecture comparison at matched sparsity | Matched/unmatched tables (≤ 10 % L0 error) | `results/openwebtext/layer_comparison/sparsity_{comparison,matched_cells}.csv` |
-| GoT truth preservation, all 12 layers | Frozen logistic (+ mass-mean) probes on 108 OWT SAEs; val/test | `results/geometry_of_truth/all_layer_frozen_probe_evaluation/` |
+| GoT truth preservation, all 12 layers | Frozen logistic (+ mass-mean) probes on 108 OWT SAEs; val/test. **Interpretation superseded by M2 (2026-11-08):** the frozen-logistic gap is mostly noise-like; cite M2 for information loss | `results/geometry_of_truth/all_layer_frozen_probe_evaluation/` |
 | RepE honesty preservation, all 12 layers (**HISTORICAL since 2026-11-08, D23**) | Frozen mass-mean + logistic probes on 108 OWT SAEs; val/test/cross-wording | `results/repe/all_layer_frozen_probe_evaluation/` |
 | Spliced-in causal reconstruction, all 12 layers (Phase 0) | 108 SAEs replace `hook_resid_pre`; OWT CE/KL/loss recovered, GoT statement KL and truth preference, RepE persona-shift preservation; validation only; with controls | `results/shared/spliced_evaluation/`, `results/*/spliced_evaluation/` |
 | Layer-6 bridge (historical vs uninterrupted SAEs) | Every validation metric; historical within ≈1 seed sd | `results/shared/spliced_evaluation/layer6_bridge.csv` |
@@ -41,6 +41,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | R2 SAE-in-the-loop clamp of honesty features, layer 6 (encode → clamp → decode + error; 9 base SAEs × k ∈ {1,4,16}; C2/C3/unrelated/raw-direction/positive controls; OWT damage); **descriptive validation verdict: NOT SUPPORTED** (target E below random-feature controls; edits adverse); test not touched. Cite only as a validation finding, not as a causal result | `results/repe/r2_sae_in_the_loop_steering_layer6/` |
 | M0 within-layer reanalysis (VALIDATION): reconstruction error vs truth gap and splice damage within layer; L0-adjusted architecture comparison; corrected splice-ratio range | `results/shared/m0_within_layer_reanalysis/` |
 | M1 RepE-LM equal-length persona task (gates on TRAIN; validation descriptive): construction shortcut-free (K1/K2), modest persona transfer (K5 0.70), behavioural effect 2x synonym null (K7) | `results/repe/repe_lm_gates/`, `data/repe/repe_lm/` |
+| M2 four-level information faithfulness (VALIDATION): frozen vs re-trained vs nonlinear vs sparse-z readers, noise and PCA references, error-term probe; supersedes the frozen-probe-only reading of `*/all_layer_frozen_probe_evaluation/` | `results/shared/m2_four_level_faithfulness/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
 
 ## HISTORICAL since 2026-11-08 (D23): kept for provenance; not evidence for their original claims
