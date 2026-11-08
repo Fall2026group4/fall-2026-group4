@@ -1,4 +1,4 @@
-# Results registry (as of 2026-11-07)
+# Results registry (as of 2026-11-08)
 
 Each results folder's `README.md` gives file-level detail. This page lists the results that support claims.
 
@@ -19,15 +19,15 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | OWT reconstruction across layers (L0 = 128, d_sae = 3072, 15k steps, 3 seeds) | Uninterrupted single-optimizer protocol, all 12 layers × 3 archs × 3 seeds (108 runs); layer-0 JumpReLU seed 42 unmatched (L0 73.6), excluded from rankings | `results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/` (`all_layers_*.csv`, `results/openwebtext/figures/all_layers_*.png`) |
 | Architecture comparison at matched sparsity | Matched/unmatched tables (≤ 10 % L0 error) | `results/openwebtext/layer_comparison/sparsity_{comparison,matched_cells}.csv` |
 | GoT truth preservation, all 12 layers | Frozen logistic (+ mass-mean) probes on 108 OWT SAEs; val/test | `results/geometry_of_truth/all_layer_frozen_probe_evaluation/` |
-| RepE honesty preservation, all 12 layers | Frozen mass-mean + logistic probes on 108 OWT SAEs; val/test/cross-wording | `results/repe/all_layer_frozen_probe_evaluation/` |
+| RepE honesty preservation, all 12 layers (**HISTORICAL since 2026-11-08, D23**) | Frozen mass-mean + logistic probes on 108 OWT SAEs; val/test/cross-wording | `results/repe/all_layer_frozen_probe_evaluation/` |
 | Spliced-in causal reconstruction, all 12 layers (Phase 0) | 108 SAEs replace `hook_resid_pre`; OWT CE/KL/loss recovered, GoT statement KL and truth preference, RepE persona-shift preservation; validation only; with controls | `results/shared/spliced_evaluation/`, `results/*/spliced_evaluation/` |
 | Layer-6 bridge (historical vs uninterrupted SAEs) | Every validation metric; historical within ≈1 seed sd | `results/shared/spliced_evaluation/layer6_bridge.csv` |
 | GoT truth preservation, layer 6 | Frozen MLP probe, 5 seeds, test touched once | `results/geometry_of_truth/final_test_evaluation/` |
 | GoT truth preservation, frozen probes (layer 6 and layer 10) | Frozen logistic + MLP (L6); frozen original probe on public-SAE reconstructions (L10) | `results/geometry_of_truth/got_faithfulness_frozen_probes.csv`, `layer10_frozen_probe/` |
 | Fine-tuning variants on identical held-out data | All 9 layer-6 variants: OWT test, GoT test, RepE val/test, cross-wording, causal. **Exception:** the `got_*_frozen_logistic_*` columns of the `truth_aware` rows are circular (see below) | `results/geometry_of_truth/sae_finetuning/heldout_comparison_all_datasets.csv` |
-| RepE representation preservation | Validation + test + cross-wording | `results/repe/representation_preservation_val_test.csv` |
-| Causal faithfulness (GPT-2, RepE) | Pre-registered test, 200 controls, positive control | `results/repe/steering/causal_random_controls/` |
-| Gemma-2-2B truth steering | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
+| RepE representation preservation (**HISTORICAL since 2026-11-08, D23**) | Validation + test + cross-wording | `results/repe/representation_preservation_val_test.csv` |
+| Causal faithfulness (GPT-2, RepE) (**HISTORICAL since 2026-11-08, D23**) | Pre-registered test, 200 controls, positive control | `results/repe/steering/causal_random_controls/` |
+| Gemma-2-2B truth steering (appendix only, D23) | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
 
 ## Pilots (validation only, not for final claims)
 
@@ -40,6 +40,16 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | R1 RepE honesty-preservation fine-tuning, layer 6 (R-recon / R-honesty / R-samepersona, 3 archs × 3 seeds; independent B probes); **pre-registered verdict: ReLU INCONCLUSIVE (RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED**; test not touched | `results/repe/r1_honesty_preservation_layer6/` |
 | R2 SAE-in-the-loop clamp of honesty features, layer 6 (encode → clamp → decode + error; 9 base SAEs × k ∈ {1,4,16}; C2/C3/unrelated/raw-direction/positive controls; OWT damage); **descriptive validation verdict: NOT SUPPORTED** (target E below random-feature controls; edits adverse); test not touched. Cite only as a validation finding, not as a causal result | `results/repe/r2_sae_in_the_loop_steering_layer6/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
+
+## HISTORICAL since 2026-11-08 (D23): kept for provenance; not evidence for their original claims
+
+| Result | Why | Replaced by |
+|---|---|---|
+| `results/repe/all_layer_frozen_probe_evaluation/`, `results/repe/representation_preservation_val_test.csv`, the `repe_*` and `honesty_*` columns of `results/shared/spliced_evaluation/unified_comparison.csv`, and the pooled ρ ≈ 0.86 "reconstruction tracks honesty preservation" claim | Length confound: ' untruthful' is 3 tokens longer than ' honest'; length alone AUROC 0.80; layer-0 probe 0.83 | M1 RepE-LM (`results/repe/repe_lm_gates/`) and M2 |
+| `results/repe/steering/causal_random_controls/` (6c) | Old prompts; tiny raw-direction effect; 28 uncorrected comparisons; not SAE-in-the-loop | M3/M4 |
+| `results/repe/r1_honesty_preservation_layer6/`, `results/repe/r2_sae_in_the_loop_steering_layer6/` | Built on the length-confounded task; R2's clamped feature tracks prompt length | M1 → M4 |
+| GoT numerical (`larger_than`/`smaller_than`) as a truth measure | Surface shortcut (second number alone AUROC 0.84) | Diagnostic only; M2 uses cities/neg_cities |
+| `results/gemma/steering_sweep_layer11/` | No SAE; bias shift; 20 controls | Appendix only |
 
 ## Superseded or invalid (kept, do not cite for the stated purpose)
 

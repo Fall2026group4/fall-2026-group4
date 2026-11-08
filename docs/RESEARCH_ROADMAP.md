@@ -1,4 +1,4 @@
-# Research roadmap (as of 2026-11-07; final deadline 2026-12-08)
+# Research roadmap (as of 2026-11-08; final deadline 2026-12-08)
 
 Update this file whenever a task starts, finishes, stops, changes plan, or a new outstanding task is identified (`CLAUDE.md` §1).
 
@@ -43,15 +43,16 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | R2 SAE-in-the-loop honesty-feature clamp, layer 6 (9 base SAEs with all controls, 18 R1 SAEs exploratory; validation): NOT SUPPORTED (descriptive) for all architectures and k; test stage deferred | `results/repe/r2_sae_in_the_loop_steering_layer6/` | `d17bb00`, `b232ce4` (pre-registration), this commit |
 
 ## 2. In progress
-* **R1. RepE honesty representation preservation, layer 6.** Validation stage COMPLETE (see §1). Open follow-ups:
-  * **R1 §6 test pass** (RepE test, default wording, once): DEFERRED, needs explicit user approval (test split preserved, 2026-11-07).
-  * **R1-L0: RepE-prompt-L0-controlled variant** (sparsity controller on RepE + OWT rows, or TopK-only matching) to resolve the ReLU confound (S3). New experiment; needs its own pre-registration. P1.
-* **R2. SAE-in-the-loop honesty-feature intervention, layer 6** (P0; implements C3, partly C5/C6). **Validation stage COMPLETE (2026-11-08): NOT SUPPORTED (descriptive), all architectures and all k.** See README §13 and progress §20.
-  * **R2 test stage** (k = 1 frozen in `k_selection.json`; the pre-registered criteria are on the held-out TEST split): DEFERRED, needs explicit user approval.
-  * **R2-follow-up (new pre-registration needed, P2):** a per-statement clamp, or a later layer where the activation-patch positive control is stronger (it is only 19 % at layer 6).
-  * **Open question:** why the edit reverses the logistic-probe score on cross-wording prompts. P2.
-* **New data task (DEFERRED, needs approval):** a held-out-wording RepE test set (a third template pair, test statements only), shared by R1 and R2.
-* **Audit finding:** validation statement 326 near-duplicates train statement 589. Excluded from R1/R2; flagged in `docs/results_registry.md` (done).
+* **M0–M5 measurement programme (D23, approved 2026-11-08).** P0.
+  * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. IN PROGRESS (pre-registered).
+  * **M1** RepE-LM equal-length persona task + gates K1–K7 → `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. IN PROGRESS (pre-registered).
+  * **M2** four-level information faithfulness (GoT cities + RepE-LM; PCA- and noise-matched references). PLANNED: needs user approval after M0/M1.
+  * **M3** positive-control causal site sweep in original GPT-2. PLANNED: needs approval; runs only if M1 K7 passes.
+  * **M4** SAE patch decomposition (T_full, T_rec, T_err, interaction, Shapley). PLANNED: only if M3 selects a site.
+  * **M5** one confirmatory test pass. PLANNED: needs written approval. Must include the RepE-LM test duplicate check (deferred from M1).
+* **R1 / R2:** reclassified HISTORICAL (D23). Their deferred test passes are not planned.
+* **R1/R2 history (validation complete, see §1):** R1 §6 test pass, R1-L0 variant, R2 test stage, R2 follow-ups and the held-out-wording set were open follow-ups; all are superseded by M1–M4 (D23) and are not planned.
+* **Audit finding:** validation statement 326 near-duplicates train statement 589. Excluded from R1/R2 and M1.
 
 ## 3. Outstanding GPT-2 tasks (PLANNED)
 

@@ -112,3 +112,10 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 * `scripts/geometry_of_truth/07_independent_truth_probe.py.bak` (identical to `0d07739`) and `scripts/openwebtext/10_reconstruction_evaluation.py.bak`.
 * `results/professor_review_corrections/` and `scripts/professor_review/` were kept for provenance until 2026-11-07, then retired from the working tree (see the repository-consolidation entry below). Their tracked files remain in Git history; the full folders, including the gitignored checkpoints and logs, are in `../backups/2026-11-07_retired_professor_review_folders/` on the EC2 host.
 * The two `.bak` files and `data/activations/` are now also listed in `.gitignore` (2026-11-07); the files themselves were not touched.
+
+## 2026-11-08: M0/M1 pre-registration (D23)
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `scripts/shared/m0_within_layer_reanalysis.py`, `scripts/repe/{20_build_repe_lm_dataset,21_extract_repe_lm_activations,22_repe_lm_gates}.py`, `results/shared/m0_within_layer_reanalysis/{README.md,preregistration.json}`, `results/repe/repe_lm_gates/{README.md,preregistration.json}` | M0/M1 pre-registered before running (hashes frozen) |
+| this commit | `docs/RESEARCH_DECISIONS.md` D23; `RESEARCH_ROADMAP.md` §2; `RESEARCH_PROGRESS.md` §21; `results_registry.md` HISTORICAL reclassification | Reframing to a measurement study; old RepE, R1, R2, 6c and GoT numerical are HISTORICAL |

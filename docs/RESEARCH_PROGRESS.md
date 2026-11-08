@@ -532,3 +532,17 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **Next steps:**
   * R2 test stage (k = 1 frozen) needs user approval;
   * an optional new pre-registration for a per-statement clamp or a later layer.
+
+## 21. In progress: M0 within-layer reanalysis and M1 RepE-LM gates (2026-11-08). Status: PRE-REGISTERED
+
+* **Why (D23):** the 2026-11-08 audit showed four problems:
+  * the RepE persona prompts are length-confounded;
+  * earlier "reconstruction tracks preservation" correlations were pooled across layers;
+  * frozen-probe failures were read as information loss;
+  * the layer-6 causal site is weak.
+
+  The user approved the M0–M5 programme and asked for M0 and M1 to run now. M2–M5 wait for approval.
+* **M0:** existing validation CSVs only. Within-layer regressions (layer FE + architecture FE + log L0; Freedman–Lane permutation), an L0-adjusted architecture table, and pooled-vs-within corrections. `results/shared/m0_within_layer_reanalysis/`.
+* **M1:** 8 one-token-swap templates (T1–T4 fit, T5–T6 held out, N1–N2 neutral) on train (417) and validation (89) statements. Original GPT-2 activations at 12 layers; gates K1–K7. `results/repe/repe_lm_gates/`. Test statements are not loaded.
+* **Pre-registrations with hashes:** `preregistration.json` in each folder. The smoke tests are disclosed in the M1 pre-registration.
+* **Next:** run M0; run M1 (scripts 20 → 21 → 22); document; report to the user; stop.

@@ -172,6 +172,27 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * The test stage is unlikely to change criterion 1. Running it remains the user's decision.
   * Any per-statement-clamp or alternative-site follow-up needs a new pre-registration.
 
+## D23. Reframe as a layer-wise measurement study; start M0–M5 (2026-11-08)
+* **Decision (user approved 2026-11-08):** the thesis becomes a layer-wise measurement of how faithfully ReLU, TopK and JumpReLU SAEs of GPT-2 Small preserve reconstruction, task information, behaviour and causal effects. Fine-tuning becomes secondary. M0–M5 implement it (plan presented 2026-11-08); M0 and M1 are executed first, then the user decides on M2/M3.
+* **Why:**
+  * the 2026-11-08 audit found that the RepE persona prompts are length-confounded (' untruthful' adds 3 tokens; length alone gives AUROC 0.80);
+  * pooled-across-layer correlations were reported as if within-layer;
+  * frozen-logistic failures were read as information loss without noise or PCA references;
+  * the layer-6 causal site carries only about 20 % of the persona effect.
+* **Reclassified as HISTORICAL** (kept, not cited for their original claims):
+  * all-layer RepE probe results;
+  * the RepE parts of splicing;
+  * 6c causal random controls;
+  * R1 and R2;
+  * GoT numerical as a truth measure (surface shortcut, AUROC 0.84).
+
+  Gemma steering moves to an appendix.
+* **Refinements fixed before running** (in the pre-registrations):
+  * M0 uses Freedman–Lane within-layer permutation, and GoT relative squared error instead of task NMSE;
+  * M1's K7 null is an honest-synonym one-token swap (Hp);
+  * K6 forbids same-label near-duplicates and discloses the 14 opposite-label counterfactual edits found while building the dataset.
+* **Test split:** untouched by M0 and M1; M5 only, with approval.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.

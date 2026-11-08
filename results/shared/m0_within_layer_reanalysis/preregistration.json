@@ -1,0 +1,70 @@
+{
+  "stage": "M0 within-layer reanalysis of existing results",
+  "date": "2026-11-08",
+  "approved_by_user": "2026-11-08 (\"Execute M0 and M1 now\")",
+  "decision_log": "docs/RESEARCH_DECISIONS.md D23",
+  "evidence_label": "VALIDATION reanalysis; no model, SAE, activation or test row is loaded",
+  "questions": {
+    "SQ5": "Within a layer, does SAE reconstruction error predict (a) loss of the GoT-cities truth readout and (b) behavioural splice damage?",
+    "SQ1_fairness": "Per-layer architecture comparison with the L0 difference made explicit (L0 adjustment, effective width).",
+    "corrections": "Pooled-across-layer correlations vs within-layer; splicing SAE-vs-random ratio range."
+  },
+  "inputs_validation_only": {
+    "results/shared/spliced_evaluation/unified_comparison.csv": "OWT validation reconstruction (EV, L0, dead fraction), OWT/GoT splice outcomes",
+    "results/geometry_of_truth/all_layer_frozen_probe_evaluation/per_run.csv": "rows domain=geographic, eval_set=validation ONLY (task reconstruction error, task L0, frozen-probe gaps)",
+    "results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/all_layers_per_run.csv": "val_explained_variance, val_l0 columns only (consistency)",
+    "results/openwebtext/sae_sparsity_sweep/layer_*/comparison.csv": "1000-step sweep, local log-NMSE vs log-L0 elasticity between targets 64 and 128"
+  },
+  "units": "108 SAEs = 12 layers x {relu, topk, jumprelu} x seeds {42, 1042, 2042}; matched_10pct == False (layer 0 JumpReLU seed 42, L0 73.6) excluded from every analysis (flagged, not deleted)",
+  "variables": {
+    "log_owt_nmse": "log(1 - OWT validation EV)  [lower error is better]",
+    "log_got_rel_err": "log(||x - x_hat||^2 / ||x||^2) on GoT cities+neg_cities validation final tokens. Task NMSE (normalised by the task-set variance) is NOT used as predictor: the final-token variance on the task set is tiny, so task NMSE > 1 at layers 1-10 and mainly measures that variance [lower is better]",
+    "got_logistic_gap": "frozen logistic AUROC(original x) - AUROC(x_hat), GoT geographic validation, informative layers 4-11 only (original AUROC >= 0.70) [lower is better]",
+    "owt_delta_ce": "OWT validation CE(spliced x_hat at all non-BOS positions) - CE(original), nats/token [lower is better]",
+    "secondary_outcomes": "got_diffmean_gap (informative layers), got__statement_kl_mean, owt__kl_mean"
+  },
+  "primary_model": "outcome ~ beta * predictor + layer fixed effects + architecture fixed effects + gamma * log(OWT validation L0)",
+  "primary_family_holm": [
+    [
+      "log_owt_nmse",
+      "got_logistic_gap"
+    ],
+    [
+      "log_got_rel_err",
+      "got_logistic_gap"
+    ],
+    [
+      "log_owt_nmse",
+      "owt_delta_ce"
+    ],
+    [
+      "log_got_rel_err",
+      "owt_delta_ce"
+    ]
+  ],
+  "secondary_model": "same without architecture fixed effects (does the lower-error SAE within a layer, whatever its architecture, do better?); reported, not Holm-corrected",
+  "inference": {
+    "permutation": "Freedman-Lane: residuals of the nuisance-only model permuted WITHIN layer, 5000 permutations, statistic |t| of beta, p = (1 + #>=)/(1 + 5000). Refinement of the plan's 'shuffle NMSE within layer', fixed before running: it keeps the nuisance structure intact.",
+    "ci": "2000 bootstrap resamples of runs within layer; percentile 95% CI of beta",
+    "standardised_beta": "beta x within-layer sd(predictor) / within-layer sd(outcome)",
+    "seed": 20261108
+  },
+  "hypothesis_H0_M0": "within a layer, higher reconstruction error goes with larger information and behaviour loss (beta > 0)",
+  "decision_rule": "Report beta with 95% CI and Holm-adjusted permutation p across the 4 primary pairs. A pair counts as SUPPORTED if p_holm < 0.05 and beta > 0; CONTRADICTED if p_holm < 0.05 and beta < 0; otherwise NOT SUPPORTED (no within-layer evidence). 'Reconstruction predicts faithfulness' stays in the thesis only for SUPPORTED pairs.",
+  "architecture_table": {
+    "per_layer": "mean and sd over seeds of OWT val NMSE, OWT val L0, GoT-prompt L0, live latents = 3072 x (1 - dead fraction), OWT dCE, OWT KL, GoT statement KL, GoT task error, GoT gaps",
+    "pairwise": "relative NMSE difference and Welch p on log NMSE (n = 3 vs 3; descriptive); relative L0 difference; break-even elasticity = the log-NMSE/log-L0 elasticity at which the L0 difference alone would explain the NMSE difference; L0-adjusted NMSE (each SAE moved to L0 = 128 along its own layer x architecture sweep elasticity); whether the ranking flips after adjustment",
+    "limitation_declared": "sweep elasticities come from 1000-step runs, seed 42 only; the adjustment is a sensitivity analysis, not a matched comparison"
+  },
+  "corrections": [
+    "pooled vs within-layer Spearman for every earlier pooled claim, incl. the HISTORICAL RepE ones (reported only to show the pooling artefact)",
+    "range of owt__sae_vs_random_delta_ce_ratio over matched runs (earlier text said 1.0-2.6x)"
+  ],
+  "outputs": "results/shared/m0_within_layer_reanalysis/ (script refuses to overwrite)",
+  "hashes": {
+    "script": "5a1635a265c95b2eec015075c3dedbaccddca2849b939a8ef1848404c8df99c5",
+    "results/shared/spliced_evaluation/unified_comparison.csv": "58f04354054924bedd6e26e8cd988611a78405ff3308abfeb7450027a13b799c",
+    "results/geometry_of_truth/all_layer_frozen_probe_evaluation/per_run.csv": "86925c23d37a113136963078513a44dbb21326e94790d41852c86b2120b7ce59",
+    "results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/all_layers_per_run.csv": "8134366d4e2d7cd19916face92fcb09ead0a574d3b98f3c8a211fd947b55bb46"
+  }
+}
