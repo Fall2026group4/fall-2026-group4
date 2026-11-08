@@ -56,7 +56,7 @@ Shapley shares in parentheses are not interpretable as additive shares (pre-regi
 * **Matched-norm vectors:**
   * isotropic draws for Δ_rec: mean −0.012 to +0.003, q95 ≤ 0.005;
   * decoder-shuffled Δz: q95 ≤ 0.010;
-  * T_rec is 3–10× above every q95.
+  * T_rec (0.014–0.042) is far above every q95 (about 4× the largest q95 at L1; the q95s are ≤ 0 at L8 and L11).
 
   These controls are weak (random directions are mostly harmless or harmful).
 * **Linearity:** T(Δ_rec/2) − T_rec/2 = +0.0002 to +0.009. The effect is mildly concave, not linear.
