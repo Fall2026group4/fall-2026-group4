@@ -193,6 +193,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * K6 forbids same-label near-duplicates and discloses the 14 opposite-label counterfactual edits found while building the dataset.
 * **Test split:** untouched by M0 and M1; M5 only, with approval.
 
+## D24. M3 outcome and the M4 site question (2026-11-08)
+* **Outcome:** the pre-registered rule selected L1 slot and L11 final; both confirmed on validation. M4 is justified by the rule.
+* **Issue recorded, not acted on:** both sites are near-endpoints (E ≈ 0.96), where "carrying the effect" is close to tautological. The layer 6–8 cells, where the effect is split between the slot and the final token, are more informative.
+* **Decision:** adding such a site requires a pre-registration amendment before M4. This is left to the user.
+* **T1 (truthful/deceptive):** has no effect beyond its synonym control. Persona-specific claims rest on T2–T4.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.

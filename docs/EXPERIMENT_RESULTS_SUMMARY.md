@@ -489,3 +489,19 @@ Source: `results/shared/m2_four_level_faithfulness/` (README §2). Gaps are the 
 * **H2a (SAE > noise):** GoT 40/81 (excess 0.026), persona 99/99 (0.100), neutral 90/90 (0.058).
 * **H2b (vs PCA):** SAE better in 0 cells; worse in 52/81, 59/99 and 81/90.
 * **Persona − neutral** re-trained gap: +0.07 to +0.13 at layers 3–8; ≈ 0 at layers 10–11.
+
+## 15. M3: causal site sweep in original GPT-2 (TRAIN selection, VALIDATION confirmation)
+Source: `results/repe/causal_site_sweep/` (README §2).
+* **Sanity checks:** all 0.0.
+* **Baseline:** KL(p_H‖p_U) = 0.033 nats.
+* **Passing cells:** 50/65.
+* **Share of the effect restored (validation):**
+  * persona slot: 0.97 (L1) → 0.11 (L11);
+  * final token: 0.03 (L1) → 0.95 (L11);
+  * handover at layers 7–8;
+  * post-slot instruction: up to 0.28.
+* **Selected and confirmed sites:**
+  * L1 slot: R_A 0.0356 [0.0278, 0.0450];
+  * L11 final: 0.0350 [0.0276, 0.0436].
+* **Synonym control:** R_S ≈ 0.5 R_A at every site.
+* **T1:** no persona-specific excess on validation.

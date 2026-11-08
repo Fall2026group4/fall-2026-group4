@@ -596,3 +596,16 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Persona loses 0.07–0.13 more than neutral one-word changes at layers 3–8 only.
 * **Evidence label:** VALIDATION. **Files:** `results/shared/m2_four_level_faithfulness/`.
 * **Corrects:** "truth is lost / near chance" (the frozen-probe reading). Use the re-trained and noise-referenced numbers instead.
+
+## 26. M3: causal site sweep, original GPT-2 (2026-11-08). Status: COMPLETED; sites found and confirmed; M4 justified by the rule [VERIFIED]
+
+* **Run:** on the pre-registered hashes (`b384622`); 96 min GPU; sanity checks exact.
+* **Results:**
+  * The persona-instruction effect is carried by the persona-slot token early and by the final token late, with the handover at layers 7–8. The instruction words after the slot carry up to 28 %.
+  * 50/65 cells pass. The selected sites are L1 slot (earliest and peak) and L11 final (latest), both confirmed on validation.
+  * T1 shows no effect beyond its synonym control.
+* **Caveats:**
+  * the selected sites are near-trivial endpoints (E ≈ 0.96);
+  * the mid-depth split sites (layers 6–8) are more informative but need an amendment;
+  * the random control is weak.
+* **Next:** M4, if the user approves (and decides on an amendment adding a mid-depth site).

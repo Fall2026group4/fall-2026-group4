@@ -145,3 +145,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | Commit | Change | Reason |
 |---|---|---|
 | this commit | Added `results/shared/m2_four_level_faithfulness/{per_cell,original_by_layer,pca_reference,h2a_h2b,summary_by_layer_arch,persona_vs_neutral,sparsity_width_within_layer}.csv`, `checks.json`, `bootstrap_arrays.npz`; README §2; progress §25; results summary §14; roadmap; registry; manifest | M2 results |
+
+## 2026-11-08: M3 executed
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `results/repe/causal_site_sweep/{cells_train,cells_train_by_template,cells_validation,cells_validation_by_template}.csv`, `selected_sites.json`, `sanity_checks.json`, `random_draws.npz`; README §2; progress §26; results summary §15; decisions D24; roadmap; registry; manifest | M3 results |
