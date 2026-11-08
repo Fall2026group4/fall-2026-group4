@@ -158,6 +158,20 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Outcome:** ReLU INCONCLUSIVE; TopK/JumpReLU NOT SUPPORTED. The contrast loss strongly improves direction-level fidelity but changes probe AUROC only for ReLU, the architecture with the worst base preservation, and there it coincides with RepE-prompt L0 drift.
 * **Consequence:** prompt-specific L0 control (S3) is needed before any honesty-preservation claim; R2 uses base SAEs as its primary set, so it is not blocked by R1's verdict.
 
+## D22. R2 staging and outcome (2026-11-08)
+* **Decision (user, 2026-11-08):** run the R2 smoke test, the k selection and all controls on validation only, report them as VALIDATION evidence, and stop before the test stage. The script's `--test` refuses.
+* **Corrections before the run (README §12):**
+  * the OWT damage set is the 100 cached validation sequences, not 200;
+  * criterion 5 is checked on cross-wording validation at this stage.
+  * Pipeline-test outcomes (TopK E < 0) were seen before freezing; the protocol was not changed.
+* **Outcome:** NOT SUPPORTED for all architectures and all k. Clamped honesty features move outputs *away* from the honest-persona distribution, and further than random-feature or matched-norm controls do.
+  * The probe-score manipulation check moves the right way on default wording only.
+  * Criterion 2 passing is recorded as uninformative.
+* **Consequence:**
+  * No causal SAE-feature faithfulness claim at layer 6.
+  * The test stage is unlikely to change criterion 1. Running it remains the user's decision.
+  * Any per-statement-clamp or alternative-site follow-up needs a new pre-registration.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
@@ -166,4 +180,4 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
-* **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6.
+* **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**

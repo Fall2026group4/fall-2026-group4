@@ -39,15 +39,17 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | `2c87a6b` |
 | Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, `3377116` |
 | Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | `875bc7f` |
-| R1 RepE honesty-preservation fine-tuning, layer 6 (27 runs, validation): ReLU INCONCLUSIVE (primary met, RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED | `results/repe/r1_honesty_preservation_layer6/` | `d17bb00`, `211218f` (pre-registration), this commit |
+| R1 RepE honesty-preservation fine-tuning, layer 6 (27 runs, validation): ReLU INCONCLUSIVE (primary met, RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED | `results/repe/r1_honesty_preservation_layer6/` | `d17bb00`, `211218f` (pre-registration), `d283a49` |
+| R2 SAE-in-the-loop honesty-feature clamp, layer 6 (9 base SAEs with all controls, 18 R1 SAEs exploratory; validation): NOT SUPPORTED (descriptive) for all architectures and k; test stage deferred | `results/repe/r2_sae_in_the_loop_steering_layer6/` | `d17bb00`, `b232ce4` (pre-registration), this commit |
 
 ## 2. In progress
 * **R1. RepE honesty representation preservation, layer 6.** Validation stage COMPLETE (see §1). Open follow-ups:
   * **R1 §6 test pass** (RepE test, default wording, once): DEFERRED, needs explicit user approval (test split preserved, 2026-11-07).
   * **R1-L0: RepE-prompt-L0-controlled variant** (sparsity controller on RepE + OWT rows, or TopK-only matching) to resolve the ReLU confound (S3). New experiment; needs its own pre-registration. P1.
-* **R2. SAE-in-the-loop honesty-feature intervention, layer 6** (P0; implements C3, partly C5/C6). PLANNED; awaiting the user's go-ahead after the R1 report.
-  * Plan: `results/repe/r2_sae_in_the_loop_steering_layer6/README.md`.
-  * Its pre-registered criteria are defined on the held-out TEST split, so the decisive stage also needs test-split approval.
+* **R2. SAE-in-the-loop honesty-feature intervention, layer 6** (P0; implements C3, partly C5/C6). **Validation stage COMPLETE (2026-11-08): NOT SUPPORTED (descriptive), all architectures and all k.** See README §13 and progress §20.
+  * **R2 test stage** (k = 1 frozen in `k_selection.json`; the pre-registered criteria are on the held-out TEST split): DEFERRED, needs explicit user approval.
+  * **R2-follow-up (new pre-registration needed, P2):** a per-statement clamp, or a later layer where the activation-patch positive control is stronger (it is only 19 % at layer 6).
+  * **Open question:** why the edit reverses the logistic-probe score on cross-wording prompts. P2.
 * **New data task (DEFERRED, needs approval):** a held-out-wording RepE test set (a third template pair, test statements only), shared by R1 and R2.
 * **Audit finding:** validation statement 326 near-duplicates train statement 589. Excluded from R1/R2; flagged in `docs/results_registry.md` (done).
 
@@ -84,7 +86,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 |---|---|---|---|
 | C1 | **Pre-registered causal test (200 controls) on the uninterrupted SAEs at several layers** (e.g. 2, 6, 10) | It currently exists only at layer 6 with the historical SAEs | P0 |
 | C2 | **Causal test on the improved SAEs** (Method A, E2E TopK) vs their bases, same protocol | Does improved faithfulness change causal results? | P0 |
-| C3 | **SAE-in-the-loop feature interventions:** encode → clamp or ablate feature → decode + error term | Never run; tests SAE features as causal variables rather than directions | P0 |
+| C3 | **SAE-in-the-loop feature interventions:** encode → clamp or ablate feature → decode + error term | First run as R2 (layer 6, RepE honesty, validation, 2026-11-08): NOT SUPPORTED. Other layers, datasets and ablation-type edits not run | P0 |
 | C4 | **GoT causal test**, e.g. patching or steering on `cities` statements with true/false preference as outcome (the only GoT set with a behavioural signal) | No GoT causal evidence exists | P1 |
 | C5 | **Stronger GPT-2 honesty behavioural task:** the persona effect at the final token is only ~0.02 nats; GPT-2's honesty effect on the next statement token is about 0 | Current RepE behavioural outcome has little power | P1 |
 | C6 | **Multiple-comparison handling** (BH across SAE comparisons) and power statement in every causal report | 27 SAE comparisons can't reach Bonferroni with 200 controls | P1 (rule) |

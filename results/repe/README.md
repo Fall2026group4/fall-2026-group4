@@ -21,4 +21,6 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 **R1 honesty-preservation fine-tuning (2026-11-07):** `r1_honesty_preservation_layer6/` — **PILOT, validation only**.
 Verdict ReLU INCONCLUSIVE, TopK/JumpReLU NOT SUPPORTED; see its README §11. Checkpoints in
 `sae_finetuning/r1_honesty_preservation_layer6/` (gitignored; SHA-256 in `docs/checkpoint_registry.csv`).
-`r2_sae_in_the_loop_steering_layer6/` — **PLANNED** (pre-registration only).
+**R2 SAE-in-the-loop intervention (2026-11-08):** `r2_sae_in_the_loop_steering_layer6/` — **validation stage only (descriptive)**.
+Verdict NOT SUPPORTED for all architectures and k; test stage deferred. See its README §13 and the figure
+`figures/r2_sae_in_the_loop_validation.png`.

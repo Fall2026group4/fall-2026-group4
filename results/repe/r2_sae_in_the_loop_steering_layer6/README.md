@@ -1,4 +1,4 @@
-# R2. SAE-in-the-loop causal intervention on honesty features, GPT-2 Small layer 6 (2026-11-07). Status: PLANNED (awaiting approval)
+# R2. SAE-in-the-loop causal intervention on honesty features, GPT-2 Small layer 6 (2026-11-07). Status: VALIDATION STAGE COMPLETE: NOT SUPPORTED (descriptive, validation); test stage DEFERRED (title status updated 2026-11-08; §0–12 otherwise unchanged)
 
 Evidence level (planned): causal intervention, with selection on validation and one pre-registered held-out evaluation.
 Roadmap: C3 (SAE-in-the-loop), C5, C6. Audit, splits and leakage handling are shared with R1 (`results/repe/r1_honesty_preservation_layer6/README.md` §0).
@@ -196,3 +196,94 @@ strength grid, the k grid, the feature-scoring rule, the SAEs and the site are u
 * **Pipeline test** (`smoke/pipeline_*/`): TopK seeds 42/1042/2042 plus one exploratory SAE, k ∈ {1, 4}, 5 controls, 25 OWT sequences.
   * **These validation outcomes were seen before freezing:** E(α = 1) was negative (−0.06 to −0.19), as was E(α = −1).
   * Nothing in the protocol was changed in response.
+
+## 13. Validation-stage results (2026-11-08). Evidence label: VALIDATION FINDING (descriptive)
+
+**Scope and labelling.**
+* Run: `17_r2_sae_in_the_loop_steering.py --validation` (script SHA `0a0f4fc7…`, as frozen in `b232ce4`); exit 0; runtime 75 min; peak GPU 5.6 GB.
+* `test_rows_read: false`. The test stage was **not** run and the script refuses `--test`.
+* Sets:
+  * `val`: 89 statements (statement 326 excluded);
+  * `cw`: the 89 matching cross-wording validation statements;
+  * OWT: 100 validation sequences of 128 tokens (§12 correction).
+* Baseline mean KL(p_H‖p_U) on `val` is **0.020 nats**: the persona's effect on next-token output at the final prompt token is small.
+* **Positive control** (activation patch of the honest residual at layer 6, final token): E = **0.188** on `val`, 0.404 on `cw`. Even a full patch at this site recovers only about 19 % of the default-wording output shift.
+* All criteria below are §7 applied to *validation*. They are descriptive, not the pre-registered test.
+* Numbers for the selected k are optimistic, because k was chosen on the same rows.
+
+**k selection (`k_selection.json`).** k = 1 for every architecture. It is the argmax of mean E(α = 1), i.e. the *least negative* value:
+
+| arch | k = 1 | k = 4 | k = 16 |
+|---|---|---|---|
+| ReLU | −0.110 | −0.127 | −0.178 |
+| TopK | −0.103 | −0.164 | −0.532 |
+| JumpReLU | −0.115 | −0.287 | −0.854 |
+
+**Descriptive criteria (`validation_criteria_descriptive.json`).** The pattern is identical for all 3 architectures × 3 k:
+
+| criterion | result | comment |
+|---|---|---|
+| 1 Effect (BH q < 0.05 vs C2 and C3, ≥ 2/3 seeds) | **FAIL** everywhere | Target E is *below* the C2 mean. Empirical p ≈ 0.68–1.0; BH q = 1.0. |
+| 2 Sign reversal (E(α = −1) < 0, CI excludes 0) | passes, **uninformative** | E(α = +1) is also < 0. Both directions move outputs away from p_H, so there is no reversal of a positive effect. |
+| 3 Specificity (E_target − E_unrelated > 0) | FAIL | At k = 1 the difference is about −0.1, with a CI that excludes 0 *below* zero. |
+| 4 No damage confound (OWT ΔCE ≤ C2 q95, every seed) | FAIL | Per seed, target ΔCE is 0.015–0.21 nats against C2 q95 of 0.0006–0.04. |
+| 5 Wording (cw E > C2 q95) | FAIL | cw E(α = 1) ranges from −0.04 to −0.28. |
+| **Verdict** | **NOT SUPPORTED** (all architectures, all k) | |
+
+**Base SAEs, `val`, mean ± sd over 3 seeds, k = 1 (selected):**
+
+| arch | E(α=1) | E(α=−1) | C2 mean / q95 | C3 q95 | E unrelated | E raw dir (norm-matched) | E recon splice (no error) | OWT ΔCE target / C2 q95 |
+|---|---|---|---|---|---|---|---|---|
+| ReLU | −0.110 ± 0.006 | −0.058 ± 0.012 | −0.012 / 0.004 | 0.009 | −0.005 | −0.040 | −4.27 | 0.017 / 0.001 |
+| TopK | −0.103 ± 0.039 | −0.070 ± 0.028 | −0.027 / 0.004 | 0.005 | −0.062 | −0.047 | −3.75 | 0.029 / 0.002 |
+| JumpReLU | −0.115 ± 0.031 | −0.057 ± 0.015 | −0.045 / 0.003 | 0.005 | −0.033 | −0.025 | −2.83 | 0.043 / 0.005 |
+
+Full per-SAE, per-k and per-set values are in `validation_summary.csv`. Figure: `results/repe/figures/r2_sae_in_the_loop_validation.png`.
+
+**The three categories, kept separate (CLAUDE.md §2):**
+1. **Representation-level effect: present.** The edit does what it is built to do in latent space:
+   * re-encoding attainment is 0.77–0.85 (ReLU) and 0.96–0.99 (TopK/JumpReLU) at k = 1;
+   * the selected features are active on 82–100 % of prompts;
+   * ‖Δx‖ is about 1.1–2.1 at k = 1 and 4–11 at k = 16.
+2. **Probe-score change: present on `val`, reversed on `cw`.** This is a manipulation check, not causal evidence.
+   * On `val`, the edit closes part of the U→H gap in score for the independent train-only probes:
+     * logistic probe: 0.15 (ReLU), 0.31 (TopK), 0.44 (JumpReLU) at k = 1, rising to 0.36–0.64 at k = 16;
+     * mass-mean probe: 0.08–0.21 at k = 1.
+   * On `cw` the same edit moves the logistic score the *other* way (−0.76 to −1.05 of the cw U→H gap).
+   * This was not investigated further. A likely contributor is that μ_F is estimated on default-wording train prompts.
+3. **Behavioural effect (E, output KL): absent, and if anything adverse.**
+   * Clamping the honesty-selected features of the unhonest prompt to the honest-train mean moves the next-token distribution *further* from the honest prompt's distribution, for every architecture, k and seed (one exception: R1 r_honesty ReLU seed 1042, k = 1, E = +0.007, CI includes 0).
+   * Random-feature sets (C2) and matched-norm random directions (C3) do much less harm.
+   * The norm-matched raw H−U mean-difference direction is also mildly harmful. A population-mean shift at this site therefore does not reproduce the statement-specific output difference, which only the full activation patch recovers (and then only 19 %).
+   * The target features are also more damaging on OWT than random features (criterion 4). They are high-impact, frequently active features, not persona-specific ones.
+
+**Reconstruction splice.** Replacing x by the SAE reconstruction without the error term gives E between −2.8 and −4.3. Most of the behaviourally relevant H/U difference at this site sits in the SAE error term or is disrupted by reconstruction. This is why the error-kept edit is primary (§2). It is a behavioural-faithfulness observation, not an intervention result.
+
+**R1 SAEs (EXPLORATORY; targets plus C2 only).** For R-honesty and R-recon, E(α = 1) is negative with the same pattern as the base SAEs.
+* Paired r_honesty − r_recon difference in E(α = 1) at k = 1: ReLU +0.028 ± 0.060, TopK +0.002 ± 0.003, JumpReLU −0.001 ± 0.001.
+* At k = 16, TopK shows +0.13 ± 0.11. It is not consistent across seeds and the absolute E stays strongly negative.
+* R1 honesty-aware fine-tuning did not make the SAE features causally effective under this intervention.
+
+**Conclusion.**
+* We find **no evidence** that clamping SAE honesty features at GPT-2 Small layer 6 causally moves model outputs towards the honest-persona behaviour.
+* The pre-registered effect criterion fails by a wide margin on validation for all three architectures and all k. This holds even for the k chosen in hindsight.
+* **No causal SAE-feature faithfulness claim is made.**
+* The representation-level and probe-score changes show the edit is well formed. They do not establish behavioural relevance.
+
+**Limitations.**
+* The behavioural signal is small (mean KL 0.020 nats) and only about 19 % is recoverable even by a full activation patch at this site and position. The site may be a weak place to test persona causality.
+* The intervention is a population-mean clamp. A per-statement edit could behave differently, but would be a different, new pre-registration.
+* E is a ratio of summed KLs and is unbounded below.
+* The single test-stage evaluation is still outstanding and needs the user's approval. Given the validation margin, it is unlikely to change criterion 1. Whether to spend it is the user's decision.
+* The `cw` probe-score reversal is unexplained.
+
+**Files added in this stage:**
+* `validation_targets.csv`, `validation_controls.csv` (4.6 MB), `feature_selection.csv`, `validation_summary.csv`, `k_selection.json`, `validation_criteria_descriptive.json`, `validation_run_info.json`;
+* figure `results/repe/figures/r2_sae_in_the_loop_validation.png` (from `19_r1_r2_figures.py --r2`, added in this commit).
+
+The log is in `logs/validation.log` and is gitignored.
+
+**Next steps (none run):**
+1. R2 test stage with k = 1 frozen. Needs approval.
+2. Optionally, a separately pre-registered per-statement or alternative-site variant, e.g. a later layer where the positive control is stronger.
+3. Investigate the `cw` probe-sign reversal.

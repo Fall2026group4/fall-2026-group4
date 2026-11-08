@@ -412,3 +412,27 @@ TopK −.005/+.016/+.028; JumpReLU +.008/+.010/+.007.
 **Verdicts:** ReLU INCONCLUSIVE (R1b and transfer met; RepE-prompt L0 guard failed); TopK NOT SUPPORTED (also GoT
 guard failed for R-honesty); JumpReLU NOT SUPPORTED. R1a (R-recon < base, consistent) not met anywhere. Method A
 (GoT fine-tuning) changes RepE gaps by ≤ .008. Exploratory TopK bases at k = 164 / 180: val gap .082 / .075.
+
+## 11. R2: SAE-in-the-loop clamp of honesty features, layer 6 (VALIDATION, descriptive; mean ± sd over 3 seeds; base SAEs; statement 326 excluded)
+Source: `results/repe/r2_sae_in_the_loop_steering_layer6/validation_summary.csv`, `validation_criteria_descriptive.json`, `k_selection.json`.
+
+E = 1 − ΣKL(p_H‖p_U′)/ΣKL(p_H‖p_U) (↑ better; 1 = honest output fully recovered). Positive control (activation patch) E = 0.188 (`val`), 0.404 (`cw`).
+Baseline mean KL(p_H‖p_U) = 0.020 nats. α = 1 is a full clamp to the honest-train mean, with the error term kept.
+
+| Arch | k | E(α=1) | E(α=−1) | C2 mean / q95 | C3 q95 | E unrelated | logistic probe shift ↑ | OWT ΔCE target / C2 q95 ↓ | cw E(α=1) |
+|---|---|---|---|---|---|---|---|---|---|
+| ReLU | 1* | −0.110 ± .006 | −0.058 | −0.012 / .004 | .009 | −0.005 | .146 | .017 / .001 | −0.083 |
+| ReLU | 4 | −0.127 ± .015 | −0.087 | −0.044 / .005 | .009 | −0.034 | .221 | .019 / .002 | −0.106 |
+| ReLU | 16 | −0.178 ± .038 | −0.258 | −0.145 / −.011 | −.016 | −0.251 | .357 | .034 / .006 | −0.098 |
+| TopK | 1* | −0.103 ± .039 | −0.070 | −0.027 / .004 | .005 | −0.062 | .311 | .029 / .002 | −0.039 |
+| TopK | 4 | −0.164 ± .026 | −0.226 | −0.124 / −.007 | −.046 | −0.176 | .453 | .079 / .010 | −0.086 |
+| TopK | 16 | −0.532 ± .045 | −0.531 | −0.470 / −.113 | −.250 | −0.537 | .643 | .135 / .028 | −0.227 |
+| JumpReLU | 1* | −0.115 ± .031 | −0.057 | −0.045 / .003 | .005 | −0.033 | .440 | .043 / .005 | −0.059 |
+| JumpReLU | 4 | −0.287 ± .092 | −0.288 | −0.142 / −.013 | −.054 | −0.419 | .502 | .094 / .014 | −0.109 |
+| JumpReLU | 16 | −0.854 ± .349 | −0.745 | −0.647 / −.195 | −.329 | −0.877 | .600 | .176 / .040 | −0.280 |
+
+\* k selected on validation (argmax of mean E(α = 1)); optimistic.
+
+* No-error reconstruction splice: E = −4.27 (ReLU), −3.75 (TopK), −2.83 (JumpReLU).
+* **Descriptive verdict: NOT SUPPORTED, all architectures, all k.** Criterion 1 fails (BH q = 1), as do 3, 4 and 5. Criterion 2 passes but is uninformative.
+* R1 SAEs (exploratory): R-honesty − R-recon E(α = 1) at k = 1: ReLU +0.028 ± 0.060, TopK +0.002 ± 0.003, JumpReLU −0.001 ± 0.001.

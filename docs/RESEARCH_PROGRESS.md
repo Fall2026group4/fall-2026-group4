@@ -424,7 +424,7 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 
 ---
 
-## 16a. In progress: RepE honesty R1 (representation preservation) and R2 (SAE-in-the-loop intervention) (2026-11-07). Status: R1 COMPLETED at validation (§19); R2 PLANNED
+## 16a. In progress: RepE honesty R1 (representation preservation) and R2 (SAE-in-the-loop intervention) (2026-11-07). Status: R1 COMPLETED at validation (§19); R2 validation stage COMPLETED (§20); both test stages DEFERRED
 
 * **Audit (read-only, done):**
   * No RepE fine-tuning exists.
@@ -496,3 +496,39 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **Evidence label:** VALIDATION finding. **Files:** `results/repe/r1_honesty_preservation_layer6/` (README §11), figure `results/repe/figures/r1_honesty_preservation_layer6.png`.
 * **Limitations:** 3 seeds; 89 statements (per-SAE CI ≈ ±0.04); single λ; overfitting to 208 statements; RepE-prompt L0 uncontrolled for ReLU/JumpReLU.
 * **Next steps:** R1 test pass only with approval; an L0-controlled R1 variant (roadmap §2); R2 after the user reviews this report.
+
+## 20. R2: SAE-in-the-loop clamp of honesty features, layer 6 (2026-11-08). Status: VALIDATION STAGE COMPLETED; NOT SUPPORTED (descriptive); test stage DEFERRED [VERIFIED]
+
+* **Question:** does clamping the honesty-selected SAE features of an untruthful-persona prompt towards the honest-train mean (encode → clamp → decode + error, final token, `blocks.6.hook_resid_pre`) move GPT-2's next-token distribution towards the honest prompt's, more than random-feature, matched-norm, unrelated-feature and raw-direction controls?
+* **Protocol:**
+  * pre-registration drafted in `d17bb00`, finalised in `b232ce4` (script SHA `0a0f4fc7…`, §12 addendum);
+  * user decision 2026-11-08: validation now, test later. `--test` refuses; `test_rows_read: false`.
+* **Execution:**
+  * 9 base SAEs with all controls;
+  * 18 R1 SAEs (EXPLORATORY), targets plus C2 only;
+  * k ∈ {1, 4, 16}, α ∈ {−1 … 2};
+  * 75 min, peak 5.6 GB.
+* **Results (validation, default wording, base SAEs, k = 1 selected for every architecture):**
+  * Positive control (activation patch): E = 0.188. Baseline mean KL(p_H‖p_U) is 0.020 nats.
+  * E(α = 1): ReLU −0.110 ± 0.006, TopK −0.103 ± 0.039, JumpReLU −0.115 ± 0.031. Every k is worse (down to −0.85).
+    * This is below the random-feature C2 mean (−0.01 to −0.05) and q95 (+0.003 to +0.004), and below matched-norm C3 (q95 ≈ +0.005 to +0.009).
+    * Empirical p 0.68–1.0; BH q = 1.
+  * Criteria: 1 effect FAIL everywhere; 2 sign reversal passes but is uninformative (both α signs harm); 3 specificity FAIL; 4 damage FAIL (target OWT ΔCE 0.017–0.18 vs C2 q95 0.001–0.04); 5 cross-wording FAIL.
+  * **Verdict: NOT SUPPORTED for all architectures and all k.**
+  * Representation-level: the edit is well formed (re-encoding attainment 0.77–0.99).
+  * Probe score: the edit closes 15–44 % of the U→H logistic-probe gap on `val`, but reverses it on `cw`.
+  * Behaviour: absent or adverse.
+  * The no-error reconstruction splice gives E ≈ −3 to −4: the behaviourally relevant difference lives largely in the SAE error term.
+  * R1 SAEs: R-honesty − R-recon differences in E ≈ 0.
+* **Conclusion:** no causal SAE-feature faithfulness claim. H7 remains null at layer 6.
+* **Evidence label:** VALIDATION finding (descriptive; selected-k numbers optimistic).
+* **Files:** `results/repe/r2_sae_in_the_loop_steering_layer6/` (README §13), figure `results/repe/figures/r2_sae_in_the_loop_validation.png`.
+* **Limitations:**
+  * a small behavioural signal at this site (positive control 19 %);
+  * a population-mean clamp only;
+  * an unexplained `cw` probe-sign reversal;
+  * 3 seeds;
+  * 89 statements.
+* **Next steps:**
+  * R2 test stage (k = 1 frozen) needs user approval;
+  * an optional new pre-registration for a per-statement clamp or a later layer.
