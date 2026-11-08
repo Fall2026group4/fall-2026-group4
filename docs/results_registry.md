@@ -43,6 +43,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | M1 RepE-LM equal-length persona task (gates on TRAIN; validation descriptive): construction shortcut-free (K1/K2), modest persona transfer (K5 0.70), behavioural effect 2x synonym null (K7) | `results/repe/repe_lm_gates/`, `data/repe/repe_lm/` |
 | M2 four-level information faithfulness (VALIDATION): frozen vs re-trained vs nonlinear vs sparse-z readers, noise and PCA references, error-term probe; supersedes the frozen-probe-only reading of `*/all_layer_frozen_probe_evaluation/` | `results/shared/m2_four_level_faithfulness/` |
 | M3 causal site sweep in original GPT-2 (TRAIN selection, VALIDATION confirmation): where the RepE-LM persona-instruction effect is carried, by layer and position; per template | `results/repe/causal_site_sweep/` |
+| M4 SAE causal-faithfulness decomposition (VALIDATION): original vs SAE-reconstructed vs error-only patch effects at L1 slot, L8 final, L11 final; feature patches with matched controls | `results/repe/sae_patch_decomposition/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
 
 ## HISTORICAL since 2026-11-08 (D23): kept for provenance; not evidence for their original claims

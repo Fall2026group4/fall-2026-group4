@@ -505,3 +505,17 @@ Source: `results/repe/causal_site_sweep/` (README §2).
   * L11 final: 0.0350 [0.0276, 0.0436].
 * **Synonym control:** R_S ≈ 0.5 R_A at every site.
 * **T1:** no persona-specific excess on validation.
+
+## 16. M4: SAE causal-faithfulness decomposition (VALIDATION; T2–T4 primary; 9 SAEs per site)
+Source: `results/repe/sae_patch_decomposition/` (README §2).
+
+| Site | T_full (nats) | Preserved by reconstruction, ReLU / TopK / JumpReLU | Error alone | \|I\|/T_full |
+|---|---|---|---|---|
+| L1 slot | 0.0435 | 0.94 / 0.93 / 0.97 | 0.14 / 0.16 / 0.03 | 0.10–0.14 |
+| L8 final (A1) | 0.0220 | 0.62 / 0.62 / 0.66 | 0.45 / 0.09 / 0.11 | 0.12 / 0.32 / 0.26 |
+| L11 final | 0.0430 | 0.68 / 0.62 / 0.68 | 0.40 / 0.06 / 0.11 | 0.16 / 0.38 / 0.28 |
+
+* **Checks:** all exact; T_full equals M3.
+* **Synonym:** similar preservation; T_rec − S_rec > 0 at every site. T1 ≈ synonym.
+* **Features:** k* = 64 for every SAE; 1 feature = 2–10 % of T_rec; 64 = 47–74 %; beats matched random sets (p = 0.005).
+* **H4a/b/c:** pass 9/9. Additive reading is not allowed for TopK/JumpReLU at L8/L11.

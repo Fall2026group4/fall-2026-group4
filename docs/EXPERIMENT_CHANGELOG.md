@@ -157,3 +157,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | Commit | Change | Reason |
 |---|---|---|
 | this commit | Added `scripts/repe/24_sae_patch_decomposition.py`, `results/repe/sae_patch_decomposition/{README.md,preregistration.json}`; D25; roadmap; progress §27 | M4 pre-registered (hashes frozen) before running |
+
+## 2026-11-08: M4 executed
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `results/repe/sae_patch_decomposition/{mid_site_selection.json,per_pair_validation.csv,decomposition_summary.csv,features_summary.csv,selected_features.json,hypotheses.csv,architecture_summary.csv,sanity_checks.json,control_draws.npz}`; README §2; progress §28; results summary §16; roadmap; registry; manifest | M4 results |

@@ -614,3 +614,14 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 
 * **Design:** L1 slot, L11 final, and an A1 mid site (layers 6–8, handover rule, confirmed without SAEs). 9 base SAEs per site.
 * **Measured:** T_full/T_rec/T_err, interaction, Shapley shares, linearity, the opposite direction, synonym and neutral controls, vector controls, and feature patches with matched random feature sets. Primary set T2–T4; T1 reported as a control. `results/repe/sae_patch_decomposition/`.
+
+## 28. M4: SAE causal-faithfulness decomposition (2026-11-08). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Run:** on the pre-registered hashes (`15131fe`); 28 min. A1 selected L8 final (confirmed without SAEs). All checks pass; T_full reproduces M3 to 7e-8.
+* **Results (T2–T4):**
+  * The SAE-reconstructed difference restores 93–97 % of the persona effect at the L1 persona slot, but only 62–68 % at the L8 and L11 final token.
+  * There, ReLU's error carries 40–45 % on its own. For TopK and JumpReLU, about a third of the effect requires reconstruction and error together (interaction too large for an additive reading).
+  * The persona > synonym distinction is preserved in the reconstruction. T1 behaves like a synonym.
+  * Feature patches beat matched random sets but need 64 features for 47–74 % of T_rec; single features give 2–10 %.
+* **Evidence label:** VALIDATION. **Files:** `results/repe/sae_patch_decomposition/`.
+* **Next:** M5 (test) only with the user's written approval.

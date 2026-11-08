@@ -48,7 +48,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
   * **M1** RepE-LM equal-length persona task + gates K1–K7 → `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. **DONE 2026-11-08:** K1–K7 all PASS (K5 narrowly, 0.701 at L8/L11). M2 and M3 allowed by the gates; awaiting user approval.
   * **M2** four-level information faithfulness (GoT cities + RepE-LM persona/neutral; PCA- and noise-matched references). **DONE 2026-11-08** (validation): no cell Preserved or Readout shifted; GoT frozen collapse mostly noise-like; SAE never better than PCA.
   * **M3** positive-control causal site sweep in original GPT-2. **DONE 2026-11-08:** L1 slot and L11 final selected and confirmed (near-endpoint sites); effect hands over from slot to final token at layers 7–8; T1 not persona-specific.
-  * **M4** SAE patch decomposition (T_full, T_rec, T_err, interaction, Shapley) + feature patches. IN PROGRESS (approved 2026-11-08 with amendment A1 adding a mid-depth site; D25).
+  * **M4** SAE patch decomposition + feature patches. **DONE 2026-11-08** (validation): reconstruction keeps 93–97 % at L1 slot, 62–68 % at L8/L11 final; effect distributed over ≥ 64 features.
   * **M5** one confirmatory test pass. PLANNED: needs written approval. Must include the RepE-LM test duplicate check (deferred from M1).
 * **R1 / R2:** reclassified HISTORICAL (D23). Their deferred test passes are not planned.
 * **R1/R2 history (validation complete, see §1):** R1 §6 test pass, R1-L0 variant, R2 test stage, R2 follow-ups and the held-out-wording set were open follow-ups; all are superseded by M1–M4 (D23) and are not planned.
