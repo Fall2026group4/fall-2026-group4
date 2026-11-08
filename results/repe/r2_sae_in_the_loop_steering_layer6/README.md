@@ -142,3 +142,57 @@ The smoke test uses 1 SAE per architecture, seed 42, 10 validation statements an
 ## 11. After execution
 
 To be completed.
+
+## 12. Pre-run addendum (2026-11-08, written before the validation stage)
+
+§0–§11 above are the plan as drafted and committed in `d17bb00`; they are not edited. **The §7 test criteria, the
+strength grid, the k grid, the feature-scoring rule, the SAEs and the site are unchanged.**
+
+**Stage decision:** the user chose "validation now, test later" on 2026-11-08.
+* This run covers §5's validation uses only: choose k, sanity-check the strengths, and the cross-wording check.
+* It also computes every control on validation so the evidence can be read now. Those numbers are **VALIDATION, descriptive**.
+* No test row is read. `17_r2_sae_in_the_loop_steering.py --test` refuses to run.
+* The new-wording test set stays deferred, shared with R1.
+
+**Corrections:**
+1. **OWT damage set:** the OWT validation cache holds 100 sequences of 128 tokens, not 200. All 100 are used (≈ 12.6 k predictions).
+2. **Criterion 5 at this stage:** run on the cross-wording **validation** set (89 statements), descriptively. The test version is unchanged.
+
+**Details fixed before the run:**
+* **Control strength:** controls are run at α = 1, U→H, with the error term kept; criteria 1 and 4 compare α = 1 with controls. α = −1 is judged by its bootstrap CI (criterion 2).
+* **C2 (random features):** 200 sets of k features drawn from the candidate pool (train-active ≥ 5 %), excluding the target set. Each set is clamped to its own honest-persona train means.
+* **C3 (matched-norm directions):** 200 Gaussian unit directions; each prompt's ‖Δx‖ equals that prompt's ‖Δx‖ under the target edit.
+* **Unrelated features:** top-k by factual-label Cohen's d (true vs false), computed within each persona and averaged, using train rows only.
+  * The top-16 honesty features are excluded.
+  * Clamped to the train mean over true-statement rows, at α = 1.
+* **Raw direction:** the train mass-mean persona direction, norm-matched per prompt to the target edit.
+* **Specificity (criterion 3):** E_target − E_unrelated, with a paired statement bootstrap.
+  * Also reported: KL(p_H‖p_H′) when the U→H edit is applied to honest prompts, as a fraction of the persona KL.
+* **Probe manipulation check** (not causal evidence): fraction of the U→H gap in probe score closed by the edit, for two train-only probes. These are the mass-mean projection and a logistic probe (C = 1, fixed, fitted on all train rows).
+* **Representation-level checks:**
+  * ‖Δx‖;
+  * how often the selected features are active on the evaluated prompts;
+  * re-encoding attainment, (z″_F − z_F)/(z′_F − z_F);
+  * relative change of the other latents.
+* **Statistics:**
+  * empirical p = (1 + #controls ≥ target)/201;
+  * Benjamini–Hochberg across the 9 base SAEs × 2 control families, per k;
+  * bootstrap with 2000 statement resamples;
+  * control seed 20261108 plus fixed per-SAE offsets.
+* **k:** chosen per architecture as the k that maximises the mean E(α = 1) over seeds on validation, then frozen in `k_selection.json` for the test stage.
+  * The criteria are reported on validation for **every** k.
+  * Numbers for the selected k are optimistic, because k was selected on the same data.
+* **Secondary SAEs (§6):** R1 has completed, so the R1 R-recon and R-honesty SAEs (18) are included as EXPLORATORY. They are run on validation only, with targets and the 200 C2 controls.
+
+**Smoke and pipeline tests before freezing (disclosed):**
+* **`--smoke`** (`smoke/<time>/smoke_checks.json`), seed-42 SAEs of all three architectures. All §8 checks pass:
+  * cached = fresh activations;
+  * positions before the final token are bit-identical, and the final position changes;
+  * α = 0 with the error term reproduces the original exactly (max |Δlog p| = 0, E = 0);
+  * the no-error α = 0 splice equals the shared splicer to 4e-6;
+  * re-encoding brings z_F close to its target (TopK: mean |error| 0.12, from 1.86 before the edit);
+  * selected features are active on 72–95 % of prompts;
+  * peak GPU 3.2 GB.
+* **Pipeline test** (`smoke/pipeline_*/`): TopK seeds 42/1042/2042 plus one exploratory SAE, k ∈ {1, 4}, 5 controls, 25 OWT sequences.
+  * **These validation outcomes were seen before freezing:** E(α = 1) was negative (−0.06 to −0.19), as was E(α = −1).
+  * Nothing in the protocol was changed in response.
