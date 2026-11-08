@@ -50,6 +50,21 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
   * **M3** positive-control causal site sweep in original GPT-2. **DONE 2026-11-08:** L1 slot and L11 final selected and confirmed (near-endpoint sites); effect hands over from slot to final token at layers 7–8; T1 not persona-specific.
   * **M4** SAE patch decomposition + feature patches. **DONE 2026-11-08** (validation): reconstruction keeps 93–97 % at L1 slot, 62–68 % at L8/L11 final; effect distributed over ≥ 64 features.
   * **M5** one confirmatory test pass. PLANNED: needs written approval. Must include the RepE-LM test duplicate check (deferred from M1).
+* **Instructor Review #8 (2026-11-08) response programme.** P0. Issue matrix: README §7–§9 and §14; review text read from
+  the project board (ticket "Instructor Review #8 — 2026-11-08").
+  * **IMP-L** multi-layer improvement: OWT-only control, Method A and output-KL (E2E-B) fine-tuning at layers 3, 8 and 9,
+    3 architectures × 3 seeds, L0 guards, CIs → `results/geometry_of_truth/multilayer_finetune/`. Due at the 11-10
+    session. IN PROGRESS (scripts and pre-registration; training needs user sign-off on the configuration).
+  * **E3** causal preservation (M4 protocol) of the IMP-L layer-8 SAEs. PLANNED (after IMP-L training).
+  * **E1** TopK k-sweep for prompt-level L0 matching. PLANNED.
+  * **E2** public `gpt2-small-res-jb` reference at layer 8 (cached) and layer 6 (download needs approval). PLANNED.
+  * **Paper** skeleton in `research_paper/Latex/` with the verified M0–M4 tables. IN PROGRESS. Due 11-10.
+  * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
+    new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
+    al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,
+    #24), minimum detectable effect statement. PLANNED.
+  * **Push and PR** of the local commits after `33dcb9c` (R1, R2, M0–M4, IMP-L): needs user approval and an independent
+    teammate review with a reproducibility check before merging.
 * **R1 / R2:** reclassified HISTORICAL (D23). Their deferred test passes are not planned.
 * **R1/R2 history (validation complete, see §1):** R1 §6 test pass, R1-L0 variant, R2 test stage, R2 follow-ups and the held-out-wording set were open follow-ups; all are superseded by M1–M4 (D23) and are not planned.
 * **Audit finding:** validation statement 326 near-duplicates train statement 589. Excluded from R1/R2 and M1.

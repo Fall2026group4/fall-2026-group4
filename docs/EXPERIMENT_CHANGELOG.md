@@ -163,3 +163,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | Commit | Change | Reason |
 |---|---|---|
 | this commit | Added `results/repe/sae_patch_decomposition/{mid_site_selection.json,per_pair_validation.csv,decomposition_summary.csv,features_summary.csv,selected_features.json,hypotheses.csv,architecture_summary.csv,sanity_checks.json,control_draws.npz}`; README §2; progress §28; results summary §16; roadmap; registry; manifest | M4 results |
+
+## 2026-11-08: README rewritten after Instructor Review #8
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | M `README.md` (rewritten: four faithfulness levels, sub-questions SQ1–SQ5, verified dataset sizes and SAE specification, M0–M4 findings, corrected earlier claims, historical results separated, corrections table, planned work, progress table, test-split exposure, limitations, checklist); M `docs/RESEARCH_ROADMAP.md` (Review #8 response programme: IMP-L, E1–E3, paper, repository items, push/PR) | Instructor Review #8 (2026-11-08); the previous README still cited superseded claims (pooled ρ 0.86, "1.0–2.6× random", frozen-probe "near chance") and did not mention M0–M4 |
