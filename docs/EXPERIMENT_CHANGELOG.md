@@ -126,3 +126,10 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 |---|---|---|
 | this commit | Added `results/shared/m0_within_layer_reanalysis/{merged_validation_table,within_layer_regressions,within_layer_spearman,architecture_by_layer,architecture_pairwise_l0_adjusted,l0_elasticity_from_sweep,pooled_vs_within_corrections}.csv`, `splice_ratio_range.json`, `summary.json`; README §3 | M0 results (validation reanalysis) |
 | this commit | `docs/RESEARCH_PROGRESS.md` §22, `EXPERIMENT_RESULTS_SUMMARY.md` §12, `RESEARCH_ROADMAP.md` §2, `results_registry.md`, `experiment_manifest.csv` | Documentation of M0 |
+
+## 2026-11-08: M1 executed
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `data/repe/repe_lm/{prompts.csv,templates.json,split_verification.json}`; `results/repe/repe_lm_gates/{gates.json,k1_activation_invariants.json,k2_k3_bow_and_shortcuts.csv,probe_auroc_by_layer.csv,k5_lopo_by_template.csv,k7_behaviour_rows.csv,k7_behaviour_summary.csv}`; README §4 | M1 results. Activations (712 MB) in `data/repe/activations/repe_lm/`, gitignored |
+| this commit | `docs/RESEARCH_PROGRESS.md` §23, `EXPERIMENT_RESULTS_SUMMARY.md` §13, `RESEARCH_ROADMAP.md` §2, `results_registry.md`, `experiment_manifest.csv` | Documentation of M1 |

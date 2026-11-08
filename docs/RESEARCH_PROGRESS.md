@@ -560,3 +560,17 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * the splice SAE/random ratio is 0.76–2.89, not 1.0–2.6×.
 * **Evidence label:** VALIDATION reanalysis. **Files:** `results/shared/m0_within_layer_reanalysis/`.
 * **Limitations:** 9 SAEs per layer; architecture and error nearly collinear; 1000-step elasticities.
+
+## 23. M1: RepE-LM equal-length persona task (2026-11-08). Status: COMPLETED; all gates PASS (K5 narrowly) [VERIFIED]
+
+* **Run:** scripts 20 → 21 → 22, on the pre-registered hashes (`ebdc1be`). Train and validation statements only; test not loaded.
+* **Results:**
+  * The length/position/template confound is eliminated by construction: K1 bit-identical, K2 all AUROC 0.5000.
+  * A persona-meaning signal transfers across word pairs only modestly (K5 0.70 at layers 8 and 11; mass-mean 0.63).
+  * Persona swaps change GPT-2's next-token distribution about 2× more than honest-synonym swaps (K7). The absolute effect is small (0.019 nats).
+* **Caveats:**
+  * generic one-token-change decodability is large (neutral 0.58–0.75);
+  * template T1 and held-out T5/T6 have near-neutral behavioural effects;
+  * ungrouped CV leaks heavily (0.92–0.99 vs 0.63–0.84).
+* **Decision gates:** M2 and M3 allowed. **Awaiting user approval** before either starts.
+* **Files:** `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. Activations are in `data/repe/activations/repe_lm/` (712 MB, gitignored).

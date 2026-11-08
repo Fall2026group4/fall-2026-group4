@@ -458,3 +458,16 @@ Source: `results/shared/m0_within_layer_reanalysis/` (README §3).
 **Corrections:**
 * The pooled ρ = 0.89 between EV and RepE persona shift is ρ = 0.05 within layer.
 * The splice-ratio range is 0.76–2.89 per run (0.82–2.65 per cell), not "1.0–2.6×".
+
+## 13. M1: RepE-LM equal-length persona task, gates K1–K7 (TRAIN gates; validation descriptive)
+Source: `results/repe/repe_lm_gates/` (README §4). 506 statements × 20 one-token-swap variants.
+
+| Gate | Status | Key number |
+|---|---|---|
+| K1 construction | PASS | 6,072 pairs; pre-slot residual diff 0.0 at all 12 layers |
+| K2 shortcuts | PASS | every shortcut AUROC 0.5000 (max deviation 5.6e-17) |
+| K3 positive control | PASS | 1.000 |
+| K4 neutral floor | reported | transfer floor 0.50–0.57; neutral decodability 0.58–0.75 |
+| K5 semantic transfer | PASS (narrow) | leave-one-pair-out 0.701 at L8 and L11 (CI low 0.689 / 0.691) |
+| K6 leakage | PASS | 0 same-label near-duplicates; 14 counterfactual edits disclosed |
+| K7 behaviour | PASS | median KL ratio 1.99; Wilcoxon p 3e-68; median KL(H‖U) 0.019 nats |
