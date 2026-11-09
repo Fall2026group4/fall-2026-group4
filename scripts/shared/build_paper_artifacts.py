@@ -14,6 +14,7 @@ from pathlib import Path
 
 import matplotlib
 matplotlib.use('Agg')
+matplotlib.rcParams['svg.hashsalt'] = 'sae-faithfulness'
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
@@ -34,6 +35,9 @@ SOURCES = {
     'm4': 'results/repe/sae_patch_decomposition/architecture_summary.csv',
     'method_a': 'results/geometry_of_truth/method_a_layer6/summary.csv',
     'e2e': 'results/geometry_of_truth/e2e_inspired_layer6/summary.csv',
+    'impl_comp': 'results/geometry_of_truth/multilayer_finetune/comparisons.csv',
+    'impl_crit': 'results/geometry_of_truth/multilayer_finetune/criteria.json',
+    'impl_summary': 'results/geometry_of_truth/multilayer_finetune/summary.csv',
 }
 ARCHS = ['relu', 'topk', 'jumprelu']
 ANAME = {'relu': 'ReLU', 'topk': 'TopK', 'jumprelu': 'JumpReLU'}
@@ -55,8 +59,9 @@ def write_table(name, body, caption, label, source_keys, colspec):
 
 
 def savefig(fig, name):
-    for ext in ('pdf', 'svg'):
-        fig.savefig(FIG / f'{name}.{ext}', bbox_inches='tight')
+    # fixed metadata and SVG hash salt so regenerated figures are byte-identical (reviewers can diff them)
+    fig.savefig(FIG / f'{name}.pdf', bbox_inches='tight', metadata={'CreationDate': None, 'ModDate': None})
+    fig.savefig(FIG / f'{name}.svg', bbox_inches='tight', metadata={'Date': None})
     plt.close(fig)
     log.info('figure %s', name)
 
@@ -267,6 +272,94 @@ def fig_m4():
     savefig(fig, 'fig_m4_preservation')
 
 
+# ------------------------------------------------------------------------------------- IMP-L (multi-layer fine-tuning)
+IMPL_METRICS = [('got_geographic_indep_mlp_gap_mean', 'Truth gap (B-MLP)', 'abs'),
+                ('got_geographic_val_relative_sq_error', 'GoT rel.\\ error', 'pct'),
+                ('owt_val_ev', 'OWT EV', 'abs'),
+                ('splice_owt_delta_ce', 'OWT $\\Delta$CE', 'abs'),
+                ('splice_owt_kl', 'OWT KL', 'abs'),
+                ('splice_got_statement_kl', 'GoT stmt.\\ KL', 'abs'),
+                ('owt_val_l0', 'OWT L0', 'pct')]
+
+
+def _cell(r, kind):
+    if kind == 'pct':
+        return f'{r["pct_change"]:+.1f}\\%'
+    return (f'\\shortstack{{{r.mean_diff:+.3f}\\\\ \\scriptsize[{r.ci95_low:+.3f}, {r.ci95_high:+.3f}]}}')
+
+
+def table_impl():
+    if not (REPO / SOURCES['impl_comp']).exists():
+        log.info('IMP-L results not present; skipping')
+        return False
+    comp, crit, summ = read('impl_comp'), read('impl_crit'), read('impl_summary')
+    for L in sorted(comp.layer.unique()):
+        rows = ''
+        for a in ARCHS:
+            base = summ[(summ.layer == L) & (summ.architecture == a) & (summ.arm == 'base')].iloc[0]
+            rows += (f'\\multicolumn{{8}}{{l}}{{\\textbf{{{ANAME[a]}}}: base truth gap {base.got_geographic_indep_mlp_gap_mean_mean:.3f}, '
+                     f'OWT EV {base.owt_val_ev_mean:.3f}, $\\Delta$CE {base.splice_owt_delta_ce_mean:.3f}, '
+                     f'OWT L0 {base.owt_val_l0_mean:.1f}}} \\\\\n')
+            for c in ('owt_only - base', 'method_a - base', 'method_a - owt_only', 'kl - base', 'kl - method_a'):
+                cells = []
+                for m, _, kind in IMPL_METRICS:
+                    r = comp[(comp.layer == L) & (comp.architecture == a) & (comp.comparison == c) & (comp.metric == m)].iloc[0]
+                    cells.append(_cell(r, kind))
+                rows += f'\\quad {c.replace("_", chr(92) + "_")} & ' + ' & '.join(cells) + ' \\\\\n'
+            rows += '\\midrule\n' if a != 'jumprelu' else ''
+        head = 'Comparison & ' + ' & '.join(lab for _, lab, _ in IMPL_METRICS) + ' \\\\\n\\midrule\n'
+        write_table(f't_impl_layer{L}', head + rows,
+                    f'IMP-L at layer {L} (VALIDATION): paired differences over 3 seeds, mean [95\\% $t$-interval]; relative error '
+                    f'and L0 as mean percentage change. Lower is better except OWT EV.', f'tab:impl{L}',
+                    ['impl_comp', 'impl_summary'], 'l' + 'c' * len(IMPL_METRICS))
+    rows = ''
+    for L in sorted(comp.layer.unique()):
+        for a in ARCHS:
+            v = crit[f'layer{L}_{a}']
+            ma, kl = v['method_a'], v['kl']
+            failed_ma = [k for k, ok in ma['guards'].items() if not ok]
+            failed_kl = [k for k, ok in kl['guards'].items() if not ok]
+            glab = {'l0': 'L0 $\\pm$5\\%', 'owt': 'OWT EV', 'cities': 'cities pref.'}
+            fmt = lambda xs: ', '.join(glab.get(x.split('_')[0], x.replace('_', ' ')) for x in xs if 'delta_ce' not in x) \
+                + ', '.join('$\\Delta$CE' for x in xs if 'delta_ce' in x) or '--'
+            rows += (f'{L if a == "relu" else ""}{"" if v["truth_informative_at_layer"] or a != "relu" else "$^\\dagger$"} & {ANAME[a]} & '
+                     f'{ma["class_truth"]} & {fmt(failed_ma)} & {kl["class_behaviour"]} & {kl["class_truth"]} & {fmt(failed_kl)} \\\\\n')
+        rows += '\\midrule\n' if L != max(comp.layer) else ''
+    head = ('Layer & SAE & Method A: truth & failed guards & Output-KL: behaviour & Output-KL: truth & failed guards \\\\\n\\midrule\n')
+    write_table('t_impl_summary', head + rows,
+                "IMP-L pre-registered classifications (VALIDATION; 3 seeds). ``Consistent'' requires improvement on all 3 seeds "
+                'and a mean paired difference larger than 2 sd; NOT CREDITABLE means a guard failed. $^\\dagger$ original '
+                'truth probe below the 0.70 informative threshold, so truth results are descriptive.',
+                'tab:impl_summary', ['impl_crit'], 'llccccc')
+    return True
+
+
+def fig_impl():
+    if not (REPO / SOURCES['impl_summary']).exists():
+        return
+    s = read('impl_summary')
+    arms = ['base', 'owt_only', 'method_a', 'kl']
+    alab = ['base', 'OWT-only', 'Method A', 'output-KL']
+    layers = sorted(s.layer.unique())
+    fig, axes = plt.subplots(2, len(layers), figsize=(3.2 * len(layers), 5), sharey='row')
+    for j, L in enumerate(layers):
+        for row, (m, lab) in enumerate([('got_geographic_indep_mlp_gap_mean', 'truth gap (B-MLP) ↓'),
+                                        ('splice_owt_kl', 'OWT spliced KL ↓')]):
+            ax = axes[row, j]
+            for i, a in enumerate(ARCHS):
+                x = s[(s.layer == L) & (s.architecture == a)].set_index('arm').reindex(arms)
+                ax.errorbar(np.arange(4) + (i - 1) * 0.12, x[f'{m}_mean'], yerr=x[f'{m}_sd'], marker='o', ms=3, lw=0,
+                            elinewidth=1, color=COLORS[a], label=ANAME[a])
+            ax.set_xticks(range(4), alab, fontsize=7)
+            ax.grid(axis='y', alpha=.3)
+            if j == 0:
+                ax.set_ylabel(lab)
+            if row == 0:
+                ax.set_title(f'layer {L}')
+    axes[0, 0].legend(frameon=False, fontsize=7)
+    savefig(fig, 'fig_impl_multilayer')
+
+
 def table_m1():
     g = read('m1')
     k5 = g['K5']
@@ -304,6 +397,8 @@ def main():
     fig_m2()
     fig_m3()
     fig_m4()
+    if table_impl():
+        fig_impl()
     m = m2_means()
     log.info('check M2 GoT ReLU frozen %.3f (README .287), persona TopK re-trained %.3f (README .147)',
              m[('got_cities', 'relu')]['frozen_logistic_gap_mean'], m[('repe_persona', 'topk')]['refit_logistic_gap_mean'])

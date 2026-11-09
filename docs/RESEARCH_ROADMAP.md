@@ -54,11 +54,18 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
   the project board (ticket "Instructor Review #8 — 2026-11-08").
   * **IMP-L** multi-layer improvement: OWT-only control, Method A and output-KL (E2E-B) fine-tuning at layers 3, 8 and 9,
     3 architectures × 3 seeds, L0 guards, CIs → `results/geometry_of_truth/multilayer_finetune/`. Due at the 11-10
-    session. IN PROGRESS (scripts and pre-registration; training needs user sign-off on the configuration).
-  * **E3** causal preservation (M4 protocol) of the IMP-L layer-8 SAEs. PLANNED (after IMP-L training).
+    session. **DONE 2026-11-09 (VALIDATION):**
+    * Method A truth criterion met in 4/9 cells. The frozen-probe gain is not matched by re-trained readers.
+    * Output-KL behaviour is creditable in 5/9 cells; in the other 4/9 (ReLU and JumpReLU at layers 8 and 9) the L0
+      guard failed.
+    * Output-KL truth regressed at L3 ReLU and L3 TopK.
+  * **IMP-L follow-ups.** PLANNED, not approved:
+    * an L0-matched output-KL variant for ReLU/JumpReLU at deeper layers (controller strength), as a new pre-registration;
+    * more seeds for the 5 Method A cells where the direction is consistent but the 2 sd rule fails.
+  * **E3** causal preservation (M4 protocol) of the IMP-L layer-8 SAEs. PLANNED: IMP-L layer-8 checkpoints now exist; needs its own pre-registration and approval.
   * **E1** TopK k-sweep for prompt-level L0 matching. PLANNED.
   * **E2** public `gpt2-small-res-jb` reference at layer 8 (cached) and layer 6 (download needs approval). PLANNED.
-  * **Paper** skeleton in `research_paper/Latex/` with the verified M0–M4 tables. IN PROGRESS. Due 11-10.
+  * **Paper** skeleton in `research_paper/Latex/` with the verified M0–M4 and IMP-L tables. IN PROGRESS: compiles (20 pp); figures deterministic (byte-identical on regeneration). Due 11-10.
   * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,

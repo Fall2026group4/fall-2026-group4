@@ -177,3 +177,13 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | Added `research_paper/Latex/{main.tex,references.bib,sections/*.tex,tables/*.tex}`, `research_paper/Latex_Fig/*.{pdf,svg}`, `scripts/shared/build_paper_artifacts.py` (tables and figures generated from committed result CSVs) | Review #8 blocker: paper skeleton; F7: vector figures. Bibliography = existing `reports/Latex_report/mybib.bib` + AxBench/SAEBench/Paulo et al. from the `origin/dhruv` review + Braun et al. 2024 |
 | this commit | Added `scripts/geometry_of_truth/22_multilayer_finetune.py`, `23_multilayer_evaluation.py`, `results/geometry_of_truth/multilayer_finetune/{README.md,preregistration.json,pretraining_checks.json,alpha.json,pretraining_hashes.json}`; progress §29 | Review #8 blocker: improvement result at more layers. Pre-registered before any training run |
 | this commit | M status line (line 3) of the M0, M1, M2 and M3 result READMEs: PRE-REGISTERED → COMPLETED | Stale headers found in the 2026-11-08 audit; bodies already reported completed results |
+
+## 2026-11-09: IMP-L results (layers 3, 8, 9) and paper update
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `results/geometry_of_truth/multilayer_finetune/{per_sae_layer3,per_sae_layer8,per_sae_layer9,summary,comparisons,improvement_table}.csv`, `criteria.json`, `eval_info_layers3_8_9.json`, `training_info_layer{3,8,9}.json`, `training_monitor_layer{3,8,9}.csv`; README §2 | IMP-L results (approved 2026-11-09). 81 checkpoints written to the gitignored `sae_finetuning/multilayer_finetune/`; logs not committed |
+| this commit | M `scripts/shared/build_paper_artifacts.py`: IMP-L tables (`t_impl_summary`, `t_impl_layer{3,8,9}`) and figure (`fig_impl_multilayer`); deterministic PDF/SVG output (CreationDate/Date metadata removed, fixed `svg.hashsalt`) | Paper results; reviewers can regenerate the figures and diff them. Regenerated M0–M4 figures differ from the previous commit only in metadata and SVG ids |
+| this commit | M `research_paper/Latex/sections/{00_abstract,10_finetuning,12_discussion,15_appendix}.tex`; added `tables/t_impl_*.tex`, `Latex_Fig/fig_impl_multilayer.{pdf,svg}` | IMP-L section written from verified results |
+| this commit | M `README.md` (§6.8 IMP-L table, §8/§9 statuses, limitations), `docs/RESEARCH_PROGRESS.md` §29 status and §30, `docs/RESEARCH_ROADMAP.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md` §17, `docs/results_registry.md`, `docs/RESEARCH_DECISIONS.md` (D26; H3/H4), `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | Documentation rule (CLAUDE.md §1) |
+

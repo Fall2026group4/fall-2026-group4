@@ -201,8 +201,16 @@ and its error part. Each part is patched separately.
 | KL-weight ablation (TopK) | Behaviour gain saturates by w = 0.25; no truth trade-off to measure | Inconclusive (pre-registered) |
 | P1 sparsity control (seed 42) | JumpReLU layer 2 EV .936 → .956, dead latents 65 % → 21 %; layer-0 JumpReLU still unmatched; checkpoint selection always picks step 15k (not converged) | Preliminary |
 
-**No improvement is CONFIRMED. None has been tested beyond layer 6 or on causal preservation.** That is what E3 and the
-multi-layer extension (Section 8) address.
+**No improvement is CONFIRMED.** Causal preservation after fine-tuning is still untested (E3).
+
+**Multi-layer extension (IMP-L, layers 3, 8, 9; VALIDATION; 81 new fine-tunes; `results/geometry_of_truth/multilayer_finetune/`):**
+
+| Criterion (pre-registered) | Outcome |
+|---|---|
+| Method A lowers the frozen B-MLP truth gap vs base **and** vs OWT-only (consistent) | **Met in 4/9 cells** (L3 TopK, L8 ReLU, L9 ReLU, L9 JumpReLU). Lower on all seeds vs base in 9/9, but the spread exceeds 2 sd in 5. GoT reconstruction error −61 to −85 %. All guards pass |
+| … the same, read by a **re-trained** reader (reported, not a criterion) | **No consistent change** vs base in any cell (all CIs include 0): the frozen-probe gain is not information recovery |
+| Output-KL lowers OWT and GoT spliced KL vs Method A | Lower in 9/9 cells (OWT KL −8 to −18 %). **Creditable in 5/9.** ReLU/JumpReLU at layers 8–9 raise L0 by 5.3–8.1 % (guard ±5 %) → NOT CREDITABLE |
+| Output-KL truth gap vs Method A | Never better. **REGRESSION** at L3 ReLU and L3 TopK (CIs just reach 0) |
 
 ### 6.9 Historical results (kept for provenance, not current findings)
 * **Original RepE prompts:** all-layer RepE probes, RepE splicing columns, the layer-6 causal test with 200 controls,
@@ -230,11 +238,11 @@ multi-layer extension (Section 8) address.
 | Numerical GoT used as truth | Diagnostic only (surface shortcut) | `docs/results_registry.md` |
 | RepE validation statement 326 near-duplicates train statement 589 | Excluded from all new RepE work | `data/repe/repe_lm/split_verification.json` |
 
-## 8. Planned work (approved scope; NOT yet run)
+## 8. Planned work (approved scope; status per row)
 
 | ID | Experiment | Addresses | Status |
 |---|---|---|---|
-| **IMP-L** | Method A, OWT-only control and output-KL fine-tuning **at layers 3, 8 and 9** (3 seeds, CIs, L0 guards). Evaluated on reconstruction, truth and behaviour; at layer 8 also on causal preservation (M4 protocol) | Review #8 blocker "improvement result at more layers"; the 11-03 session note "fine-tune other layers" | PLANNED |
+| **IMP-L** | Method A, OWT-only control and output-KL fine-tuning **at layers 3, 8 and 9** (3 seeds, CIs, L0 guards). Evaluated on reconstruction, truth and behaviour | Review #8 blocker "improvement result at more layers"; the 11-03 session note "fine-tune other layers" | **COMPLETED 2026-11-09 (VALIDATION)**; see 6.8 |
 | **E1** | TopK trained at several k to compare architectures at matched *prompt-level* L0 (M2 readers, M4) | Prompt-sparsity confound in architecture comparisons | PLANNED |
 | **E2** | Public `gpt2-small-res-jb` SAE as an external reference: reconstruction, M2 and M4 at layer 8 (weights cached); layer 6 if downloaded | Review #8 critique 2 (small, unconverged SAEs) | PLANNED |
 | **E3** | Layer-8 fine-tuning for causal preservation: base vs OWT-only vs Method A vs output-KL, pre-registered | Review #8 SAE-in-the-loop / causal improvement | PLANNED (overlaps IMP-L at layer 8) |
@@ -250,12 +258,13 @@ multi-layer extension (Section 8) address.
 | Splicing (behaviour), all layers | COMPLETED (VALIDATION) |
 | Layer-6 fine-tuning pilots (truth-aware audit, Method A, E2E B/C, KL ablation), P1 | COMPLETED (VALIDATION) |
 | M0, M1, M2, M3, M4 | COMPLETED (VALIDATION; committed locally, **not yet on `main`**) |
-| Multi-layer improvement table (IMP-L), E1, E2, E3 | NOT STARTED |
+| Multi-layer improvement table (IMP-L) | COMPLETED (VALIDATION; committed locally, not yet on `main`) |
+| E1, E2, E3 | NOT STARTED |
 | SAE-in-the-loop intervention | IN PROGRESS: M4 feature patches done; intervention on improved SAEs pending |
 | M5 final test | NOT STARTED (needs approval) |
-| Research paper (`research_paper/Latex/`) | NOT STARTED (folder holds a README only) |
+| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; generated tables and PDF/SVG figures; compiles (20 pp) |
 | Report (`reports/Latex_report/main.tex`) | IN PROGRESS (literature review only; Methods/Results are TODO) |
-| SVG/PDF figures; `.drawio` source + `.svg` | NOT STARTED (50 PNG and 2 SVG/PDF in `results/`) |
+| SVG/PDF figures; `.drawio` source + `.svg` | IN PROGRESS: paper figures are PDF+SVG (`research_paper/Latex_Fig/`); 50 PNG in `results/` remain; `.drawio` NOT STARTED |
 | Logging instead of `print` (378 calls in `scripts/` and `src/`); CI on `main` | NOT STARTED |
 | Progress reports since 09-29; presentation decks in `presentation/` | NOT STARTED |
 | Open PRs #16, #17, #20, #21, #22, #24 (merge plan) | NOT STARTED (needs team decisions) |
@@ -281,7 +290,7 @@ multi-layer extension (Section 8) address.
 * **Prompt-level L0 is not matched** across architectures (see 6.4).
 * **The persona effect is small:** 0.02–0.04 nats. Seeds share the training data, so seed spread understates
   uncertainty.
-* **Fine-tuning has been tested only at layer 6,** and never on causal preservation.
+* **Fine-tuning has been tested at layers 3, 6, 8 and 9 only,** at one budget, and never on causal preservation.
 
 ## 12. Repository layout
 

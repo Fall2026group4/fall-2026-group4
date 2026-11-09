@@ -205,11 +205,17 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Template sets:** T2–T4 is the primary persona set. T1 is kept and reported as a control case.
 * **Feature claims:** limited to "SAE-defined directions are causally sufficient when inserted"; never "GPT-2 uses SAE features".
 
+## D26. IMP-L outcome and its reading (2026-11-09)
+* **Run:** run as pre-registered after user approval. The criteria were not changed after the results were seen.
+* **Classification:** exactly as `criteria.json` gives it. The NOT CREDITABLE cells (ReLU/JumpReLU output-KL at layers 8–9) are excluded from rankings but reported.
+* **Reading:** the frozen-probe Method A truth gains are reported with the re-trained-reader null beside them. They are not called information recovery, because M2 showed that frozen-probe gaps are dominated by probe fragility.
+* **Next experiments:** none started. E3, an L0-matched output-KL variant and extra seeds each need their own pre-registration and approval.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
-* **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. Not tested.
-* **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. Untested for ReLU/JumpReLU and other layers.
+* **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
+* **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.

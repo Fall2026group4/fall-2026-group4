@@ -45,6 +45,9 @@ FAMILIES = [
      'KL-weight ablation (w = 0.25 / 0.50 of Method B KL), TopK layer 6; validation only'),
     (r'sae_finetuning/e2e_inspired_layer6/', 'got_e2e_inspired_layer6', 'PILOT',
      'E2E-inspired fine-tuning (B: +output KL, C: +KL+downstream); not an exact Braun et al. reproduction; validation only'),
+    (r'sae_finetuning/multilayer_finetune/', 'got_multilayer_finetune', 'PILOT',
+     'IMP-L: OWT-only / Method A / output-KL fine-tunes at layers 3, 8, 9 (results/geometry_of_truth/multilayer_finetune/); '
+     'validation only; output-KL ReLU/JumpReLU at layers 8-9 fail the +-5 % L0 guard'),
     (r'sae_finetuning/method_a_layer6/', 'got_method_a_layer6', 'PILOT',
      'Method A: GoT-A reconstruction fine-tuning with OWT replay (or OWT-only control); validation only'),
     (r'sae_finetuning/truth_aware_pilot_', 'got_truth_aware_pilot', 'PILOT',

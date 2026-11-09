@@ -626,7 +626,7 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **Evidence label:** VALIDATION. **Files:** `results/repe/sae_patch_decomposition/`.
 * **Next:** M5 (test) only with the user's written approval.
 
-## 29. Instructor Review #8 response: README, paper skeleton, IMP-L pre-registration (2026-11-08/09). Status: IN PROGRESS
+## 29. Instructor Review #8 response: README, paper skeleton, IMP-L pre-registration (2026-11-08/09). Status: COMPLETED (IMP-L results in §30)
 
 * **Review #8** (project-board ticket, 2026-11-08) was read in full, together with Reviews #2–#7. Its blockers for the
   11-10 session are a multi-layer improvement table and a paper skeleton. It credits only work merged to `main`,
@@ -647,3 +647,40 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Training waits for the user's sign-off on the configuration.
 * **Evidence label:** none yet; no new result.
 * **Next:** user sign-off → `--train` → evaluation → improvement table → E3 at layer 8.
+
+## 30. IMP-L results: fine-tuning at layers 3, 8 and 9 (2026-11-09). Status: COMPLETED. Evidence: VALIDATION
+
+* **Run:**
+  * User approval on 2026-11-09. 81 fine-tunes and a 108-SAE validation evaluation.
+  * Scripts and criteria unchanged from the pre-registration (hashes verified). Not one test row was used.
+  * Base checkpoints and GPT-2 were unchanged after training.
+* **Method A** (criterion T_method_a: consistent vs both base and OWT-only):
+  * Met in **4/9 cells**: L3 TopK, L8 ReLU, L9 ReLU, L9 JumpReLU.
+  * The frozen B-MLP truth gap fell on every seed in 9/9 cells (4–47 %).
+  * GoT reconstruction error fell 61–85 %.
+  * OWT-only moved the gap by at most 0.021.
+  * All guards passed.
+* **Re-trained readers** (reported, not a criterion): no consistent change vs base in any cell (all CIs include 0).
+  The frozen-probe gain is therefore read as restoring the original probe's readout, not as recovering information.
+  This qualifies the Method A result.
+* **Output-KL:**
+  * OWT KL (−8 to −18 %) and GoT statement KL fell vs Method A, consistently in all 9 cells.
+  * ReLU/JumpReLU L0 rose 5.3–8.1 % at layers 8 and 9, so those 4/9 cells are **NOT CREDITABLE**. Behaviour is
+    creditable in 5/9.
+  * The truth gap never improved vs Method A. **REGRESSION** at L3 ReLU (+0.012) and L3 TopK (+0.027); both CIs just
+    reach 0.
+* **Overall:** the layer-6 pattern replicates at three further layers.
+  * Task reconstruction and behavioural faithfulness can be improved.
+  * Truth information, as seen by a re-fitted reader, is not improved.
+  * Behavioural gains for ReLU/JumpReLU at depth cost sparsity beyond the guard.
+* **Paper:**
+  * §10.1 is written, with the summary table and figure; the per-layer tables are in the appendix.
+  * The abstract and discussion are updated.
+  * The paper compiles (20 pages).
+  * `build_paper_artifacts.py` now writes deterministic PDF/SVG (fixed metadata and SVG hash salt), so a reviewer can
+    regenerate the figures and check for an empty diff.
+* **Next:**
+  * E3 (causal preservation of the layer-8 SAEs) needs its own pre-registration.
+  * L0-matched output-KL for ReLU/JumpReLU, and more seeds for the borderline Method A cells (not approved).
+  * Push/PR and the Review #8 reply are awaiting user approval.
+

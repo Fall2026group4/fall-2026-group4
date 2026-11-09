@@ -519,3 +519,39 @@ Source: `results/repe/sae_patch_decomposition/` (README §2).
 * **Synonym:** similar preservation; T_rec − S_rec > 0 at every site. T1 ≈ synonym.
 * **Features:** k* = 64 for every SAE; 1 feature = 2–10 % of T_rec; 64 = 47–74 %; beats matched random sets (p = 0.005).
 * **H4a/b/c:** pass 9/9. Additive reading is not allowed for TopK/JumpReLU at L8/L11.
+
+## 17. IMP-L: Method A and output-KL fine-tuning at layers 3, 8, 9 (VALIDATION; 3 seeds; paired; 95 % t-interval, df = 2)
+Source: `results/geometry_of_truth/multilayer_finetune/` (README §2). Lower is better for gaps and KL.
+
+**Method A (truth):**
+
+| Layer | SAE | Truth gap (B-MLP) base / OWT-only / Method A / output-KL (mean ± sd) | Method A − base [95 % CI] | GoT rel. error, Method A vs base | Re-trained geo gap, Method A − base [95 % CI] | Method A truth class |
+|---|---|---|---|---|---|---|
+| 3 | ReLU | 0.293 ± 0.008 / 0.292 ± 0.008 / 0.275 ± 0.002 / 0.287 ± 0.003 | -0.018 [-0.041, +0.005] | -62.0 % | +0.010 [-0.028, +0.048] | NO IMPROVEMENT |
+| 3 | TopK | 0.227 ± 0.008 / 0.227 ± 0.011 / 0.129 ± 0.007 / 0.155 ± 0.017 | -0.098 [-0.107, -0.089] | -74.0 % | -0.005 [-0.104, +0.094] | PRELIMINARY IMPROVEMENT |
+| 3 | JumpReLU | 0.294 ± 0.015 / 0.295 ± 0.015 / 0.282 ± 0.021 / 0.298 ± 0.009 | -0.012 [-0.043, +0.019] | -61.1 % | +0.002 [-0.026, +0.031] | NO IMPROVEMENT |
+| 8 | ReLU | 0.234 ± 0.047 / 0.228 ± 0.050 / 0.180 ± 0.062 / 0.180 ± 0.062 | -0.054 [-0.095, -0.013] | -73.5 % | +0.006 [-0.024, +0.035] | PRELIMINARY IMPROVEMENT |
+| 8 | TopK | 0.157 ± 0.057 / 0.178 ± 0.048 / 0.083 ± 0.030 / 0.089 ± 0.005 | -0.074 [-0.202, +0.054] | -85.4 % | -0.032 [-0.082, +0.019] | NO IMPROVEMENT |
+| 8 | JumpReLU | 0.260 ± 0.052 / 0.260 ± 0.044 / 0.200 ± 0.040 / 0.212 ± 0.034 | -0.060 [-0.247, +0.127] | -79.6 % | -0.005 [-0.023, +0.014] | NO IMPROVEMENT |
+| 9 | ReLU | 0.214 ± 0.021 / 0.210 ± 0.021 / 0.167 ± 0.015 / 0.199 ± 0.003 | -0.047 [-0.065, -0.030] | -72.6 % | +0.010 [-0.011, +0.031] | PRELIMINARY IMPROVEMENT |
+| 9 | TopK | 0.160 ± 0.031 / 0.158 ± 0.041 / 0.127 ± 0.021 / 0.136 ± 0.033 | -0.033 [-0.061, -0.005] | -85.4 % | +0.005 [-0.034, +0.043] | NO IMPROVEMENT |
+| 9 | JumpReLU | 0.258 ± 0.026 / 0.262 ± 0.024 / 0.152 ± 0.005 / 0.174 ± 0.023 | -0.106 [-0.162, -0.050] | -78.7 % | +0.002 [-0.039, +0.043] | PRELIMINARY IMPROVEMENT |
+
+**Output-KL (behaviour and truth):**
+
+| Layer | SAE | OWT KL base → Method A → output-KL | output-KL − Method A [95 % CI] | GoT stmt KL, output-KL − Method A | OWT ΔCE, output-KL vs Method A | OWT L0, output-KL vs base | Truth gap, output-KL − Method A | Behaviour class | Truth class | Failed guards |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 3 | ReLU | 0.0940 → 0.0933 → 0.0811 | -0.0121 [-0.0140, -0.0102] | -0.050 | -10.4 % | +3.5 % | +0.012 [-0.000, +0.024] | PRELIMINARY IMPROVEMENT | REGRESSION | — |
+| 3 | TopK | 0.0673 → 0.0663 → 0.0609 | -0.0054 [-0.0058, -0.0049] | -0.036 | -4.3 % | +0.0 % | +0.027 [-0.001, +0.054] | PRELIMINARY IMPROVEMENT | REGRESSION | — |
+| 3 | JumpReLU | 0.0541 → 0.0530 → 0.0445 | -0.0086 [-0.0101, -0.0071] | -0.037 | -13.5 % | +4.6 % | +0.016 [-0.017, +0.048] | PRELIMINARY IMPROVEMENT | NO IMPROVEMENT | — |
+| 8 | ReLU | 0.2431 → 0.2422 → 0.1998 | -0.0424 [-0.0443, -0.0406] | -0.151 | -17.1 % | +5.8 % | -0.000 [-0.037, +0.037] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+| 8 | TopK | 0.1439 → 0.1417 → 0.1270 | -0.0147 [-0.0157, -0.0137] | -0.078 | -11.3 % | +0.0 % | +0.006 [-0.065, +0.076] | PRELIMINARY IMPROVEMENT | NO IMPROVEMENT | — |
+| 8 | JumpReLU | 0.1360 → 0.1339 → 0.1120 | -0.0220 [-0.0240, -0.0199] | -0.103 | -18.5 % | +8.1 % | +0.011 [-0.065, +0.087] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+| 9 | ReLU | 0.2713 → 0.2698 → 0.2256 | -0.0443 [-0.0453, -0.0432] | -0.202 | -16.3 % | +5.3 % | +0.033 [-0.006, +0.071] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+| 9 | TopK | 0.1610 → 0.1588 → 0.1435 | -0.0154 [-0.0164, -0.0143] | -0.081 | -8.9 % | +0.0 % | +0.010 [-0.024, +0.043] | PRELIMINARY IMPROVEMENT | NO IMPROVEMENT | — |
+| 9 | JumpReLU | 0.1538 → 0.1523 → 0.1285 | -0.0239 [-0.0259, -0.0218] | -0.112 | -15.0 % | +8.1 % | +0.022 [-0.024, +0.068] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+
+* **Base SAEs:** OWT val EV 0.904–0.914 (L3), 0.800–0.840 (L8), 0.784–0.829 (L9). L0 ReLU 134–135, TopK 128,
+  JumpReLU 131–132.
+* **Criteria met:** T_method_a 4/9; B_kl 5/9 (4/9 not creditable, L0 guard); T_kl 0/9 (2 regressions at layer 3).
+

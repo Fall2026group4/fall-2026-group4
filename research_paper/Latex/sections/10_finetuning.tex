@@ -22,10 +22,62 @@ no truth trade-off to optimise (\evlabel{inconclusive}).
 \input{tables/t_finetune_l6}
 
 \subsection{Multi-layer improvement experiment (IMP-L)}\label{sec:impl}
-\pending{Layers 3, 8 and 9; base vs OWT-only control vs Method A vs output-KL; 3 architectures $\times$ 3 seeds;
-95\,\% $t$-intervals over seeds; L0 guards. Pre-registered in
-\texttt{results/geometry\_of\_truth/multilayer\_finetune/preregistration.json}. Table generated from
-\texttt{improvement\_table.csv} once the experiment has run.}
+To test whether the layer-6 findings generalise, we repeated both methods at layers 3, 8 and 9 with an OWT-only
+control (500 steps of continued training on OWT alone), for all three architectures and seeds: 81 new fine-tunes,
+evaluated on validation data only. Configuration, criteria and guards were fixed and hashed before any run
+(\texttt{results/geometry\_of\_truth/multilayer\_finetune/preregistration.json}); they are those of layer 6. A
+criterion counts as met (``consistent'') when the arm is better on all three seeds and the mean paired difference
+exceeds twice its standard deviation. Guards require OWT L0 within $\pm$5\,\% of the base SAE, OWT explained variance
+no more than 0.005 below the base (output-KL: 0.02 below Method A), spliced $\Delta$CE at most 1.10$\times$ the base, and
+no loss of cities truth preference beyond 0.018. All arms are \evlabel{validation} findings; the 95\,\% intervals over
+three seeds are wide by construction ($t_{0.975,2}=4.30$). Table~\ref{tab:impl_summary} gives the pre-registered
+classifications and Appendix Tables~\ref{tab:impl3}--\ref{tab:impl9} all paired differences with 95\,\% intervals; Figure~\ref{fig:impl} shows the
+per-arm means.
+
+\paragraph{Method A.} Method A cut GoT geographic reconstruction error by 61--85\,\% in every cell, passed every guard,
+and lowered the independent truth gap (B-group MLP probe fitted on original activations) relative to the base SAE on
+all three seeds in all nine layer--architecture cells (mean reduction 4--47\,\%). The OWT-only control changed the gap by
+at most 0.021 in either direction, so the reduction is attributable to the GoT data. The pre-registered criterion
+(consistent against both base and control) was met in four of nine cells: TopK at layer 3, ReLU at layer 8, and ReLU
+and JumpReLU at layer 9 (\evlabel{preliminary improvement}). In the other five the direction was the same but seed
+variation exceeded the 2\,sd rule (\evlabel{no improvement} under the criterion). Layer 3 counts as truth-informative
+under the pre-registered rule (original B-MLP AUROC 0.815), although the original logistic probe there reaches only 0.60.
+
+\paragraph{A frozen-probe gain that re-trained readers do not show.} A metric reported but not pre-registered as a
+criterion qualifies this result: the M2-style re-trained logistic gap on GoT geographic statements, and on RepE-LM
+persona prompts, did not change consistently under Method A relative to the base in any cell (no cell meets the 2\,sd
+rule; all 95\,\% intervals include zero). Against the OWT-only control, one cell (TopK, layer 8, geographic) is
+consistently lower. In the four cells where the frozen-probe criterion was met, the re-trained geographic gap changed
+by $-$0.005 to $+$0.010 (three of four upward; ReLU at layer 9 upward on all three seeds). Method A therefore mostly restores what the frozen original-activation probe reads, without measurably restoring the information a
+re-fitted reader can recover. This mirrors the M2 finding that frozen-probe gaps are dominated by probe fragility
+(\S\ref{sec:info}), and it means the Method A truth improvements should not be read as information recovery
+(\evlabel{descriptive}).
+
+\paragraph{Output-KL.} Adding the output-KL term lowered OWT spliced KL by 8--18\,\% and GoT statement KL substantially
+relative to Method A, consistently on every seed in every cell, and lowered spliced $\Delta$CE by 4--19\,\%. But for ReLU
+and JumpReLU it also raised L0: by 3.5\,\% and 4.6\,\% at layer 3 (within the guard) and by 5.3--8.1\,\% at layers 8 and 9
+(outside it). The behavioural criterion is therefore met (\evlabel{preliminary improvement}) for all three
+architectures at layer 3 and for TopK, whose L0 is fixed by construction, at layers 8 and 9; the four ReLU and JumpReLU
+cells at layers 8 and 9 are \evlabel{not creditable} and excluded from rankings. Output-KL never improved the truth gap
+over Method A. It was consistently worse at layer 3 for ReLU and TopK (\evlabel{regression} under the 2\,sd rule, by
+$+$0.012 and $+$0.027; the 95\,\% intervals just reach zero) and also worse on all
+seeds at layer 9 for ReLU, a cell classified not creditable because of its L0 guard.
+
+\paragraph{Summary.} Across three further layers the layer-6 pattern recurs: task-data fine-tuning reliably lowers task
+reconstruction error and nudges the frozen truth gap down, and an output-KL term reliably improves behavioural
+faithfulness, but neither improves truth information as measured by a re-trained reader. For ReLU and JumpReLU at
+deeper layers the behavioural gain comes with a sparsity cost that the pre-registered $\pm$5\,\% guard does not allow.
+
+\input{tables/t_impl_summary}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_impl_multilayer.pdf}
+\caption{IMP-L per-arm means ($\pm$1 sd over 3 seeds) of the independent truth gap (top) and OWT spliced KL (bottom) at
+layers 3, 8 and 9 (\evlabel{validation}). Output-KL points for ReLU and JumpReLU at layers 8 and 9 violate the
+pre-registered L0 guard. Source: \texttt{results/geometry\_of\_truth/multilayer\_finetune/summary.csv}.}
+\label{fig:impl}
+\end{figure}
 
 \subsection{Causal preservation after fine-tuning (E3)}
 \pending{M4 decomposition at the layer-8 final token for the IMP-L layer-8 SAEs.}
