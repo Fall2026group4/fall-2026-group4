@@ -1,0 +1,31 @@
+\section{Fine-tuning Experiments}\label{sec:finetune}
+
+All fine-tuning starts from a trained SAE and runs 500 Adam steps (learning rate $10^{-5}$) with the sparsity
+controller continued from the base coefficient; ReLU and JumpReLU must stay within $\pm$5\,\% of their base L0.
+Truth is measured with probes fitted on original activations of GoT training groups B, which no training objective
+sees.
+
+\paragraph{A circular objective, found and corrected.} A truth-aware objective that distilled a linear probe's logits
+appeared to remove most of the truth gap. An audit found that the evaluation probe was the training teacher (same
+rows, labels and weights), so the result was circular. In a corrected design (teacher fitted on groups A, probes on B,
+random-teacher control) the truth-aware objective is worse than plain reconstruction fine-tuning on every seed
+(TopK B-MLP gap 0.189 vs 0.107; random teacher 0.165).
+
+\paragraph{Method A and output-KL at layer 6.} Table~\ref{tab:ft6} reports Method A (GoT reconstruction with OWT
+replay) and the output-KL variant. Method A cuts GoT reconstruction error by 72--82\,\% and lowers the independent MLP
+truth gap on 18 of 18 paired comparisons against both the base and an OWT-only control, but never by more than 2 sd,
+the pre-registered criterion (\evlabel{preliminary}). Adding output KL lowers OWT spliced KL (0.115$\to$0.102) and GoT
+statement KL (0.110$\to$0.038) for TopK, meeting its behavioural criterion without changing the truth gap; for ReLU and
+JumpReLU the KL term pushes L0 5--11\,\% above the base, so their gains are not creditable. A KL-weight ablation found
+no truth trade-off to optimise (\evlabel{inconclusive}).
+
+\input{tables/t_finetune_l6}
+
+\subsection{Multi-layer improvement experiment (IMP-L)}\label{sec:impl}
+\pending{Layers 3, 8 and 9; base vs OWT-only control vs Method A vs output-KL; 3 architectures $\times$ 3 seeds;
+95\,\% $t$-intervals over seeds; L0 guards. Pre-registered in
+\texttt{results/geometry\_of\_truth/multilayer\_finetune/preregistration.json}. Table generated from
+\texttt{improvement\_table.csv} once the experiment has run.}
+
+\subsection{Causal preservation after fine-tuning (E3)}
+\pending{M4 decomposition at the layer-8 final token for the IMP-L layer-8 SAEs.}

@@ -169,3 +169,11 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | Commit | Change | Reason |
 |---|---|---|
 | this commit | M `README.md` (rewritten: four faithfulness levels, sub-questions SQ1–SQ5, verified dataset sizes and SAE specification, M0–M4 findings, corrected earlier claims, historical results separated, corrections table, planned work, progress table, test-split exposure, limitations, checklist); M `docs/RESEARCH_ROADMAP.md` (Review #8 response programme: IMP-L, E1–E3, paper, repository items, push/PR) | Instructor Review #8 (2026-11-08); the previous README still cited superseded claims (pooled ρ 0.86, "1.0–2.6× random", frozen-probe "near chance") and did not mention M0–M4 |
+
+## 2026-11-09: paper skeleton and IMP-L pre-registration
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `research_paper/Latex/{main.tex,references.bib,sections/*.tex,tables/*.tex}`, `research_paper/Latex_Fig/*.{pdf,svg}`, `scripts/shared/build_paper_artifacts.py` (tables and figures generated from committed result CSVs) | Review #8 blocker: paper skeleton; F7: vector figures. Bibliography = existing `reports/Latex_report/mybib.bib` + AxBench/SAEBench/Paulo et al. from the `origin/dhruv` review + Braun et al. 2024 |
+| this commit | Added `scripts/geometry_of_truth/22_multilayer_finetune.py`, `23_multilayer_evaluation.py`, `results/geometry_of_truth/multilayer_finetune/{README.md,preregistration.json,pretraining_checks.json,alpha.json,pretraining_hashes.json}`; progress §29 | Review #8 blocker: improvement result at more layers. Pre-registered before any training run |
+| this commit | M status line (line 3) of the M0, M1, M2 and M3 result READMEs: PRE-REGISTERED → COMPLETED | Stale headers found in the 2026-11-08 audit; bodies already reported completed results |

@@ -1,6 +1,6 @@
 # M3: causal site sweep in original GPT-2 (RepE-LM persona instructions)
 
-**Status:** PRE-REGISTERED 2026-11-08 (`preregistration.json`); results in §2 once run. **Evidence label:** TRAIN
+**Status:** COMPLETED (pre-registered in `preregistration.json` and run 2026-11-08; results in §2). **Evidence label:** TRAIN
 selection, VALIDATION confirmation; no SAE; test not loaded.
 
 * **Question:** at which layer and token position does GPT-2 carry the effect of swapping "truthful" for

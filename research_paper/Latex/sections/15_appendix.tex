@@ -1,0 +1,28 @@
+\section{Project History and Corrections}\label{app:history}
+
+\begin{itemize}
+  \item Layers were first trained with mixed optimiser procedures; all 108 SAEs were retrained with one uninterrupted
+        15k-step protocol (explained variance changed by at most 0.006; rankings unchanged).
+  \item An architecture summary averaged unmatched runs; it was replaced by a $\pm$10\,\% L0 matching rule.
+  \item Earlier ``SAE steering'' never placed an SAE in the forward pass; it was reclassified.
+  \item The truth-aware fine-tuning objective was circular (\S\ref{sec:finetune}).
+  \item The original RepE persona prompts were length-confounded; RepE-LM replaces them.
+  \item Correlations pooled across layers were replaced by within-layer analyses (M0).
+  \item Frozen-probe failures were re-analysed with noise and PCA references (M2).
+\end{itemize}
+Historical results (original RepE probes and steering, the layer-6 causal test with 200 controls, R1 honesty
+fine-tuning, R2 feature clamps, Gemma steering, Feature 974) are kept in the repository with their status labels and
+are not used as evidence here.
+
+\section{Test-split Exposure}\label{app:exposure}
+OWT test: used once, for the reconstruction table. GoT test: scored for all 108 SAEs with frozen probes and twice for
+historical layer-6 fine-tunes. RepE-LM test: never built or accessed. M0--M4 used no test rows.
+
+\section{Reproducibility}\label{app:repro}
+Code, configurations, pre-registrations and result files: repository \texttt{Fall2026group4/fall-2026-group4}, branch
+\texttt{sae-research}. Software: Python 3.14, PyTorch 2.14.1, TransformerLens 3.9.0 \citep{transformerlens2022},
+transformers 5.21.0, SAELens 6.54.12. Hardware: one NVIDIA A10G (23 GB). Tables and figures in this paper are generated
+by \texttt{scripts/shared/build\_paper\_artifacts.py} from the committed result files. SAE checkpoints (about 9 GB)
+are listed with SHA-256 hashes in \texttt{docs/checkpoint\_registry.csv}.
+
+\pending{Command list per experiment; pipeline diagram (Review \#8 F8: \texttt{.drawio} source and \texttt{.svg}).}

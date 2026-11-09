@@ -1,0 +1,18 @@
+\section{Limitations and Threats to Validity}\label{sec:limits}
+
+\begin{itemize}
+  \item \textbf{Small, data-limited SAEs.} 3072 latents (4$\times$), trained on 101{,}600 document-start tokens for
+        about 38 passes, not converged (validation-based checkpoint selection always chose the final step). The public
+        \texttt{gpt2-small-res-jb} SAE used 300M tokens and 24{,}576 latents. Conclusions may not transfer.
+  \item \textbf{One operating point.} L0 = 128 and width 3072 only.
+  \item \textbf{Surrogate JumpReLU.} Not the published estimator; up to 85\,\% dead latents at layer 0.
+  \item \textbf{Task-level sparsity mismatch.} Matching is on OWT; task prompts activate very different numbers of
+        latents per architecture.
+  \item \textbf{Weak behavioural signal.} The persona effect is 0.02--0.04 nats; the persona-meaning gate passed
+        narrowly (0.701).
+  \item \textbf{Seeds share data.} Seed spread understates uncertainty.
+  \item \textbf{Test exposure.} The GoT test split was scored in earlier frozen-probe evaluations; the original RepE
+        test split was touched in a smoke run and is retired with the confounded task.
+  \item \textbf{Single model.} No SAE results on Gemma-2-2B \citep{gemmateam2024gemma2}; Gemma Scope weights were
+        not available on our machine.
+\end{itemize}

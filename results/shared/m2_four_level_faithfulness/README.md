@@ -1,6 +1,6 @@
 # M2: four-level information faithfulness (108 SAEs × 12 layers × GoT cities / RepE-LM persona / RepE-LM neutral)
 
-**Status:** PRE-REGISTERED 2026-11-08 (`preregistration.json`); results in §2 once run. **Evidence label:** VALIDATION;
+**Status:** COMPLETED (pre-registered in `preregistration.json` and run 2026-11-08; results in §2). **Evidence label:** VALIDATION;
 fitting and selection on TRAIN; test not used.
 
 * **Question (SQ2):** when an SAE replaces GPT-2's activation, which task information can still be read, and by

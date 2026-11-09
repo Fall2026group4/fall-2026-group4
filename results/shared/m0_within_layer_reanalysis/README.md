@@ -1,6 +1,6 @@
 # M0: within-layer reanalysis of existing results (108 SAEs, validation)
 
-**Status:** PRE-REGISTERED (2026-11-08); results in §3 once run. **Evidence label:** VALIDATION reanalysis. No model, SAE,
+**Status:** COMPLETED (pre-registered and run 2026-11-08; results in §3). **Evidence label:** VALIDATION reanalysis. No model, SAE,
 activation cache or test row is loaded. Decision log: `docs/RESEARCH_DECISIONS.md` D23.
 Script: `scripts/shared/m0_within_layer_reanalysis.py`. Pre-registration and hashes: `preregistration.json`.
 

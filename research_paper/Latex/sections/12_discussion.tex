@@ -1,0 +1,20 @@
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Reconstruction is a proxy for behaviour, not for information.} Within a layer, an SAE with lower
+reconstruction error damages the model's predictions less, but it does not keep more truth information. Reconstruction
+metrics average over all directions weighted by their variance; the information that distinguishes true from false
+statements, or honest from dishonest instructions, lies in small differences between nearly identical activations.
+
+\paragraph{Why the causal effect leaks.} M4 makes this concrete. An SAE can reconstruct the honest and the dishonest
+activation well individually and still reconstruct their difference poorly, because the two reconstruction errors do
+not cancel. At mid and late sites about a third of the effect is outside the reconstructed difference, and for TopK
+and JumpReLU part of it exists only when reconstruction and error act together through GPT-2's nonlinear downstream
+computation.
+
+\paragraph{The negative result is the main finding.} The SAEs studied here reconstruct well by conventional measures,
+yet they lose task information that PCA at equal error keeps, and their reconstruction carries only part of a
+confirmed causal effect at mid and late layers. Fine-tuning improved task reconstruction and output faithfulness at
+layer 6, but no method met its pre-registered truth criterion.
+
+\pending{Revise after IMP-L, E1--E3 and M5; in particular, whether the conclusions hold for an externally trained SAE
+(E2).}

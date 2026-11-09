@@ -1,0 +1,36 @@
+\section{Information Preservation}\label{sec:info}
+
+\paragraph{Frozen probes overstate the loss.} A logistic truth probe fitted on original activations and applied
+unchanged to SAE reconstructions loses 0.28--0.29 AUROC on GoT (Table~\ref{tab:m2}, Figure~\ref{fig:m2}). Earlier
+versions of this project read this as truth information being lost. Adding isotropic noise with the same norm as the
+SAE error causes almost the same drop (0.25--0.26), and a simpler mass-mean reader loses only 0.02--0.03. Most of the
+frozen-probe collapse is therefore sensitivity of that reader to any perturbation of this size, not SAE-specific loss.
+
+\paragraph{A smaller, real loss remains.} Readers re-trained on the reconstructions are 0.07--0.12 AUROC worse than
+readers trained on the original activations for GoT, and 0.14--0.18 worse for the persona task. Re-training never
+recovers the original performance, so no cell is classified as ``readout shifted''; no cell is ``preserved''. The
+task label can be decoded from the reconstruction error alone (AUROC 0.62--0.77), so the lost information is still in
+the activation, outside the SAE's reconstruction.
+
+\paragraph{SAEs are never better than PCA.} At the same OWT reconstruction error, PCA keeps at least as much task
+information as the SAE in every cell; the SAE is significantly worse in 52 of 81 GoT cells, 59 of 99 persona cells
+and 81 of 90 neutral cells (one-sided paired bootstrap, BH-corrected).
+
+\paragraph{Persona versus generic change.} Part of the persona loss is generic one-word-change information: the
+re-trained gap is 0.07--0.13 larger for persona than for neutral swaps at layers 3--8, and about equal at layers 10--11.
+
+\paragraph{Architecture differences are confounded.} On truth, ReLU loses least and JumpReLU most, the reverse of
+the reconstruction ranking; on persona, ReLU loses most. Because task-level L0 is not matched, we do not interpret
+these differences as architecture effects until E1 is run.
+
+\input{tables/t_m2}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_m2_information}
+  \caption{Information preservation by layer (\evlabel{validation}). Dashed: frozen logistic gap; solid: re-trained
+  logistic gap; dotted grey: frozen gap under norm-matched noise; black: PCA at the ReLU SAE's error.}
+  \label{fig:m2}
+\end{figure}
+
+\pending{M5 held-out confirmation; E1 task-level sparsity control; E2 external SAE reference.}

@@ -1,0 +1,21 @@
+\section{Statistical Analysis}\label{sec:stats}
+
+\begin{itemize}
+  \item \textbf{Pre-registration.} Every experiment from M0 onwards wrote its hypotheses, criteria and script hashes to
+        \texttt{preregistration.json} before running; scripts refuse to overwrite outputs.
+  \item \textbf{Within-layer inference (M0).} Fixed-effects regressions with Freedman--Lane permutation within layer
+        (5000 permutations), bootstrap CIs (2000) and Holm correction over four primary pairs.
+  \item \textbf{Information (M2).} Statement-grouped bootstrap (paired over the same rows), one-sided tests against
+        noise and PCA references, Benjamini--Hochberg correction across SAEs per task; a 0.02 AUROC tolerance defines
+        ``preserved''.
+  \item \textbf{Causal (M3/M4).} Holm-corrected tests over 65 cells; 200 matched-norm random vectors per cell; synonym
+        and neutral controls; for features, 200 random feature sets matched on activation frequency and $|\Delta z|$.
+  \item \textbf{Seeds.} Three training seeds share the same training data, so seed spread understates uncertainty;
+        comparisons that share seeds are paired. The fine-tuning criterion ``consistent'' requires the improvement on
+        all three seeds and a mean paired difference larger than twice its standard deviation.
+  \item \textbf{Splits.} Fitting and selection use training data; validation results are reported as
+        \evlabel{validation}. Only the reconstruction table is \evlabel{test}.
+\end{itemize}
+
+\pending{M5: one pre-registered held-out pass (RepE-LM test, OWT test; GoT test labelled previously exposed),
+hierarchical bootstrap over statements and seeds, Holm within confirmatory families.}

@@ -1,0 +1,22 @@
+\section{Research Questions and Hypotheses}\label{sec:questions}
+
+\textbf{Main question.} Can SAE reconstruction of frozen LLM activations be improved while preserving truth-related
+information and causal behaviour across transformer layers?
+
+\begin{description}
+  \item[SQ1 (reconstruction).] How do ReLU, TopK and JumpReLU SAEs compare across the 12 layers at matched sparsity?
+  \item[SQ2 (information).] Which task information survives reconstruction, and is the loss specific to SAEs compared
+        with generic perturbations of the same size and with PCA at the same reconstruction error?
+  \item[SQ3 (behaviour).] How much does splicing the SAE in damage GPT-2's predictions, and does reconstruction error
+        predict that damage between SAEs at the same layer?
+  \item[SQ4 (causal).] Where does GPT-2 carry a persona-instruction effect, and how much of it survives in the SAE
+        reconstruction?
+  \item[SQ5 (improvement).] Can fine-tuning improve faithfulness at matched sparsity, and at which layers?
+\end{description}
+
+\paragraph{Evidential status.} Each result is labelled \evlabel{test} (held-out split, evaluated once under a written
+protocol), \evlabel{validation}, or \evlabel{preliminary} (a validation pilot whose pre-registered criterion was not met
+or which is unreplicated). Every experiment from M0 onwards was pre-registered with file hashes before it ran.
+
+The project's original proposal asked whether SAE features are causally faithful to their auto-generated labels. The
+scope was narrowed to the questions above after instructor reviews and internal audits (Appendix~\ref{app:history}).

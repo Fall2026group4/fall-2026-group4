@@ -1,0 +1,51 @@
+{
+  "experiment": "IMP-L multi-layer improvement (Instructor Review #8 blocker)",
+  "evidence_label": "VALIDATION (no test row read by training or evaluation)",
+  "question": "Do the layer-6 fine-tuning methods (Method A; output-KL) improve faithfulness at layers 3, 8 and 9 relative to the original SAEs and to an OWT-only continued-training control, at matched sparsity?",
+  "layers": [
+    3,
+    8,
+    9
+  ],
+  "architectures": [
+    "relu",
+    "topk",
+    "jumprelu"
+  ],
+  "seeds": [
+    42,
+    1042,
+    2042
+  ],
+  "arms": {
+    "base": "uninterrupted 15k-step SAE (no training)",
+    "owt_only": "control: 500 steps OWT-only",
+    "method_a": "500 steps 0.5*MSE_GoT-A + 0.5*MSE_OWT + penalty",
+    "kl": "method_a + alpha*0.5*(KL_OWT+KL_GoT) (layer-6 Method B), alpha per base SAE in alpha.json"
+  },
+  "budget": {
+    "steps": 500,
+    "lr": 1e-05,
+    "optimizer": "Adam",
+    "grad_clip": 10.0,
+    "batch": "64 geographic-A + 64 numerical-A + 128 OWT train rows (owt_only: 256 OWT rows); kl adds 8 OWT train sequences + the 128 GoT-A statements per step"
+  },
+  "new_training_runs": 81,
+  "layer_3_caveat": "the original GoT logistic probe is below the 0.70 informative threshold at layer 3 (val 0.648, all-layer frozen-probe table); layer-3 truth results are reported but are descriptive if the original B-MLP validation AUROC is < 0.70",
+  "evaluation": "scripts/geometry_of_truth/23_multilayer_evaluation.py, validation only: OWT validation EV/MSE/cosine/L0/dead fraction; GoT geographic and numerical relative error and L0; RepE-LM persona-prompt L0; GoT B-group probes fitted on ORIGINAL activations (MLP x 5 seeds, logistic with C chosen on original validation, mass-mean); M2-style re-trained logistic gap on GoT geographic and RepE-LM persona; OWT splice delta CE and KL, GoT statement KL, cities truth preference. Layer 8 additionally: causal preservation T_rec/T_full at the final token with the M4 protocol (E3, separate pre-registered step after training).",
+  "statistics": "per layer x architecture, paired by seed: arm - base and arm - owt_only (and kl - method_a); mean, sd, per-seed values, 95 % t-interval over the 3 seeds (t = 4.303). No pooling across layers.",
+  "criteria": {
+    "consistent": "better on all 3 seeds AND |mean paired difference| > 2 x its sd (the layer-6 rule)",
+    "T_method_a": "GoT geographic B-MLP gap: method_a < base AND method_a < owt_only, both consistent",
+    "B_kl": "OWT splice KL AND GoT statement KL: kl < method_a, both consistent",
+    "T_kl": "GoT geographic B-MLP gap: kl < method_a, consistent",
+    "guards": [
+      "OWT-validation L0 within +-5 % of the base SAE on every seed",
+      "OWT validation EV >= base - 0.005 on every seed (kl: >= method_a - 0.02, the layer-6 rule)",
+      "OWT splice delta CE <= 1.10 x base on every seed",
+      "cities truth-preference change >= base - 0.018 (mean over seeds)"
+    ],
+    "classification": "CONFIRMED is not used (validation only). PRELIMINARY IMPROVEMENT = criterion AND all guards met; NO IMPROVEMENT = criterion not met with guards met; NOT CREDITABLE = any guard failed (reported, excluded from rankings); REGRESSION = consistent change in the wrong direction."
+  },
+  "unchanged_from_layer_6": "all training code is imported from scripts 14 and 17; --prepare reproduced Method A TopK seed 42 and Method B TopK seed 42 bit for bit through this script before registration"
+}

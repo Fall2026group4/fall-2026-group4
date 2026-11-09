@@ -1,0 +1,21 @@
+\begin{abstract}
+Sparse autoencoders (SAEs) are widely used to explain what large language models represent, which presumes that an
+SAE is a faithful stand-in for the activations it replaces. We audit that presumption at all twelve layers of GPT-2
+Small for three SAE architectures (ReLU, TopK and a sigmoid-surrogate JumpReLU; 108 SAEs at matched sparsity, three
+seeds each), separating four levels of faithfulness: reconstruction, task-information preservation, behavioural
+faithfulness and causal faithfulness. Reconstruction degrades with depth (OWT test explained variance 0.93--0.95 at
+layers 0--2, 0.76--0.82 at layer 11). Within a layer, reconstruction error predicts how much splicing the SAE damages
+the model's predictions, but not how much truth information is lost. The apparent collapse of a frozen truth probe
+on SAE reconstructions is largely reproduced by random noise of the same norm; re-trained readers show a smaller but
+real loss, and at equal reconstruction error the SAEs never preserve task information better than PCA. Using an
+equal-length persona-instruction task built to remove a length shortcut, we locate where GPT-2 carries the
+instruction's effect and decompose it: the SAE-reconstructed activation difference restores 93--97\,\% of the effect
+at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final token, with the remainder in the
+reconstruction error or in an interaction between reconstruction and error. Short fine-tuning at layer 6 improves
+task reconstruction and, with an output-KL term, behavioural faithfulness for TopK, but no method meets its
+pre-registered criterion for truth preservation. All results except the reconstruction table are validation-stage;
+a single pre-registered held-out evaluation is pending.
+\end{abstract}
+
+\pending{Abstract to be revised after the multi-layer improvement experiment (IMP-L), E1--E3 and the final held-out
+evaluation (M5). Numbers above are validation-stage unless marked \evlabel{test}.}

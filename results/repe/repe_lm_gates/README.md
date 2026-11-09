@@ -1,6 +1,6 @@
 # M1: RepE-LM, a shortcut-free persona task (construction, activations, gates K1–K7)
 
-**Status:** PRE-REGISTERED (2026-11-08); results in §4 once run. **Evidence label:** exact construction checks +
+**Status:** COMPLETED (pre-registered and run 2026-11-08; results in §4). **Evidence label:** exact construction checks +
 TRAIN-statement gates; validation descriptive; **test statements not loaded.** Decision log: D23.
 Scripts:
 * `scripts/repe/20_build_repe_lm_dataset.py`: builds the dataset → `data/repe/repe_lm/`;

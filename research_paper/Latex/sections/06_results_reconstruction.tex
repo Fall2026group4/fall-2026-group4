@@ -1,0 +1,27 @@
+\section{Reconstruction and Sparsity}\label{sec:recon}
+
+Table~\ref{tab:recon} and Figure~\ref{fig:recon} (left) give OWT test reconstruction for all 108 SAEs
+(\evlabel{test}). Explained variance falls with depth for every architecture, from 0.93--0.95 at layers 0--2 to
+0.757 (ReLU) and 0.815 (TopK, JumpReLU) at layer 11. Among matched runs, ReLU leads at layer 1, ReLU and JumpReLU tie
+at layer 2, JumpReLU leads at layers 3--9, and JumpReLU and TopK tie at layers 10--11. Seed standard deviations are
+$\le 0.001$ except for layer-0 JumpReLU, whose seed 42 is unmatched (L0 73.6; about 96\,\% of latents dead) and
+excluded from rankings.
+
+\paragraph{Sparsity is matched on OWT only.} ReLU runs 2--6\,\% above the target L0. A within-layer adjustment using
+the L0 elasticity measured in an earlier sweep changes no ranking except two near-ties (M0). The architectures differ
+strongly in effective width: of 3072 latents, ReLU keeps 2920--3063 alive, TopK 1711--2851 and JumpReLU 469--2947. On
+task prompts the number of active latents is not matched (on GoT final tokens, TopK uses 128, ReLU 32--110 and
+JumpReLU 23--92 at layers 1--11), which confounds architecture comparisons on task information (\S\ref{sec:info}).
+
+\input{tables/t_reconstruction}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_reconstruction_behaviour}
+  \caption{Left: OWT test explained variance by layer (\evlabel{test}; error bars: seed sd). Right: spliced
+  next-token cross-entropy increase (\evlabel{validation}). Sources: Tables~\ref{tab:recon} and~\ref{tab:splice}.}
+  \label{fig:recon}
+\end{figure}
+
+\pending{E1 (TopK trained at several $k$ to match task-level L0) and E2 (public \texttt{gpt2-small-res-jb}
+reference; not matched in width, data or L0).}
