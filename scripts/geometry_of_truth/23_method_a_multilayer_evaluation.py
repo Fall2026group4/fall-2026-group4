@@ -10,11 +10,11 @@ Run from repository root after script 22 --train:
 Outputs:
     results/geometry_of_truth/method_a_multilayer/
         per_sae_new_layers.csv
-        per_sae_layers_3_6_9.csv
-        summary_layers_3_6_9.csv
-        comparisons_layers_3_6_9.csv
-        criteria_layers_3_6_9.json
-        improvement_table_layers_3_6_9.csv
+        per_sae_layers_5_6_9.csv
+        summary_layers_5_6_9.csv
+        comparisons_layers_5_6_9.csv
+        criteria_layers_5_6_9.json
+        improvement_table_layers_5_6_9.csv
         eval_info.json
 
 No GoT/RepE test rows are scored.
@@ -718,7 +718,7 @@ def main():
 
     final_table = (
         OUT
-        / "improvement_table_layers_3_6_9.csv"
+        / "improvement_table_layers_5_6_9.csv"
     )
     if final_table.exists():
         raise SystemExit(
@@ -873,7 +873,7 @@ def main():
     )
 
     all_df.to_csv(
-        OUT / "per_sae_layers_3_6_9.csv",
+        OUT / "per_sae_layers_5_6_9.csv",
         index=False,
     )
 
@@ -902,7 +902,7 @@ def main():
         for a, b in summ.columns
     ]
     summ.reset_index().to_csv(
-        OUT / "summary_layers_3_6_9.csv",
+        OUT / "summary_layers_5_6_9.csv",
         index=False,
     )
 
@@ -914,12 +914,12 @@ def main():
 
     comps.to_csv(
         OUT
-        / "comparisons_layers_3_6_9.csv",
+        / "comparisons_layers_5_6_9.csv",
         index=False,
     )
     (
         OUT
-        / "criteria_layers_3_6_9.json"
+        / "criteria_layers_5_6_9.json"
     ).write_text(
         json.dumps(crit, indent=2)
     )

@@ -1,0 +1,10 @@
+{
+  "recorded": "2026-11-09 04:45:15",
+  "note": "Recorded before any layer-3/layer-9 Method A run.",
+  "sha256": {
+    "scripts/geometry_of_truth/22_method_a_multilayer_finetune.py": "ef89c1e5874900731603ad739ff965a60c5cfec8eef91948ba0c8fec7b7ef181",
+    "scripts/geometry_of_truth/23_method_a_multilayer_evaluation.py": "2652908101dd25aed9c07b81d6cc873164eb608cf36df28b722ba9e027684263",
+    "data/got/splits/train_AB_groups_truth_aware_pilot.csv": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+    "results/geometry_of_truth/method_a_multilayer/preregistration.json": "d417a514a147e1d4ecebd87d9e2d3f639af6cc46c5fb7141fe42f603e9ca33b6"
+  }
+}

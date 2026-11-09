@@ -1,0 +1,48 @@
+{
+  "written": "2026-11-09 04:45:15",
+  "purpose": "Extend committed Method A from layer 6 to layers 5 and 9.",
+  "historical_layer6_untouched": true,
+  "layers_new": [
+    5,
+    9
+  ],
+  "seeds": [
+    42,
+    1042,
+    2042
+  ],
+  "architectures": [
+    "relu",
+    "topk",
+    "jumprelu"
+  ],
+  "split_file": "data/got/splits/train_AB_groups_truth_aware_pilot.csv",
+  "split_file_sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "reference_protocol": "scripts/geometry_of_truth/14_method_a_reconstruction_finetune.py; same GoT-A/OWT replay objective, batches, optimizer, steps, sparsity controller and guards.",
+  "training": {
+    "method_a_loss": "0.5*MSE_GoT_A + 0.5*MSE_OWT",
+    "owt_only_loss": "MSE_OWT on 256 OWT rows",
+    "batch": "64 geographic-A + 64 numerical-A + 128 OWT train",
+    "lr": 1e-05,
+    "steps": 500,
+    "grad_clip": 10.0,
+    "checkpoint_selection": "none; final step only",
+    "new_training_runs": 36
+  },
+  "evaluation": {
+    "data": "validation only; GoT/RepE test rows never scored",
+    "primary_metric": "GoT geographic independent B-MLP gap",
+    "paired_comparisons": "method_a vs base and method_a vs owt_only",
+    "uncertainty": "mean paired difference + SD + two-sided 95% Student-t CI across the 3 training seeds; CI is descriptive because n=3"
+  },
+  "success_criteria": {
+    "primary": "For each layer and architecture: Method A geographic B-MLP gap < paired base AND < paired OWT-only on all 3 seeds, and mean paired improvement > 2 x SD of paired improvements.",
+    "guards": [
+      "OWT validation L0 within +/-5% of paired base on every seed",
+      "OWT splice delta CE <= 1.10 x paired base on every seed",
+      "OWT validation EV >= paired base - 0.005 on every seed",
+      "GoT cities truth-preference change >= base - 0.018 (mean)",
+      "RepE validation mass-mean gap <= base + 0.02 (mean)"
+    ]
+  }
+}

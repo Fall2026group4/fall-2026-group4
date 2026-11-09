@@ -1,0 +1,20 @@
+{
+  "script_sha256": "2652908101dd25aed9c07b81d6cc873164eb608cf36df28b722ba9e027684263",
+  "data": "validation only",
+  "test_rows_used": false,
+  "new_layers": [
+    5,
+    9
+  ],
+  "layer6_source": "results/geometry_of_truth/method_a_layer6/per_sae.csv",
+  "mlp_probe_seeds": [
+    42,
+    123,
+    456,
+    789,
+    2026
+  ],
+  "paired_ci": "two-sided 95% Student-t CI across 3 paired training seeds; df=2",
+  "gpu_peak_allocated_mb": 8537.7,
+  "runtime_seconds": 770.2
+}

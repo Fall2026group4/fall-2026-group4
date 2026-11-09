@@ -1,0 +1,68 @@
+{
+  "split_file": "data/got/splits/train_AB_groups_truth_aware_pilot.csv",
+  "split_sha256": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+  "matches_layer6_pilot": true,
+  "layers": {
+    "5": {
+      "geographic": {
+        "rows_A": 1044,
+        "rows_B": 1048,
+        "A_B_overlap": 0,
+        "train_vs_val_test_overlap": 0,
+        "test_rows_in_A_or_B": 0,
+        "label_mean_A": 0.5,
+        "label_mean_B": 0.5,
+        "probe_A_val_auroc": 0.8086535395408163,
+        "probe_B_val_auroc": 0.7802933673469388,
+        "probe_A_C": 1.0,
+        "probe_B_C": 1.0,
+        "passes": true
+      },
+      "numerical": {
+        "rows_A": 1384,
+        "rows_B": 1388,
+        "A_B_overlap": 0,
+        "train_vs_val_test_overlap": 0,
+        "test_rows_in_A_or_B": 0,
+        "label_mean_A": 0.5,
+        "label_mean_B": 0.5,
+        "probe_A_val_auroc": 0.992661157779401,
+        "probe_B_val_auroc": 0.993882395909423,
+        "probe_A_C": 10.0,
+        "probe_B_C": 10.0,
+        "passes": true
+      }
+    },
+    "9": {
+      "geographic": {
+        "rows_A": 1044,
+        "rows_B": 1048,
+        "A_B_overlap": 0,
+        "train_vs_val_test_overlap": 0,
+        "test_rows_in_A_or_B": 0,
+        "label_mean_A": 0.5,
+        "label_mean_B": 0.5,
+        "probe_A_val_auroc": 0.8559470663265306,
+        "probe_B_val_auroc": 0.8312938456632653,
+        "probe_A_C": 0.1,
+        "probe_B_C": 0.1,
+        "passes": true
+      },
+      "numerical": {
+        "rows_A": 1384,
+        "rows_B": 1388,
+        "A_B_overlap": 0,
+        "train_vs_val_test_overlap": 0,
+        "test_rows_in_A_or_B": 0,
+        "label_mean_A": 0.5,
+        "label_mean_B": 0.5,
+        "probe_A_val_auroc": 0.9952177684441198,
+        "probe_B_val_auroc": 0.9981510226442659,
+        "probe_A_C": 10.0,
+        "probe_B_C": 10.0,
+        "passes": true
+      }
+    }
+  },
+  "passes": true
+}

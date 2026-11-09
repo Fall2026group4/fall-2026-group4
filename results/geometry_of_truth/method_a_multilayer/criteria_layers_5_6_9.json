@@ -1,0 +1,1127 @@
+{
+  "layer5_relu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0456,
+          -0.0517,
+          -0.1018
+        ],
+        "mean_diff": -0.06634114583333332,
+        "sd_diff": 0.0308350176976488,
+        "ci95": [
+          -0.1429395761414322,
+          0.01025728447476558
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0506,
+          -0.0588,
+          -0.1013
+        ],
+        "mean_diff": -0.07025669642857142,
+        "sd_diff": 0.027234623765039587,
+        "ci95": [
+          -0.13791125239118235,
+          -0.002602140465960495
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0054,
+          0.0093,
+          -0.0033
+        ],
+        "mean_diff": 0.003786670918367411,
+        "sd_diff": 0.006472967612342193,
+        "ci95": [
+          -0.012293072034995042,
+          0.019866413871729865
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0041,
+          0.0078,
+          -0.0052
+        ],
+        "mean_diff": 0.0022321428571429047,
+        "sd_diff": 0.006705082972011112,
+        "ci95": [
+          -0.014424206614671288,
+          0.018888492328957097
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0368,
+          -0.0097,
+          -0.0546
+        ],
+        "mean_diff": -0.033681062819576425,
+        "sd_diff": 0.022588805160623268,
+        "ci95": [
+          -0.08979476558457146,
+          0.02243263994541861
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0351,
+          -0.0233,
+          -0.0541
+        ],
+        "mean_diff": -0.03749695641587538,
+        "sd_diff": 0.01552688641669485,
+        "ci95": [
+          -0.07606788051110158,
+          0.0010739676793508138
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0071,
+          -0.003,
+          0.0181
+        ],
+        "mean_diff": 0.007392104942780679,
+        "sd_diff": 0.01054931239992995,
+        "ci95": [
+          -0.018813839823906234,
+          0.033598049709467594
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0121,
+          -0.0024,
+          0.0135
+        ],
+        "mean_diff": 0.0076945611151692335,
+        "sd_diff": 0.008802479226353074,
+        "ci95": [
+          -0.014172009488735655,
+          0.029561131719074124
+        ]
+      }
+    },
+    "primary_pass": true,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": true
+  },
+  "layer5_topk": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0738,
+          -0.0251,
+          0.0063
+        ],
+        "mean_diff": -0.03090454931972787,
+        "sd_diff": 0.04035438034135196,
+        "ci95": [
+          -0.13115038736376644,
+          0.06934128872431071
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0805,
+          -0.0111,
+          -0.0608
+        ],
+        "mean_diff": -0.05081313775510209,
+        "sd_diff": 0.03577986521205765,
+        "ci95": [
+          -0.13969525025306087,
+          0.03806897474285669
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.003,
+          -0.0062,
+          0.0403
+        ],
+        "mean_diff": 0.01034359056122447,
+        "sd_diff": 0.0259577591913695,
+        "ci95": [
+          -0.0541390579610153,
+          0.07482623908346424
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0061,
+          -0.0066,
+          0.0257
+        ],
+        "mean_diff": 0.004311490221088417,
+        "sd_diff": 0.0185157752898515,
+        "ci95": [
+          -0.04168424544045638,
+          0.05030722588263322
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.149,
+          -0.0191,
+          -0.0365
+        ],
+        "mean_diff": -0.06820900292184079,
+        "sd_diff": 0.07054518065263062,
+        "ci95": [
+          -0.24345294656987077,
+          0.10703494072618919
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1381,
+          -0.0507,
+          -0.0427
+        ],
+        "mean_diff": -0.07714877039201364,
+        "sd_diff": 0.05289498525136642,
+        "ci95": [
+          -0.20854719802235205,
+          0.0542496572383248
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0725,
+          0.0473,
+          -0.0453
+        ],
+        "mean_diff": -0.023498371682493285,
+        "sd_diff": 0.0627688849779644,
+        "ci95": [
+          -0.17942492598663745,
+          0.1324281826216509
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0552,
+          0.0288,
+          -0.0624
+        ],
+        "mean_diff": -0.029602660092524952,
+        "sd_diff": 0.050700029207618444,
+        "ci95": [
+          -0.15554851463874966,
+          0.09634319445369975
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer5_jumprelu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1025,
+          -0.0632,
+          -0.0236
+        ],
+        "mean_diff": -0.06311782525510208,
+        "sd_diff": 0.03946717024325437,
+        "ci95": [
+          -0.16115971123612785,
+          0.03492406072592369
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1116,
+          -0.0551,
+          -0.0072
+        ],
+        "mean_diff": -0.057973267431972786,
+        "sd_diff": 0.052290153179306735,
+        "ci95": [
+          -0.18786920890277514,
+          0.07192267403882957
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0232,
+          -0.0159,
+          -0.0016
+        ],
+        "mean_diff": 0.0019265518707483238,
+        "sd_diff": 0.019794726237886976,
+        "ci95": [
+          -0.04724627407240972,
+          0.051099377813906374
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0216,
+          -0.0161,
+          -0.0088
+        ],
+        "mean_diff": -0.001122714710884339,
+        "sd_diff": 0.020033911321261786,
+        "ci95": [
+          -0.05088970933976425,
+          0.04864427991799557
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0524,
+          -0.0971,
+          -0.0429
+        ],
+        "mean_diff": -0.06415038349159974,
+        "sd_diff": 0.0289189858167668,
+        "ci95": [
+          -0.13598912674730476,
+          0.007688359764105285
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0421,
+          -0.0949,
+          -0.0404
+        ],
+        "mean_diff": -0.05912009982955931,
+        "sd_diff": 0.0309724390723166,
+        "ci95": [
+          -0.13605990375688393,
+          0.017819704097765295
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.037,
+          0.0043,
+          0.0011
+        ],
+        "mean_diff": 0.014122230338446543,
+        "sd_diff": 0.01991851817507884,
+        "ci95": [
+          -0.03535811182431201,
+          0.0636025725012051
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0361,
+          0.0051,
+          -0.0203
+        ],
+        "mean_diff": 0.006958394205015761,
+        "sd_diff": 0.028241036488434516,
+        "ci95": [
+          -0.06319622955745989,
+          0.07711301796749141
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer6_relu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1463,
+          -0.054,
+          -0.026
+        ],
+        "mean_diff": -0.07542251275510206,
+        "sd_diff": 0.06293789723129666,
+        "ci95": [
+          -0.23176891677151257,
+          0.08092389126130844
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1464,
+          -0.0507,
+          -0.0239
+        ],
+        "mean_diff": -0.07366735756802721,
+        "sd_diff": 0.06438441857411645,
+        "ci95": [
+          -0.23360711980312326,
+          0.08627240466706883
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0087,
+          0.0052,
+          0.0009
+        ],
+        "mean_diff": 0.004929315476190428,
+        "sd_diff": 0.003914443826233763,
+        "ci95": [
+          -0.0047947020534508155,
+          0.014653333005831673
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.012,
+          0.0082,
+          -0.0004
+        ],
+        "mean_diff": 0.006590136054421779,
+        "sd_diff": 0.006335727284664684,
+        "ci95": [
+          -0.009148683025371182,
+          0.02232895513421474
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0121,
+          -0.1897,
+          -0.1652
+        ],
+        "mean_diff": -0.11427136596055514,
+        "sd_diff": 0.11014525965089965,
+        "ci95": [
+          -0.38788735924017703,
+          0.15934462731906673
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0302,
+          -0.1907,
+          -0.1465
+        ],
+        "mean_diff": -0.10233671171171171,
+        "sd_diff": 0.11691378391640077,
+        "ci95": [
+          -0.3927666513727945,
+          0.18809322794937106
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0021,
+          -0.032,
+          -0.0256
+        ],
+        "mean_diff": -0.019920258095933747,
+        "sd_diff": 0.01572763951830386,
+        "ci95": [
+          -0.05898988054163648,
+          0.019149364349768983
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0044,
+          -0.0209,
+          -0.0251
+        ],
+        "mean_diff": -0.01678917092768441,
+        "sd_diff": 0.010918481569539082,
+        "ci95": [
+          -0.04391218275064741,
+          0.010333840895278588
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer6_topk": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0912,
+          -0.1487,
+          -0.0498
+        ],
+        "mean_diff": -0.0965268920068027,
+        "sd_diff": 0.0496686033692839,
+        "ci95": [
+          -0.21991054273105054,
+          0.026856758717445126
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0666,
+          -0.1602,
+          -0.0702
+        ],
+        "mean_diff": -0.09900749362244897,
+        "sd_diff": 0.05302144705029733,
+        "ci95": [
+          -0.2307200697766193,
+          0.032705082531721344
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0389,
+          0.0054,
+          -0.0194
+        ],
+        "mean_diff": 0.008317389455782318,
+        "sd_diff": 0.029256623856691796,
+        "ci95": [
+          -0.06436009318785338,
+          0.08099487209941802
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.035,
+          -0.0022,
+          -0.0195
+        ],
+        "mean_diff": 0.004431069302721126,
+        "sd_diff": 0.027877762279237654,
+        "ci95": [
+          -0.06482113129694839,
+          0.07368326990239063
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.1092,
+          -0.2582,
+          -0.1587
+        ],
+        "mean_diff": -0.17539642683223766,
+        "sd_diff": 0.07588590670086759,
+        "ci95": [
+          -0.3639074694653194,
+          0.013114615800844054
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0896,
+          -0.2283,
+          -0.1386
+        ],
+        "mean_diff": -0.15217083637691745,
+        "sd_diff": 0.07034354610585886,
+        "ci95": [
+          -0.32691389204330124,
+          0.022572219289466317
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0325,
+          0.0273,
+          -0.0265
+        ],
+        "mean_diff": -0.010576454833211605,
+        "sd_diff": 0.03291705948109375,
+        "ci95": [
+          -0.09234696365320053,
+          0.0711940539867773
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0407,
+          0.011,
+          -0.0045
+        ],
+        "mean_diff": -0.011402027027027065,
+        "sd_diff": 0.026540784621468652,
+        "ci95": [
+          -0.07733299100714007,
+          0.05452893695308594
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer6_jumprelu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0348,
+          -0.0345,
+          -0.0933
+        ],
+        "mean_diff": -0.054198554421768734,
+        "sd_diff": 0.03386619359045875,
+        "ci95": [
+          -0.13832684307642848,
+          0.02992973423289102
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0282,
+          -0.0369,
+          -0.0836
+        ],
+        "mean_diff": -0.04956685799319733,
+        "sd_diff": 0.02982886025437676,
+        "ci95": [
+          -0.12366585465241187,
+          0.024532138666017216
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0307,
+          -0.0065,
+          0.0007
+        ],
+        "mean_diff": 0.008277529761904814,
+        "sd_diff": 0.019728659405247116,
+        "ci95": [
+          -0.04073117707079049,
+          0.05728623659460012
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0298,
+          -0.0072,
+          0.0123
+        ],
+        "mean_diff": 0.01162574404761905,
+        "sd_diff": 0.01846364884882497,
+        "ci95": [
+          -0.03424050235598755,
+          0.05749199045122565
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0962,
+          0.059,
+          -0.0485
+        ],
+        "mean_diff": -0.028531698928658377,
+        "sd_diff": 0.07949911937681343,
+        "ci95": [
+          -0.22601845943096902,
+          0.16895506157365228
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0759,
+          0.049,
+          -0.0755
+        ],
+        "mean_diff": -0.034148633430728,
+        "sd_diff": 0.07198354463762156,
+        "ci95": [
+          -0.21296567129723187,
+          0.1446684044357759
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0416,
+          0.0788,
+          -0.0115
+        ],
+        "mean_diff": 0.008567689310932583,
+        "sd_diff": 0.06269535550539396,
+        "ci95": [
+          -0.1471762076574674,
+          0.16431158627933254
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0155,
+          0.0553,
+          -0.003
+        ],
+        "mean_diff": 0.012269448502556532,
+        "sd_diff": 0.037815363637871746,
+        "ci95": [
+          -0.08166912239736564,
+          0.10620801940247869
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer9_relu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.004,
+          -0.056,
+          -0.0729
+        ],
+        "mean_diff": -0.04164673681972794,
+        "sd_diff": 0.040384638461519524,
+        "ci95": [
+          -0.14196774020116426,
+          0.05867426656170839
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0055,
+          -0.0793,
+          -0.0743
+        ],
+        "mean_diff": -0.04937553146258506,
+        "sd_diff": 0.04759087612484024,
+        "ci95": [
+          -0.16759782158398517,
+          0.06884675865881504
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0222,
+          -0.005,
+          0.0186
+        ],
+        "mean_diff": -0.0028831845238095344,
+        "sd_diff": 0.020480595072125223,
+        "ci95": [
+          -0.053759803103477125,
+          0.047993434055858056
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0225,
+          -0.0028,
+          0.0175
+        ],
+        "mean_diff": -0.0026240965136054006,
+        "sd_diff": 0.02000039662819593,
+        "ci95": [
+          -0.05230783602953954,
+          0.04705964300232874
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1969,
+          -0.0922,
+          -0.0481
+        ],
+        "mean_diff": -0.11239880082785479,
+        "sd_diff": 0.07640009291141871,
+        "ci95": [
+          -0.3021871528174766,
+          0.077389551161767
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.1988,
+          -0.088,
+          -0.03
+        ],
+        "mean_diff": -0.1055724220842464,
+        "sd_diff": 0.0857490683387964,
+        "ci95": [
+          -0.31858491650011767,
+          0.10744007233162488
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0022,
+          0.0127,
+          0.0117
+        ],
+        "mean_diff": 0.007365473581689819,
+        "sd_diff": 0.008320956489990611,
+        "ci95": [
+          -0.013304928233706884,
+          0.02803587539708652
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0031,
+          0.0123,
+          0.0155
+        ],
+        "mean_diff": 0.010275900900900988,
+        "sd_diff": 0.006422485372395445,
+        "ci95": [
+          -0.005678437216431404,
+          0.026230239018233382
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer9_topk": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.02,
+          -0.1072,
+          -0.1164
+        ],
+        "mean_diff": -0.08119951105442176,
+        "sd_diff": 0.05320919510349365,
+        "ci95": [
+          -0.2133784792278623,
+          0.05097945711901876
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0232,
+          -0.1109,
+          -0.0831
+        ],
+        "mean_diff": -0.07239051870748302,
+        "sd_diff": 0.04480797615570114,
+        "ci95": [
+          -0.1836997020672559,
+          0.03891866465228985
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0148,
+          -0.0005,
+          -0.0242
+        ],
+        "mean_diff": -0.013147055697278845,
+        "sd_diff": 0.011937368316556195,
+        "ci95": [
+          -0.04280112251260486,
+          0.01650701111804717
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0101,
+          0.0,
+          -0.0285
+        ],
+        "mean_diff": -0.012868037840136052,
+        "sd_diff": 0.014456412739342832,
+        "ci95": [
+          -0.04877975790391603,
+          0.023043682223643933
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.1614,
+          -0.0787,
+          -0.0881
+        ],
+        "mean_diff": -0.10940087046505968,
+        "sd_diff": 0.04528195501191768,
+        "ci95": [
+          -0.22188748257617663,
+          0.003085741646057266
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.2216,
+          -0.0756,
+          -0.0715
+        ],
+        "mean_diff": -0.12291286218651087,
+        "sd_diff": 0.08551430565057688,
+        "ci95": [
+          -0.3353421737552422,
+          0.08951644938222048
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0407,
+          0.0047,
+          -0.048
+        ],
+        "mean_diff": -0.0008598125152179392,
+        "sd_diff": 0.0445978391123547,
+        "ci95": [
+          -0.11164698652095857,
+          0.1099273614905227
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0653,
+          0.0388,
+          -0.0519
+        ],
+        "mean_diff": 0.017382669831994175,
+        "sd_diff": 0.061455682650368576,
+        "ci95": [
+          -0.13528170904688822,
+          0.17004704871087659
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  },
+  "layer9_jumprelu": {
+    "tests": {
+      "geographic:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0989,
+          -0.0294,
+          -0.0284
+        ],
+        "mean_diff": -0.05219892644557824,
+        "sd_diff": 0.04041273312850784,
+        "ci95": [
+          -0.15258972084878192,
+          0.048191867957625444
+        ]
+      },
+      "geographic:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0909,
+          -0.0373,
+          -0.0159
+        ],
+        "mean_diff": -0.04806414753401364,
+        "sd_diff": 0.038645292392090226,
+        "ci95": [
+          -0.14406437575043343,
+          0.04793608068240615
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0139,
+          -0.0266,
+          -0.0077
+        ],
+        "mean_diff": -0.016083386479591916,
+        "sd_diff": 0.009622484275486887,
+        "ci95": [
+          -0.039986962549952404,
+          0.007820189590768571
+        ]
+      },
+      "geographic:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0088,
+          -0.0334,
+          -0.006
+        ],
+        "mean_diff": -0.016063456632653145,
+        "sd_diff": 0.01504444729583292,
+        "ci95": [
+          -0.053435935514077465,
+          0.021309022248771178
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.092,
+          0.041,
+          -0.0566
+        ],
+        "mean_diff": -0.03586407353299239,
+        "sd_diff": 0.0688991585456207,
+        "ci95": [
+          -0.20701907159047056,
+          0.13529092452448577
+        ]
+      },
+      "numerical:indep_mlp_gap_mean:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0669,
+          0.0538,
+          -0.0628
+        ],
+        "mean_diff": -0.02529142317993664,
+        "sd_diff": 0.06854764277573913,
+        "ci95": [
+          -0.19557320765714417,
+          0.14499036129727091
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0028,
+          0.0192,
+          0.0225
+        ],
+        "mean_diff": 0.012977081811541299,
+        "sd_diff": 0.013740402971586303,
+        "ci95": [
+          -0.021155971386106198,
+          0.0471101350091888
+        ]
+      },
+      "numerical:indep_logistic_gap:method_a<owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0148,
+          0.0501,
+          0.0083
+        ],
+        "mean_diff": 0.014517896274653016,
+        "sd_diff": 0.03293843184373646,
+        "ci95": [
+          -0.06730570443736787,
+          0.0963414969866739
+        ]
+      }
+    },
+    "primary_pass": false,
+    "guards": {
+      "l0_matched_owt_val_within_5pct": true,
+      "owt_splice_delta_ce_le_1.10x_base": true,
+      "owt_val_ev_ge_base_minus_0.005": true,
+      "cities_pref_ge_base_minus_0.018": true,
+      "repe_diffmean_gap_le_base_plus_0.02": true
+    },
+    "SUCCESS": false
+  }
+}
