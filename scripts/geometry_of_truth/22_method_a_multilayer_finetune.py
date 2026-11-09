@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Method A multi-layer extension: layers 3 and 9.
+"""Method A multi-layer extension: layers 5 and 9.
 
 This script extends the already-committed layer-6 Method A protocol without
 modifying scripts 14/15 or their historical evidence.
@@ -59,7 +59,7 @@ def load(rel, name):
 
 P11 = load("scripts/geometry_of_truth/11_truth_aware_pilot.py", "p11")
 
-LAYERS = (3, 9)
+LAYERS = (5, 9)
 SEEDS = (42, 1042, 2042)
 ARCHS = ("relu", "topk", "jumprelu")
 
@@ -208,7 +208,7 @@ def prepare():
 
     prereg = {
         "written": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "purpose": "Extend committed Method A from layer 6 to layers 3 and 9.",
+        "purpose": "Extend committed Method A from layer 6 to layers 5 and 9.",
         "historical_layer6_untouched": True,
         "layers_new": list(LAYERS),
         "seeds": list(SEEDS),

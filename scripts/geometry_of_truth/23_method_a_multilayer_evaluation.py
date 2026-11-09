@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validation-only evaluation of the Method A multi-layer extension.
 
-Evaluates newly-trained Layers 3 and 9, then combines them with the existing
+Evaluates newly-trained Layers 5 and 9, then combines them with the existing
 committed Layer-6 Method A results to produce the Tuesday 3-layer table.
 
 Run from repository root after script 22 --train:
@@ -472,7 +472,7 @@ def make_comparisons_and_criteria(df, s22):
     criteria = {}
     improvement_rows = []
 
-    for layer in (3, 6, 9):
+    for layer in (5, 6, 9):
         ldf = df[df.layer == layer]
 
         for arch in s22.ARCHS:
