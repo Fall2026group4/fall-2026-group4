@@ -11,11 +11,28 @@ not cancel. At mid and late sites about a third of the effect is outside the rec
 and JumpReLU part of it exists only when reconstruction and error act together through GPT-2's nonlinear downstream
 computation.
 
+\paragraph{What fine-tuning changes, and what it does not.} The fine-tuning experiments separate three things
+that are often reported as one. (i) \emph{Task reconstruction} improves reliably: reconstruction error on truth
+statements falls by 61--85\,\% in every cell. (ii) \emph{Frozen-probe preservation} improves in direction
+everywhere and meets the pre-registered criterion in 4 of 9 cells, but a re-trained reader recovers no more truth
+information from the fine-tuned reconstruction than from the original one (no cell changes consistently). Because M2
+showed that frozen-probe gaps are dominated by the probe's sensitivity to off-distribution perturbations, the most
+economical reading is that reconstruction fine-tuning moves the reconstruction back towards the region where the
+original probe's decision boundary was fitted, rather than restoring information the SAE had discarded. (iii)
+\emph{Behavioural preservation} improves with an output-KL term in all cells, and creditably in 5 of 9; it does not
+transfer to truth preservation, which is unchanged or slightly worse. Improving one level of faithfulness therefore
+does not improve the others, and a claim of ``more faithful SAEs'' must name the level.
+
+\paragraph{Sparsity is part of the price.} For ReLU and JumpReLU at layers 8 and 9 the output-KL gain comes with a
+5--8\,\% rise in L0 that the continued sparsity controller does not correct. Since lower reconstruction error and
+lower KL are both easier at higher L0, behavioural gains reported without a sparsity guard would overstate the
+benefit; TopK, whose L0 is fixed, is the only architecture where the gain is creditable at every layer.
+
 \paragraph{The negative result is the main finding.} The SAEs studied here reconstruct well by conventional measures,
-yet they lose task information that PCA at equal error keeps, and their reconstruction carries only part of a
-confirmed causal effect at mid and late layers. Fine-tuning improved task reconstruction and output faithfulness at
-layers 3, 6, 8 and 9 (\S\ref{sec:impl}). Its frozen-probe truth gains were not matched by re-trained readers, so we
-read them as restoring the original probe's readout direction rather than recovering lost information.
+yet they lose task information that PCA at equal error keeps, and at mid and late layers their reconstruction carries
+only part of a causal effect that GPT-2 demonstrably carries there. Short fine-tuning improves what it optimises
+(task reconstruction, output agreement) and nothing we could verify beyond that. Whether fine-tuning also improves
+\emph{causal} preservation is the open question addressed by E3. All of these are \evlabel{validation} findings.
 
 \pending{Revise after E1--E3 and M5; in particular, whether the conclusions hold for an externally trained SAE
-(E2).}
+(E2) and at task-level matched sparsity (E1).}

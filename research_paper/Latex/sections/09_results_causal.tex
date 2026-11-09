@@ -1,5 +1,8 @@
 \section{Causal Faithfulness}\label{sec:causal}
 
+All results in this section are \evlabel{validation} findings (M3 sites selected on training prompts and
+replicated on validation prompts; M4 on validation prompts).
+
 \paragraph{Where GPT-2 carries the persona effect (M3).} For each RepE-LM pair we run GPT-2 on the honest (H) and the
 dishonest (U) prompt and measure $\mathrm{KL}(p_H\|p_U)$ on the next token (mean 0.033 nats). Copying the honest
 activation into the dishonest run at one layer and position group restores a share $E$ of that divergence.
@@ -7,8 +10,8 @@ Figure~\ref{fig:m3} shows that the effect is carried by the persona word early (
 token late (layer 11: $E=0.95$), with the handover at layers 7--8; the instruction words after the persona slot carry
 up to 0.28. Of 65 cells, 50 pass the pre-registered test (Holm-corrected, above the 95th percentile of 200 matched-norm
 random vectors). The pre-registered rule selected the layer-1 persona slot and the layer-11 final token, both
-confirmed on validation; a pre-registered amendment added the layer-8 final token (train $E=0.505$), confirmed without
-SAEs. A same-meaning synonym swap travels the same route at about half the size. Template T1 (truthful/deceptive) has
+replicated on validation prompts; a pre-registered amendment added the layer-8 final token (train $E=0.505$), replicated
+on validation without SAEs. A same-meaning synonym swap travels the same route at about half the size. Template T1 (truthful/deceptive) has
 no effect beyond its synonym control and serves as a control case; T2--T4 are the primary set.
 
 \begin{figure}[t]

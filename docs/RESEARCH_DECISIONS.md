@@ -211,6 +211,20 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Reading:** the frozen-probe Method A truth gains are reported with the re-trained-reader null beside them. They are not called information recovery, because M2 showed that frozen-probe gaps are dominated by probe fragility.
 * **Next experiments:** none started. E3, an L0-matched output-KL variant and extra seeds each need their own pre-registration and approval.
 
+## D27. Reading of IMP-L fixed for the paper; next-experiment order (user, 2026-11-09)
+* **Reading (user):**
+  * Method A improves frozen-probe preservation in 4/9 cells.
+  * Re-trained probes show no consistent information gain.
+  * Output-KL improves behavioural preservation in 5/9 creditable cells, and does not improve truth preservation.
+  * The paper must keep these distinctions and must not claim truth-information recovery.
+  * Every finding stays VALIDATION until the approved final test.
+* **Order:** E3 (causal evaluation of the existing layer-8 fine-tunes), then E2 (public SAE reference), then E1
+  (task-level sparsity matching).
+* **Approval:** each needs the user's approval of its pre-registration before running. M5, pushing and merging still
+  need separate approval.
+* **E2 scope:** use the cached layer-8 and layer-10 public SAEs; do not download layer 6.
+* **E1 protocol:** do not train through script 13, because it evaluates on the OWT test split.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.

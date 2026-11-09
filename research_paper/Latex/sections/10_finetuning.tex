@@ -1,5 +1,7 @@
 \section{Fine-tuning Experiments}\label{sec:finetune}
 
+All results in this section are \evlabel{validation} findings; no fine-tuning result is confirmed.
+
 All fine-tuning starts from a trained SAE and runs 500 Adam steps (learning rate $10^{-5}$) with the sparsity
 controller continued from the base coefficient; ReLU and JumpReLU must stay within $\pm$5\,\% of their base L0.
 Truth is measured with probes fitted on original activations of GoT training groups B, which no training objective

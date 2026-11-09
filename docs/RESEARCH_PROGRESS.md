@@ -684,3 +684,31 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * L0-matched output-KL for ReLU/JumpReLU, and more seeds for the borderline Method A cells (not approved).
   * Push/PR and the Review #8 reply are awaiting user approval.
 
+## 31. Paper refinement, E3/E2/E1 draft pre-registrations, review package (2026-11-09). Status: IN PROGRESS (awaiting approval to run E3)
+
+* **Paper.** Revised to keep the user's reading of IMP-L (D27):
+  * a new "Evidence status" paragraph in §5: everything except the OWT reconstruction table is VALIDATION, and
+    nothing is a confirmed held-out result;
+  * every results section opens with its label;
+  * "confirmed" is replaced by "replicated on validation" for the M3 sites;
+  * the abstract states the three levels separately: task reconstruction, frozen-probe vs re-trained-probe truth,
+    and behaviour (5/9 creditable);
+  * the discussion gains "What fine-tuning changes, and what it does not" and "Sparsity is part of the price";
+  * seven new limitations: no held-out confirmation, one fine-tuning budget, three seeds and multiplicity, the
+    frozen-probe criterion, output-KL L0 drift, the weak layer-3 logistic signal, and untested causal preservation;
+  * the conclusion is updated. The paper compiles (21 pages).
+* **Draft pre-registrations** (not run; no script written yet; hashes are recorded at `--prepare`, after approval):
+  * **E3** `results/repe/e3_finetuned_causal_preservation/`: 36 existing layer-8 SAEs, M4 decomposition at L8 final,
+    H1 Method A, H2 output-KL, H3 specificity. Output-KL ReLU/JumpReLU are not creditable a priori. About 40 min GPU.
+  * **E2** `results/shared/e2_public_sae_reference/`: public res-jb SAEs at L8 and L10 (cached). H1–H4 test whether our
+    four headline conclusions hold. About 30 min GPU.
+  * **E1** `results/shared/e1_task_l0_matched_topk/`: 36 new TopK SAEs at task-matched k (layers 1, 8, 11; GoT and
+    RepE). About 1.2 h GPU.
+* **Review package:** `docs/2026-11-09_review_package_sae_research.md`.
+  * The M0 re-run and the paper-artifact regeneration were verified byte-identical on a clean `git archive` export of
+    `HEAD`, and the tests pass there.
+  * Teammate branch `simba-method-a-multilayer` overlaps IMP-L (same script numbers 22/23; layer 5 instead of 3);
+    this is flagged for a team decision.
+* **Evidence label:** no new result.
+* **Next:** user approval of E3 → implement script 25 → `--prepare` (hashes, reproduction of M4 L8 rows) → run.
+

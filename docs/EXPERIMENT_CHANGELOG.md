@@ -187,3 +187,12 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | M `research_paper/Latex/sections/{00_abstract,10_finetuning,12_discussion,15_appendix}.tex`; added `tables/t_impl_*.tex`, `Latex_Fig/fig_impl_multilayer.{pdf,svg}` | IMP-L section written from verified results |
 | this commit | M `README.md` (§6.8 IMP-L table, §8/§9 statuses, limitations), `docs/RESEARCH_PROGRESS.md` §29 status and §30, `docs/RESEARCH_ROADMAP.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md` §17, `docs/results_registry.md`, `docs/RESEARCH_DECISIONS.md` (D26; H3/H4), `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | Documentation rule (CLAUDE.md §1) |
 
+## 2026-11-09: paper refinement, E3/E2/E1 draft pre-registrations, review package
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | M `research_paper/Latex/sections/{00_abstract,05_setup,07_results_information,09_results_causal,10_finetuning,12_discussion,13_limitations,14_conclusion}.tex`, `main.pdf` | User's reading of IMP-L (D27): keep frozen-probe, re-trained-probe and behavioural results separate; no truth-recovery claim; VALIDATION labels throughout |
+| this commit | Added `results/repe/e3_finetuned_causal_preservation/README.md`, `results/shared/e2_public_sae_reference/README.md`, `results/shared/e1_task_l0_matched_topk/README.md` (draft pre-registrations, not run) | User asked to see hypotheses, comparisons, metrics, GPU and training requirements before any run |
+| this commit | Added `docs/2026-11-09_review_package_sae_research.md` | Independent teammate review before merging to `main` |
+| this commit | M `README.md` §8/§9, `docs/RESEARCH_ROADMAP.md`, `docs/RESEARCH_PROGRESS.md` §31, `docs/RESEARCH_DECISIONS.md` D27 | Documentation rule |
+

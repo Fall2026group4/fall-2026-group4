@@ -12,10 +12,12 @@ equal-length persona-instruction task built to remove a length shortcut, we loca
 instruction's effect and decompose it: the SAE-reconstructed activation difference restores 93--97\,\% of the effect
 at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final token, with the remainder in the
 reconstruction error or in an interaction between reconstruction and error. Short fine-tuning at layers 3, 6, 8 and 9
-cuts task reconstruction error by 61--85\,\%, and an output-KL term consistently improves behavioural faithfulness
-(for ReLU and JumpReLU at deeper layers only at a sparsity cost beyond the pre-registered guard); fine-tuning lowers
-the frozen-probe truth gap, meeting its pre-registered criterion in four of nine layer--architecture cells beyond
-layer 6, but re-trained readers show no consistent recovery of truth information. All results except the reconstruction table are validation-stage;
+separates these levels again. Reconstruction fine-tuning on truth statements cuts their reconstruction error by
+61--85\,\% and lowers the truth gap measured by a probe frozen on original activations, meeting its pre-registered
+criterion in 4 of 9 layer--architecture cells beyond layer 6; re-trained probes, however, show no consistent gain,
+so we do not claim that truth information is recovered. Adding an output-KL term improves behavioural faithfulness
+in 5 of 9 creditable cells (in the other 4 the SAE's sparsity drifts beyond the pre-registered guard) and never
+improves truth preservation. All results except the reconstruction table are \evlabel{validation} findings, not confirmed results;
 a single pre-registered held-out evaluation is pending.
 \end{abstract}
 

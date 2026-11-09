@@ -243,9 +243,9 @@ and its error part. Each part is patched separately.
 | ID | Experiment | Addresses | Status |
 |---|---|---|---|
 | **IMP-L** | Method A, OWT-only control and output-KL fine-tuning **at layers 3, 8 and 9** (3 seeds, CIs, L0 guards). Evaluated on reconstruction, truth and behaviour | Review #8 blocker "improvement result at more layers"; the 11-03 session note "fine-tune other layers" | **COMPLETED 2026-11-09 (VALIDATION)**; see 6.8 |
-| **E1** | TopK trained at several k to compare architectures at matched *prompt-level* L0 (M2 readers, M4) | Prompt-sparsity confound in architecture comparisons | PLANNED |
-| **E2** | Public `gpt2-small-res-jb` SAE as an external reference: reconstruction, M2 and M4 at layer 8 (weights cached); layer 6 if downloaded | Review #8 critique 2 (small, unconverged SAEs) | PLANNED |
-| **E3** | Layer-8 fine-tuning for causal preservation: base vs OWT-only vs Method A vs output-KL, pre-registered | Review #8 SAE-in-the-loop / causal improvement | PLANNED (overlaps IMP-L at layer 8) |
+| **E1** | TopK trained at several k to compare architectures at matched *prompt-level* L0 (M2 readers, M4) | Prompt-sparsity confound in architecture comparisons | DRAFT PRE-REGISTRATION (\`results/shared/e1_task_l0_matched_topk/\`), awaiting approval; priority 3 |
+| **E2** | Public `gpt2-small-res-jb` SAE as an external reference: reconstruction, M2 and M4 at layer 8 (weights cached); layer 6 if downloaded | Review #8 critique 2 (small, unconverged SAEs) | DRAFT PRE-REGISTRATION (\`results/shared/e2_public_sae_reference/\`; layers 8 and 10, cached), awaiting approval; priority 2 |
+| **E3** | Layer-8 fine-tuning for causal preservation: base vs OWT-only vs Method A vs output-KL, pre-registered | Review #8 SAE-in-the-loop / causal improvement | DRAFT PRE-REGISTRATION (\`results/repe/e3_finetuned_causal_preservation/\`; uses the 27 IMP-L layer-8 checkpoints), awaiting approval; priority 1 |
 | Width, convergence, data scaling | Width sensitivity, 30k-step convergence, streamed-token training | Unconverged, data-limited SAEs | PLANNED as resources permit |
 | **M5 / X3** | One pre-registered final test pass: RepE-LM test (to be built, with a duplicate check), OWT test, GoT test (labelled previously exposed) | Review #8 "say which numbers are clean" | NOT STARTED. Needs explicit approval; protocol not yet frozen |
 | Gemma SAEs | Gemma Scope at 1–2 layers | Review #7 SESSION-1027-LIST | BLOCKED (weights not cached; needs a download decision) |
@@ -259,7 +259,7 @@ and its error part. Each part is patched separately.
 | Layer-6 fine-tuning pilots (truth-aware audit, Method A, E2E B/C, KL ablation), P1 | COMPLETED (VALIDATION) |
 | M0, M1, M2, M3, M4 | COMPLETED (VALIDATION; committed locally, **not yet on `main`**) |
 | Multi-layer improvement table (IMP-L) | COMPLETED (VALIDATION; committed locally, not yet on `main`) |
-| E1, E2, E3 | NOT STARTED |
+| E1, E2, E3 | DRAFT PRE-REGISTRATIONS written; NOT RUN (awaiting approval) |
 | SAE-in-the-loop intervention | IN PROGRESS: M4 feature patches done; intervention on improved SAEs pending |
 | M5 final test | NOT STARTED (needs approval) |
 | Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; generated tables and PDF/SVG figures; compiles (20 pp) |

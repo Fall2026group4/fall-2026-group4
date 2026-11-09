@@ -13,6 +13,23 @@
   \item \textbf{Seeds share data.} Seed spread understates uncertainty.
   \item \textbf{Test exposure.} The GoT test split was scored in earlier frozen-probe evaluations; the original RepE
         test split was touched in a smoke run and is retired with the confounded task.
+  \item \textbf{No held-out confirmation.} Every result except the reconstruction table is a validation finding;
+        the pre-registered held-out evaluation (M5) has not been run. Validation data were also used to compare
+        methods, so validation effect sizes may be optimistic.
+  \item \textbf{Fine-tuning at one budget.} 500 steps at learning rate $10^{-5}$, the layer-6 setting, was reused at
+        layers 3, 8 and 9 without tuning; other budgets could change the classes.
+  \item \textbf{Three seeds and many cells.} The ``consistent'' rule (all three seeds, $>2$\,sd) is strict for
+        variance but is applied to 9 cells per criterion without multiplicity correction; 95\,\% intervals with two
+        degrees of freedom are wide. Five Method A cells move in the right direction on every seed but fail the
+        2\,sd rule, and the two output-KL regressions meet the 2\,sd rule although their 95\,\% intervals just include zero.
+  \item \textbf{Frozen-probe criterion.} The pre-registered truth criterion uses a probe fitted on original
+        activations. Re-trained readers disagree with it (\S\ref{sec:impl}), so a met criterion is evidence that the
+        original probe reads the reconstruction better, not that information was recovered.
+  \item \textbf{Sparsity drift under output-KL.} The continued multiplicative controller does not hold ReLU and
+        JumpReLU L0 within $\pm$5\,\% under the KL gradient at layers 8 and 9; an L0-matched variant is untested.
+  \item \textbf{Weak truth signal at layer 3.} The original truth MLP probe at layer 3 reaches 0.815 AUROC but the
+        logistic probe only 0.60, so layer-3 truth results rest on a weak signal.
+  \item \textbf{Causal preservation after fine-tuning is untested} (E3 pending).
   \item \textbf{Single model.} No SAE results on Gemma-2-2B \citep{gemmateam2024gemma2}; Gemma Scope weights were
         not available on our machine.
 \end{itemize}
