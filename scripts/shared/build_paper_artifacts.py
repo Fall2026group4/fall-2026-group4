@@ -46,6 +46,13 @@ SOURCES = {
     'e3_comp': 'results/repe/e3_finetuned_causal_preservation/comparisons.csv',
     'e3_crit': 'results/repe/e3_finetuned_causal_preservation/criteria.json',
     'e3_site': 'results/repe/e3_finetuned_causal_preservation/site_reconstruction.csv',
+    'r2_comp': 'results/openwebtext/r2_scaled_saes/comparisons.csv',
+    'r2_crit': 'results/openwebtext/r2_scaled_saes/criteria.json',
+    'r4_comp': 'results/openwebtext/r4_kl_finetune/comparisons.csv',
+    'r5_summ': 'results/repe/r5_causal_subspace_skyline/summary.csv',
+    'e2_hyp': 'results/shared/e2_public_sae_reference/hypotheses.csv',
+    'm5_comp': 'results/shared/m5_confirmatory_test/comparisons.csv',
+    'm5_rows': 'results/shared/m5_confirmatory_test/m5_rows.csv',
 }
 ARCHS = ['relu', 'topk', 'jumprelu']
 ANAME = {'relu': 'ReLU', 'topk': 'TopK', 'jumprelu': 'JumpReLU'}
@@ -618,6 +625,192 @@ def table_m1():
                 'llp{0.62\\linewidth}')
 
 
+# ------------------------------------------------------------------ GPT-2 improvement phase (R2, R4, R5, E2, M5)
+IMP_METRICS = [('owt_nmse', 'OWT NMSE $\\downarrow$', 4), ('splice_delta_ce', 'spliced $\\Delta$CE $\\downarrow$', 4),
+               ('splice_kl_mean', 'spliced KL $\\downarrow$', 4),
+               ('repe_persona__refit_logistic_gap', 'persona re-fit gap $\\downarrow$', 3),
+               ('repe_persona__sae_minus_pca_refit_gap', 'persona SAE$-$PCA gap $\\downarrow$', 3),
+               ('got_cities__refit_logistic_gap', 'GoT re-fit gap $\\downarrow$', 3),
+               ('rlm__pair_dir_cosine', 'pair-direction cos $\\uparrow$', 3),
+               ('m4__preservation_rec', '$T_{\\text{rec}}/T_{\\text{full}}$ $\\uparrow$', 3)]
+CLS = {'IMPROVEMENT': 'IMPROVEMENT', 'NO CLEAR CHANGE': 'no clear change', 'REGRESSION': '\\textbf{REGRESSION}',
+       'PRELIMINARY IMPROVEMENT': 'PRELIM.\\ IMPROVEMENT', 'NO IMPROVEMENT': 'no improvement',
+       'NOT CREDITABLE': 'NOT CREDITABLE'}
+
+
+def _pm(m, s, nd):
+    return f'{m:.{nd}f}$\\pm${s:.{nd}f}'
+
+
+def table_r2():
+    c = read('r2_comp')
+    for cid, name, lab in (('C1', 'TopK-3072 (old) $\\rightarrow$ TopK-12288 (R2)', 'tab:r2_c1'),
+                           ('C3', 'JumpReLU-3072 (old) $\\rightarrow$ BatchTopK-12288 (R2)', 'tab:r2_c3'),
+                           ('C2', 'ReLU-3072 (old) $\\rightarrow$ ReLU-12288 (R2)', 'tab:r2_c2')):
+        rows = ''
+        for L in (1, 8, 11):
+            for m, ml, nd in IMP_METRICS:
+                r = c[(c.comparison == cid) & (c.layer == L) & (c.metric == m)]
+                if not len(r):
+                    continue
+                r = r.iloc[0]
+                imp = f'{r.improvement_pct:+.1f}\\%' if m not in ('repe_persona__sae_minus_pca_refit_gap',) else '--'
+                rows += (f'{"L" + str(L) if m == "owt_nmse" else ""} & {ml} & {_pm(r.ref_mean, r.ref_sd, nd)} & '
+                         f'{_pm(r.new_mean, r.new_sd, nd)} & {r["diff"]:+.{nd}f} [{r.ci95_low:+.{nd}f}, {r.ci95_high:+.{nd}f}] & '
+                         f'{imp} & {CLS[r.cls]} \\\\\n')
+            rows += '\\midrule\n' if L != 11 else ''
+        head = ('Layer & Metric & Before (old, 3 seeds) & After (R2, 3 seeds) & $\\Delta$ [Welch 95\\% CI] & Improvement & '
+                'Class \\\\\n\\midrule\n')
+        write_table(f't_r2_{cid.lower()}', head + rows,
+                    f'R2 before/after, {name} (VALIDATION; L0 = 128 $\\pm$ 10\\% on OWT; mean$\\pm$sd). Improvement: '
+                    f'positive = better. Class: IMPROVEMENT if all 9 new/old seed pairs favour R2 and the Welch interval '
+                    f'excludes 0 (pre-registered). GoT is evaluated at layers 8 and 11 only.',
+                    lab, ['r2_comp'], 'llccccl')
+    crit = read('r2_crit')
+    rows = ''
+    desc = {'C1': 'TopK: old-3072 $\\rightarrow$ R2-12288', 'C2': 'ReLU: old-3072 $\\rightarrow$ R2-12288',
+            'C3': 'old JumpReLU-3072 $\\rightarrow$ R2 BatchTopK-12288',
+            'A1': 'data + recipe, equal width (TopK-3072)', 'A2': 'width (R2 TopK 3072 $\\rightarrow$ 12288)'}
+    for cid in ('C1', 'C2', 'C3', 'A1', 'A2'):
+        k = crit['counts'][cid]
+        nm = c[(c.comparison == cid) & (c.metric == 'owt_nmse')].improvement_pct
+        ce = c[(c.comparison == cid) & (c.metric == 'splice_delta_ce')].improvement_pct
+        rows += (f'{cid} & {desc[cid]} & {nm.min():.0f}--{nm.max():.0f}\\% & {ce.min():.0f}--{ce.max():.0f}\\% & '
+                 f'{k.get("IMPROVEMENT", 0)} & {k.get("NO CLEAR CHANGE", 0)} & {k.get("REGRESSION", 0)} \\\\\n')
+    head = ('ID & Comparison & NMSE reduction & $\\Delta$CE reduction & \\multicolumn{3}{c}{cells: improved / no change / '
+            'regressed} \\\\\n\\midrule\n')
+    write_table('t_r2_counts', head + rows,
+                'R2 comparisons over all ladder metrics at layers 1, 8, 11 (VALIDATION). Reductions are the range over '
+                'layers; the cell counts cover all 17 metrics $\\times$ 3 layers (51 cells; GoT at 8 and 11 only).',
+                'tab:r2_counts', ['r2_comp', 'r2_crit'], 'llccccc')
+
+
+def table_r4():
+    c = read('r4_comp')
+    c = c[c.cls != 'descriptive']
+    lab = {'splice_delta_ce': 'spliced $\\Delta$CE $\\downarrow$', 'splice_kl_mean': 'spliced KL $\\downarrow$',
+           'repe_persona__refit_logistic_gap': 'persona re-fit gap $\\downarrow$',
+           'got_cities__refit_logistic_gap': 'GoT re-fit gap $\\downarrow$',
+           'repe_persona__frozen_logistic_gap': 'persona frozen gap $\\downarrow$',
+           'got_cities__frozen_logistic_gap': 'GoT frozen gap $\\downarrow$',
+           'm4__preservation_rec': '$T_{\\text{rec}}/T_{\\text{full}}$ $\\uparrow$'}
+    ref = {'r4_mse': 'MSE-only', 'r2': 'R2 base'}
+    rows = ''
+    for L in (8, 11):
+        for _, r in c[c.layer == L].iterrows():
+            ip = f'{r.improvement_pct:+.1f}\\%' if pd.notna(r.get('improvement_pct')) else ''
+            rows += (f'L{L} & {r.comparison} & {lab[r.metric]} & {ref[r.ref]} {r.ref_mean:.4f} & {r.new_mean:.4f} & '
+                     f'{r.diff_mean:+.4f}$\\pm${r.diff_sd:.4f} & {ip} & {CLS[r.cls]} \\\\\n')
+        rows += '\\midrule\n' if L == 8 else ''
+    head = ('Layer & ID & Metric & Reference & KL arm & paired $\\Delta\\pm$sd & Improvement & Class \\\\\n\\midrule\n')
+    write_table('t_r4', head + rows,
+                'R4: short KL+MSE fine-tune of the R2 TopK-12288 SAEs at fixed L0 = 128 (5M tokens, 3 seeds; '
+                'VALIDATION), against an MSE-only control on identical tokens (K1--K3) and against the R2 base (K4). '
+                'Rule: better on all 3 seeds and $|\\bar d| > 2\\,$sd; guard EV(KL) $\\geq$ EV(MSE)$-0.02$ (passed: '
+                '$-0.002$ at both layers).', 'tab:r4', ['r4_comp'], 'llllcccl')
+
+
+def table_r5():
+    s = read('r5_summ')
+    s = s[s.k != 'SAE full reconstruction']
+    site = {'blocks.1.hook_resid_pre|slot': 'L1 slot', 'blocks.8.hook_resid_pre|final': 'L8 final',
+            'blocks.11.hook_resid_pre|final': 'L11 final'}
+    rows = ''
+    for sname in site:
+        g = s[s.site == sname]
+        for _, r in g.iterrows():
+            saes = [r[f'sae_{a}_feature_patch_share_mean'] for a in ARCHS]
+            rows += (f'{site[sname] if r.k == "1" else ""} & {r.k} & {r.das_share_mean:.3f}$\\pm${r.das_share_sd:.3f} & '
+                     f'{r.pca_share:.3f} & {r.random_share_mean:.3f} ({r.random_share_q95:.3f}) & '
+                     f'{min(saes):.3f}--{max(saes):.3f} \\\\\n')
+        rows += '\\midrule\n' if sname != 'blocks.11.hook_resid_pre|final' else ''
+    head = ('Site & $k$ & DAS (learned, 3 seeds) & PCA of TRAIN $\\Delta$ & random mean (q95) & SAE top-$k$ features '
+            '(range over archs) \\\\\n\\midrule\n')
+    write_table('t_r5', head + rows,
+                'R5: share of the persona effect $T_k/T_{\\text{full}}$ carried by rank-$k$ subspaces at the M4 sites '
+                '(VALIDATION; fitted on TRAIN pairs). For reference, the SAE whole reconstruction carries 0.94--0.97 '
+                '(L1), 0.62--0.67 (L8) and 0.62--0.68 (L11) for the old SAEs (M4). DAS shares above 1 are possible '
+                'because the single-site full patch does not fully restore $p_H$.', 'tab:r5', ['r5_summ'], 'llcccc')
+
+
+def table_e2():
+    h = read('e2_hyp')
+    rows = ''
+    for hyp in ('E2-H1', 'E2-H2', 'E2-H3', 'E2-H4'):
+        for _, r in h[h.hypothesis == hyp].sort_values(['layer', 'task']).iterrows():
+            val = (f'SAE {r.sae:.3f} / noise {r.noise:.3f}' if hyp == 'E2-H1' else
+                   f'{r.sae:.3f} (CI low {r.ci_low:+.3f}, $q$ {r.q_bh:.3f})' if hyp == 'E2-H2' else
+                   f'SAE {r.sae:.3f} / PCA {r.pca:.3f}' if hyp == 'E2-H3' else
+                   f'{r.sae:.3f} (CI high {r.ci_high:.3f})')
+            star = '' if r.scope == 'pre-registered' else '$^\\dagger$'
+            rows += (f'{hyp} & L{r.layer}{star} & {r.task} & {val} & '
+                     f'{"HOLDS" if bool(r.holds) else "does not hold"} \\\\\n')
+        rows += '\\midrule\n' if hyp != 'E2-H4' else ''
+    head = 'Hypothesis & Layer & Task & Value & Result \\\\\n\\midrule\n'
+    write_table('t_e2', head + rows,
+                'E2: our headline conclusions tested on the public \\texttt{gpt2-small-res-jb} SAEs (ReLU, 24,576 '
+                'latents, 300M tokens; VALIDATION). H1: frozen loss mostly probe fragility (noise gap $\\geq 0.5\\times$ '
+                'SAE gap); H2: re-trained loss real (CI low $>0$, BH); H3: SAE does not beat PCA (SAE gap $\\geq$ PCA '
+                'gap $-0.02$); H4: reconstruction carries only part of the persona effect (CI high $<0.80$, above '
+                'controls). $^\\dagger$ labelled extension layers.', 'tab:e2', ['e2_hyp'], 'lllll')
+
+
+def table_m5():
+    c = read('m5_comp')
+    lab = {'owt_nmse': 'OWT NMSE $\\downarrow$', 'owt_explained_variance': 'OWT EV $\\uparrow$',
+           'splice_delta_ce': 'spliced $\\Delta$CE $\\downarrow$', 'splice_kl_mean': 'spliced KL $\\downarrow$',
+           'got_cities__refit_logistic_gap': 'GoT re-fit gap $\\downarrow$',
+           'got_cities__sae_minus_pca_refit_gap': 'GoT SAE$-$PCA gap $\\downarrow$',
+           'got_cities__frozen_logistic_gap': 'GoT frozen gap $\\downarrow$'}
+    keep = ['owt_nmse', 'splice_delta_ce', 'got_cities__refit_logistic_gap']
+    rows = ''
+    for cid in ('C1', 'C3', 'K1'):
+        g = c[(c.comparison == cid) & c.metric.isin(keep)]
+        if not len(g):
+            continue
+        first = True
+        for L in (1, 8, 11):
+            for m in keep:
+                r = g[(g.layer == L) & (g.metric == m)]
+                if not len(r):
+                    continue
+                r = r.iloc[0]
+                ip = f'{r.improvement_pct:+.1f}\\%' if pd.notna(r.improvement_pct) and 'pca' not in m else '--'
+                rows += (f'{cid if first else ""} & L{L} & {lab[m]} & {r.ref_mean:.4f} & {r.new_mean:.4f} & {ip} & '
+                         f'{CLS.get(r.cls, r.cls)} \\\\\n')
+                first = False
+        rows += '\\midrule\n'
+    rows = rows[: -len('\\midrule\n')]
+    head = 'ID & Layer & Metric & Before & After & Improvement & Class (TEST) \\\\\n\\midrule\n'
+    write_table('t_m5', head + rows,
+                'M5: the single pre-registered confirmatory TEST pass (OWT test, 100 sequences, 12,700 tokens; GoT '
+                'cities+neg\\_cities test). Same rules as on validation (C/A: all 9 seed pairs and Welch CI; K: all 3 '
+                'paired seeds and $|\\bar d|>2\\,$sd). Means over 3 seeds. C1: TopK old-3072 $\\rightarrow$ R2-12288; '
+                'C3: old JumpReLU-3072 $\\rightarrow$ R2 BatchTopK-12288; K1: R4 KL fine-tune vs MSE control. All '
+                'comparisons are counted in Table~\\ref{tab:m5_counts}.', 'tab:m5', ['m5_comp'], 'lllcccl')
+    desc = {'C1': 'TopK: old-3072 $\\rightarrow$ R2-12288', 'C2': 'ReLU: old-3072 $\\rightarrow$ R2-12288',
+            'C3': 'old JumpReLU-3072 $\\rightarrow$ R2 BatchTopK-12288', 'A1': 'data + recipe, equal width (TopK-3072)',
+            'A2': 'width (R2 TopK 3072 $\\rightarrow$ 12288)', 'K1': 'R4 KL fine-tune vs MSE control',
+            'K4': 'R4 KL fine-tune vs R2 base'}
+    rows = ''
+    for cid in ('C1', 'C2', 'C3', 'A1', 'A2', 'K1', 'K4'):
+        g = c[c.comparison == cid]
+        n = g.cls.value_counts()
+        nm = g[g.metric == 'owt_nmse'].improvement_pct
+        ce = g[g.metric == 'splice_delta_ce'].improvement_pct
+        reg = '; '.join(sorted({f'{m.replace("_", " ")} L{L}' for m, L in zip(g[g.cls == 'REGRESSION'].metric,
+                                                                             g[g.cls == 'REGRESSION'].layer)}))
+        rows += (f'{cid} & {desc[cid]} & {nm.min():+.0f} to {nm.max():+.0f}\\% & {ce.min():+.0f} to {ce.max():+.0f}\\% & '
+                 f'{n.get("IMPROVEMENT", 0)} / {n.get("NO CLEAR CHANGE", 0)} / {n.get("REGRESSION", 0)} & '
+                 f'{reg.replace("got cities  ", "GoT ").replace("owt nmse", "OWT NMSE")} \\\\\n')
+    head = ('ID & Comparison & NMSE improvement & $\\Delta$CE improvement & improved / no change / regressed & '
+            'regressed cells \\\\\n\\midrule\n')
+    write_table('t_m5_counts', head + rows,
+                'M5 (TEST): pre-registered classes over all OWT and GoT cells (layers 1, 8, 11; GoT at 8 and 11). '
+                'Improvement ranges are over layers; positive = better.', 'tab:m5_counts', ['m5_comp'],
+                'llcccp{0.25\\linewidth}')
+
+
 def main():
     logging.basicConfig(level=logging.INFO, format='%(message)s')
     TAB.mkdir(parents=True, exist_ok=True)
@@ -645,6 +838,16 @@ def main():
     if (REPO / SOURCES['e3_crit']).exists():
         table_e3()
         fig_e3()
+    if (REPO / SOURCES['r2_comp']).exists():
+        table_r2()
+    if (REPO / SOURCES['r4_comp']).exists():
+        table_r4()
+    if (REPO / SOURCES['r5_summ']).exists():
+        table_r5()
+    if (REPO / SOURCES['e2_hyp']).exists():
+        table_e2()
+    if (REPO / SOURCES['m5_comp']).exists():
+        table_m5()
     m = m2_means()
     log.info('check M2 GoT ReLU frozen %.3f (README .287), persona TopK re-trained %.3f (README .147)',
              m[('got_cities', 'relu')]['frozen_logistic_gap_mean'], m[('repe_persona', 'topk')]['refit_logistic_gap_mean'])

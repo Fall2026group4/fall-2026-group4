@@ -33,3 +33,5 @@ Verdict NOT SUPPORTED for all architectures and k; test stage deferred. See its 
 * The length-confounded results above (`representation_preservation*.csv`, `all_layer_frozen_probe_evaluation/`,
   `steering/`, R1, R2) are HISTORICAL (D23) and are not evidence.
 
+* `r5_causal_subspace_skyline/` (**R5**, VALIDATION, descriptive): rank-k DAS/PCA/random subspaces vs SAE feature
+  patches at the M4 sites. A rank-4 subspace carries 0.91 of the L8 persona effect; SAE top-4 features 0.10–0.16.

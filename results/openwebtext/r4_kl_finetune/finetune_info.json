@@ -1,0 +1,23 @@
+{
+  "script_sha256": "292dd1fc69d9e2481a65c89b1e82fa81c754f549cbb7252161990b691ddd17dd",
+  "checkpoints": {
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_8/kl_topk_seed42/checkpoint.pt": "0f84bce13a6885c07956968a2d54a23db48f6d052c940c1a20bc32fb66768753",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_8/mse_topk_seed42/checkpoint.pt": "d80ca178a7f9bf5c38a2106ab426c481b890efb840c731686ce150a9789c7cc4",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_8/kl_topk_seed1042/checkpoint.pt": "1878c34a166d331a157861e61fdbf7777321fbbd523e3289cc06000528a930b4",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_8/mse_topk_seed1042/checkpoint.pt": "87bf4743308a26d9aa412139bd2402178c08fd5ffb7d06cf9fcd2d337a314e61",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_8/kl_topk_seed2042/checkpoint.pt": "33e8dc3607d6cb75bb783f95b029dc0cca9b30f9148ee9326a1a7c32d995f0f3",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_8/mse_topk_seed2042/checkpoint.pt": "788a7c9569fd26eaeb84eebf68135c232e79af97329ac508e482fa26d621c521",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_11/kl_topk_seed42/checkpoint.pt": "4892d363f2730e366cb654c1c54d62223bcc558707d2fa0eeb0a6ca43cc6bd66",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_11/mse_topk_seed42/checkpoint.pt": "794d76b8b04ad5c7efa8d067da4d667a52552c0fcc1e93fe2d3e445b29ce0e09",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_11/kl_topk_seed1042/checkpoint.pt": "e67d4900e5dbd675d1dec6a74bd01c306e8ddcec5af68b4180e7d221b1f462f6",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_11/mse_topk_seed1042/checkpoint.pt": "f6e2787455e2d62f676cf614e9396c543dd144b202522cdaea8eead9611cac39",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_11/kl_topk_seed2042/checkpoint.pt": "74c89a15f7250b16a24dc420dd8359b3ff5e1fd4442d7bd4dc997d9be0301bef",
+    "results/openwebtext/r4_kl_finetune/checkpoints/layer_11/mse_topk_seed2042/checkpoint.pt": "6bf3b396a2c2c96356ba4c24f37fc32f465f75af3b9d13eb06a8f3f157c396cd"
+  },
+  "runtime_s": 4248.016774892807,
+  "gpt2_parameters_unchanged": true,
+  "tokens_per_run": 4998720,
+  "lr": 2e-05,
+  "data": "shard 79 chunks from 10000",
+  "smoke": false
+}

@@ -1,4 +1,4 @@
-# Results registry (as of 2026-11-08)
+# Results registry (as of 2026-11-10)
 
 Each results folder's `README.md` gives file-level detail. This page lists the results that support claims.
 
@@ -27,6 +27,8 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | Fine-tuning variants on identical held-out data | All 9 layer-6 variants: OWT test, GoT test, RepE val/test, cross-wording, causal. **Exception:** the `got_*_frozen_logistic_*` columns of the `truth_aware` rows are circular (see below) | `results/geometry_of_truth/sae_finetuning/heldout_comparison_all_datasets.csv` |
 | RepE representation preservation (**HISTORICAL since 2026-11-08, D23**) | Validation + test + cross-wording | `results/repe/representation_preservation_val_test.csv` |
 | Causal faithfulness (GPT-2, RepE) (**HISTORICAL since 2026-11-08, D23**) | Pre-registered test, 200 controls, positive control | `results/repe/steering/causal_random_controls/` |
+| GPT-2 improved SAEs (R2), reconstruction and behaviour, **CONFIRMED TEST** (M5, 2026-11-10) | Old vs R2 SAEs at L1/L8/L11: NMSE −31 to −74 %, spliced ΔCE −35 to −79 %; R4 KL fine-tune ΔCE −16 to −17 %; GoT information unchanged; single pre-registered run | `results/shared/m5_confirmatory_test/` |
+| GPT-2 improved SAEs (R2), all ladder levels, VALIDATION | 39 in-house SAEs (100M tokens, width 12,288/3,072) vs old base SAEs; causal T_rec/T_full 0.62 → 0.73 at L8 (validation only) | `results/openwebtext/r2_scaled_saes/` |
 | Gemma-2-2B truth steering (appendix only, D23) | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
 
 ## Pilots (validation only, not for final claims)
@@ -47,6 +49,9 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | M4 SAE causal-faithfulness decomposition (VALIDATION): original vs SAE-reconstructed vs error-only patch effects at L1 slot, L8 final, L11 final; feature patches with matched controls | `results/repe/sae_patch_decomposition/` |
 | E3 causal preservation after fine-tuning (VALIDATION): M4 decomposition at L8 final for 9 base + 27 IMP-L layer-8 fine-tunes; pre-registered classes in `criteria.json` (Method A NO IMPROVEMENT 3/3; output-KL TopK NO IMPROVEMENT, ReLU/JumpReLU NOT CREDITABLE) | `results/repe/e3_finetuned_causal_preservation/` |
 | RLM-RP RepE-LM representation preservation and robustness (VALIDATION): 216 SAEs (base L0–11, IMP-L, layer-6 fine-tunes); frozen vs re-trained persona gaps, noise reference, H−U geometry, held-out wording, synonym, neutral, near-duplicate and L0-truncation controls; supersedes the historical length-confounded RepE preservation results for every RepE representation claim | `results/repe/repe_lm_representation_preservation/` |
+| R4 KL fine-tune at fixed L0 (VALIDATION; behaviour confirmed in M5): ΔCE −18 % vs MSE control; no information gain; causal regression at L11. Behaviour-only tool | `results/openwebtext/r4_kl_finetune/` |
+| R5 rank-k causal skyline and random floor at the M4 sites (VALIDATION, descriptive) | `results/repe/r5_causal_subspace_skyline/` |
+| E2 public res-jb reference (VALIDATION, descriptive): our headline conclusions hold for an external 300M-token SAE. res-jb is an external reference, not our improvement | `results/shared/e2_public_sae_reference/` |
 | P1: sparsity-controller anneal/freeze, JumpReLU threshold init, validation checkpoint selection (layers 0/2/6/10, seed 42) | `results/openwebtext/p1_sparsity_control_pilot/` |
 
 ## HISTORICAL since 2026-11-08 (D23): kept for provenance; not evidence for their original claims

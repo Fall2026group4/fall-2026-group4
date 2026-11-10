@@ -212,3 +212,18 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 |---|---|---|
 | this commit | Added `docs/2026-11-10_independent_research_review.md`; M `docs/RESEARCH_ROADMAP.md` (R1–R7 proposed), `docs/RESEARCH_PROGRESS.md` §33 | User asked for an independent assessment and improvement strategy; newly identified tasks go on the roadmap (CLAUDE.md §1) |
 
+
+## 2026-11-10: GPT-2 improvement phase (R2, R4, R5, E2, M5)
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `src/sae/modern_sae.py` (TopK/BatchTopK/ReLU/JumpReLU/frozen-decoder module, `modern_v1` checkpoint format); M `src/evaluation/faithfulness_metrics.py` (`load_sae` dispatches `modern_v1`) | R2 recipe |
+| this commit | Added `scripts/openwebtext/17_streaming_sae_training.py`; `results/openwebtext/r2_scaled_saes/` (README, preregistration, training_info, training_monitor, ladder/, comparisons.csv, criteria.json, excluded_unmatched.csv) | R2 data-scaled retraining (39 SAEs; checkpoints gitignored) |
+| this commit | Added `scripts/shared/sae_ladder_evaluation.py`, `scripts/shared/r2_comparisons.py` | One evaluation ladder for all SAE families; pre-registered R2 rule |
+| this commit | Added `scripts/openwebtext/18_kl_finetune_fixed_l0.py`, `scripts/openwebtext/19_r4_analysis.py`; `results/openwebtext/r4_kl_finetune/` (README, preregistration, finetune_info, finetune_monitor, ladder/, comparisons.csv, criteria.json) | R4 KL fine-tune at fixed L0 (12 checkpoints gitignored) |
+| this commit | Added `scripts/repe/27_causal_subspace_skyline.py`; `results/repe/r5_causal_subspace_skyline/` | R5 skyline and random floor |
+| this commit | Added `scripts/shared/e2_public_sae_reference.py`; `results/shared/e2_public_sae_reference/{checks.json, hypotheses.csv, ladder/}`; M its README (status, §1.7 clarifications, §2 results) | E2 approved and run |
+| this commit | Added `scripts/shared/m5_confirmatory_test.py`; `results/shared/m5_confirmatory_test/` (README, preregistration, m5_rows.csv, comparisons.csv, checks.json) | M5 single confirmatory TEST pass |
+| this commit | M `.gitignore` (`data/openwebtext/stream_shards/`, `stream_tokens/`) | Downloaded OWT shards 78/79 and tokenised chunks are not committed |
+| this commit | M `scripts/shared/build_paper_artifacts.py` (tables `t_r2_c1/c2/c3/counts`, `t_r4`, `t_r5`, `t_e2`, `t_m5`, `t_m5_counts`); added `research_paper/Latex/sections/10b_improvement.tex`; M `main.tex`, `00_abstract.tex`, `14_conclusion.tex`, `references.bib`, `main.pdf` | Paper before/after section |
+| this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,EXPERIMENT_RESULTS_SUMMARY,EXPERIMENT_CHANGELOG,results_registry}.md`, `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | Documentation rule |

@@ -255,3 +255,41 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
 * **H9:** Fine-tuning improves causal preservation. **Tested at L8 final (E3, D28):** Method A no; output-KL not creditably (gains only with L0 drift; TopK unchanged).
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**
+
+## D29. GPT-2 improvement phase: design choices and outcomes (2026-11-10)
+* **Approval:** the user's full execution approval for GPT-2 improvements (R1, R2 and other justified experiments;
+  M5 once frozen). Gemma deferred: inspect and plan only.
+* **Choices made before results:**
+  * modern JumpReLU abandoned in the pilot (L0 would not settle; disclosed);
+  * R5 DAS initialised at PCA after the smoke test showed random init under-fits PCA (disclosed);
+  * E2-H3 PCA matching clarified as M2's OWT-validation NMSE (the code reuses M2 unchanged);
+  * the M5 SAE list contains every SAE of each family (no selection).
+* **Outcomes:**
+  * **R2 is adopted as the improved GPT-2 SAE set.** Reconstruction and behaviour are confirmed on TEST; the causal
+    and representation gains are validation-only.
+  * **R4 (KL at fixed L0) is a behaviour-only tool.** Its behaviour gain is confirmed on TEST, but it costs causal
+    preservation at L11 (validation), so it is not the default SAE for causal or information analyses.
+  * **Information preservation is not improved** relative to PCA by any method. This remains a headline negative
+    result.
+* **Operational rule from 2026-11-10 (user):** one memory-heavy job at a time on the 15 GB host. Wait loops must not
+  use a `pgrep -f` pattern that appears in their own command line.
+
+## D30. Methods to carry forward to Gemma-2-2B (recommendation, 2026-11-10)
+* **Carry forward:**
+  * the evaluation ladder: reconstruction, splicing with noise reference, M2 readers with PCA and noise references,
+    RLM-RP, M4 decomposition, R5 skyline;
+  * the random-decoder baseline;
+  * an external public anchor: Gemma Scope, in place of res-jb;
+  * TopK/BatchTopK SAEs trained with the R2 recipe (AuxK, decoder-transposed init, scale folding, streaming), if
+    compute allows;
+  * the KL fine-tune only as a behaviour-only add-on at fixed L0.
+* **Do not carry forward:**
+  * the in-house sigmoid-surrogate JumpReLU;
+  * the L1-controller ReLU as a primary architecture (worst reconstruction and behaviour, PCA regressions);
+  * output-KL with a drifting L0.
+* **Feasibility on this host (inspected; not run):**
+  * Gemma-2-2B bf16 in Hugging Face transformers runs at about 7.7k tokens/s with 7.3 GB of VRAM. TransformerLens'
+    CPU-side load exceeds the 15 GB of host RAM, so the ladder needs an HF-hook path.
+  * One middle-layer TopK SAE (d_model 2304, width 16k) on 100M tokens is about 3.6 h of activation generation per
+    pass. Train several SAEs per pass from one activation stream, as R2 did.
+  * Use Gemma Scope SAEs at the matching layer as the external anchor first: this needs no training.

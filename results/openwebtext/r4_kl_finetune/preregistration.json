@@ -1,0 +1,38 @@
+{
+  "experiment": "R4 KL fine-tune at fixed L0",
+  "date": "2026-11-10",
+  "approved_by_user": "2026-11-10 full execution approval",
+  "design": {
+    "layers": [
+      8,
+      11
+    ],
+    "sae": "R2 topk-12288",
+    "seeds": [
+      42,
+      1042,
+      2042
+    ],
+    "arms": [
+      "kl",
+      "mse"
+    ],
+    "tokens": 5000000,
+    "lr": 2e-05,
+    "data": "shard79 chunks >= 10000"
+  },
+  "rule": "K1-K4 per layer, paired by seed: better on all 3 seeds and |mean diff| > 2 sd; guard EV(kl) >= EV(mse) - 0.02",
+  "hashes": {
+    "scripts/openwebtext/18_kl_finetune_fixed_l0.py": "292dd1fc69d9e2481a65c89b1e82fa81c754f549cbb7252161990b691ddd17dd",
+    "src/sae/modern_sae.py": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "data/openwebtext/stream_tokens/shard79_chunks.npy": "b2845c070990a00028ff2287fb6e49cc41591a8f89bfee14a731b2fb47ddae25",
+    "results/openwebtext/r4_kl_finetune/README.md": "89beb21040c94197dd1faff429bf2edc58421686946124edd6ca2a64a863aa91",
+    "results/openwebtext/r2_scaled_saes/checkpoints/layer_8/topk_seed42/checkpoint_final.pt": "cbcf2b7039151925746d9b2071fa0dd1df39e2f632964bd27ec36cad838c3124",
+    "results/openwebtext/r2_scaled_saes/checkpoints/layer_8/topk_seed1042/checkpoint_final.pt": "9d7ee269cc388e07ae835fedb2fac0e2af539337b409e2bbdd2afdb5f0a96018",
+    "results/openwebtext/r2_scaled_saes/checkpoints/layer_8/topk_seed2042/checkpoint_final.pt": "e4130fca86fea912ed94b2ff3e4001d30ff657df0c610514df973074168336ff",
+    "results/openwebtext/r2_scaled_saes/checkpoints/layer_11/topk_seed42/checkpoint_final.pt": "c449f15929052f454fbd918737247be9e26e3cd3459b9dcc5c2e921789d99c43",
+    "results/openwebtext/r2_scaled_saes/checkpoints/layer_11/topk_seed1042/checkpoint_final.pt": "e6cbc5f8beb84cc74d5d82d402dba7323ef73ddfc528d2ba3e478209b2c39b77",
+    "results/openwebtext/r2_scaled_saes/checkpoints/layer_11/topk_seed2042/checkpoint_final.pt": "975e877ba2d7080a13672e0b4e1aafd2b1e066037321fe9eaafb023c6eff0d15"
+  }
+}

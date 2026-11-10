@@ -22,8 +22,13 @@ causal preservation unchanged. Adding an output-KL term improves behavioural fai
 but only 5 are creditable: in the other 4 (ReLU and JumpReLU at layers 8--9) L0 rose 5.3--8.1\,\%, beyond the
 pre-registered $\pm$5\,\% guard. Output-KL never improves truth preservation, and its apparent gains in causal
 preservation (+0.02 of the effect) occur only in those sparsity-violating cells; for TopK, whose sparsity is fixed,
-it has no effect. All results except the reconstruction table are \evlabel{validation} findings, not confirmed results;
-a single pre-registered held-out evaluation is pending.
+it has no effect. Retraining our SAEs on 100M tokens at width 12,288 cuts reconstruction error by 31--74\,\% and
+splice damage by 35--79\,\% at layers 1, 8 and 11, raises the persona effect carried at layer 8 from 62\,\% to
+73--75\,\% (validation), and a short KL fine-tune at fixed L0 lowers splice damage by a further 16--17\,\%, at a
+cost in causal preservation at layer 11; in a single pre-registered held-out evaluation the reconstruction and
+behaviour gains are \evlabel{confirmed}, while truth information still shows no gain over PCA at equal error. Our
+conclusions also hold for a public 24,576-latent SAE trained on 300M tokens. Unless marked \evlabel{test}, results are
+\evlabel{validation} findings.
 \end{abstract}
 
-\pending{Abstract to be revised after E1, E2 and the final held-out evaluation (M5). Numbers above are validation-stage unless marked \evlabel{test}.}
+\pending{Abstract to be revised after E1. Numbers are validation-stage unless marked \evlabel{test}.}

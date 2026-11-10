@@ -8,8 +8,32 @@ Short fine-tuning improves the faithfulness level it optimises (task reconstruct
 output-KL term) but not truth information as seen by a re-trained reader, and the behavioural gains of ReLU and
 JumpReLU at depth come with a sparsity cost. On the persona task the SAEs lose information that re-trained readers
 cannot recover and distort the honest-minus-dishonest difference, and neither fine-tuning method creditably improves
-persona representation or the causal effect carried at layer 8. All of these are \evlabel{validation} findings. Future work: larger and
-longer-trained SAEs, the published JumpReLU estimator, task-level sparsity matching, and the same audit on Gemma-2-2B
-with Gemma Scope SAEs.
+persona representation or the causal effect carried at layer 8.
 
-\pending{Final conclusions after M5.}
+\paragraph{Improving the SAEs.} Training our own SAEs on 1000$\times$ more data at 4$\times$ the width (R2,
+Section~\ref{sec:improve}) changes several of these conclusions and leaves others intact.
+\begin{itemize}
+\item \textbf{Confirmed on held-out data:} reconstruction error falls by 31--74\,\% and splice damage by
+  35--79\,\%.
+\item \textbf{Validation:} the persona effect carried by the reconstruction at layer 8 rises from 62\,\% to
+  73--75\,\%, and representation fidelity improves.
+\item \textbf{Unchanged:}
+  \begin{itemize}
+  \item SAEs still do not beat PCA at equal error on task information;
+  \item truth information shows no confirmed gain;
+  \item a supervised rank-4 subspace carries more of the persona effect at layer 8 than the full SAE reconstruction.
+  \end{itemize}
+\item \textbf{KL fine-tune at fixed L0:} it adds a confirmed 16--17\,\% behavioural gain, but reduces causal
+  preservation at layer 11. Faithfulness levels must therefore be optimised and reported separately.
+\item \textbf{External SAE:} the same conclusions hold for a public SAE trained on 300M tokens.
+\end{itemize}
+Except where marked \evlabel{test}, results are \evlabel{validation} findings.
+
+\paragraph{Future work.}
+\begin{itemize}
+\item Gemma-2-2B, using Gemma Scope SAEs as the external anchor and, where feasible, our own data-scaled TopK SAEs at
+  one middle layer. The ladder transfers directly, with the KL fine-tune only as a behaviour-only add-on.
+\item A RepE-LM test split, so that the persona results can be confirmed.
+\item Task-level sparsity matching.
+\item Supervised-subspace (DAS) skylines as a standard reference for causal SAE evaluations.
+\end{itemize}

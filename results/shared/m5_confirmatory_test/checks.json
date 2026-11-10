@@ -1,0 +1,13 @@
+{
+  "split": "test",
+  "n_owt_sequences": 100,
+  "n_got_eval_rows": 452,
+  "smoke": false,
+  "L1_owt_tokens": 12700,
+  "L8_owt_tokens": 12700,
+  "L11_owt_tokens": 12700,
+  "runtime_s": 2611.9971454143524,
+  "script_sha256": "ec8e264a7818b6553ec0558381e9cc5809d9098a57cb0adfc814107f7f6a4616",
+  "n_saes": 81,
+  "test_rows_used": 552
+}

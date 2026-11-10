@@ -778,3 +778,78 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   fine-tuning only at fixed L0, add a causal skyline and a random baseline, then run M5. Roadmap updated (R1–R7,
   proposed). Evidence label: none (no new result).
 
+
+## 34. GPT-2 improvement phase: R2, R4, R5, E2 and M5 (2026-11-10). Status: COMPLETED. Evidence: VALIDATION; M5 CONFIRMED TEST
+
+* **Approval:** the user gave full execution approval for the GPT-2 improvement phase on 2026-11-10 (R1, R2, other
+  justified GPT-2 experiments, final M5 after the protocol is frozen). Gemma is deferred.
+* **R2** (`results/openwebtext/r2_scaled_saes/`, pre-registered with hashes):
+  * 39 SAEs on 100M fresh OWT tokens each (shard 78, excluding the 98 documents matching our sample);
+  * layers 1, 8, 11; TopK, BatchTopK and ReLU at width 12,288 × 3 seeds; TopK-3072 × 3 (width ablation); a
+    frozen-random-decoder TopK × 1;
+  * script `scripts/openwebtext/17_streaming_sae_training.py`, module `src/sae/modern_sae.py`;
+  * a modern JumpReLU (STE) was attempted in the pilot and abandoned (L0 would not settle); disclosed in the README.
+* **Evaluation harness:** `scripts/shared/sae_ladder_evaluation.py`, the same ladder for old, R2 and res-jb SAEs,
+  built from imported M2/RLM-RP/M4/splicing code. Comparisons: `scripts/shared/r2_comparisons.py`, implementing the
+  pre-registered rule. E2: `scripts/shared/e2_public_sae_reference.py`.
+* **Unfinished at the time of this entry (superseded by the results below):** training, ladders, comparisons, M5, paper.
+* **Status update (2026-11-10, 15:30 UTC):**
+  * **Done:**
+    * R2 training: 39 SAEs and 156 checkpoints; GPT-2 parameters unchanged; every L0 within 1 % of 128.
+    * R4 fine-tune: 12 checkpoints, GPT-2 unchanged.
+    * R5 causal skyline (results in its README).
+    * E2 adapter check: passes at layers 1, 8, 10 and 11.
+    * M5: smoke test on validation reproduces the ladder; protocol frozen with hashes; no test row read.
+* **OOM incident (2026-11-10, about 15:00 UTC):**
+  * **Cause:** four ladder or evaluation processes, each about 4.4 GB of host RAM, ran at once on the 15 GB host. They
+    were the chain's R2 ladders, the M5 smoke test and two R4 ladders.
+  * **Killed by the kernel OOM killer:**
+    * R2 ladder L11, at about 8 of 14 SAEs; partial file kept in the scratchpad, not used;
+    * R2 ladder L1;
+    * R4 ladders L8 and L11.
+  * **Stopped deliberately:** one freshly started rerun, which had not finished any SAE.
+  * **Not affected:** checkpoints, finished results, Git.
+  * **Recovery:**
+    * at the user's instruction, every memory-heavy job now runs one at a time;
+    * a serial queue waits until no heavy job is running and at least 8 GB is available;
+    * steps with an existing output are skipped;
+    * RAM, VRAM and disk are logged every minute.
+  * The killed runs are rerun from scratch. Their results do not depend on run order, because the harness is
+    deterministic; M5's smoke test confirms this.
+* **Results (details in each folder's README):**
+  * **R2** (`results/openwebtext/r2_scaled_saes/`), VALIDATION:
+    * All C1–C3, A1 and A2 comparisons improve reconstruction and behaviour at L1, L8 and L11:
+      * NMSE −31 to −74 %;
+      * ΔCE −37 to −82 %;
+      * TopK L8 ΔCE 0.126 → 0.060, L11 0.213 → 0.100.
+    * Causal T_rec/T_full: TopK 0.62 → 0.73 (L8) and 0.62 → 0.69 (L11); BatchTopK reaches 0.75 at L8.
+    * Pair-direction cosine improves everywhere.
+    * Persona re-fit gap −27 to −31 % at L8/L11 (TopK).
+    * SAE − PCA gap: never improves; regresses for ReLU at L1 and L8.
+    * GoT: no clear change. The random decoder beats the trained SAE on the GoT re-fit gap at L8.
+    * Cell counts are in the README. No SAE was excluded for L0.
+  * **R4** (`results/openwebtext/r4_kl_finetune/`), VALIDATION:
+    * KL vs MSE control: ΔCE −18 % at L8 and L11, PRELIMINARY IMPROVEMENT; EV guard passes (−0.002).
+    * Information: NO IMPROVEMENT.
+    * T_rec/T_full at L11: −0.024 on all seeds, REGRESSION.
+    * Use it as a behaviour-only tool.
+  * **R5** (`results/repe/r5_causal_subspace_skyline/`), VALIDATION, descriptive:
+    * At k = 4, a learned subspace carries 1.02 / 0.91 / 0.62 (L1 / L8 / L11). PCA carries 1.00 / 0.52 / 0.59, SAE
+      top-4 features 0.08–0.16, random subspaces 0.01.
+    * At L8, rank 4 carries more than the whole SAE reconstruction.
+  * **E2** (`results/shared/e2_public_sae_reference/`), VALIDATION:
+    * On res-jb, H1 holds for GoT and fails for persona; H2 holds except GoT at L8; H3 holds everywhere; H4 holds at
+      L8 and L11.
+    * Our conclusions transfer to an external 300M-token SAE.
+  * **M5** (`results/shared/m5_confirmatory_test/`), CONFIRMED TEST:
+    * One run: 81 SAEs, 552 test rows.
+    * C1, C2, C3, A1: 17 improved / 7 no change / 0 regressed each.
+    * A2: 2 GoT regressions at L8.
+    * K1/K4: ΔCE −16 to −17 % confirmed; NMSE +2 % (regression, expected cost).
+    * GoT information: no improvement anywhere.
+* **Paper:** new section `10b_improvement.tex` (Problem → Solution → Pipeline → Results → Inference), tables
+  `t_r2_c1/c2/c3/counts`, `t_r4`, `t_r5`, `t_e2`, `t_m5`, `t_m5_counts`. Abstract and conclusion updated. No new
+  figures, per the user. 37 pp, clean build.
+* **Operational issues (both resolved):**
+  * the OOM incident above;
+  * two self-matching `pgrep -f` wait loops, which held up the serial queue for 10 min.

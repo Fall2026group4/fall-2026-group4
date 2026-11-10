@@ -589,3 +589,90 @@ Source: `results/repe/e3_finetuned_causal_preservation/` (README §2). T_rec/T_f
 * **Specificity:** T_rec − S_rec changes by at most 0.0006 nats.
 * **Regressions:** none.
 
+
+## 20. R2: data-scaled SAEs, before → after (VALIDATION; TEST in §24; 3 seeds; Welch 95 % CI)
+
+Source: `results/openwebtext/r2_scaled_saes/comparisons.csv` (README §2). Old = in-house width 3072, 101,600
+tokens. R2 = in-house width 12,288, 100M tokens. TopK shown (C1); other comparisons in the README.
+
+| Layer | Metric | Old TopK | R2 TopK | Δ (95 % CI) | Improvement | Class |
+|---|---|---|---|---|---|---|
+| L1 | NMSE ↓ | 0.0811 ± 0.0004 | 0.0255 ± 0.0001 | −0.0556 (−0.0567, −0.0545) | 68.5 % | IMPROVEMENT |
+| L1 | ΔCE ↓ | 0.0256 ± 0.0015 | 0.0063 ± 0.0008 | −0.0193 (−0.0224, −0.0161) | 75.3 % | IMPROVEMENT |
+| L1 | T_rec/T_full ↑ | 0.931 ± 0.014 | 0.988 ± 0.005 | +0.057 (+0.025, +0.088) | 6.1 % | IMPROVEMENT |
+| L8 | NMSE ↓ | 0.1643 ± 0.0005 | 0.0959 ± 0.0001 | −0.0684 (−0.0696, −0.0671) | 41.6 % | IMPROVEMENT |
+| L8 | ΔCE ↓ | 0.1259 ± 0.0043 | 0.0603 ± 0.0018 | −0.0656 (−0.0747, −0.0565) | 52.1 % | IMPROVEMENT |
+| L8 | persona re-fit gap ↓ | 0.156 ± 0.017 | 0.108 ± 0.009 | −0.048 (−0.082, −0.014) | 30.7 % | IMPROVEMENT |
+| L8 | persona SAE − PCA ↓ | 0.033 ± 0.017 | 0.027 ± 0.009 | −0.006 (−0.041, +0.028) | — | NO CLEAR CHANGE |
+| L8 | GoT re-fit gap ↓ | 0.061 ± 0.015 | 0.055 ± 0.022 | −0.006 (−0.051, +0.040) | — | NO CLEAR CHANGE |
+| L8 | T_rec/T_full ↑ | 0.625 ± 0.039 | 0.726 ± 0.020 | +0.101 (+0.019, +0.182) | 16.1 % | IMPROVEMENT |
+| L11 | NMSE ↓ | 0.1891 ± 0.0005 | 0.1129 ± 0.0002 | −0.0762 (−0.0773, −0.0751) | 40.3 % | IMPROVEMENT |
+| L11 | ΔCE ↓ | 0.2129 ± 0.0018 | 0.0995 ± 0.0011 | −0.1134 (−0.1171, −0.1097) | 53.3 % | IMPROVEMENT |
+| L11 | persona re-fit gap ↓ | 0.149 ± 0.015 | 0.109 ± 0.008 | −0.040 (−0.071, −0.008) | 26.7 % | IMPROVEMENT |
+| L11 | T_rec/T_full ↑ | 0.620 ± 0.004 | 0.692 ± 0.002 | +0.073 (+0.064, +0.082) | 11.8 % | IMPROVEMENT |
+
+Class counts over 51 cells each:
+
+| Comparison | IMPROVEMENT | NO CLEAR CHANGE | REGRESSION |
+|---|---|---|---|
+| C1 (TopK) | 37 | 14 | 0 |
+| C2 (ReLU) | 30 | 18 | 3 (SAE − PCA persona gap at L1 and L8; neutral re-fit gap at L11) |
+| C3 (BatchTopK vs old JumpReLU) | 36 | 15 | 0 |
+| A1 (data and recipe) | 34 | 17 | 0 |
+| A2 (width) | 27 | 21 | 3 |
+
+Random-decoder baseline at L8: EV 0.59, ΔCE 0.62, T_rec/T_full 0.02, GoT re-fit gap 0.052 (smaller than the trained
+SAE's 0.081).
+
+## 21. R4: KL fine-tune at fixed L0 (VALIDATION; TEST in §24; 3 seeds paired)
+
+Source: `results/openwebtext/r4_kl_finetune/comparisons.csv`.
+
+| Layer | Metric | MSE control | KL | Δ ± sd | Class |
+|---|---|---|---|---|---|
+| L8 | ΔCE ↓ | 0.0601 | 0.0493 | −0.0107 ± 0.0011 (−17.9 %) | PRELIMINARY IMPROVEMENT |
+| L8 | T_rec/T_full ↑ | 0.720 | 0.710 | −0.011 ± 0.016 | NO IMPROVEMENT |
+| L11 | ΔCE ↓ | 0.0997 | 0.0814 | −0.0183 ± 0.0012 (−18.4 %) | PRELIMINARY IMPROVEMENT |
+| L11 | T_rec/T_full ↑ | 0.694 | 0.671 | −0.024 ± 0.002 | REGRESSION |
+
+* Information gaps (K2): NO IMPROVEMENT.
+* EV cost: −0.002; the guard passes.
+
+## 22. R5: rank-k causal skyline at the M4 sites (VALIDATION; descriptive)
+
+Source: `results/repe/r5_causal_subspace_skyline/summary.csv`. Share of the persona effect T_k/T_full.
+
+| Site | k | DAS (learned) | PCA | Random mean | SAE top-k features |
+|---|---|---|---|---|---|
+| L1 slot | 1 / 4 | 0.915 / 1.016 | 0.430 / 1.000 | 0.000 / 0.004 | 0.04–0.07 / 0.11–0.16 |
+| L8 final | 1 / 4 / 64 | 0.641 / 0.913 / 1.289 | 0.358 / 0.518 / 0.826 | 0.002 / 0.008 / 0.110 | 0.04–0.05 / 0.10–0.16 / 0.34–0.48 |
+| L11 final | 1 / 4 / 64 | 0.401 / 0.619 / 0.888 | 0.379 / 0.587 / 0.839 | 0.002 / 0.008 / 0.127 | 0.03–0.05 / 0.08–0.14 / 0.32–0.46 |
+
+## 23. E2: public res-jb SAEs (VALIDATION; descriptive)
+
+Source: `results/shared/e2_public_sae_reference/hypotheses.csv`. Layers 8 and 10 are pre-registered; 1 and 11 are an
+extension.
+
+| Hypothesis | GoT cities | RepE-LM persona |
+|---|---|---|
+| H1 (frozen loss mostly fragility) | HOLDS at L8, L10, L11 | does not hold at any layer (the loss is real) |
+| H2 (re-fit loss real) | holds at L10, L11; not at L8 (CI low −0.001) | HOLDS at all layers |
+| H3 (SAE never beats PCA) | HOLDS | HOLDS |
+| H4 (partial causal preservation) | — | HOLDS at L8 (0.559) and L11 (0.612); not at L1 (0.979) |
+
+## 24. M5: confirmatory TEST pass (single run; 81 SAEs; 552 test rows)
+
+Source: `results/shared/m5_confirmatory_test/comparisons.csv`, `m5_rows.csv`. Evidence: **CONFIRMED TEST RESULT**.
+
+| ID | NMSE improvement | ΔCE improvement | Improved / no change / regressed |
+|---|---|---|---|
+| C1 (TopK) | 40–69 % | 53–75 % | 17 / 7 / 0 |
+| C2 (ReLU) | 31–64 % | 35–73 % | 17 / 7 / 0 |
+| C3 (BatchTopK vs old JumpReLU) | 42–74 % | 55–79 % | 17 / 7 / 0 |
+| A1 (data and recipe) | 22–35 % | 34–40 % | 17 / 7 / 0 |
+| A2 (width) | 20–52 % | 26–58 % | 16 / 6 / 2 (GoT re-fit and SAE − PCA at L8) |
+| K1 (R4 KL vs MSE) | −2 % | 16–17 % | 4 / 2 / 2 (NMSE at L8 and L11) |
+| K4 (R4 KL vs R2 base) | −2 % | 16–17 % | 4 / 2 / 2 (NMSE at L8 and L11) |
+
+* GoT re-fit and SAE − PCA gaps: no improvement in any comparison.
+* TopK ΔCE on TEST: 0.133 → 0.062 at L8 and 0.204 → 0.096 at L11.

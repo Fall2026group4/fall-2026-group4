@@ -83,31 +83,35 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
     bootstrap CIs; no new run.
   * **Independent review 2026-11-10 (`docs/2026-11-10_independent_research_review.md`). PROPOSED, none approved; each
     needs a pre-registration and the user's approval:**
-    * **R1 (essential):** run E2 (res-jb external anchor) unchanged.
+    * **Status 2026-11-10 (D29, RESEARCH_PROGRESS §34): R1, R2, R4, R5 and R7 DONE.** R3 (Gemma) is planned, not
+      run (D30). R6 is not run and stays recommended.
+    * **R1 (essential):** run E2 (res-jb external anchor) unchanged. **DONE**: conclusions transfer (E2 README §2).
     * **R2 (essential):** data-scaled retraining. Streaming trainer, about 100M OWT train tokens, width 12,288,
       TopK+AuxK / JumpReLU-STE / ReLU-L1, L0 64 and 128, layers 1/8/11 × 3 seeds, random-frozen-decoder control;
-      then the full ladder. About 4–6 h GPU plus about 1 day of engineering.
+      then the full ladder. About 4–6 h GPU plus about 1 day of engineering. **DONE** (L0 128 only; the modern
+      JumpReLU was abandoned in the pilot): reconstruction and behaviour gains confirmed on TEST (M5).
     * **R3 (essential):** Gemma-2-2B ladder with Gemma Scope 16k SAEs at about 3 layers and several published L0s.
       The RepE-LM prompts must be re-tokenised and the K1/K2 gates re-run for Gemma first. Load Gemma via HF bf16 on
       the GPU (TransformerLens CPU loading exceeds 15 GB RAM). About 4–8 h GPU.
     * **R4 (recommended):** short KL+MSE fine-tune only at fixed L0 (TopK/BatchTopK; JumpReLU with an explicit L0
-      constraint), with an MSE-only control.
+      constraint), with an MSE-only control. **DONE** (TopK, L8/L11): ΔCE −16 to −17 % confirmed on TEST; causal
+      regression at L11 (validation).
     * **R5 (recommended):** a supervised rank-k causal skyline (DAS-style) and a random-decoder lower bound at the L8
-      final site.
+      final site. **DONE** (all three M4 sites; the random decoder is in R2).
     * **R6 (recommended):** a real-activation-direction perturbation reference for M2 (arXiv 2410.12555).
-    * **R7 (essential):** M5, after the protocol is frozen.
+    * **R7 (essential):** M5, after the protocol is frozen. **DONE 2026-11-10** (`results/shared/m5_confirmatory_test/`).
     * **Not recommended:** LoRA on the model; more fine-tuning of the current SAEs; Gemma SAEs from scratch;
       transcoders.
   * **E1** TopK at task-level matched L0, at layers 1, 8 and 11 on GoT cities and RepE-LM persona. 36 new TopK SAEs
     (12 k* × 3 seeds, k* from TRAIN prompts); about 1.2 h GPU; no OWT test evaluation. **DRAFT PRE-REGISTRATION** in
     `results/shared/e1_task_l0_matched_topk/README.md`; awaiting approval.
   * **E2** public `gpt2-small-res-jb` reference at layers 8 and 10 (both cached; no download; layer 6 dropped). No
-    training; about 25–40 min GPU. **DRAFT PRE-REGISTRATION** in `results/shared/e2_public_sae_reference/README.md`;
-    awaiting approval.
+    training; about 25–40 min GPU. **DONE 2026-11-10** (approved under the full execution approval; layers 1 and 11
+    added as an extension).
   * **Team coordination (NEW).** Branch `simba-method-a-multilayer` duplicates IMP-L under the same script numbers (22/23),
     and it uses layer 5 instead of layer 3. Agree on one experiment, and renumber, before either merges. Open PRs #20, #21
     and #24 delete files this branch cites.
-  * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Remaining placeholders: M5; E1/E2; the minimum-detectable-effect statement; the pipeline diagram (F8); the per-experiment command list for the older experiments.
+  * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Improvement section 10b, with M5, E2, R2, R4 and R5, added 2026-11-10 (37 pp, clean). Remaining placeholders: E1; the minimum-detectable-effect statement; the pipeline diagram (F8); the per-experiment command list for the older experiments.
   * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,
@@ -167,9 +171,9 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 |---|---|---|---|
 | M1 | Activation extraction pipeline (HF bf16 backend, since TransformerLens is OOM-killed on the 15 GB-RAM host); GoT/RepE final-token caches; grouped splits | PLANNED | P1 |
 | M2 | Original-activation truth/honesty probes per layer (frozen-probe protocol). The `aditi` layer table used a leaky row split, so it must be redone with grouped splits | PLANNED | P1 |
-| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | BLOCKED: weights not cached; disk/RAM check needed | P1 |
+| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | PLANNED (D30): load Gemma with HF bf16 (7.3 GB VRAM, 7.7k tok/s); port the ladder to HF hooks; re-tokenise RepE-LM and re-run its gates; disk has 97 GB free | P0 (next) |
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
-| M5 | Gemma version of the best GPT-2 improvement (e.g. Method A), only if M3 works | PLANNED | P2 |
+| M5 | Gemma version of the best GPT-2 improvement. Per D30: R2-recipe TopK/BatchTopK at one middle layer (100M tokens; about 3.6 h activation generation per pass), the full ladder, R5 skyline, optional R4 KL as a behaviour-only add-on. Not Method A. | PLANNED | P1 |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)
 * **X1. Cross-condition faithfulness table** (proposal Phase 6), crossing:
@@ -220,3 +224,10 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 * **Back up the EC2-only checkpoints** (about 9 GB of `*.pt`, plus activation caches). Only the 2026-11-06 pre-migration tarball exists; checkpoints created after it (all-layer baseline, P1, truth-aware pilot, Method A, E2E, KL ablation) have no off-machine copy.
 * Pushing `sae-research` to GitHub.
 * Merging or archiving the unmerged team branches (`dhruv`, `simba-*`, `aditi`), and bringing the 2026-10-25 report and CI from `origin/dhruv` into this branch. **Do not merge** without approval.
+
+## 2026-11-10 additions (GPT-2 improvement phase)
+* **RepE-LM test split:** build test prompts from the held-out persona statements, with the M1 duplicate check, so
+  that persona, RLM-RP, M4 and R5 results can be confirmed. Not started. P1.
+* **R6 real-direction noise reference for M2:** still recommended. Not run. P2.
+* **R2 scaling ladders** (10M/25M/50M checkpoints, descriptive): deferred until after M5; not yet run. P2.
+* **Task-level L0 for BatchTopK/ReLU** is unmatched on RepE/GoT prompts (141–216 vs 128); E1 still addresses this. P2.

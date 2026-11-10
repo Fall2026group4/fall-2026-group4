@@ -1,6 +1,6 @@
-# E2: external reference with the public `gpt2-small-res-jb` SAEs (layers 8 and 10). Status: DRAFT PRE-REGISTRATION, awaiting user approval
+# E2: external reference with the public `gpt2-small-res-jb` SAEs (layers 8 and 10). Status: APPROVED AND RUN (2026-11-10; see 1.7)
 
-Evidence level, once run: **VALIDATION, descriptive**. No test row is read. Nothing in this folder has been run.
+Evidence level: **VALIDATION, descriptive**. No test row is read.
 
 ## 1. Before implementation
 
@@ -93,3 +93,82 @@ same tolerances.
   * M2 readers: about 6 s per cell in M2;
   * M4 at L8: one SAE, but feature controls on 24,576 latents, about 5–10 min.
 * **Memory:** the 24,576 × 768 weight matrices are about 75 MB each, well within the A10G.
+
+### 1.7 Approval, clarifications and extension (2026-11-10, before any E2 result was read)
+
+* **Approval:** the user's 2026-11-10 full execution approval covers E2 (item R1 of
+  `docs/2026-11-10_independent_research_review.md`).
+* **Clarification of E2-H3:**
+  * The PCA reference is matched at the SAE's **OWT validation** NMSE, exactly as in M2 (`pca_k_for_val_nmse`); 1.1
+    said "task NMSE".
+  * The code was written to reuse M2 unchanged, so M2's definition governs. The rule itself is unchanged.
+* **Labelled extension:**
+  * Layers 1 and 11 are added (public SAEs downloaded from the same release). The pre-registered layers remain 8
+    and 10; rows from layers 1 and 11 are marked `extension (R1)` in `hypotheses.csv`.
+  * E2-H4 is evaluated at every layer with an M4 site (L1 slot, L8 final, L11 final).
+  * BH correction runs over all H2 rows (4 layers × 2 tasks, minus GoT at L1). This is stricter than 2 × 2.
+* **Implementation:** the ladder rows come from the shared harness `scripts/shared/sae_ladder_evaluation.py`, which
+  imports M2, M4 and the splicing code unchanged. `scripts/shared/e2_public_sae_reference.py` runs the adapter check
+  and the hypothesis rules.
+
+## 2. Results (VALIDATION, descriptive; 2026-11-10)
+
+### 2.1 Checks and files
+
+* **Adapter equivalence** (`checks.json`): passes at L1, L8, L10 and L11. Maximum absolute difference against
+  `sae_lens` is 3.8e-6 to 1.5e-5, below 1e-4. Weight SHA-256 hashes are recorded. 0 test rows.
+* **Reference reproduction:** the old SAEs' ladder rows reproduce M2/M4/splicing within the harness tolerances,
+  checked when the harness was written (RESEARCH_PROGRESS §34).
+* **Ladder rows:**
+  * L1/L8/L11: `results/openwebtext/r2_scaled_saes/ladder/ladder_layer{L}_r2_resjb.csv`;
+  * L10: `ladder/ladder_layer10_old_resjb.csv`.
+* **Hypotheses:** `hypotheses.csv`, from
+  `python scripts/shared/e2_public_sae_reference.py --analyse <both ladder dirs>`.
+
+### 2.2 Hypotheses (res-jb ReLU-24576)
+
+| ID | Layer | GoT cities | RepE-LM persona |
+|---|---|---|---|
+| E2-H1 (frozen loss mostly fragility: noise gap ≥ 0.5 × SAE gap) | L8* | HOLDS (0.247 vs 0.309) | DOES NOT HOLD (0.075 vs 0.247) |
+| | L10* | HOLDS (0.242 vs 0.308) | DOES NOT HOLD (0.058 vs 0.242) |
+| | L11 | HOLDS (0.222 vs 0.312) | DOES NOT HOLD (0.062 vs 0.250) |
+| | L1 | — | DOES NOT HOLD (0.028 vs 0.150) |
+| E2-H2 (re-fit gap > 0, CI low > 0, BH) | L8* | DOES NOT HOLD (0.025, CI low −0.001, q 0.031) | HOLDS (0.223, q 0.001) |
+| | L10* | HOLDS (0.132) | HOLDS (0.224) |
+| | L11 | HOLDS (0.144) | HOLDS (0.234) |
+| | L1 | — | HOLDS (0.134) |
+| E2-H3 (SAE never beats PCA: SAE gap ≥ PCA gap − 0.02) | all | HOLDS (L8 0.025 vs 0.012; L10 0.132 vs 0.028; L11 0.144 vs 0.042) | HOLDS (L1 0.134 vs 0.068; L8 0.223 vs 0.112; L10 0.224 vs 0.067; L11 0.234 vs 0.066) |
+| E2-H4 (T_rec/T_full CI high < 0.80, above controls) | L8* | — | HOLDS (0.559, CI high 0.601) |
+| | L11 | — | HOLDS (0.612, CI high 0.644) |
+| | L1 | — | DOES NOT HOLD (0.979); as expected, our SAEs keep 0.93–0.99 there |
+
+\* pre-registered layers; the others are the labelled extension.
+
+**E2-H5 (descriptive):** res-jb runs at a lower OWT L0 than ours (15, 68, 56 and 61 at L1/L8/L10/L11), so it is not
+matched. Its spliced ΔCE against reconstruction error:
+
+| Layer | res-jb NMSE | res-jb ΔCE | Old SAEs: NMSE range | Old SAEs: ΔCE range | R2 TopK-12288: NMSE / ΔCE |
+|---|---|---|---|---|---|
+| L1 | 0.053 | 0.016 | 0.065–0.081 | 0.007–0.027 | 0.026 / 0.006 |
+| L8 | 0.148 | 0.168 | 0.160–0.200 | 0.114–0.225 | 0.096 / 0.060 |
+| L10 | 0.192 | 0.233 | 0.182–0.233 | 0.160–0.285 | — |
+| L11 | 0.193 | 0.277 | 0.189–0.249 | 0.211–0.361 | 0.113 / 0.100 |
+
+res-jb sits on our within-layer error–damage relation. Our R2 SAEs reach lower error and lower damage, at a higher L0
+(128).
+
+### 2.3 Inference
+
+* **Our four headline conclusions transfer to a 24,576-latent SAE trained on 300M tokens by another group:**
+  * frozen GoT probe loss is mostly probe fragility (H1);
+  * the persona information loss is real, for frozen and re-trained readers (H1 fails for persona; H2 holds);
+  * SAEs do not beat PCA at equal reconstruction error (H3, every layer and task);
+  * the reconstruction carries only part of the persona effect at L8/L11 (H4).
+* **Instructor Review #8 critique 2** (small, unconverged SAEs) therefore does not explain these conclusions.
+* **One exception:** GoT re-fit at L8 (H2), where the loss is small and its CI touches 0. This matches our L8 GoT
+  results, where even a random decoder has a small gap (R2 §2.2).
+
+### 2.4 Limitations
+
+* One public SAE family, not L0-matched to ours, trained on all positions including BOS.
+* VALIDATION only; descriptive.
