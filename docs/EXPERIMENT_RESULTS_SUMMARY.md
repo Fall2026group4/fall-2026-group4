@@ -384,3 +384,27 @@ Source: `results/geometry_of_truth/kl_weight_ablation_layer6_topk/summary.csv`, 
 * The endpoints differ in truth gap by only +0.007, below the 0.02 threshold.
 * BEHAV and truth non-inferiority pass; TRADE fails.
 * Paired sd of the truth gap is about 0.02, larger than every between-method difference.
+
+## 10. Causal test reanalysis (EXPLORATORY; saved outputs of §5, layer 6, 90 test statements, 200 controls)
+
+Source: `results/repe/steering/causal_reanalysis/` (`scripts/repe/14_causal_reanalysis.py`). E ↑ = share of the honest-persona output shift recovered.
+
+| Quantity | Value |
+|---|---|
+| Smallest attainable p (200 controls) | 0.00498 |
+| Bonferroni threshold, 27 SAE targets | 0.00185 (unreachable; 539 controls needed) |
+| Minimum detectable effect vs Gaussian controls | E = 0.0031 (1.3 % of the positive control) |
+| Positive control / raw honesty direction | 0.234 / 0.0048 |
+| SAE targets with E < 0 | 18 of 27 |
+| SAE targets, one-sided p ≤ 0.05 unadjusted / after BH | 1 / 0 |
+| SAE targets, two-sided p ≤ 0.05 unadjusted / after BH | 9 (all E < 0) / 0 (adjusted p = 0.0597) |
+| SAE targets with E(raw) − E(target) > 0, paired 95 % interval excluding 0 (unadjusted) | 27 of 27 |
+
+| Target (mean of 3 variants) | ReLU | TopK | JumpReLU |
+|---|---|---|---|
+| Reconstruction direction, E ↑ | −0.0010 | +0.0009 | +0.0027 |
+| Top-10 latent direction, E ↑ | +0.0011 | −0.0051 | −0.0034 |
+| Top-1 latent direction, E ↑ | −0.0026 | −0.0072 | −0.0056 |
+| Reconstruction direction, cosine with raw ↑ | 0.76 | 0.84 | 0.87 |
+
+These rows are comparable only with each other (same SAEs, split and strength as §5). The historical layer-6 SAEs are not L0-matched on RepE prompts.

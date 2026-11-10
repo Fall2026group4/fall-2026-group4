@@ -106,3 +106,16 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 * `scripts/geometry_of_truth/07_independent_truth_probe.py.bak` (identical to `0d07739`) and `scripts/openwebtext/10_reconstruction_evaluation.py.bak`.
 * `results/professor_review_corrections/` and `scripts/professor_review/` were kept for provenance until 2026-11-07, then retired from the working tree (see the repository-consolidation entry below). Their tracked files remain in Git history; the full folders, including the gitignored checkpoints and logs, are in `../backups/2026-11-07_retired_professor_review_folders/` on the EC2 host.
 * The two `.bak` files and `data/activations/` are now also listed in `.gitignore` (2026-11-07); the files themselves were not touched.
+
+## 2026-11-10: branch `causal-followup` (from `main` at `33dcb9c`)
+
+| File | Change | Reason |
+|---|---|---|
+| `scripts/repe/14_causal_reanalysis.py` | added | two-sided p, BH, power statement and paired comparison for the saved 2026-11-04 causal test (CPU, saved outputs only) |
+| `results/repe/steering/causal_reanalysis/` (`README.md`, `reanalysis_targets.csv`, `control_group_summary.csv`, `power_statement.json`, `figures/causal_effects_forest.{svg,png}`) | added | outputs of the reanalysis; exploratory |
+| `scripts/repe/15_sae_in_the_loop_causal.py` | added (not run) | roadmap C1 + C3: SAE-in-the-loop latent patching, graded positive control, both-sign steering, 600 controls, layers 2/6/10 |
+| `scripts/shared/frozen_probe_error_decomposition.py` | added (not run) | noise control and signal / noise decomposition of the frozen-probe gaps; public-SAE reference (part of G9) |
+| `src/tests/test_causal_followup.py` | added | 17 unit tests for the three scripts (synthetic inputs) |
+| `docs/RESEARCH_PROGRESS.md`, `RESEARCH_ROADMAP.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `RESEARCH_DECISIONS.md`, `results_registry.md`, `experiment_manifest.csv`, this file | updated | documentation of the above |
+
+Nothing was modified, deleted or superseded. `results/repe/steering/causal_random_controls/` is unchanged and is only read.

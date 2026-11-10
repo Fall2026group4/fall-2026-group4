@@ -454,3 +454,30 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
 * **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
 * **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.
+
+## 19. Causal follow-up (2026-11-10). Status: reanalysis COMPLETED [VERIFIED]; two experiments IMPLEMENTED, NOT RUN
+
+Work by Dhruv Rai on branch `causal-followup`, started from `main` at `33dcb9c`. No existing file's results were changed.
+
+### 19a. Reanalysis of the 2026-11-04 causal test. Status: COMPLETED, EXPLORATORY [VERIFIED]
+* **Question:** what can the layer-6 causal test (§ on `repe/13`, roadmap §5) actually show, and is "no SAE target is distinguishable from controls" the right summary?
+* **Method:** `scripts/repe/14_causal_reanalysis.py`, CPU only, saved outputs only (no model run, no test row re-scored). All 28 saved p-values are reproduced exactly from the control rows.
+* **Results** (`results/repe/steering/causal_reanalysis/`):
+  * **Power.** 200 controls give p ≥ 0.00498. The Bonferroni threshold over the 27 SAE targets is 0.00185, so no single target could ever pass it; 539 controls would be needed. The minimum detectable effect is E = 0.0031, which is 1.3 % of the positive control (0.234). The raw direction's E is 0.0048 (2.1 % of the positive control). The median CI half-width of a target is 0.0059, wider than the minimum detectable effect.
+  * **Direction of effects.** 18 of 27 SAE targets have E < 0. Two-sided, 9 targets have unadjusted p ≤ 0.05, all with E < 0: the TopK top-1 and top-10 latent directions and the JumpReLU top-1 latent direction, in every variant. After BH all nine sit at 0.0597. One-sided, 1 target is at p = 0.0498 and none survives BH (smallest 0.76).
+  * **SAE targets vs the raw direction.** E(raw) − E(target) > 0 for all 27, with a paired bootstrap interval that excludes zero for all 27 (unadjusted). Reconstruction directions keep 56 % (JumpReLU), 19 % (TopK) and −21 % (ReLU) of the raw direction's E, in the same order as their cosine with it (0.87, 0.84, 0.76).
+  * **Controls.** Random SAE-latent directions are not more disruptive than Gaussian directions (smallest KS p = 0.088 over 18 groups).
+* **Learned:** the accurate summary is "no SAE target is better than its controls; nine selected-latent directions are worse than their controls at the unadjusted level; the test cannot confirm either after correction". H7 should be read with this power statement.
+* **Unresolved:** why selected latents push the output away from the honest distribution (activation magnitude of the selected latents, or direction-adding being the wrong intervention on a latent). Addressed by 19b.
+
+### 19b. SAE-in-the-loop causal test, layers 2 / 6 / 10 (roadmap C1 + C3). Status: IMPLEMENTED, NOT RUN
+* **Script:** `scripts/repe/15_sae_in_the_loop_causal.py` (validation phase writes `preregistration.json`; test phase scores the test rows once).
+* **Design:** the 27 uninterrupted SAEs at layers 2, 6, 10. Part A: graded activation patch (minimum detectable dose). Part B: latent patching with the SAE in the loop (all latents, the SAE error term, top-1/10/50 honesty latents) against norm-matched Gaussian, random-latent and activation-matched latent controls. Part C: script 13's direction steering with both signs. 600 controls per group; BH within seven pre-registered families.
+* **Verified so far:** unit tests (17 pass) and an end-to-end pipeline run of both phases on a synthetic stand-in model with random SAEs (all parts, all output files, refusal to overwrite). **Not yet run on GPT-2. No result exists.**
+* **Exact next steps:** on the GPU host, `--phase validation --smoke`, `--phase test --smoke`, then the two full phases; then write the results-folder README and update the documents listed in `CLAUDE.md` §1.
+
+### 19c. Frozen-probe error decomposition and noise control. Status: IMPLEMENTED, NOT RUN
+* **Script:** `scripts/shared/frozen_probe_error_decomposition.py` (`--dataset got|repe`, `--saes inhouse|public_relu|public_topk`). Validation rows only; exploratory.
+* **Question:** the all-layer frozen-probe gaps (§ on all-layer frozen probes) are large although cosine is ≈ 0.98. Is that because any error of that size breaks the readout, or because the SAE error is aimed at the truth direction? Reports a norm-matched random-error control, signal retention, noise inflation and error anisotropy, and must reproduce the saved validation AUROCs.
+* **`--saes public_*`** gives the first public-SAE reference under this pipeline (part of G9). The public loaders have not been executed yet.
+* **Verified so far:** unit tests and an end-to-end run on synthetic RepE-shaped data with random SAEs. **Not yet run on the real caches.**
