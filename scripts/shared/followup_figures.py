@@ -87,7 +87,7 @@ def f2_mediation(root, out, plt, made, tables):
     if not p.exists():
         return [str(p)]
     s = pd.read_csv(p)
-    b = s[(s['part'] == 'B') & (s['control_group_kind'] == 'gaussian_matched')].copy()
+    b = s[s['part'] == 'B'].drop_duplicates(['layer', 'sae_architecture', 'sae_seed', 'intervention']).copy()
     if b.empty or 'share_of_activation_patch' not in b:
         return [f'{p} (no part B rows)']
     order = [i for i in ('latent_all', 'error_term', 'latent_top1', 'latent_top10', 'latent_top50') if i in set(b['intervention'])]

@@ -76,6 +76,7 @@ TOPK_SET = 10
 N_BOOT = 2000
 ALPHA = 0.05
 BATCH = 256
+CHUNK_SEQS = 2048           # sequences per batched forward pass (k interventions x n pairs)
 
 
 def _load_loop():
@@ -159,24 +160,53 @@ class PrefixRunner:
         self.w = torch.tensor(pairs['w'].to_numpy(), device=device)
 
     @torch.inference_mode()
+    def _margins(self, tok, fin, c, w, hook_name, delta):
+        """log P(c) - log P(w) at the final positions; blocks run with stop_at_layer = n_layers, then ln_final +
+        unembed on the final positions only (same numbers as the full forward pass; checked at run time)."""
+        rows = torch.arange(len(tok), device=self.device)
+        hooks = []
+        if delta is not None:
+            def fn(resid, hook):                     # TransformerLens passes the hook point as `hook=`
+                resid[rows, fin] = resid[rows, fin] + delta.to(resid.dtype)
+                return resid
+            hooks = [(hook_name, fn)]
+        resid = self.model.run_with_hooks(tok, fwd_hooks=hooks, stop_at_layer=self.model.cfg.n_layers)
+        lp = self.model.unembed(self.model.ln_final(resid[rows, fin][:, None, :]))[:, 0].float().log_softmax(-1)
+        return (lp.gather(1, c[:, None]) - lp.gather(1, w[:, None]))[:, 0]
+
     def margins(self, hook=None, delta=None):
         out = []
         for b in range(0, len(self.tokens), BATCH):
             tok = self.tokens[b:b + BATCH].to(self.device)
             fin = (self.lengths[b:b + BATCH] - 1).to(self.device)
-            rows = torch.arange(len(tok), device=self.device)
-            hooks = []
-            if delta is not None:
-                d = delta if delta.ndim == 1 else delta[b:b + BATCH]
-
-                def fn(resid, hook, _d=d, _rows=rows, _fin=fin):
-                    resid[_rows, _fin] = resid[_rows, _fin] + _d.to(resid.dtype)
-                    return resid
-                hooks = [(hook, fn)]
-            logits = self.model.run_with_hooks(tok, fwd_hooks=hooks)
-            lp = logits[rows, fin].float().log_softmax(-1)
-            out.append((lp.gather(1, self.c[b:b + BATCH, None]) - lp.gather(1, self.w[b:b + BATCH, None]))[:, 0])
+            d = None if delta is None else (delta if delta.ndim == 1 else delta[b:b + BATCH])
+            out.append(self._margins(tok, fin, self.c[b:b + BATCH], self.w[b:b + BATCH], hook, d))
         return torch.cat(out).cpu().numpy()
+
+    def build_tail(self, layer):
+        """Exact final-token recomputation (scripts/repe/15: FinalTokenTail) for interventions at `layer`."""
+        self.tail = loop.FinalTokenTail(self.model, self.tokens.to(self.device), (self.lengths - 1).to(self.device), layer)
+
+    @torch.inference_mode()
+    def margins_many(self, hook, deltas):
+        """[len(deltas), n] margins for many interventions at the tail's layer (call build_tail first), in chunks."""
+        n = len(self.tokens)
+        k = max(1, CHUNK_SEQS // n)
+        out = []
+        for b in range(0, len(deltas), k):
+            D = torch.stack([d.expand(n, -1) if d.ndim == 1 else d for d in deltas[b:b + k]])
+            lp = self.tail.logp(D)                                                       # [m, n, vocab]
+            c = self.c[None, :, None].expand(len(D), -1, 1)
+            w = self.w[None, :, None].expand(len(D), -1, 1)
+            out.append((lp.gather(2, c) - lp.gather(2, w))[..., 0].cpu())
+        return torch.cat(out).numpy()
+
+    @torch.inference_mode()
+    def full_forward_check(self):
+        tok, fin = self.tokens[:BATCH].to(self.device), (self.lengths[:BATCH] - 1).to(self.device)
+        lp = self.model(tok)[torch.arange(len(tok), device=self.device), fin].float().log_softmax(-1)
+        full = (lp.gather(1, self.c[:BATCH, None]) - lp.gather(1, self.w[:BATCH, None]))[:, 0]
+        return float((full.cpu().numpy() - self.margins()[:BATCH]).__abs__().max())
 
     @torch.inference_mode()
     def final_resid(self, hook):
@@ -222,6 +252,7 @@ def main():
     ev = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(ev)
 
+    torch.set_grad_enabled(False)
     device = torch.device(args.device)
     n_controls = N_CONTROLS_SMOKE if args.smoke else N_CONTROLS
     seeds = SEEDS[:1] if args.smoke else SEEDS
@@ -324,9 +355,19 @@ def main():
         X, y, split, d_raw, d_probe = directions(layer)
         zero = float(np.abs(run.margins(hook, torch.zeros(768, device=device)) - base).max())
         checks.append(dict(layer=layer, check='zero_delta_margin_max_abs', value=zero))
+        run.build_tail(layer)
+        fast = run.full_forward_check()
+        checks.append(dict(layer=layer, check='fast_path_vs_full_forward_margin_max_abs', value=fast))
+        g_chk = torch.Generator().manual_seed(control_seed(layer, 'path_check'))
+        probe = [torch.zeros(768, device=device), 5.0 * unit(torch.randn(768, generator=g_chk)).to(device),
+                 torch.randn(len(base), 768, generator=g_chk).to(device)]
+        berr = float(np.abs(run.margins_many(hook, probe) - np.stack([run.margins(hook, d) for d in probe])).max())
+        checks.append(dict(layer=layer, check='final_token_tail_vs_hooked_forward_margin_max_abs', value=berr))
+        if fast > 1e-3 or berr > 1e-3:
+            raise SystemExit(f'layer {layer}: fast or batched path differs from single full passes ({fast}, {berr})')
 
-        def record(part, kind, name, group, arch, seed, detail, delta, sign=0, key=None, _layer=layer):
-            m = run.margins(hook, delta)
+        def record(part, kind, name, group, arch, seed, detail, delta, sign=0, key=None, _layer=layer, m=None):
+            m = run.margins_many(hook, [delta])[0] if m is None else m       # same path as the controls
             eff = m - base
             records.append(dict(layer=_layer, part=part, intervention_kind=kind, intervention=name, control_group=group,
                                 sae_architecture=arch, sae_seed=seed, detail=detail, sign=sign,
@@ -335,6 +376,11 @@ def main():
             if key:
                 store[key] = eff
             return records[-1]['effect']
+
+        def record_many(part, kind, name, group, arch, seed, items):
+            """items: list of (detail, delta), run batched; returns effects."""
+            ms = run.margins_many(hook, [d for _, d in items])
+            return [record(part, kind, name, group, arch, seed, det, None, m=mm) for (det, _), mm in zip(items, ms)]
 
         def gaussians(tag):
             g = torch.Generator().manual_seed(control_seed(layer, tag))
@@ -349,7 +395,7 @@ def main():
             grp = f'L{layer}__positive_lam{lam}'
             e = record('A', 'target', 'unembedding_contrast', grp, '', '', f'lambda={lam}', lam * s * u,
                        key=f'L{layer}__positive_lam{lam}')
-            ctrl = [record('A', 'control', 'gaussian', grp, '', '', f'lambda={lam}', lam * s * r) for r in rs]
+            ctrl = record_many('A', 'control', 'gaussian', grp, '', '', [(f'lambda={lam}', lam * s * r) for r in rs])
             lams.append(lam)
             ps.append(empirical_p_upper(e, ctrl))
         checks.append(dict(layer=layer, check='minimum_detectable_dose', value=minimum_detectable_dose(lams, ps)))
@@ -361,8 +407,7 @@ def main():
             for sign in (1, -1):
                 record('C', 'target', name, grp, '', '', '', sign * s * v, sign=sign,
                        key=f'L{layer}__{name}_{"pos" if sign > 0 else "neg"}')
-        for r in gaussians('steer'):
-            record('C', 'control', 'gaussian', grp, '', '', '', s * r)
+        record_many('C', 'control', 'gaussian', grp, '', '', [('', s * r) for r in gaussians('steer')])
 
         tr = split == 'train'
         d_hat = unit(torch.tensor(d_raw, dtype=torch.float32)).to(device)
@@ -386,16 +431,19 @@ def main():
                         record('C', 'target', name, g_, arch, seed, f'cos_mass_mean={float(v @ d_hat):.4f}',
                                sign * s * v, sign=sign, key=f'{key}__{name}_{"pos" if sign > 0 else "neg"}')
                 g = torch.Generator().manual_seed(control_seed(layer, f'{arch}_{seed}'))
+                items = []
                 for _ in range(n_controls):
                     j = int(alive[torch.randint(len(alive), (1,), generator=g)])
                     sg = 1.0 if torch.rand(1, generator=g).item() < 0.5 else -1.0
-                    record('C', 'control', 'random_latent_direction', f'{key}__feat1', arch, seed, f'latent_{j}',
-                           s * unit(sg * D[:, j]))
+                    items.append((f'latent_{j}', s * unit(sg * D[:, j])))
+                record_many('C', 'control', 'random_latent_direction', f'{key}__feat1', arch, seed, items)
+                items = []
                 for _ in range(n_controls):
                     idx = alive[torch.randperm(len(alive), generator=g)[:TOPK_SET]].to(device)
-                    record('C', 'control', 'random_latent_set_direction', f'{key}__feat10', arch, seed, '',
-                           s * unit(D[:, idx] @ dmu[top_d]))
+                    items.append(('', s * unit(D[:, idx] @ dmu[top_d])))
+                record_many('C', 'control', 'random_latent_set_direction', f'{key}__feat10', arch, seed, items)
                 del sae
+                pd.DataFrame(records).to_csv(out / 'interventions_partial.csv', index=False)
                 print(f'done {key}', flush=True)
 
     df = pd.DataFrame(records)

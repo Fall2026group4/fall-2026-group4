@@ -37,7 +37,7 @@ PART B  SAE-in-the-loop latent patching (the SAE is the causal variable; nothing
                S = k latents with the largest |mean_train(z | honest) - mean_train(z | untruthful)| (TRAIN rows only)
   Controls (N each):
     gaussian_matched         random unit direction scaled per statement to the norm of the target's own change
-                             (for latent_all, error_term and each latent_topk)
+                             (for latent_all and error_term)
     random_latents           the same patch on k random alive latents                       (latent_topk only)
     activation_matched       the same patch on k random alive latents whose mean train activation is close to that
                              of the selected ones (rank window +-MATCH_WINDOW)              (latent_topk only)
@@ -54,6 +54,13 @@ STATISTICS. One-sided empirical p = (1 + #{controls >= target}) / (1 + N) and tw
   preregistration.json). 95 % bootstrap CI over statements (2000 resamples, seed 0). SAE seeds are reported one by
   one and as mean +- sd; a claim about an architecture at a layer needs the same sign in all three seeds.
 
+SPEED. An intervention at the final token changes nothing at earlier positions, so FinalTokenTail caches the
+  baseline keys / values once per layer and recomputes only the final position through the remaining blocks, in
+  batches. At the start of every layer this is checked against the model's own hooked forward pass on four
+  interventions, and the full forward against the fast final-position path (pipeline_checks.csv; the run stops if
+  either differs by more than 1e-3).
+  interventions_partial.csv is rewritten after every SAE so a run stopped by a time limit keeps its rows.
+
 LEAKAGE GUARDS. Latents and directions are selected on TRAIN rows only; the strength on VALIDATION only; TEST rows
   are only scored, once, by --phase test after preregistration.json exists. Existing outputs are never overwritten.
 """
@@ -62,6 +69,7 @@ import hashlib
 import json
 import platform
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -87,6 +95,7 @@ MATCH_WINDOW = 25                 # activation-matched control: +-25 ranks in me
 STRENGTH_GRID = (0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 4.0, 8.0)   # = script 13
 TOPK_SET = 10                     # = script 13 (Part C top-10 direction)
 N_BOOT = 2000
+CHUNK_SEQS = 1024           # sequences per batched forward pass (k interventions x n statements)
 ALPHA = 0.05
 PARTS = ('graded', 'latent', 'steer')
 
@@ -249,6 +258,59 @@ def sha256(path):
 
 
 # ---------------------------------------------------------------- model running
+class FinalTokenTail:
+    """Exact final-position output after adding a delta to blocks.{layer}.hook_resid_pre at the FINAL token only.
+
+    Adding a delta at the final token of a causal transformer leaves every earlier position unchanged at every
+    layer, and leaves the final position unchanged below `layer`. So one baseline pass caches, for blocks
+    layer..n-1, the attention keys and values of the earlier positions; each intervention then recomputes only the
+    final position through blocks layer..n-1 (its query attends to the cached keys of earlier positions and to its
+    own new key), then ln_final + unembed. This is the TransformerLens block computation written out for one
+    position (attention with cfg.attn_scale, causal mask, W_O + b_O, then ln2 + MLP). It is checked against the
+    model's own forward pass with hooks at run time (pipeline_checks.csv) and in src/tests/test_followup_part3.py.
+    """
+
+    def __init__(self, model, tokens, final, layer):
+        self.model, self.layer = model, layer
+        self.n_layers = model.cfg.n_layers
+        names = {f'blocks.{layer}.hook_resid_pre'} | {f'blocks.{i}.attn.hook_{t}' for i in range(layer, self.n_layers)
+                                                      for t in ('k', 'v')}
+        with torch.inference_mode():
+            _, cache = model.run_with_cache(tokens, names_filter=lambda n: n in names)
+        rows = torch.arange(len(tokens), device=tokens.device)
+        self.x0 = cache[f'blocks.{layer}.hook_resid_pre'][rows, final].float()              # [n, d]
+        T = tokens.shape[1]
+        earlier = torch.arange(T, device=tokens.device)[None, :] < final[:, None]          # [n, T]
+        self.mask = earlier[None, :, None, :]                                              # [1, n, 1, T]
+        self.k = {i: cache[f'blocks.{i}.attn.hook_k'].float() for i in range(layer, self.n_layers)}   # [n, T, H, e]
+        self.v = {i: cache[f'blocks.{i}.attn.hook_v'].float() for i in range(layer, self.n_layers)}
+
+    @torch.inference_mode()
+    def logp(self, deltas):
+        """deltas: [m, n, d] (or [m, d] for one delta per intervention). Returns log-probs [m, n, vocab]."""
+        if deltas.ndim == 2:
+            deltas = deltas[:, None, :].expand(-1, self.x0.shape[0], -1)
+        m, n, d = deltas.shape
+        x = (self.x0[None] + deltas.float()).reshape(m * n, d)
+        cfg = self.model.cfg
+        for i in range(self.layer, self.n_layers):
+            blk = self.model.blocks[i]
+            att = blk.attn
+            h = blk.ln1(x[:, None, :])[:, 0]                                                # [m*n, d]
+            q = (torch.einsum('bd,hde->bhe', h, att.W_Q) + att.b_Q).view(m, n, cfg.n_heads, -1)
+            k_self = (torch.einsum('bd,hde->bhe', h, att.W_K) + att.b_K).view(m, n, cfg.n_heads, -1)
+            v_self = (torch.einsum('bd,hde->bhe', h, att.W_V) + att.b_V).view(m, n, cfg.n_heads, -1)
+            sc = torch.einsum('mnhe,nthe->mnht', q, self.k[i]) / att.attn_scale           # earlier positions
+            sc = sc.masked_fill(~self.mask, float('-inf'))
+            s_self = (q * k_self).sum(-1, keepdim=True) / att.attn_scale                    # own (new) key
+            p = torch.cat([sc, s_self], -1).softmax(-1)
+            z = torch.einsum('mnht,nthe->mnhe', p[..., :-1], self.v[i]) + p[..., -1:] * v_self
+            x = x + (torch.einsum('bhe,hed->bd', z.reshape(m * n, cfg.n_heads, -1), att.W_O) + att.b_O)
+            x = x + blk.mlp(blk.ln2(x[:, None, :]))[:, 0]
+        logits = self.model.unembed(self.model.ln_final(x[:, None, :]))[:, 0]
+        return logits.float().log_softmax(-1).view(m, n, -1)
+
+
 class Runner:
     """Final-token interventions at one hook (script 13's Runner with the hook as a parameter)."""
 
@@ -266,14 +328,47 @@ class Runner:
         self.rows = torch.arange(len(toks), device=device)
 
     @torch.inference_mode()
+    def _logp(self, tokens, final, rows, delta):
+        """Final-position log-probs. The blocks run to the end (stop_at_layer = n_layers returns the last residual),
+        then ln_final + unembed are applied to the final positions only: same numbers as the full forward pass,
+        without computing the vocabulary logits at every position (checked at run time, pipeline_checks.csv)."""
+        hooks = []
+        if delta is not None:
+            def fn(resid, hook):
+                resid[rows, final] = resid[rows, final] + delta.to(resid.dtype)
+                return resid
+            hooks = [(self.hook, fn)]
+        resid = self.model.run_with_hooks(tokens, fwd_hooks=hooks, stop_at_layer=self.model.cfg.n_layers)
+        x = self.model.ln_final(resid[rows, final][:, None, :])
+        return self.model.unembed(x)[:, 0].float().log_softmax(-1)
+
     def run(self, delta=None):
         """delta: [d] or [n, d] added to the final-token residual at the hook. Returns final-position log-probs."""
-        def fn(resid, hook):
-            resid[self.rows, self.final] = resid[self.rows, self.final] + delta.to(resid.dtype)
-            return resid
-        hooks = [] if delta is None else [(self.hook, fn)]
-        logits = self.model.run_with_hooks(self.tokens, fwd_hooks=hooks)
-        return logits[self.rows, self.final].float().log_softmax(-1)
+        return self._logp(self.tokens, self.final, self.rows, delta)
+
+    def build_tail(self, layer):
+        """Cache the baseline keys / values once; afterwards kl_many recomputes the final position only."""
+        self.tail = FinalTokenTail(self.model, self.tokens, self.final, layer)
+
+    @torch.inference_mode()
+    def kl_many(self, logp_ref, deltas):
+        """KL(p_ref || p_intervened) [len(deltas), n] for many interventions at the hook's layer, CHUNK_SEQS
+        sequences per step, through FinalTokenTail (call build_tail(layer) first)."""
+        n = len(self.rows)
+        k = max(1, CHUNK_SEQS // n)
+        p_ref = logp_ref.exp()
+        out = []
+        for b in range(0, len(deltas), k):
+            D = torch.stack([d.expand(n, -1) if d.ndim == 1 else d for d in deltas[b:b + k]])
+            logp = self.tail.logp(D)
+            out.append((p_ref[None] * (logp_ref[None] - logp)).sum(-1).cpu())
+        return torch.cat(out).numpy()
+
+    @torch.inference_mode()
+    def full_forward_check(self):
+        """max |log-prob difference| between the fast final-position path and the model's full forward pass."""
+        full = self.model(self.tokens)[self.rows, self.final].float().log_softmax(-1)
+        return float((full - self.run()).abs().max())
 
     @torch.inference_mode()
     def final_resid(self):
@@ -336,6 +431,7 @@ def main():
     from src.evaluation import faithfulness_metrics as fm
     from src.sae.checkpoint_registry import uninterrupted_checkpoint
 
+    torch.set_grad_enabled(False)      # inference only; SAE parameters must not build autograd graphs
     device = torch.device(args.device)
     n_controls = N_CONTROLS_SMOKE if args.smoke else N_CONTROLS
     seeds = SEEDS[:1] if args.smoke else SEEDS
@@ -448,9 +544,22 @@ def main():
         zero_err = float((runU.run(torch.zeros_like(x_u)) - logpU).abs().max())   # hook with zero delta = no-op
         checks.append(dict(layer=layer, check='cache_vs_fresh_max_abs', value=cache_err))
         checks.append(dict(layer=layer, check='zero_delta_logprob_max_abs', value=zero_err))
+        runU.build_tail(layer)
+        fast_err = runU.full_forward_check()
+        checks.append(dict(layer=layer, check='fast_path_vs_full_forward_logprob_max_abs', value=fast_err))
+        if fast_err > 1e-3:
+            raise SystemExit(f'layer {layer}: final-position fast path differs from the full forward pass ({fast_err})')
+        g_chk = torch.Generator().manual_seed(control_seed(layer, 'path_check'))
+        chk = [diff, 0.5 * diff, torch.zeros_like(diff),
+               float(diff.norm(dim=-1).mean()) * unit(torch.randn(768, generator=g_chk)).to(device)]
+        batch_err = float(np.abs(runU.kl_many(logpH, chk)
+                                 - np.stack([kl_rows(logpH, runU.run(d)).cpu().numpy() for d in chk])).max())
+        checks.append(dict(layer=layer, check='final_token_tail_vs_hooked_forward_kl_max_abs', value=batch_err))
+        if batch_err > 1e-3:
+            raise SystemExit(f'layer {layer}: final-token recomputation differs from the hooked forward pass ({batch_err})')
+        t_layer = time.time()
 
-        def record(part, kind, name, group, arch, seed, detail, delta, sign=0, store=None, _layer=layer, _n=len(U)):
-            kl = kl_rows(logpH, runU.run(delta)).cpu().numpy()
+        def add(part, kind, name, group, arch, seed, detail, delta, kl, sign=0, store=None, _layer=layer, _n=len(U)):
             records.append(dict(model='gpt2-small', layer=_layer, part=part, intervention_kind=kind, intervention=name,
                                 control_group=group, sae_architecture=arch, sae_seed=seed, detail=detail, sign=sign,
                                 mean_delta_norm=float(delta.norm(dim=-1).mean()) if delta.ndim == 2 else float(delta.norm()),
@@ -459,6 +568,15 @@ def main():
             if store:
                 kl_store[store] = kl
             return records[-1]['effect_E']
+
+        def record(part, kind, name, group, arch, seed, detail, delta, sign=0, store=None):
+            kl = runU.kl_many(logpH, [delta])[0]          # same computation path as the controls
+            return add(part, kind, name, group, arch, seed, detail, delta, kl, sign=sign, store=store)
+
+        def record_many(part, kind, name, group, arch, seed, items):
+            """items: list of (detail, delta); all run batched. Returns the effects in order."""
+            kls = runU.kl_many(logpH, [d for _, d in items])
+            return [add(part, kind, name, group, arch, seed, det, d, kl) for (det, d), kl in zip(items, kls)]
 
         def gaussians(tag):
             g = torch.Generator().manual_seed(control_seed(layer, tag))
@@ -473,8 +591,8 @@ def main():
                 grp = f'L{layer}__graded_lam{lam}'
                 e = record('A', 'target', 'activation_patch', grp, '', '', f'lambda={lam}', lam * diff,
                            store=f'L{layer}__patch_lam{lam}')
-                ctrl = [record('A', 'control', 'gaussian_matched', grp, '', '', f'lambda={lam}',
-                               norm_matched_delta(lam * norms, r)) for r in rs]
+                ctrl = record_many('A', 'control', 'gaussian_matched', grp, '', '',
+                                   [(f'lambda={lam}', norm_matched_delta(lam * norms, r)) for r in rs])
                 p = empirical_p_upper(e, ctrl)
                 lams.append(lam)
                 ps.append(p)
@@ -499,8 +617,7 @@ def main():
             for sign in (+1, -1):
                 record('C', 'target', 'raw_honesty_direction', grp, '', '', 'mean_diff_train', sign * s * d_hat,
                        sign=sign, store=f'L{layer}__raw_dir_{"pos" if sign > 0 else "neg"}')
-            for r in gaussians('steer'):
-                record('C', 'control', 'gaussian', grp, '', '', '', s * r)
+            record_many('C', 'control', 'gaussian', grp, '', '', [('', s * r) for r in gaussians('steer')])
 
         # ---------------- per SAE: Parts B and C
         for arch in ARCHS:
@@ -533,20 +650,20 @@ def main():
                         record('B', 'target', name, grp, arch, seed,
                                'latents_' + '-'.join(map(str, top[:int(name[10:])].tolist())) if name.startswith('latent_top') else '',
                                delta, store=f'{key}__{name}')
-                        nrm = delta.norm(dim=-1)
-                        for r in gaussians(f'{arch}_{seed}_{name}'):
-                            record('B', 'control', 'gaussian_matched', grp, arch, seed, '', norm_matched_delta(nrm, r))
+                        if name in ('latent_all', 'error_term'):   # top-k latents use latent controls (B3, B4)
+                            nrm = delta.norm(dim=-1)
+                            record_many('B', 'control', 'gaussian_matched', grp, arch, seed,
+                                        [('', norm_matched_delta(nrm, r)) for r in gaussians(f'{arch}_{seed}_{name}')])
                     for k in TOPK_GRID:
                         name = f'latent_top{k}'
                         g = torch.Generator().manual_seed(control_seed(layer, f'{arch}_{seed}_{name}_latents'))
-                        for _ in range(n_controls):
-                            idx = random_latent_set(alive, k, g, exclude=top[:k].tolist())
-                            record('B', 'control', 'random_latents', f'{key}__{name}__random', arch, seed,
-                                   '', latent_patch_delta(z_h, z_u, D, idx))
-                        for _ in range(n_controls):
-                            idx = activation_matched_set(top[:k].tolist(), None, mean_act, g, order=rank_order)
-                            record('B', 'control', 'activation_matched_latents', f'{key}__{name}__matched', arch, seed,
-                                   '', latent_patch_delta(z_h, z_u, D, idx))
+                        items = [('', latent_patch_delta(z_h, z_u, D, random_latent_set(alive, k, g, exclude=top[:k].tolist())))
+                                 for _ in range(n_controls)]
+                        record_many('B', 'control', 'random_latents', f'{key}__{name}__random', arch, seed, items)
+                        items = [('', latent_patch_delta(z_h, z_u, D, activation_matched_set(
+                                     top[:k].tolist(), None, mean_act, g, order=rank_order))) for _ in range(n_controls)]
+                        record_many('B', 'control', 'activation_matched_latents', f'{key}__{name}__matched', arch, seed,
+                                    items)
 
                 if 'steer' in args.parts:
                     y_t = torch.as_tensor(y_tr)
@@ -561,17 +678,20 @@ def main():
                             record('C', 'target', name, grp, arch, seed, f'cos_raw={float(v @ d_hat):.4f}',
                                    sign * s * v, sign=sign, store=f'{key}__{name}_{"pos" if sign > 0 else "neg"}')
                     g = torch.Generator().manual_seed(control_seed(layer, f'{arch}_{seed}_steer'))
+                    items = []
                     for _ in range(n_controls):
                         j = int(alive[torch.randint(len(alive), (1,), generator=g)])
                         sg = 1.0 if torch.rand(1, generator=g).item() < 0.5 else -1.0
-                        record('C', 'control', 'random_latent_direction', f'{key}__steer_feat1', arch, seed,
-                               f'latent_{j}', s * unit(sg * D[:, j]))
+                        items.append((f'latent_{j}', s * unit(sg * D[:, j])))
+                    record_many('C', 'control', 'random_latent_direction', f'{key}__steer_feat1', arch, seed, items)
+                    items = []
                     for _ in range(n_controls):
                         idx = alive[torch.randperm(len(alive), generator=g)[:TOPK_SET]].to(device)
-                        record('C', 'control', 'random_latent_set_direction', f'{key}__steer_feat10', arch, seed,
-                               '', s * unit(D[:, idx] @ dmu[top10]))
+                        items.append(('', s * unit(D[:, idx] @ dmu[top10])))
+                    record_many('C', 'control', 'random_latent_set_direction', f'{key}__steer_feat10', arch, seed, items)
                 del sae
-                print(f'done {key}', flush=True)
+                pd.DataFrame(records).to_csv(out / 'interventions_partial.csv', index=False)   # survives a time-out
+                print(f'done {key} ({time.time() - t_layer:.0f}s into layer {layer})', flush=True)
 
     df = pd.DataFrame(records)
     df.to_csv(out / 'interventions.csv', index=False)

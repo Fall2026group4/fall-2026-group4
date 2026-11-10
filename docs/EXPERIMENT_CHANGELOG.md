@@ -130,3 +130,12 @@ Nothing was modified, deleted or superseded. `results/repe/steering/causal_rando
 | `scripts/shared/followup_figures.py` | added | figures and tables for §19 and §20 results |
 | `src/tests/test_followup_part2.py` | added | 10 unit tests |
 | `docs/RESEARCH_PROGRESS.md`, `RESEARCH_ROADMAP.md`, `results_registry.md`, this file | updated | documentation |
+
+## 2026-11-10 (3): runtime fix
+
+| File | Change | Reason |
+|---|---|---|
+| `scripts/repe/15_sae_in_the_loop_causal.py` | `FinalTokenTail` (exact final-token recomputation), batched evaluation, final-position logits, Gaussian controls of top-k patches removed, partial saves, run-time equivalence checks | first test run could not finish in 12 h; no results were produced |
+| `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | batched evaluation, final-position logits, run-time checks, partial saves | same |
+| `scripts/shared/followup_figures.py` | F2 no longer needs Gaussian rows for top-k patches | follows the control change |
+| `src/tests/test_followup_part3.py` | added: `FinalTokenTail` and the Runner paths equal TransformerLens's hooked forward pass | verification of the fix |

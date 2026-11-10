@@ -491,3 +491,12 @@ Work by Dhruv Rai on branch `dhruv-causal`. Four scripts, written so the GPU wor
 * **20c. Public SAE splicing (roadmap G9, P3).** `scripts/shared/public_sae_spliced_evaluation.py --saes public_relu|public_topk`. Imports the Phase-0 splicing code unchanged; adds loss recovered vs mean ablation. External reference only: not sparsity-matched to the in-house SAEs.
 * **20d. Figures and tables.** `scripts/shared/followup_figures.py`. Makes F1 to F7 and `tables.md` from whichever result files exist; lists the missing ones.
 * **Not written:** the final pre-registered test evaluation (X3). It must come last, after the configurations to test are chosen from these results.
+
+## 21. Runtime fix for the causal scripts (2026-11-10, afternoon). Status: IMPLEMENTED, NOT RUN
+
+* **What happened.** The first test-phase run of `scripts/repe/15_sae_in_the_loop_causal.py` (Kaggle, T4, rebuilt checkpoints) took about 2 730 s per SAE (about 7 800 single forward passes of 90 prompts each, 0.35 s per pass) and could not finish the 27 SAEs inside Kaggle's 12-hour limit. It writes results only at the end, so **no test result was written or inspected**. The preregistration of that attempt is void; the script was changed, so a new validation phase writes a new preregistration before the test phase (the script refuses otherwise).
+* **Fix 1, exact final-token recomputation (`FinalTokenTail`).** Adding a delta at the final token changes no earlier position and nothing below the hooked layer. One baseline pass caches the keys and values of earlier positions for the remaining blocks; each intervention recomputes only the final position through those blocks. Verified against TransformerLens's own hooked forward pass on randomly initialised models (plain and folded LayerNorm, layers 0 / 2 / 4, right padding; `src/tests/test_followup_part3.py`), and checked again at run time on four interventions per layer (the run stops above 1e-3).
+* **Fix 2.** Interventions are evaluated in batches; vocabulary logits are computed at the final position only.
+* **Fix 3.** The Gaussian controls of the top-k latent patches were dropped: they were descriptive and in no pre-registered family. The top-k patches keep their random-latent (B3) and activation-matched (B4) controls. 600 controls per remaining group are unchanged.
+* **Resilience.** `interventions_partial.csv` is rewritten after every SAE.
+* `scripts/geometry_of_truth/22_truth_direction_causal_test.py` received fix 2 and the same run-time checks (its prompts are 8 to 10 tokens, so fix 1 matters less there).
