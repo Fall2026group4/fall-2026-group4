@@ -206,3 +206,9 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | M `research_paper/Latex/main.tex` (`\emergencystretch`), `sections/{00_abstract,04_questions,07_results_information,09_results_causal,10_finetuning,11_statistics,12_discussion,13_limitations,14_conclusion,15_appendix}.tex`, `main.pdf`; regenerated `tables/*.tex` (caption path breaks only for existing tables) | Paper integration; the ambiguous 5/9 wording corrected; overfull boxes removed |
 | this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,EXPERIMENT_RESULTS_SUMMARY,results_registry}.md`, `docs/experiment_manifest.csv`, `results/repe/README.md`, `README.md` | Documentation rule. No checkpoints were created, so `checkpoint_registry.csv` is unchanged |
 
+## 2026-11-10: independent research review (no experiment)
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `docs/2026-11-10_independent_research_review.md`; M `docs/RESEARCH_ROADMAP.md` (R1–R7 proposed), `docs/RESEARCH_PROGRESS.md` §33 | User asked for an independent assessment and improvement strategy; newly identified tasks go on the roadmap (CLAUDE.md §1) |
+

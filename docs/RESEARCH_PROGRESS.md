@@ -764,3 +764,17 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * an L0-matched output-KL variant;
   * the minimum-detectable-effect statement.
 
+## 33. Independent research review and improvement strategy (2026-11-10). Status: COMPLETED (recommendation only; no experiment run)
+
+* **Document:** `docs/2026-11-10_independent_research_review.md`.
+  * Repository audit; literature review of about 25 papers, links checked.
+  * Planning-only throughput measurements: GPT-2 to L8 about 63k tokens/s; Gemma-2-2B full forward bf16 about 7.7k
+    tokens/s, 7.3 GB. TransformerLens loading of Gemma exceeds host RAM, so use HF bf16.
+* **Main judgement:** the dominant weakness is SAE quality.
+  * Ours: 101,600 unique tokens, width 3,072.
+  * res-jb: 300M tokens, 24,576 latents. Gemma Scope: billions of tokens.
+  * Every faithfulness conclusion is therefore exposed to the "under-trained SAEs" objection.
+* **Recommendation:** apply the existing ladder to strong SAEs (E2; data-scaled retraining; Gemma Scope), test KL
+  fine-tuning only at fixed L0, add a causal skyline and a random baseline, then run M5. Roadmap updated (R1–R7,
+  proposed). Evidence label: none (no new result).
+

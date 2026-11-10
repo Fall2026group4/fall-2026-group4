@@ -81,6 +81,23 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
     per-SAE E3 CIs (±0.06–0.09) need more pairs or seeds to detect changes below about 0.03.
   * **NEW, PLANNED:** a minimum-detectable-effect statement for E3/M4 (Review #8 critique 3), from the existing
     bootstrap CIs; no new run.
+  * **Independent review 2026-11-10 (`docs/2026-11-10_independent_research_review.md`). PROPOSED, none approved; each
+    needs a pre-registration and the user's approval:**
+    * **R1 (essential):** run E2 (res-jb external anchor) unchanged.
+    * **R2 (essential):** data-scaled retraining. Streaming trainer, about 100M OWT train tokens, width 12,288,
+      TopK+AuxK / JumpReLU-STE / ReLU-L1, L0 64 and 128, layers 1/8/11 × 3 seeds, random-frozen-decoder control;
+      then the full ladder. About 4–6 h GPU plus about 1 day of engineering.
+    * **R3 (essential):** Gemma-2-2B ladder with Gemma Scope 16k SAEs at about 3 layers and several published L0s.
+      The RepE-LM prompts must be re-tokenised and the K1/K2 gates re-run for Gemma first. Load Gemma via HF bf16 on
+      the GPU (TransformerLens CPU loading exceeds 15 GB RAM). About 4–8 h GPU.
+    * **R4 (recommended):** short KL+MSE fine-tune only at fixed L0 (TopK/BatchTopK; JumpReLU with an explicit L0
+      constraint), with an MSE-only control.
+    * **R5 (recommended):** a supervised rank-k causal skyline (DAS-style) and a random-decoder lower bound at the L8
+      final site.
+    * **R6 (recommended):** a real-activation-direction perturbation reference for M2 (arXiv 2410.12555).
+    * **R7 (essential):** M5, after the protocol is frozen.
+    * **Not recommended:** LoRA on the model; more fine-tuning of the current SAEs; Gemma SAEs from scratch;
+      transcoders.
   * **E1** TopK at task-level matched L0, at layers 1, 8 and 11 on GoT cities and RepE-LM persona. 36 new TopK SAEs
     (12 k* × 3 seeds, k* from TRAIN prompts); about 1.2 h GPU; no OWT test evaluation. **DRAFT PRE-REGISTRATION** in
     `results/shared/e1_task_l0_matched_topk/README.md`; awaiting approval.
