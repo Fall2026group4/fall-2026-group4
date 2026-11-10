@@ -227,3 +227,11 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | M `.gitignore` (`data/openwebtext/stream_shards/`, `stream_tokens/`) | Downloaded OWT shards 78/79 and tokenised chunks are not committed |
 | this commit | M `scripts/shared/build_paper_artifacts.py` (tables `t_r2_c1/c2/c3/counts`, `t_r4`, `t_r5`, `t_e2`, `t_m5`, `t_m5_counts`); added `research_paper/Latex/sections/10b_improvement.tex`; M `main.tex`, `00_abstract.tex`, `14_conclusion.tex`, `references.bib`, `main.pdf` | Paper before/after section |
 | this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,EXPERIMENT_RESULTS_SUMMARY,EXPERIMENT_CHANGELOG,results_registry}.md`, `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | Documentation rule |
+
+## 2026-11-10: final defense verification (no experiment)
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `docs/final_defense/{FINAL_RESEARCH_REPORT,PROFESSOR_DEFENSE_CHEATSHEET,RESULTS_VERIFICATION_TABLE,PROFESSOR_QUESTIONS_AND_ANSWERS,EXPERIMENT_AUDIT}.md` | User-requested verified report and defense material |
+| this commit | Added `scripts/shared/m5_independent_verification.py` (read-only) | Reproducible independent re-check of M5: hashes, completeness, decision rules |
+| this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,results_registry}.md` | Documentation rule. No results, checkpoints or manifests changed |

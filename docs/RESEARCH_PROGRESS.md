@@ -853,3 +853,37 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **Operational issues (both resolved):**
   * the OOM incident above;
   * two self-matching `pgrep -f` wait loops, which held up the serial queue for 10 min.
+
+## 35. Final defense verification and audit (2026-11-10). Status: COMPLETED (verification only; no experiment run)
+
+* **Task:** an independent verification of every reported result before the final professor presentation.
+* **Constraints:** no rerun, no checkpoint loaded, no result or historical README modified.
+* **Deliverables:** `docs/final_defense/` contains:
+  * `FINAL_RESEARCH_REPORT.md`;
+  * `PROFESSOR_DEFENSE_CHEATSHEET.md`;
+  * `RESULTS_VERIFICATION_TABLE.md`;
+  * `PROFESSOR_QUESTIONS_AND_ANSWERS.md`;
+  * `EXPERIMENT_AUDIT.md`.
+
+  Also new: the read-only re-check script `scripts/shared/m5_independent_verification.py`.
+* **M5 verified COMPLETE:**
+  * 11/11 code and config hashes in `preregistration.json` match;
+  * 81/81 expected rows (23/29/29), 0 duplicate keys, 0 duplicate checkpoint hashes;
+  * 136/136 decision classes reproduced by an independent implementation of the R2 and IMP-L rules;
+  * clean log exit; `test_rows_used` 552.
+* **Findings recorded (no artifact edited):**
+  1. The M5 README states an OWT test L0 range of 127.6–133.2. The true maximum is 133.39 (old ReLU, L11, seed
+     2042). It is inside ±10 %, so no exclusion changes.
+  2. The pre-run M5 README hash cannot be reproduced, because results were appended to the same file. The design text
+     is therefore not byte-verifiable; the code hashes are.
+  3. The pre-registration and the results were committed together (`af52b0b`). Their order rests on file times and the
+     in-script hash guard.
+  4. The M5 OWT and GoT test rows had been scored earlier for the old reference SAEs (README §10). M5 should be
+     labelled "previously exposed (reference SAEs only)". No R2/R4 choice used test numbers (D31).
+  5. A1 confounds token count with recipe. "Longer training alone helps" is NOT VERIFIED. The R2 10M/25M/50M
+     checkpoints remain unevaluated.
+  6. New descriptive observation from the M5 rows: the random frozen-decoder TopK has a GoT SAE − PCA re-fit gap of
+     −0.003 (L8) and −0.013 (L11), against +0.008 to +0.081 for every trained SAE. That metric does not separate
+     trained from random SAEs (n = 1).
+* **Tests:** 35 passed.
+* **Evidence label:** no new result. All verified numbers keep their original labels.

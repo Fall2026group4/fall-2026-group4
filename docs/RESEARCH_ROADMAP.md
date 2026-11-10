@@ -231,3 +231,12 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 * **R6 real-direction noise reference for M2:** still recommended. Not run. P2.
 * **R2 scaling ladders** (10M/25M/50M checkpoints, descriptive): deferred until after M5; not yet run. P2.
 * **Task-level L0 for BatchTopK/ReLU** is unmatched on RepE/GoT prompts (141–216 vs 128); E1 still addresses this. P2.
+
+## 2026-11-10 additions (final defense audit, `docs/final_defense/EXPERIMENT_AUDIT.md`)
+* **Isolate token count from recipe:** evaluate the existing R2 10M/25M/50M checkpoints with the ladder on
+  VALIDATION. No training needed. P1 (this raises the existing P2 item, because "longer training" is otherwise
+  unanswerable).
+* **Random-decoder replication:** more frozen-decoder seeds (currently n = 1), because it ties or beats trained SAEs
+  on GoT SAE − PCA. P1.
+* **Process:** freeze protocols in a separate committed file before any future test pass (D31). Rule.
+* **Off-machine backup of the R2/R4 checkpoints** (in addition to §11). P0 before the deadline.

@@ -293,3 +293,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * One middle-layer TopK SAE (d_model 2304, width 16k) on 100M tokens is about 3.6 h of activation generation per
     pass. Train several SAEs per pass from one activation stream, as R2 did.
   * Use Gemma Scope SAEs at the matching layer as the external anchor first: this needs no training.
+
+## D31. M5 evidence label and protocol-freezing practice (2026-11-10, final defense audit)
+* **M5 label.** M5 results are cited as "CONFIRMED TEST RESULT (previously exposed test rows; exposure limited to
+  the old reference SAEs)".
+  * The OWT and GoT test rows were scored for the old SAEs before M5 (README §10).
+  * No R2/R4 decision used them.
+* **Protocol freezing.** Future frozen protocols are written to a separate file, and committed before the run, so that
+  the pre-registration hash stays verifiable after results are added.
+* **Erratum, recorded rather than edited:** the M5 README L0 maximum is 133.39, not 133.2.
