@@ -74,3 +74,11 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/shared/frozen_probe_error_decomposition/` | NOT RUN | Will be EXPLORATORY, validation rows only |
 
 * **H7 (updated reading):** all SAE-based interventions tested at layer 6 were null in the pre-registered one-sided sense. The test could detect effects only above about 1.3 % of the positive control and could not confirm any single comparison after correction. Nine selected-latent directions were below their controls (two-sided p ≤ 0.05 unadjusted, 0.0597 after BH).
+
+## Added 2026-11-10 (2)
+
+| Result | Status |
+|---|---|
+| `results/shared/sparsity_matched_truth_preservation/` | NOT RUN; will be a validation finding |
+| `results/geometry_of_truth/causal_truth_steering/` | NOT RUN; will be a pre-registered TEST result for its three families |
+| `results/shared/public_sae_spliced_evaluation/` | NOT RUN; external reference, validation, not sparsity-matched |

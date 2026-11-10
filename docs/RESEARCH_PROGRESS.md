@@ -481,3 +481,13 @@ Work by Dhruv Rai on branch `causal-followup`, started from `main` at `33dcb9c`.
 * **Question:** the all-layer frozen-probe gaps (§ on all-layer frozen probes) are large although cosine is ≈ 0.98. Is that because any error of that size breaks the readout, or because the SAE error is aimed at the truth direction? Reports a norm-matched random-error control, signal retention, noise inflation and error anisotropy, and must reproduce the saved validation AUROCs.
 * **`--saes public_*`** gives the first public-SAE reference under this pipeline (part of G9). The public loaders have not been executed yet.
 * **Verified so far:** unit tests and an end-to-end run on synthetic RepE-shaped data with random SAEs. **Not yet run on the real caches.**
+
+## 20. Remaining code experiments (2026-11-10). Status: IMPLEMENTED, NOT RUN
+
+Work by Dhruv Rai on branch `dhruv-causal`. Four scripts, written so the GPU work after the Kaggle rebuild is one session. None has run on GPT-2; all four ran end to end on a synthetic stand-in model with random SAEs and a stand-in SAELens (all phases, all output files, refusal to overwrite), and 10 new unit tests pass.
+
+* **20a. Sparsity matched on the truth and honesty prompts (roadmap S3).** `scripts/shared/sparsity_matched_truth_preservation.py --dataset got|repe`. Inference-time top-m truncation of the latents (m = 8 ... 128; for TopK this is exactly the SAE with k = m), frozen original probes, validation rows only. A cell is compared only if every architecture and seed is within ±10 % of m on the prompts; rankings use paired differences over the three seeds. Evidential status when run: validation finding.
+* **20b. Geometry of Truth causal test (roadmap C4).** `scripts/geometry_of_truth/22_truth_direction_causal_test.py`. Cities pairs; outcome = change of log P(true token) − log P(false token) at the first token where the true and false statements differ; intervention at the final prefix token, layers 4 / 6 / 8 / 10. Targets: mass-mean and probe directions, SAE reconstruction / top-1 / top-10 directions, both signs. Graded oracle positive control (unembedding contrast). 600 controls; three pre-registered families.
+* **20c. Public SAE splicing (roadmap G9, P3).** `scripts/shared/public_sae_spliced_evaluation.py --saes public_relu|public_topk`. Imports the Phase-0 splicing code unchanged; adds loss recovered vs mean ablation. External reference only: not sparsity-matched to the in-house SAEs.
+* **20d. Figures and tables.** `scripts/shared/followup_figures.py`. Makes F1 to F7 and `tables.md` from whichever result files exist; lists the missing ones.
+* **Not written:** the final pre-registered test evaluation (X3). It must come last, after the configurations to test are chosen from these results.

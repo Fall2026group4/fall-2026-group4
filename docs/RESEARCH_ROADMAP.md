@@ -156,3 +156,13 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | P1 | Run `scripts/shared/frozen_probe_error_decomposition.py` for GoT and RepE, in-house SAEs | Says whether frozen-probe gaps come from the size of the SAE error or from its direction | P0 |
 | P2 | Same script with `--saes public_relu` and `--saes public_topk` (frozen-probe part of G9); the public loaders are untested | External reference; not sparsity-matched, never a ranking | P1 |
 | P3 | Splicing (Phase 0) for the public SAEs under `scripts/shared/spliced_reconstruction_evaluation.py` | Remaining part of G9 | P1 |
+
+## 13. Status update 2026-11-10 (2)
+
+| ID | State |
+|---|---|
+| S3 | IMPLEMENTED, NOT RUN: `scripts/shared/sparsity_matched_truth_preservation.py` (§20a) |
+| C4 | IMPLEMENTED, NOT RUN: `scripts/geometry_of_truth/22_truth_direction_causal_test.py` (§20b) |
+| P3 (G9 splicing) | IMPLEMENTED, NOT RUN: `scripts/shared/public_sae_spliced_evaluation.py` (§20c) |
+| Figures | `scripts/shared/followup_figures.py` (§20d) |
+| X3 | PLANNED: write after the results of §19 and §20 fix which configurations go to the final test |

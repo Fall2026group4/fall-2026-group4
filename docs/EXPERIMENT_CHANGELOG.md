@@ -119,3 +119,14 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | `docs/RESEARCH_PROGRESS.md`, `RESEARCH_ROADMAP.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `RESEARCH_DECISIONS.md`, `results_registry.md`, `experiment_manifest.csv`, this file | updated | documentation of the above |
 
 Nothing was modified, deleted or superseded. `results/repe/steering/causal_random_controls/` is unchanged and is only read.
+
+## 2026-11-10 (2): branch `dhruv-causal`, remaining code experiments
+
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/sparsity_matched_truth_preservation.py` | added (not run) | roadmap S3 |
+| `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | added (not run) | roadmap C4 |
+| `scripts/shared/public_sae_spliced_evaluation.py` | added (not run) | roadmap G9 / P3 |
+| `scripts/shared/followup_figures.py` | added | figures and tables for §19 and §20 results |
+| `src/tests/test_followup_part2.py` | added | 10 unit tests |
+| `docs/RESEARCH_PROGRESS.md`, `RESEARCH_ROADMAP.md`, `results_registry.md`, this file | updated | documentation |
