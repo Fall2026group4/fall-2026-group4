@@ -1,4 +1,4 @@
-# Research roadmap (as of 2026-11-08; final deadline 2026-12-08)
+# Research roadmap (as of 2026-11-10; final deadline 2026-12-08)
 
 Update this file whenever a task starts, finishes, stops, changes plan, or a new outstanding task is identified (`CLAUDE.md` §1).
 
@@ -64,9 +64,23 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
     * more seeds for the 5 Method A cells where the direction is consistent but the 2 sd rule fails.
   * **Priority set by the user on 2026-11-09:** E3 first, then E2, then E1. Each one needs the user's approval of its
     pre-registration (hypotheses, comparisons, metrics, GPU estimate, training requirements) before anything runs.
-  * **E3** causal preservation (M4 protocol, L8 final) of the 27 IMP-L layer-8 fine-tunes plus the 9 base SAEs. No
-    training; about 35–45 min GPU. **DRAFT PRE-REGISTRATION** in `results/repe/e3_finetuned_causal_preservation/README.md`;
-    awaiting approval. Script 25 is not written yet.
+  * **E3** causal preservation (M4 protocol, L8 final) of the 27 IMP-L layer-8 fine-tunes plus the 9 base SAEs.
+    **DONE 2026-11-10 (VALIDATION):**
+    * Method A NO IMPROVEMENT 3/3;
+    * output-KL TopK NO IMPROVEMENT;
+    * output-KL ReLU/JumpReLU NOT CREDITABLE (gains of +0.018 to +0.022 only with L0 drift).
+    `results/repe/e3_finetuned_causal_preservation/`.
+  * **RLM-RP** RepE-LM representation preservation and robustness, 216 SAEs. **DONE 2026-11-10 (VALIDATION):**
+    * the persona loss is real (re-trained gap; 2–3× the noise reference);
+    * the H−U difference is distorted;
+    * Method A has no effect;
+    * output-KL gives tiny gains with more active latents.
+    `results/repe/repe_lm_representation_preservation/`.
+  * **NEW (from E3/RLM-RP), PLANNED, needs approval:** an L0-matched output-KL variant (G8/S4) is now the only way to
+    test whether output-KL improves causal faithfulness. A stronger controller, or TopK-only with more seeds; TopK's
+    per-SAE E3 CIs (±0.06–0.09) need more pairs or seeds to detect changes below about 0.03.
+  * **NEW, PLANNED:** a minimum-detectable-effect statement for E3/M4 (Review #8 critique 3), from the existing
+    bootstrap CIs; no new run.
   * **E1** TopK at task-level matched L0, at layers 1, 8 and 11 on GoT cities and RepE-LM persona. 36 new TopK SAEs
     (12 k* × 3 seeds, k* from TRAIN prompts); about 1.2 h GPU; no OWT test evaluation. **DRAFT PRE-REGISTRATION** in
     `results/shared/e1_task_l0_matched_topk/README.md`; awaiting approval.
@@ -76,7 +90,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
   * **Team coordination (NEW).** Branch `simba-method-a-multilayer` duplicates IMP-L under the same script numbers (22/23),
     and it uses layer 5 instead of layer 3. Agree on one experiment, and renumber, before either merges. Open PRs #20, #21
     and #24 delete files this branch cites.
-  * **Paper** skeleton in `research_paper/Latex/` with the verified M0–M4 and IMP-L tables. IN PROGRESS: compiles (20 pp); figures deterministic (byte-identical on regeneration). Due 11-10.
+  * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Remaining placeholders: M5; E1/E2; the minimum-detectable-effect statement; the pipeline diagram (F8); the per-experiment command list for the older experiments.
   * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,

@@ -24,3 +24,12 @@ Verdict ReLU INCONCLUSIVE, TopK/JumpReLU NOT SUPPORTED; see its README §11. Che
 **R2 SAE-in-the-loop intervention (2026-11-08):** `r2_sae_in_the_loop_steering_layer6/` — **validation stage only (descriptive)**.
 Verdict NOT SUPPORTED for all architectures and k; test stage deferred. See its README §13 and the figure
 `figures/r2_sae_in_the_loop_validation.png`.
+
+**RepE-LM (corrected, equal-length task) results, current evidence (2026-11-10):**
+* `repe_lm_gates/` (M1), `causal_site_sweep/` (M3), `sae_patch_decomposition/` (M4).
+* `repe_lm_representation_preservation/` (**RLM-RP**, VALIDATION): 216 SAEs, persona preservation with controls.
+  This is the current source for every RepE representation claim.
+* `e3_finetuned_causal_preservation/` (**E3**, VALIDATION): causal preservation of the IMP-L layer-8 fine-tunes.
+* The length-confounded results above (`representation_preservation*.csv`, `all_layer_frozen_probe_evaluation/`,
+  `steering/`, R1, R2) are HISTORICAL (D23) and are not evidence.
+

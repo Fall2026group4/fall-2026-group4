@@ -1,0 +1,127 @@
+{
+  "experiment": "E3 causal preservation of the IMP-L layer-8 fine-tuned SAEs (M4 protocol, L8 final token)",
+  "date": "2026-11-10 06:43:41",
+  "approved_by_user": "2026-11-10 (\"Complete causal faithfulness evaluation (E3). This is the highest-priority new experiment ... Check the existing E3 preregistration before implementation. Do not change its success criteria after observing results.\")",
+  "evidence_label": "VALIDATION (RepE-LM validation pairs; TRAIN T2-T4 for feature ranking and k only; test not loaded)",
+  "design_source": "results/repe/e3_finetuned_causal_preservation/README.md section 1 (draft of 2026-11-09, unchanged); this file adds hashes and implementation details only",
+  "site": "blocks.8.hook_resid_pre|final",
+  "saes": "9 base + 27 IMP-L layer-8 fine-tunes (owt_only, method_a, kl) x relu/topk/jumprelu x 42/1042/2042",
+  "hypotheses": {
+    "E3-H1": "method_a raises preservation_rec = T_rec/T_full, consistent vs base AND vs owt_only",
+    "E3-H2": "kl raises preservation_rec over method_a, consistent",
+    "E3-H3": "specificity: a gain in H1/H2 must also appear in rec_minus_syn_rec = T_rec - S_rec (persona minus synonym), same pairs and rule; otherwise labelled non-specific"
+  },
+  "consistent_rule": "better on all 3 seeds AND |mean paired difference| > 2 x sd (IMP-L rule)",
+  "classes": "IMP-L definitions: NOT CREDITABLE if any inherited guard failed; REGRESSION if consistently worse (H1: vs base; H2: vs method_a); PRELIMINARY IMPROVEMENT if the criterion is met; else NO IMPROVEMENT. CONFIRMED is not used.",
+  "guards_inherited_from_impl_criteria_json": {
+    "relu": {
+      "method_a": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "kl": {
+        "l0_within_5pct_of_base": false,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      }
+    },
+    "topk": {
+      "method_a": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "kl": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      }
+    },
+    "jumprelu": {
+      "method_a": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "kl": {
+        "l0_within_5pct_of_base": false,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      }
+    }
+  },
+  "stated_in_advance": "kl relu and kl jumprelu at layer 8 failed the IMP-L L0 guard, so their E3-H2 class is NOT CREDITABLE a priori; only topk can earn a creditable kl class",
+  "secondary": [
+    "shapley_share_rec (up)",
+    "preservation_err = T_err/T_full (down)",
+    "abs_I_over_T_full (down)",
+    "rec_minus_syn_rec_mean (up)",
+    "H4a/H4b/H4c passes (M4 definitions, BH over the 36 SAEs)",
+    "k_star and F_kstar_share_of_T_rec",
+    "T_full (must be identical across SAEs)",
+    "site reconstruction on RepE-LM validation prompts at L8 final: MSE, EV, cosine, L0 (reported)"
+  ],
+  "implementation": {
+    "code": "M4 functions imported unchanged (Engine, build_rows, clean_batches, decompose, add_derived, summarise_decomp, feature_analysis, owt_feature_stats)",
+    "seeding": "generator, numpy rng and the CPU shuffle generator re-seeded to 20261108 before every SAE",
+    "reproduction_check": "deterministic hypotheses.csv columns of the 9 base SAEs vs M4 L8 final, tol 1e-6; checked before any fine-tuned SAE is evaluated; abort on failure",
+    "bh": "H4a/H4b/H4c q-values over the 36 SAEs",
+    "statistics": "per architecture, paired by seed; mean, sd, 95 % t-interval (t = 4.303, df 2), per-seed values",
+    "smoke": "run on 1/10 of the pairs with 3-5 control draws into a scratch directory, mechanics only; no hypothesis value is inspected"
+  },
+  "test_rows_used": 0,
+  "hashes": {
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "scripts/repe/25_e3_finetuned_causal_preservation.py": "ad242b6b2a261bfb0dd1cd618ea2c84d2f1efdb05ab66290e6fbda2c59d56fae",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "src/evaluation/faithfulness_metrics.py": "cf76144c5d0dc4cb3958fe066becc6c4645c49b1c3d4180771d2c64907829b3c",
+    "data/repe/repe_lm/prompts.csv": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "results/repe/e3_finetuned_causal_preservation/README.md": "b548bfadeb94448559c26d089c2b70b8d12788329b37fc1cf7bdc6f73ce7592d",
+    "results/geometry_of_truth/multilayer_finetune/criteria.json": "bc892794436bead3198e6bf0434461a2e9bfffe801aebcd35ef3016c84d8bf1b"
+  },
+  "checkpoint_hashes": {
+    "results/openwebtext/convergence/layer_8/relu_l0_128_uninterrupted_seed42/checkpoint_step_15000.pt": "d7f1e36d82e1fe5f5bc775222a06d80a881e3a7cf1f27552d8b1d9903ec3f0d0",
+    "results/openwebtext/convergence/layer_8/relu_l0_128_uninterrupted_seed1042/checkpoint_step_15000.pt": "2e8d10798e29a5009026e24eb4d5e1729fb7e7b3041fe5f7e456d942b0296525",
+    "results/openwebtext/convergence/layer_8/relu_l0_128_uninterrupted_seed2042/checkpoint_step_15000.pt": "41025b220bc8f64dcbe2ee8b9b3b3841c773c626a1da001b7d2f9659f96dd40c",
+    "results/openwebtext/convergence/layer_8/topk_l0_128_uninterrupted_seed42/checkpoint_step_15000.pt": "c22c6cb205017f87250dbdc2c5612833676e3b2a86a3392952e0c61f72677456",
+    "results/openwebtext/convergence/layer_8/topk_l0_128_uninterrupted_seed1042/checkpoint_step_15000.pt": "96f54739bc7ac0a85b57b0800f34579d64f913bf77fba27a009cd04c1d9e30d7",
+    "results/openwebtext/convergence/layer_8/topk_l0_128_uninterrupted_seed2042/checkpoint_step_15000.pt": "fdfb4613f8f698a62ea901049c3b75ae3040f4a5cf0340cc16d5ba06539ed7a4",
+    "results/openwebtext/convergence/layer_8/jumprelu_l0_128_uninterrupted_seed42/checkpoint_step_15000.pt": "f0fcd62ef4cc7dde53d2b6673dc139d77c5b08b2c1d4dedb28e7bcfa55a2e0e7",
+    "results/openwebtext/convergence/layer_8/jumprelu_l0_128_uninterrupted_seed1042/checkpoint_step_15000.pt": "dca4d12a9ccd02fcf21d1f6b1babfb2d09d28099386345eec245be6ea6cc8c38",
+    "results/openwebtext/convergence/layer_8/jumprelu_l0_128_uninterrupted_seed2042/checkpoint_step_15000.pt": "7a6a6e13bb8e659cf44b1750af5ef0418508b85f2b9960fd9b22d4b032933727",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_owt_only_seed42/finetuned_checkpoint.pt": "cf0beb1da52fa8af277719c88c457ced6ffd4000cd7f94f6df9205ed7900f18f",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_owt_only_seed1042/finetuned_checkpoint.pt": "5075b061c9b7283bec9cfa0de675e22c74d236aec24130e55b12bd7fea3d4dc4",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_owt_only_seed2042/finetuned_checkpoint.pt": "37879fde404119e836cfcd9d578685e90d3b99bdf6bd299cb8d7d3ba34bf981b",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_owt_only_seed42/finetuned_checkpoint.pt": "d938c1036369a5f070dd9d7759a7f0ea5abf58ba9572496322821a98ffcb537b",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_owt_only_seed1042/finetuned_checkpoint.pt": "4798521c1ced8c5ad3f950dcb60497349f0bd44b6fd4848b4f6fe358512136be",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_owt_only_seed2042/finetuned_checkpoint.pt": "798cc1472a2bc7647b138b82b79d9368c3cb1d5d599849c8851a37968872ac00",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_owt_only_seed42/finetuned_checkpoint.pt": "094721d5bbb36e207230bb9685791e4c44af82b7c402a563a5fd026706adacfd",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_owt_only_seed1042/finetuned_checkpoint.pt": "eaabb8600a90387fa04dce6c1f3cb3fbe798c32ae35ae4ea3fbcb945536c03ff",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_owt_only_seed2042/finetuned_checkpoint.pt": "d085c655ca1779d6d05663ae348f4a132b31819dc5fb5b301f8a2caa4c75c3cd",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_method_a_seed42/finetuned_checkpoint.pt": "85d20bc5c0ae2d7c483ba83a9a11556ee941c9112d33e501bed7d6f856bd5aa0",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_method_a_seed1042/finetuned_checkpoint.pt": "967d9e49e381978801a55a142f927fa87778646a71f5a4d15897ad057d2baccf",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_method_a_seed2042/finetuned_checkpoint.pt": "843a17374d89ced1ff9a01af0ebe30073a03aff225cdc0c11748964044954f44",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_method_a_seed42/finetuned_checkpoint.pt": "4f2fd5bcc547e73e15b0c89c5285220c947b560b77c1ee420b950647f9a7e535",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_method_a_seed1042/finetuned_checkpoint.pt": "ea9af1758a4abd449058b8bc3c1ab2434e1e42018f23e609a0ca731b1b9ec7dd",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_method_a_seed2042/finetuned_checkpoint.pt": "16808eaea2cf506b8d2091418ff5c691769cbe3b25609f46fe45814f5193cb41",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_method_a_seed42/finetuned_checkpoint.pt": "7dca004669012e2d205c9f38b07b0023906504e26e2d21a6488896f08c6c5a49",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_method_a_seed1042/finetuned_checkpoint.pt": "de520948de00b2717172cadeb1bd63dc278b53b17bff27d01a2564d8e623087a",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_method_a_seed2042/finetuned_checkpoint.pt": "63c2702068001c443d2925582710ceb8cb7b7b4ee3fc64dd1a429801aba5e113",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_kl_seed42/finetuned_checkpoint.pt": "d7af7b96dbc8c1cb12b9b7daf8b6c94425befd1fa0255e0b1637490dc019c1ff",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_kl_seed1042/finetuned_checkpoint.pt": "cbd97da3346cc60d57346edd36aa8c4efd9af082711b790fdb6e6d5ee97cabcb",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/relu_kl_seed2042/finetuned_checkpoint.pt": "f121c27b5d67b155d2be3376b52210c7a46bf5f3291a50ccea6b7ad1ce1c2c61",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_kl_seed42/finetuned_checkpoint.pt": "a627b78b02220bdc5b7bf9e49abf17927d00e24f84662385c64bbf496bea4716",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_kl_seed1042/finetuned_checkpoint.pt": "87fab6a6cfe4512a005f9f5ee93239946c09f4c1d3691cb8da81a0104ba239ca",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/topk_kl_seed2042/finetuned_checkpoint.pt": "61bc5067ef88835adbad557af7a16951172cf8ef5892ea292ee4c212c6bb010f",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_kl_seed42/finetuned_checkpoint.pt": "330b785cd0fc99391267810517222a8bc9bf5a4d8f021b52f087e58b5bfea681",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_kl_seed1042/finetuned_checkpoint.pt": "aa1693473e24a9aceac3a4fade46cf798746a734e3995dc783cd8d128bfff389",
+    "results/geometry_of_truth/sae_finetuning/multilayer_finetune/layer_8/jumprelu_kl_seed2042/finetuned_checkpoint.pt": "cc10e09ba47de6c587c91cb5d8f7ed6d621b771f0c8e0c185d92adf885f60950"
+  }
+}

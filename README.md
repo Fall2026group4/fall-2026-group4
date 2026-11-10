@@ -34,7 +34,7 @@ fine-tuning as the "improvement" arm:
 | SQ2 Information | Which task information survives reconstruction, and is the loss SAE-specific? | M2 (validation) |
 | SQ3 Behaviour | How much does splicing the SAE in damage GPT-2's predictions, and does reconstruction error predict it within a layer? | Phase 0 splicing, M0 (validation) |
 | SQ4 Causal | Where does GPT-2 carry a persona-instruction effect, and how much of it survives in the SAE reconstruction? | M1, M3, M4 (validation) |
-| SQ5 Improvement | Can fine-tuning improve faithfulness at matched sparsity, and at which layers? | Layer-6 fine-tuning pilots (validation); E3 (planned) |
+| SQ5 Improvement | Can fine-tuning improve faithfulness at matched sparsity, and at which layers? | Layer-6 fine-tuning pilots, IMP-L (layers 3, 8, 9), RLM-RP and E3 (validation) |
 
 The original proposal (`proposal.md`) asked whether SAE features are causally faithful to their auto-generated
 labels. The instructor reviews and our own audits narrowed it to the question above. The history is in
@@ -201,7 +201,13 @@ and its error part. Each part is patched separately.
 | KL-weight ablation (TopK) | Behaviour gain saturates by w = 0.25; no truth trade-off to measure | Inconclusive (pre-registered) |
 | P1 sparsity control (seed 42) | JumpReLU layer 2 EV .936 → .956, dead latents 65 % → 21 %; layer-0 JumpReLU still unmatched; checkpoint selection always picks step 15k (not converged) | Preliminary |
 
-**No improvement is CONFIRMED.** Causal preservation after fine-tuning is still untested (E3).
+**No improvement is CONFIRMED.**
+* **Causal preservation after fine-tuning (E3, 2026-11-10, VALIDATION):** Method A NO IMPROVEMENT (3/3). Output-KL
+  TopK NO IMPROVEMENT; ReLU/JumpReLU NOT CREDITABLE (+0.018 to +0.022, only with L0 drift).
+  See `results/repe/e3_finetuned_causal_preservation/`.
+* **RepE-LM persona representation (RLM-RP, 216 SAEs, VALIDATION):** the loss is real (re-trained gap 0.08–0.22;
+  2–3× the noise reference); Method A has no effect; output-KL gains are at most 0.007 AUROC.
+  See `results/repe/repe_lm_representation_preservation/`.
 
 **Multi-layer extension (IMP-L, layers 3, 8, 9; VALIDATION; 81 new fine-tunes; `results/geometry_of_truth/multilayer_finetune/`):**
 
@@ -245,7 +251,7 @@ and its error part. Each part is patched separately.
 | **IMP-L** | Method A, OWT-only control and output-KL fine-tuning **at layers 3, 8 and 9** (3 seeds, CIs, L0 guards). Evaluated on reconstruction, truth and behaviour | Review #8 blocker "improvement result at more layers"; the 11-03 session note "fine-tune other layers" | **COMPLETED 2026-11-09 (VALIDATION)**; see 6.8 |
 | **E1** | TopK trained at several k to compare architectures at matched *prompt-level* L0 (M2 readers, M4) | Prompt-sparsity confound in architecture comparisons | DRAFT PRE-REGISTRATION (\`results/shared/e1_task_l0_matched_topk/\`), awaiting approval; priority 3 |
 | **E2** | Public `gpt2-small-res-jb` SAE as an external reference: reconstruction, M2 and M4 at layer 8 (weights cached); layer 6 if downloaded | Review #8 critique 2 (small, unconverged SAEs) | DRAFT PRE-REGISTRATION (\`results/shared/e2_public_sae_reference/\`; layers 8 and 10, cached), awaiting approval; priority 2 |
-| **E3** | Layer-8 fine-tuning for causal preservation: base vs OWT-only vs Method A vs output-KL, pre-registered | Review #8 SAE-in-the-loop / causal improvement | DRAFT PRE-REGISTRATION (\`results/repe/e3_finetuned_causal_preservation/\`; uses the 27 IMP-L layer-8 checkpoints), awaiting approval; priority 1 |
+| **E3** | Layer-8 fine-tuning for causal preservation: base vs OWT-only vs Method A vs output-KL, pre-registered | Review #8 SAE-in-the-loop / causal improvement | **COMPLETED 2026-11-10 (VALIDATION)**; no creditable improvement |
 | Width, convergence, data scaling | Width sensitivity, 30k-step convergence, streamed-token training | Unconverged, data-limited SAEs | PLANNED as resources permit |
 | **M5 / X3** | One pre-registered final test pass: RepE-LM test (to be built, with a duplicate check), OWT test, GoT test (labelled previously exposed) | Review #8 "say which numbers are clean" | NOT STARTED. Needs explicit approval; protocol not yet frozen |
 | Gemma SAEs | Gemma Scope at 1–2 layers | Review #7 SESSION-1027-LIST | BLOCKED (weights not cached; needs a download decision) |
@@ -259,10 +265,11 @@ and its error part. Each part is patched separately.
 | Layer-6 fine-tuning pilots (truth-aware audit, Method A, E2E B/C, KL ablation), P1 | COMPLETED (VALIDATION) |
 | M0, M1, M2, M3, M4 | COMPLETED (VALIDATION; committed locally, **not yet on `main`**) |
 | Multi-layer improvement table (IMP-L) | COMPLETED (VALIDATION; committed locally, not yet on `main`) |
-| E1, E2, E3 | DRAFT PRE-REGISTRATIONS written; NOT RUN (awaiting approval) |
-| SAE-in-the-loop intervention | IN PROGRESS: M4 feature patches done; intervention on improved SAEs pending |
+| E3; RLM-RP (RepE-LM representation, 216 SAEs) | COMPLETED 2026-11-10 (VALIDATION; committed locally) |
+| E1, E2 | DRAFT PRE-REGISTRATIONS written; NOT RUN (awaiting approval) |
+| SAE-in-the-loop intervention | M4 feature patches and E3 (fine-tuned SAEs in the forward pass) done |
 | M5 final test | NOT STARTED (needs approval) |
-| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; generated tables and PDF/SVG figures; compiles (20 pp) |
+| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; RLM-RP and E3; generated tables and PDF/SVG figures; compiles (29 pp) |
 | Report (`reports/Latex_report/main.tex`) | IN PROGRESS (literature review only; Methods/Results are TODO) |
 | SVG/PDF figures; `.drawio` source + `.svg` | IN PROGRESS: paper figures are PDF+SVG (`research_paper/Latex_Fig/`); 50 PNG in `results/` remain; `.drawio` NOT STARTED |
 | Logging instead of `print` (378 calls in `scripts/` and `src/`); CI on `main` | NOT STARTED |
@@ -367,9 +374,10 @@ Each results folder's `README.md` and `preregistration.json` record the exact se
 and checkpoint hashes. `docs/experiment_manifest.csv` has one row per experiment.
 
 ## 14. Remaining work checklist (deadline 2026-12-08; instructor checkpoints 11-10, 11-17, 11-22, 12-01)
-- [ ] Multi-layer improvement table (layers 3, 8, 9; 3 seeds; CIs). **Due 11-10**
-- [ ] Paper skeleton in `research_paper/Latex/` with the existing tables. **Due 11-10**
-- [ ] E1, E2, E3
+- [x] Multi-layer improvement table (layers 3, 8, 9; 3 seeds; CIs). **Due 11-10**
+- [x] Paper skeleton in `research_paper/Latex/` with the existing tables. **Due 11-10**
+- [x] E3 (2026-11-10)
+- [ ] E1, E2
 - [ ] M5 final test, run once after approval. **Due 11-17**
 - [ ] Choose a journal and use its template. **Due 11-17**
 - [ ] SVG/PDF figures; diagram source + `.svg`

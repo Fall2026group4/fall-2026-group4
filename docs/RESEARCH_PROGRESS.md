@@ -712,3 +712,55 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **Evidence label:** no new result.
 * **Next:** user approval of E3 → implement script 25 → `--prepare` (hashes, reproduction of M4 L8 rows) → run.
 
+
+## 32. E3 causal preservation after fine-tuning, and RLM-RP RepE-LM representation preservation (2026-11-10). Status: COMPLETED. Evidence: VALIDATION
+
+* **Approval:** the user approved both on 2026-11-10 ("Complete causal faithfulness evaluation (E3) ... Complete RepE
+  representation preservation ... generalization and robustness"). M5 and the test split remain excluded.
+* **E3:** `results/repe/e3_finetuned_causal_preservation/`.
+  * 36 layer-8 SAEs (9 base + 27 IMP-L fine-tunes), M4 protocol at the L8 final token, M4 functions imported unchanged.
+  * The 2026-11-09 draft criteria are unchanged. §1.8 adds implementation details (per-SAE reseeding, M4 reproduction
+    on deterministic columns, BH over 36).
+  * `preregistration.json` hashes the scripts, data and 36 checkpoints. The smoke test showed only mechanics.
+* **RLM-RP:** `results/repe/repe_lm_representation_preservation/`.
+  * 216 SAEs: 108 base at layers 0–11, 81 IMP-L, and 27 layer-6 fine-tunes.
+  * Probes: frozen logistic and mass-mean, re-trained logistic, a noise reference.
+  * Reconstruction: MSE, EV, cosine, L0, dead fraction. Geometry: H − U direction cosine and norm retention.
+  * Robustness: held-out wording T5/T6, synonym, neutral, near-duplicate sensitivity, and an exploratory L0-truncation
+    control.
+  * Pre-registered classes on frozen and re-trained persona gaps, kept separate. M2 and IMP-L reproduction checks.
+* **Paper (Phase 5):** new generated tables `t_impl_l0` (L0 on OWT / GoT / RepE-LM per IMP-L cell) and
+  `t_impl_readers` (frozen MLP vs frozen logistic vs re-trained readers).
+* **Results E3** (1830 s; all sanity checks pass; M4 reproduced exactly, 0.0; GPT-2 unchanged; 0 test rows):
+  * causal preservation T_rec/T_full at L8 final:
+    * base: ReLU 0.621, TopK 0.625, JumpReLU 0.665;
+    * Method A: 0.622 / 0.615 / 0.669;
+    * output-KL: 0.640 / 0.619 / 0.687;
+  * **E3-H1 (Method A): NO IMPROVEMENT in 3/3.**
+  * **E3-H2 (output-KL vs Method A):**
+    * TopK: NO IMPROVEMENT (+0.005, CI −0.078 to +0.088);
+    * ReLU: NOT CREDITABLE. The criterion itself was met (+0.018 [+0.011, +0.025]) but OWT L0 is +5.8 %.
+    * JumpReLU: NOT CREDITABLE, and its criterion was not met (+0.018, not consistent).
+  * No regression. The persona-specific part (T_rec − S_rec) moves by at most 0.0006 nats. All 36 SAEs pass the M4
+    control tests.
+* **Results RLM-RP** (493 s; 216/216 SAEs; checks pass; M2 reproduced exactly; IMP-L to 1.6e-4):
+  * Persona loss is real for base SAEs at layers 1–11:
+    * the frozen gap (0.10–0.24) is 1.9–3.4× the same-norm noise reference;
+    * the re-trained gap is 0.08–0.22, with its CI excluding 0 for all 99 SAEs.
+  * The per-pair H−U cosine is only 0.35–0.58. ReLU shrinks the difference; TopK and JumpReLU inflate it.
+  * Held-out wording transfers weakly even on original activations (0.54–0.69). Synonyms behave like the persona
+    word. Near-duplicate sensitivity is ≤ 0.02.
+  * Truncation control: JumpReLU's apparent advantage is partly extra L0.
+  * Method A: NO IMPROVEMENT in 12/12 cells on both readers.
+  * Output-KL: PRELIMINARY IMPROVEMENT in 3/12 cells per reader (at most 0.007 AUROC), with RepE-LM L0 +4–9 %.
+    4 cells are not creditable; there are no regressions.
+* **Paper:** new §7.1 (RLM-RP) and §10.2 (E3); RepE research questions in §4. §10 now has `t_impl_readers` and
+  `t_impl_l0`. The abstract, discussion, limitations, conclusion, statistics and appendix are updated. The abstract's
+  ambiguous "5 of 9 creditable" now reads "5 of 9 cells are creditable; 4 fail the L0 guard". Compiles, 29 pages,
+  0 overfull boxes, 0 undefined references.
+* **Unfinished:**
+  * M5 (needs separate approval);
+  * E1 and E2 (pre-registered drafts, not run);
+  * an L0-matched output-KL variant;
+  * the minimum-detectable-effect statement.
+

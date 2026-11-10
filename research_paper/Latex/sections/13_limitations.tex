@@ -29,7 +29,15 @@
         JumpReLU L0 within $\pm$5\,\% under the KL gradient at layers 8 and 9; an L0-matched variant is untested.
   \item \textbf{Weak truth signal at layer 3.} The original truth MLP probe at layer 3 reaches 0.815 AUROC but the
         logistic probe only 0.60, so layer-3 truth results rest on a weak signal.
-  \item \textbf{Causal preservation after fine-tuning is untested} (E3 pending).
+  \item \textbf{Causal preservation after fine-tuning at one site.} E3 covers only the layer-8 final token and a
+        small effect ($T_{\text{full}}=0.022$ nats); TopK's per-SAE intervals ($\pm$0.06--0.09) cannot resolve changes
+        below about 0.03.
+  \item \textbf{Persona task limits.} RepE-LM has no test split; the persona probe transfers only weakly to held-out
+        wording even on original activations (AUROC 0.54--0.69); results are for the final token only; task-level L0
+        is not matched across architectures (the truncation control is post-hoc, E1 pending); 14 validation statements
+        have opposite-label near duplicates in training (sensitivity $\le$0.02).
+  \item \textbf{Historical RepE results not used.} The original persona prompts had a length shortcut; every RepE
+        result in this paper uses RepE-LM, and the earlier length-confounded results are kept for provenance only.
   \item \textbf{Single model.} No SAE results on Gemma-2-2B \citep{gemmateam2024gemma2}; Gemma Scope weights were
         not available on our machine.
 \end{itemize}

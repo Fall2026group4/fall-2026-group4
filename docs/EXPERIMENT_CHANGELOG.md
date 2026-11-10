@@ -196,3 +196,13 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | Added `docs/2026-11-09_review_package_sae_research.md` | Independent teammate review before merging to `main` |
 | this commit | M `README.md` §8/§9, `docs/RESEARCH_ROADMAP.md`, `docs/RESEARCH_PROGRESS.md` §31, `docs/RESEARCH_DECISIONS.md` D27 | Documentation rule |
 
+## 2026-11-10: E3 and RLM-RP (RepE completion), paper Phase 5 fixes
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `scripts/repe/25_e3_finetuned_causal_preservation.py`; `results/repe/e3_finetuned_causal_preservation/{preregistration.json, per_pair_validation.csv, decomposition_summary.csv, features_summary.csv, hypotheses.csv, site_reconstruction.csv, comparisons.csv, criteria.json, sanity_checks.json, selected_features.json, control_draws.npz}`; M `README.md` (status, §1.8 implementation details, §2 results) | E3 approved by the user 2026-11-10; the 2026-11-09 draft criteria are unchanged |
+| this commit | Added `scripts/repe/26_repe_lm_representation_preservation.py`; `results/repe/repe_lm_representation_preservation/` (README, preregistration, `per_sae.csv`, `original_by_layer.csv`, `summary_by_layer_arch.csv`, `comparisons.csv`, `criteria.json`, `checks.json`) | RepE-LM representation preservation and robustness for 216 SAEs (user request 2026-11-10) |
+| this commit | M `scripts/shared/build_paper_artifacts.py`: tables `t_impl_l0`, `t_impl_readers`, `t_rlm_layers`, `t_rlm_finetune`, `t_e3`, `t_e3_classes`; figures `fig_rlm_layers`, `fig_e3_preservation`; breakable source paths in captions | Phase 5 reporting gaps (L0 per dataset; frozen MLP vs frozen logistic vs re-trained readers), and the new results |
+| this commit | M `research_paper/Latex/main.tex` (`\emergencystretch`), `sections/{00_abstract,04_questions,07_results_information,09_results_causal,10_finetuning,11_statistics,12_discussion,13_limitations,14_conclusion,15_appendix}.tex`, `main.pdf`; regenerated `tables/*.tex` (caption path breaks only for existing tables) | Paper integration; the ambiguous 5/9 wording corrected; overfull boxes removed |
+| this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,EXPERIMENT_RESULTS_SUMMARY,results_registry}.md`, `docs/experiment_manifest.csv`, `results/repe/README.md`, `README.md` | Documentation rule. No checkpoints were created, so `checkpoint_registry.csv` is unchanged |
+

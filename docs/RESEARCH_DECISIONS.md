@@ -225,6 +225,26 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **E2 scope:** use the cached layer-8 and layer-10 public SAEs; do not download layer 6.
 * **E1 protocol:** do not train through script 13, because it evaluates on the OWT test split.
 
+## D28. E3 and RLM-RP run; their implementation choices (2026-11-10)
+* **Approval:** the user approved running E3 and the RepE completion work (RLM-RP). M5, the test split, pushing and
+  merging remain excluded.
+* **E3 implementation (fixed after a mechanics-only smoke test, before any result):**
+  * per-SAE reseeding, so control draws are paired across arms;
+  * M4 reproduction on the deterministic columns, because M4's single random stream cannot be replayed;
+  * BH over the 36 SAEs.
+* **RLM-RP:**
+  * layer-6 fine-tunes are included, with the uninterrupted base as source (asserted); layer-6 classes are not
+    guard-checked because no IMP-L-format guards exist;
+  * the IMP-L reproduction tolerance (1e-3 for the gap, 1e-4 for L0) was set from smoke-test mechanics, because
+    IMP-L encoded a different row subset; M2 must match exactly;
+  * the L0-truncation control is exploratory.
+* **Reading:**
+  * Method A changes neither persona representation nor causal preservation.
+  * Output-KL's causal and representational gains appear only with extra active latents (not creditable for
+    ReLU/JumpReLU at L8). TopK, whose L0 is fixed, shows no causal change.
+  * An L0-matched output-KL variant (roadmap G8/S4) is therefore the decisive follow-up for any "output-KL improves
+    causal faithfulness" claim.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
@@ -233,4 +253,5 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
+* **H9:** Fine-tuning improves causal preservation. **Tested at L8 final (E3, D28):** Method A no; output-KL not creditably (gains only with L0 drift; TopK unchanged).
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**

@@ -6,19 +6,24 @@ seeds each), separating four levels of faithfulness: reconstruction, task-inform
 faithfulness and causal faithfulness. Reconstruction degrades with depth (OWT test explained variance 0.93--0.95 at
 layers 0--2, 0.76--0.82 at layer 11). Within a layer, reconstruction error predicts how much splicing the SAE damages
 the model's predictions, but not how much truth information is lost. The apparent collapse of a frozen truth probe
-on SAE reconstructions is largely reproduced by random noise of the same norm; re-trained readers show a smaller but
-real loss, and at equal reconstruction error the SAEs never preserve task information better than PCA. Using an
+on SAE reconstructions is largely reproduced by random noise of the same norm, but for persona instructions the SAEs
+lose 2--3 times more than such noise and re-trained readers recover almost none of it; at equal reconstruction error the
+SAEs never preserve task information better than PCA, and they distort the honest-minus-dishonest activation
+difference (per-pair cosine 0.35--0.58). Using an
 equal-length persona-instruction task built to remove a length shortcut, we locate where GPT-2 carries the
 instruction's effect and decompose it: the SAE-reconstructed activation difference restores 93--97\,\% of the effect
 at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final token, with the remainder in the
 reconstruction error or in an interaction between reconstruction and error. Short fine-tuning at layers 3, 6, 8 and 9
 separates these levels again. Reconstruction fine-tuning on truth statements cuts their reconstruction error by
-61--85\,\% and lowers the truth gap measured by a probe frozen on original activations, meeting its pre-registered
-criterion in 4 of 9 layer--architecture cells beyond layer 6; re-trained probes, however, show no consistent gain,
-so we do not claim that truth information is recovered. Adding an output-KL term improves behavioural faithfulness
-in 5 of 9 creditable cells (in the other 4 the SAE's sparsity drifts beyond the pre-registered guard) and never
-improves truth preservation. All results except the reconstruction table are \evlabel{validation} findings, not confirmed results;
+61--85\,\% and lowers the truth gap measured by a frozen nonlinear probe fitted on original activations, meeting its
+pre-registered criterion in 4 of 9 layer--architecture cells beyond layer 6; frozen logistic and re-trained probes show
+no consistent gain, so we do not claim that truth information is recovered, and it leaves persona representation and
+causal preservation unchanged. Adding an output-KL term improves behavioural faithfulness consistently in all 9 cells,
+but only 5 are creditable: in the other 4 (ReLU and JumpReLU at layers 8--9) L0 rose 5.3--8.1\,\%, beyond the
+pre-registered $\pm$5\,\% guard. Output-KL never improves truth preservation, and its apparent gains in causal
+preservation (+0.02 of the effect) occur only in those sparsity-violating cells; for TopK, whose sparsity is fixed,
+it has no effect. All results except the reconstruction table are \evlabel{validation} findings, not confirmed results;
 a single pre-registered held-out evaluation is pending.
 \end{abstract}
 
-\pending{Abstract to be revised after E1--E3 and the final held-out evaluation (M5). Numbers above are validation-stage unless marked \evlabel{test}.}
+\pending{Abstract to be revised after E1, E2 and the final held-out evaluation (M5). Numbers above are validation-stage unless marked \evlabel{test}.}

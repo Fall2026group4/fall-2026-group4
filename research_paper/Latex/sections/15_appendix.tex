@@ -16,14 +16,22 @@ are not used as evidence here.
 
 \section{Test-split Exposure}\label{app:exposure}
 OWT test: used once, for the reconstruction table. GoT test: scored for all 108 SAEs with frozen probes and twice for
-historical layer-6 fine-tunes. RepE-LM test: never built or accessed. M0--M4 used no test rows.
+historical layer-6 fine-tunes. RepE-LM test: never built or accessed. M0--M4, IMP-L, RLM-RP and E3 used no test rows.
 
 \section{Reproducibility}\label{app:repro}
-Code, configurations, pre-registrations and result files: repository \texttt{Fall2026group4/fall-2026-group4}, branch
+Code, configurations, pre-registrations and result files: the repository\\ \texttt{Fall2026group4/\allowbreak{}fall-2026-group4}, branch
 \texttt{sae-research}. Software: Python 3.14, PyTorch 2.14.1, TransformerLens 3.9.0 \citep{transformerlens2022},
 transformers 5.21.0, SAELens 6.54.12. Hardware: one NVIDIA A10G (23 GB). Tables and figures in this paper are generated
-by \texttt{scripts/shared/build\_paper\_artifacts.py} from the committed result files. SAE checkpoints (about 9 GB)
-are listed with SHA-256 hashes in \texttt{docs/checkpoint\_registry.csv}.
+by \texttt{scripts/\allowbreak{}shared/\allowbreak{}build\_paper\_artifacts.py} from the committed result files. SAE checkpoints (about 9 GB)
+are listed with SHA-256 hashes in \texttt{docs/\allowbreak{}checkpoint\_registry.csv}.
+
+Commands for the experiments added on 2026-11-10 (run from the repository root; each refuses to overwrite outputs and
+checks the hashes in its \texttt{preregistration.json}):
+\begin{itemize}
+  \item E3: \texttt{python scripts/\allowbreak{}repe/\allowbreak{}25\_e3\_finetuned\_causal\_preservation.py --run} (about 30 min on the A10G);
+  \item RLM-RP: \texttt{python scripts/\allowbreak{}repe/\allowbreak{}26\_repe\_lm\_representation\_preservation.py --run} (about 8 min);
+  \item tables and figures: \texttt{python scripts/\allowbreak{}shared/\allowbreak{}build\_paper\_artifacts.py}.
+\end{itemize}
 
 \pending{Command list per experiment; pipeline diagram (Review \#8 F8: \texttt{.drawio} source and \texttt{.svg}).}
 

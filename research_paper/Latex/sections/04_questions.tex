@@ -14,6 +14,22 @@ information and causal behaviour across transformer layers?
   \item[SQ5 (improvement).] Can fine-tuning improve faithfulness at matched sparsity, and at which layers?
 \end{description}
 
+\paragraph{RepE questions and hypotheses.} For the persona-instruction task (RepE-LM) we ask:
+\begin{description}
+  \item[R-Q1 (representation).] Is the persona information lost in reconstruction, or only misread by a frozen reader?
+        Prior expectation written in the RLM-RP pre-registration: re-trained gaps are much smaller than frozen gaps,
+        as for truth (M2).
+  \item[R-Q2 (geometry and wording).] Is the honest-minus-dishonest difference preserved, and does any preservation
+        transfer to held-out instruction wording?
+  \item[R-Q3 (causal site and decomposition).] Where does GPT-2 carry the effect (M3), and how much of it does the
+        reconstruction carry (M4)?
+  \item[R-Q4 (improvement).] Does Method A or output-KL fine-tuning raise representational (RLM-RP) or causal (E3)
+        persona preservation, relative to the base SAE and an OWT-only control? Hypothesis stated before the runs:
+        Method A does not, because it never sees persona prompts.
+\end{description}
+That expectation was \emph{not borne out} for persona (\S\ref{sec:rlm}); R-Q4's prior for Method A held, and output-KL
+gave no creditable gain (\S\ref{sec:e3}).
+
 \paragraph{Evidential status.} Each result is labelled \evlabel{test} (held-out split, evaluated once under a written
 protocol), \evlabel{validation}, or \evlabel{preliminary} (a validation pilot whose pre-registered criterion was not met
 or which is unreplicated). Every experiment from M0 onwards was pre-registered with file hashes before it ran.

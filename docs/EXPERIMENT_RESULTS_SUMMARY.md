@@ -555,3 +555,37 @@ Source: `results/geometry_of_truth/multilayer_finetune/` (README §2). Lower is 
   JumpReLU 131–132.
 * **Criteria met:** T_method_a 4/9; B_kl 5/9 (4/9 not creditable, L0 guard); T_kl 0/9 (2 regressions at layer 3).
 
+## 18. RLM-RP: RepE-LM persona representation preservation (VALIDATION; 216 SAEs; final token)
+Source: `results/repe/repe_lm_representation_preservation/` (README §2). AUROC gaps = original − reconstructed (↓).
+Cells are ranges over layers 1–11 of the mean over 3 seeds.
+
+| Quantity | ReLU | TopK | JumpReLU |
+|---|---|---|---|
+| Frozen logistic gap | 0.113–0.243 | 0.095–0.197 | 0.109–0.184 |
+| Noise reference | 0.033–0.097 | 0.037–0.091 | 0.035–0.080 |
+| Re-trained logistic gap | 0.095–0.223 | 0.083–0.181 | 0.097–0.177 |
+| Held-out T5/T6 frozen gap | 0.026–0.128 | 0.026–0.100 | 0.028–0.098 |
+| Per-pair cos(Δ, Δ̂) | 0.52–0.58 | 0.35–0.43 | 0.38–0.48 |
+| Per-pair ‖Δ̂‖/‖Δ‖ | 0.65–0.71 | 1.32–1.46 | 1.22–1.35 |
+| EV on RepE-LM prompts | 0.66–0.90 | 0.73–0.87 | 0.73–0.92 |
+| L0 on RepE-LM prompts | 160–214 | 128 | 142–208 |
+
+* **Fine-tunes (classes per reader):**
+  * Method A: NO IMPROVEMENT 12/12 on both readers (changes −0.004 to +0.006).
+  * Output-KL: PRELIMINARY IMPROVEMENT in 3/12 per reader (frozen: L3 all architectures; re-trained: L3 ReLU and
+    TopK, L6 JumpReLU), at most 0.007 AUROC, with RepE-LM L0 +4–9 % for ReLU/JumpReLU.
+  * 4/12 not creditable; 0 regressions.
+
+## 19. E3: causal preservation after fine-tuning (VALIDATION; L8 final; T2–T4; T_full = 0.0220 nats; 3 seeds)
+Source: `results/repe/e3_finetuned_causal_preservation/` (README §2). T_rec/T_full (↑), mean ± sd.
+
+| SAE | base | OWT-only | Method A | output-KL | E3-H1 (A) | E3-H2 (KL vs A) |
+|---|---|---|---|---|---|---|
+| ReLU | 0.621 ± 0.015 | 0.621 ± 0.016 | 0.622 ± 0.016 | 0.640 ± 0.016 | NO IMPROVEMENT | NOT CREDITABLE (+0.018 [+0.011, +0.025]; OWT L0 +5.8 %) |
+| TopK | 0.625 ± 0.039 | 0.632 ± 0.024 | 0.615 ± 0.005 | 0.619 ± 0.037 | NO IMPROVEMENT | NO IMPROVEMENT (+0.005 [−0.078, +0.088]) |
+| JumpReLU | 0.665 ± 0.011 | 0.669 ± 0.029 | 0.669 ± 0.025 | 0.687 ± 0.014 | NO IMPROVEMENT | NOT CREDITABLE (+0.018 [−0.020, +0.057]; OWT L0 +8.1 %) |
+
+* **Checks:** M4 reproduced exactly; all 36 SAEs pass the H4a/H4b/H4c controls.
+* **Specificity:** T_rec − S_rec changes by at most 0.0006 nats.
+* **Regressions:** none.
+

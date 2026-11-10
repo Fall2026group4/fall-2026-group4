@@ -10,6 +10,12 @@
         ``preserved''.
   \item \textbf{Causal (M3/M4).} Holm-corrected tests over 65 cells; 200 matched-norm random vectors per cell; synonym
         and neutral controls; for features, 200 random feature sets matched on activation frequency and $|\Delta z|$.
+  \item \textbf{Fine-tuning comparisons (IMP-L, RLM-RP, E3).} Paired by seed within layer and architecture; mean,
+        sd, per-seed values and a 95\,\% $t$-interval with 2 degrees of freedom. The pre-registered ``consistent''
+        rule (all three seeds and $|$mean$|>2$ sd) is not equivalent to that interval: a cell can meet the rule while
+        its interval touches zero. Per-SAE uncertainty in RLM-RP and E3 comes from a statement-grouped bootstrap
+        (1000 and 2000 resamples). E3's M4 control tests use Benjamini--Hochberg correction over its 36 SAEs. No
+        correction is applied across the 9--12 cells of a fine-tuning criterion.
   \item \textbf{Seeds.} Three training seeds share the same training data, so seed spread understates uncertainty;
         comparisons that share seeds are paired. The fine-tuning criterion ``consistent'' requires the improvement on
         all three seeds and a mean paired difference larger than twice its standard deviation.

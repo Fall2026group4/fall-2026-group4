@@ -6,7 +6,9 @@ is largely perturbation sensitivity, SAEs never beat PCA at equal error on task 
 layers the SAE reconstruction carries only about two-thirds of a causal effect located in the original model.
 Short fine-tuning improves the faithfulness level it optimises (task reconstruction, or output agreement with an
 output-KL term) but not truth information as seen by a re-trained reader, and the behavioural gains of ReLU and
-JumpReLU at depth come with a sparsity cost. All of these are \evlabel{validation} findings. Future work: larger and
+JumpReLU at depth come with a sparsity cost. On the persona task the SAEs lose information that re-trained readers
+cannot recover and distort the honest-minus-dishonest difference, and neither fine-tuning method creditably improves
+persona representation or the causal effect carried at layer 8. All of these are \evlabel{validation} findings. Future work: larger and
 longer-trained SAEs, the published JumpReLU estimator, task-level sparsity matching, and the same audit on Gemma-2-2B
 with Gemma Scope SAEs.
 
