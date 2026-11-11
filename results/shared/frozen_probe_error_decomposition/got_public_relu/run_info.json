@@ -1,0 +1,6 @@
+{
+  "n_rows": 24,
+  "max_abs_reproduction_difference": null,
+  "runtime_seconds": 439.8,
+  "device": "cuda"
+}

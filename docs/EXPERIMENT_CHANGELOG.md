@@ -139,3 +139,13 @@ Nothing was modified, deleted or superseded. `results/repe/steering/causal_rando
 | `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | batched evaluation, final-position logits, run-time checks, partial saves | same |
 | `scripts/shared/followup_figures.py` | F2 no longer needs Gaussian rows for top-k patches | follows the control change |
 | `src/tests/test_followup_part3.py` | added: `FinalTokenTail` and the Runner paths equal TransformerLens's hooked forward pass | verification of the fix |
+
+## 2026-11-10 (evening): results of the follow-up experiments (`dhruv-causal`)
+
+| Change | Reason |
+|---|---|
+| Added `results/geometry_of_truth/causal_truth_steering/`, `results/repe/steering/sae_in_the_loop/`, `results/shared/{frozen_probe_error_decomposition,sparsity_matched_truth_preservation,public_sae_spliced_evaluation,followup_figures}/`, each with a README | Outputs of the GPU run on Kaggle (T4) of the scripts added in §19–21 |
+| Added `results/openwebtext/rebuild_reproducibility_check/` | Row-by-row comparison of the 108 rebuilt SAEs with the original test metrics (max EV difference 0.0013) |
+| `interventions_partial.csv` files not committed | Exact duplicates of `interventions.csv` once a run finishes |
+| Frozen-probe decomposition run with `--skip-reproduction-check` | Single-run AUROCs of the rebuild differ (median 0.01, max 0.17) although architecture means agree within 0.007; documented in the folder README |
+| Updated `docs/RESEARCH_PROGRESS.md` §22 and `docs/results_registry.md` | Record the results and their evidence levels |

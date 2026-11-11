@@ -1,0 +1,30 @@
+{
+  "dataset": "got",
+  "saes": "inhouse",
+  "date": "2026-11-10 22:18:19",
+  "script": "scripts/shared/frozen_probe_error_decomposition.py",
+  "script_sha256": "6b3fe8ee5fd81dfb91601ffee5afcfed9cb0c89a5bc00bb313bc0ab2e2a1b936",
+  "probe_code": "scripts/shared/all_layer_frozen_probe_evaluation.py (imported: load_*, fit_original_probes, scores)",
+  "probe_code_sha256": "8615801c9d5a126e73a82d16f7a244c9b6a0a6271b527680dc4f070778db1100",
+  "rows": "validation only; probes fit on original train, C selected on original validation (as in the source evaluation)",
+  "test_rows_scored": false,
+  "status": "EXPLORATORY diagnostic",
+  "noise_control": "50 draws, per-row norm matched to the SAE error, random direction, seed 20261110",
+  "reproduction_check": "in-house validation AUROCs must equal the saved per_run.csv within 1e-6",
+  "layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "smoke": false,
+  "reproduction_check_enforced": false
+}

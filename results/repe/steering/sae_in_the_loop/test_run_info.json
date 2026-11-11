@@ -1,0 +1,15 @@
+{
+  "preregistration_script_sha256": "bb416f77309d8139113905fb053b6d7dcd0dc8964660392b8e9a64ed02b83b91",
+  "parts": [
+    "graded",
+    "latent",
+    "steer"
+  ],
+  "n_controls": 600,
+  "n_interventions": 176724,
+  "torch": "2.11.0+cu130",
+  "python": "3.13.16",
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "written_utc": "2026-11-10T22:06:37.184435+00:00"
+}

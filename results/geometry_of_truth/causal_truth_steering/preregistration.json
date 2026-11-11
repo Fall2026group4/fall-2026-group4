@@ -1,0 +1,120 @@
+{
+  "written_utc": "2026-11-10T22:10:47.025132+00:00",
+  "script": "scripts/geometry_of_truth/22_truth_direction_causal_test.py",
+  "script_sha256": "7506d525fcfeee7f0ea50563c0f97ab320c0b078075ac553b299d6f8912b51cd",
+  "data_sha256": "f2560a0c1758c69935b50125111b574b71896bb75930dd87b1d8c973c1fa086e",
+  "splits_sha256": "e4951ef2f8c57c8c9e1f59bfdc0c98eb502e31fa342e1a334a2e958093d53e9f",
+  "activations_sha256": "53fb95116e7db1f27cd7964d39306282d5a01eaba604b621e4f27c4bdacf0bba",
+  "checkpoint_sha256": {
+    "4/relu/42": "61167b9fd4cfd24489f634b26378fa99f9b5c81c9a8fee1587f55eac5e6bd985",
+    "4/relu/1042": "86e21d840498da7a7c43bb35de9065f84363d65903898b4a2d7749f1fc47199c",
+    "4/relu/2042": "101db2aca45cadaed512115a74229eedc955604609cd1c5828b391a55ef27f48",
+    "4/topk/42": "6b5fe67bcc688249055554a1d433f9fd1046ed0d8f1b21d3b7bb7695937396be",
+    "4/topk/1042": "89220ef12beb04af7d31de3ef36cd632a00f47a090a4b668390ce476d990976a",
+    "4/topk/2042": "3611aa1f3cac5c8e8d38e7225ba08549989fab8d0466d2c41fd62d24e0e3f2cc",
+    "4/jumprelu/42": "cfbf05a9cd37bf5e85a27ddac712c7112d59ecf1eff6c72cd64344f27ee59163",
+    "4/jumprelu/1042": "87295a001c9a3de676e95ca01f1b971072494eb9e84d08e67da0da2cad9d70f7",
+    "4/jumprelu/2042": "d896456f7b5210961ce590980d8088fed445c6d04cff6b38e4b53a21b8941e97",
+    "6/relu/42": "d0d533e58309d74960e3969b63c522185587baf4799ee9fd6289a4477fa11b1e",
+    "6/relu/1042": "7ecf13c60e507fc08d7e972e98c1dbfc5ab68b8ba91d1915f7a60bf928a31207",
+    "6/relu/2042": "fde4441b52faffeb64663a3c4cf9281959924d75afc5c4bc594fd89a13c7cfce",
+    "6/topk/42": "e85b908117b249cd1a9abcfc8209904ed8c031d14fb460f4517e5b398a504188",
+    "6/topk/1042": "cc779b7f875a7f725c4d5f1efb47170dda0de8963b8d04306e03a675c860266a",
+    "6/topk/2042": "9cef6335dd80788d02c5fd667633f0ed6f55915d18fee41303945a33e7b9d96e",
+    "6/jumprelu/42": "21a1584eebce279435d15f3662042c1761ad59cb884141d55fce1d29789675e9",
+    "6/jumprelu/1042": "271820e2c7c3c690dc67f754c5d811e13605e3081dad89bf3b72c16a8acae8a3",
+    "6/jumprelu/2042": "2e543c63921d9212500fdf5cd0bb3df0fd6fd7ffce9e1bfa4ce4ff9a5ab60d86",
+    "8/relu/42": "625383a9d857902d80c55e9262d082f69dcb0eb1c9d04ef876106084b5e07048",
+    "8/relu/1042": "4b2bd403a3fd93cc24bc8fe01105d6e810631a1c883c9b318949a16208d2c559",
+    "8/relu/2042": "88f732bf9c0c8799cc61f75987ca82754a0aa6dd8aea9d4e9244892e5bceb45d",
+    "8/topk/42": "626cf905a2b2032363b75bfdf593fd8ecc27d039f9f66f9c13cdd383e098d46c",
+    "8/topk/1042": "f0da60ef67d6dda047b3d45a13bb177b7d8daceceaf06ca2e49c74a24c15e448",
+    "8/topk/2042": "a3337f4a98382ecb21750bdf62f6a57865ac36de64f27f12a02371e070932d13",
+    "8/jumprelu/42": "ff8fe290da26d86dc657be75dd2ca3979ac2b8bed4435f0ce84208fec43bc75a",
+    "8/jumprelu/1042": "f964e478ede64f08183aec26109e25b07b9cf535e96e65552f845950df24af7e",
+    "8/jumprelu/2042": "f09425d12526eab454532c798f390fee5d6f55ddff108f94084f3530bf01270c",
+    "10/relu/42": "13049254deff2bde60d098dee96b9dea62c2a3abf55e703dc9532c4d7d1d5790",
+    "10/relu/1042": "b199ea67021d1a6325b73dd5be23cc93eef3794ae95ac797657e461e043b5cae",
+    "10/relu/2042": "ffc6f919dd96fa8fae7105826e943e607e1bd6f233f1ba0f3a0d773f6d4f833a",
+    "10/topk/42": "3ca861ea29061c654f8f1328a26e3a32105834ec1799a9e91b180d742d89109c",
+    "10/topk/1042": "3b2543882e88806b23ce0b4273586e8de9a472936a898510097a62ec29eb9ac9",
+    "10/topk/2042": "f77374cdfa7e1e0fecd15f5c322313161af4e60a6558b7f8d0001cb7241d99e6",
+    "10/jumprelu/42": "07af1bd89af98bf05021b84e41c2f38ae7433438ebe36d02c5098b5a921bf642",
+    "10/jumprelu/1042": "6fced91c0ac143313a99b4af5392c1dff9e6cfd2ce08e01597cf396b779796fd",
+    "10/jumprelu/2042": "199e3ee8651bf9c2c35c41dc0b246ea2f34580415bdbe1f42974efe8bfbaaf39"
+  },
+  "n_pairs": {
+    "train": 523,
+    "test": 113,
+    "val": 112
+  },
+  "pairs_dropped": 0,
+  "validation_baseline_pair_accuracy": 0.7767857142857143,
+  "validation_baseline_margin": 2.7018685340881348,
+  "layers": [
+    4,
+    6,
+    8,
+    10
+  ],
+  "architectures": [
+    "relu",
+    "topk",
+    "jumprelu"
+  ],
+  "sae_seeds": [
+    42,
+    1042,
+    2042
+  ],
+  "hook": "blocks.{layer}.hook_resid_pre",
+  "position": "final prefix token (before the first differing token)",
+  "outcome": "mean change of log P(true token) - log P(false token); higher is better",
+  "n_controls": 600,
+  "control_seed": 20261110,
+  "lambda_grid": [
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "strength_per_layer": {
+    "4": {
+      "strength_multiple": 0.05,
+      "strength_norm": 0.027879321575164796,
+      "mass_mean_difference_norm_train": 0.5575864315032959
+    },
+    "6": {
+      "strength_multiple": 4.0,
+      "strength_norm": 5.562394618988037,
+      "mass_mean_difference_norm_train": 1.3905986547470093
+    },
+    "8": {
+      "strength_multiple": 8.0,
+      "strength_norm": 20.337614059448242,
+      "mass_mean_difference_norm_train": 2.5422017574310303
+    },
+    "10": {
+      "strength_multiple": 8.0,
+      "strength_norm": 30.811098098754883,
+      "mass_mean_difference_norm_train": 3.8513872623443604
+    }
+  },
+  "strength_rule": "multiple maximising the mass-mean direction effect on validation",
+  "families": {
+    "A_positive_control": "28 tests: unembedding contrast at each lambda vs Gaussian (one-sided)",
+    "C1_raw_directions": "8 tests: mass-mean and probe direction (+s) vs Gaussian (one-sided)",
+    "C2_sae_directions": "108 tests: reconstruction / top-1 / top-10 direction (+s) vs their controls (two-sided)"
+  },
+  "criteria": {
+    "T1_truth_direction_steers": "a raw direction at a layer: BH-adjusted one-sided p <= 0.05 at +s, and the effect at -s has the opposite sign",
+    "T2_sae_directions": "an SAE direction for an architecture at a layer: BH-adjusted two-sided p <= 0.05 with the same sign in all SAE seeds",
+    "power": "minimum detectable dose of the positive control reported per layer before any null is read"
+  },
+  "ci": "bootstrap over test pairs, 2000 resamples, seed 0",
+  "test_rows": "scored once by --phase test",
+  "status_of_results": "confirmed test result for the pre-registered families; anything else exploratory"
+}
