@@ -158,3 +158,14 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6.
+
+## D21. Report the causal test with its power, two-sided, and move to SAE-in-the-loop interventions (2026-11-10)
+
+* **Context:** the reanalysis (`results/repe/steering/causal_reanalysis/`) showed that the 2026-11-04 test cannot confirm any single SAE comparison after correction (200 controls, 27 comparisons), that its effects are about 2 % of the positive control, and that nine selected-latent directions are worse than their controls at the unadjusted level.
+* **Decisions:**
+  1. Every causal report states the smallest attainable p, the minimum detectable effect and the family size (extends C6).
+  2. Empirical p-values are reported one-sided and two-sided. A target below its controls is a finding, not a null.
+  3. New causal tests use **600 controls** per group, so that 1/601 < 0.05/27 and one comparison can survive Bonferroni over a 27-test family.
+  4. Latent controls include an **activation-matched** group, because random alive latents are not matched in activation size to the selected ones.
+  5. The next causal experiment intervenes with the **SAE in the forward pass** at the model's natural effect size (latent patching), at layers 2, 6 and 10 on the uninterrupted SAEs (`scripts/repe/15_sae_in_the_loop_causal.py`).
+* **Not decided:** nothing in the 2026-11-04 results is superseded. Their numbers stand; only their interpretation is qualified.

@@ -106,3 +106,46 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 * `scripts/geometry_of_truth/07_independent_truth_probe.py.bak` (identical to `0d07739`) and `scripts/openwebtext/10_reconstruction_evaluation.py.bak`.
 * `results/professor_review_corrections/` and `scripts/professor_review/` were kept for provenance until 2026-11-07, then retired from the working tree (see the repository-consolidation entry below). Their tracked files remain in Git history; the full folders, including the gitignored checkpoints and logs, are in `../backups/2026-11-07_retired_professor_review_folders/` on the EC2 host.
 * The two `.bak` files and `data/activations/` are now also listed in `.gitignore` (2026-11-07); the files themselves were not touched.
+
+## 2026-11-10: branch `causal-followup` (from `main` at `33dcb9c`)
+
+| File | Change | Reason |
+|---|---|---|
+| `scripts/repe/14_causal_reanalysis.py` | added | two-sided p, BH, power statement and paired comparison for the saved 2026-11-04 causal test (CPU, saved outputs only) |
+| `results/repe/steering/causal_reanalysis/` (`README.md`, `reanalysis_targets.csv`, `control_group_summary.csv`, `power_statement.json`, `figures/causal_effects_forest.{svg,png}`) | added | outputs of the reanalysis; exploratory |
+| `scripts/repe/15_sae_in_the_loop_causal.py` | added (not run) | roadmap C1 + C3: SAE-in-the-loop latent patching, graded positive control, both-sign steering, 600 controls, layers 2/6/10 |
+| `scripts/shared/frozen_probe_error_decomposition.py` | added (not run) | noise control and signal / noise decomposition of the frozen-probe gaps; public-SAE reference (part of G9) |
+| `src/tests/test_causal_followup.py` | added | 17 unit tests for the three scripts (synthetic inputs) |
+| `docs/RESEARCH_PROGRESS.md`, `RESEARCH_ROADMAP.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `RESEARCH_DECISIONS.md`, `results_registry.md`, `experiment_manifest.csv`, this file | updated | documentation of the above |
+
+Nothing was modified, deleted or superseded. `results/repe/steering/causal_random_controls/` is unchanged and is only read.
+
+## 2026-11-10 (2): branch `dhruv-causal`, remaining code experiments
+
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/sparsity_matched_truth_preservation.py` | added (not run) | roadmap S3 |
+| `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | added (not run) | roadmap C4 |
+| `scripts/shared/public_sae_spliced_evaluation.py` | added (not run) | roadmap G9 / P3 |
+| `scripts/shared/followup_figures.py` | added | figures and tables for §19 and §20 results |
+| `src/tests/test_followup_part2.py` | added | 10 unit tests |
+| `docs/RESEARCH_PROGRESS.md`, `RESEARCH_ROADMAP.md`, `results_registry.md`, this file | updated | documentation |
+
+## 2026-11-10 (3): runtime fix
+
+| File | Change | Reason |
+|---|---|---|
+| `scripts/repe/15_sae_in_the_loop_causal.py` | `FinalTokenTail` (exact final-token recomputation), batched evaluation, final-position logits, Gaussian controls of top-k patches removed, partial saves, run-time equivalence checks | first test run could not finish in 12 h; no results were produced |
+| `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | batched evaluation, final-position logits, run-time checks, partial saves | same |
+| `scripts/shared/followup_figures.py` | F2 no longer needs Gaussian rows for top-k patches | follows the control change |
+| `src/tests/test_followup_part3.py` | added: `FinalTokenTail` and the Runner paths equal TransformerLens's hooked forward pass | verification of the fix |
+
+## 2026-11-10 (evening): results of the follow-up experiments (`dhruv-causal`)
+
+| Change | Reason |
+|---|---|
+| Added `results/geometry_of_truth/causal_truth_steering/`, `results/repe/steering/sae_in_the_loop/`, `results/shared/{frozen_probe_error_decomposition,sparsity_matched_truth_preservation,public_sae_spliced_evaluation,followup_figures}/`, each with a README | Outputs of the GPU run on Kaggle (T4) of the scripts added in §19–21 |
+| Added `results/openwebtext/rebuild_reproducibility_check/` | Row-by-row comparison of the 108 rebuilt SAEs with the original test metrics (max EV difference 0.0013) |
+| `interventions_partial.csv` files not committed | Exact duplicates of `interventions.csv` once a run finishes |
+| Frozen-probe decomposition run with `--skip-reproduction-check` | Single-run AUROCs of the rebuild differ (median 0.01, max 0.17) although architecture means agree within 0.007; documented in the folder README |
+| Updated `docs/RESEARCH_PROGRESS.md` §22 and `docs/results_registry.md` | Record the results and their evidence levels |

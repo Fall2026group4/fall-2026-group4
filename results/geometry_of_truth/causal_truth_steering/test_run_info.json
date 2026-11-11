@@ -1,0 +1,11 @@
+{
+  "n_test_pairs": 113,
+  "baseline_pair_accuracy": 0.7433628318584071,
+  "baseline_margin": 2.5255186557769775,
+  "n_controls": 600,
+  "n_interventions": 62660,
+  "torch": "2.11.0+cu130",
+  "python": "3.13.16",
+  "device": "cuda",
+  "written_utc": "2026-11-10T22:18:14.526112+00:00"
+}

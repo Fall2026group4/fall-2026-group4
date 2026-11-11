@@ -454,3 +454,62 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
 * **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
 * **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.
+
+## 19. Causal follow-up (2026-11-10). Status: reanalysis COMPLETED [VERIFIED]; two experiments IMPLEMENTED, NOT RUN
+
+Work by Dhruv Rai on branch `causal-followup`, started from `main` at `33dcb9c`. No existing file's results were changed.
+
+### 19a. Reanalysis of the 2026-11-04 causal test. Status: COMPLETED, EXPLORATORY [VERIFIED]
+* **Question:** what can the layer-6 causal test (§ on `repe/13`, roadmap §5) actually show, and is "no SAE target is distinguishable from controls" the right summary?
+* **Method:** `scripts/repe/14_causal_reanalysis.py`, CPU only, saved outputs only (no model run, no test row re-scored). All 28 saved p-values are reproduced exactly from the control rows.
+* **Results** (`results/repe/steering/causal_reanalysis/`):
+  * **Power.** 200 controls give p ≥ 0.00498. The Bonferroni threshold over the 27 SAE targets is 0.00185, so no single target could ever pass it; 539 controls would be needed. The minimum detectable effect is E = 0.0031, which is 1.3 % of the positive control (0.234). The raw direction's E is 0.0048 (2.1 % of the positive control). The median CI half-width of a target is 0.0059, wider than the minimum detectable effect.
+  * **Direction of effects.** 18 of 27 SAE targets have E < 0. Two-sided, 9 targets have unadjusted p ≤ 0.05, all with E < 0: the TopK top-1 and top-10 latent directions and the JumpReLU top-1 latent direction, in every variant. After BH all nine sit at 0.0597. One-sided, 1 target is at p = 0.0498 and none survives BH (smallest 0.76).
+  * **SAE targets vs the raw direction.** E(raw) − E(target) > 0 for all 27, with a paired bootstrap interval that excludes zero for all 27 (unadjusted). Reconstruction directions keep 56 % (JumpReLU), 19 % (TopK) and −21 % (ReLU) of the raw direction's E, in the same order as their cosine with it (0.87, 0.84, 0.76).
+  * **Controls.** Random SAE-latent directions are not more disruptive than Gaussian directions (smallest KS p = 0.088 over 18 groups).
+* **Learned:** the accurate summary is "no SAE target is better than its controls; nine selected-latent directions are worse than their controls at the unadjusted level; the test cannot confirm either after correction". H7 should be read with this power statement.
+* **Unresolved:** why selected latents push the output away from the honest distribution (activation magnitude of the selected latents, or direction-adding being the wrong intervention on a latent). Addressed by 19b.
+
+### 19b. SAE-in-the-loop causal test, layers 2 / 6 / 10 (roadmap C1 + C3). Status: IMPLEMENTED, NOT RUN
+* **Script:** `scripts/repe/15_sae_in_the_loop_causal.py` (validation phase writes `preregistration.json`; test phase scores the test rows once).
+* **Design:** the 27 uninterrupted SAEs at layers 2, 6, 10. Part A: graded activation patch (minimum detectable dose). Part B: latent patching with the SAE in the loop (all latents, the SAE error term, top-1/10/50 honesty latents) against norm-matched Gaussian, random-latent and activation-matched latent controls. Part C: script 13's direction steering with both signs. 600 controls per group; BH within seven pre-registered families.
+* **Verified so far:** unit tests (17 pass) and an end-to-end pipeline run of both phases on a synthetic stand-in model with random SAEs (all parts, all output files, refusal to overwrite). **Not yet run on GPT-2. No result exists.**
+* **Exact next steps:** on the GPU host, `--phase validation --smoke`, `--phase test --smoke`, then the two full phases; then write the results-folder README and update the documents listed in `CLAUDE.md` §1.
+
+### 19c. Frozen-probe error decomposition and noise control. Status: IMPLEMENTED, NOT RUN
+* **Script:** `scripts/shared/frozen_probe_error_decomposition.py` (`--dataset got|repe`, `--saes inhouse|public_relu|public_topk`). Validation rows only; exploratory.
+* **Question:** the all-layer frozen-probe gaps (§ on all-layer frozen probes) are large although cosine is ≈ 0.98. Is that because any error of that size breaks the readout, or because the SAE error is aimed at the truth direction? Reports a norm-matched random-error control, signal retention, noise inflation and error anisotropy, and must reproduce the saved validation AUROCs.
+* **`--saes public_*`** gives the first public-SAE reference under this pipeline (part of G9). The public loaders have not been executed yet.
+* **Verified so far:** unit tests and an end-to-end run on synthetic RepE-shaped data with random SAEs. **Not yet run on the real caches.**
+
+## 20. Remaining code experiments (2026-11-10). Status: IMPLEMENTED, NOT RUN
+
+Work by Dhruv Rai on branch `dhruv-causal`. Four scripts, written so the GPU work after the Kaggle rebuild is one session. None has run on GPT-2; all four ran end to end on a synthetic stand-in model with random SAEs and a stand-in SAELens (all phases, all output files, refusal to overwrite), and 10 new unit tests pass.
+
+* **20a. Sparsity matched on the truth and honesty prompts (roadmap S3).** `scripts/shared/sparsity_matched_truth_preservation.py --dataset got|repe`. Inference-time top-m truncation of the latents (m = 8 ... 128; for TopK this is exactly the SAE with k = m), frozen original probes, validation rows only. A cell is compared only if every architecture and seed is within ±10 % of m on the prompts; rankings use paired differences over the three seeds. Evidential status when run: validation finding.
+* **20b. Geometry of Truth causal test (roadmap C4).** `scripts/geometry_of_truth/22_truth_direction_causal_test.py`. Cities pairs; outcome = change of log P(true token) − log P(false token) at the first token where the true and false statements differ; intervention at the final prefix token, layers 4 / 6 / 8 / 10. Targets: mass-mean and probe directions, SAE reconstruction / top-1 / top-10 directions, both signs. Graded oracle positive control (unembedding contrast). 600 controls; three pre-registered families.
+* **20c. Public SAE splicing (roadmap G9, P3).** `scripts/shared/public_sae_spliced_evaluation.py --saes public_relu|public_topk`. Imports the Phase-0 splicing code unchanged; adds loss recovered vs mean ablation. External reference only: not sparsity-matched to the in-house SAEs.
+* **20d. Figures and tables.** `scripts/shared/followup_figures.py`. Makes F1 to F7 and `tables.md` from whichever result files exist; lists the missing ones.
+* **Not written:** the final pre-registered test evaluation (X3). It must come last, after the configurations to test are chosen from these results.
+
+## 21. Runtime fix for the causal scripts (2026-11-10, afternoon). Status: IMPLEMENTED, NOT RUN
+
+* **What happened.** The first test-phase run of `scripts/repe/15_sae_in_the_loop_causal.py` (Kaggle, T4, rebuilt checkpoints) took about 2 730 s per SAE (about 7 800 single forward passes of 90 prompts each, 0.35 s per pass) and could not finish the 27 SAEs inside Kaggle's 12-hour limit. It writes results only at the end, so **no test result was written or inspected**. The preregistration of that attempt is void; the script was changed, so a new validation phase writes a new preregistration before the test phase (the script refuses otherwise).
+* **Fix 1, exact final-token recomputation (`FinalTokenTail`).** Adding a delta at the final token changes no earlier position and nothing below the hooked layer. One baseline pass caches the keys and values of earlier positions for the remaining blocks; each intervention recomputes only the final position through those blocks. Verified against TransformerLens's own hooked forward pass on randomly initialised models (plain and folded LayerNorm, layers 0 / 2 / 4, right padding; `src/tests/test_followup_part3.py`), and checked again at run time on four interventions per layer (the run stops above 1e-3).
+* **Fix 2.** Interventions are evaluated in batches; vocabulary logits are computed at the final position only.
+* **Fix 3.** The Gaussian controls of the top-k latent patches were dropped: they were descriptive and in no pre-registered family. The top-k patches keep their random-latent (B3) and activation-matched (B4) controls. 600 controls per remaining group are unchanged.
+* **Resilience.** `interventions_partial.csv` is rewritten after every SAE.
+* `scripts/geometry_of_truth/22_truth_direction_causal_test.py` received fix 2 and the same run-time checks (its prompts are 8 to 10 tokens, so fix 1 matters less there).
+
+## 22. Follow-up experiments run on GPT-2 (2026-11-10, evening). Status: COMPLETED [VERIFIED]
+
+Work by Dhruv Rai on branch `dhruv-causal`. Everything in §19b, §19c and §20 has now run on GPT-2 small (Kaggle, Tesla T4), with no errors. Every run-time pipeline check passed. Each results folder has a README with the design, the numbers and the limitations.
+
+* **Rebuild.** All 108 in-house SAEs were retrained from code and match the original test metrics: explained variance within 0.0013, L0 within 1.2 (`results/openwebtext/rebuild_reproducibility_check/`). Every result below uses these rebuilt checkpoints.
+* **22a. GoT causal test (C4), TEST.** The oracle positive control is detectable at a 1 % dose at layers 4 / 6 / 8 / 10. Mass-mean and probe directions are not distinguishable from 600 random directions at any layer (best one-sided p 0.19; BH ≥ 0.93). 0 of 108 SAE-direction tests survive BH. **A well-powered null:** the truth directions read by probes do not causally drive GPT-2's answers on cities. (`results/geometry_of_truth/causal_truth_steering/`)
+* **22b. Sparsity-matched truth preservation (S3), VALIDATION.** At equal L0, architecture differences on GoT are small (median 0.012–0.023 AUROC) and the seeds disagree in most cells. TopK's advantage came from using more latents (layer 6: 0.280 at 128 latents, 0.333 at 48; ReLU 0.332). The truth gap barely depends on L0 (0.31–0.35 at layer 6 from 8 to 128 latents). On RepE (old prompts), TopK stays about 0.08 lower. (`results/shared/sparsity_matched_truth_preservation/`)
+* **22c. Frozen-probe error decomposition, EXPLORATORY.** On GoT, random error of the same size gives most of the gap (0.26 vs 0.27–0.30 AUROC; 0.04–0.05 excess for the public SAEs). The error anisotropy is below 1. This agrees with Aditi's M2. (`results/shared/frozen_probe_error_decomposition/`)
+* **22d. SAE-in-the-loop on RepE (C1 + C3), TEST on the old length-confounded prompts, so supporting evidence only.** All latents together carry 41–42 % (ReLU, JumpReLU) and 7 % (TopK) of the patch at layer 6, and 46–68 % at layer 10. This agrees with Aditi's M4. At layers 2 and 6, all 52 significant top-latent vs activation-matched comparisons go the wrong way. The raw direction reproduces E = 0.0048 at layer 6. (`results/repe/steering/sae_in_the_loop/`)
+* **22e. Public SAE splicing (G9), VALIDATION, external reference.** Public SAEs keep 94.6–99.9 % of loss recovered. Public TopK with k = 32 matches in-house TopK with k = 128 at layer 6. Public SAE error also hurts the model more than random error of the same size (1.4–4.8×). (`results/shared/public_sae_spliced_evaluation/`)
+* **Figures:** F1–F7 and `tables.md` in `results/shared/followup_figures/`.
+* **Not done:** the final pre-registered test evaluation (X3). The RepE parts should be rerun on Aditi's corrected prompts if they are to be cited as more than agreement.

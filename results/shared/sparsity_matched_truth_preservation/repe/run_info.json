@@ -1,0 +1,7 @@
+{
+  "n_rows": 972,
+  "matched_cells": 79,
+  "max_abs_reproduction_difference": 0.05679012345679013,
+  "runtime_seconds": 37.9,
+  "device": "cuda"
+}

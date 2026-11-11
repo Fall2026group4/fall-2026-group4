@@ -1,0 +1,17 @@
+layer,check,value
+4,zero_delta_margin_max_abs,0.0
+4,fast_path_vs_full_forward_margin_max_abs,0.0
+4,final_token_tail_vs_hooked_forward_margin_max_abs,1.71661376953125e-05
+4,minimum_detectable_dose,0.01
+6,zero_delta_margin_max_abs,0.0
+6,fast_path_vs_full_forward_margin_max_abs,0.0
+6,final_token_tail_vs_hooked_forward_margin_max_abs,2.0503997802734375e-05
+6,minimum_detectable_dose,0.01
+8,zero_delta_margin_max_abs,0.0
+8,fast_path_vs_full_forward_margin_max_abs,0.0
+8,final_token_tail_vs_hooked_forward_margin_max_abs,1.8596649169921875e-05
+8,minimum_detectable_dose,0.01
+10,zero_delta_margin_max_abs,0.0
+10,fast_path_vs_full_forward_margin_max_abs,0.0
+10,final_token_tail_vs_hooked_forward_margin_max_abs,1.33514404296875e-05
+10,minimum_detectable_dose,0.01

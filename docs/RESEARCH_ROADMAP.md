@@ -38,10 +38,12 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | E2E-inspired Methods B/C at layer 6 | `e2e_inspired_layer6/` | `764dcbb` |
 | KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | `2c87a6b` |
 | Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, `3377116` |
+| Reanalysis of the layer-6 causal test: power statement, two-sided p, BH, comparison with the raw direction (EXPLORATORY) | `results/repe/steering/causal_reanalysis/` | branch `causal-followup` |
 | Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | this commit |
 
 ## 2. In progress
-* None. All work is committed locally, and nothing has been pushed.
+* **C1 + C3 (2026-11-10): `scripts/repe/15_sae_in_the_loop_causal.py` is implemented and unit-tested, NOT RUN.** Next: smoke run, then validation and test phases on the GPU host (`docs/RESEARCH_PROGRESS.md` §19b).
+* **Frozen-probe error decomposition (2026-11-10): `scripts/shared/frozen_probe_error_decomposition.py` is implemented and unit-tested, NOT RUN** (§19c). Its `--saes public_relu|public_topk` mode covers the frozen-probe part of G9.
 
 ## 3. Outstanding GPT-2 tasks (PLANNED)
 
@@ -143,3 +145,24 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 * **Back up the EC2-only checkpoints** (about 9 GB of `*.pt`, plus activation caches). Only the 2026-11-06 pre-migration tarball exists; checkpoints created after it (all-layer baseline, P1, truth-aware pilot, Method A, E2E, KL ablation) have no off-machine copy.
 * Pushing `sae-research` to GitHub.
 * Merging or archiving the unmerged team branches (`dhruv`, `simba-*`, `aditi`), and bringing the 2026-10-25 report and CI from `origin/dhruv` into this branch. **Do not merge** without approval.
+
+## 12. Added 2026-11-10 (from the causal reanalysis)
+
+| ID | Task | Why | Priority |
+|---|---|---|---|
+| C8 | Run `scripts/repe/15_sae_in_the_loop_causal.py` (covers C1 and C3) and document it | The layer-6 test cannot detect small effects and never had the SAE in the loop | P0 |
+| C9 | Explain the "selected latents are worse than random latents" pattern (activation-matched controls and both signs are in C8) | Unexplained structure in the only causal result | P0 |
+| C10 | State power (smallest p, minimum detectable effect, family size) in every causal report | Decision D21 | P0 (rule) |
+| P1 | Run `scripts/shared/frozen_probe_error_decomposition.py` for GoT and RepE, in-house SAEs | Says whether frozen-probe gaps come from the size of the SAE error or from its direction | P0 |
+| P2 | Same script with `--saes public_relu` and `--saes public_topk` (frozen-probe part of G9); the public loaders are untested | External reference; not sparsity-matched, never a ranking | P1 |
+| P3 | Splicing (Phase 0) for the public SAEs under `scripts/shared/spliced_reconstruction_evaluation.py` | Remaining part of G9 | P1 |
+
+## 13. Status update 2026-11-10 (2)
+
+| ID | State |
+|---|---|
+| S3 | IMPLEMENTED, NOT RUN: `scripts/shared/sparsity_matched_truth_preservation.py` (§20a) |
+| C4 | IMPLEMENTED, NOT RUN: `scripts/geometry_of_truth/22_truth_direction_causal_test.py` (§20b) |
+| P3 (G9 splicing) | IMPLEMENTED, NOT RUN: `scripts/shared/public_sae_spliced_evaluation.py` (§20c) |
+| Figures | `scripts/shared/followup_figures.py` (§20d) |
+| X3 | PLANNED: write after the results of §19 and §20 fix which configurations go to the final test |

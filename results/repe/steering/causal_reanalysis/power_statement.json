@@ -1,0 +1,36 @@
+{
+  "script": "scripts/repe/14_causal_reanalysis.py",
+  "script_sha256": "17906ed8fc013057ede1ebe22e2c67d11c0b343ed4386cc5ed648096510b9740",
+  "inputs_sha256": {
+    "causal_controls_200.csv": "58e269dc86f5f46d98cc5883d6cccded5edd9cd72b901d982797a2a607e62e72",
+    "causal_summary.csv": "60a70380f47406f1aa0bc5f8dc18e9384e98145fd59a92ed7c03193f7ea3c423",
+    "per_statement_kl_targets.npz": "49dfbb76ef8d1bb1a7e45f5a70bdab80036b3511ae663c89b9589a9bd86c01e5"
+  },
+  "status": "EXPLORATORY (post hoc; not in the preregistration of scripts/repe/13)",
+  "bootstrap": "2000 resamples over statements, seed 0",
+  "n_controls_per_group": 200,
+  "smallest_attainable_p": 0.004975124378109453,
+  "family_size_sae_targets": 27,
+  "alpha": 0.05,
+  "bonferroni_threshold": 0.001851851851851852,
+  "single_test_can_pass_bonferroni_with_these_controls": false,
+  "controls_needed_for_one_test_to_pass_bonferroni": 539,
+  "targets_at_p_floor_needed_to_pass_bh": 3,
+  "positive_control_E": 0.2335978509349715,
+  "positive_control_E_ci95": [
+    0.1506531536579132,
+    0.3166182935237884
+  ],
+  "raw_direction_E": 0.0048370007061134,
+  "raw_direction_share_of_positive_control": 0.020706529134379384,
+  "mde_gaussian_alpha_0.05": 0.0031189139785912,
+  "mde_gaussian_share_of_positive_control": 0.013351638151240684,
+  "median_target_ci_half_width": 0.005913550034165325,
+  "gaussian_control_sd": 0.002015183325644876,
+  "n_test_statements": 90,
+  "sae_targets_negative_E": 18,
+  "sae_targets_two_sided_p_le_0.05": 9,
+  "sae_targets_two_sided_bh_le_0.05": 0,
+  "sae_targets_one_sided_p_le_0.05": 1,
+  "sae_targets_one_sided_bh_le_0.05": 0
+}

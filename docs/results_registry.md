@@ -64,3 +64,23 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
   * Their MLP-probe results are only partially independent: the probe uses the same train rows and labels as the teacher. Read them together with the L0 drift.
   * The GoT layer-6 test split has now been scored twice for these 9 SAEs, so it can no longer select among them.
   * RepE, OWT and causal results for the fine-tuned SAEs are independent of the GoT training and remain valid.
+
+## Added 2026-11-10
+
+| Result | Status | Note |
+|---|---|---|
+| `results/repe/steering/causal_reanalysis/` | EXPLORATORY (post hoc reanalysis of saved outputs) | Qualifies the reading of `causal_random_controls/`: power statement, two-sided p-values, BH, paired comparison with the raw direction. Cite together with the pre-registered result, never instead of it |
+| `results/repe/steering/sae_in_the_loop/` | TEST (run 2026-11-10), on the old length-confounded RepE prompts: supporting evidence only | See folder README and RESEARCH_PROGRESS §22d |
+| `results/shared/frozen_probe_error_decomposition/` | EXPLORATORY (run 2026-11-10), validation rows only | See folder README and RESEARCH_PROGRESS §22c |
+
+* **H7 (updated reading):** all SAE-based interventions tested at layer 6 were null in the pre-registered one-sided sense. The test could detect effects only above about 1.3 % of the positive control and could not confirm any single comparison after correction. Nine selected-latent directions were below their controls (two-sided p ≤ 0.05 unadjusted, 0.0597 after BH).
+
+## Added 2026-11-10 (2)
+
+| Result | Status |
+|---|---|
+| `results/shared/sparsity_matched_truth_preservation/` | VALIDATION finding (run 2026-11-10) |
+| `results/geometry_of_truth/causal_truth_steering/` | TEST (run 2026-11-10); pre-registered, null for C1 and C2 |
+| `results/shared/public_sae_spliced_evaluation/` | VALIDATION (run 2026-11-10); external reference, not sparsity-matched |
+| `results/openwebtext/rebuild_reproducibility_check/` | CONFIRMED (2026-11-10); 108 rebuilt SAEs match the original test metrics |
+| `results/shared/followup_figures/` | Figures F1–F7 generated from the folders above |

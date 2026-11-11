@@ -1,0 +1,100 @@
+{
+  "written_utc": "2026-11-10T21:35:40.935723+00:00",
+  "script": "scripts/repe/15_sae_in_the_loop_causal.py",
+  "script_sha256": "bb416f77309d8139113905fb053b6d7dcd0dc8964660392b8e9a64ed02b83b91",
+  "pairs_sha256": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+  "activations_sha256": "4f48afde4af59ebbdeb46081f4be9d119a8cbd9d9972866e9f647855c768bb42",
+  "checkpoint_sha256": {
+    "2/relu/42": "3cd8cf592e6097e54b7031d802cfa9d4f5be420ace801d8c6afd54cf3eee8683",
+    "2/topk/42": "2a94f8c2e45f7d1019959cedc598ef3d2049af6e529fbf4bbae60a66d8c0fea9",
+    "2/jumprelu/42": "e2d6a38567d300f864b13ae528f076f7a14991d2a302bb70979361105b765204",
+    "6/relu/42": "d0d533e58309d74960e3969b63c522185587baf4799ee9fd6289a4477fa11b1e",
+    "6/topk/42": "e85b908117b249cd1a9abcfc8209904ed8c031d14fb460f4517e5b398a504188",
+    "6/jumprelu/42": "21a1584eebce279435d15f3662042c1761ad59cb884141d55fce1d29789675e9",
+    "10/relu/42": "13049254deff2bde60d098dee96b9dea62c2a3abf55e703dc9532c4d7d1d5790",
+    "10/topk/42": "3ca861ea29061c654f8f1328a26e3a32105834ec1799a9e91b180d742d89109c",
+    "10/jumprelu/42": "07af1bd89af98bf05021b84e41c2f38ae7433438ebe36d02c5098b5a921bf642"
+  },
+  "layers": [
+    2,
+    6,
+    10
+  ],
+  "architectures": [
+    "relu",
+    "topk",
+    "jumprelu"
+  ],
+  "sae_seeds": [
+    42
+  ],
+  "hook": "blocks.{layer}.hook_resid_pre",
+  "position": "final prompt token",
+  "primary_outcome": "E = 1 - sum KL(p_H||p_int) / sum KL(p_H||p_U), next-token at final position; higher is better",
+  "n_controls": 20,
+  "control_seed": 20261110,
+  "lambda_grid": [
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "topk_grid": [
+    1,
+    10,
+    50
+  ],
+  "activation_match_window": 25,
+  "steering_strength_per_layer": {
+    "2": {
+      "strength_multiple": 1.0,
+      "strength_norm": 1.912658929824829,
+      "mean_difference_norm_train": 1.912658929824829,
+      "validation_baseline_mean_KL": 0.019926102831959724,
+      "validation_activation_patch_E": 0.08601013420630987,
+      "n_validation_statements": 90
+    },
+    "6": {
+      "strength_multiple": 0.1,
+      "strength_norm": 0.22262799739837646,
+      "mean_difference_norm_train": 2.2262799739837646,
+      "validation_baseline_mean_KL": 0.019926102831959724,
+      "validation_activation_patch_E": 0.18817194222912126,
+      "n_validation_statements": 90
+    },
+    "10": {
+      "strength_multiple": 2.0,
+      "strength_norm": 9.043924331665039,
+      "mean_difference_norm_train": 4.5219621658325195,
+      "validation_baseline_mean_KL": 0.019926102831959724,
+      "validation_activation_patch_E": 0.6549674202576705,
+      "n_validation_statements": 90
+    }
+  },
+  "steering_selection_rule": "strength multiple maximising E of the raw honesty direction on validation (script 13 rule)",
+  "latent_selection": "largest |mean_train(z|honest) - mean_train(z|untruthful)|, TRAIN rows only",
+  "significance": "one-sided empirical p=(1+#controls>=target)/(1+n); two-sided p=min(1,2*min(upper,lower))",
+  "multiple_comparisons": "Benjamini-Hochberg within each family below, alpha 0.05",
+  "families": {
+    "A_graded_patch": "21 tests: activation patch at each lambda and layer vs norm-matched Gaussian (one-sided)",
+    "B1_latent_all": "9 tests: latent_all vs norm-matched Gaussian (one-sided)",
+    "B2_error_term": "9 tests: error_term vs norm-matched Gaussian (one-sided)",
+    "B3_latent_topk_vs_random": "27 tests: latent_topk vs random latents (one-sided)",
+    "B4_latent_topk_vs_matched": "27 tests: latent_topk vs activation-matched latents (one-sided)",
+    "C1_raw_direction": "3 tests: raw honesty direction (+s) vs Gaussian (one-sided)",
+    "C2_sae_directions": "27 tests: SAE reconstruction / top-1 / top-10 direction (+s) vs their controls (two-sided)"
+  },
+  "criteria": {
+    "H1_latents_mediate": "for an architecture at a layer: latent_all BH-adjusted p <= 0.05 in all SAE seeds",
+    "H2_concentration": "latent_topk BH-adjusted p <= 0.05 vs activation-matched latents in all SAE seeds; report E(topk)/E(latent_all)",
+    "H3_error_term": "descriptive: E(error_term) vs E(latent_all) per architecture and layer (no threshold)",
+    "H4_sign": "top-1 latent direction: two-sided BH-adjusted p <= 0.05 with E < control mean at +s in all seeds = replication of the layer-6 \"away from honest output\" observation; report E at -s beside it",
+    "power": "minimum detectable dose from Part A is reported for every layer before any null is interpreted"
+  },
+  "ci": "bootstrap over statements, 2000 resamples, seed 0",
+  "test_rows": "scored once by --phase test; never used for selection",
+  "status_of_results": "confirmed test result for the pre-registered families; anything else exploratory"
+}
