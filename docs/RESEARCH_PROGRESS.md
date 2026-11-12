@@ -466,4 +466,5 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Controls: repeat pass, identity splice, norm-matched random error, mean ablation (reference set).
   * Descriptive questions Q1–Q3; one replication hypothesis H-G1 (SAE ΔCE > random-error ΔCE, as in GPT-2 Phase 0 §10); validity gates V1–V5.
 * **Found while preparing (2026-11-12):** the parquet mirror used by the EDA has only a train split, so the evaluation uses the original repository's validation file; Gemma Scope's hook is `resid_post` (sae-lens loader), unlike our GPT-2 `resid_pre`.
+* **Amendment 1 (2026-11-12, before any run):** Gemma-2-2B tokenizer and model pinned to Hugging Face commit `c5ebcd40d208330abc697524c919956e692655cf` (previously "recorded at run time"); any later mismatch is a protocol deviation.
 * **Not yet done:** scripts, tests, Ronin hardware/HF-access check, smoke run, full run. The Gemma GoT frozen-probe experiment is a stretch goal only (roadmap M3), started only after this one is complete.

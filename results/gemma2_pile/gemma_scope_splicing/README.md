@@ -49,7 +49,7 @@ Pile validation sample (512 eval + 64 reference docs, seeded, disjoint)
 
 | Item | Choice | Reason / source |
 |---|---|---|
-| Model | `google/gemma-2-2b` (26 layers, d_model 2304), HF transformers, bf16, eager attention | Same loading as `scripts/gemma/01_steering_sweep.py`; TransformerLens was OOM-killed on the earlier host (D1). HF model revision recorded at run time |
+| Model | `google/gemma-2-2b` (26 layers, d_model 2304), HF transformers, bf16, eager attention | Same loading as `scripts/gemma/01_steering_sweep.py`; TransformerLens was OOM-killed on the earlier host (D1). HF model revision recorded at run time **[superseded by Amendment 1: pinned to `c5ebcd40d208330abc697524c919956e692655cf`]** |
 | Hook | Output hidden state of `model.model.layers[L]`, i.e. `blocks.L.hook_resid_post` | The site the Gemma Scope residual SAEs were trained on: the sae-lens loader sets `hook_name = blocks.{layer}.hook_resid_post` for `gemma-scope-*-res` repos (`sae_lens/loading/pretrained_sae_loaders.py`, `get_gemma_2_config_from_hf`). **Differs from the GPT-2 work (`hook_resid_pre`)**; this is a convention of each SAE family, not a mapping |
 | Layers | **5, 12, 19** | Representative lower / middle / later residual-stream depths of the 26-layer model. In the release these are the layers that also carry the largest-width (1M) residual SAEs; neighbouring layers (4, 6, 20) have only 16k and 65k, and layer 12 has the full width sweep 16k–1M (HF repo listing, checked 2026-11-12). Width 16k exists at all three and is used throughout. **They are not equivalents of GPT-2 layers 5/6/9**; no layer correspondence between the models is claimed. The GPT-2 decision to drop layer 3 (insufficient GoT truth signal) is specific to that probe experiment and does not apply here |
 | SAE release | Hugging Face `google/gemma-scope-2b-pt-res`, revision `fd571b47c1c64851e9b1989792367b9babb4af63`; sae-lens release `gemma-scope-2b-pt-res` | Pretrained JumpReLU SAEs; d_sae = 16 384 |
@@ -57,7 +57,7 @@ Pile validation sample (512 eval + 64 reference docs, seeded, disjoint)
 | SAE forward | f = JumpReLU_θ(W_enc x + b_enc); x̂ = W_dec f + b_dec; `apply_b_dec_to_input = False`, no activation normalisation (sae-lens config); computed in fp32 on bf16 activations cast to fp32 | As released |
 | Data source | Hugging Face dataset `monology/pile-uncopyrighted`, file `val.jsonl.zst`, revision `3be90335b66f24456a5d6659d9c8d208c0357119`, 338 045 152 bytes, SHA-256 `db5e5d1532bf8dc33a6589b50ecba1a8c96f7b4b9cb343d168e603c393007c26` (Git-LFS object id) | The Pile validation split with copyrighted subsets removed. The EDA (`simba-gemma-pile-eda`, `5638350`) used the parquet mirror `monology/pile-uncopyrighted-parquet`, which has **only a train split** (checked 2026-11-12), so the evaluation draws from the original repo's validation file instead. Same uncopyrighted filtering, same source labels (`meta.pile_set_name`) |
 | Sampling | Documents indexed by 0-based line number in `val.jsonl.zst`. `numpy.random.default_rng(42).permutation(n_lines)`; walk the permutation, tokenize, keep a document if it has ≥ 32 text tokens; the first 512 kept are the **evaluation set**, the next 64 kept are the **reference set** | Deterministic, seeded, recorded; eval and reference are disjoint by construction (asserted). Natural source mixture (no stratification), so per-source cells can be small and are flagged |
-| Tokenization / chunking | Gemma tokenizer with BOS; truncate to the **first 1024 tokens** (BOS included); one window per document, no packing across documents | 1024 is the Gemma Scope training context length recorded by sae-lens (`context_size: 1024`, `prepend_bos: True`). One window per document keeps documents independent for the bootstrap and keeps each window's source label clean. The EDA found 26 % of sampled docs exceed 1024 tokens; for those only the first 1024 tokens are used (recorded per document) |
+| Tokenization / chunking | Gemma tokenizer with BOS (revision pinned by Amendment 1); truncate to the **first 1024 tokens** (BOS included); one window per document, no packing across documents | 1024 is the Gemma Scope training context length recorded by sae-lens (`context_size: 1024`, `prepend_bos: True`). One window per document keeps documents independent for the bootstrap and keeps each window's source label clean. The EDA found 26 % of sampled docs exceed 1024 tokens; for those only the first 1024 tokens are used (recorded per document) |
 | Positions | BOS is never reconstructed, never spliced and excluded from all metrics; padding excluded | As for GPT-2 (D4). Behaviour is measured on predictions made at positions 1 ≤ t ≤ len − 2 (same as `scripts/shared/spliced_reconstruction_evaluation.py`) |
 | Seeds | Sampling 42; random-error directions `1000 + L`; bootstrap 0 | No training, so no training seeds. Pretrained SAEs give one SAE per layer: variability is reported as bootstrap CIs over documents, **not** as seed variability, and is not comparable to the GPT-2 3-seed sd |
 | Training budget / hyperparameters | None (inference only) | |
@@ -187,6 +187,23 @@ full run.
 Gemma GoT frozen-probe preservation (roadmap M1/M2) is a separate experiment, started only after this one is complete,
 documented and committed, and only if it does not threaten the 2026-11-22 technical freeze. It would get its own
 pre-registration.
+
+## Amendments to the pre-registration (made before any run)
+
+### Amendment 1 (2026-11-12): tokenizer and model revision pinned
+* **Change:** `tokenization.revision` added and `model.revision` changed from `record_at_run_time` to the Hugging Face
+  commit **`c5ebcd40d208330abc697524c919956e692655cf`** of `google/gemma-2-2b` (the repository's current commit;
+  last modified 2024-08-07; read from the public model metadata on 2026-11-12). Tokenizer and weights come from the
+  same repository commit.
+* **Reason:** the original text recorded the revision only at run time, so the pre-registration did not freeze it.
+* **Rule:** scripts load exactly this revision (`revision=tokenization.revision` / `model.revision`) and never look up
+  the latest revision. If this commit cannot be loaded, or a later run uses another one, it is recorded in Section 2
+  as a protocol deviation before results are interpreted.
+* **Fingerprints visible without login** (Git blob ids at that commit): `tokenizer_config.json`
+  `2357fc1a512dc3881eb99b9df3ef8e97ef7ffd51`, `special_tokens_map.json` `8d6368f7e735fbe4781bf6e956b7c6ad0586df80`,
+  `config.json` `9983200362411f3e251b4c8ce28afad7e3996c1e`. The `tokenizer.json`/`tokenizer.model` hashes need an
+  authenticated (gated) request and will be recorded from Ronin in `sample_info.json`.
+* **Not changed:** every other design element. No data had been downloaded and no code had been run.
 
 ## 2. After execution
 *(To be completed.)*

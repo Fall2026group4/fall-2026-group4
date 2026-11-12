@@ -9,7 +9,7 @@
     "hf_id": "google/gemma-2-2b",
     "dtype": "bfloat16",
     "attn_implementation": "eager",
-    "revision": "record_at_run_time"
+    "revision": "c5ebcd40d208330abc697524c919956e692655cf"
   },
   "hook": {
     "site": "resid_post",
@@ -55,6 +55,7 @@
   },
   "tokenization": {
     "tokenizer": "google/gemma-2-2b",
+    "revision": "c5ebcd40d208330abc697524c919956e692655cf",
     "prepend_bos": true,
     "max_tokens_including_bos": 1024,
     "policy": "truncate: first window only, one window per document, no packing"
@@ -91,5 +92,15 @@
     "V3_determinism_identity_max_mean_kl_nats": 1e-6,
     "V4_sae_sanity": "measured L0 within factor 2 of release average_l0 and EV > 0 (smoke run)",
     "V5_no_substitution": "stop and ask if any pinned SAE id fails to load"
-  }
+  },
+  "amendments": [
+    {
+      "id": 1,
+      "date": "2026-11-12",
+      "before_any_run": true,
+      "change": "Pin the Gemma-2-2B tokenizer and model to Hugging Face commit c5ebcd40d208330abc697524c919956e692655cf (tokenization.revision added; model.revision was 'record_at_run_time').",
+      "reason": "A revision looked up at run time is not frozen by the pre-registration.",
+      "rule": "Scripts load exactly this revision and never query the latest one. Any later mismatch is recorded as a protocol deviation, not silently updated."
+    }
+  ]
 }
