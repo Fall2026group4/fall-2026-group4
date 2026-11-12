@@ -243,3 +243,16 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | Added `docs/2026-11-12_gpt2_audit_and_improvement_plan.md` | Read-only audit and pre-registration drafts (X0–X3, T1, H1, H2, I1); none approved or run |
 | this commit | Added `docs/final_defense/SAE_Faithfulness_Summary.pdf` | User's summary PDF of the final-defense material, committed at the user's request |
 | this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,EXPERIMENT_CHANGELOG}.md` | Documentation rule. No results, checkpoints or manifests changed |
+
+## 2026-11-12: documentation cleanup and consolidation (no experiment)
+
+| Commit | Change | Reason |
+|---|---|---|
+| `e2becfa` | Added `docs/experiment_history.md`, `docs/results_summary.md`. **Also contains** the three byte-identical renames below: `git mv` had already staged them, so they landed one commit earlier than intended; not amended, per the no-history-rewrite rule | Authoritative chronology and verified results by dataset |
+| `17762d7` | Added `docs/research_overview.md`, `docs/methodology.md`, `docs/limitations_and_future_work.md` | Curated entry points; corrections table; proposals listed as not run |
+| `768831a` | Renamed (R100): `docs/2026-11-04_professor_review_report.md` → `docs/archive/2026-11-04_methodology_review_corrections_report.md`; `docs/final_defense/PROFESSOR_DEFENSE_CHEATSHEET.md` → `DEFENSE_CHEATSHEET.md`; `docs/final_defense/PROFESSOR_QUESTIONS_AND_ANSWERS.md` → `ANTICIPATED_REVIEW_QUESTIONS.md`. Updated links in `docs/{README,RESEARCH_PROGRESS}.md`, `docs/final_defense/*.md` and the 2026-11-12 audit; added `docs/archive/README.md`; appended 3 `git_mv_rename` rows to `docs/migration_manifest.csv`; erratum in the 2026-11-12 audit (contrast distortion first reported by RLM-RP) | Neutral names; provenance kept |
+| this commit | M `README.md`: navigation table, three-pipeline summary, §6.0 latest results, status of E2/R2/R4/R5/M5, verified improvement-phase commands in §13, checklist. M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,EXPERIMENT_CHANGELOG}.md` | README was dated 2026-11-08 and listed M5 as not started |
+
+Not changed: any script, result file, checkpoint, activation cache, manifest row (other than the appended renames),
+Gemma file or teammate file. Historical records that cite the old paths (`EXPERIMENT_CHANGELOG.md` 2026-11-10 entry,
+`migration_manifest.csv` older rows, the committed summary PDF) are left as they are.

@@ -906,3 +906,31 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * there is no modern JumpReLU.
 * **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6.
 * **Evidence label:** no new result; the one new observation is VALIDATION, descriptive.
+
+## 37. Documentation cleanup, consolidation and PR preparation (2026-11-12). Status: COMPLETED (no experiment run)
+
+* **Checkpoint first:** `b927f27` preserved the current work. The push also published the 22 earlier local commits
+  (R1-honesty through M5 and the final-defense docs), fast-forward `875bc7f..b927f27`, after the user's approval.
+* **New curated documents:**
+  * `docs/research_overview.md`;
+  * `docs/methodology.md` (includes the table of 12 methodological corrections);
+  * `docs/experiment_history.md` (39 experiments with verdicts);
+  * `docs/results_summary.md`;
+  * `docs/limitations_and_future_work.md`.
+* **Renames** (bytes unchanged; log in `docs/archive/README.md`, rows in `docs/migration_manifest.csv`): the
+  2026-11-04 review report moved to `docs/archive/`; two `final_defense` files given neutral names.
+* **Corrections found while writing:**
+  * The 2026-11-12 audit had called the contrast-distortion finding new; RLM-RP (§32) reported it first. An erratum
+    was added.
+  * M5 classes the R4 NMSE change (+2 %) as REGRESSION; the docs now say so explicitly.
+  * The RepE-LM task L0 per family was re-read from the ladder CSVs (L8: old JumpReLU 167, old ReLU 161, R2 BatchTopK
+    141, R2 ReLU 145).
+* **Validation:**
+  * 35 tests pass; all tracked Python compiles;
+  * 0 broken Markdown links in 27 files;
+  * `m5_independent_verification.py`: 11/11 hashes OK, 136 rows, 0 mismatches;
+  * no secrets or absolute home paths;
+  * no file under `scripts/`, `results/`, `src/` or `data/` changed.
+* **Process note:** `git mv` pre-staged the renames, so they landed in `e2becfa` rather than in `768831a`. Recorded in
+  the changelog; not amended.
+* **Evidence label:** no new result.

@@ -1,9 +1,30 @@
 # SAE Faithfulness: reconstruction, information, behaviour and causal effects across GPT-2 layers
 
 **Team:** Aditi Shukla, Dhruv Rai, Simbanegavi Simbarashe. GWU DATS 6501 Data Science Capstone, Fall 2026.
-**Final presentation and journal submission:** 2026-12-08 (`proposal.md`). **Status of this README:** 2026-11-08, branch
-`sae-research`. Everything listed as COMPLETED below has its artifacts in this repository. Items marked PLANNED have
-not been run.
+**Final presentation and journal submission:** 2026-12-08 (`proposal.md`). **Status of this README:** 2026-11-12, branch
+`sae-research` (sections 6.0, 8–14 updated for the 2026-11-10 improvement phase and the M5 test pass; other sections
+as of 2026-11-08). Everything listed as COMPLETED below has its artifacts in this repository. Items marked PLANNED or
+PROPOSED have not been run.
+
+**Documentation for the GPT-2 SAE work (start here):**
+
+| Need | Document |
+|---|---|
+| What the project asks and found | [`docs/research_overview.md`](docs/research_overview.md) |
+| How everything is measured; methodological corrections | [`docs/methodology.md`](docs/methodology.md) |
+| Everything we tried, in order, with verdicts | [`docs/experiment_history.md`](docs/experiment_history.md) |
+| Verified numbers by dataset (OWT, GoT, RepE) | [`docs/results_summary.md`](docs/results_summary.md) |
+| Reproduction commands | §13 below |
+| Limitations and proposed next experiments | [`docs/limitations_and_future_work.md`](docs/limitations_and_future_work.md) |
+| Citation status of every result | [`docs/results_registry.md`](docs/results_registry.md) |
+
+**The three pipelines:**
+* **OpenWebText:** OWT → frozen GPT-2 → `hook_resid_pre` activations → SAE → reconstruction metrics → behavioural
+  splicing (ΔCE, KL).
+* **Geometry of Truth:** GoT → frozen GPT-2 → final-token activations → SAE reconstruction → frozen and re-fit probes
+  (vs PCA and noise) → AUROC gaps.
+* **RepE honesty:** RepE-LM → frozen GPT-2 → persona activations → SAE reconstruction → representation evaluation
+  (re-fit gap, direction cosine, norm retention) → causal decomposition (M4) and skyline (R5).
 
 ## 1. Motivation
 
@@ -94,6 +115,25 @@ RepE-LM templates (`data/repe/repe_lm/templates.json`):
 **PRELIMINARY** = a validation pilot whose pre-registered criterion was not met, or which has not been replicated.
 
 Full tables: `docs/EXPERIMENT_RESULTS_SUMMARY.md`. Which files may be cited: `docs/results_registry.md`.
+
+### 6.0 Latest: data-scaled SAEs, fixed-L0 KL fine-tune, and the M5 test pass (2026-11-10)
+
+Verified against `results/shared/m5_confirmatory_test/m5_rows.csv`; details in
+[`docs/results_summary.md`](docs/results_summary.md).
+
+| Comparison (layer 8 unless stated) | Before | After | Label |
+|---|---|---|---|
+| OWT NMSE, old TopK-3072 → R2 TopK-12288 (L8 / L11) | 0.160 / 0.185 | 0.094 / 0.111 | **TEST**, improvement |
+| Spliced ΔCE (nats), same (L8 / L11) | 0.133 / 0.204 | 0.062 / 0.096 | **TEST**, improvement |
+| ΔCE, R4 KL fine-tune vs MSE control (L0 fixed at 128) | 0.062 | 0.051 | **TEST**, improvement (NMSE +2 %) |
+| GoT cities re-fit truth gap | 0.061 | 0.056 | **TEST**, no clear change (0/34 cells) |
+| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement (no test split exists) |
+| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement |
+| T_rec/T_full, R4 KL vs MSE control (L11) | 0.694 | 0.671 | VALIDATION, **regression** |
+
+* R2 changed data (100M fresh tokens vs 101,600), width (12,288 vs 3,072) and recipe together. The gain is not
+  attributed to any one of them.
+* No trained SAE beats PCA at equal error on GoT or persona information.
 
 ### 6.1 Reconstruction (TEST, 108 runs; `results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/`)
 * **EV falls with depth.** OWT test EV goes from 0.93–0.95 at layers 0–2 to 0.757 (ReLU), 0.815 (TopK) and 0.815
@@ -250,10 +290,12 @@ and its error part. Each part is patched separately.
 |---|---|---|---|
 | **IMP-L** | Method A, OWT-only control and output-KL fine-tuning **at layers 3, 8 and 9** (3 seeds, CIs, L0 guards). Evaluated on reconstruction, truth and behaviour | Review #8 blocker "improvement result at more layers"; the 11-03 session note "fine-tune other layers" | **COMPLETED 2026-11-09 (VALIDATION)**; see 6.8 |
 | **E1** | TopK trained at several k to compare architectures at matched *prompt-level* L0 (M2 readers, M4) | Prompt-sparsity confound in architecture comparisons | DRAFT PRE-REGISTRATION (\`results/shared/e1_task_l0_matched_topk/\`), awaiting approval; priority 3 |
-| **E2** | Public `gpt2-small-res-jb` SAE as an external reference: reconstruction, M2 and M4 at layer 8 (weights cached); layer 6 if downloaded | Review #8 critique 2 (small, unconverged SAEs) | DRAFT PRE-REGISTRATION (\`results/shared/e2_public_sae_reference/\`; layers 8 and 10, cached), awaiting approval; priority 2 |
+| **E2** | Public `gpt2-small-res-jb` SAE as an external reference: reconstruction, M2 and M4 at layers 1, 8, 10, 11 | Review #8 critique 2 (small, unconverged SAEs) | **COMPLETED 2026-11-10 (VALIDATION, descriptive)**: conclusions transfer (`results/shared/e2_public_sae_reference/`) |
 | **E3** | Layer-8 fine-tuning for causal preservation: base vs OWT-only vs Method A vs output-KL, pre-registered | Review #8 SAE-in-the-loop / causal improvement | **COMPLETED 2026-11-10 (VALIDATION)**; no creditable improvement |
-| Width, convergence, data scaling | Width sensitivity, 30k-step convergence, streamed-token training | Unconverged, data-limited SAEs | PLANNED as resources permit |
-| **M5 / X3** | One pre-registered final test pass: RepE-LM test (to be built, with a duplicate check), OWT test, GoT test (labelled previously exposed) | Review #8 "say which numbers are clean" | NOT STARTED. Needs explicit approval; protocol not yet frozen |
+| **R2-scaled** | Data-scaled retraining: 100M streamed tokens, width 12,288, TopK/BatchTopK/ReLU + width ablation + random decoder, layers 1/8/11 × 3 seeds | Unconverged, data-limited SAEs | **COMPLETED 2026-11-10**; OWT gains confirmed on TEST (`results/openwebtext/r2_scaled_saes/`) |
+| **R4 / R5** | KL fine-tune at fixed L0 (TopK, L8/L11); rank-k causal skyline | Behaviour; reference for causal numbers | **COMPLETED 2026-11-10** (`results/openwebtext/r4_kl_finetune/`, `results/repe/r5_causal_subspace_skyline/`) |
+| **M5** | One pre-registered final test pass: OWT test, GoT test (previously exposed rows) | Review #8 "say which numbers are clean" | **COMPLETED 2026-11-10** (`results/shared/m5_confirmatory_test/`); the RepE-LM test split was **not** built, so persona/causal results remain VALIDATION |
+| X0–X3, T1, H1, H2, I1 | Proposals from the 2026-11-12 audit | see `docs/limitations_and_future_work.md` | PROPOSED, not approved, not run |
 | Gemma SAEs | Gemma Scope at 1–2 layers | Review #7 SESSION-1027-LIST | BLOCKED (weights not cached; needs a download decision) |
 
 ## 9. Progress
@@ -266,9 +308,10 @@ and its error part. Each part is patched separately.
 | M0, M1, M2, M3, M4 | COMPLETED (VALIDATION; committed locally, **not yet on `main`**) |
 | Multi-layer improvement table (IMP-L) | COMPLETED (VALIDATION; committed locally, not yet on `main`) |
 | E3; RLM-RP (RepE-LM representation, 216 SAEs) | COMPLETED 2026-11-10 (VALIDATION; committed locally) |
-| E1, E2 | DRAFT PRE-REGISTRATIONS written; NOT RUN (awaiting approval) |
+| E2 (res-jb reference); R2-scaled; R4; R5 | COMPLETED 2026-11-10 (VALIDATION; OWT/GoT parts confirmed in M5) |
+| E1 | DRAFT PRE-REGISTRATION written; NOT RUN |
 | SAE-in-the-loop intervention | M4 feature patches and E3 (fine-tuned SAEs in the forward pass) done |
-| M5 final test | NOT STARTED (needs approval) |
+| M5 final test | COMPLETED 2026-11-10 (one pass; independently re-verified, `docs/final_defense/EXPERIMENT_AUDIT.md`) |
 | Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; RLM-RP and E3; generated tables and PDF/SVG figures; compiles (29 pp) |
 | Report (`reports/Latex_report/main.tex`) | IN PROGRESS (literature review only; Methods/Results are TODO) |
 | SVG/PDF figures; `.drawio` source + `.svg` | IN PROGRESS: paper figures are PDF+SVG (`research_paper/Latex_Fig/`); 50 PNG in `results/` remain; `.drawio` NOT STARTED |
@@ -284,13 +327,18 @@ and its error part. Each part is patched separately.
   It is **not untouched.** Any further use will be labelled "previously exposed".
 * **Original RepE test:** touched in a smoke run and in the historical causal test. It is retired with the confounded
   task.
-* **RepE-LM test:** never built or accessed. It is the primary held-out set for M5.
+* **RepE-LM test:** never built or accessed. M5 ran without it, so every persona and causal result is VALIDATION
+  (proposal H1 builds it).
 * **M0–M4** used train and validation only (`test_rows_used: 0` in each checks file).
+* **M5 (2026-11-10):** one pass over the OWT test (100 documents) and GoT test (452 statements) for 81 SAEs. These rows
+  had been scored earlier for the old reference SAEs only; the R2/R4 SAEs had never been scored on test (D31).
 
 ## 11. Known limitations
-* **The SAEs are small and data-limited.** They have 3072 latents and are trained on 101,600 document-start tokens
-  (about 38 passes). They are not converged: P1's validation checkpoint selection always picked the last step.
-  `gpt2-small-res-jb`, for comparison, used 300M tokens and 24,576 latents.
+* **The original SAEs are small and data-limited.** They have 3072 latents and are trained on 101,600
+  document-start tokens (about 38 passes). They are not converged: P1's validation checkpoint selection always
+  picked the last step. `gpt2-small-res-jb`, for comparison, used 300M tokens and 24,576 latents.
+  *Addressed 2026-11-10 by R2-scaled (100M tokens, 12,288 latents) at layers 1/8/11 only. Full current list:
+  [`docs/limitations_and_future_work.md`](docs/limitations_and_future_work.md).*
 * **One operating point:** L0 = 128, width 3072. Architecture rankings at other settings are untested.
 * **JumpReLU** is a surrogate estimator. Up to 85 % of its latents are dead at layer 0. The kernel-STE variant's
   training script is missing, so that variant cannot be reproduced.
@@ -302,13 +350,15 @@ and its error part. Each part is patched separately.
 ## 12. Repository layout
 
 ```
-scripts/openwebtext/       01–16  data, activations, SAE training, 108-run baseline, P1
-scripts/geometry_of_truth/ 01–21  GoT activations, splits, probes, fine-tuning (truth-aware, Method A, E2E, KL ablation)
-scripts/repe/              01–19  original RepE pipeline (historical); 20–24 RepE-LM (M1), site sweep (M3), decomposition (M4)
-scripts/shared/                   splicing, frozen probes, M0, M2, checkpoint registry, manifest
+scripts/openwebtext/       01–16  data, activations, SAE training, 108-run baseline, P1; 17 R2 streaming training; 18–19 R4
+scripts/geometry_of_truth/ 01–23  GoT activations, splits, probes, fine-tuning (truth-aware, Method A, E2E, KL ablation, IMP-L)
+scripts/repe/              01–19  original RepE pipeline (historical); 20–24 RepE-LM (M1), site sweep (M3), decomposition (M4);
+                           25–27  E3, RLM-RP, R5 skyline
+scripts/shared/                   splicing, frozen probes, M0, M2, SAE ladder harness, R2 comparisons, E2, M5 (+ verification),
+                                  checkpoint registry, manifest
 scripts/gemma/01_steering_sweep.py
 src/evaluation/                   faithfulness_metrics.py (shared metrics), information_levels.py (M2), patching.py (M3/M4)
-src/sae/checkpoint_registry.py    checkpoint lookup
+src/sae/                          checkpoint_registry.py (lookup), modern_sae.py (R2 TopK/BatchTopK/ReLU/JumpReLU)
 src/tests/                        35 tests
 results/{openwebtext,geometry_of_truth,repe,gemma,shared}/   each folder has a README with status labels
 data/                             datasets and splits (activation caches are gitignored)
@@ -370,6 +420,26 @@ python scripts/geometry_of_truth/17_e2e_inspired_finetune.py --prepare|--dry-run
 python scripts/geometry_of_truth/20_kl_weight_ablation.py --verify|--prepare|--dry-run|--train ; python scripts/geometry_of_truth/21_kl_weight_ablation_evaluation.py
 ```
 
+**Improvement phase (2026-11-10).** These need the streamed OWT shards (`data/openwebtext/stream_shards/`, gitignored)
+and a GPU. Scripts check their pre-registration hashes and refuse to overwrite outputs. Output file names below are
+those committed in each `ladder/` folder.
+```bash
+python scripts/openwebtext/17_streaming_sae_training.py --prepare-data      # tokenise shards 78/79, excluding our sample
+python scripts/openwebtext/17_streaming_sae_training.py --run               # R2: 39 SAEs, ~5.5 h on an A10G
+python scripts/shared/sae_ladder_evaluation.py --layer 8 --sources old --out results/openwebtext/r2_scaled_saes/ladder/ladder_layer8_old.csv
+python scripts/shared/sae_ladder_evaluation.py --layer 8 --sources r2,resjb --out results/openwebtext/r2_scaled_saes/ladder/ladder_layer8_r2_resjb.csv
+python scripts/shared/r2_comparisons.py --ladder-dir results/openwebtext/r2_scaled_saes/ladder --out results/openwebtext/r2_scaled_saes/comparisons.csv
+python scripts/openwebtext/18_kl_finetune_fixed_l0.py                       # R4 (--smoke DIR for a quick check)
+python scripts/shared/sae_ladder_evaluation.py --layer 8 --sources r4 --out results/openwebtext/r4_kl_finetune/ladder/ladder_layer8_r4.csv
+python scripts/openwebtext/19_r4_analysis.py                                # R4 comparisons K1-K4
+python scripts/repe/27_causal_subspace_skyline.py                           # R5 (--smoke DIR)
+python scripts/shared/e2_public_sae_reference.py --check                    # E2 adapter check; --analyse <ladder dirs>
+python scripts/shared/m5_confirmatory_test.py                               # M5 test pass (already run once; refuses to overwrite its outputs)
+python scripts/shared/m5_independent_verification.py                        # read-only re-check of M5
+```
+Repeat the ladder commands for layers 1 and 11. Because outputs already exist, rerunning a committed step requires a
+new `--out` path; the scripts never overwrite results.
+
 Each results folder's `README.md` and `preregistration.json` record the exact seeds, hyperparameters, script hashes
 and checkpoint hashes. `docs/experiment_manifest.csv` has one row per experiment.
 
@@ -377,8 +447,10 @@ and checkpoint hashes. `docs/experiment_manifest.csv` has one row per experiment
 - [x] Multi-layer improvement table (layers 3, 8, 9; 3 seeds; CIs). **Due 11-10**
 - [x] Paper skeleton in `research_paper/Latex/` with the existing tables. **Due 11-10**
 - [x] E3 (2026-11-10)
-- [ ] E1, E2
-- [ ] M5 final test, run once after approval. **Due 11-17**
+- [x] E2 (2026-11-10); [ ] E1 (draft pre-registration only)
+- [x] M5 final test, run once (2026-11-10)
+- [x] R2-scaled, R4, R5 (2026-11-10)
+- [ ] RepE-LM test split (H1) and the other 2026-11-12 proposals (`docs/limitations_and_future_work.md`), only after approval
 - [ ] Choose a journal and use its template. **Due 11-17**
 - [ ] SVG/PDF figures; diagram source + `.svg`
 - [ ] Revised presentation and the 10-20 deck in `presentation/`; progress reports for weeks 5–15

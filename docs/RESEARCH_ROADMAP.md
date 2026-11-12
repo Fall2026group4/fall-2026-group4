@@ -116,7 +116,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,
     #24), minimum detectable effect statement. PLANNED.
-  * **Push and PR** of the local commits after `33dcb9c` (R1, R2, M0–M4, IMP-L). Review package:
+  * **Push and PR** of the local commits after `33dcb9c` (R1, R2, M0–M4, IMP-L). **Push DONE 2026-11-12** (`875bc7f..b927f27` and the cleanup commits); new PR to `main` prepared as a draft (PR #23 from this branch was already merged). Review package:
     `docs/2026-11-09_review_package_sae_research.md` (M0 re-run and paper regeneration verified byte-identical on a
     clean export). Needs user approval and an independent
     teammate review with a reproducibility check before merging.
@@ -255,3 +255,8 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * **X3 modern JumpReLU pilot** (fixed λ / Anthropic 2025 loss / BatchTopK init), time-boxed (P1).
 * **R5 feature-patch arm on R2 SAEs** (P2; R5 used old SAEs only).
 * **M6 test pass** after a protocol freeze committed before the run (D31).
+
+## 2026-11-12 additions (documentation cleanup)
+* DONE: curated docs (`docs/{research_overview,methodology,experiment_history,results_summary,limitations_and_future_work}.md`), neutral renames, archive log, README navigation and reproduction commands.
+* OPEN: off-machine backup of about 10 GB of R2/R4 checkpoints and the activation caches (still P0; Git does not hold them).
+* OPEN: teammate review of the draft PR (requested from two teammates); merge needs their review and the user's decision.
