@@ -2,9 +2,13 @@
 
 Pre-registration: results/gemma2_pile/gemma_scope_splicing/README.md and preregistration.json (commit b39dcc2).
 
-This module currently holds the *sampling* part (Commit 2A): deterministic selection of the evaluation and
-reference documents, BOS + truncation, and the hashes that make the sample reproducible. The splicing and
-metric helpers are added in Commit 2B.
+Part 1 (Commit 2A), *sampling*: deterministic selection of the evaluation and reference documents, BOS +
+truncation, and the hashes that make the sample reproducible.
+
+Part 2 (Commit 2B), *SAE, splicing and metrics*: pre-registration checks for the evaluation fields, the Gemma Scope
+JumpReLU SAE (encode/decode, shape validation), position masks (BOS and padding never touched), the forward hook
+that captures and optionally replaces a decoder layer's output (``resid_post``), the controls, per-document
+reconstruction and behaviour sums, EV from sums, the document bootstrap and the H-G1 statistic.
 
 Design rules (from the pre-registration):
 * Documents are identified by their 0-based line number in the pinned ``val.jsonl.zst``.
@@ -16,7 +20,8 @@ Design rules (from the pre-registration):
 * Hashes: SHA-256 of the UTF-8 text, and SHA-256 of the token ids used (little-endian int32 bytes).
 
 Only numpy and the standard library are imported at module level, so the sampling tests need no torch or
-transformers. ``zstandard`` is imported lazily inside :func:`iter_jsonl_zst`.
+transformers. ``zstandard`` is imported lazily inside :func:`iter_jsonl_zst`; torch is imported inside the Part 2
+functions that need it.
 """
 from __future__ import annotations
 
@@ -253,3 +258,258 @@ def manifest_row(*, set_name: str, rank: int, perm_position: int, line_index: in
 
 MANIFEST_COLUMNS = ['set', 'rank', 'perm_position', 'line_index', 'pile_set_name', 'n_chars', 'text_sha256',
                     'n_text_tokens', 'n_tokens_used', 'truncated', 'token_ids_sha256']
+
+
+# ===================================================================================================================
+# Part 2 (Commit 2B): Gemma Scope SAE, splicing and metrics
+# ===================================================================================================================
+# Fields of preregistration.json that the evaluation (script 03) reads, in addition to REQUIRED_PREREG_FIELDS.
+REQUIRED_PREREG_FIELDS_EVAL: Tuple[Tuple[str, ...], ...] = (
+    ('model', 'hf_id'), ('model', 'revision'), ('model', 'dtype'), ('model', 'attn_implementation'),
+    ('hook', 'site'), ('layers',),
+    ('sae', 'hf_repo'), ('sae', 'hf_revision'), ('sae', 'sae_lens_release'), ('sae', 'architecture'),
+    ('sae', 'd_in'), ('sae', 'd_sae'),
+    ('sae', 'compute_dtype'), ('sae', 'ids'), ('sae', 'substitution_allowed'),
+    ('positions', 'behaviour_predictions'), ('conditions',),
+    ('seeds', 'random_error'), ('seeds', 'bootstrap'), ('bootstrap', 'n_resamples'),
+    ('low_n_source_threshold_docs',), ('validity_gates', 'V3_determinism_identity_max_mean_kl_nats'),
+)
+CONDITIONS = ['original', 'original_repeat', 'sae_splice', 'norm_matched_random_error', 'mean_ablation', 'identity']
+SAE_PARAM_KEYS = ('W_enc', 'W_dec', 'b_enc', 'b_dec', 'threshold')
+
+
+def _is_full_sha(value) -> bool:
+    s = str(value)
+    return len(s) == 40 and all(c in '0123456789abcdef' for c in s)
+
+
+def load_preregistration_eval(path: Path) -> dict:
+    """:func:`load_preregistration` plus every field script 03 reads; inconsistencies are errors, never defaults."""
+    cfg = load_preregistration(path)
+    for field in REQUIRED_PREREG_FIELDS_EVAL:
+        get_field(cfg, field)
+    for field in (('model', 'revision'), ('sae', 'hf_revision')):
+        if not _is_full_sha(get_field(cfg, field)):
+            raise ValueError(f"{'.'.join(field)} must be a full 40-character commit SHA")
+    if cfg['model']['revision'] != cfg['tokenization']['revision']:
+        raise ValueError('model.revision and tokenization.revision differ (Amendment 1 pins both to one commit)')
+    if cfg['hook']['site'] != 'resid_post':
+        raise ValueError("hook.site must be 'resid_post'")
+    if cfg['sae']['architecture'] != 'jumprelu':
+        raise ValueError("sae.architecture must be 'jumprelu'")
+    if cfg['sae']['substitution_allowed'] is not False:
+        raise ValueError('sae.substitution_allowed must be false (gate V5)')
+    layers = [int(x) for x in cfg['layers']]
+    ids = cfg['sae']['ids']
+    if sorted(int(k) for k in ids) != sorted(layers):
+        raise ValueError(f'sae.ids keys {sorted(ids)} do not match layers {layers}')
+    for layer in layers:
+        if not str(ids[str(layer)]).startswith(f'layer_{layer}/'):
+            raise ValueError(f'sae.ids[{layer}] = {ids[str(layer)]!r} is not an SAE for layer {layer}')
+    if list(cfg['conditions']) != CONDITIONS:
+        raise ValueError(f'conditions must be exactly {CONDITIONS}')
+    if float(cfg['validity_gates']['V3_determinism_identity_max_mean_kl_nats']) <= 0:
+        raise ValueError('V3 threshold must be positive')
+    random_error_seed(cfg, layers[0])  # the seed rule must be parseable
+    return cfg
+
+
+def random_error_seed(cfg: dict, layer: int) -> int:
+    """Pre-registered seed for the norm-matched random error at ``layer`` ('1000 + layer')."""
+    rule = str(cfg['seeds']['random_error']).replace(' ', '')
+    if rule != '1000+layer':
+        raise ValueError(f"unexpected seeds.random_error rule {cfg['seeds']['random_error']!r}")
+    return 1000 + int(layer)
+
+
+# ---------------------------------------------------------------------------------------------------- Gemma Scope SAE
+def validate_sae_params(params: dict, d_model: int, d_sae: int) -> None:
+    """Check keys and shapes of a Gemma Scope ``params.npz`` against the model width and the pre-registered d_sae."""
+    missing = [k for k in SAE_PARAM_KEYS if k not in params]
+    if missing:
+        raise ValueError(f'SAE params missing keys: {missing}')
+    expected = {'W_enc': (d_model, d_sae), 'W_dec': (d_sae, d_model), 'b_enc': (d_sae,), 'b_dec': (d_model,),
+                'threshold': (d_sae,)}
+    for key, shape in expected.items():
+        if tuple(params[key].shape) != shape:
+            raise ValueError(f'SAE {key} has shape {tuple(params[key].shape)}, expected {shape}')
+
+
+class JumpReLUSAE:
+    """Gemma Scope JumpReLU SAE, computed in float32.
+
+    encode: f = ReLU(x W_enc + b_enc) * 1[x W_enc + b_enc > threshold]   (strict '>' at the threshold)
+    decode: x_hat = f W_dec + b_dec
+    No input centring by b_dec and no activation normalisation (sae-lens: apply_b_dec_to_input=False,
+    normalize_activations=None for these SAEs). Equivalence with sae-lens is *checked* in the smoke run, not assumed.
+    """
+
+    def __init__(self, params: dict, d_model: int, d_sae: int, device='cpu'):
+        import torch
+        validate_sae_params(params, d_model, d_sae)
+        for k in SAE_PARAM_KEYS:
+            setattr(self, k, torch.as_tensor(np.asarray(params[k]), dtype=torch.float32, device=device))
+
+    def encode(self, x):
+        import torch
+        pre = x @ self.W_enc + self.b_enc
+        return torch.relu(pre) * (pre > self.threshold)
+
+    def decode(self, f):
+        return f @ self.W_dec + self.b_dec
+
+    def __call__(self, x):
+        """x: float32 [N, d_model] -> (x_hat float32 [N, d_model], L0 per token int [N])."""
+        f = self.encode(x)
+        return self.decode(f), (f != 0).sum(-1)
+
+
+# ------------------------------------------------------------------------------------------------------------ masks
+def splice_mask(attention_mask):
+    """Bool [B, T]: True at real (attention_mask = 1), non-BOS positions. Assumes BOS at position 0, right padding."""
+    m = attention_mask.bool().clone()
+    m[:, 0] = False
+    return m
+
+
+def prediction_mask(attention_mask):
+    """Bool [B, T]: True at position t if 1 <= t <= len-2, i.e. t is not BOS and the target t+1 is a real token."""
+    am = attention_mask.bool()
+    pm = am.new_zeros(am.shape)
+    if am.shape[1] > 2:
+        pm[:, 1:-1] = am[:, 2:]
+    return pm
+
+
+# ----------------------------------------------------------------------------------------------------- forward hook
+class LayerSplice:
+    """Forward hook on one decoder layer (its output = ``resid_post``).
+
+    Every pass stores the layer's *original* output in ``captured``. If ``fn`` is set, the output at ``mask``
+    positions is replaced by ``fn(original[mask])``; all other positions (BOS, padding) are returned unchanged.
+    Works whether the layer returns a tensor or a tuple whose first element is the hidden state.
+    """
+
+    def __init__(self, module):
+        self.captured = None
+        self.fn = None
+        self.mask = None
+        self.handle = module.register_forward_hook(self._hook)
+
+    def _hook(self, module, inputs, output):
+        hidden = output[0] if isinstance(output, tuple) else output
+        self.captured = hidden.detach()
+        if self.fn is None:
+            return None
+        if self.mask is None or self.mask.shape != hidden.shape[:2]:
+            raise ValueError('splice mask missing or of the wrong shape')
+        new = hidden.clone()
+        new[self.mask] = self.fn(hidden[self.mask]).to(hidden.dtype)
+        return (new,) + tuple(output[1:]) if isinstance(output, tuple) else new
+
+    def set(self, fn=None, mask=None):
+        self.fn, self.mask = fn, mask
+
+    def remove(self):
+        self.handle.remove()
+
+
+# --------------------------------------------------------------------------------------------------------- controls
+def norm_matched_random_error(x, x_hat, generator):
+    """x + ||x - x_hat|| * u per token, u an isotropic Gaussian direction drawn on CPU from ``generator`` (float32)."""
+    import torch
+    e = torch.randn(x.shape, generator=generator, dtype=torch.float32)
+    e = (e / e.norm(dim=-1, keepdim=True)).to(x.device)
+    return x + e * (x - x_hat).norm(dim=-1, keepdim=True)
+
+
+# ---------------------------------------------------------------------------------------------- per-document sums
+def reconstruction_sums(x, x_hat, l0) -> dict:
+    """Sums over one document's evaluated tokens (float64). sum_x is a [d] numpy vector, needed for EV's mean."""
+    import torch
+    x, x_hat = x.double(), x_hat.double()
+    return {
+        'n_tok': int(x.shape[0]),
+        'sse': float((x - x_hat).square().sum()),
+        'sum_sq': float(x.square().sum()),
+        'cos_sum': float(torch.nn.functional.cosine_similarity(x, x_hat, dim=-1, eps=1e-8).sum()),
+        'l0_sum': float(l0.double().sum()),
+        'sum_x': x.sum(0).cpu().numpy(),
+    }
+
+
+def ev_from_sums(sse, sum_sq, sum_x, n_tok) -> float:
+    """EV = 1 - SSE / sum ||x - x_bar||^2 over the pooled documents, x_bar = their own token mean.
+
+    Same definition as src/evaluation/faithfulness_metrics.reconstruction_metrics on the concatenated tokens.
+    """
+    sse, sum_sq, n_tok = np.asarray(sse, float), np.asarray(sum_sq, float), np.asarray(n_tok, float)
+    sum_x = np.asarray(sum_x, float)
+    n = n_tok.sum()
+    mean = sum_x.sum(0) / n
+    total = sum_sq.sum() - n * float(mean @ mean)
+    return float(1 - sse.sum() / max(total, 1e-12))
+
+
+def behaviour_sums(logits_orig, logits_new, input_ids, pred_mask, chunk: int = 128) -> dict:
+    """Sums over predictions at ``pred_mask`` positions (float64): CE original / new, KL(orig || new), top-1 agree.
+
+    Position t predicts token t+1. Log-softmax is taken in float32 in chunks of positions (Gemma's vocabulary is
+    256 000, so a full-sequence float32 copy would need ~1 GB per 1024 tokens).
+    """
+    import torch
+    out = {'n_pred': 0, 'ce_orig_sum': 0.0, 'ce_new_sum': 0.0, 'kl_sum': 0.0, 'top1_agree': 0}
+    T = input_ids.shape[1]
+    for s in range(0, T - 1, chunk):
+        e = min(s + chunk, T - 1)
+        m = pred_mask[:, s:e]
+        if not bool(m.any()):
+            continue
+        lo = torch.log_softmax(logits_orig[:, s:e].float(), -1)
+        ln = torch.log_softmax(logits_new[:, s:e].float(), -1)
+        tgt = input_ids[:, s + 1:e + 1].unsqueeze(-1)
+        out['n_pred'] += int(m.sum())
+        out['ce_orig_sum'] += float(-lo.gather(-1, tgt)[..., 0][m].double().sum())
+        out['ce_new_sum'] += float(-ln.gather(-1, tgt)[..., 0][m].double().sum())
+        out['kl_sum'] += float((lo.exp() * (lo - ln)).sum(-1)[m].double().sum())
+        out['top1_agree'] += int((lo.argmax(-1) == ln.argmax(-1))[m].sum())
+    return out
+
+
+# -------------------------------------------------------------------------------------------- bootstrap and H-G1
+def bootstrap_indices(n_docs: int, n_resamples: int, seed: int) -> np.ndarray:
+    """[n_resamples, n_docs] document indices; one matrix shared by all statistics of a set (paired resampling)."""
+    return np.random.default_rng(int(seed)).integers(0, n_docs, size=(int(n_resamples), int(n_docs)))
+
+
+def bootstrap_ci(stat: Callable[[np.ndarray], float], idx: np.ndarray, level: float = 0.95) -> Tuple[float, float]:
+    """Percentile interval of ``stat(document indices)`` over the resamples in ``idx``."""
+    vals = np.array([stat(row) for row in idx], dtype=float)
+    a = (1 - level) / 2
+    return float(np.quantile(vals, a)), float(np.quantile(vals, 1 - a))
+
+
+def hg1_verdict(lo: float, hi: float) -> str:
+    """Pre-registered H-G1 decision: supported if lo > 0, contradicted if hi < 0, otherwise inconclusive."""
+    if lo > 0:
+        return 'supported'
+    if hi < 0:
+        return 'contradicted'
+    return 'inconclusive'
+
+
+def h_g1(dce_sae_doc_mean, dce_random_doc_mean, idx: np.ndarray, levels=(0.95, 1 - 0.05 / 3)) -> dict:
+    """H-G1 at one layer: d = mean over documents of (doc-mean dCE_SAE - doc-mean dCE_random), bootstrap CIs.
+
+    The verdict uses the 95 % interval; the Bonferroni (98.33 %) interval is reported as a sensitivity check.
+    """
+    d = np.asarray(dce_sae_doc_mean, float) - np.asarray(dce_random_doc_mean, float)
+    out = {'n_docs': int(d.size), 'mean_d': float(d.mean())}
+    for level in levels:
+        lo, hi = bootstrap_ci(lambda r: float(d[r].mean()), idx, level)
+        tag = f'{100 * level:.2f}'.rstrip('0').rstrip('.')
+        out[f'ci{tag}_lo'], out[f'ci{tag}_hi'] = lo, hi
+    lo95, hi95 = out['ci95_lo'], out['ci95_hi']
+    out['verdict'] = hg1_verdict(lo95, hi95)
+    out['verdict_bonferroni'] = hg1_verdict(out['ci98.33_lo'], out['ci98.33_hi'])
+    return out

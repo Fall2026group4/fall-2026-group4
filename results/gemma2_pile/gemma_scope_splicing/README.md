@@ -206,6 +206,33 @@ pre-registration.
 * **Not changed:** every other design element. No data had been downloaded and no code had been run.
 
 ## 2. After execution
+
+### Post-pre-registration output additions and implementation details (approved 2026-11-12, before any 03 run)
+These are evidence and reproducibility artifacts. They do **not** change the scientific design in Section 1.
+* **`per_doc_sum_x.npz`** (full run only; ≈ 28 MB, float64): per document and layer, the sum of the evaluated
+  activation vectors. Needed to recompute EV and its bootstrap intervals exactly (EV uses the evaluated set's own
+  token mean). Committed for the successful full run; its SHA-256 is recorded in `run_info.json`. No smoke version is
+  committed.
+* **`gates.json`**: the outcome and values of V1–V5 (and, in the smoke run, the sae-lens diagnostic).
+  On a gate failure `gates_FAILED.json` is written instead/additionally.
+* **sae-lens cross-check** (smoke only): a **diagnostic, not a validity gate**. Relative tolerance `1e-4`
+  (max |x̂_pinned − x̂_sae-lens| / max |x̂_sae-lens|), approved by the user. Records the sae-lens version, the pinned
+  SAE revision, the cached revision(s) holding the files and the repository's `main` commit, and per-layer max
+  absolute and relative differences. A difference beyond tolerance stops the smoke run for investigation; because
+  sae-lens may load its default revision, it is not by itself a failure of the pinned loader.
+* **Gate handling:** V1, V2, V5 stop immediately. V3/V4 stop the smoke run immediately; in the full run they are
+  evaluated on the complete aggregate, and a failure writes `gates_FAILED.json`, marks every output table INVALID,
+  keeps the outputs for diagnosis only, and exits with code 2.
+* **Implementation constants:** batch size 1 (so no padding occurs in the real run), TF32 disabled, log-softmax in
+  chunks of 128 positions, the last decoder layer is never hooked (its `hidden_states` entry includes the final
+  norm). `--smoke` uses the first 8 evaluation and first 4 reference documents (by rank) of the committed sample,
+  after V1 has checked the full 512 + 64 sample.
+* **Precision:** bf16 as pre-registered. The available GPU (Tesla T4) has no native bf16; the smoke run reports
+  seconds per document, peak GPU memory and the projected full-run time. A change of dtype would be a protocol
+  deviation requiring the user's approval; the preferred response to an impractical runtime is an Ampere-class GPU
+  with the same bf16 protocol.
+
+### Results
 *(To be completed.)*
 
 ## 3. If stopped early

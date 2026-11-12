@@ -38,6 +38,29 @@ def test_preregistration_rejects_unpinned_tokenizer_revision(tmp_path):
         ps.load_preregistration(p)
 
 
+def test_committed_sample_matches_preregistration_and_its_own_hash():
+    """The authoritative sample (commit a34d975) that script 03 evaluates: counts, disjointness, recorded hashes."""
+    import csv
+    exp = PREREG.parent
+    cfg = ps.load_preregistration(PREREG)
+    info = json.loads((exp / 'sample_info.json').read_text(encoding='utf-8'))
+    with open(exp / 'sample_manifest.csv', newline='', encoding='utf-8') as f:
+        rows = list(csv.DictReader(f))
+    ev = [r for r in rows if r['set'] == 'eval']
+    ref = [r for r in rows if r['set'] == 'reference']
+    assert len(ev) == cfg['sampling']['n_eval'] and len(ref) == cfg['sampling']['n_reference']
+    assert not {r['line_index'] for r in ev} & {r['line_index'] for r in ref}
+    assert len({r['line_index'] for r in rows}) == len(rows)
+    assert all(int(r['n_tokens_used']) <= cfg['tokenization']['max_tokens_including_bos'] for r in rows)
+    assert all(int(r['n_text_tokens']) >= cfg['sampling']['min_text_tokens'] for r in rows)
+    assert info['data']['sha256'] == cfg['data']['sha256']
+    assert info['tokenizer']['revision_preregistered'] == cfg['tokenization']['revision']
+    assert all(info['gate_V1'][k] for k in ('size_match', 'sha256_match', 'disjoint'))
+    # byte-exact: holds on the Linux checkout (Ronin); a Windows autocrlf checkout rewrites line endings
+    assert ps.sha256_file(exp / 'sample_manifest.csv') == \
+        info['hashes']['results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv']
+
+
 def test_preregistration_missing_field_is_an_error(tmp_path):
     cfg = json.loads(PREREG.read_text(encoding='utf-8'))
     del cfg['sampling']['seed']
