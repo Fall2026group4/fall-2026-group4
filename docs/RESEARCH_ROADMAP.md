@@ -1,4 +1,4 @@
-# Research roadmap (as of 2026-11-07; final deadline 2026-12-08)
+# Research roadmap (as of 2026-11-12; technical freeze 2026-11-22; final deadline 2026-12-08)
 
 Update this file whenever a task starts, finishes, stops, changes plan, or a new outstanding task is identified (`CLAUDE.md` §1).
 
@@ -41,7 +41,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | this commit |
 
 ## 2. In progress
-* None. All work is committed locally, and nothing has been pushed.
+* **M6. Gemma Scope SAE reconstruction and splicing on The Pile** (branch `simba-gemma-pile`; owner Simbanegavi Simbarashe). Pre-registered 2026-11-12 in `results/gemma2_pile/gemma_scope_splicing/README.md` (D21). Status: pre-registration written; scripts and tests not yet written; no download or GPU run yet (waiting for the Ronin hardware and Hugging Face access check). Next steps: scripts 02–04 + tests → Ronin smoke run → full run → results, figures and documentation. Must finish before the 2026-11-22 technical freeze.
 
 ## 3. Outstanding GPT-2 tasks (PLANNED)
 
@@ -90,9 +90,10 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 |---|---|---|---|
 | M1 | Activation extraction pipeline (HF bf16 backend, since TransformerLens is OOM-killed on the 15 GB-RAM host); GoT/RepE final-token caches; grouped splits | PLANNED | P1 |
 | M2 | Original-activation truth/honesty probes per layer (frozen-probe protocol). The `aditi` layer table used a leaky row split, so it must be redone with grouped splits | PLANNED | P1 |
-| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | BLOCKED: weights not cached; disk/RAM check needed | P1 |
+| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | Reconstruction + splicing part → M6 (IN PROGRESS). Frozen-probe gaps on GoT need M1/M2 first: **stretch goal**, only after M6 is complete and only if the 2026-11-22 freeze is not at risk | P1 |
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
 | M5 | Gemma version of the best GPT-2 improvement (e.g. Method A), only if M3 works | PLANNED | P2 |
+| M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D21) | IN PROGRESS (pre-registered 2026-11-12; Ronin check pending) | P0 (team plan: technical contribution before the freeze) |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)
 * **X1. Cross-condition faithfulness table** (proposal Phase 6), crossing:
@@ -121,7 +122,7 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | Width other than 3072 | G5 |
 | Published JumpReLU | G4 |
 | Public-SAE baselines under our pipeline | G9 |
-| Gemma SAEs | M3 |
+| Gemma SAEs | M3, M6 |
 | Prompt-level sparsity matching | S3 |
 | Causal tests beyond layer 6 / on new SAEs | C1, C2 |
 | SAE-in-the-loop interventions | C3 |

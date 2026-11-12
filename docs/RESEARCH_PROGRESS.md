@@ -454,3 +454,16 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
 * **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
 * **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.
+
+## 19. Gemma Scope SAE reconstruction and splicing on The Pile (pre-registered 2026-11-12; branch `simba-gemma-pile`; Simbanegavi Simbarashe). Status: IN PROGRESS (PLANNED, no run yet)
+
+* **Why:** all SAE evidence so far is GPT-2 with in-house SAEs. This extends the reconstruction and behavioural-faithfulness measurements to Gemma-2-2B with published SAEs, on the proposal's Gemma dataset (The Pile). It follows the completed Pile EDA (§3e; `simba-gemma-pile-eda`, `5638350`), which recommended fixing a truncation policy first. Roadmap M6 (reconstruction and splicing part of M3).
+* **Design** (full pre-registration: `results/gemma2_pile/gemma_scope_splicing/README.md` and `preregistration.json`; decision D21):
+  * Pile validation file `monology/pile-uncopyrighted/val.jsonl.zst` (SHA-256 pinned); seed-42 permutation; 512 evaluation + 64 disjoint reference documents (≥ 32 text tokens); BOS + first 1024 tokens per document.
+  * Gemma-2-2B (HF, bf16), `resid_post` at layers 5, 12, 19 (representative depths; **not** mapped to GPT-2 layers).
+  * Gemma Scope width-16k residual SAEs, pinned: `layer_5/width_16k/average_l0_68`, `layer_12/width_16k/average_l0_82`, `layer_19/width_16k/average_l0_73` (= sae-lens `canonical`), HF revision `fd571b47…`.
+  * Reconstruction (EV, cosine, relative error, L0) and splicing (ΔCE, KL, top-1, loss recovered) reported separately, overall and per Pile source, with document-bootstrap CIs.
+  * Controls: repeat pass, identity splice, norm-matched random error, mean ablation (reference set).
+  * Descriptive questions Q1–Q3; one replication hypothesis H-G1 (SAE ΔCE > random-error ΔCE, as in GPT-2 Phase 0 §10); validity gates V1–V5.
+* **Found while preparing (2026-11-12):** the parquet mirror used by the EDA has only a train split, so the evaluation uses the original repository's validation file; Gemma Scope's hook is `resid_post` (sae-lens loader), unlike our GPT-2 `resid_pre`.
+* **Not yet done:** scripts, tests, Ronin hardware/HF-access check, smoke run, full run. The Gemma GoT frozen-probe experiment is a stretch goal only (roadmap M3), started only after this one is complete.

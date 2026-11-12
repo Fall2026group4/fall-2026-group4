@@ -15,7 +15,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **OWT** is GPT-2's training distribution, and the standard SAE training and evaluation corpus.
 * **GoT** provides paired true/false statements whose structure isolates truth. Used: cities + neg_cities (geographic), larger_than + smaller_than (numerical).
 * **RepE** persona prompts give a contrastive honesty signal.
-* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments.
+* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments. *(Updated 2026-11-12: used as the Gemma reconstruction and splicing dataset, D21.)*
 
 ## D3. Train SAEs in house instead of using public SAEs (2026-10-30, `8dc0b6e`)
 * **Reason:** public SAEs (`gpt2-small-res-jb`, the v5-32k TopK) differ in width, data, sparsity and training. An architecture comparison needs one protocol.
@@ -150,11 +150,22 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Alternatives considered:** keep the folders (rejected by the user: no separate folder in the final structure); delete without backup (rejected: the 30 gitignored checkpoint copies exist nowhere else in this form).
 * **Earlier errors stay documented:** the corrections (optimiser-state inconsistency, unmatched sparsity, steering without an SAE in the forward pass, retrained-probe faithfulness, leaky Gemma split) remain described in `RESEARCH_PROGRESS.md` §6, this log (D5–D7) and the changelog.
 
+## D21. Gemma/Pile experiment design: Gemma Scope SAEs at layers 5/12/19, Pile validation, 1024-token truncation (2026-11-12)
+* **Decision** (made by the user, Simbanegavi Simbarashe, after the completed Pile EDA): the next Gemma contribution is Pile → Gemma-2-2B activations → Gemma Scope SAE reconstruction → splicing evaluation (roadmap M6). No other new scientific objective. The Gemma GoT frozen-probe experiment is a stretch goal, started only after M6 is complete and only if the 2026-11-22 technical freeze is not at risk.
+* **Role of The Pile:** Gemma's natural-text evaluation corpus for reconstruction and behaviour, analogous in role (not in content) to OWT for GPT-2.
+* **Data:** `monology/pile-uncopyrighted/val.jsonl.zst` (revision and SHA-256 pinned). The EDA's parquet mirror has no validation split. The test file is never used.
+* **Sample:** seed-42 permutation; 512 evaluation + 64 reference documents, disjoint by construction; per-document identifiers and text/token hashes recorded so the exact sample can be rebuilt.
+* **Chunking:** BOS + first 1024 tokens, one window per document, no packing. **Reason:** the Gemma Scope training context length recorded by sae-lens is 1024; one window per document keeps documents independent for the bootstrap and keeps source labels clean. **Alternative:** packing contiguous windows (rejected: mixes sources inside a window).
+* **Layers 5, 12, 19:** representative lower/middle/later depths of the 26-layer model, and the residual layers for which the release also provides the largest (1M) SAEs. **Explicitly not** a mapping to GPT-2 layers 5/6/9; an earlier proposal (Gemma layers 10/12/18 as "depth-matched" to GPT-2) was rejected by the user because no defensible basis for such a mapping exists. The GPT-2 exclusion of layer 3 applied only to the GoT probe experiment.
+* **SAEs:** Gemma Scope residual width 16k, pinned IDs `layer_{5,12,19}/width_16k/average_l0_{68,82,73}` (what sae-lens `canonical` resolves to). No other width or L0 is substituted without asking the user.
+* **Hook:** `resid_post`, because that is where these SAEs were trained. Our GPT-2 SAEs use `resid_pre` (D4); the two are conventions of their SAE families.
+* **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. Not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. Untested for ReLU/JumpReLU and other layers.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
-* **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
+* **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet. *(2026-11-12: the reconstruction and splicing part is being measured in M6, D21; the truth-preservation part remains untested.)*
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6.

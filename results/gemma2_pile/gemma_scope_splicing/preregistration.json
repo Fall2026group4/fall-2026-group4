@@ -1,0 +1,95 @@
+{
+  "experiment": "gemma_scope_splicing_pile",
+  "roadmap_id": "M6",
+  "preregistered_on": "2026-11-12",
+  "owner": "Simbanegavi Simbarashe",
+  "status": "PLANNED",
+  "evidence_level_on_completion": "VALIDATION (descriptive)",
+  "model": {
+    "hf_id": "google/gemma-2-2b",
+    "dtype": "bfloat16",
+    "attn_implementation": "eager",
+    "revision": "record_at_run_time"
+  },
+  "hook": {
+    "site": "resid_post",
+    "hf_module": "model.model.layers[L] output hidden state",
+    "transformer_lens_name": "blocks.{L}.hook_resid_post"
+  },
+  "layers": [5, 12, 19],
+  "sae": {
+    "hf_repo": "google/gemma-scope-2b-pt-res",
+    "hf_revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+    "sae_lens_release": "gemma-scope-2b-pt-res",
+    "sae_lens_registry_commit": "a7f07a96ecd07a38f9d719a6a8650b983954d062",
+    "architecture": "jumprelu",
+    "d_in": 2304,
+    "d_sae": 16384,
+    "compute_dtype": "float32",
+    "ids": {
+      "5": "layer_5/width_16k/average_l0_68",
+      "12": "layer_12/width_16k/average_l0_82",
+      "19": "layer_19/width_16k/average_l0_73"
+    },
+    "canonical_alias_resolves_to_ids": true,
+    "substitution_allowed": false
+  },
+  "data": {
+    "hf_dataset": "monology/pile-uncopyrighted",
+    "revision": "3be90335b66f24456a5d6659d9c8d208c0357119",
+    "file": "val.jsonl.zst",
+    "bytes": 338045152,
+    "sha256": "db5e5d1532bf8dc33a6589b50ecba1a8c96f7b4b9cb343d168e603c393007c26",
+    "source_label_field": "meta.pile_set_name",
+    "test_file_used": false
+  },
+  "sampling": {
+    "doc_index": "0-based line number in val.jsonl.zst",
+    "rng": "numpy.random.default_rng(seed).permutation(n_lines)",
+    "seed": 42,
+    "min_text_tokens": 32,
+    "n_eval": 512,
+    "n_reference": 64,
+    "order": "first n_eval eligible documents of the permutation are eval, the next n_reference eligible are reference",
+    "disjoint": true
+  },
+  "tokenization": {
+    "tokenizer": "google/gemma-2-2b",
+    "prepend_bos": true,
+    "max_tokens_including_bos": 1024,
+    "policy": "truncate: first window only, one window per document, no packing"
+  },
+  "positions": {
+    "bos": "never reconstructed, never spliced, excluded from all metrics",
+    "padding": "excluded",
+    "behaviour_predictions": "positions 1 <= t <= len-2"
+  },
+  "conditions": ["original", "original_repeat", "sae_splice", "norm_matched_random_error", "mean_ablation", "identity"],
+  "seeds": {
+    "sampling": 42,
+    "random_error": "1000 + layer",
+    "bootstrap": 0
+  },
+  "bootstrap": {
+    "unit": "document",
+    "n_resamples": 1000,
+    "interval": "percentile 95%",
+    "sensitivity_interval": "percentile 98.33% (Bonferroni over 3 layers) for H-G1"
+  },
+  "low_n_source_threshold_docs": 20,
+  "hypothesis_H_G1": {
+    "statement": "SAE-splice delta CE exceeds norm-matched-random delta CE at layer L",
+    "statistic": "mean over documents of (doc-mean deltaCE_SAE - doc-mean deltaCE_random)",
+    "supported_if": "95% CI lower bound > 0",
+    "contradicted_if": "95% CI upper bound < 0",
+    "otherwise": "inconclusive",
+    "per_layer": true
+  },
+  "validity_gates": {
+    "V1_sample_integrity": "file sha256 matches; 512 + 64 docs; eval and reference disjoint; manifest hash recorded",
+    "V2_hook_equivalence": "hook activation equals output_hidden_states[L+1] exactly",
+    "V3_determinism_identity_max_mean_kl_nats": 1e-6,
+    "V4_sae_sanity": "measured L0 within factor 2 of release average_l0 and EV > 0 (smoke run)",
+    "V5_no_substitution": "stop and ask if any pinned SAE id fails to load"
+  }
+}
