@@ -203,7 +203,7 @@ The full chronological history of the project, reconstructed on 2026-11-07 from 
 
 ## 6. Professor-review corrections (2026-11-04). Status: COMPLETED, VALIDATED [VERIFIED]
 
-Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04_code_audit.md` and `docs/2026-11-04_methodology_changes.md`. Run on top of `326b0f6`, originally into `results/professor_review_corrections/`, and migrated on 2026-11-06 (§7).
+Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`, with `docs/2026-11-04_code_audit.md` and `docs/2026-11-04_methodology_changes.md`. Run on top of `326b0f6`, originally into `results/professor_review_corrections/`, and migrated on 2026-11-06 (§7).
 
 * **6a. Optimiser-state consistency (Task A).**
   * Layer 6 had been resumed with Adam state restored; layers 2/10 were warm-started with Adam reset.
@@ -860,9 +860,9 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 * **Constraints:** no rerun, no checkpoint loaded, no result or historical README modified.
 * **Deliverables:** `docs/final_defense/` contains:
   * `FINAL_RESEARCH_REPORT.md`;
-  * `PROFESSOR_DEFENSE_CHEATSHEET.md`;
+  * `DEFENSE_CHEATSHEET.md` (renamed 2026-11-12 from `PROFESSOR_DEFENSE_CHEATSHEET.md`);
   * `RESULTS_VERIFICATION_TABLE.md`;
-  * `PROFESSOR_QUESTIONS_AND_ANSWERS.md`;
+  * `ANTICIPATED_REVIEW_QUESTIONS.md` (renamed 2026-11-12 from `PROFESSOR_QUESTIONS_AND_ANSWERS.md`);
   * `EXPERIMENT_AUDIT.md`.
 
   Also new: the read-only re-check script `scripts/shared/m5_independent_verification.py`.

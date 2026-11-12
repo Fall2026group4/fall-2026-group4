@@ -80,7 +80,7 @@ information, behaviour and causal effects of a frozen language model?
   leaky row split. None were merged.
 
 ### Stage B: professor review (2026-11-01) and corrections (2026-11-04)
-Source: `docs/2026-11-04_professor_review_report.md`.
+Source: `docs/archive/2026-11-04_methodology_review_corrections_report.md`.
 
 | Criticism | What was wrong | Fix | Outcome |
 |---|---|---|---|

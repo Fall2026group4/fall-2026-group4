@@ -29,7 +29,7 @@ given for each table. Numbers marked **[recomputed]** were recalculated from the
 
 ## 1. Stage B: original vs corrected baseline (OWT TEST, 12,700 tokens, L0 target 128, width 3072)
 
-Source: `docs/2026-11-04_professor_review_report.md` §D1 (`reconstruction_comparison.csv`).
+Source: `docs/archive/2026-11-04_methodology_review_corrections_report.md` §D1 (`reconstruction_comparison.csv`).
 * **Original:** seed 42, with a mixed optimiser procedure.
 * **Corrected:** one uninterrupted 15k-step protocol, 3 seeds.
 

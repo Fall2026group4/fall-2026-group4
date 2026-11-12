@@ -59,7 +59,7 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
   * All M5 SAEs are matched (L0 127.6–133.4).
   * Output-KL ReLU/JumpReLU fine-tunes drifted by +5 to +11 % and were declared NOT CREDITABLE.
   * **Limitation:** task-prompt L0 is not matched (GoT: ReLU 77–112, TopK 128).
-* **Source:** `docs/2026-11-04_professor_review_report.md` §D2; M5 rows; `results/geometry_of_truth/multilayer_finetune/`
+* **Source:** `docs/archive/2026-11-04_methodology_review_corrections_report.md` §D2; M5 rows; `results/geometry_of_truth/multilayer_finetune/`
 
 ### 5. Your original SAEs used only 100k training tokens. Doesn't that explain everything?
 * **Short:** that critique was tested twice, and the main conclusions survive both tests.
@@ -80,7 +80,7 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
 * **Technical:** this was a protocol-consistency fix, not an improvement. Two earlier "wins" became ties: L2 ReLU vs
   JumpReLU, and L10 JumpReLU vs TopK.
 * **Evidence:** for example L2 JumpReLU 0.9293 → 0.9355 ± 0.0017, and L10 JumpReLU 0.8253 → 0.8227 ± 0.0003 (OWT test).
-* **Source:** `docs/2026-11-04_professor_review_report.md` §D1
+* **Source:** `docs/archive/2026-11-04_methodology_review_corrections_report.md` §D1
 
 ### 7. Why is MSE not sufficient?
 * **Short:** MSE is absolute, scale-dependent, and blind to which directions matter.

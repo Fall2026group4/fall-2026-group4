@@ -146,5 +146,5 @@ encoder → sparse codes (L0 ≈ 128 of 3,072 or 12,288) → SAE decoder → x̂
 * E2: `results/shared/e2_public_sae_reference/README.md`
 * M2: `results/shared/m2_four_level_faithfulness/`
 * M4: `results/repe/sae_patch_decomposition/`
-* Professor-review corrections: `docs/2026-11-04_professor_review_report.md`
+* Professor-review corrections: `docs/archive/2026-11-04_methodology_review_corrections_report.md`
 * Re-check script: `python scripts/shared/m5_independent_verification.py` (read-only; prints "ALL CHECKS PASS")

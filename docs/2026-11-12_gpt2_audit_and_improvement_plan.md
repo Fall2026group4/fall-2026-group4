@@ -13,8 +13,10 @@ Every proposal in §8 needs the user's written approval and its own pre-registra
 
 **What is new in this document:**
 1. The current state has been re-audited from code and CSVs, not from summaries.
-2. A new diagnostic was read from existing ladder CSVs (§5.3): the architectures fail on the honesty contrast in
-   **opposite directions**, by shrinking it or inflating it.
+2. A diagnostic was read from existing ladder CSVs (§5.3): the architectures fail on the honesty contrast in
+   **opposite directions**, by shrinking it or inflating it. *Erratum (2026-11-12): this was first reported for the
+   old SAEs by RLM-RP (RESEARCH_PROGRESS §32). This audit extends it to the R2 SAEs and draws design consequences;
+   it is not a new discovery.*
 3. A literature check covers methods that the 2026-11-10 review did not cover: Gated SAE, ITO, feature-suppression
    fine-tuning, the Anthropic JumpReLU recipe, SAE-TS, output-score feature selection and RAVEL.
 4. A pre-registerable experiment plan (§8–§12).
@@ -187,7 +189,7 @@ The R5 feature patches were run **only on the old SAEs**, never on R2.
 | # | Experiment | Data | Arch | Layer | Seeds | Baseline | Change | Before → After | Verdict | Source |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 1 | 1000-step sweep | OWT | R/T/J | 0–11 | 42 | — | L0 32/64/128 | convergence speed only | VALID (scope) | `results/openwebtext/sae_sparsity_sweep/` |
-| 2 | Optimizer consistency fix | OWT | R/T/J | 2, 6, 10 | 3 | resumed/warm-started | uninterrupted 15k | test EV change ≤ 0.006; ranks unchanged | fix, no gain | `reconstruction_evaluation/uninterrupted_protocol/`, `docs/2026-11-04_professor_review_report.md` |
+| 2 | Optimizer consistency fix | OWT | R/T/J | 2, 6, 10 | 3 | resumed/warm-started | uninterrupted 15k | test EV change ≤ 0.006; ranks unchanged | fix, no gain | `reconstruction_evaluation/uninterrupted_protocol/`, `docs/archive/2026-11-04_methodology_review_corrections_report.md` |
 | 3 | 108-run baseline | OWT | R/T/J | 0–11 | 3 | — | — | EV 0.93–0.95 at L0–2 → 0.76–0.82 at L11 | TEST baseline | `uninterrupted_protocol/all_layers_*.csv` |
 | 4 | Sparsity matching | OWT | R/T/J | all | 3 | `architecture_summary.csv` | ±10 % rule | 107/108 matched | fix; the old summary is INV | `layer_comparison/sparsity_matched_cells.csv` |
 | 5 | P1 controller pilot | OWT | J | 0/2/6/10 | 42 | old controller | anneal + freeze, quantile init | L2 JumpReLU EV +0.020, dead 65 → 21 % | exploratory, n = 1 | `p1_sparsity_control_pilot/` |
@@ -268,9 +270,10 @@ README hash cannot be reproduced.
 * There is a ceiling problem: the original AUROC is only 0.84, so the gap has little room.
 * The first priority is power, not a method.
 
-### 5.3 RepE honesty: what the SAE does to the persona contrast (new diagnostic)
+### 5.3 RepE honesty: what the SAE does to the persona contrast
 
-**Reading the existing ladder CSVs (§3.3) gives a finding not previously reported:**
+**The ladder CSVs (§3.3) show the following.** RLM-RP reported it first for the old SAEs (RESEARCH_PROGRESS §32);
+here it is extended to the R2 SAEs:
 
 * **ReLU-family SAEs shrink the contrast.**
   * Norm retention ‖Δ̂‖/‖Δ‖ is 0.62–0.71 (old and R2 ReLU, res-jb).
