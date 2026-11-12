@@ -30,8 +30,8 @@ Both modes read the committed sample (sample_manifest.csv + sample_info.json, co
 Engineering safeguards (no change to the scientific design; review 2026-11-12, items A1-A11):
   A1 every activation, reconstruction, logits tensor, per-document sum and output column must be finite, else
      numerics_FAILED.json and stop.  A2 git commit + dirty state of the code/inputs recorded; the full run refuses
-     a dirty tree.  A3 deterministic algorithms (CUBLAS_WORKSPACE_CONFIG set before torch loads; warn-only, and any
-     determinism warning is recorded).  A4 captured activations are copies.  A5 use_cache=False.  A6 the loaded
+     a dirty tree.  A3 strict deterministic algorithms (CUBLAS_WORKSPACE_CONFIG set before torch loads; an op with
+     no deterministic CUDA implementation stops the run).  A4 captured activations are copies.  A5 use_cache=False.  A6 the loaded
      model/tokenizer commit is checked against the pin.  A7 outputs are written to .partial/ and moved into place
      only when complete; run_info.json (with SHA-256 of every output) is moved last.  A8 --out-tag for a byte-level
      smoke rerun.  A9 GPU capability, bf16 support and logits dtype recorded; --smoke also measures the bf16 logit
@@ -55,7 +55,6 @@ import platform  # noqa: E402
 import re  # noqa: E402
 import sys  # noqa: E402
 import time  # noqa: E402
-import warnings  # noqa: E402
 from datetime import datetime, timezone  # noqa: E402
 from pathlib import Path  # noqa: E402
 
@@ -91,6 +90,14 @@ def rel(p: Path) -> str:
         return Path(p).resolve().relative_to(REPO).as_posix()
     except ValueError:
         return Path(p).name
+
+
+def enable_strict_determinism():
+    """A3: strict deterministic execution. An op without a deterministic CUDA implementation raises an error and
+    stops the run (no warn-only mode). Gate V3 remains the separate, empirical identity/repeat check."""
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    torch.use_deterministic_algorithms(True)
 
 
 def write_stop(out_dir: Path, filename: str, payload: dict, msg: str):
@@ -210,20 +217,7 @@ def main():
     device = 'cuda'
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
-    # A3: deterministic algorithms. warn_only so an op without a deterministic kernel is recorded rather than
-    # crashing the run; gate V3 then tests determinism empirically (repeat and identity passes).
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-    torch.use_deterministic_algorithms(True, warn_only=True)
-    determinism_warnings = []
-    _show = warnings.showwarning
-
-    def _record(message, category, filename, lineno, file=None, line=None):
-        if 'determinis' in str(message).lower():
-            determinism_warnings.append(f'{category.__name__}: {message}')
-        _show(message, category, filename, lineno, file, line)
-
-    warnings.showwarning = _record
+    enable_strict_determinism()  # A3
     gates = {}
 
     # ---------------------------------------------------------------- V1: sample integrity and re-tokenization
@@ -588,9 +582,8 @@ def main():
         'code_provenance': provenance,
         'implementation_constants': {'sae_lens_crosscheck_rtol': SAE_LENS_CROSSCHECK_RTOL, 'v4_l0_factor': V4_L0_FACTOR,
                                      'batch_size': 1, 'tf32': False, 'use_cache': False,
-                                     'deterministic_algorithms': 'True (warn_only)',
+                                     'deterministic_algorithms': 'strict (no warn_only)',
                                      'CUBLAS_WORKSPACE_CONFIG': os.environ.get('CUBLAS_WORKSPACE_CONFIG')},
-        'determinism_warnings': sorted(set(determinism_warnings)),
         'logit_precision_limitation_H4a': logit_precision,
         'hardware': hardware,
         'input_sha256': {'preregistration.json': ps.sha256_file(PREREG), 'README.md': ps.sha256_file(EXP / 'README.md'),

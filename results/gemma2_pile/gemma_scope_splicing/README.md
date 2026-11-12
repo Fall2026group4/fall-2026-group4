@@ -238,8 +238,10 @@ Engineering only: no change to layers, SAEs, thresholds, controls, data, metrics
   finite; otherwise `numerics_FAILED.json` and stop.
 * **A2 code provenance:** the git commit and the dirty state of the code and inputs are recorded; the full run refuses
   to start from a dirty tree.
-* **A3 determinism:** deterministic algorithms on (warn-only; any determinism warning is recorded), with
-  `CUBLAS_WORKSPACE_CONFIG` set before torch loads. Gate V3 still tests determinism empirically.
+* **A3 determinism:** strict deterministic algorithms (`torch.use_deterministic_algorithms(True)`, no warn-only mode),
+  cuDNN deterministic and benchmark off, with `CUBLAS_WORKSPACE_CONFIG` set before torch loads. An operation without
+  a deterministic CUDA implementation raises an error and stops the run. Gate V3 remains the separate empirical
+  identity/repeat check and is not a substitute for deterministic execution.
 * **A4** captured activations are copies; **A5** `use_cache=False`; **A6** the loaded model and tokenizer commits are
   checked against the pin (`provenance_FAILED.json` on a mismatch; "unverifiable" if the library does not expose it).
 * **A7 atomic outputs:** files are written to `.partial/` and moved into place only when complete; `run_info.json`

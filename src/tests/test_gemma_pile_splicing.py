@@ -344,6 +344,20 @@ def test_A3_cublas_workspace_is_configured_on_import():
     assert os.environ.get('CUBLAS_WORKSPACE_CONFIG') in (':4096:8', ':16:8')
 
 
+def test_A3_determinism_is_strict_not_warn_only():
+    s03 = load_script()
+    before = (torch.are_deterministic_algorithms_enabled(), torch.is_deterministic_algorithms_warn_only_enabled(),
+              torch.backends.cudnn.deterministic, torch.backends.cudnn.benchmark)
+    try:
+        s03.enable_strict_determinism()
+        assert torch.are_deterministic_algorithms_enabled()
+        assert not torch.is_deterministic_algorithms_warn_only_enabled()
+        assert torch.backends.cudnn.deterministic and not torch.backends.cudnn.benchmark
+    finally:  # restore global state for the other tests
+        torch.use_deterministic_algorithms(before[0], warn_only=before[1])
+        torch.backends.cudnn.deterministic, torch.backends.cudnn.benchmark = before[2], before[3]
+
+
 def test_A4_captured_activation_is_a_copy():
     hook = ps.LayerSplice(torch.nn.Identity())
     out = torch.ones(1, 4, 3)
