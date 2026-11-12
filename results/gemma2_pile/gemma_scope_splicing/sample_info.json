@@ -1,0 +1,77 @@
+{
+  "experiment": "gemma_scope_splicing_pile",
+  "status": "pre-registered sample",
+  "created_utc": "2026-11-12T18:08:47+00:00",
+  "data": {
+    "hf_dataset": "monology/pile-uncopyrighted",
+    "revision": "3be90335b66f24456a5d6659d9c8d208c0357119",
+    "file": "val.jsonl.zst",
+    "bytes": 338045152,
+    "sha256": "db5e5d1532bf8dc33a6589b50ecba1a8c96f7b4b9cb343d168e603c393007c26",
+    "n_documents": 179996
+  },
+  "sampling": {
+    "seed": 42,
+    "rng": "numpy.random.default_rng(seed).permutation(n_documents)",
+    "min_text_tokens": 32,
+    "n_eval": 512,
+    "n_reference": 64,
+    "smoke": false,
+    "examined": 582,
+    "skipped_too_short": 6,
+    "candidates_loaded": 2048,
+    "selected_order_sha256": "c2d15022c33c45483fe21c5cbe0a66c6f700638cd5463882c91fdafac52d709f"
+  },
+  "gate_V1": {
+    "size_match": true,
+    "sha256_match": true,
+    "disjoint": true,
+    "n_eval": 512,
+    "n_reference": 64
+  },
+  "tokenizer": {
+    "hf_id": "google/gemma-2-2b",
+    "revision_preregistered": "c5ebcd40d208330abc697524c919956e692655cf",
+    "bos_token_id": 2,
+    "file_sha256": {
+      "tokenizer.json": "3f289bc05132635a8bc7aca7aa21255efd5e18f3710f43e3cdb96bcd41be4922",
+      "tokenizer.model": "61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2",
+      "tokenizer_config.json": "bb8245b8d39a065fdf869ee4fce48db9cc491473eb7ff1b41d321fb4caf540d1",
+      "special_tokens_map.json": "baec30ea10906f16adb8c18af7a34023002c1746542612b8b41c9f09e1351351"
+    },
+    "max_tokens_including_bos": 1024
+  },
+  "eval_sources": {
+    "Pile-CC": 157,
+    "PubMed Abstracts": 95,
+    "StackExchange": 85,
+    "Github": 52,
+    "Wikipedia (en)": 44,
+    "USPTO Backgrounds": 24,
+    "PubMed Central": 11,
+    "DM Mathematics": 10,
+    "FreeLaw": 10,
+    "ArXiv": 9,
+    "HackerNews": 5,
+    "NIH ExPorter": 4,
+    "Enron Emails": 3,
+    "EuroParl": 1,
+    "Gutenberg (PG-19)": 1,
+    "PhilPapers": 1
+  },
+  "eval_truncated": 110,
+  "hashes": {
+    "preregistration.json": "9817740a2a184e6b7a88d12a4eeece4519fd638761625839b38e16117ba007cc",
+    "README.md": "e91b204e0eee10617354f2d6ebbf1a77f1ce8e07242899dd358254cfc49cf49c",
+    "scripts/gemma/02_pile_sample_manifest.py": "e01b73bade542fe5692af7695ffc63f891195dc67a3f7569cb9119de1138436a",
+    "src/evaluation/pile_splicing.py": "ebaa3acae8785fdbead0140dead4e3a99efb215450d7bc67a84fa6b61beb1a10",
+    "results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv": "637b6404302120ad3fbc6282df32fb9df193c78f9092d35bd9a96b99e3da1aa3"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.4.4",
+    "transformers": "5.21.0",
+    "zstandard": "0.23.0"
+  },
+  "runtime_s": 20.1
+}
