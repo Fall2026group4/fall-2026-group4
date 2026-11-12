@@ -235,3 +235,11 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 | this commit | Added `docs/final_defense/{FINAL_RESEARCH_REPORT,PROFESSOR_DEFENSE_CHEATSHEET,RESULTS_VERIFICATION_TABLE,PROFESSOR_QUESTIONS_AND_ANSWERS,EXPERIMENT_AUDIT}.md` | User-requested verified report and defense material |
 | this commit | Added `scripts/shared/m5_independent_verification.py` (read-only) | Reproducible independent re-check of M5: hashes, completeness, decision rules |
 | this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,results_registry}.md` | Documentation rule. No results, checkpoints or manifests changed |
+
+## 2026-11-12: GPT-2 audit and improvement plan; checkpoint of current work (no experiment)
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `docs/2026-11-12_gpt2_audit_and_improvement_plan.md` | Read-only audit and pre-registration drafts (X0–X3, T1, H1, H2, I1); none approved or run |
+| this commit | Added `docs/final_defense/SAE_Faithfulness_Summary.pdf` | User's summary PDF of the final-defense material, committed at the user's request |
+| this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,EXPERIMENT_CHANGELOG}.md` | Documentation rule. No results, checkpoints or manifests changed |

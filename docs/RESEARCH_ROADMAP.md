@@ -240,3 +240,18 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
   on GoT SAE − PCA. P1.
 * **Process:** freeze protocols in a separate committed file before any future test pass (D31). Rule.
 * **Off-machine backup of the R2/R4 checkpoints** (in addition to §11). P0 before the deadline.
+
+## 2026-11-12 additions (GPT-2 audit and improvement plan, `docs/2026-11-12_gpt2_audit_and_improvement_plan.md`)
+All PLANNED, none approved; each needs a pre-registration and the user's approval. GPT-2 only (Gemma: teammate).
+* **H1 RepE-LM test split** (raises the 11-10 P1 item to P0): every persona/causal claim is VALIDATION without it.
+* **T1 GoT measurement upgrade** (P0): minimum detectable effect from existing bootstrap arrays (discharges the open
+  MDE item); paired per-statement SAE comparisons; inference-time task-L0-matched TopK; cities → neg_cities transfer.
+* **X0 data-scaling ladder** on the existing R2 10M/25M/50M checkpoints (P0; supersedes the 11-10 "isolate token
+  count" item; checkpoints are mid-schedule, disclose).
+* **X1 inference-time coefficient optimisation** (scale / support refit / pursuit at fixed L0) on R2 and old SAEs (P0).
+* **X2 ReLU shrinkage fine-tune** (scale or decoder only), conditional on X1's fitted scale (P1).
+* **H2 contrast-consistent fine-tune at fixed L0** (R2 TopK, L8/L11; raw-Δ loss, no probe; held-out templates) (P1).
+* **I1 KL × contrast factorial** at fixed L0 (P1, after H2).
+* **X3 modern JumpReLU pilot** (fixed λ / Anthropic 2025 loss / BatchTopK init), time-boxed (P1).
+* **R5 feature-patch arm on R2 SAEs** (P2; R5 used old SAEs only).
+* **M6 test pass** after a protocol freeze committed before the run (D31).

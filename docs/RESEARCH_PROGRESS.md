@@ -887,3 +887,22 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
      trained from random SAEs (n = 1).
 * **Tests:** 35 passed.
 * **Evidence label:** no new result. All verified numbers keep their original labels.
+
+## 36. GPT-2 audit and evidence-based improvement plan (2026-11-12). Status: COMPLETED (analysis only; no experiment run)
+
+* **Deliverable:** `docs/2026-11-12_gpt2_audit_and_improvement_plan.md`, a read-only audit of code, CSVs and
+  checkpoints at `446beea`, plus a literature check and pre-registration drafts. No script, result or checkpoint was
+  changed; nothing was committed.
+* **Re-verified:** M5 test values (`m5_rows.csv`), R2 ladder values, R5 summary.
+* **New descriptive observation (VALIDATION, from existing ladder CSVs):**
+  * RepE-LM persona-contrast norm retention ‖Δ̂‖/‖Δ‖ is 0.62–0.71 for ReLU-family SAEs (shrinkage), against 1.09–1.46
+    for TopK, BatchTopK and the old JumpReLU (inflation), with cos(Δ, Δ̂) of only 0.37–0.52 for the latter.
+  * The two families distort the honesty contrast in opposite directions.
+  * The support-flip explanation for TopK is a HYPOTHESIS.
+* **Gaps found:**
+  * the R2 10M/25M/50M checkpoints have never been evaluated (`r2_scaled_saes/scaling/` is empty);
+  * the R5 feature arm used old SAEs only;
+  * there is no RepE-LM test split;
+  * there is no modern JumpReLU.
+* **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6.
+* **Evidence label:** no new result; the one new observation is VALIDATION, descriptive.
