@@ -114,3 +114,5 @@ datasets==5.1.0
 scikit-learn==1.9.1
 sae-lens==6.54.12
 pyarrow==26.0.0
+# M6 (Gemma/Pile, 2026-11-12): read the pinned Pile validation file val.jsonl.zst (no zstd in the Python 3.11 stdlib).
+zstandard==0.23.0
