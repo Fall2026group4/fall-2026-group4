@@ -232,6 +232,31 @@ These are evidence and reproducibility artifacts. They do **not** change the sci
   deviation requiring the user's approval; the preferred response to an impractical runtime is an Ampere-class GPU
   with the same bf16 protocol.
 
+### Engineering safeguards added after the pre-run review (2026-11-12, before any 03 run)
+Engineering only: no change to layers, SAEs, thresholds, controls, data, metrics, hypotheses or criteria.
+* **A1 numerics:** every activation, reconstruction, logits tensor, per-document sum and output column must be
+  finite; otherwise `numerics_FAILED.json` and stop.
+* **A2 code provenance:** the git commit and the dirty state of the code and inputs are recorded; the full run refuses
+  to start from a dirty tree.
+* **A3 determinism:** deterministic algorithms on (warn-only; any determinism warning is recorded), with
+  `CUBLAS_WORKSPACE_CONFIG` set before torch loads. Gate V3 still tests determinism empirically.
+* **A4** captured activations are copies; **A5** `use_cache=False`; **A6** the loaded model and tokenizer commits are
+  checked against the pin (`provenance_FAILED.json` on a mismatch; "unverifiable" if the library does not expose it).
+* **A7 atomic outputs:** files are written to `.partial/` and moved into place only when complete; `run_info.json`
+  (with the SHA-256 of every output) is moved last, so a folder without it is not a result.
+* **A8** `--smoke --out-tag rerun` writes a second smoke run to `smoke_rerun/` for a byte-level reproducibility check.
+* **A9** GPU compute capability, native bf16 support and the logits dtype are recorded.
+* **A10** an INVALID run prints a "do not interpret" banner; a Hugging Face cache-scan error cannot crash the run.
+* **A11** the test suite must pass with zero failures and zero skips (`python -m pytest -q -rs src/tests`).
+
+### Known limitation: bf16 logit precision (decision H4a, 2026-11-12)
+The model's logits are bf16, as pre-registered; CE, KL and top-1 are computed from them. No float32 readout is added
+and the protocol is unchanged. The smoke run *measures* the limitation by recomputing the same output head in float32
+from the head's own input, on the smoke documents only, and records the mean KL(fp32 ‖ bf16), the mean |ΔCE|, the
+top-1 disagreement rate and the max |logit difference| in `run_info.json`
+(`logit_precision_limitation_H4a`). These numbers are reported as a measurement floor for small ΔCE/KL effects and are
+not used in any result.
+
 ### Results
 *(To be completed.)*
 

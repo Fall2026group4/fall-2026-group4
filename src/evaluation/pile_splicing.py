@@ -385,8 +385,9 @@ def prediction_mask(attention_mask):
 class LayerSplice:
     """Forward hook on one decoder layer (its output = ``resid_post``).
 
-    Every pass stores the layer's *original* output in ``captured``. If ``fn`` is set, the output at ``mask``
-    positions is replaced by ``fn(original[mask])``; all other positions (BOS, padding) are returned unchanged.
+    Every pass stores a *copy* of the layer's original output in ``captured`` (a copy, so no later in-place operation
+    in the model can change it). If ``fn`` is set, the output at ``mask`` positions is replaced by
+    ``fn(original[mask])``; all other positions (BOS, padding) are returned unchanged.
     Works whether the layer returns a tensor or a tuple whose first element is the hidden state.
     """
 
@@ -398,7 +399,7 @@ class LayerSplice:
 
     def _hook(self, module, inputs, output):
         hidden = output[0] if isinstance(output, tuple) else output
-        self.captured = hidden.detach()
+        self.captured = hidden.detach().clone()
         if self.fn is None:
             return None
         if self.mask is None or self.mask.shape != hidden.shape[:2]:
@@ -512,4 +513,90 @@ def h_g1(dce_sae_doc_mean, dce_random_doc_mean, idx: np.ndarray, levels=(0.95, 1
     lo95, hi95 = out['ci95_lo'], out['ci95_hi']
     out['verdict'] = hg1_verdict(lo95, hi95)
     out['verdict_bonferroni'] = hg1_verdict(out['ci98.33_lo'], out['ci98.33_hi'])
+    return out
+
+
+# ------------------------------------------------------------------------- engineering safeguards (A1, A2, A6, H4a)
+class NumericsError(RuntimeError):
+    """A NaN or inf was found where only finite values are valid (acceptance requirement 4)."""
+
+
+def assert_finite(name: str, *tensors) -> None:
+    """Raise NumericsError if any tensor holds a NaN or inf."""
+    import torch
+    for i, t in enumerate(tensors):
+        if not bool(torch.isfinite(t).all()):
+            raise NumericsError(f'non-finite values in {name} (tensor {i}, shape {tuple(t.shape)}, dtype {t.dtype})')
+
+
+def assert_finite_values(name: str, values: dict) -> None:
+    """Raise NumericsError if any numeric value of a dict (e.g. per-document sums) is NaN or inf."""
+    bad = [k for k, v in values.items() if isinstance(v, (int, float, np.floating, np.integer))
+           and not np.isfinite(float(v))]
+    if bad:
+        raise NumericsError(f'non-finite values in {name}: {bad}')
+
+
+def nonfinite_columns(table, columns=None) -> List[str]:
+    """Numeric columns of a pandas DataFrame (or the given subset) that contain NaN or inf."""
+    cols = list(columns) if columns is not None else [c for c in table.columns
+                                                     if np.issubdtype(table[c].dtype, np.number)]
+    return [c for c in cols if not np.isfinite(table[c].to_numpy(dtype=float)).all()]
+
+
+def git_provenance(repo: Path, paths: Sequence[str]) -> dict:
+    """HEAD commit of ``repo`` and which of ``paths`` differ from it (modified, staged or untracked)."""
+    import subprocess
+
+    def git(*args):
+        return subprocess.run(['git', '-C', str(repo), *args], capture_output=True, text=True, check=True).stdout
+
+    try:
+        commit = git('rev-parse', 'HEAD').strip()
+        status = git('status', '--porcelain', '--untracked-files=all', '--', *paths)
+    except (OSError, subprocess.CalledProcessError) as exc:
+        return {'available': False, 'error': f'{type(exc).__name__}: {exc}', 'commit': None, 'dirty_paths': None}
+    dirty = sorted({line[3:].strip() for line in status.splitlines() if line.strip()})
+    return {'available': True, 'commit': commit, 'dirty_paths': dirty}
+
+
+def check_pinned_commit(found, pinned: str, what: str) -> str:
+    """'verified' if the loaded object's commit equals the pinned one, 'unverifiable' if the library does not expose
+    it; raise ValueError on a mismatch (a different revision would be a protocol deviation)."""
+    if not found:
+        return 'unverifiable'
+    if str(found) != str(pinned):
+        raise ValueError(f'{what} was loaded from commit {found}, but the pre-registration pins {pinned}')
+    return 'verified'
+
+
+def logit_precision_sums(logits_model, head_input, w_out, softcap, input_ids, pred_mask, chunk: int = 128) -> dict:
+    """Measure (do not change) the precision of the model's bf16 logits (decision H4a, a documented limitation).
+
+    The reference recomputes the same output head in float32 from the head's own input:
+    ref = softcap * tanh((head_input @ w_out^T) / softcap) (no softcap if ``softcap`` is None). Returns sums over
+    ``pred_mask`` positions: KL(P_ref || P_model), |CE_model - CE_ref|, top-1 disagreements, and the max |logit diff|.
+    """
+    import torch
+    out = {'n_pred': 0, 'kl_ref_vs_model_sum': 0.0, 'abs_ce_diff_sum': 0.0, 'top1_disagree': 0,
+           'max_abs_logit_diff': 0.0}
+    T = input_ids.shape[1]
+    w = w_out.float()
+    for s in range(0, T - 1, chunk):
+        e = min(s + chunk, T - 1)
+        m = pred_mask[:, s:e]
+        if not bool(m.any()):
+            continue
+        ref = head_input[:, s:e].float() @ w.T
+        if softcap is not None:
+            ref = softcap * torch.tanh(ref / softcap)
+        lm = logits_model[:, s:e].float()
+        lr, lp = torch.log_softmax(ref, -1), torch.log_softmax(lm, -1)
+        tgt = input_ids[:, s + 1:e + 1].unsqueeze(-1)
+        out['n_pred'] += int(m.sum())
+        out['kl_ref_vs_model_sum'] += float((lr.exp() * (lr - lp)).sum(-1)[m].double().sum())
+        out['abs_ce_diff_sum'] += float((lr.gather(-1, tgt)[..., 0] - lp.gather(-1, tgt)[..., 0]).abs()[m]
+                                        .double().sum())
+        out['top1_disagree'] += int((lr.argmax(-1) != lp.argmax(-1))[m].sum())
+        out['max_abs_logit_diff'] = max(out['max_abs_logit_diff'], float((ref - lm).abs()[m].max()))
     return out

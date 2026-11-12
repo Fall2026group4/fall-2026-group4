@@ -288,6 +288,104 @@ def test_script_summarize_matches_hand_computed_aggregates():
         assert out[f'{name}_ci95_lo'] <= out[name] + 1e-12 <= out[f'{name}_ci95_hi'] + 2e-12
 
 
+# ---------------------------------------------------------------------- engineering safeguards (review A1-A10, H4a)
+def load_script():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('s03', ROOT / 'scripts/gemma/03_pile_gemma_scope_splicing.py')
+    s03 = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(s03)  # main() is not run on import
+    return s03
+
+
+def test_A1_assert_finite_rejects_nan_and_inf():
+    ps.assert_finite('ok', torch.ones(3), torch.zeros(2, 2))
+    for bad in (float('nan'), float('inf'), float('-inf')):
+        with pytest.raises(ps.NumericsError, match='non-finite'):
+            ps.assert_finite('x', torch.ones(3), torch.tensor([1.0, bad]))
+    ps.assert_finite_values('ok', {'a': 1.0, 'b': 3, 'name': 'Pile-CC'})
+    with pytest.raises(ps.NumericsError, match="'kl_sum'"):
+        ps.assert_finite_values('row', {'kl_sum': float('nan'), 'n_pred': 5})
+
+
+def test_A1_nonfinite_columns_finds_bad_numeric_columns_only():
+    pd = pytest.importorskip('pandas')
+    df = pd.DataFrame({'a': [1.0, 2.0], 'b': [1.0, np.inf], 'c': [np.nan, 1.0], 'name': ['x', 'y'],
+                       'flag': [True, False]})
+    assert ps.nonfinite_columns(df) == ['b', 'c']
+    assert ps.nonfinite_columns(df, ['a']) == []
+
+
+def test_A2_git_provenance_detects_commit_and_dirty_inputs(tmp_path):
+    import shutil
+    import subprocess
+    if shutil.which('git') is None:
+        pytest.fail('git is required for the provenance safeguard (A2)')
+
+    def git(*args):
+        subprocess.run(['git', '-C', str(tmp_path), *args], check=True, capture_output=True)
+
+    git('init', '-q')
+    git('config', 'user.email', 'test@example.com')
+    git('config', 'user.name', 'test')
+    (tmp_path / 'code.py').write_text('x = 1\n')
+    git('add', 'code.py')
+    git('commit', '-q', '-m', 'init')
+    clean = ps.git_provenance(tmp_path, ['code.py', 'new.py'])
+    assert clean['available'] and len(clean['commit']) == 40 and clean['dirty_paths'] == []
+    (tmp_path / 'code.py').write_text('x = 2\n')
+    (tmp_path / 'new.py').write_text('y = 1\n')
+    assert ps.git_provenance(tmp_path, ['code.py', 'new.py'])['dirty_paths'] == ['code.py', 'new.py']
+    assert ps.git_provenance(tmp_path / 'missing', ['code.py'])['available'] is False
+
+
+def test_A3_cublas_workspace_is_configured_on_import():
+    import os
+    load_script()
+    assert os.environ.get('CUBLAS_WORKSPACE_CONFIG') in (':4096:8', ':16:8')
+
+
+def test_A4_captured_activation_is_a_copy():
+    hook = ps.LayerSplice(torch.nn.Identity())
+    out = torch.ones(1, 4, 3)
+    hook._hook(None, None, out)
+    out.add_(5.0)  # a later in-place change inside the model must not reach the captured activation
+    assert torch.equal(hook.captured, torch.ones(1, 4, 3))
+    hook.remove()
+
+
+def test_A6_pinned_commit_check():
+    sha = 'c5ebcd40d208330abc697524c919956e692655cf'
+    assert ps.check_pinned_commit(sha, sha, 'model') == 'verified'
+    assert ps.check_pinned_commit(None, sha, 'model') == 'unverifiable'
+    with pytest.raises(ValueError, match='pins'):
+        ps.check_pinned_commit('0' * 40, sha, 'model')
+
+
+@pytest.mark.parametrize('argv', [['--out-tag', 'rerun'], ['--smoke', '--out-tag', 'bad/tag'],
+                                  ['--smoke', '--out-tag', '..']])
+def test_A8_out_tag_only_with_smoke_and_safe_names(monkeypatch, argv):
+    s03 = load_script()
+    monkeypatch.setattr('sys.argv', ['03_pile_gemma_scope_splicing.py', *argv])
+    with pytest.raises(SystemExit, match='--out-tag needs --smoke'):
+        s03.main()  # rejected before any model, data or GPU is touched
+
+
+def test_H4a_logit_precision_is_zero_for_identical_and_small_for_bf16_rounding():
+    torch.manual_seed(6)
+    h, w = torch.randn(1, 9, 16), torch.randn(40, 16)
+    ids = torch.randint(0, 40, (1, 9))
+    pm = ps.prediction_mask(torch.ones_like(ids))
+    exact = 30.0 * torch.tanh((h @ w.T) / 30.0)
+    same = ps.logit_precision_sums(exact, h, w, 30.0, ids, pm, chunk=4)
+    assert same['n_pred'] == 7 and same['kl_ref_vs_model_sum'] == pytest.approx(0, abs=1e-9)
+    assert same['abs_ce_diff_sum'] == pytest.approx(0, abs=1e-9) and same['max_abs_logit_diff'] < 1e-5
+    rounded = ps.logit_precision_sums(exact.to(torch.bfloat16), h, w, 30.0, ids, pm)
+    assert 0 < rounded['max_abs_logit_diff'] <= 0.25        # bf16 spacing is at most 0.125 below |logit| 32
+    assert 0 <= rounded['kl_ref_vs_model_sum'] / rounded['n_pred'] < 1e-2
+    nocap = ps.logit_precision_sums(h @ w.T, h, w, None, ids, pm)
+    assert nocap['max_abs_logit_diff'] < 1e-5
+
+
 # ------------------------------------------------------------------------------------------- bootstrap and H-G1
 def test_bootstrap_is_deterministic_and_brackets_the_estimate():
     vals = np.random.default_rng(3).normal(1.0, 0.5, size=200)

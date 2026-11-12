@@ -27,23 +27,41 @@ mean KL <= threshold, V4 SAE sanity (binding in the smoke run), V5 pinned SAE id
 
 Both modes read the committed sample (sample_manifest.csv + sample_info.json, commit a34d975) and never regenerate it.
 
+Engineering safeguards (no change to the scientific design; review 2026-11-12, items A1-A11):
+  A1 every activation, reconstruction, logits tensor, per-document sum and output column must be finite, else
+     numerics_FAILED.json and stop.  A2 git commit + dirty state of the code/inputs recorded; the full run refuses
+     a dirty tree.  A3 deterministic algorithms (CUBLAS_WORKSPACE_CONFIG set before torch loads; warn-only, and any
+     determinism warning is recorded).  A4 captured activations are copies.  A5 use_cache=False.  A6 the loaded
+     model/tokenizer commit is checked against the pin.  A7 outputs are written to .partial/ and moved into place
+     only when complete; run_info.json (with SHA-256 of every output) is moved last.  A8 --out-tag for a byte-level
+     smoke rerun.  A9 GPU capability, bf16 support and logits dtype recorded; --smoke also measures the bf16 logit
+     precision against a float32 recomputation of the same head (decision H4a: a documented limitation, not used
+     in any result).  A10 INVALID banner; cache scan cannot crash the smoke run.  A11 run the suite with
+     `python -m pytest -q -rs src/tests` and require zero skips.
+
 Run from repository root (CUDA required):
-    python scripts/gemma/03_pile_gemma_scope_splicing.py --smoke   # first 8 eval + 4 reference docs -> smoke/ (SMOKE)
-    python scripts/gemma/03_pile_gemma_scope_splicing.py           # full pre-registered run
+    python scripts/gemma/03_pile_gemma_scope_splicing.py --smoke                 # first 8 eval + 4 reference docs -> smoke/
+    python scripts/gemma/03_pile_gemma_scope_splicing.py --smoke --out-tag rerun # same, -> smoke_rerun/ (A8)
+    python scripts/gemma/03_pile_gemma_scope_splicing.py                         # full pre-registered run
 Refuses to overwrite existing outputs.
 """
-import argparse
-import json
-import platform
-import re
-import sys
-import time
-from datetime import datetime, timezone
-from pathlib import Path
+import os
 
-import numpy as np
-import pandas as pd
-import torch
+os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')  # A3: must be set before torch initialises CUDA/cuBLAS
+
+import argparse  # noqa: E402
+import json  # noqa: E402
+import platform  # noqa: E402
+import re  # noqa: E402
+import sys  # noqa: E402
+import time  # noqa: E402
+import warnings  # noqa: E402
+from datetime import datetime, timezone  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
+import torch  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
@@ -52,7 +70,16 @@ from src.evaluation import pile_splicing as ps  # noqa: E402
 EXP = REPO / 'results/gemma2_pile/gemma_scope_splicing'
 PREREG = EXP / 'preregistration.json'
 OUTPUTS = ['per_doc_metrics.csv', 'per_doc_sum_x.npz', 'summary_by_layer.csv', 'summary_by_layer_source.csv',
-           'controls.csv', 'h_g1.csv', 'gates.json', 'run_info.json']
+           'controls.csv', 'h_g1.csv', 'gates.json']
+RUN_INFO = 'run_info.json'  # moved into place last (A7): its presence means the output set is complete
+STOP_FILES = ['gates_FAILED.json', 'crosscheck_MISMATCH.json', 'numerics_FAILED.json', 'provenance_FAILED.json']
+STAGING = '.partial'
+# Code and inputs whose committed state the results depend on (A2)
+TRACKED_INPUTS = ['scripts/gemma/03_pile_gemma_scope_splicing.py', 'src/evaluation/pile_splicing.py',
+                  'results/gemma2_pile/gemma_scope_splicing/preregistration.json',
+                  'results/gemma2_pile/gemma_scope_splicing/README.md',
+                  'results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv',
+                  'results/gemma2_pile/gemma_scope_splicing/sample_info.json']
 # Implementation constants that are NOT in the pre-registration (approved 2026-11-12; README section 2):
 SAE_LENS_CROSSCHECK_RTOL = 1e-4  # smoke DIAGNOSTIC: max|x_hat_ours - x_hat_saelens| / max|x_hat_saelens|
 V4_L0_FACTOR = 2.0               # pre-registered: measured L0 within a factor of 2 of the release's average_l0
@@ -66,20 +93,38 @@ def rel(p: Path) -> str:
         return Path(p).name
 
 
-def fail(out_dir: Path, gates: dict, gate: str, msg: str):
-    """Write what is known so far to gates_FAILED.json and stop (pre-registered: a failed gate stops the run)."""
-    gates[gate] = {**gates.get(gate, {}), 'pass': False, 'message': msg}
+def write_stop(out_dir: Path, filename: str, payload: dict, msg: str):
+    """Record everything known so far in ``filename`` and stop. Stop files are never results."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / 'gates_FAILED.json').write_text(json.dumps(gates, indent=2, default=str) + '\n', encoding='utf-8')
-    raise SystemExit(f'{gate} FAILED: {msg}  (details in {rel(out_dir / "gates_FAILED.json")})')
+    (out_dir / filename).write_text(json.dumps({'message': msg, **payload}, indent=2, default=str) + '\n',
+                                    encoding='utf-8')
+    raise SystemExit(f'{msg}  (details in {rel(out_dir / filename)})')
+
+
+def fail(out_dir: Path, gates: dict, gate: str, msg: str):
+    """A failed pre-registered gate stops the run."""
+    gates[gate] = {**gates.get(gate, {}), 'pass': False, 'message': msg}
+    write_stop(out_dir, 'gates_FAILED.json', {'gates': gates}, f'{gate} FAILED: {msg}')
 
 
 def stop_for_investigation(out_dir: Path, gates: dict, msg: str):
     """Smoke-only diagnostic stop (not a gate failure): record everything and stop so the cause can be investigated."""
-    out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / 'crosscheck_MISMATCH.json').write_text(json.dumps(gates, indent=2, default=str) + '\n',
-                                                      encoding='utf-8')
-    raise SystemExit(f'DIAGNOSTIC STOP: {msg}  (details in {rel(out_dir / "crosscheck_MISMATCH.json")})')
+    write_stop(out_dir, 'crosscheck_MISMATCH.json', {'gates': gates}, f'DIAGNOSTIC STOP: {msg}')
+
+
+def check_finite(out_dir: Path, gates: dict, name: str, *tensors):
+    """A1: stop on any NaN/inf (numerics_FAILED.json)."""
+    try:
+        ps.assert_finite(name, *tensors)
+    except ps.NumericsError as exc:
+        write_stop(out_dir, 'numerics_FAILED.json', {'gates': gates}, f'NUMERICS FAILED: {exc}')
+
+
+def check_finite_values(out_dir: Path, gates: dict, name: str, values: dict):
+    try:
+        ps.assert_finite_values(name, values)
+    except ps.NumericsError as exc:
+        write_stop(out_dir, 'numerics_FAILED.json', {'gates': gates}, f'NUMERICS FAILED: {exc}')
 
 
 def release_l0(sae_id: str) -> float:
@@ -140,21 +185,45 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--smoke', action='store_true',
                     help='first 8 eval + 4 reference docs of the committed sample, write to smoke/, run the sae-lens check')
+    ap.add_argument('--out-tag', default=None,
+                    help='(--smoke only) write to smoke_<tag>/ instead of smoke/, e.g. for a byte-level rerun check (A8)')
     args = ap.parse_args()
     t_start = time.time()
+    if args.out_tag is not None and (not args.smoke or not re.fullmatch(r'[A-Za-z0-9_-]+', args.out_tag)):
+        raise SystemExit('--out-tag needs --smoke and may contain only letters, digits, _ and -')
 
     cfg = ps.load_preregistration_eval(PREREG)
     layers = [int(x) for x in cfg['layers']]
-    out_dir = EXP / 'smoke' if args.smoke else EXP
-    clash = [rel(out_dir / f) for f in OUTPUTS + ['gates_FAILED.json', 'crosscheck_MISMATCH.json']
-             if (out_dir / f).exists()]
+    out_dir = (EXP / ('smoke' if args.out_tag is None else f'smoke_{args.out_tag}')) if args.smoke else EXP
+    clash = [rel(out_dir / f) for f in OUTPUTS + [RUN_INFO, STAGING] + STOP_FILES if (out_dir / f).exists()]
     if clash:
-        raise SystemExit(f'refusing to overwrite existing outputs: {clash}')
+        raise SystemExit(f'refusing to overwrite existing outputs or stop files: {clash}')
+
+    # A2: code provenance. A full run must come from a clean, committed tree so code and commit correspond.
+    provenance = ps.git_provenance(REPO, TRACKED_INPUTS)
+    print(f"code provenance: commit {provenance.get('commit')}, dirty: {provenance.get('dirty_paths')}", flush=True)
+    if not args.smoke and (not provenance['available'] or provenance['dirty_paths']):
+        raise SystemExit(f'full run refused: code/inputs must be committed and unmodified ({provenance})')
+
     if not torch.cuda.is_available():
         raise SystemExit('CUDA is required (no CPU fallback for M6)')
     device = 'cuda'
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
+    # A3: deterministic algorithms. warn_only so an op without a deterministic kernel is recorded rather than
+    # crashing the run; gate V3 then tests determinism empirically (repeat and identity passes).
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    torch.use_deterministic_algorithms(True, warn_only=True)
+    determinism_warnings = []
+    _show = warnings.showwarning
+
+    def _record(message, category, filename, lineno, file=None, line=None):
+        if 'determinis' in str(message).lower():
+            determinism_warnings.append(f'{category.__name__}: {message}')
+        _show(message, category, filename, lineno, file, line)
+
+    warnings.showwarning = _record
     gates = {}
 
     # ---------------------------------------------------------------- V1: sample integrity and re-tokenization
@@ -191,6 +260,12 @@ def main():
     objs = ps.load_lines(data_path, man.line_index.tolist())
     tok_rev = cfg['tokenization']['revision']
     tok = AutoTokenizer.from_pretrained(cfg['tokenization']['tokenizer'], revision=tok_rev)
+    loaded_commits = {}
+    try:  # A6: the tokenizer actually loaded must come from the pinned commit
+        loaded_commits['tokenizer'] = ps.check_pinned_commit(
+            getattr(tok, 'init_kwargs', {}).get('_commit_hash'), tok_rev, 'tokenizer')
+    except ValueError as exc:
+        write_stop(out_dir, 'provenance_FAILED.json', {'gates': gates}, f'PROVENANCE FAILED: {exc}')
     max_tok = int(cfg['tokenization']['max_tokens_including_bos'])
     token_ids = {}
     for r in man.itertuples():
@@ -208,6 +283,22 @@ def main():
                                                  dtype=torch.bfloat16, attn_implementation='eager', device_map=device)
     model.eval()
     mcfg = model.config
+    try:  # A6: the weights actually loaded must come from the pinned commit
+        loaded_commits['model'] = ps.check_pinned_commit(getattr(mcfg, '_commit_hash', None),
+                                                         cfg['model']['revision'], 'model')
+    except ValueError as exc:
+        write_stop(out_dir, 'provenance_FAILED.json', {'gates': gates}, f'PROVENANCE FAILED: {exc}')
+    print(f'loaded commits: {loaded_commits}', flush=True)
+    # A9: hardware and precision facts
+    try:
+        bf16_native = torch.cuda.is_bf16_supported(including_emulation=False)
+    except TypeError:  # older torch without the argument
+        bf16_native = 'unknown'
+    hardware = {'gpu': torch.cuda.get_device_name(0),
+                'compute_capability': '.'.join(map(str, torch.cuda.get_device_capability(0))),
+                'bf16_native': bf16_native, 'bf16_supported_incl_emulation': torch.cuda.is_bf16_supported(),
+                'model_param_dtype': str(next(model.parameters()).dtype)}
+    print(f'hardware: {hardware}', flush=True)
     d_model, d_sae = int(cfg['sae']['d_in']), int(cfg['sae']['d_sae'])
     if mcfg.hidden_size != d_model or max(layers) >= mcfg.num_hidden_layers - 1:
         raise SystemExit(f'model/pre-registration mismatch: hidden {mcfg.hidden_size} vs d_in {d_model}, '
@@ -233,7 +324,8 @@ def main():
 
     def run(ids, hidden_states=False):
         with torch.inference_mode():
-            return model(input_ids=ids, attention_mask=torch.ones_like(ids), output_hidden_states=hidden_states)
+            return model(input_ids=ids, attention_mask=torch.ones_like(ids), output_hidden_states=hidden_states,
+                         use_cache=False)  # A5
 
     def as_input(line_index):
         return torch.tensor([token_ids[line_index]], device=device)
@@ -268,13 +360,16 @@ def main():
         # which cached revisions of the SAE repo hold the files sae-lens used (ours is pinned; sae-lens may use main)
         wanted = {f"{cfg['sae']['ids'][str(layer)]}/params.npz" for layer in layers}
         cached = []
-        for repo in scan_cache_dir().repos:
-            if repo.repo_id != cfg['sae']['hf_repo']:
-                continue
-            for rev in repo.revisions:
-                files = {Path(f.file_path).relative_to(rev.snapshot_path).as_posix() for f in rev.files}
-                cached.append({'revision': rev.commit_hash, 'refs': sorted(rev.refs),
-                               'pinned_files_present': sorted(files & wanted)})
+        try:  # A10: a cache-scan problem must not crash the run; it is recorded instead
+            for repo in scan_cache_dir().repos:
+                if repo.repo_id != cfg['sae']['hf_repo']:
+                    continue
+                for rev in repo.revisions:
+                    files = {Path(f.file_path).relative_to(rev.snapshot_path).as_posix() for f in rev.files}
+                    cached.append({'revision': rev.commit_hash, 'refs': sorted(rev.refs),
+                                   'pinned_files_present': sorted(files & wanted)})
+        except Exception as exc:  # noqa: BLE001
+            cached = [{'error': f'cache scan failed: {type(exc).__name__}: {exc}'}]
         diag = {'kind': 'diagnostic (not a pre-registered gate)', 'rtol': SAE_LENS_CROSSCHECK_RTOL,
                 'sae_lens_version': sae_lens.__version__, 'pinned_revision': cfg['sae']['hf_revision'],
                 'repo_main_revision_now': model_info(cfg['sae']['hf_repo']).sha,
@@ -294,9 +389,11 @@ def main():
     for r in ref_docs.itertuples():
         run(as_input(r.line_index))
         for layer in layers:
+            check_finite(out_dir, gates, f'reference activations, layer {layer}', hooks[layer].captured)
             sums[layer] += hooks[layer].captured[0, 1:].double().sum(0)
         n_ref_tok += len(token_ids[r.line_index]) - 1
     means = {layer: (sums[layer] / n_ref_tok).float() for layer in layers}
+    check_finite(out_dir, gates, 'mean-ablation vectors', *means.values())
     sec_per_ref_doc = (time.time() - t_ref) / max(len(ref_docs), 1)
 
     # ---------------------------------------------------------------- evaluation loop
@@ -304,7 +401,16 @@ def main():
     rows, v2_checks = [], 0
     sum_x = np.zeros((len(ev_docs), len(layers), d_model))
     sum_x_row = {int(r): i for i, r in enumerate(ev_docs['rank'])}
+    # H4a (smoke only): measure the bf16 logit precision; the head's input is captured by a pre-hook on the head itself
+    head_capture, precision = {}, []
+    head_hook = None
+    if args.smoke:
+        head = model.get_output_embeddings()
+        head_hook = head.register_forward_pre_hook(lambda m, a: head_capture.__setitem__('x', a[0].detach().clone()))
+        softcap = getattr(mcfg, 'final_logit_softcapping', None)
+
     t_loop = time.time()
+    logits_dtype = None
     for k, doc in enumerate(ev_docs.itertuples()):
         ids = as_input(doc.line_index)
         am = torch.ones_like(ids)
@@ -319,17 +425,34 @@ def main():
                 fail(out_dir, gates, 'V2', f'hook output != hidden_states[{layer + 1}] (document line {doc.line_index})')
             v2_checks += 1
         logits_o = out.logits
+        logits_dtype = str(logits_o.dtype)
+        check_finite(out_dir, gates, f'original logits (line {doc.line_index})', logits_o)
+        check_finite(out_dir, gates, f'original activations (line {doc.line_index})',
+                     *[hooks[layer].captured for layer in layers])
         x_orig = {layer: hooks[layer].captured[smask].float() for layer in layers}
         del out
+        if args.smoke:
+            with torch.inference_mode():
+                precision.append(ps.logit_precision_sums(logits_o, head_capture['x'], head.weight, softcap, ids, pmask))
+            head_capture.clear()
         rows.append({**base, 'layer': -1, 'condition': 'original', **ps.behaviour_sums(logits_o, logits_o, ids, pmask)})
+        logits_r = run(ids).logits
+        check_finite(out_dir, gates, f'repeat logits (line {doc.line_index})', logits_r)
         rows.append({**base, 'layer': -1, 'condition': 'original_repeat',
-                     **ps.behaviour_sums(logits_o, run(ids).logits, ids, pmask)})
+                     **ps.behaviour_sums(logits_o, logits_r, ids, pmask)})
+        del logits_r
+        check_finite_values(out_dir, gates, f'behaviour sums (line {doc.line_index})', rows[-1])
 
         for li, layer in enumerate(layers):
             sae = saes[layer]
             x_hat, l0 = sae(x_orig[layer])
+            check_finite(out_dir, gates, f'SAE reconstruction, layer {layer} (line {doc.line_index})', x_hat)
             recon = ps.reconstruction_sums(x_orig[layer], x_hat, l0)
             sum_x[k, li] = recon.pop('sum_x')
+            check_finite_values(out_dir, gates, f'reconstruction sums, layer {layer}', recon)
+            if not np.isfinite(sum_x[k, li]).all():
+                write_stop(out_dir, 'numerics_FAILED.json', {'gates': gates},
+                           f'NUMERICS FAILED: sum_x non-finite, layer {layer} (line {doc.line_index})')
             conditions = {
                 'sae_splice': lambda h, s=sae: s(h.float())[0],
                 'norm_matched_random_error':
@@ -341,7 +464,9 @@ def main():
                 hooks[layer].set(fn, smask)
                 logits_n = run(ids).logits
                 hooks[layer].set(None)
+                check_finite(out_dir, gates, f'{cond} logits, layer {layer} (line {doc.line_index})', logits_n)
                 row = {**base, 'layer': layer, 'condition': cond, **ps.behaviour_sums(logits_o, logits_n, ids, pmask)}
+                check_finite_values(out_dir, gates, f'{cond} behaviour sums, layer {layer}', row)
                 if cond == 'sae_splice':
                     row.update(recon)
                 rows.append(row)
@@ -352,6 +477,20 @@ def main():
             print(f'{k + 1}/{len(ev_docs)} documents, {per_doc:.1f} s/document', flush=True)
     gates['V2'] = {'pass': True, 'n_checks': v2_checks}
     sec_per_eval_doc = (time.time() - t_loop) / max(len(ev_docs), 1)
+    if head_hook is not None:
+        head_hook.remove()
+    logit_precision = None
+    if precision:  # H4a: a documented limitation, reported only; nothing here enters a result
+        tot = {k: sum(p[k] for p in precision) for k in ('n_pred', 'kl_ref_vs_model_sum', 'abs_ce_diff_sum',
+                                                         'top1_disagree')}
+        logit_precision = {
+            'what': 'model bf16 logits vs float32 recomputation of the same head from its own input (smoke documents)',
+            'logits_dtype': logits_dtype, 'final_logit_softcapping': softcap, 'n_predictions': tot['n_pred'],
+            'mean_kl_fp32_vs_bf16': tot['kl_ref_vs_model_sum'] / tot['n_pred'],
+            'mean_abs_ce_diff': tot['abs_ce_diff_sum'] / tot['n_pred'],
+            'top1_disagreement_rate': tot['top1_disagree'] / tot['n_pred'],
+            'max_abs_logit_diff': max(p['max_abs_logit_diff'] for p in precision)}
+        print(f'logit precision (H4a limitation, diagnostic): {logit_precision}', flush=True)
     # projection for the pre-registered sample (512 eval + 64 reference), from this run's per-document timings
     projected_h = (sec_per_eval_doc * int(cfg['sampling']['n_eval'])
                    + sec_per_ref_doc * int(cfg['sampling']['n_reference'])) / 3600
@@ -391,6 +530,19 @@ def main():
         h_rows.append({'layer': layer, **ps.h_g1(doc_mean_dce('sae_splice'), doc_mean_dce('norm_matched_random_error'),
                                                  ps.bootstrap_indices(len(ranks_all), n_boot, seed))})
     controls, hg1 = pd.DataFrame(ctrl), pd.DataFrame(h_rows)
+    # A1: every numeric output must be finite (checked before any gate is evaluated or anything is written)
+    nonfinite = {
+        'per_doc_metrics (behaviour)': ps.nonfinite_columns(df, ['n_pred', 'ce_orig_sum', 'ce_new_sum', 'kl_sum',
+                                                                 'top1_agree']),
+        'per_doc_metrics (reconstruction)': ps.nonfinite_columns(df[df.condition == 'sae_splice'],
+                                                                 ['n_tok', 'sse', 'sum_sq', 'cos_sum', 'l0_sum']),
+        'summary_by_layer': ps.nonfinite_columns(by_layer), 'summary_by_layer_source': ps.nonfinite_columns(by_source),
+        'controls': ps.nonfinite_columns(controls), 'h_g1': ps.nonfinite_columns(hg1),
+        'per_doc_sum_x': [] if np.isfinite(sum_x).all() else ['sum_x']}
+    nonfinite = {k: v for k, v in nonfinite.items() if v}
+    if nonfinite:
+        write_stop(out_dir, 'numerics_FAILED.json', {'gates': gates, 'nonfinite_columns': nonfinite},
+                   f'NUMERICS FAILED: non-finite values in output tables {nonfinite}')
     gates['V3'] = {'pass': bool(controls.v3_pass.all()), 'threshold': thr,
                    'by_layer': controls[['layer', 'identity_mean_kl', 'repeat_mean_kl']].to_dict('records')}
     v4 = {str(r.layer): {'l0': r.l0, 'release_average_l0': r.release_average_l0, 'ev': r.explained_variance,
@@ -409,16 +561,17 @@ def main():
     if not all_pass:  # full run only (smoke stopped above): keep outputs for diagnosis, mark them INVALID
         for table in (df, by_layer, by_source, controls, hg1):
             table.insert(0, 'status', 'INVALID: validity gate failed (see gates_FAILED.json); do not interpret')
-    out_dir.mkdir(parents=True, exist_ok=True)
-    df.to_csv(out_dir / 'per_doc_metrics.csv', index=False)
-    np.savez_compressed(out_dir / 'per_doc_sum_x.npz', sum_x=sum_x, ranks=np.asarray(ranks_all), layers=np.asarray(layers))
-    by_layer.to_csv(out_dir / 'summary_by_layer.csv', index=False)
-    by_source.to_csv(out_dir / 'summary_by_layer_source.csv', index=False)
-    controls.to_csv(out_dir / 'controls.csv', index=False)
-    hg1.to_csv(out_dir / 'h_g1.csv', index=False)
-    (out_dir / 'gates.json').write_text(json.dumps(gates, indent=2, default=str) + '\n', encoding='utf-8')
-    if not all_pass:
-        (out_dir / 'gates_FAILED.json').write_text(json.dumps(gates, indent=2, default=str) + '\n', encoding='utf-8')
+    # A7: write everything into .partial/ first; files are moved into place only when the set is complete
+    staging = out_dir / STAGING
+    staging.mkdir(parents=True, exist_ok=False)
+    df.to_csv(staging / 'per_doc_metrics.csv', index=False)
+    np.savez_compressed(staging / 'per_doc_sum_x.npz', sum_x=sum_x, ranks=np.asarray(ranks_all), layers=np.asarray(layers))
+    by_layer.to_csv(staging / 'summary_by_layer.csv', index=False)
+    by_source.to_csv(staging / 'summary_by_layer_source.csv', index=False)
+    controls.to_csv(staging / 'controls.csv', index=False)
+    hg1.to_csv(staging / 'h_g1.csv', index=False)
+    (staging / 'gates.json').write_text(json.dumps(gates, indent=2, default=str) + '\n', encoding='utf-8')
+    output_sha256 = {rel(out_dir / f): ps.sha256_file(staging / f) for f in OUTPUTS}
 
     import sae_lens
     import transformers
@@ -429,28 +582,44 @@ def main():
         'created_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'n_eval_docs': len(ev_docs), 'n_reference_docs': len(ref_docs), 'layers': layers,
         'model': {'hf_id': cfg['model']['hf_id'], 'revision': cfg['model']['revision'], 'dtype': 'bfloat16',
-                  'attn_implementation': 'eager'},
+                  'attn_implementation': 'eager', 'loaded_commit_check': loaded_commits, 'logits_dtype': logits_dtype},
         'sae': {'hf_repo': cfg['sae']['hf_repo'], 'hf_revision': cfg['sae']['hf_revision'],
                 'params_npz_sha256': sae_files},
+        'code_provenance': provenance,
         'implementation_constants': {'sae_lens_crosscheck_rtol': SAE_LENS_CROSSCHECK_RTOL, 'v4_l0_factor': V4_L0_FACTOR,
-                                     'batch_size': 1, 'tf32': False},
-        'hashes': {'preregistration.json': ps.sha256_file(PREREG), 'README.md': ps.sha256_file(EXP / 'README.md'),
-                   rel(Path(__file__)): ps.sha256_file(Path(__file__)),
-                   'src/evaluation/pile_splicing.py': ps.sha256_file(REPO / 'src/evaluation/pile_splicing.py'),
-                   rel(manifest_path): ps.sha256_file(manifest_path), rel(info_path): ps.sha256_file(info_path),
-                   rel(out_dir / 'per_doc_sum_x.npz'): ps.sha256_file(out_dir / 'per_doc_sum_x.npz'),
-                   rel(out_dir / 'per_doc_metrics.csv'): ps.sha256_file(out_dir / 'per_doc_metrics.csv')},
+                                     'batch_size': 1, 'tf32': False, 'use_cache': False,
+                                     'deterministic_algorithms': 'True (warn_only)',
+                                     'CUBLAS_WORKSPACE_CONFIG': os.environ.get('CUBLAS_WORKSPACE_CONFIG')},
+        'determinism_warnings': sorted(set(determinism_warnings)),
+        'logit_precision_limitation_H4a': logit_precision,
+        'hardware': hardware,
+        'input_sha256': {'preregistration.json': ps.sha256_file(PREREG), 'README.md': ps.sha256_file(EXP / 'README.md'),
+                         rel(Path(__file__)): ps.sha256_file(Path(__file__)),
+                         'src/evaluation/pile_splicing.py': ps.sha256_file(REPO / 'src/evaluation/pile_splicing.py'),
+                         rel(manifest_path): ps.sha256_file(manifest_path), rel(info_path): ps.sha256_file(info_path)},
+        'output_sha256': output_sha256,
         'environment': {'python': platform.python_version(), 'torch': torch.__version__, 'cuda': torch.version.cuda,
                         'transformers': transformers.__version__, 'sae_lens': sae_lens.__version__,
-                        'numpy': np.__version__, 'pandas': pd.__version__, 'gpu': torch.cuda.get_device_name(0)},
+                        'numpy': np.__version__, 'pandas': pd.__version__},
         'runtime_s': round(time.time() - t_start, 1),
         'seconds_per_eval_document': round(sec_per_eval_doc, 2),
         'seconds_per_reference_document': round(sec_per_ref_doc, 2),
         'projected_full_run_hours': round(projected_h, 2),
         'peak_gpu_memory_gb': round(torch.cuda.max_memory_allocated() / 1e9, 2),
     }
-    (out_dir / 'run_info.json').write_text(json.dumps(run_info, indent=2) + '\n', encoding='utf-8')
-    print(f"wrote {len(OUTPUTS)} outputs to {rel(out_dir)}; status: {run_info['status']}")
+    (staging / RUN_INFO).write_text(json.dumps(run_info, indent=2, default=str) + '\n', encoding='utf-8')
+    for f in OUTPUTS + [RUN_INFO]:  # run_info.json last: its presence marks a complete output set
+        os.replace(staging / f, out_dir / f)
+    staging.rmdir()
+    if not all_pass:
+        (out_dir / 'gates_FAILED.json').write_text(json.dumps({'message': 'validity gate failed at the end of the full '
+                                                                          'run; outputs kept for diagnosis only',
+                                                               'gates': gates}, indent=2, default=str) + '\n',
+                                                   encoding='utf-8')
+    print(f"wrote {len(OUTPUTS) + 1} outputs to {rel(out_dir)}; status: {run_info['status']}")
+    if not all_pass:  # A10
+        print('\n' + '!' * 100 + '\nINVALID RUN: a pre-registered validity gate failed. The numbers below are for '
+              'diagnosis only and must NOT be interpreted.\n' + '!' * 100)
     print(by_layer[['layer', 'explained_variance', 'l0', 'delta_ce_sae', 'delta_ce_random', 'kl_sae',
                     'loss_recovered']].to_string(index=False))
     if not all_pass:
