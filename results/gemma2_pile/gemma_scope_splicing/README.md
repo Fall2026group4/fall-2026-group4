@@ -384,6 +384,11 @@ original CE.
   pre-registered (including Amendment 1).
 * **Documentation:** "Pre-run hashes" says the smoke run's values are copied into Section 2 *before* the full run.
   They are reported here, after it; the hardened smoke outputs are retained in `smoke_hardened/`.
+* **Documentation (post-run):** the pre-run Section 2 says no smoke version of `per_doc_sum_x.npz` is committed.
+  `smoke_hardened/` was nevertheless retained as pipeline and H4a evidence, and it contains its own small
+  `per_doc_sum_x.npz` (8 smoke documents). That file is **not** used for any full-run scientific result. The full-run,
+  pre-registered `per_doc_sum_x.npz` in this folder (SHA-256 recorded in `run_info.json`) remains the authoritative
+  reconstruction artifact.
 
 ## 3. If stopped early
 *(To be completed if needed.)*
