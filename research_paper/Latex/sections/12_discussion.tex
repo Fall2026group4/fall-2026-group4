@@ -51,12 +51,16 @@ result is therefore a bound, not evidence of preservation.
 
 \paragraph{What held-out persona data confirmed.} The single RepE-LM test pass (Section~\ref{sec:h1test}) confirms
 that data-scaled retraining makes the SAE reproduce the honest-minus-dishonest difference more faithfully (9 of 9
-cells). It confirms the layer-8 causal gain only for TopK; the BatchTopK-against-JumpReLU gain points the same way in
-every seed pair but does not survive the Holm correction. A test-only neutral control also exceeded its floor at
+cells). It confirms the layer-8 causal gain only for TopK, and that confirmation does not survive adding
+statement-sampling uncertainty (Section~\ref{sec:audit}); the BatchTopK-against-JumpReLU gain points the same way in
+every seed pair but does not survive the Holm correction. The pair-direction result is the only honesty-related
+improvement that is robust on held-out data, and the neutral control shows that what the SAEs lose is one-word
+instruction information in general, not honesty-specific information. A test-only neutral control also exceeded its floor at
 layers 8 and 11. Only the pre-registered cells count as confirmation; the 90 secondary comparisons are exploratory.
 
-\paragraph{Persona loss is not only a reader artefact.} For truth statements, most of the frozen-probe collapse is
-reproduced by same-norm noise. For persona instructions it is not: the SAE loses 2--3 times more than the noise does,
+\paragraph{Persona loss is not only a reader artefact.} For truth statements, isotropic same-norm noise reproduces most of the
+frozen-probe collapse, but the SAE's own shuffled error reproduces only 50--67\,\% of it, so part of the truth loss is
+SAE-specific too. For persona instructions it is not: the SAE loses 2--3 times more than the noise does,
 re-trained readers recover almost none of it, and the per-pair honest-minus-dishonest difference keeps a cosine of only
 0.35--0.58. A single word changes these activations, and the SAEs reconstruct the two prompts of a pair with errors
 that do not cancel. This is consistent with M4: what is lost in representation is also what leaks out of the causal

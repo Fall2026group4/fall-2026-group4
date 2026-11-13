@@ -1,0 +1,6 @@
+layer,task,k_star,argmin
+1,repe_persona,128.0,"('old', 'topk', 42)"
+8,repe_persona,128.0,"('old', 'topk', 42)"
+8,got_cities,60.33269598470363,"('old', 'jumprelu', 1042)"
+11,repe_persona,128.0,"('old', 'topk', 42)"
+11,got_cities,88.77963671128107,"('old', 'jumprelu', 42)"

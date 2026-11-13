@@ -116,8 +116,9 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
     perturbation.
   * So we add a norm-matched noise reference: if noise of the same size causes the same drop, the drop is probe
     fragility, not information loss.
-* **Evidence:** M2, GoT: frozen gap 0.28, same-norm noise 0.25, re-trained gap 0.07–0.12. The frozen "collapse" is
-  mostly fragility; a smaller real loss remains.
+* **Evidence:** M2, GoT: frozen gap 0.28, same-norm noise 0.25, re-trained gap 0.07–0.12. Isotropic noise
+  reproduces most of the frozen "collapse", but the SAE's own shuffled error reproduces only 50–67 % at L6–11
+  (AUDIT-SENS S5), so part of it is label-aligned SAE error; a smaller re-trained loss remains.
 * **Source:** `results/shared/m2_four_level_faithfulness/`
 
 ### 10. How do you know your truth probe is independent of the training signal?

@@ -39,4 +39,9 @@
         (H1-TEST, Section~\ref{sec:h1test}; Holm over 13 cells) are \evlabel{test}; its HT4 and its 90 secondary
         comparisons are exploratory. Every other persona, representation and causal result remains
         \evlabel{validation}.
+  \item \textbf{What the confirmatory intervals cover.} The R2 rule is a Welch test over three seeds per arm on one
+        fixed evaluation set, so it generalises over SAE training seeds, not over statements or documents. The
+        sensitivity analysis of Section~\ref{sec:audit} adds the cluster-sampling variance (paired cluster bootstrap,
+        $B=2000$; degrees of freedom $\min$(Satterthwaite, Welch), so the interval is never narrower than the seed-only
+        one).
 \end{itemize}

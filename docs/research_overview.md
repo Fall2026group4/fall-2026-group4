@@ -94,9 +94,12 @@ Full tables: [`results_summary.md`](results_summary.md).
    * The GoT design cannot reliably detect changes smaller than about 0.05–0.09 AUROC, so "no change" is a bound.
 3. **Persona representation and causal preservation improved (partly confirmed on held-out data, H1-TEST).**
    * R2 TopK at L8 (VAL): persona gap 0.156 → 0.108; T_rec/T_full 0.63 → 0.73.
-   * TEST: the pair-direction gain is confirmed in 9/9 cells; the L8 causal gain is confirmed for TopK (0.602 → 0.729,
-     Holm p = 0.021), not for BatchTopK vs JumpReLU (Holm p = 0.058); the persona re-fit gap is confirmed only for
+   * TEST: the pair-direction gain is confirmed in 9/9 cells; the L8 causal gain passes the seed-level rule for TopK (0.602 →
+     0.729, Holm p = 0.021), not for BatchTopK vs JumpReLU (Holm p = 0.058); the persona re-fit gap passes only for
      TopK. A test-only neutral control exceeded its floor at L8/L11.
+   * AUDIT-SENS (sensitivity): with statement sampling added, only the pair-direction gain survives; the TopK L8
+     causal and re-fit-gap cells are fragile (adjusted Holm p = 0.156). Normalised by headroom, the persona loss is
+     not persona-specific (the neutral control loses as large or a larger share).
    * There is no gain relative to PCA at equal error (persona was not re-tested at equal dimensions).
    * R4's behavioural gain came with a causal regression at L11.
 4. **The levels dissociate.** Reconstruction predicts behavioural damage within a layer (M0), but not truth

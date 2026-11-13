@@ -381,3 +381,31 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * The 90 secondary comparisons are labelled exploratory everywhere they appear.
   * `src/tests/test_h1_test_paper_claims.py` checks every quoted number against the artifacts.
   * No experiment was re-run and no metric changed.
+
+## D37. Checkpoint backup scope (2026-11-13)
+* **Done:** a verified same-volume backup of all 656 checkpoints (21.7 GB) in `../backups/2026-11-13_checkpoints/`.
+  The manifest and verification are copied to `docs/backups/`.
+* **Blocked:** no off-machine destination or credentials exist on the host (no AWS CLI or keys). The second NVMe is
+  instance-store, which is ephemeral. Uploading 21.7 GB through a chat connector is not feasible.
+* **Decision:** the off-machine copy waits for the user to name a destination. It remains P0.
+
+## D38. How the AUDIT-SENS results change the reported conclusions (2026-11-13). Status: ADOPTED (user instruction: "update conclusions to reflect the actual evidence")
+* **Frozen results are not altered.**
+  * H1-TEST and M5 keep their pre-registered verdicts and tables.
+  * Every place that cites them now adds the AUDIT-SENS qualifier.
+* **Wording rules:**
+  * HT1-C1 and HT3-C1 are "confirmed under the pre-registered seed-only rule; not robust to statement-sampling
+    uncertainty (sensitivity analysis)". They are never cited without the qualifier.
+  * HT2 is "confirmed, and robust to statement-sampling uncertainty".
+  * The persona loss is "generic one-word instruction information". The earlier "persona-specific" sentence is
+    withdrawn.
+  * The frozen-probe GoT collapse is "partly generic reader sensitivity and partly label-aligned SAE error". The earlier
+    "largely perturbation sensitivity" is withdrawn.
+  * The pooled GoT task at L0–4 is not evidence that truth is absent there.
+  * Architecture rankings on task metrics are reported only with a statement that they are not robust to task-level L0.
+* **Not done** (training or new data; needs approval):
+  * R2-recipe SAEs at more layers;
+  * a valid JumpReLU;
+  * Gemma Scope baselines;
+  * a behavioural honesty task;
+  * per-polarity GoT re-analysis with SAEs (a new pre-registration is needed; S4 used original activations only).

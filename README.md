@@ -127,9 +127,9 @@ Verified against `results/shared/m5_confirmatory_test/m5_rows.csv`; details in
 | Spliced ΔCE (nats), same (L8 / L11) | 0.133 / 0.204 | 0.062 / 0.096 | **TEST**, improvement |
 | ΔCE, R4 KL fine-tune vs MSE control (L0 fixed at 128) | 0.062 | 0.051 | **TEST**, improvement (NMSE +2 %) |
 | GoT cities re-fit truth gap | 0.061 | 0.056 | **TEST**, no clear change (0/34 cells) |
-| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement; on TEST (H1-TEST) confirmed for TopK (0.137 → 0.090, Holm p = 0.046), hypothesis NOT CONFIRMED (BatchTopK vs JumpReLU inconclusive) |
-| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement; **TEST-CONFIRMED** for TopK (0.602 → 0.729, Holm p = 0.021); not confirmed for BatchTopK vs JumpReLU (Holm p = 0.058) |
-| RepE-LM persona pair-direction cosine (9 cells) | — | — | **TEST-CONFIRMED** 9/9 (+0.035 to +0.141) |
+| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement; on TEST (H1-TEST) confirmed for TopK under the seed-level rule (0.137 → 0.090, Holm p = 0.046; fragile, AUDIT-SENS S1), hypothesis NOT CONFIRMED (BatchTopK vs JumpReLU inconclusive) |
+| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement; TEST-confirmed for TopK under the seed-level rule (0.602 → 0.729, Holm p = 0.021), fragile to statement sampling (AUDIT-SENS S1); not confirmed for BatchTopK vs JumpReLU (Holm p = 0.058) |
+| RepE-LM persona pair-direction cosine (9 cells) | — | — | **TEST-CONFIRMED** 9/9 (+0.035 to +0.141); robust to statement sampling (AUDIT-SENS S1) |
 | T_rec/T_full, R4 KL vs MSE control (L11) | 0.694 | 0.671 | VALIDATION, **regression** |
 
 * R2 changed data (100M fresh tokens vs 101,600), width (12,288 vs 3,072) and recipe together. The gain is not

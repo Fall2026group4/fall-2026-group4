@@ -154,14 +154,16 @@ findings.
 TopK NMSE falls from 0.160 to 0.094 and $\Delta$CE from 0.133 to 0.062 nats. R4 lowers $\Delta$CE by a further
 16--17\,\% at fixed L0, with a small NMSE regression (+2\,\%).
 \paragraph{Truth information does not follow (TEST).} On GoT, no comparison changes the re-fitted probe gap (0/34
-cells). The frozen original probe's drop on reconstructions (0.19--0.32 AUROC) is largely reproduced by norm-matched
-noise; re-fitted probes lose 0.03--0.11 AUROC. At equal OWT reconstruction error PCA keeps at least as much truth
+cells). The frozen original probe's drop on reconstructions (0.19--0.32 AUROC) is mostly reproduced by isotropic norm-matched
+noise, but the SAE's own errors reassigned to other inputs reproduce only 50--67\,\% of it at layers 6--11, so part
+of it is label-aligned SAE error; re-fitted probes lose 0.03--0.11 AUROC. At equal OWT reconstruction error PCA keeps at least as much truth
 information as the SAEs; that comparison uses 298--519 PCA components against about 128 active SAE latents
 (Section~\ref{sec:pca-note}).
 \paragraph{Persona and causal faithfulness (VALIDATION).} The SAE-reconstructed activation difference carries
 93--97\,\% of the persona effect at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final
 token. R2 raises this to 0.726 for TopK at layer 8 (from 0.625). On a held-out RepE-LM test split, read once (TEST,
-Holm over 13 cells), this gain is confirmed for TopK (0.602 $\to$ 0.729, $p=0.021$) but not for BatchTopK against
+Holm over 13 cells), this gain passes the seed-level rule for TopK (0.602 $\to$ 0.729, $p=0.021$; not robust once statement sampling
+is added) but not for BatchTopK against
 JumpReLU (+0.072, $p=0.058$); the persona pair-direction gain is confirmed in 9 of 9 cells; and a test-only neutral
 control exceeded its 0.55 floor at layers 8 and 11. The persona effect itself is small (0.022 nats at layer 8). R4 lowers causal preservation at layer 11 (0.694 $\to$ 0.671).
 \paragraph{Gemma-2-2B.} PENDING: to be written by the teammates who ran the Gemma steering and Gemma Scope

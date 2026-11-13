@@ -259,7 +259,41 @@ information (GoT), which M5 already tested. The failed N3/N4 control shows that 
 specific on new frames at L8 and L11. Its margin is small next to the T7/T8 transfer (at least 0.26 AUROC), but the
 floor was pre-registered and was not met.
 
+\paragraph{Sensitivity to statement sampling (post hoc; not confirmatory).} The pre-registered rule tests the three
+seeds only; every SAE is scored on the same 86 statements. Section~\ref{sec:audit} adds the statement-sampling
+variance (estimated on validation, where it is 33--99\,\% of the total) to the committed TEST seed statistics. HT2
+survives in all 9 cells. HT1-C1 (adjusted 95\,\% CI $[+0.014, +0.240]$) and HT3-C1 ($[-0.093, -0.002]$) do not
+survive Holm over the 13 cells (adjusted $p=0.156$ for both) under the conservative degrees of freedom. The TopK
+confirmations of HT1 and HT3 are therefore fragile: they hold for these test statements, not demonstrably for new
+statements. The frozen verdicts above are unchanged.
+
 \input{tables/t_h1test}
+
+\subsection{Audit sensitivity analyses}\label{sec:audit}
+
+After an independent audit of the code and results we ran six pre-registered sensitivity analyses (validation rows
+only; no test row read; \texttt{results/\allowbreak{}shared/\allowbreak{}audit\_sensitivity/}). None is a new confirmatory
+test.
+\begin{itemize}
+\item \textbf{S1, statement and document uncertainty.} The seed-only Welch intervals of M5 and H1-TEST omit the
+  sampling of statements or documents, which accounts for 33--99\,\% of each comparison's variance on validation.
+  Adding it (paired cluster bootstrap; conservative degrees of freedom): HT2 holds (9/9); HT1-C1 and HT3-C1 do not
+  (above); 16 of 18 M5 reconstruction and behaviour cells hold, the exceptions being the small layer-1 $\Delta$CE gains
+  of ReLU and of BatchTopK against JumpReLU.
+\item \textbf{S2, persona versus neutral.} Normalised by decodable headroom, no layer shows persona-specific loss; the
+  neutral one-word contrast loses a significantly larger share at layers 5 and 7--11.
+\item \textbf{S3, matched task-level L0.} Truncating every SAE to the smallest natural task L0 among the compared arms
+  leaves 54 of 57 R2 comparison classes unchanged (including the C3 layer-8 causal gain), but reverses the
+  old-architecture ordering in 13 of 19 metric--layer cells.
+\item \textbf{S4, GoT probe anomaly.} Text-only baselines are at chance (at most 0.55). Pooling \texttt{cities} with
+  \texttt{neg\_cities} makes the label truth XOR negation: within one polarity a linear probe reads city--country
+  truth from layer 1 (0.75--0.77) and transfers across polarity, while the pooled linear probe stays at 0.52--0.59 at
+  layers 1--2. Low pooled AUROC at early layers is therefore not evidence that truth is absent (this reading was added
+  after a smoke run and is labelled post hoc).
+\item \textbf{S5, noise references.} Against the SAE's own shuffled error, 33--50\,\% of the GoT frozen-logistic drop at
+  layers 6--11 is label-aligned (Section~\ref{sec:info}).
+\item \textbf{S6, probe regularisation.} An 11-value grid changes no comparison class; no probe selects a grid edge.
+\end{itemize}
 
 \subsection{PCA-CM: does the SAE--PCA verdict depend on how PCA is matched?}\label{sec:pcacm}
 

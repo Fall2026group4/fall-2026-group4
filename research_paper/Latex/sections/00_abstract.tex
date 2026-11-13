@@ -5,9 +5,10 @@ Small for three SAE architectures (ReLU, TopK and a sigmoid-surrogate JumpReLU; 
 seeds each), separating four levels of faithfulness: reconstruction, task-information preservation, behavioural
 faithfulness and causal faithfulness. Reconstruction degrades with depth (OWT test explained variance 0.93--0.95 at
 layers 0--2, 0.76--0.82 at layer 11). Within a layer, reconstruction error predicts how much splicing the SAE damages
-the model's predictions, but not how much truth information is lost. The apparent collapse of a frozen truth probe
-on SAE reconstructions is largely reproduced by random noise of the same norm, but for persona instructions the SAEs
-lose 2--3 times more than such noise and re-trained readers recover almost none of it, and they distort the
+the model's predictions, but not how much truth information is lost. Most of the apparent collapse of a frozen truth probe
+on SAE reconstructions is reproduced by isotropic noise of the same norm, but the SAE's own errors, reassigned at
+random to other inputs, reproduce only 50--67\,\% of it at layers 6--11, so a substantial part is label-aligned and
+SAE-specific. For persona instructions the SAEs lose 2--3 times more than any noise reference and re-trained readers recover almost none of it, and they distort the
 honest-minus-dishonest activation difference (per-pair cosine 0.35--0.58). At matched reconstruction error, PCA
 generally preserves more truth-related information than the evaluated SAEs. However, this comparison allows PCA
 substantially more dimensions (298--519) than the SAEs' active-feature budget (128). Under a fixed 128-dimensional
@@ -29,10 +30,11 @@ pre-registered $\pm$5\,\% guard. Output-KL never improves truth preservation, an
 preservation (+0.02 of the effect) occur only in those sparsity-violating cells; for TopK, whose sparsity is fixed,
 it has no effect. Retraining our SAEs on 100M tokens at width 12,288 cuts reconstruction error by 31--74\,\% and
 splice damage by 35--79\,\% at layers 1, 8 and 11, raises the persona effect carried at layer 8 from 62\,\% to
-73--75\,\% on validation. On a held-out RepE-LM test split, read once, this layer-8 gain is \evlabel{confirmed} for
-TopK (0.602 to 0.729 of the effect, Holm-adjusted $p=0.021$) but not for BatchTopK against JumpReLU (+0.072, all 9
-seed pairs better, Holm-adjusted $p=0.058$), and the persona pair-direction gain is confirmed in all 9 cells (+0.035
-to +0.141 cosine), while a test-only neutral control exceeded its pre-registered floor at layers 8 and 11. In addition, a short KL fine-tune at fixed L0 lowers splice damage by a further 16--17\,\%, at a
+73--75\,\% on validation. On a held-out RepE-LM test split, read once, this layer-8 gain passes the pre-registered
+seed-level rule for TopK (0.602 to 0.729 of the effect, Holm-adjusted $p=0.021$) but not for BatchTopK against
+JumpReLU (Holm-adjusted $p=0.058$), and the TopK confirmation does not survive a sensitivity analysis that adds
+statement-sampling uncertainty; the persona pair-direction gain is confirmed in all 9 cells (+0.035 to +0.141 cosine)
+and survives that analysis, while a test-only neutral control exceeded its pre-registered floor at layers 8 and 11. In addition, a short KL fine-tune at fixed L0 lowers splice damage by a further 16--17\,\%, at a
 cost in causal preservation at layer 11; in a single pre-registered held-out evaluation the reconstruction and
 behaviour gains are \evlabel{confirmed}, while truth information shows no confirmed gain; that test could not have
 detected changes smaller than about 0.05--0.09 AUROC. Our

@@ -287,5 +287,10 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * DONE: verified same-volume checkpoint backup (656 files, 21.7 GB).
 * OPEN (P0, BLOCKED): off-machine backup. No destination or credentials on the host; needs a destination from the user
   (S3 bucket, external drive or institutional storage). D37.
-* IN PROGRESS: S1–S6 sensitivity analyses (`results/shared/audit_sensitivity/`).
+* DONE: S1–S6 sensitivity analyses (`results/shared/audit_sensitivity/`); conclusions revised (D38).
+* NEW (P1, needs a pre-registration): per-polarity GoT re-analysis of the SAE gaps (S4 shows pooling hides early-layer
+  truth).
+* NEW (P1, needs a pre-registration): any future confirmatory test must include statement and document sampling in its
+  interval (S1); 3 seeds alone cannot support cell-level confirmation of small effects.
+* NEW (P2): report architecture rankings on task prompts only at matched task L0 (S3).
 * NOT PLANNED without approval (training): R2-recipe SAEs at more layers; a valid JumpReLU (X3); Gemma Scope baselines.

@@ -1,0 +1,16 @@
+{
+  "B": 1000,
+  "boot_seed": 20261114,
+  "test_rows_used": 0,
+  "max_abs_diff_vs_m2": 0.000757480116146847,
+  "layers_persona_specific_old": [],
+  "layers_neutral_larger_old": [
+    5,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "runtime_s": 476.43516969680786
+}

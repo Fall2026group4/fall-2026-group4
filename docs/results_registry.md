@@ -104,3 +104,15 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/shared/pca_capacity_matched/posthoc_multiplicity/` | DESCRIPTIVE (post-hoc, approximate) | Cite only to qualify PCA-CM "better" cells as per-cell, not family-wise (D34) |
 | "SAE better than PCA" (PCA-CM) | VALIDATION, per-cell criterion | Never write "significantly better"; write "better under the study's comparison criterion" |
 | R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE; **TEST-CONFIRMED for C1** (0.602 → 0.729, Holm p = 0.021) on 2026-11-13; C3 not confirmed | See H1-TEST row and D36 |
+
+## 2026-11-13 AUDIT-SENS (D38)
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/audit_sensitivity/` | SENSITIVITY / DIAGNOSTIC (VALIDATION-based) | Qualifies M5 and H1-TEST; never cite as a confirmatory test |
+| H1-TEST HT1-C1 and HT3-C1 | CONFIRMED (frozen seed-level rule); FRAGILE (AUDIT-SENS S1) | Always cite with the qualifier |
+| H1-TEST HT2 | CONFIRMED; robust to statement sampling | — |
+| "Part of the persona loss is persona-specific" (M2/RLM-RP) | WITHDRAWN | S2: the neutral control loses an equal or larger share |
+| "Frozen GoT collapse is largely perturbation sensitivity" (M2) | WITHDRAWN as worded | S5: 33–50 % is label-aligned SAE error at L6–11 |
+| M2 GoT labels at L0–4 ("uninformative") | VALID FOR THE POOLED TASK ONLY | S4: per polarity, truth is linearly decodable from L1 |
+| Old-architecture rankings on persona/GoT metrics | NOT ROBUST | S3: 13/19 change at matched task L0 |

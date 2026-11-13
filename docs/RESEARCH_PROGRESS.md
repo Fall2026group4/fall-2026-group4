@@ -1123,7 +1123,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * HT2 is not a restatement of NMSE at L8/L11.
 * **Next:** the sensitivity programme in §45 (user instruction of 2026-11-13: fix what can be fixed without retraining).
 
-## 45. In progress: AUDIT-SENS sensitivity programme and checkpoint backup (2026-11-13). Status: PRE-REGISTERED; RUNNING
+## 45. AUDIT-SENS sensitivity programme and checkpoint backup (2026-11-13). Status: COMPLETED (sensitivity; conclusions revised, D38)
 
 * **Backup:** `scripts/shared/backup_checkpoints.py`.
   * 656 `*.pt` files (21.7 GB) went into `../backups/2026-11-13_checkpoints/checkpoints.tar`, with a manifest.
@@ -1133,3 +1133,43 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Plan:** `results/shared/audit_sensitivity/{README.md,preregistration.json}`, with analyses S1–S6, rules and script
   hashes fixed before the full runs. The smoke runs are disclosed there, together with one post-hoc S4 flag.
 * **Evidence label:** SENSITIVITY / DIAGNOSTIC. Nothing in it is confirmatory. No TEST row is read.
+* **Runs:** S1–S6 ran on the frozen hashes. Every script reproduced the committed per-SAE values first:
+  S1 ≤ 1.9e-6, S2 ≤ 7.6e-4, S5 ≤ 1.2e-3. Full results are in `results/shared/audit_sensitivity/README.md` §4–5.
+* **Results:**
+  * **S1:**
+    * Statement or document sampling is 33–99 % of each comparison's variance.
+    * HT2 holds (9/9).
+    * **HT1-C1 and HT3-C1 are no longer supported** (adjusted Holm p = 0.156; they would pass only with Satterthwaite df).
+    * M5 holds in 16/18 cells; the L1 ΔCE cells for C2 and C3 are not robust.
+  * **S2:** no layer shows persona-specific loss. The neutral control loses a significantly larger share at L5 and
+    L7–11 (old SAEs) and at L8 and L11 (R2).
+  * **S3:**
+    * R2 classes are robust (54/57), including the C3 L8 causal gain.
+    * The old-architecture orderings change in 13 of 19 cells.
+    * Disclosed flag bug: C3 RLM/M4 cells should read UNMATCHED. BatchTopK is 6 % sparser, so the bias is
+      conservative.
+  * **S4:**
+    * No lexical shortcut.
+    * Post hoc: pooling hides linear truth at L1–2 (per-polarity 0.75–0.77 vs pooled 0.52–0.59).
+    * The "pipeline leak" flag was a miscalibrated rule: the null mean is 0.497 and its SD equals the theoretical
+      0.027.
+  * **S5:** the SAE's own shuffled error reproduces only 50–67 % of the GoT frozen-logistic drop at L6–11; 92/99
+    cells are label-aligned.
+  * **S6:** robust to the C grid (0/15 changes).
+* **Pre-registered criteria:** every rule was applied as written. Two rules misbehaved and are reported as such:
+  * the S4 null band was too narrow;
+  * the S3 matched flag missed the RLM/M4 metrics.
+* **Conclusions revised (D38):** the paper (new §`sec:audit`, abstract, §7, §10b, §11, §12, §13, §14), README, curated
+  docs, report and slides.
+  * Withdrawn: "persona-specific loss" and "frozen collapse is largely perturbation sensitivity".
+  * HT1-C1 and HT3-C1 are qualified as fragile.
+* **Paper:** builds, 44 pp, no warnings.
+* **Tests:** 83 passed. New paper-claim tests check every AUDIT-SENS number quoted. They caught three rounding
+  errors, which were fixed before the commit.
+* **Unfinished, needing approval or resources:**
+  * off-machine backup (D37);
+  * R2-recipe SAEs at more layers;
+  * a valid JumpReLU;
+  * Gemma Scope;
+  * a behavioural honesty task;
+  * a per-polarity GoT re-analysis with SAEs.

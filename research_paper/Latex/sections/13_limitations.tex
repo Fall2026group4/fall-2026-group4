@@ -41,6 +41,16 @@
         AUROC of 0.561 at L8 and 0.551 at L11, above the pre-registered floor of 0.55. The probe is therefore not
         perfectly specific to the persona contrast on new frames at these layers. We did not change the floor or the
         frames after seeing this.
+  \item \textbf{Inference over seeds, not statements.} The pre-registered R2 rule treats the evaluation set as fixed.
+        With statement and document sampling added (Section~\ref{sec:audit}), the TopK cells of HT1 and HT3 and two
+        layer-1 $\Delta$CE cells of M5 are no longer supported.
+  \item \textbf{Construct validity of the honesty task.} RepE-LM swaps one instruction word; a neutral one-word swap
+        loses as large a share of its signal, and GPT-2 Small shows no behavioural honesty effect on the next token.
+        The persona results measure instruction-token retention, not honesty.
+  \item \textbf{Pooled truth task.} \texttt{cities} and \texttt{neg\_cities} are pooled, which hides linearly
+        decodable truth at layers 1--4 (per-polarity AUROC 0.75--0.84); early-layer GoT labels from M2 describe the
+        pooled task only.
+  \item \textbf{Architecture rankings depend on task-level L0} (Section~\ref{sec:audit}, S3).
   \item \textbf{H1-TEST power and scope.} Three seeds per arm (Welch tests on at most 4 degrees of freedom); only HT2
         and the TopK cells of HT1 and HT3 are confirmed; the 90 secondary comparisons are uncorrected and
         exploratory; the RepE-LM test rows are now spent.

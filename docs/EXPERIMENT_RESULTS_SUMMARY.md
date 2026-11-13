@@ -733,3 +733,16 @@ Source: `results/repe/repe_lm_test_evaluation/confirmatory_cells.csv`. Holm over
 * **HT4 (descriptive),** T7/T8 test-only persona-probe AUROC: 0.564 (L1), 0.833 (L8), 0.825 (L11).
 * **N3/N4 neutral floor:** 0.501 / 0.561 / 0.551. It fails at L8 and L11.
 * **Secondary comparisons:** 55 improvement / 35 no change / 0 regression.
+
+## AUDIT-SENS: sensitivity analyses (2026-11-13; VALIDATION-based; not confirmatory)
+
+Source: `results/shared/audit_sensitivity/`.
+
+| Analysis | Key numbers | Effect on conclusions |
+|---|---|---|
+| S1 statement / document uncertainty | Cluster share of variance 33–99 %. HT1-C1 adjusted CI [+0.014, +0.240]; HT3-C1 [−0.093, −0.002]; both Holm p = 0.156. HT2 9/9 hold. M5 16/18 hold | TopK HT1/HT3 cells fragile; L1 ΔCE gains for C2/C3 not robust |
+| S2 headroom-normalised persona vs neutral | ΔNL (old) −0.12 to −0.00; CI < 0 at L5 and L7–11 | Persona-specific loss withdrawn |
+| S3 matched task L0 (k\* persona 128; GoT 60.3 / 88.8) | 54/57 R2 classes unchanged; 13/19 old orderings change | R2 gains robust; architecture rankings not |
+| S4 GoT probe anomaly | Bag-of-words ≤ 0.55; per-polarity logistic L1–2 0.75–0.77 vs pooled 0.52–0.59 | Pooling hides early-layer truth (post hoc) |
+| S5 noise references | GoT logistic L6–11: SAE 0.26–0.32, isotropic 0.23–0.30, shuffled SAE error 0.15–0.20; 92/99 label-aligned | "Largely perturbation sensitivity" withdrawn |
+| S6 C grid 1e-4…10 | 0/15 class changes; no edge selections | Robust |

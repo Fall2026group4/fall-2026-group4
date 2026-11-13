@@ -2,7 +2,7 @@
 
 Across all layers of GPT-2 Small, three SAE architectures reconstruct activations well by conventional measures, but
 reconstruction quality predicts behavioural damage rather than information preservation, frozen-probe ``truth loss''
-is largely perturbation sensitivity, PCA at equal reconstruction error preserves at least as much task information
+is partly generic reader sensitivity and partly label-aligned SAE error, PCA at equal reconstruction error preserves at least as much task information
 as the SAEs (while using more dimensions than the SAEs activate per token), and at mid and late
 layers the SAE reconstruction carries only about two-thirds of a causal effect located in the original model.
 Short fine-tuning improves the faithfulness level it optimises (task reconstruction, or output agreement with an
@@ -16,12 +16,15 @@ Section~\ref{sec:improve}) changes several of these conclusions and leaves other
 \begin{itemize}
 \item \textbf{Confirmed on held-out data:} reconstruction error falls by 31--74\,\% and splice damage by
   35--79\,\%.
-\item \textbf{Confirmed on held-out RepE-LM data (H1-TEST):} persona pair-direction fidelity improves in all 9
-  layer--comparison cells (+0.035 to +0.141 cosine), and for TopK the persona effect carried at layer 8 rises from
-  0.602 to 0.729 (Holm-adjusted $p=0.021$).
+\item \textbf{Confirmed on held-out RepE-LM data (H1-TEST) and robust to statement sampling:} persona
+  pair-direction fidelity improves in all 9 layer--comparison cells (+0.035 to +0.141 cosine).
+\item \textbf{Confirmed under the pre-registered seed-level rule only (fragile):} for TopK the persona effect carried
+  at layer 8 rises from 0.602 to 0.729 (Holm-adjusted $p=0.021$), but this does not survive adding
+  statement-sampling uncertainty (adjusted Holm $p=0.156$).
 \item \textbf{Not confirmed on held-out data:} the layer-8 causal gain for BatchTopK against JumpReLU (+0.072, all 9
-  seed pairs better, Holm-adjusted $p=0.058$), and the persona re-fit-gap reduction as a hypothesis (TopK passes,
-  $-0.048$, Holm-adjusted $p=0.046$; BatchTopK against JumpReLU is inconclusive). A test-only neutral control
+  seed pairs better, Holm-adjusted $p=0.058$), and the persona re-fit-gap reduction as a hypothesis (TopK passes the seed-level rule,
+  $-0.048$, Holm-adjusted $p=0.046$, but not the statement-sampling sensitivity analysis; BatchTopK against JumpReLU
+  is inconclusive). A test-only neutral control
   exceeded its floor at layers 8 and 11 (0.561, 0.551 against 0.55).
 \item \textbf{Unchanged:}
   \begin{itemize}
