@@ -268,10 +268,11 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * IN PROGRESS (user-authorised 2026-11-13; implementation frozen, TEST pass running): H1 RepE-LM TEST split. Data and protocol are frozen (`data/repe/repe_lm_test/`,
   `results/repe/repe_lm_test_protocol/`); the evaluation is NOT RUN and awaits user approval (about 1–2 GPU hours).
   Next: write script 29, smoke-test it on validation, hash it into the pre-registration, run once.
-* PLANNED (proposed, not approved): a mediated SAE-in-the-loop test. An edit at layer ℓ with SAEs spliced at
+* PRE-REGISTERED 2026-11-13 (SIL, `results/repe/sae_in_the_loop_mediation/`; pilot gate first): a mediated SAE-in-the-loop test. Earlier proposal text: An edit at layer ℓ with SAEs spliced at
   ℓ+1…ℓ+k, so that the effect must pass through SAE nonlinearities (D33).
 * DONE (VALIDATION): PCA-CM. Paper and curated docs revised with the user-approved wording (D34, 2026-11-13).
 * DONE: sensitivity/MDE analysis, now in the paper (§statistics, §causal, §discussion, §limitations) (D35).
+* RULES FROZEN, NOT EXECUTED (needs user approval): PCA-CM-T test confirmation (`results/shared/pca_capacity_matched_test_protocol/`).
 * PLANNED (needs a new pre-registration): capacity-matched PCA for the RepE-LM persona task; a test-split
   confirmation of PCA-CM (GoT test rows were previously exposed, D31, so it would be labelled accordingly).
 * OPEN: off-machine backup (needs a destination); linking the commit email; posting the drafted replies

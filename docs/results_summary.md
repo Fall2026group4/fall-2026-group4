@@ -94,7 +94,7 @@ Original-activation logistic AUROC (TEST) is 0.839 at L8 and 0.792 at L11. GoT i
 | Frozen original logistic probe on x̂ | whether the model's original readout survives | 0.19–0.32 (L4–11, old SAEs, TEST) | mostly generic fragility: same-norm noise gives 0.25 vs the SAE's 0.28 (M2, VAL) |
 | Re-fit logistic probe on x̂ | whether the information is still linearly present | 0.07–0.12 (M2, VAL); 0.028–0.107 (M5, TEST) | a real but small loss |
 | PCA at matched OWT NMSE (k = 298–519) | reference | — | **no trained SAE beats error-matched PCA** (M2, M5) |
-| PCA at k = 128 / at the SAE's GoT task L0 (PCA-CM, VAL) | reference | — | SAE better in 3/20 / 8/20 trained cells under the study's criterion, never worse (see B2b) |
+| PCA at k = 128 / at the SAE's GoT task L0 (PCA-CM, VAL) | reference | — | SAE better in 3/20 / 8/20 trained cells under the study's criterion, never classified worse; not equivalence (see B2b) |
 
 ### B2. M5 GoT cities (TEST; re-fit logistic gap ↓; SAE − PCA ↓, < 0 means it beats PCA)
 

@@ -88,7 +88,8 @@ Full tables: [`results_summary.md`](results_summary.md).
    * No trained SAE beats PCA at equal reconstruction error (PCA then uses 298–519 dimensions), and a random frozen
      decoder ties them on that metric.
    * At an equal 128-dimensional budget (PCA-CM, VALIDATION), trained SAEs are better under the study's criterion in
-     3/20 GoT comparisons and not worse in 17; at task-matched k, better in 8/20 and not worse in 12. **The SAE–PCA
+     3/20 GoT comparisons and not classified worse in 17; at task-matched k, better in 8/20 and not classified worse
+     in 12 (not equivalence: the ±0.02 equivalence class was met in 0/40 cells). **The SAE–PCA
      verdict depends on the comparison constraint.**
    * The GoT design cannot reliably detect changes smaller than about 0.05–0.09 AUROC, so "no change" is a bound.
 3. **Persona representation and causal preservation improved on validation only.**

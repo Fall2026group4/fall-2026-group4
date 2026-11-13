@@ -223,7 +223,7 @@ excludes zero.
 \item \textbf{Fixed $k=128$.} Trained SAEs are better in 3 of 20 cells (R2 ReLU at L8 and L11; res-jb at L8) and not
   worse in the remaining 17; no individual seed's interval favours PCA. At L11, R2 ReLU's gap is 0.076 against PCA's
   0.153.
-\item \textbf{$k$ matched to task activity} ($k=54$--128). Better in 8 of 20 cells, not worse in the remaining 12.
+\item \textbf{$k$ matched to task activity} ($k=54$--128). Better in 8 of 20 cells, not classified worse in the remaining 12.
 \item \textbf{Reconstruction and behaviour.} PCA-128 has NMSE 0.30/0.46/0.43 and $\Delta$CE 0.40/0.99/1.06 nats at
   L1/L8/L11; every trained SAE beats it on NMSE, $\Delta$CE and KL on every seed.
 \end{itemize}
@@ -231,11 +231,11 @@ excludes zero.
 \paragraph{Statistical status.} ``Better'' here is the study's pre-registered comparison criterion, not a
 family-wise significance claim: the rule is applied per cell without correction. Under an approximate post-hoc Holm
 correction over the 40 capacity-matched cells (normal approximation to the stored intervals), 1 of the 3 cells at
-$k=128$ (R2 ReLU, L11) and 4 of the 8 task-matched cells survive.
+$k=128$ (R2 ReLU, L11) and 4 of the 8 task-matched cells survive. ``Not worse'' means only that no interval favours PCA. It is not an equivalence or non-inferiority result: the pre-registered $\pm0.02$ equivalence class is met in 0 of the 40 capacity-matched cells, because the paired intervals (half-width about 0.03--0.05) are wider than the margin.
 
 \paragraph{Inference.} At matched reconstruction error, PCA generally preserves more truth-related information than
 the evaluated SAEs, but that comparison allows PCA substantially more dimensions than the SAEs' active-feature budget.
-At an equal per-token budget, trained SAEs are never worse and, mainly for ReLU-family SAEs, sometimes better. These
+At an equal per-token budget, no trained SAE is classified worse than PCA and, mainly for ReLU-family SAEs, some are better. These
 findings are \evlabel{validation} findings and show that conclusions about representational faithfulness depend on the
 comparison constraint. $k=128$ equalises the per-token active budget, not parameters or representational capacity: a
 TopK SAE chooses 128 of 12,288 learned directions per token, whereas PCA-128 is one fixed subspace. The persona task

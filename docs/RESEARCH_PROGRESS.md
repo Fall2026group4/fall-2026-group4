@@ -1023,3 +1023,18 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Protocol:** `results/openwebtext/r2_scaled_saes/scaling/{README.md,preregistration.json}`; analysis script
   `scripts/shared/r2_scaling_analysis.py`, written before any output existed. VALIDATION; light ladder; 108
   checkpoints.
+
+## 42. SIL (SAE-in-the-loop mediated intervention) pre-registered; PCA-CM test confirmation assessed (2026-11-13). Status: PRE-REGISTERED / RULES FROZEN
+
+* **SIL (Review #8 C3):** `results/repe/sae_in_the_loop_mediation/`. A layer-1 latent swap is made in a model with SAEs
+  spliced (error dropped) at layer 1 and downstream at 8 / 8+11, against matched isotropic, shuffled-latent and
+  neutral controls.
+  * Unlike M4, every path to the output in D1/D2 passes through downstream SAE codes.
+  * At the edit layer itself the edit is still W_dec Δz (stated, not overclaimed).
+  * Feasibility gate first, on a 2-SAE pilot; VALIDATION only.
+* **PCA-CM-T:** PCA-CM is pre-registered exploratory work on validation. A test confirmation is justified, but GoT test
+  rows are previously exposed and only the PCA arms are unseen. The confirmatory families (P1 no-worse over 20 cells;
+  P2 3 cells; P3 8 cells) are frozen in `results/shared/pca_capacity_matched_test_protocol/`. **NOT EXECUTED;** it
+  needs the user's approval.
+* **Wording:** "not worse" is now "not classified worse" everywhere, with the note that the ±0.02 equivalence class
+  was met in 0/40 capacity-matched cells. It is not an equivalence or non-inferiority claim.

@@ -136,8 +136,9 @@ Verified against `results/shared/m5_confirmatory_test/m5_rows.csv`; details in
 * **PCA comparison depends on the constraint (VALIDATION, PCA-CM).** At matched reconstruction error, PCA generally
   preserves more truth-related information than the evaluated SAEs (SAE worse in 13/20 GoT cells, never better), but
   that reference gives PCA 298–519 dimensions against the SAEs' 128 active latents. With PCA fixed at 128 dimensions,
-  trained SAEs are better under the study's comparison criterion in 3/20 GoT comparisons and not worse in the other
-  17; with PCA matched to task-specific SAE activity, better in 8/20 and not worse in 12. Not a family-wise
+  trained SAEs are better under the study's comparison criterion in 3/20 GoT comparisons and not classified worse in the
+  other 17; with PCA matched to task-specific SAE activity, better in 8/20 and not classified worse in 12 (not an
+  equivalence claim: the ±0.02 equivalence class was met in 0/40 cells). Not a family-wise
   significance claim (an approximate Holm check keeps 1/3 and 4/8). Persona information was compared at equal error
   only. See [`results/shared/pca_capacity_matched/`](results/shared/pca_capacity_matched/README.md).
 * **Power:** GoT comparisons cannot reliably detect changes smaller than about 0.05–0.09 AUROC

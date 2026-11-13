@@ -32,7 +32,7 @@ benefit; TopK, whose L0 is fixed, is the only architecture where the gain is cre
 
 \paragraph{The negative result is the main finding.} The SAEs studied here reconstruct well by conventional measures,
 yet they lose task information that PCA at equal error keeps (although PCA then uses 2--4 times as many dimensions as
-the SAE activates per token; at an equal 128-dimensional budget the SAEs are never worse on GoT truth information and
+the SAE activates per token; at an equal 128-dimensional budget no SAE is classified worse on GoT truth information, and they are
 better in 3 of 20 comparisons), and at mid and late layers their reconstruction carries
 only part of a causal effect that GPT-2 demonstrably carries there. Short fine-tuning improves what it optimises
 (task reconstruction, output agreement) and nothing we could verify beyond that: E3 finds no creditable gain in
@@ -41,7 +41,7 @@ only part of a causal effect that GPT-2 demonstrably carries there. Short fine-t
 
 \paragraph{The PCA verdict depends on the constraint.} ``Better or worse than PCA'' is not a property of an SAE
 alone. Matched on reconstruction error, PCA generally preserves more truth-related information; matched on the
-per-token budget, the SAEs are never worse and sometimes better (Section~\ref{sec:pcacm}, \evlabel{validation}). The
+per-token budget, no SAE is classified worse (which is not equivalence) and some are better (Section~\ref{sec:pcacm}, \evlabel{validation}). The
 two references answer different questions: whether the SAE's error is unusually costly for its size, and whether
 sparse, input-dependent selection beats one fixed subspace of the same width. Reports should name the constraint.
 
