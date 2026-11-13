@@ -265,9 +265,13 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 ## 2026-11-13 additions (audit remediation; register in `docs/remediation/issue_register.md`)
 
 * DONE: PCA-CM, the capacity-matched PCA reference (S1), VALIDATION only; `results/shared/pca_capacity_matched/`.
-* IN PROGRESS (user-authorised 2026-11-13; implementation frozen, TEST pass running): H1 RepE-LM TEST split. Data and protocol are frozen (`data/repe/repe_lm_test/`,
-  `results/repe/repe_lm_test_protocol/`); the evaluation is NOT RUN and awaits user approval (about 1–2 GPU hours).
-  Next: write script 29, smoke-test it on validation, hash it into the pre-registration, run once.
+* DONE 2026-11-13: H1 RepE-LM TEST pass (`results/repe/repe_lm_test_evaluation/`).
+  * HT2 confirmed.
+  * HT1 and HT3 are not confirmed; only their C1 cells are.
+* OPEN (needs the user's approval, D36): revise the paper and curated docs with the H1-TEST verdicts. The L8 causal
+  gain is "confirmed for TopK; not confirmed for BatchTopK vs JumpReLU".
+* OPEN (P2): the N3/N4 neutral frames leak slightly at L8/L11 (0.56). A future test-only template set should check
+  neutral-floor calibration on TRAIN first.
 * PRE-REGISTERED 2026-11-13 (SIL, `results/repe/sae_in_the_loop_mediation/`; pilot gate first): a mediated SAE-in-the-loop test. Earlier proposal text: An edit at layer ℓ with SAEs spliced at
   ℓ+1…ℓ+k, so that the effect must pass through SAE nonlinearities (D33).
 * DONE (VALIDATION): PCA-CM. Paper and curated docs revised with the user-approved wording (D34, 2026-11-13).

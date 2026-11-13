@@ -95,11 +95,12 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 
 | Item | Status | Notes |
 |---|---|---|
-| `data/repe/repe_lm_test/` | DATA ONLY: FROZEN, NOT EVALUATED | No result may be cited from it until the protocol in `results/repe/repe_lm_test_protocol/` has run once |
+| `data/repe/repe_lm_test/` | EVALUATED ONCE (2026-11-13) | TEST rows are now spent: never use them for selection or tuning |
+| `results/repe/repe_lm_test_evaluation/` (H1-TEST) | CONFIRMED TEST RESULT: HT2 (9/9 cells), HT1-C1 L8, HT3-C1 L8. NOT CONFIRMED: HT1, HT3 as hypotheses (C3 cells fail) | Cite HT1/HT3 per cell, never as "confirmed hypotheses"; HT4 and secondary comparisons are descriptive |
 | M4 "SAE-in-the-loop feature patches" | VALID WITHIN SCOPE (VALIDATION) | Cite as "SAE-selected directions, error term kept"; not as SAE-mediated (D33) |
 | `results/shared/pca_capacity_matched/` | VALIDATION FINDING (descriptive), citable with the matching criterion stated | Qualifies every "SAE vs PCA" claim (D34); error-matched claims replicate |
 | `results/shared/power_sensitivity/` | DESCRIPTIVE (design sensitivity) | Cite as an MDE, not as power for the observed effects |
 | "No trained SAE beats PCA" (M2, M5, paper) | VALID ONLY AS AN ERROR-MATCHED STATEMENT | Must state "at equal OWT reconstruction error (k = 298–519)"; false at k = 128 for some ReLU-family cells (D34). Paper and curated docs revised 2026-11-13 |
 | `results/shared/pca_capacity_matched/posthoc_multiplicity/` | DESCRIPTIVE (post-hoc, approximate) | Cite only to qualify PCA-CM "better" cells as per-cell, not family-wise (D34) |
 | "SAE better than PCA" (PCA-CM) | VALIDATION, per-cell criterion | Never write "significantly better"; write "better under the study's comparison criterion" |
-| R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE | Cite with the per-SAE MDE (0.054–0.107) caveat (D35) |
+| R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE; **TEST-CONFIRMED for C1** (0.602 → 0.729, Holm p = 0.021) on 2026-11-13; C3 not confirmed | See H1-TEST row and D36 |

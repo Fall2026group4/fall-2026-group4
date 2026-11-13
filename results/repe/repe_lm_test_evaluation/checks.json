@@ -1,0 +1,19 @@
+{
+  "mode": "test",
+  "script_sha256": "c99957ee80e882426dd3baac6f7b1a53c1be852698d74e81880021db6289c6c8",
+  "n_saes": 81,
+  "runtime_s": 4952.725503921509,
+  "eval_rows": 2408,
+  "test_rows_used": 2408,
+  "fitted_on": "RepE-LM TRAIN only",
+  "checks": {
+    "L1": {},
+    "L8": {},
+    "L11": {}
+  },
+  "hypotheses": {
+    "HT1": false,
+    "HT2": true,
+    "HT3": false
+  }
+}

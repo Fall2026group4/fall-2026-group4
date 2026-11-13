@@ -714,3 +714,22 @@ Selected rows (SAE gap mean ± sd over 3 seeds; PCA gap; the class follows the p
 |---|---|---|---|
 | k = 128 | 3 | 1 (R2 ReLU L11) | 0 / 58 |
 | task-L0-matched | 8 | 4 (old ReLU L8; R2 ReLU L8, L11; res-jb L8) | 0 / 58 |
+
+## H1-TEST: RepE-LM held-out TEST pass (2026-11-13; single run; 81 SAEs; 2,408 TEST rows)
+
+Source: `results/repe/repe_lm_test_evaluation/confirmatory_cells.csv`. Holm over 13 cells.
+
+| Hyp. | Metric | Cell | VAL diff | TEST diff [95 % CI] | Pairs | Holm p | Confirmed |
+|---|---|---|---|---|---|---|---|
+| HT1 | M4 T_rec/T_full (↑) | C1 L8 | +0.101 | +0.127 [+0.079, +0.175] | 9/9 | 0.021 | yes |
+| HT1 | | C3 L8 | +0.090 | +0.072 [+0.015, +0.130] | 9/9 | 0.058 | no |
+| HT2 | pair-dir cosine (↑) | C1 L1/L8/L11 | +0.135/+0.094/+0.080 | +0.136/+0.090/+0.070 | 9/9 each | ≤ 5.6e-4 | yes ×3 |
+| HT2 | | C2 L1/L8/L11 | +0.084/+0.050/+0.066 | +0.077/+0.051/+0.058 | 9/9 each | ≤ 0.015 | yes ×3 |
+| HT2 | | C3 L1/L8/L11 | +0.143/+0.068/+0.039 | +0.141/+0.064/+0.035 | 9/9 each | ≤ 3.0e-3 | yes ×3 |
+| HT3 | persona refit gap (↓) | C1 L8 | −0.048 | −0.048 [−0.079, −0.016] | 9/9 | 0.046 | yes |
+| HT3 | | C3 L8 | −0.037 | −0.022 [−0.055, +0.011] | 8/9 | 0.128 | no |
+
+* **Verdicts:** HT2 CONFIRMED; HT1 NOT CONFIRMED; HT3 NOT CONFIRMED.
+* **HT4 (descriptive),** T7/T8 test-only persona-probe AUROC: 0.564 (L1), 0.833 (L8), 0.825 (L11).
+* **N3/N4 neutral floor:** 0.501 / 0.561 / 0.551. It fails at L8 and L11.
+* **Secondary comparisons:** 55 improvement / 35 no change / 0 regression.

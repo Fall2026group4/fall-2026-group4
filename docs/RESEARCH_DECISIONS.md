@@ -359,3 +359,18 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Decision (user-approved):** the paper and docs state the GoT null as "no change larger than about 0.05–0.09
   AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
   protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.
+
+## D36. How the H1-TEST outcome is reported (2026-11-13). Status: reporting rule ADOPTED; paper revision PROPOSED, awaits the user
+* **Source:** `results/repe/repe_lm_test_evaluation/` (single TEST pass, Holm over 13 cells, rule frozen in the addendum).
+* **Adopted now (follows the pre-registered rule; no discretion):**
+  * HT2 is reported as a CONFIRMED TEST RESULT.
+  * HT1 and HT3 are reported as NOT CONFIRMED.
+  * Their C1 cells are reported as confirmed cells.
+  * HT1-C3 is reported as "improved in 9/9 pairs on TEST, not significant after Holm (p = 0.058)". It is never
+    rounded up to confirmed.
+* **Proposed (needs the user's approval before the paper or curated docs change):** D35's "borderline, pending the
+  test" becomes:
+  * "confirmed on held-out TEST for TopK (C1: 0.602 → 0.729)";
+  * "not confirmed for BatchTopK vs JumpReLU (C3)".
+* **Not changed:** no threshold, cell count or rule is altered after seeing TEST; the N3/N4 floor failure is
+  disclosed, not explained away.

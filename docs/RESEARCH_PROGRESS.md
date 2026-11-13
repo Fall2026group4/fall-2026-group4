@@ -1002,7 +1002,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   `decisions.csv`; it only rules out the word "significantly".
 * **Evidence label:** PCA-CM is VALIDATION; the Holm check and MDE are descriptive.
 
-## 40. In progress: H1-TEST, the single RepE-LM held-out evaluation (2026-11-13). Status: IMPLEMENTATION FROZEN; TEST PASS RUNNING
+## 40. H1-TEST, the single RepE-LM held-out evaluation (2026-11-13). Status: COMPLETED, CONFIRMED TEST RESULT (HT2); HT1 and HT3 NOT CONFIRMED
 
 * **Authorised by the user** (2026-11-13: "You have my authorization to run this evaluation using the existing
   checkpoints").
@@ -1012,7 +1012,29 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Checkpoints:** all 81 equal their registry and ladder hashes.
 * **Addendum** (`results/repe/repe_lm_test_protocol/preregistration_addendum.json`): committed and pushed before
   any TEST row was read. The cell count is corrected from 12 to 13 for Holm.
-* **Next:** run once; document every cell; compare with validation.
+* **Run (once, test mode):**
+  * 81 SAE sources, 2,408 TEST rows, 4,953 s.
+  * Script hash `c99957ee…` equals the addendum.
+  * Files: `results/repe/repe_lm_test_evaluation/`.
+* **Controls:**
+  * Positive controls PASS: T_full > 0 with CI low > 0 at L1/L8/L11; persona KL 0.039 > synonym KL 0.017; every SAE's
+    T_rec is above the isotropic and permuted q95.
+  * Neutral N1/N2 PASS.
+  * N3/N4 (test-only frames) exceed the 0.55 floor at L8 (0.561) and L11 (0.551). This is disclosed.
+* **Results (Holm over 13 cells):**
+  * **HT2 CONFIRMED,** 9/9 cells: the pair-direction cosine gain replicates (+0.035 to +0.141; within 0.012 of
+    validation).
+  * **HT1 NOT CONFIRMED.**
+    * C1 L8 is confirmed: 0.602 → 0.729, Holm p = 0.021.
+    * C3 L8 is IMPROVEMENT by the R2 rule (+0.072, 9/9 pairs) but Holm p = 0.058.
+  * **HT3 NOT CONFIRMED.**
+    * C1 L8 is confirmed: −0.048, Holm p = 0.046.
+    * C3 L8 shows NO CLEAR CHANGE (−0.022, CI crosses 0, 8/9 pairs).
+  * **HT4 (descriptive):** T7/T8 transfer AUROC is 0.833 at L8 and 0.825 at L11, against 0.564 at L1.
+  * **Secondary (descriptive):** 55 IMPROVEMENT, 35 no clear change, 0 regressions across 90 cells.
+* **Evidence label:** CONFIRMED TEST RESULT for HT2 and for the individual cells HT1-C1 and HT3-C1; the rest is as
+  stated above.
+* **Not done:** the paper and curated docs are NOT revised. Proposed wording is in D36, awaiting the user.
 
 ## 41. In progress: X0, token exposure within the R2 runs (2026-11-13). Status: PRE-REGISTERED
 

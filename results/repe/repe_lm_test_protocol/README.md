@@ -1,4 +1,4 @@
-# H1: held-out RepE-LM TEST protocol (2026-11-13). Status: FROZEN; implementation frozen (addendum); TEST pass authorised by the user and started
+# H1: held-out RepE-LM TEST protocol (2026-11-13). Status: FROZEN; EXECUTED ONCE (results in [`../repe_lm_test_evaluation/`](../repe_lm_test_evaluation/README.md))
 
 Evidence level: none yet. This folder contains a **protocol and a dataset, not a result**.
 
