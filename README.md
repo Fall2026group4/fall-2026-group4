@@ -305,20 +305,21 @@ and its error part. Each part is patched separately.
 | 108-run all-layer baseline; sparsity matching; optimiser consistency | COMPLETED (TEST) |
 | Splicing (behaviour), all layers | COMPLETED (VALIDATION) |
 | Layer-6 fine-tuning pilots (truth-aware audit, Method A, E2E B/C, KL ablation), P1 | COMPLETED (VALIDATION) |
-| M0, M1, M2, M3, M4 | COMPLETED (VALIDATION; committed locally, **not yet on `main`**) |
-| Multi-layer improvement table (IMP-L) | COMPLETED (VALIDATION; committed locally, not yet on `main`) |
+| M0, M1, M2, M3, M4 | COMPLETED (VALIDATION; on `sae-research` / PR #27, **not yet on `main`**) |
+| Multi-layer improvement table (IMP-L) | COMPLETED (VALIDATION; on PR #27, not yet on `main`) |
 | E3; RLM-RP (RepE-LM representation, 216 SAEs) | COMPLETED 2026-11-10 (VALIDATION; committed locally) |
 | E2 (res-jb reference); R2-scaled; R4; R5 | COMPLETED 2026-11-10 (VALIDATION; OWT/GoT parts confirmed in M5) |
 | E1 | DRAFT PRE-REGISTRATION written; NOT RUN |
 | SAE-in-the-loop intervention | M4 feature patches and E3 (fine-tuned SAEs in the forward pass) done |
 | M5 final test | COMPLETED 2026-11-10 (one pass; independently re-verified, `docs/final_defense/EXPERIMENT_AUDIT.md`) |
-| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; RLM-RP and E3; generated tables and PDF/SVG figures; compiles (29 pp) |
-| Report (`reports/Latex_report/main.tex`) | IN PROGRESS (literature review only; Methods/Results are TODO) |
-| SVG/PDF figures; `.drawio` source + `.svg` | IN PROGRESS: paper figures are PDF+SVG (`research_paper/Latex_Fig/`); 50 PNG in `results/` remain; `.drawio` NOT STARTED |
-| Logging instead of `print` (378 calls in `scripts/` and `src/`); CI on `main` | NOT STARTED |
-| Progress reports since 09-29; presentation decks in `presentation/` | NOT STARTED |
-| Open PRs #16, #17, #20, #21, #22, #24 (merge plan) | NOT STARTED (needs team decisions) |
+| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; RLM-RP and E3; generated tables and PDF/SVG figures; R2/R4/M5 section and the SAE-selection equivalence paragraph; compiles (37 pp, 2026-11-13). Journal and template NOT CHOSEN |
+| Report (`reports/Latex_report/main.tex`) | GPT-2 sections written 2026-11-13 (5 pp; no TODO). Gemma subsection PENDING (teammates); title/abstract framing awaits a team decision |
+| SVG/PDF figures; `.drawio` source + `.svg` | PARTIAL: paper figures PDF+SVG; 21 results figures exported to `figures/vector/` (pixel-identical re-render check); 31 PNGs without a re-runnable script remain; editable `architecture/diagrams/gpt2_sae_faithfulness_pipeline.{drawio,svg}` |
+| Logging instead of `print`; CI | CI workflow `.github/workflows/gpt2-validation.yml` on PR #27 (not on `main` until merged); new shared code uses `logging`; hashed pre-registered scripts unchanged |
+| Progress reports since 09-29; presentation decks in `presentation/` | GPT-2 retrospective progress report (compiled 2026-11-13, labelled retrospective); GPT-2 slide content drafted; team deck NOT STARTED |
+| Open PRs #16, #17, #20, #21, #22, #24, #26, #27, #28 (merge plan) | PLAN PROPOSED (`docs/remediation/merge_plan.md`); needs team decisions |
 | Gemma SAE evaluation | BLOCKED |
+| Audit remediation (2026-11-13) | IN PROGRESS: register `docs/remediation/issue_register.md`; professor-review compliance `docs/remediation/professor_review_compliance.md` |
 
 ## 10. Which numbers are clean (test-split exposure)
 
@@ -455,7 +456,7 @@ and checkpoint hashes. `docs/experiment_manifest.csv` has one row per experiment
 - [ ] SVG/PDF figures; diagram source + `.svg`
 - [ ] Revised presentation and the 10-20 deck in `presentation/`; progress reports for weeks 5–15
 - [ ] CI on `main`; logging instead of `print`; AxBench, SAEBench and Paulo et al. in the bibliography
-- [ ] Merge plan for PRs #16, #17, #20, #21, #22, #24; meaningful peer reviews
+- [ ] Merge plan for PRs #16, #17, #20, #21, #22, #24, #26, #28 (proposal: `docs/remediation/merge_plan.md`); meaningful peer reviews
 - [ ] Off-machine backup of the checkpoints
 
 ## Licence
