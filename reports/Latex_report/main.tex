@@ -33,8 +33,24 @@ multiple SAE architectures (ReLU, TopK, JumpReLU) and models (GPT-2 Small,
 Gemma-2-2B).
 \end{abstract}
 
+% NOTE (2026-11-13): the title and abstract above still describe the September framing (auto-generated labels and
+% steering). The research question the project now answers is stated below; changing the title/abstract is a team
+% decision and is left pending. Sections below cover the GPT-2 Small work (Aditi); Gemma-2-2B subsections are marked
+% PENDING for the teammates who ran them. Full detail, tables and figures: research_paper/Latex/ (the paper).
+% Unless marked TEST, every number is a VALIDATION finding.
+
 \section{Introduction}
-% TODO: expand from README.md Project Overview / Problem Statement.
+Sparse autoencoders (SAEs) are used to explain what language models represent, which presumes that an SAE
+reconstruction is a faithful stand-in for the activation it replaces \citep{bricken2023monosemanticity,
+cunningham2023sparse, gao2024scaling}. We ask: \emph{can SAE reconstruction of frozen LLM activations be improved
+while preserving truth-related information and causal behaviour across transformer layers?} We separate four levels
+that are often conflated: (i) reconstruction quality (NMSE, explained variance, cosine, L0); (ii) preservation of task
+information (frozen and re-fitted probes on reconstructions); (iii) behavioural faithfulness (splicing the
+reconstruction into the forward pass: next-token KL and cross-entropy increase); and (iv) causal faithfulness (how
+much of a located causal effect the reconstruction carries). We study GPT-2 Small \citep{radford2019gpt2} at all 12
+layers with in-house ReLU, TopK and JumpReLU SAEs, on OpenWebText (OWT), the Geometry of Truth (GoT) true/false
+statements \citep{marks2023geometry} and a persona-honesty task derived from RepE \citep{zou2023representation}.
+
 
 \section{Related Work / Literature Review}
 \label{sec:litreview}
@@ -107,20 +123,64 @@ label, using their datasets/methodology as concept-detection benchmarks
 mechanism.
 
 \section{Methods}
-% TODO: formalize Phases 1-7 from README.md / proposal.md into a Methods
-% section (feature extraction, labeling, steering intervention, concept
-% detection, cross-condition analysis).
+\paragraph{SAEs.} All SAEs read \texttt{blocks.$L$.hook\_resid\_pre}, with BOS excluded from training and splicing.
+The baseline is 108 SAEs (12 layers $\times$ ReLU/TopK/sigmoid-surrogate JumpReLU $\times$ 3 seeds), width 3,072,
+trained on OWT at L0 $\approx$ 128, one uninterrupted 15k-step protocol. The improved ``R2'' SAEs are width 12,288,
+trained on 100M streamed OWT tokens with the TopK recipe of \citet{gao2024scaling} (AuxK), BatchTopK
+\citep{bussmann2024batchtopk} and ReLU, at layers 1, 8 and 11, plus a frozen random-decoder TopK control
+\citep{korznikov2026random}. ``R4'' fine-tunes the R2 TopK SAEs with an output-KL term at fixed L0
+\citep{braun2024e2e, karvonen2025kl}, against an MSE-only control. The public res-jb SAEs \citep{bloom2024gpt2} are an
+external reference.
+\paragraph{Sparsity matching.} Architectures are compared only when OWT L0 is within $\pm$10\,\% of 128; unmatched
+runs are flagged and excluded from rankings.
+\paragraph{Information.} Probes are fitted on \emph{original} activations of training rows and applied frozen to
+reconstructions; re-fitted probes are trained on reconstructions of the same training rows. GoT uses the pooled
+\texttt{cities}+\texttt{neg\_cities} sets (2,992 statements, city-grouped splits). References: norm-matched noise and
+PCA fitted on OWT training activations.
+\paragraph{Behaviour and causality.} The reconstruction replaces the activation at every non-BOS position; we report
+$\Delta$CE and KL$(p_{\mathrm{orig}}\|p_{\mathrm{spliced}})$ on held-out OWT. For causality we use an equal-length persona
+task (RepE-LM: one-token honest/dishonest swaps), locate where GPT-2 carries the persona effect by activation patching,
+and decompose that effect into the part carried by the SAE-reconstructed activation difference and the part carried by
+the error term.
+\paragraph{Evaluation discipline.} Every experiment was pre-registered with file hashes; a single confirmatory TEST
+pass (M5) was run once for OWT and GoT. RepE-LM has no evaluated test split yet, so honesty results are validation
+findings.
 
 \section{Experiments and Results}
-% TODO: populate from results/phase1_observations.md,
-% results/geometry_of_truth_observations.md, and results/tables/*.csv as
-% each phase completes.
+\paragraph{Reconstruction degrades with depth.} OWT test explained variance is 0.93--0.95 at layers 0--2 and
+0.76--0.82 at layer 11 for the baseline SAEs.
+\paragraph{Reconstruction and behaviour can be improved (TEST).} Against the baseline, R2 SAEs lower OWT NMSE by
+30.8--73.7\,\% and spliced $\Delta$CE by 35.5--78.8\,\% at layers 1, 8 and 11, on every seed pair (M5). At layer 8,
+TopK NMSE falls from 0.160 to 0.094 and $\Delta$CE from 0.133 to 0.062 nats. R4 lowers $\Delta$CE by a further
+16--17\,\% at fixed L0, with a small NMSE regression (+2\,\%).
+\paragraph{Truth information does not follow (TEST).} On GoT, no comparison changes the re-fitted probe gap (0/34
+cells). The frozen original probe's drop on reconstructions (0.19--0.32 AUROC) is largely reproduced by norm-matched
+noise; re-fitted probes lose 0.03--0.11 AUROC. At equal OWT reconstruction error PCA keeps at least as much truth
+information as the SAEs; that comparison uses 298--519 PCA components against about 128 active SAE latents
+(Section~\ref{sec:pca-note}).
+\paragraph{Persona and causal faithfulness (VALIDATION).} The SAE-reconstructed activation difference carries
+93--97\,\% of the persona effect at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final
+token. R2 raises this to 0.726 for TopK at layer 8 (from 0.625). The persona effect itself is small (0.022 nats at
+layer 8). R4 lowers causal preservation at layer 11 (0.694 $\to$ 0.671).
+\paragraph{Gemma-2-2B.} PENDING: to be written by the teammates who ran the Gemma steering and Gemma Scope
+experiments.
 
 \section{Discussion}
-% TODO.
+\label{sec:pca-note}
+Faithfulness is level-specific. Better reconstruction reliably improves behavioural faithfulness, but it does not
+make an independent reader recover more truth information, and a behaviour-targeted fine-tune can cost causal
+preservation. Three limitations bound these conclusions. First, the GoT comparisons have limited sensitivity: seed
+variability (sd 0.004--0.024) is as large as the observed differences, so a null result there is not evidence of
+preservation. Second, the PCA reference is matched on reconstruction error, not on capacity; a capacity-matched
+comparison is reported in the paper. Third, the SAE-selected feature patches keep the error term, which makes them
+mathematically equivalent to adding an input-dependent decoder-space vector to the raw activation; they show that the
+SAE selects directions that carry the effect, not that the effect is mediated by the SAE.
 
 \section{Conclusion}
-% TODO.
+Training larger SAEs on more data with a modern recipe improves reconstruction and behavioural faithfulness on held-out
+data, but truth information measured by independent probes does not improve, and the honesty and causal gains are so
+far validation findings. Reconstruction metrics should therefore not be used as a proxy for information or causal
+faithfulness. Next steps: the frozen RepE-LM test pass, task-level sparsity matching and the Gemma-2-2B extension.
 
 \bibliographystyle{plainnat}
 \bibliography{mybib}
