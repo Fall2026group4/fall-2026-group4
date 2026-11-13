@@ -1,4 +1,4 @@
-# PCA-CM: capacity-matched PCA references (2026-11-13). Status: PRE-REGISTERED, RUNNING
+# PCA-CM: capacity-matched PCA references (2026-11-13). Status: COMPLETED, VALIDATION. Conclusion change reported to the user; paper NOT yet revised
 
 Evidence level: **validation finding (descriptive)**. No test row is read.
 
@@ -81,4 +81,73 @@ Remediation item: S1 / D-PCA in [`docs/remediation/issue_register.md`](../../../
 
 ## 2. After execution
 
-*Pending.*
+* **Run:** 3,724 s on one A10G.
+  * 96 rows: 15 PCA references and 81 SAEs.
+  * 174 paired GoT comparisons.
+  * `checks.json`: `test_rows_used = 0`; the script hash equals the pre-registered hash.
+  * PCA was fitted on 101,600 OWT TRAIN tokens.
+* **Files:** `rows.csv`, `got_paired.csv`, `decisions.csv`, `checks.json`.
+
+### 2.1 Reconstruction and behaviour against PCA-128 (OWT VALIDATION)
+
+| Layer | PCA-128 NMSE ↓ | PCA-128 ΔCE ↓ (nats) | Trained SAEs: NMSE / ΔCE / KL vs PCA-128 |
+|---|---|---|---|
+| 1 | 0.296 | 0.399 | SAE BETTER in every family, on every seed |
+| 8 | 0.462 | 0.989 | SAE BETTER in every family, on every seed |
+| 11 | 0.434 | 1.059 | SAE BETTER in every family, on every seed |
+
+* Trained SAEs win in 30 of 30 family × layer × metric cells.
+* PCA needs k ≈ 512 to approach the R2 SAEs' NMSE: 0.094 at L8 and 0.105 at L11.
+* Random decoder: better than PCA-128 on ΔCE and KL at every layer, worse on NMSE at L1 (0.324 vs 0.296).
+
+### 2.2 GoT truth information (re-fit logistic gap ↓, primary; GoT VAL, 448 rows)
+
+Family classifications, from the per-seed paired bootstrap CIs (pre-registered rule):
+
+| Reference | PCA k | SAE BETTER | INCONCLUSIVE | SAE WORSE |
+|---|---|---|---|---|
+| `error_matched` (replicates the existing reference) | 298–519 trained; 143/164 random | 0 | 7 | **13** |
+| `capacity_k128` | 128 | **3**: R2 ReLU L8, R2 ReLU L11, res-jb L8 | 17 | 0 |
+| `task_l0_matched` | 54–128 | **8**: old ReLU L8/L11, old JumpReLU L11, R2 ReLU L8/L11, R2 BatchTopK L11, res-jb L8/L11 | 12 | 0 |
+
+Counts are over the 20 trained family × layer cells: 10 families × L8/L11, random decoder excluded. For TopK, the task L0 is 128, so `task_l0_matched` equals
+`capacity_k128`.
+
+* **Random decoder:** INCONCLUSIVE against every reference at both layers.
+* **Example (R2 ReLU, L11):**
+  * SAE gap 0.076 ± 0.003;
+  * PCA-128 gap 0.153 (paired difference −0.077; per-seed CIs within [−0.114, −0.043]);
+  * error-matched PCA (k = 404) gap 0.038 (SAE WORSE, +0.038).
+* **Example (R2 TopK, L8):**
+  * SAE 0.055 ± 0.022;
+  * PCA-128 0.058 (INCONCLUSIVE);
+  * error-matched PCA (k ≈ 510) 0.012 (SAE WORSE, +0.044).
+
+### 2.3 Pre-registered interpretation
+
+* **I1 (error-matched): MET.** No trained SAE is ever better than error-matched PCA; 13/20 cells are worse. The
+  existing finding replicates on validation, **as an error-matched statement**.
+* **I2 (capacity-matched): TRIGGERED.**
+  * At an equal per-token active budget (k = 128), trained SAEs are never worse than PCA on GoT truth information,
+    and the ReLU-family SAEs are better in 3 cells.
+  * At task-L0-matched k, 8/20 cells favour the SAE.
+  * "SAEs never preserve task information better than PCA" is therefore **not true without qualification**.
+  * This is a **conclusion change**. It was reported to the user before any revision of the paper's abstract,
+    conclusion or §improvement (instruction: stop and notify).
+* **I3:** most TopK-family cells are INCONCLUSIVE at k = 128. The SAE-vs-PCA verdict depends on the matching
+  criterion.
+
+### 2.4 Limitations
+
+* k = 128 equalises the per-token active budget only, not parameters or representational capacity.
+* GoT VAL n = 448.
+* Paired differences have statement-level 95 % CI half-widths of about 0.03–0.05 AUROC
+  (`results/shared/power_sensitivity/`).
+* No multiplicity correction across 66 GoT family cells.
+* Seeds share one data stream.
+
+### 2.5 Status
+
+The paper text (`00_abstract.tex`, `14_conclusion.tex`, `10b_improvement.tex`, `07_results_information.tex`,
+`12_discussion.tex`) and the curated docs still state the error-matched claim unqualified. Revising them awaits the
+user's review of this result.

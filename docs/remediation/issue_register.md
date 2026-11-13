@@ -23,7 +23,7 @@ Commits are on `sae-research`. "this branch" means the commit series 7e8664f…H
 | D3 | P1 | #21/#24 delete a file and five scripts that `scripts/geometry_of_truth/10_layer10_frozen_probe.py` uses at runtime | GitHub PR file lists (§2.1 of `merge_plan.md`) | Merge plan: #27 first; #21/#24 re-scoped to keep those files | — | REQUIRES TEAM ACTION |
 | D4 | P1 | #26 (and now #28) edit the same 7 ledgers; #26 reuses script numbers 22/14/15; #28 reuses GoT 22/23 | PR file lists | Merge plan §3: order #27 → #26 → #28; renumbering proposed | — | REQUIRES TEAM ACTION |
 | D5 | P1 | 27/27 PR commits authored as `as650@gwu.edu`, not linked to a GitHub account | GitHub API `author.login` = null for every commit | Steps in §F. No history rewrite; author identity left as is (the instructor asks for this address to be linked) | Re-check `gh api repos/Fall2026group4/fall-2026-group4/pulls/27/commits` after linking | REQUIRES USER ACTION |
-| D6 | P2 | No CI (0 checks on #27) | `gh pr view 27` statusCheckRollup = [] | `.github/workflows/gpt2-validation.yml`: hygiene, py_compile, imports, pytest, M5 verification; CPU only | Simulated on a clean export of the tree: 69 tests, M5 ALL CHECKS PASS, hygiene 0 findings. The GitHub run is recorded in §G after the push | FIXED (pending first GitHub run) |
+| D6 | P2 | No CI (0 checks on #27) | `gh pr view 27` statusCheckRollup = [] | `.github/workflows/gpt2-validation.yml`: hygiene, py_compile, imports, pytest, M5 verification; CPU only | GitHub run 43375816244 on PR #27: success (all steps) | FIXED AND VERIFIED on PR #27 (on `main` only after merge) |
 | D7 | P2 | Stale README rows (paper length, PR list, `main` status, report) | `README.md` §9 | README §9 updated | Rows checked against `gh` and the repository | FIXED AND VERIFIED |
 | D8 | P2 | No tests for `modern_sae`, R2 trainer, decision rules, splicing | `src/tests` imported none of them | `test_modern_sae.py`, `test_decision_rules_and_splits.py` (+34 tests) | 69/69 pass locally and on a clean export | FIXED AND VERIFIED (`72e466b`) |
 | D9 | P2 | Course report: 5 TODO sections | `reports/Latex_report/main.tex` | GPT-2 sections written from verified numbers; Gemma subsection PENDING (teammates); title/abstract framing flagged | 0 TODO; compiles to 5 pp, 0 undefined citations | PARTIALLY RESOLVED (team content and title pending) |
@@ -38,13 +38,13 @@ Commits are on `sae-research`. "this branch" means the commit series 7e8664f…H
 
 | ID | Pri | Issue | Evidence | Planned fix / what was done | Validation | Status |
 |---|---|---|---|---|---|---|
-| S1 | P1 | PCA reference matched on error, not capacity | M5 `got_cities__pca_k`: 298–519 (trained; R2/R4 404–519) vs 143–164 (random decoder). The audit's "400–519" omitted the old ReLU (298–355) | PCA-CM, pre-registered, VALIDATION only: k = 128, k = task L0, error-matched replication | See `results/shared/pca_capacity_matched/README.md` | IN PROGRESS |
-| S2 | P1 | GoT metric underpowered; no MDE | Seed sd 0.004–0.024 | `scripts/shared/power_sensitivity_analysis.py` from existing outputs | `results/shared/power_sensitivity/` | IN PROGRESS |
+| S1 | P1 | PCA reference matched on error, not capacity | M5 `got_cities__pca_k`: 298–519 (trained; R2/R4 404–519) vs 143–164 (random decoder). The audit's "400–519" omitted the old ReLU (298–355) | PCA-CM, pre-registered, VALIDATION only: k = 128, k = task L0, error-matched replication. Error-matched: SAE WORSE 13/20 cells, never better (replicated). k = 128: SAE BETTER 3/20, never worse. Task-L0: BETTER 8/20, never worse | `results/shared/pca_capacity_matched/` (0 test rows; hash-verified) | **PARTIALLY RESOLVED: conclusion change reported to the user; paper/doc wording awaits the user (D34)** |
+| S2 | P1 | GoT metric underpowered; no MDE | Seed sd 0.004–0.024 | `scripts/shared/power_sensitivity_analysis.py` from existing outputs: re-fit comparisons can detect about 0.048–0.091 AUROC; observed \|d\| ≤ 0.025 | `results/shared/power_sensitivity/` | PARTIALLY RESOLVED (analysis done; the paper sentence waits on the D34 revision) |
 | S3 | P1 | No RepE-LM test split | `prompts.csv` has train/validation only | Test data built (86 statements, 2,408 rows, test-only wording); protocol frozen (D32) | All construction and leakage checks pass; hashes verified | PARTIALLY RESOLVED (evaluation not run: needs approval and about 1–2 GPU h) |
 | S4 | P1 | Instructor's Review #8 summary cites superseded findings | Review #8 text vs M0/M2/D23 | Draft reply: `review8_response_draft.md` (not posted) | — | REQUIRES USER ACTION (posting) |
 | S5 | P1 | SAE-in-the-loop equivalence | `24_sae_patch_decomposition.py:252–259` | Paper §causal: equivalence argument and renamed paragraph; D33; mediated design proposed | — | PARTIALLY RESOLVED (argument stated; mediated test not run) |
 | S6 | P2 | Persona probe may track word identity | M1 gates: neutral swap decodable 0.62/0.75 (L8/L11); persona probe → neutral swaps 0.40–0.47; LOPO cross-template 0.70; held-out T5/T6 0.62–0.73 | Assessment in `docs/remediation/repe_validity_assessment.md`; HT4 in the test protocol | — | PARTIALLY RESOLVED (assessed from existing data; test-only wording awaits the test pass) |
-| S7 | P2 | Tiny causal effect; no MDE | T_full 0.022 nats at L8 | Sensitivity analysis (M4 part) | `results/shared/power_sensitivity/m4_causal_sensitivity.csv` | IN PROGRESS |
+| S7 | P2 | Tiny causal effect; no MDE | T_full 0.022 nats at L8 | Sensitivity analysis (M4 part): T_full CI low ≥ 0.78 × mean (ratio stable); preservation MDE 0.054–0.107 at L8, so R2-vs-old +0.101 (VAL) is borderline | `results/shared/power_sensitivity/m4_causal_sensitivity.csv` | PARTIALLY RESOLVED (paper caveat pending) |
 | S8 | P2 | R2 confounds data, width and recipe | 10M/25M/50M checkpoints unevaluated | Not run (X0, GPU) | — | OPEN (proposed X0) |
 | S9 | P2 | Seeds share one stream; Welch covers seed variance only; no multiplicity correction | M5 design | Stated in the sensitivity analysis (statement-level + seed-level MDE) | — | PARTIALLY RESOLVED |
 | S10 | P2 | Task-prompt L0 unmatched (GoT 63–111; RepE-LM 134–216) | M5 rows, ladder | PCA-CM `task_l0_matched` reference addresses the GoT readout; E1 not run | — | PARTIALLY RESOLVED |
@@ -95,4 +95,8 @@ Measured on 2026-11-13. The manifest is `backup_manifest.sha256` in the session 
 
 ## G. GitHub state after the push
 
-*Filled in after the push (see the end of this task).*
+* Pushed `5d79fa5..8d52e14` (fast-forward) to `origin/sae-research` on 2026-11-13.
+* CI run 43375816244 (pull_request, `8d52e14`): **success**. Every step passed: hygiene, py_compile, imports, 69
+  tests, M5 verification.
+* The PCA-CM / sensitivity results commit is **local only** (not pushed), pending the user's review of the conclusion
+  change.

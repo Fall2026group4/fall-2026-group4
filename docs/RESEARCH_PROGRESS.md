@@ -945,4 +945,34 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * The protocol was hashed before the full run and committed while the run was in progress, before any full-run
     output existed (D31).
   * A smoke run on validation (16 sequences, PCA from 5 chunks) checked the pipeline. Its numbers are not used.
-* **Evidence label:** pending.
+* **PCA-CM RESULT (VALIDATION; 0 test rows; 3,724 s):**
+  * **Reconstruction and behaviour:** every trained SAE beats PCA at k = 128 on NMSE, ΔCE and KL (30/30 cells).
+    PCA-128 has NMSE 0.30/0.46/0.43 and ΔCE 0.40/0.99/1.06 nats at L1/L8/L11.
+  * **GoT re-fit gap:**
+    * against error-matched PCA (k = 298–519), SAE WORSE in 13/20 trained cells and never better: the existing
+      finding replicates;
+    * against capacity-matched k = 128, SAE BETTER in 3/20 (R2 ReLU L8/L11, res-jb L8), never worse, 17
+      inconclusive;
+    * against task-L0-matched k, SAE BETTER in 8/20, never worse;
+    * the random decoder is inconclusive against every reference.
+  * **Pre-registered I2 triggered:** "SAEs never beat PCA" holds only at equal error. **Conclusion change reported to
+    the user; the paper and curated docs were NOT revised** pending the user's review (D34).
+* **Sensitivity (S2/S7), descriptive:**
+  * The M5 GoT re-fit comparisons can detect only about 0.048–0.091 AUROC (seed + statement), against observed
+    |d| ≤ 0.025.
+  * The M4 preservation MDE at L8 is 0.054–0.107 per SAE, so the R2-vs-old +0.101 (VAL) is at the edge of
+    detectability.
+  * Files: `results/shared/power_sensitivity/`.
+* **Also done (committed):**
+  * D1/D2 doc fixes;
+  * bibliography fixes;
+  * 34 tests and CI (GitHub run 43375816244: success);
+  * RepE-LM test split and frozen protocol (not evaluated);
+  * SAE-in-the-loop equivalence paragraph;
+  * course report sections;
+  * vector figures and editable diagram;
+  * remediation register, compliance matrix, merge plan, backup plan.
+* **Evidence label:** PCA-CM is a VALIDATION finding (descriptive); the sensitivity analysis is descriptive.
+* **Stopped here** (user rule: stop when a conclusion changes).
+  * Unfinished: the paper/doc revision of the PCA claim and the MDE sentences; the PR #27 description update.
+  * Next step: the user reviews the PCA-CM before/after report and decides on the wording.

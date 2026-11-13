@@ -325,3 +325,14 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * Review #8's SAE-in-the-loop requirement is therefore **PARTIALLY RESOLVED**. A distinct intervention is proposed:
   an edit at layer ℓ with SAEs spliced at later layers, or a run on x̂ without the error term compared against the
   spliced baseline. The layer-6 R2-clamp (input-dependent clamps, with and without the error term) was NOT SUPPORTED.
+
+## D34. PCA-CM changes the "SAEs never beat PCA" conclusion; the revision waits for the user (2026-11-13)
+* The pre-registered interpretation I2 was triggered (`results/shared/pca_capacity_matched/README.md` §2.3).
+  * At equal error, PCA (298–519 components) keeps as much or more GoT truth information: replicated on validation.
+  * At an equal per-token active budget (k = 128) or task-L0-matched k, trained SAEs are never worse than PCA, and
+    ReLU-family SAEs are better in some cells.
+* **Decision:** the paper's abstract, conclusion and §improvement, and the curated docs, are **not** revised in this
+  task. The user's instruction requires stopping before a conclusion change.
+* **Proposed wording** (for the user to approve): "At equal reconstruction error, PCA keeps at least as much truth
+  information as the SAEs; at an equal per-token active budget, SAEs are never worse than PCA and ReLU-family SAEs
+  are better in 3 of 20 layer–family cells (validation)."

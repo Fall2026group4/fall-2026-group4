@@ -269,3 +269,9 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   Next: write script 29, smoke-test it on validation, hash it into the pre-registration, run once.
 * PLANNED (proposed, not approved): a mediated SAE-in-the-loop test. An edit at layer ℓ with SAEs spliced at
   ℓ+1…ℓ+k, so that the effect must pass through SAE nonlinearities (D33).
+* DONE (VALIDATION): PCA-CM. **Awaiting the user:** revise the PCA claim in the paper (`00_abstract`,
+  `07_results_information`, `10b_improvement`, `12_discussion`, `14_conclusion`) and the curated docs (D34).
+* DONE: sensitivity/MDE analysis (`results/shared/power_sensitivity/`). TODO: add the MDE sentences to the paper
+  (§11 statistics, the `\pending` note in §causal) after the PCA decision.
+* OPEN: off-machine backup (needs a destination); linking the commit email; posting the drafted replies
+  (`docs/remediation/review8_response_draft.md`); the team merge order.

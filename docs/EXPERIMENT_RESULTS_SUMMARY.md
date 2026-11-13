@@ -676,3 +676,34 @@ Source: `results/shared/m5_confirmatory_test/comparisons.csv`, `m5_rows.csv`. Ev
 
 * GoT re-fit and SAE − PCA gaps: no improvement in any comparison.
 * TopK ΔCE on TEST: 0.133 → 0.062 at L8 and 0.204 → 0.096 at L11.
+
+## PCA-CM: capacity-matched PCA references (2026-11-13; VALIDATION; GoT VAL n = 448)
+
+**PCA references on OWT validation:**
+
+| Layer | PCA-128 NMSE | PCA-128 ΔCE (nats) | PCA-512 NMSE | PCA-128 GoT re-fit gap | PCA-512 GoT re-fit gap |
+|---|---|---|---|---|---|
+| 1 | 0.296 | 0.399 | 0.026 | — | — |
+| 8 | 0.462 | 0.989 | 0.094 | 0.058 | 0.011 |
+| 11 | 0.434 | 1.059 | 0.105 | 0.153 | 0.014 |
+
+**SAE vs PCA on the GoT re-fit gap** (20 trained family × layer cells):
+
+| Reference | SAE BETTER | INCONCLUSIVE | SAE WORSE |
+|---|---|---|---|
+| error-matched (k 298–519) | 0 | 7 | 13 |
+| k = 128 | 3 | 17 | 0 |
+| task-L0-matched (k 54–128) | 8 | 12 | 0 |
+
+Selected rows (SAE gap mean ± sd over 3 seeds; PCA gap; the class follows the pre-registered paired-bootstrap rule):
+
+| Layer | SAE | SAE gap | PCA-128 | error-matched PCA (k) |
+|---|---|---|---|---|
+| 8 | R2 TopK | 0.055 ± 0.022 | 0.058 (INCONCLUSIVE) | 0.012 (509–510; WORSE) |
+| 8 | R2 ReLU | 0.012 ± 0.005 | 0.058 (BETTER) | 0.009 (446; INCONCLUSIVE) |
+| 11 | R2 TopK | 0.100 ± 0.030 | 0.153 (INCONCLUSIVE) | 0.014 (498–499; WORSE) |
+| 11 | R2 ReLU | 0.076 ± 0.003 | 0.153 (BETTER) | 0.038 (404; WORSE) |
+
+**Sensitivity:**
+* GoT re-fit comparisons: combined MDE ≈ 0.048–0.091 AUROC.
+* M4 preservation MDE: 0.013–0.017 (L1), 0.036–0.069 (L11), 0.054–0.107 (L8).
