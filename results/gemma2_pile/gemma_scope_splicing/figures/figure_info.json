@@ -1,0 +1,22 @@
+{
+  "script": "scripts/gemma/04_pile_gemma_scope_figures.py",
+  "inputs_sha256_lf_normalised": {
+    "results/gemma2_pile/gemma_scope_splicing/summary_by_layer.csv": "72a48baedef3eef8974deef2e3774877bd2d744b8be46216334f01f189c32fb1",
+    "results/gemma2_pile/gemma_scope_splicing/summary_by_layer_source.csv": "07085e961afee720984170f5dbb2374cdcbcdc2f53e9f3743aacd49de25b8c36",
+    "results/gemma2_pile/gemma_scope_splicing/h_g1.csv": "96af8acbdb240cf0619ec26b9e6d4227d94460e5fb3c5446743deeaf15491b1c",
+    "results/gemma2_pile/gemma_scope_splicing/controls.csv": "a1ee86051f4d1c735939ca65d7c27abf6fd1526a7544a87e16cb982600b13d65",
+    "results/gemma2_pile/gemma_scope_splicing/gates.json": "06bc9bd85f87f14ad6dfab017e0d7e382261040a8423e8cca361b67c48c0e466",
+    "results/gemma2_pile/gemma_scope_splicing/per_doc_metrics.csv": "e39d28265431d14642ce0b31ef16ee70e193e38b2071cc8ab31bb5fb247bd704"
+  },
+  "inputs_verified_against": "results/gemma2_pile/gemma_scope_splicing/run_info.json output_sha256",
+  "run_code_commit": "13eaecabcf09ae4ee23f3fd169aa46d792261ca2",
+  "matplotlib": "3.11.2",
+  "numpy": "2.3.3",
+  "pandas": "2.3.3",
+  "figures_sha256": {
+    "fig1_reconstruction_by_layer.png": "03597d92652220076221ba139973b8f8a5207be4ac33719eef5636e5cfa26f9a",
+    "fig2_splicing_by_layer.png": "07eeb27753fc9fb44850f53229817778d4062c5704cc6753d501170ac22672f3",
+    "fig3_h_g1_paired_difference.png": "d201beef26f316b8f1fd6aec61ecc8f87028c8b11c6c4e2426dc477fb20a67ae",
+    "fig4_source_variation.png": "b6e3a0911da1265138f62fc252abca46ac7139a6ad5de6273a2b3638003abe4d"
+  }
+}

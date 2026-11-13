@@ -1,4 +1,4 @@
-# Gemma Scope SAE reconstruction and splicing on The Pile (2026-11-12). Status: PLANNED (pre-registered)
+# Gemma Scope SAE reconstruction and splicing on The Pile (2026-11-12). Status: COMPLETED (VALIDATION)
 
 **Owner:** Simbanegavi Simbarashe (branch `simba-gemma-pile`). **Roadmap:** M6 (part of M3).
 **Evidence level on completion:** VALIDATION (descriptive). The Pile *validation* file is used; the Pile test file is never downloaded.
@@ -259,8 +259,131 @@ top-1 disagreement rate and the max |logit difference| in `run_info.json`
 (`logit_precision_limitation_H4a`). These numbers are reported as a measurement floor for small ΔCE/KL effects and are
 not used in any result.
 
-### Results
-*(To be completed.)*
+### Results (full pre-registered run, 2026-11-12)
+
+**Evidence label: VALIDATION finding.** Q1–Q3 are descriptive; H-G1 is the pre-registered directional test, evaluated
+on the Pile *validation* file (the test file was never read). Reconstruction quality and behavioural splicing are
+reported separately; neither is evidence for the other, and nothing here is a representation-preservation, causal or
+steering result.
+
+**Run.** Code commit `13eaecabcf09ae4ee23f3fd169aa46d792261ca2` (clean tree, `dirty_paths: []`); results commit
+`0dbfc80`. Tesla T4 (compute capability 7.5, no native bf16; bf16 kept as pre-registered), torch 2.7.0+cu128,
+transformers 5.21.0, strict deterministic algorithms. Runtime 8,067.5 s (15.55 s per evaluation document); peak GPU
+memory 8.58 GB. 512 evaluation documents = 254,144 non-BOS tokens and 253,632 predictions per layer and condition;
+the mean-ablation vector uses the 64 disjoint reference documents only. Every output table matches the SHA-256
+recorded in `run_info.json`. **Post-run verification:** after the full run, the complete A11 suite
+(`python -m pytest -q -rs src/tests`) was run on Ronin on the M6 code/results branch: 85 passed, 0 failed, 0 skipped
+(2 deprecation/future warnings).
+
+#### Validity gates (all passed; checked before any result was read)
+
+| Gate | Outcome |
+|---|---|
+| V1 sample integrity | pass: data SHA-256 and tokenizer revision match the pre-registration; 512 + 64 documents, disjoint; manifest hash matches `sample_info.json`; all re-tokenised token-id hashes match |
+| V2 hook equivalence | pass: hook activation equals `hidden_states[L+1]` exactly in all 1,536 checks (512 documents × 3 layers) |
+| V3 determinism / identity | pass: identity-splice and repeat-pass mean KL = 0.0 exactly at every layer (threshold 1e-6) |
+| V4 SAE sanity | pass: measured L0 69.5 / 84.8 / 75.1 vs release 68 / 82 / 73 (+2.3 % / +3.4 % / +2.9 %); EV > 0 at every layer (binding check was the smoke run; reported here for the full run) |
+| V5 no substitution | pass: the three pinned SAE IDs loaded; `params.npz` SHA-256 recorded in `gates.json` |
+
+Safeguard A6 recorded the loaded model and tokenizer commits as `unverifiable` (the library does not expose them); the
+pinned revision was passed at load time, and V1's re-tokenisation hash match is consistent with the pinned tokenizer.
+
+#### Q1: reconstruction quality (token-weighted; 95 % document-bootstrap CIs)
+
+| Layer (SAE) | EV ↑ | NMSE ↓ | Cosine ↑ | Relative sq. error ↓ | L0 (release) |
+|---|---|---|---|---|---|
+| 5 (`average_l0_68`) | 0.813 [0.811, 0.815] | 0.187 | 0.932 [0.931, 0.932] | 0.137 [0.136, 0.139] | 69.5 [68.5, 70.6] (68) |
+| 12 (`average_l0_82`) | 0.770 [0.769, 0.772] | 0.230 | 0.913 [0.912, 0.915] | 0.155 [0.153, 0.156] | 84.8 [84.2, 85.4] (82) |
+| 19 (`average_l0_73`) | 0.789 [0.786, 0.792] | 0.211 | 0.922 [0.920, 0.924] | 0.140 [0.137, 0.144] | 75.1 [74.2, 76.0] (73) |
+
+#### Q2: behavioural change when spliced (nats per prediction; original CE 1.938)
+
+| Layer | ΔCE_SAE ↓ | ΔCE_random ↓ | ΔCE_SAE / ΔCE_random | KL(orig ‖ SAE) ↓ | Top-1 agreement ↑ | ΔCE_mean-ablation | Loss recovered ↑ |
+|---|---|---|---|---|---|---|---|
+| 5 | 0.071 [0.064, 0.079] | 0.029 [0.026, 0.032] | 2.48 [2.32, 2.69] | 0.082 [0.075, 0.090] | 0.887 [0.883, 0.890] | 8.83 [8.64, 9.01] | 0.9920 [0.9910, 0.9927] |
+| 12 | 0.115 [0.107, 0.124] | 0.039 [0.034, 0.044] | 2.97 [2.78, 3.18] | 0.120 [0.112, 0.129] | 0.857 [0.853, 0.860] | 9.73 [9.49, 9.97] | 0.9882 [0.9872, 0.9890] |
+| 19 | 0.177 [0.165, 0.192] | 0.080 [0.069, 0.094] | 2.22 [2.02, 2.42] | 0.179 [0.168, 0.194] | 0.838 [0.834, 0.842] | 8.71 [8.48, 8.95] | 0.9796 [0.9780, 0.9810] |
+
+ΔCE_SAE is 3.7 %, 5.9 % and 9.2 % of the original CE at layers 5, 12 and 19. Loss recovered is close to 1 at every
+layer because mean ablation is very destructive (ΔCE ≈ 9 nats); it should be read together with ΔCE, not alone.
+
+#### H-G1: SAE error vs norm-matched random error (pre-registered test, per layer)
+
+d = doc-mean ΔCE_SAE − doc-mean ΔCE_random, paired over the same 512 documents; percentile CIs from 1,000 document
+resamples (seed 0).
+
+| Layer | mean d | 95 % CI | Verdict | 98.33 % CI (Bonferroni, sensitivity) | Verdict | Documents with d > 0 |
+|---|---|---|---|---|---|---|
+| 5 | 0.0410 | [0.0356, 0.0463] | **supported** | [0.0345, 0.0489] | supported | 85 % |
+| 12 | 0.0773 | [0.0727, 0.0822] | **supported** | [0.0715, 0.0832] | supported | 97 % |
+| 19 | 0.0993 | [0.0938, 0.1051] | **supported** | [0.0928, 0.1062] | supported | 96 % |
+
+H-G1 is supported at all three layers, and the conclusion is unchanged under the Bonferroni sensitivity interval.
+mean d (a mean over documents) differs slightly from the token-weighted gap ΔCE_SAE − ΔCE_random in the Q2 table
+(0.042 / 0.076 / 0.097) only because of the weighting. The verdicts are per layer; the size of d is not compared
+between layers.
+
+#### Q3: variation across Pile sources (descriptive)
+Six sources have ≥ 20 evaluation documents (457 documents): Pile-CC 157, PubMed Abstracts 95, StackExchange 85,
+Github 52, Wikipedia (en) 44, USPTO Backgrounds 24. The other ten sources (55 documents) are LOW-N and not interpreted.
+Ranges across the six sources:
+
+| Layer | EV | ΔCE_SAE | ΔCE_SAE / ΔCE_random |
+|---|---|---|---|
+| 5 | 0.799–0.818 | 0.046–0.094 | 1.79–3.54 |
+| 12 | 0.758–0.771 | 0.089–0.155 | 2.44–3.54 |
+| 19 | 0.749–0.798 | 0.141–0.228 | 1.99–3.01 |
+
+Source-level differences are larger for ΔCE_SAE than for EV: at layers 12 and 19, Github and Wikipedia (en) have the
+largest ΔCE_SAE and StackExchange the smallest. The ratio exceeds 1 in every one of the six sources, but no per-source
+test was pre-registered, so this is descriptive only. Each subset's EV uses its own token mean, so the all-document EV
+can exceed most per-source EVs. The mixture is natural, not stratified, and sources also differ in length and
+original CE.
+
+#### Figures (`figures/`, made by `scripts/gemma/04_pile_gemma_scope_figures.py` from the saved tables only)
+* `fig1_reconstruction_by_layer.png`: Q1 (EV, cosine, relative squared error, L0 vs release L0).
+* `fig2_splicing_by_layer.png`: Q2 (ΔCE_SAE vs ΔCE_random, KL, top-1 agreement, loss recovered).
+* `fig3_h_g1_paired_difference.png`: H-G1 (per-document d and mean d with 95 % and 98.33 % CIs).
+* `fig4_source_variation.png`: Q3 (EV and ΔCE_SAE for the six sources with ≥ 20 documents).
+* `figure_info.json`: input SHA-256 (verified against `run_info.json`) and figure SHA-256.
+
+#### Interpretation
+* **Reconstruction (Q1).** At their released sparsity (measured L0 within 4 % of the release value), the three
+  width-16k Gemma Scope SAEs explain 77–81 % of the variance of Gemma-2-2B `resid_post` on this Pile sample. This
+  says nothing by itself about behaviour.
+* **Behaviour (Q2).** Splicing a reconstruction into a single layer raises next-token loss by 0.07–0.18 nats per
+  prediction and changes the top-1 prediction for 11–16 % of predictions.
+* **H-G1.** SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched
+  random-error control at all three pre-registered layers (token-weighted ΔCE ratio 2.2–3.0); this experiment does
+  not identify the mechanism responsible. The direction of the effect is the one H-G1 carried over from the GPT-2
+  Phase 0 finding. This is a replication of a direction within Gemma, not a comparison of the two models, which differ
+  in model, SAE family, width, L0, hook point and context length.
+* **Not shown.** No layer is better or worse: each layer has a different SAE and release L0, and the pre-registration
+  makes no ranking claim. No representation preservation (no probes), no causal-intervention claim, and no inference
+  from reconstruction metrics to behaviour or the reverse.
+
+#### Limitations
+* **bf16 logit precision (H4a; measurement floor, not a correction).** The smoke run of the hardened implementation
+  (first 8 evaluation documents) recomputed the output head in float32 and measured mean KL(fp32 ‖ bf16) = 0.00083,
+  mean |CE difference| = 0.026 nats per prediction, top-1 disagreement 2.3 % and max |logit difference| = 0.156. The
+  full run does not repeat this measurement (`logit_precision_limitation_H4a: null` in `run_info.json`). The
+  pre-registered results above are unchanged and are **not** adjusted with these values. The floor is small next to
+  KL_SAE (0.08–0.18), but the mean |CE difference| is an unsigned per-prediction quantity of a similar order to ΔCE.
+  Its effect on the *signed, paired* means ΔCE and d was not measured. The hardened smoke run's outputs, including
+  these values, are retained in `smoke_hardened/` (SMOKE: pipeline check, not a result); the older `smoke/` folder
+  is not used.
+* One pretrained SAE per layer: CIs are document-bootstrap intervals, not seed variability, and are not comparable to
+  the GPT-2 3-seed standard deviations.
+* Gemma-2's pretraining data are not public, so Gemma may have seen these documents (affects absolute CE, not the
+  paired comparisons). Whether Gemma Scope was trained on The Pile remains unverified.
+* The loaded model and tokenizer commits were not readable at run time (A6 `unverifiable`); see Gates.
+* The source mixture is natural (Pile-CC is 31 % of documents), and 10 of 16 sources are LOW-N.
+
+#### Deviations from the pre-registration
+* **Design:** none. Layers, SAEs, data, sample, conditions, metrics, seeds, thresholds and criteria are as
+  pre-registered (including Amendment 1).
+* **Documentation:** "Pre-run hashes" says the smoke run's values are copied into Section 2 *before* the full run.
+  They are reported here, after it; the hardened smoke outputs are retained in `smoke_hardened/`.
 
 ## 3. If stopped early
 *(To be completed if needed.)*

@@ -384,3 +384,38 @@ Source: `results/geometry_of_truth/kl_weight_ablation_layer6_topk/summary.csv`, 
 * The endpoints differ in truth gap by only +0.007, below the 0.02 threshold.
 * BEHAV and truth non-inferiority pass; TRADE fails.
 * Paired sd of the truth gap is about 0.02, larger than every between-method difference.
+
+## 10. Gemma-2-2B: Gemma Scope SAE reconstruction and splicing on The Pile (M6; VALIDATION)
+Source: `results/gemma2_pile/gemma_scope_splicing/` (`summary_by_layer.csv`, `h_g1.csv`, `summary_by_layer_source.csv`; README §2). **Not comparable with §§1–9:** different model, SAE family (pretrained Gemma Scope JumpReLU, width 16,384), L0, hook (`resid_post`), data (The Pile) and context (1,024 tokens). Layers are described side by side, not ranked; each layer has its own SAE.
+
+* Gemma-2-2B (bf16), Pile validation file, 512 evaluation documents (254,144 non-BOS tokens; 253,632 predictions per layer); mean ablation from 64 disjoint reference documents.
+* One pretrained SAE per layer: intervals are 95 % document-bootstrap CIs (1,000 resamples, seed 0), **not** seed variability.
+* Validity gates V1–V5 all pass (identity/repeat KL = 0.0 exactly).
+
+**Reconstruction (↑ EV, cosine; ↓ relative squared error):**
+
+| Layer (SAE) | EV | Cosine | Relative sq. error | L0 measured (release) |
+|---|---|---|---|---|
+| 5 (`average_l0_68`) | 0.813 [0.811, 0.815] | 0.932 [0.931, 0.932] | 0.137 [0.136, 0.139] | 69.5 (68) |
+| 12 (`average_l0_82`) | 0.770 [0.769, 0.772] | 0.913 [0.912, 0.915] | 0.155 [0.153, 0.156] | 84.8 (82) |
+| 19 (`average_l0_73`) | 0.789 [0.786, 0.792] | 0.922 [0.920, 0.924] | 0.140 [0.137, 0.144] | 75.1 (73) |
+
+**Behavioural splicing (nats per prediction; original CE 1.938; ↓ ΔCE, KL; ↑ top-1, loss recovered):**
+
+| Layer | ΔCE_SAE | ΔCE_random (norm-matched) | Ratio | KL | Top-1 agreement | Loss recovered |
+|---|---|---|---|---|---|---|
+| 5 | 0.071 [0.064, 0.079] | 0.029 [0.026, 0.032] | 2.48 | 0.082 | 0.887 | 0.9920 |
+| 12 | 0.115 [0.107, 0.124] | 0.039 [0.034, 0.044] | 2.97 | 0.120 | 0.857 | 0.9882 |
+| 19 | 0.177 [0.165, 0.192] | 0.080 [0.069, 0.094] | 2.22 | 0.179 | 0.838 | 0.9796 |
+
+**H-G1 (pre-registered; d = doc-mean ΔCE_SAE − doc-mean ΔCE_random, paired over documents; supported if the 95 % lower bound > 0):**
+
+| Layer | mean d | 95 % CI | 98.33 % CI (Bonferroni sensitivity) | Verdict |
+|---|---|---|---|---|
+| 5 | 0.0409546095 | [0.0356023883, 0.0462730588] | [0.0345367272, 0.0489496301] | supported (also under Bonferroni) |
+| 12 | 0.0773024324 | [0.0726969564, 0.0822346727] | [0.0715352214, 0.0832376495] | supported (also under Bonferroni) |
+| 19 | 0.0993482347 | [0.0938463665, 0.1051191262] | [0.0928295454, 0.1061658954] | supported (also under Bonferroni) |
+
+* SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; this experiment does not identify the mechanism responsible.
+* No representation-preservation, causal-intervention or GPT-2 vs Gemma superiority claim.
+* **Limitation (H4a, measurement floor only, results not adjusted):** bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.0008297822, mean |CE difference| 0.0264414540, top-1 disagreement 0.0226209048 and max |logit difference| 0.1562862396. Hardened smoke outputs: `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`.
