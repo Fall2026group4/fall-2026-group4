@@ -49,6 +49,12 @@ sparse, input-dependent selection beats one fixed subspace of the same width. Re
 about 0.05--0.09 AUROC between SAE families, and the observed differences are at most 0.025. Our ``no truth gain''
 result is therefore a bound, not evidence of preservation.
 
+\paragraph{What held-out persona data confirmed.} The single RepE-LM test pass (Section~\ref{sec:h1test}) confirms
+that data-scaled retraining makes the SAE reproduce the honest-minus-dishonest difference more faithfully (9 of 9
+cells). It confirms the layer-8 causal gain only for TopK; the BatchTopK-against-JumpReLU gain points the same way in
+every seed pair but does not survive the Holm correction. A test-only neutral control also exceeded its floor at
+layers 8 and 11. Only the pre-registered cells count as confirmation; the 90 secondary comparisons are exploratory.
+
 \paragraph{Persona loss is not only a reader artefact.} For truth statements, most of the frozen-probe collapse is
 reproduced by same-norm noise. For persona instructions it is not: the SAE loses 2--3 times more than the noise does,
 re-trained readers recover almost none of it, and the per-pair honest-minus-dishonest difference keeps a cosine of only

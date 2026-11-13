@@ -268,8 +268,8 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * DONE 2026-11-13: H1 RepE-LM TEST pass (`results/repe/repe_lm_test_evaluation/`).
   * HT2 confirmed.
   * HT1 and HT3 are not confirmed; only their C1 cells are.
-* OPEN (needs the user's approval, D36): revise the paper and curated docs with the H1-TEST verdicts. The L8 causal
-  gain is "confirmed for TopK; not confirmed for BatchTopK vs JumpReLU".
+* DONE 2026-11-13 (D36, user-approved): paper and curated docs revised with the H1-TEST verdicts. The L8 causal gain
+  is "confirmed for TopK; not confirmed for BatchTopK vs JumpReLU".
 * OPEN (P2): the N3/N4 neutral frames leak slightly at L8/L11 (0.56). A future test-only template set should check
   neutral-floor calibration on TRAIN first.
 * PRE-REGISTERED 2026-11-13 (SIL, `results/repe/sae_in_the_loop_mediation/`; pilot gate first): a mediated SAE-in-the-loop test. Earlier proposal text: An edit at layer ℓ with SAEs spliced at

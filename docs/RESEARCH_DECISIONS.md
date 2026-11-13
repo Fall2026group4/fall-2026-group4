@@ -360,7 +360,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
   protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.
 
-## D36. How the H1-TEST outcome is reported (2026-11-13). Status: reporting rule ADOPTED; paper revision PROPOSED, awaits the user
+## D36. How the H1-TEST outcome is reported (2026-11-13). Status: ADOPTED; paper revision APPROVED by the user and DONE (2026-11-13)
 * **Source:** `results/repe/repe_lm_test_evaluation/` (single TEST pass, Holm over 13 cells, rule frozen in the addendum).
 * **Adopted now (follows the pre-registered rule; no discretion):**
   * HT2 is reported as a CONFIRMED TEST RESULT.
@@ -374,3 +374,10 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * "not confirmed for BatchTopK vs JumpReLU (C3)".
 * **Not changed:** no threshold, cell count or rule is altered after seeing TEST; the N3/N4 floor failure is
   disclosed, not explained away.
+* **Approval and execution (2026-11-13):** the user wrote "Yes, proceed with D36". Done:
+  * The paper (abstract, setup, causal results, R2, the new H1-TEST subsection and Table `t_h1test`, statistics,
+    discussion, limitations, conclusion, appendix) and the curated docs are revised.
+  * The failed N3/N4 control is a separate limitation.
+  * The 90 secondary comparisons are labelled exploratory everywhere they appear.
+  * `src/tests/test_h1_test_paper_claims.py` checks every quoted number against the artifacts.
+  * No experiment was re-run and no metric changed.

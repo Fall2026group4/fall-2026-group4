@@ -212,10 +212,11 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
 * **Short:**
   * To held-out OWT and GoT: yes, for the tested comparisons (M5).
   * To an external SAE: yes, descriptively (E2).
-  * To Gemma, or to RepE-LM test: not tested.
+  * To RepE-LM test (H1-TEST): partly. Pair-direction fidelity yes (9/9); the L8 causal gain for TopK only.
+  * To Gemma: not tested.
 * **Technical:**
   * Every validation conclusion on M5's metrics replicated on test, including the null result for GoT.
-  * Persona and causal results are VALIDATION only, because there is no RepE-LM test split.
+  * H1-TEST (one pass, Holm over 13 cells): HT2 confirmed; HT1 and HT3 not confirmed (C1 cells pass, C3 cells do not); a neutral control (N3/N4) failed at L8/L11.
 * **Evidence:** C1–C3 and A1 gave 17 improved / 7 no change / 0 regressed each on TEST, as on validation.
 * **Source:** M5 README §2
 

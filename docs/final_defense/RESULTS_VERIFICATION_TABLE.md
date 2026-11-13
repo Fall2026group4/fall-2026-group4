@@ -252,7 +252,9 @@ Source: `m5_rows.csv`, `comparisons.csv`.
 
 ---
 
-## 4. RepE-LM persona: representation and causal (VALIDATION only; no test split exists)
+## 4. RepE-LM persona: representation and causal (VALIDATION; see the H1-TEST update below)
+
+**Update 2026-11-13 (H1-TEST, `results/repe/repe_lm_test_evaluation/`, TEST, Holm over 13 cells):** pair-direction cosine confirmed 9/9; L8 T_rec/T_full confirmed for TopK (0.602 → 0.729, p = 0.021), not for BatchTopK vs JumpReLU (p = 0.058); L8 persona re-fit gap confirmed for TopK (p = 0.046), not for C3; N3/N4 neutral control failed at L8/L11 (0.561/0.551 > 0.55). The table below is the VALIDATION ladder and is unchanged.
 
 Sources: `results/openwebtext/r2_scaled_saes/ladder/*.csv`, `r4_kl_finetune/ladder/*.csv` [recomputed means],
 `results/repe/sae_patch_decomposition/`, `results/repe/r5_causal_subspace_skyline/summary.csv`.

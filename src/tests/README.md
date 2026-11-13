@@ -40,3 +40,10 @@ All CPU-only; no checkpoints, caches or model downloads.
   * checkpoint-registry integrity.
 - `test_pca_cm_posthoc.py`: the Holm step-down used by the PCA-CM multiplicity check, and that the check reproduces
   the pre-registered PCA-CM classes and its committed summary (3 and 8 SAE-better cells; 1 and 4 after Holm).
+
+## Added 2026-11-13 (H1-TEST paper revision, D36)
+
+- `test_h1_test_paper_claims.py` (4 tests; suite 71 → 75): the H1-TEST paper table (`tables/t_h1test.tex`) equals a
+  fresh render from `results/repe/repe_lm_test_evaluation/`; the hypothesis verdicts; every H1-TEST number quoted in
+  the paper text (cells, controls, HT4, the 90 secondary counts) matches the artifacts; and the stale "borderline,
+  pending the test" phrasings are gone from the paper sections. Skipped if the artifacts are absent.

@@ -37,7 +37,14 @@
   \item \textbf{Causal preservation after fine-tuning at one site.} E3 covers only the layer-8 final token and a
         small effect ($T_{\text{full}}=0.022$ nats); TopK's per-SAE intervals ($\pm$0.06--0.09) cannot resolve changes
         below about 0.03.
-  \item \textbf{Persona task limits.} RepE-LM has no test split; the persona probe transfers only weakly to held-out
+  \item \textbf{Failed negative control in H1-TEST.} The test-only neutral swaps N3/N4 give the persona probe an
+        AUROC of 0.561 at L8 and 0.551 at L11, above the pre-registered floor of 0.55. The probe is therefore not
+        perfectly specific to the persona contrast on new frames at these layers. We did not change the floor or the
+        frames after seeing this.
+  \item \textbf{H1-TEST power and scope.} Three seeds per arm (Welch tests on at most 4 degrees of freedom); only HT2
+        and the TopK cells of HT1 and HT3 are confirmed; the 90 secondary comparisons are uncorrected and
+        exploratory; the RepE-LM test rows are now spent.
+  \item \textbf{Persona task limits.} RepE-LM was tested once (H1-TEST); the persona probe transfers only weakly to held-out
         wording even on original activations (AUROC 0.54--0.69); results are for the final token only; task-level L0
         is not matched across architectures (the truncation control is post-hoc, E1 pending); 14 validation statements
         have opposite-label near duplicates in training (sensitivity $\le$0.02).

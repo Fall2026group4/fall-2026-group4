@@ -92,9 +92,11 @@ Full tables: [`results_summary.md`](results_summary.md).
      in 12 (not equivalence: the ±0.02 equivalence class was met in 0/40 cells). **The SAE–PCA
      verdict depends on the comparison constraint.**
    * The GoT design cannot reliably detect changes smaller than about 0.05–0.09 AUROC, so "no change" is a bound.
-3. **Persona representation and causal preservation improved on validation only.**
-   * R2 TopK at L8: persona gap 0.156 → 0.108; T_rec/T_full 0.63 → 0.73 (borderline: per-SAE MDE at L8 is
-     0.054–0.107).
+3. **Persona representation and causal preservation improved (partly confirmed on held-out data, H1-TEST).**
+   * R2 TopK at L8 (VAL): persona gap 0.156 → 0.108; T_rec/T_full 0.63 → 0.73.
+   * TEST: the pair-direction gain is confirmed in 9/9 cells; the L8 causal gain is confirmed for TopK (0.602 → 0.729,
+     Holm p = 0.021), not for BatchTopK vs JumpReLU (Holm p = 0.058); the persona re-fit gap is confirmed only for
+     TopK. A test-only neutral control exceeded its floor at L8/L11.
    * There is no gain relative to PCA at equal error (persona was not re-tested at equal dimensions).
    * R4's behavioural gain came with a causal regression at L11.
 4. **The levels dissociate.** Reconstruction predicts behavioural damage within a layer (M0), but not truth

@@ -23,13 +23,15 @@ compared only when every run's L0 is within $\pm$10\,\% of the target; 107 of 10
 42 does not).
 
 \paragraph{Splits.} Probes and selections use training data; results are reported on validation unless labelled
-\evlabel{test}. The RepE-LM test split has never been built or accessed. The GoT test split was scored in earlier
+\evlabel{test}. The RepE-LM test split was built after M5 and read once, by the pre-registered H1-TEST pass
+(Section~\ref{sec:h1test}). The GoT test split was scored in earlier
 frozen-probe evaluations and is treated as previously exposed (Appendix~\ref{app:exposure}).
 
-\paragraph{Evidence status of every result in this paper.} Apart from the OWT reconstruction table
-(\evlabel{test}), \emph{every} result reported here (M0--M4 and the fine-tuning experiments) is a
-\evlabel{validation} finding. Hypotheses, criteria and scripts were fixed before each run, but the held-out test
-evaluation (M5) has not been run, so no result is a confirmed held-out finding. When a site or effect selected on training prompts
+\paragraph{Evidence status of every result in this paper.} Apart from results marked \evlabel{test} (the OWT
+reconstruction table, the M5 pass in Section~\ref{sec:m5} and the confirmatory cells of the H1-TEST pass in
+Section~\ref{sec:h1test}), \emph{every} result reported here (M0--M4 and the fine-tuning experiments) is a
+\evlabel{validation} finding. Hypotheses, criteria and scripts were fixed before each run; only cells marked
+\evlabel{test} are confirmed held-out findings. When a site or effect selected on training prompts
 is said to have \emph{replicated}, it means only that it held again on validation prompts. Fine-tuning
 classes (\evlabel{preliminary improvement}, \evlabel{no improvement}, \evlabel{not creditable},
 \evlabel{regression}) are validation classes; none of them is a confirmed result.

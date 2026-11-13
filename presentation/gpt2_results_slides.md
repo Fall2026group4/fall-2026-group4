@@ -51,13 +51,14 @@ Figure: `architecture/diagrams/gpt2_sae_faithfulness_pipeline.svg`.
 * Minimum detectable effect (α 0.05, power 0.80) = 2.8 × SE from the stored bootstrap intervals.
 * GoT, one SAE's re-fit gap: 0.030–0.048 AUROC. Between-family comparisons: **about 0.05–0.09 AUROC**.
 * Observed GoT differences: ≤ 0.025, so "no change" means "no change larger than ≈ 0.05".
-* Causal preservation at L8: one SAE resolved only to 0.054–0.107. The R2 gain (+0.10) is borderline.
+* Causal preservation at L8: one SAE resolved only to 0.054–0.107. On held-out TEST the R2 gain is confirmed for TopK
+  (0.602 → 0.729, Holm p = 0.021), not for BatchTopK vs JumpReLU (p = 0.058).
 * Source: `results/shared/power_sensitivity/`.
 
 ## 7. Causal faithfulness (VAL)
 
 * The SAE reconstruction carries 93–97 % of the persona effect at L1, but only 62–68 % at L8/L11.
-* R2 raises this to 0.73 at L8 (TopK; borderline, see slide 6); R4 lowers it at L11 (0.694 → 0.671).
+* R2 raises this to 0.73 at L8 (TopK; TEST-confirmed, see slide 6); R4 lowers it at L11 (0.694 → 0.671).
 * The effect is small: 0.022 nats at L8.
 * These patches keep the error term. They show the SAE *selects* effect-carrying directions, not that the effect is
   *mediated* by the SAE.
@@ -68,12 +69,14 @@ Figure: `architecture/diagrams/gpt2_sae_faithfulness_pipeline.svg`.
 |---|---|
 | Better SAEs → better reconstruction and behaviour | TEST |
 | Truth information unchanged | TEST, within the detectable range |
-| Honesty and causal gains | VAL only; frozen RepE-LM test protocol not yet run |
+| Persona pair-direction gain | TEST (H1-TEST), 9/9 cells |
+| L8 causal gain | TEST for TopK; not confirmed for BatchTopK vs JumpReLU |
+| Persona re-fit gap gain | TEST for TopK only; hypothesis not confirmed |
+| Neutral control N3/N4 (L8/L11) | FAILED (0.561/0.551 > 0.55) |
 | "SAEs are worse than PCA" | only at equal error (see slide 5) |
 
 ## 9. Next
 
-* RepE-LM test pass (frozen protocol).
 * Mediated SAE-in-the-loop test.
 * Task-level sparsity matching.
 * Gemma (teammates).

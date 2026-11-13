@@ -160,8 +160,10 @@ information as the SAEs; that comparison uses 298--519 PCA components against ab
 (Section~\ref{sec:pca-note}).
 \paragraph{Persona and causal faithfulness (VALIDATION).} The SAE-reconstructed activation difference carries
 93--97\,\% of the persona effect at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final
-token. R2 raises this to 0.726 for TopK at layer 8 (from 0.625). The persona effect itself is small (0.022 nats at
-layer 8). R4 lowers causal preservation at layer 11 (0.694 $\to$ 0.671).
+token. R2 raises this to 0.726 for TopK at layer 8 (from 0.625). On a held-out RepE-LM test split, read once (TEST,
+Holm over 13 cells), this gain is confirmed for TopK (0.602 $\to$ 0.729, $p=0.021$) but not for BatchTopK against
+JumpReLU (+0.072, $p=0.058$); the persona pair-direction gain is confirmed in 9 of 9 cells; and a test-only neutral
+control exceeded its 0.55 floor at layers 8 and 11. The persona effect itself is small (0.022 nats at layer 8). R4 lowers causal preservation at layer 11 (0.694 $\to$ 0.671).
 \paragraph{Gemma-2-2B.} PENDING: to be written by the teammates who ran the Gemma steering and Gemma Scope
 experiments.
 
@@ -181,9 +183,8 @@ SAE selects directions that carry the effect, not that the effect is mediated by
 
 \section{Conclusion}
 Training larger SAEs on more data with a modern recipe improves reconstruction and behavioural faithfulness on held-out
-data, but truth information measured by independent probes does not improve, and the honesty and causal gains are so
-far validation findings. Reconstruction metrics should therefore not be used as a proxy for information or causal
-faithfulness. Next steps: the frozen RepE-LM test pass, task-level sparsity matching and the Gemma-2-2B extension.
+data, but truth information measured by independent probes does not improve, and on held-out persona data only the pair-direction representation gain and the TopK layer-8 cells (causal share and persona re-fit gap) are confirmed. Reconstruction metrics should therefore not be used as a proxy for information or causal
+faithfulness. Next steps: task-level sparsity matching and the Gemma-2-2B extension.
 
 \bibliographystyle{plainnat}
 \bibliography{mybib}
