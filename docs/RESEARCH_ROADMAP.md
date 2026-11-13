@@ -281,3 +281,11 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   confirmation of PCA-CM (GoT test rows were previously exposed, D31, so it would be labelled accordingly).
 * OPEN: off-machine backup (needs a destination); linking the commit email; posting the drafted replies
   (`docs/remediation/review8_response_draft.md`); the team merge order.
+
+## 2026-11-13 audit follow-up (AUDIT-SENS, §44–45 of the journal)
+
+* DONE: verified same-volume checkpoint backup (656 files, 21.7 GB).
+* OPEN (P0, BLOCKED): off-machine backup. No destination or credentials on the host; needs a destination from the user
+  (S3 bucket, external drive or institutional storage). D37.
+* IN PROGRESS: S1–S6 sensitivity analyses (`results/shared/audit_sensitivity/`).
+* NOT PLANNED without approval (training): R2-recipe SAEs at more layers; a valid JumpReLU (X3); Gemma Scope baselines.

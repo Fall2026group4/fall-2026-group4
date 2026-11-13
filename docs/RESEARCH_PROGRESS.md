@@ -1091,3 +1091,45 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * Two rounding slips in the §40 docs are corrected: C1 L11 TEST +0.069, C3 L1 VAL +0.142.
 * **Figures:** none carried the "borderline" statement; the M4 figure stays a VALIDATION figure.
 * **Evidence label:** no new result.
+
+## 44. Scientific audit of code, experiments and results (2026-11-13). Status: COMPLETED (analysis only; no experiment run)
+
+* **Scope:** code, data and committed outputs, not the paper. A read-only audit; CPU re-analyses of committed CSVs.
+* **Confirmed issues:**
+  1. The R2 rule's Welch CI uses seed variance only (`scripts/shared/r2_comparisons.py:rule`); statement and document
+     sampling is not in any M5 or H1-TEST CI.
+  2. The persona-vs-neutral claim compares raw gaps. Normalised by headroom (AUROC − 0.5), the neutral control loses an
+     equal or larger share at every layer (M2 means: persona 0.41–0.59, neutral 0.51–0.66).
+  3. The task-level L0 differs strongly between arms. L1 persona: ReLU, JumpReLU and BatchTopK 208–216 vs TopK 128.
+     L1 GoT: JumpReLU 23 vs TopK 128.
+  4. The 12-layer evidence uses SAEs trained on 101,600 tokens (about 38 passes). On GoT, JumpReLU at L0–3 uses only
+     357–1,389 of 3,072 latents.
+  5. The checkpoints (21.7 GB) existed in one copy.
+  6. The old "JumpReLU" is a sigmoid-surrogate gate; no valid JumpReLU result exists.
+  7. The truth evidence is one pooled GoT domain with a previously exposed test split.
+  8. Gemma has no SAEs.
+* **Potential concerns:**
+  * GoT non-linear probes at L1–3;
+  * the isotropic noise reference;
+  * the C grid edge;
+  * ungrouped MLP early stopping;
+  * depth confounded with position in M4.
+* **Checked and sound:**
+  * `fold_scale`; the JumpReLU straight-through estimator; the BatchTopK threshold;
+  * BOS handling; padding and final-token indices;
+  * GoT split consistency;
+  * Holm/BH; M4 batching;
+  * test EV > validation EV is a denominator effect;
+  * HT2 is not a restatement of NMSE at L8/L11.
+* **Next:** the sensitivity programme in §45 (user instruction of 2026-11-13: fix what can be fixed without retraining).
+
+## 45. In progress: AUDIT-SENS sensitivity programme and checkpoint backup (2026-11-13). Status: PRE-REGISTERED; RUNNING
+
+* **Backup:** `scripts/shared/backup_checkpoints.py`.
+  * 656 `*.pt` files (21.7 GB) went into `../backups/2026-11-13_checkpoints/checkpoints.tar`, with a manifest.
+  * Every archive member was re-hashed: 656/656 match (tar sha256 `6162d843…`).
+  * **This is a same-volume copy only.** No off-machine destination or credentials exist on the host; the instance-store
+    NVMe is ephemeral. Off-machine backup stays OPEN (D37).
+* **Plan:** `results/shared/audit_sensitivity/{README.md,preregistration.json}`, with analyses S1–S6, rules and script
+  hashes fixed before the full runs. The smoke runs are disclosed there, together with one post-hoc S4 flag.
+* **Evidence label:** SENSITIVITY / DIAGNOSTIC. Nothing in it is confirmatory. No TEST row is read.
