@@ -1001,3 +1001,15 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **No scientific conclusion beyond D34 changed, and no metric changed.** The post-hoc check changes no class in
   `decisions.csv`; it only rules out the word "significantly".
 * **Evidence label:** PCA-CM is VALIDATION; the Holm check and MDE are descriptive.
+
+## 40. In progress: H1-TEST, the single RepE-LM held-out evaluation (2026-11-13). Status: IMPLEMENTATION FROZEN; TEST PASS RUNNING
+
+* **Authorised by the user** (2026-11-13: "You have my authorization to run this evaluation using the existing
+  checkpoints").
+* **Script:** `scripts/repe/29_repe_lm_test_evaluation.py`. It reuses the ladder's M2, RLM-RP and M4 functions and the
+  R2 rule unchanged.
+* **Smoke test (VALIDATION only):** reproduces the committed ladder to ≤ 1e-4.
+* **Checkpoints:** all 81 equal their registry and ladder hashes.
+* **Addendum** (`results/repe/repe_lm_test_protocol/preregistration_addendum.json`): committed and pushed before
+  any TEST row was read. The cell count is corrected from 12 to 13 for Holm.
+* **Next:** run once; document every cell; compare with validation.

@@ -264,7 +264,7 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 ## 2026-11-13 additions (audit remediation; register in `docs/remediation/issue_register.md`)
 
 * DONE: PCA-CM, the capacity-matched PCA reference (S1), VALIDATION only; `results/shared/pca_capacity_matched/`.
-* PARTIALLY RESOLVED: H1 RepE-LM TEST split. Data and protocol are frozen (`data/repe/repe_lm_test/`,
+* IN PROGRESS (user-authorised 2026-11-13; implementation frozen, TEST pass running): H1 RepE-LM TEST split. Data and protocol are frozen (`data/repe/repe_lm_test/`,
   `results/repe/repe_lm_test_protocol/`); the evaluation is NOT RUN and awaits user approval (about 1–2 GPU hours).
   Next: write script 29, smoke-test it on validation, hash it into the pre-registration, run once.
 * PLANNED (proposed, not approved): a mediated SAE-in-the-loop test. An edit at layer ℓ with SAEs spliced at

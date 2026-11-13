@@ -1,4 +1,4 @@
-# H1: held-out RepE-LM TEST protocol (2026-11-13). Status: FROZEN, NOT EXECUTED
+# H1: held-out RepE-LM TEST protocol (2026-11-13). Status: FROZEN; implementation frozen (addendum); TEST pass authorised by the user and started
 
 Evidence level: none yet. This folder contains a **protocol and a dataset, not a result**.
 
@@ -75,3 +75,23 @@ The full specification is in `preregistration.json`.
   3. Add its hash to `preregistration.json`.
   4. Run it once.
   5. Document the result whatever it shows.
+
+## Implementation freeze (addendum, before any TEST row is read)
+
+* The user authorised the single TEST pass on 2026-11-13.
+* [`scripts/repe/29_repe_lm_test_evaluation.py`](../../../scripts/repe/29_repe_lm_test_evaluation.py) computes every
+  metric with the validation ladder's unchanged functions; only row selection, activation extraction, HT4 and Holm
+  are new.
+* **Smoke test on VALIDATION rows only** ([`smoke_validation/`](smoke_validation/checks.json)): 6 SAEs reproduce the
+  committed ladder to ≤ 1e-4 on every checked metric; live activations match the cache to ≤ 1.8e-4; the M4 rows are
+  identical to `S24.build_rows`.
+* **Checkpoints** ([`checkpoint_hashes.csv`](checkpoint_hashes.csv)): 81 sources; 78 in-house hashes equal
+  `docs/checkpoint_registry.csv`; all 81 equal the hashes recorded in the validation ladder.
+* [`preregistration_addendum.json`](preregistration_addendum.json) hashes the script, its imported modules, the
+  validation comparison file and the checkpoint list. It also records clarifications:
+  * The protocol says 12 HT1–HT3 cells, but its lists give 13; Holm is applied over 13.
+  * A cell is confirmed only if the R2 rule classes it IMPROVEMENT on TEST and its Holm-adjusted Welch p < 0.05.
+  * No PCA metric is computed on TEST.
+* Expected cost: about 40–60 s per SAE, about 1–1.5 GPU hours on one A10G (smoke: 458 s for 6 SAEs), under 8 GB of
+  GPU memory.
+* Results go to `results/repe/repe_lm_test_evaluation/` (the script refuses to overwrite it).
