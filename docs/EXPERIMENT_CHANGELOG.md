@@ -256,3 +256,10 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 Not changed: any script, result file, checkpoint, activation cache, manifest row (other than the appended renames),
 Gemma file or teammate file. Historical records that cite the old paths (`EXPERIMENT_CHANGELOG.md` 2026-11-10 entry,
 `migration_manifest.csv` older rows, the committed summary PDF) are left as they are.
+
+## 2026-11-13: audit remediation
+
+| Commit | Change | Reason |
+|---|---|---|
+| this commit | Added `scripts/shared/pca_capacity_matched.py` and `results/shared/pca_capacity_matched/{README.md,preregistration.json}` | S1: the PCA reference was matched on error only (k = 298–519 vs 143–164). Protocol committed before the run finished (D31) |
+| this commit | M `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,EXPERIMENT_CHANGELOG}.md` | Documentation rule |

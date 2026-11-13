@@ -934,3 +934,15 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Process note:** `git mv` pre-staged the renames, so they landed in `e2becfa` rather than in `768831a`. Recorded in
   the changelog; not amended.
 * **Evidence label:** no new result.
+
+## 38. In progress: remediation of the 2026-11-12 independent audit (2026-11-13). Status: IN PROGRESS
+
+* **Register:** `docs/remediation/issue_register.md` (D1–D15, S1–S12, U1–U4, Review #8 items). It is written as the
+  work proceeds.
+* **PCA-CM (S1), PRE-REGISTERED and RUNNING:** capacity-matched PCA references (k = 128, k = GoT task L0, and the
+  existing error-matched k), VALIDATION only.
+  * Protocol: `results/shared/pca_capacity_matched/{README.md,preregistration.json}`.
+  * The protocol was hashed before the full run and committed while the run was in progress, before any full-run
+    output existed (D31).
+  * A smoke run on validation (16 sequences, PCA from 5 chunks) checked the pipeline. Its numbers are not used.
+* **Evidence label:** pending.

@@ -260,3 +260,7 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * DONE: curated docs (`docs/{research_overview,methodology,experiment_history,results_summary,limitations_and_future_work}.md`), neutral renames, archive log, README navigation and reproduction commands.
 * OPEN: off-machine backup of about 10 GB of R2/R4 checkpoints and the activation caches (still P0; Git does not hold them).
 * OPEN: teammate review of the draft PR (requested from two teammates); merge needs their review and the user's decision.
+
+## 2026-11-13 additions (audit remediation; register in `docs/remediation/issue_register.md`)
+
+* IN PROGRESS: PCA-CM, the capacity-matched PCA reference (S1), VALIDATION only; `results/shared/pca_capacity_matched/`.
