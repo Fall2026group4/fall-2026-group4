@@ -1,0 +1,32 @@
+{
+  "mode": "smoke",
+  "script_sha256": "c99957ee80e882426dd3baac6f7b1a53c1be852698d74e81880021db6289c6c8",
+  "n_saes": 6,
+  "runtime_s": 457.83936047554016,
+  "eval_rows": 1780,
+  "test_rows_used": 0,
+  "fitted_on": "RepE-LM TRAIN only",
+  "checks": {
+    "L1": {
+      "live_vs_cache_max_abs": 4.9591064453125e-05,
+      "m4_rows_identical_to_S24": true
+    },
+    "L8": {
+      "live_vs_cache_max_abs": 7.2479248046875e-05,
+      "m4_rows_identical_to_S24": true
+    },
+    "L11": {
+      "live_vs_cache_max_abs": 0.00017547607421875,
+      "m4_rows_identical_to_S24": true
+    }
+  },
+  "max_abs_diff_vs_ladder": {
+    "m4__T_full_mean": 1.6255439997531207e-08,
+    "m4__preservation_rec": 8.595294932467468e-07,
+    "repe_persona__frozen_logistic_gap": 7.890417876532663e-05,
+    "repe_persona__refit_logistic_gap": 3.9452089382718825e-05,
+    "rlm__frozen_heldout_gap": 3.156167150608624e-05,
+    "rlm__pair_dir_cosine": 1.855956554364102e-05,
+    "rlm__refit_heldout_gap": 9.468501451836975e-05
+  }
+}

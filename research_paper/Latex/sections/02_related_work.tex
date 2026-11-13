@@ -1,0 +1,26 @@
+\section{Related Work}\label{sec:related}
+
+\paragraph{Sparse dictionary learning for interpretability.} \citet{bricken2023monosemanticity} and
+\citet{cunningham2023sparse} showed that SAEs trained on transformer activations yield many interpretable latents.
+\citet{gao2024scaling} introduced TopK SAEs and studied scaling; \citet{rajamanoharan2024jumping} introduced JumpReLU
+SAEs with a learned threshold and a straight-through estimator. Our JumpReLU uses a simpler sigmoid surrogate and is
+not the published estimator (\S\ref{sec:setup}). Public SAE suites exist for GPT-2 Small via SAELens
+\citep{saelens2024} and for Gemma 2 via Gemma Scope \citep{gemmascope2024}.
+
+\paragraph{Evaluating SAEs beyond reconstruction.} SAEBench \citep{karvonen2025saebench} evaluates SAEs on a broad set
+of downstream metrics and finds that proxy metrics such as reconstruction and sparsity do not reliably predict
+practical usefulness. AxBench \citep{wu2025axbench} finds that simple baselines outperform SAE-based methods for
+concept detection and steering. \citet{paulo2024automatic} automate the interpretation of SAE features at scale. Our
+audit is narrower but more controlled: one model, one task family per question, and pre-registered comparisons with
+explicit noise, PCA and synonym controls.
+
+\paragraph{Training for downstream faithfulness.} \citet{braun2024e2e} train SAEs end-to-end with a KL objective on the
+model's output. Our output-KL fine-tuning (\S\ref{sec:finetune}) is inspired by this but is not a reproduction: it
+fine-tunes existing local SAEs for 500 steps and keeps the local reconstruction term.
+
+\paragraph{Truth and honesty representations.} \citet{marks2023geometry} find linear truth structure in LLM
+activations (the Geometry of Truth datasets we use); \citet{zou2023representation} introduce representation
+engineering with persona-contrast prompts, from which our original RepE task was derived.
+
+\pending{Expand to the 15-reference review from PR \#16 (Review \#8 H3b); add a differentiation statement per work.
+Every citation must be checked against the original paper before submission.}

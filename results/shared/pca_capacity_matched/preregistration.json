@@ -1,0 +1,75 @@
+{
+  "id": "PCA-CM",
+  "date": "2026-11-13",
+  "status": "PRE-REGISTERED (frozen before the full run; smoke run on validation only)",
+  "evidence_label": "VALIDATION (descriptive); no test rows",
+  "question": "Is the \"SAEs never beat PCA\" finding a property of error-matching (PCA k=298-519 for trained SAEs, 143-164 for the random decoder) rather than of the SAEs?",
+  "splits": {
+    "pca_fit": "OWT TRAIN cache (M2.owt_pca)",
+    "owt_eval": "OWT validation cache (12,700 tokens/layer; 100 sequences for splicing)",
+    "got_probe_fit": "GoT cities+neg_cities TRAIN (2,092 rows)",
+    "got_eval": "GoT cities+neg_cities VAL (448 rows)",
+    "test": "NOT READ"
+  },
+  "layers": [
+    1,
+    8,
+    11
+  ],
+  "got_layers": [
+    8,
+    11
+  ],
+  "sources": [
+    "old",
+    "r2",
+    "r4",
+    "resjb"
+  ],
+  "k_sweep": [
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "references": {
+    "capacity_k128": "PCA k=128 = OWT L0 target of every SAE",
+    "task_l0_matched": "PCA k=round(SAE GoT task L0)",
+    "error_matched": "PCA k at the SAE OWT validation NMSE (replicates the existing reference)"
+  },
+  "metrics": {
+    "owt_nmse": "lower better",
+    "splice_delta_ce": "lower better",
+    "splice_kl_mean": "lower better",
+    "got_refit_logistic_gap": "lower better (PRIMARY truth metric)",
+    "got_frozen_logistic_gap": "lower better (secondary)"
+  },
+  "rules": {
+    "got": "per family x layer x reference, from per-seed paired grouped-bootstrap 95% CIs of (SAE gap - PCA gap), 1000 resamples shared within a layer: SAE BETTER if every seed CI high < 0; SAE WORSE if every seed CI low > 0; EQUIVALENT (\u00b10.02) if every seed CI within [-0.02, 0.02]; else INCONCLUSIVE",
+    "owt": "SAE BETTER / WORSE if so on every seed against PCA-128 (deterministic given rows); else MIXED"
+  },
+  "interpretation": {
+    "I1": "If error-matched comparisons on validation are SAE WORSE or INCONCLUSIVE (never SAE BETTER) for trained SAEs, the error-matched headline is replicated on validation and stays, but must be stated as error-matched with the k range.",
+    "I2": "If any trained SAE family is SAE BETTER at capacity_k128 or task_l0_matched on the primary metric, \"SAEs never beat PCA\" is not true without qualification: the paper must say SAEs lose more truth information than PCA at equal error but not at equal active-dimension budget. This is a conclusion change: report to the user before revising the paper.",
+    "I3": "If capacity-matched comparisons are INCONCLUSIVE/EQUIVALENT, the paper must say the SAE-vs-PCA conclusion depends on the matching criterion and is not established at equal capacity."
+  },
+  "limitations": [
+    "PCA-k is a fixed k-dim subspace; a TopK SAE chooses k of 12,288 (or 3,072) latents per token from a learned dictionary, so k=128 is an equal per-token active budget, not equal parameters or equal representational capacity.",
+    "OWT L0 is not GoT task L0 for ReLU/BatchTopK/JumpReLU (S10); task_l0_matched addresses this only for the GoT readout.",
+    "Validation rows only: GoT val n=448 (224 city groups); seeds share one data stream.",
+    "Descriptive diagnostic: no multiplicity correction across cells; classifications are per family."
+  ],
+  "hashes": {
+    "scripts/shared/pca_capacity_matched.py": "f545601b129c77875c25202de5810dc7889fbb77b1766de4bc1e74e9e44340fd",
+    "scripts/shared/m5_confirmatory_test.py": "ec8e264a7818b6553ec0558381e9cc5809d9098a57cb0adfc814107f7f6a4616",
+    "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+    "scripts/shared/spliced_reconstruction_evaluation.py": "2d5f3aff55b5d391bb6dc6b2db6c5c94bac5b07f626b3bafa303acd54f9e42bf",
+    "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "scripts/geometry_of_truth/03_original_truth_probes.py": "a725bed094957034f8ade2a5458eca690e935aa5df87d2166ba08f008d6484b2",
+    "data/got/splits/cities_splits.csv": "e4951ef2f8c57c8c9e1f59bfdc0c98eb502e31fa342e1a334a2e958093d53e9f",
+    "data/got/splits/neg_cities_splits.csv": "67b7d66a445229470c341976f2df4cc5950b6bbbce32ce5d146a38a9b85969dd"
+  }
+}

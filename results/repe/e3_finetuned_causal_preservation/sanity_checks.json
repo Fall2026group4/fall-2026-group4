@@ -1,0 +1,23 @@
+{
+  "max_identity_abs_err": 4.76837158203125e-07,
+  "max_start_at_layer_kl": 0.0,
+  "max_abs_T_rec_vs_feature_all": 2.120419942575058e-06,
+  "max_abs_shapley_sum_err": 5.551115123125783e-17,
+  "n_validation_persona_pairs": 356,
+  "n_validation_neutral_pairs": 178,
+  "n_train_T2_T4_pairs": 1251,
+  "site_hook": "blocks.8.hook_resid_pre",
+  "site_position": "final token (n - 1) of each equal-length pair",
+  "positions_are_final_token": true,
+  "m4_reproduction_max_abs_err": 0.0,
+  "m4_reproduction_pass": true,
+  "T_full_identical_across_saes": 0.0,
+  "n_saes_evaluated": 36,
+  "gpt2_parameters_unchanged": true,
+  "pass": true,
+  "runtime_s": 1830.3319325447083,
+  "test_rows_used": 0,
+  "script_sha256": "ad242b6b2a261bfb0dd1cd618ea2c84d2f1efdb05ab66290e6fbda2c59d56fae",
+  "gpu_peak_allocated_gb": 6.02,
+  "smoke": false
+}

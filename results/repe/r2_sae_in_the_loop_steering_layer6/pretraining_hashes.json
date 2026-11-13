@@ -1,0 +1,11 @@
+{
+  "recorded": "2026-11-08 00:07:15",
+  "sha256": {
+    "scripts/repe/17_r2_sae_in_the_loop_steering.py": "0a0f4fc78822b6e57559d1295b438389b2967256b2e518db534944dcb4d3dfb5",
+    "scripts/repe/13_causal_random_controls.py": "9d5ac6b3504e8443b3d02a4487576a308e886e4f1ea13300e58399c470a41c8e",
+    "data/repe/persona_pairs.csv": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+    "data/repe/cross_wording_validation.csv": "98959c183b56ff27ce91d307d56ae8835b6d7c2691d492db2500c14f00000c83",
+    "results/repe/r2_sae_in_the_loop_steering_layer6/preregistration.json": "4d39ef2c8e6121f80eee99f6021d1dd6ee6e051de369d021f7d05b933a292a2d",
+    "results/repe/r2_sae_in_the_loop_steering_layer6/README.md": "ffa903fdb1e93e0900fc27380f7582b509d05195c7254c7e089bad0c750c96a3"
+  }
+}

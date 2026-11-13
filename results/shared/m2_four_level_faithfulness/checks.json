@@ -1,0 +1,13 @@
+{
+  "n_owt_train_tokens": 101600,
+  "max_identity_error": 1.7245501595652968e-06,
+  "max_original_identity_error": 1.5042592337977112e-05,
+  "n_cells": 432,
+  "n_sae_cells": 324,
+  "pca_val_vs_target_max_abs": 0.0006107982760361896,
+  "test_rows_used": 0,
+  "runtime_s": 2365.3357412815094,
+  "script_sha256": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+  "module_sha256": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+  "identity_check_pass": true
+}

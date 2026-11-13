@@ -1,0 +1,1064 @@
+{
+  "layer3_jumprelu": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        -0.19,
+        0.11,
+        0.39
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        4.21,
+        3.99,
+        4.56
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.003,
+          -0.00164,
+          -0.00151
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00298,
+          -0.00136,
+          -0.00021
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00376,
+          -0.00871,
+          -0.00444
+        ]
+      },
+      "class": "PRELIMINARY IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00493,
+          0.00371,
+          0.0013
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00321,
+          -0.0054,
+          0.00372
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.01103,
+          -0.00532,
+          -0.00418
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    }
+  },
+  "layer3_relu": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        -0.14,
+        -0.48,
+        -0.06
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        4.56,
+        4.31,
+        4.93
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00054,
+          -0.00121,
+          0.00084
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0005,
+          -0.0022,
+          -0.00139
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00303,
+          -0.00383,
+          -0.00436
+        ]
+      },
+      "class": "PRELIMINARY IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00104,
+          -0.00323,
+          0.00211
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00124,
+          -0.00289,
+          -0.00121
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0026,
+          -0.00197,
+          -0.00444
+        ]
+      },
+      "class": "PRELIMINARY IMPROVEMENT"
+    }
+  },
+  "layer3_topk": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00078,
+          0.00631,
+          0.00331
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00066,
+          0.00328,
+          0.00396
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00219,
+          -0.00461,
+          -0.00605
+        ]
+      },
+      "class": "PRELIMINARY IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00613,
+          0.00076,
+          0.00436
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00115,
+          -0.00102,
+          0.00579
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00568,
+          -0.00527,
+          -0.007
+        ]
+      },
+      "class": "PRELIMINARY IMPROVEMENT"
+    }
+  },
+  "layer6_jumprelu": {
+    "guard_source": "layer 6: IMP-L-format guards not available; class reported without guard checks",
+    "method_a_guards": {},
+    "kl_guards": {},
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.01,
+        0.16,
+        0.45
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": false,
+      "repe_l0_pct_change_by_seed": [
+        6.36,
+        6.52,
+        6.2
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00157,
+          -0.00328,
+          -0.00119
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00124,
+          -0.00116,
+          -0.00014
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00834,
+          -0.00161,
+          -0.00551
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00636,
+          -0.00282,
+          -0.00137
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00383,
+          -0.00515,
+          -0.00137
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.0036,
+          -0.00578,
+          -0.00699
+        ]
+      },
+      "class": "PRELIMINARY IMPROVEMENT"
+    }
+  },
+  "layer6_relu": {
+    "guard_source": "layer 6: IMP-L-format guards not available; class reported without guard checks",
+    "method_a_guards": {},
+    "kl_guards": {},
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.12,
+        0.02,
+        0.88
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": false,
+      "repe_l0_pct_change_by_seed": [
+        5.45,
+        5.21,
+        6.48
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00053,
+          -0.00314,
+          -0.00221
+        ]
+      },
+      "vs_owt_only": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00102,
+          -0.00133,
+          -0.00169
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00097,
+          0.00047,
+          0.00018
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00274,
+          -0.00191,
+          -0.00045
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00235,
+          -0.00162,
+          -0.00049
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00014,
+          -0.00068,
+          -0.00155
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    }
+  },
+  "layer6_topk": {
+    "guard_source": "layer 6: IMP-L-format guards not available; class reported without guard checks",
+    "method_a_guards": {},
+    "kl_guards": {},
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00271,
+          -0.00602,
+          0.00687
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00622,
+          -0.00703,
+          0.00955
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00282,
+          0.00088,
+          -0.0035
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00121,
+          0.00252,
+          0.01621
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00734,
+          -0.00537,
+          0.01226
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00066,
+          -0.00212,
+          -0.01064
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    }
+  },
+  "layer8_jumprelu": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": false,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.36,
+        0.72,
+        0.55
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": false,
+      "repe_l0_pct_change_by_seed": [
+        7.76,
+        8.51,
+        7.93
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00059,
+          -0.00335,
+          -0.00275
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00097,
+          -0.00378,
+          -6e-05
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00417,
+          -0.00713,
+          -0.0021
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00425,
+          -0.00568,
+          0.00031
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00078,
+          -0.00478,
+          -0.003
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00221,
+          -0.00834,
+          -0.00013
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer8_relu": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": false,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        -0.56,
+        0.11,
+        0.14
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": false,
+      "repe_l0_pct_change_by_seed": [
+        6.24,
+        6.54,
+        5.83
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0022,
+          -0.0017,
+          0.0009
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00139,
+          0.00042,
+          9e-05
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00456,
+          -0.00259,
+          -0.00432
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00097,
+          0.00036,
+          -0.0004
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          4e-05,
+          0.00122,
+          -0.00082
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00257,
+          -0.00516,
+          -0.00519
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer8_topk": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00487,
+          -0.00425,
+          -0.00026
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00551,
+          -0.00189,
+          0.00081
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00195,
+          0.00601,
+          -0.00469
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0067,
+          -0.00027,
+          -0.00369
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00245,
+          0.0007,
+          -0.00206
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00473,
+          0.00338,
+          -0.00219
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    }
+  },
+  "layer9_jumprelu": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": false,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.29,
+        0.62,
+        0.73
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": false,
+      "repe_l0_pct_change_by_seed": [
+        8.48,
+        8.58,
+        8.76
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00465,
+          -0.00251,
+          -0.0002
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00197,
+          0.00038,
+          -0.00118
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00398,
+          -0.01352,
+          -0.01055
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00227,
+          -0.00604,
+          -0.00501
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00069,
+          0.00011,
+          -0.00742
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          4e-05,
+          -0.01164,
+          0.00281
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer9_relu": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": false,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        -0.56,
+        0.65,
+        0.25
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": false,
+      "repe_l0_pct_change_by_seed": [
+        5.33,
+        6.55,
+        5.65
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": true,
+        "paired_diffs_by_seed": [
+          -0.00316,
+          -0.00226,
+          -0.00107
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00252,
+          -0.00142,
+          -0.00036
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00131,
+          -0.00061,
+          -0.00036
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00089,
+          -0.00273,
+          0.00031
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00136,
+          -6e-05,
+          -0.00056
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00198,
+          -0.00071,
+          -0.00364
+        ]
+      },
+      "class": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer9_topk": {
+    "guard_source": "IMP-L guards",
+    "method_a_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.005": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "kl_guards": {
+      "l0_within_5pct_of_base": true,
+      "owt_ev_ge_ref_minus_0.02": true,
+      "owt_delta_ce_le_1.10x_base": true,
+      "cities_pref_ge_base_minus_0.018": true
+    },
+    "method_a_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "kl_repe_l0": {
+      "repe_l0_within_5pct_of_base": true,
+      "repe_l0_pct_change_by_seed": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "RP_A_frozen": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          9e-05,
+          -0.00096,
+          -0.00339
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00499,
+          0.00017,
+          -0.00203
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_frozen": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00047,
+          0.00335,
+          -0.0038
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_A_refit": {
+      "vs_base": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.0011,
+          0.00107,
+          -0.00073
+        ]
+      },
+      "vs_owt_only": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.00689,
+          -2e-05,
+          0.00215
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    },
+    "RP_KL_refit": {
+      "vs_method_a": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.00016,
+          -0.00412,
+          -0.00202
+        ]
+      },
+      "class": "NO IMPROVEMENT"
+    }
+  }
+}

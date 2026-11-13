@@ -1,0 +1,9 @@
+{
+  "all_positions_L0_max_kl_to_H": 0.0,
+  "all_positions_L6_max_kl_to_H": 0.0,
+  "all_positions_L11_max_kl_to_H": 0.0,
+  "zero_patch_max_abs_R": 0.0,
+  "blocks.11.hook_resid_post|final_max_abs(R_A-kl_HU)": 0.0,
+  "blocks.0.hook_resid_pre|slot_max_abs(R_A-kl_HU)": 0.0,
+  "pass": true
+}

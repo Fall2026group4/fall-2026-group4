@@ -1,0 +1,40 @@
+\section{Introduction}\label{sec:intro}
+
+Sparse autoencoders decompose a model's dense activations into a larger set of sparsely active latents, many of which
+look human-interpretable \citep{bricken2023monosemanticity,cunningham2023sparse}. They have become a standard tool of
+mechanistic interpretability, with architectures that trade off reconstruction against sparsity in different ways
+\citep{gao2024scaling,rajamanoharan2024jumping}. Interpretability claims made through an SAE --- that the model
+represents truth with certain features, or that a feature controls a behaviour --- inherit an assumption: that the
+SAE is a \emph{faithful} replacement for the activation it reconstructs.
+
+Faithfulness has several distinct meanings that are often conflated:
+\begin{enumerate}
+  \item \textbf{Reconstruction}: the reconstruction $\hat{x}$ is close to the activation $x$.
+  \item \textbf{Information preservation}: task information that the model encodes (here, whether a statement is true;
+        whether a persona instruction is honest) can still be read from $\hat{x}$.
+  \item \textbf{Behavioural faithfulness}: the model behaves the same when $\hat{x}$ replaces $x$.
+  \item \textbf{Causal faithfulness}: $\hat{x}$ carries the specific causal effect the model uses for a task.
+\end{enumerate}
+Explained variance is dominated by high-variance directions shared by all inputs, while task-relevant differences can
+be small, low-variance directions. Good reconstruction therefore does not guarantee the other three properties. This
+paper measures each level separately, at every layer of GPT-2 Small \citep{radford2019gpt2}.
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item A matched-sparsity comparison of ReLU, TopK and JumpReLU SAEs at all 12 layers of GPT-2 Small, with three seeds
+        (\S\ref{sec:recon}).
+  \item A four-level information test that separates readout shift from information loss using frozen and re-trained
+        readers, norm-matched noise and PCA references (\S\ref{sec:info}).
+  \item A within-layer analysis showing that reconstruction error predicts behavioural damage but not truth readout,
+        and that earlier pooled correlations were artefacts of mixing layers (\S\ref{sec:behaviour}).
+  \item A shortcut-free persona-instruction task, a pre-registered causal site sweep, and a decomposition of the
+        causal effect into reconstruction, error and interaction parts (\S\ref{sec:causal}).
+  \item Pre-registered fine-tuning experiments, including an audit that found our own earlier truth-aware objective
+        to be circular (\S\ref{sec:finetune}).
+\end{itemize}
+
+\paragraph{Scope of the claims.} All in-house SAEs have 3072 latents (4$\times$ expansion), target L0 = 128 and are
+trained on 101{,}600 OpenWebText tokens. The results describe these SAEs; whether they hold for larger, longer-trained
+SAEs is tested only partially (\S\ref{sec:limits}).
+
+\pending{Final framing paragraph (Review \#8: lead with the audit's negative finding) after IMP-L and M5.}

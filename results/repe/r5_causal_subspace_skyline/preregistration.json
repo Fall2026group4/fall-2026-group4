@@ -1,0 +1,38 @@
+{
+  "experiment": "R5 causal subspace skyline",
+  "date": "2026-11-10",
+  "approved_by_user": "2026-11-10 full execution approval",
+  "design": {
+    "sites": [
+      "L1 slot",
+      "L8 final",
+      "L11 final"
+    ],
+    "ks": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "das_seeds": [
+      0,
+      1,
+      2
+    ],
+    "das_steps": 400,
+    "das_lr": 0.01,
+    "das_init": "TRAIN-PCA + noise sd 0.5/sqrt(768)",
+    "n_random": 20,
+    "scoring": "VALIDATION T2-T4 pairs",
+    "rule": "descriptive; no pass/fail"
+  },
+  "hashes": {
+    "scripts/repe/27_causal_subspace_skyline.py": "78a6c533b4af742eaeb148b00666d77f93cd72c0b98efae6c850e0d57d095d74",
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "results/repe/sae_patch_decomposition/features_summary.csv": "1a2fe9bbf551c471e2828eb12af7a54eb0377e13d1eee99da6fbb29f866b400c",
+    "results/repe/sae_patch_decomposition/hypotheses.csv": "4bfb1f3f1762e72960afc568b55f26eddcd58c7630d1c277f7beb22568da2b85",
+    "results/repe/r5_causal_subspace_skyline/README.md": "4107adcdbec1755c9ef7d42d6e539a0190107ca9bc125e437421af7c63a410ad"
+  },
+  "note": "DAS init changed from random to PCA+noise after the smoke test, before this file was written (README 1.2)."
+}

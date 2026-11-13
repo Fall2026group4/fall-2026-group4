@@ -1,0 +1,48 @@
+\section{Limitations and Threats to Validity}\label{sec:limits}
+
+\begin{itemize}
+  \item \textbf{Small, data-limited SAEs.} 3072 latents (4$\times$), trained on 101{,}600 document-start tokens for
+        about 38 passes, not converged (validation-based checkpoint selection always chose the final step). The public
+        \texttt{gpt2-small-res-jb} SAE used 300M tokens and 24{,}576 latents. Conclusions may not transfer.
+  \item \textbf{One operating point.} L0 = 128 and width 3072 only.
+  \item \textbf{Surrogate JumpReLU.} Not the published estimator; up to 85\,\% dead latents at layer 0.
+  \item \textbf{Task-level sparsity mismatch.} Matching is on OWT; task prompts activate very different numbers of
+        latents per architecture.
+  \item \textbf{Weak behavioural signal.} The persona effect is 0.02--0.04 nats; the persona-meaning gate passed
+        narrowly (0.701).
+  \item \textbf{Seeds share data.} Seed spread understates uncertainty.
+  \item \textbf{Test exposure.} The GoT test split was scored in earlier frozen-probe evaluations; the original RepE
+        test split was touched in a smoke run and is retired with the confounded task.
+  \item \textbf{Limited held-out confirmation.} M5 confirmed the OWT and GoT results on test; every persona,
+        representation, causal and PCA-CM result is a validation finding. Validation data were also used to compare
+        methods, so validation effect sizes may be optimistic.
+  \item \textbf{Statistical power.} Under the current design, GoT comparisons cannot reliably detect changes smaller
+        than about 0.05--0.09 AUROC, and one SAE's causal preservation at layer 8 only to 0.054--0.107.
+  \item \textbf{PCA matching.} The SAE--PCA verdict depends on the constraint (equal error vs equal per-token
+        budget). $k=128$ equalises active dimensions, not parameters; the post-hoc Holm check keeps only 1 of 3 cells
+        at $k=128$.
+  \item \textbf{Fine-tuning at one budget.} 500 steps at learning rate $10^{-5}$, the layer-6 setting, was reused at
+        layers 3, 8 and 9 without tuning; other budgets could change the classes.
+  \item \textbf{Three seeds and many cells.} The ``consistent'' rule (all three seeds, $>2$\,sd) is strict for
+        variance but is applied to 9 cells per criterion without multiplicity correction; 95\,\% intervals with two
+        degrees of freedom are wide. Five Method A cells move in the right direction on every seed but fail the
+        2\,sd rule, and the two output-KL regressions meet the 2\,sd rule although their 95\,\% intervals just include zero.
+  \item \textbf{Frozen-probe criterion.} The pre-registered truth criterion uses a probe fitted on original
+        activations. Re-trained readers disagree with it (\S\ref{sec:impl}), so a met criterion is evidence that the
+        original probe reads the reconstruction better, not that information was recovered.
+  \item \textbf{Sparsity drift under output-KL.} The continued multiplicative controller does not hold ReLU and
+        JumpReLU L0 within $\pm$5\,\% under the KL gradient at layers 8 and 9; an L0-matched variant is untested.
+  \item \textbf{Weak truth signal at layer 3.} The original truth MLP probe at layer 3 reaches 0.815 AUROC but the
+        logistic probe only 0.60, so layer-3 truth results rest on a weak signal.
+  \item \textbf{Causal preservation after fine-tuning at one site.} E3 covers only the layer-8 final token and a
+        small effect ($T_{\text{full}}=0.022$ nats); TopK's per-SAE intervals ($\pm$0.06--0.09) cannot resolve changes
+        below about 0.03.
+  \item \textbf{Persona task limits.} RepE-LM has no test split; the persona probe transfers only weakly to held-out
+        wording even on original activations (AUROC 0.54--0.69); results are for the final token only; task-level L0
+        is not matched across architectures (the truncation control is post-hoc, E1 pending); 14 validation statements
+        have opposite-label near duplicates in training (sensitivity $\le$0.02).
+  \item \textbf{Historical RepE results not used.} The original persona prompts had a length shortcut; every RepE
+        result in this paper uses RepE-LM, and the earlier length-confounded results are kept for provenance only.
+  \item \textbf{Single model.} No SAE results on Gemma-2-2B \citep{gemmateam2024gemma2}; Gemma Scope weights were
+        not available on our machine.
+\end{itemize}

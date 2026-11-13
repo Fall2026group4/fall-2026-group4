@@ -1,8 +1,24 @@
 # Project documentation
 
+## Start here (curated, GPT-2 SAE faithfulness; 2026-11-12)
+
 | File | Contents |
 |---|---|
-| `RESEARCH_PROGRESS.md` | **Start here.** Chronological research journal, from project set-up to now |
+| [`research_overview.md`](research_overview.md) | Research question, four faithfulness levels, models, datasets, architectures, main verified findings |
+| [`methodology.md`](methodology.md) | Pipelines, metrics (with direction), probes, splicing, causal decomposition, splits, statistics, and the table of methodological corrections |
+| [`experiment_history.md`](experiment_history.md) | **Every experiment, in order**, with before/after values, verdicts, scripts and result paths; naming-collision key |
+| [`results_summary.md`](results_summary.md) | Verified results by dataset (OWT, GoT, RepE) with split, layer, L0, seeds and source CSV |
+| [`limitations_and_future_work.md`](limitations_and_future_work.md) | Open limitations; proposed experiments X0–X3, T1, H1, H2, I1 (not run) |
+| [`final_defense/`](final_defense/) | Verified final report, results verification table, experiment audit, defense cheat sheet, anticipated review questions |
+| [`archive/`](archive/) | Superseded reports kept for provenance (movement log in `archive/README.md`) |
+
+The curated files summarise. The ledgers below remain the detailed record and are not replaced.
+
+## Detailed ledgers and registries
+
+| File | Contents |
+|---|---|
+| `RESEARCH_PROGRESS.md` | Chronological research journal, from project set-up to now (full narrative) |
 | `RESEARCH_ROADMAP.md` | Completed, planned, blocked and abandoned work; known missing baselines |
 | `EXPERIMENT_RESULTS_SUMMARY.md` | Quantitative tables of all experiments, with splits, metric directions and seed statistics |
 | `RESEARCH_DECISIONS.md` | Decision log: why each dataset, metric, protocol and method was chosen or abandoned |
@@ -16,7 +32,8 @@
 | `migration_manifest.csv` | Every file moved, copied, edited or created by the 2026-11-06 reorganization, with SHA-256 before/after |
 | `experiment_manifest.csv` | Living experiment manifest (one row per experiment; `scripts/shared/write_manifest.py:append_experiment`) |
 | `experiment_manifest_2026-11-04.csv` | Historical manifest of the professor-review experiments (script hashes at run time) |
-| `2026-11-04_professor_review_report.md` | Full report of the professor-review corrections (historical; paths refer to the pre-migration layout) |
+| `archive/2026-11-04_methodology_review_corrections_report.md` | Full report of the 2026-11-04 methodology-review corrections (historical; paths refer to the pre-migration layout; moved and renamed from `docs/2026-11-04_professor_review_report.md` on 2026-11-12, bytes unchanged) |
+| `2026-11-07_truth_aware_finetuning_audit.md`, `2026-11-09_review_package_sae_research.md`, `2026-11-10_independent_research_review.md`, `2026-11-12_gpt2_audit_and_improvement_plan.md` | Dated audits, review package and improvement plans |
 | `2026-11-04_code_audit.md` | Code audit behind those corrections (historical) |
 | `2026-11-04_methodology_changes.md` | Methodology decisions (optimizer protocol, sparsity matching, causal protocol, …) (historical) |
 
@@ -36,7 +53,7 @@ the main script mapping is:
 | `results/professor_review_corrections/causal/` | `results/repe/steering/causal_random_controls/` |
 | `results/professor_review_corrections/gemma/` | `results/gemma/steering_sweep_layer11/` |
 | `results/professor_review_corrections/got_layer10/` | `results/geometry_of_truth/layer10_frozen_probe/` |
-| `results/professor_review_corrections/{final_research_report,code_audit,methodology_changes}.md` | `docs/2026-11-04_{professor_review_report,code_audit,methodology_changes}.md` |
+| `results/professor_review_corrections/{final_research_report,code_audit,methodology_changes}.md` | `docs/archive/2026-11-04_methodology_review_corrections_report.md` (since 2026-11-12), `docs/2026-11-04_{code_audit,methodology_changes}.md` |
 | `results/professor_review_corrections/experiment_manifest.csv` | `docs/experiment_manifest_2026-11-04.csv` |
 | top-level CSVs, `figures/`, `logs/`, `smoke/` | next to the result they belong to (`sparsity_*.csv` → `results/openwebtext/layer_comparison/`, `finetuning_comparison.csv` → `results/geometry_of_truth/sae_finetuning/heldout_comparison_all_datasets.csv`, `got_faithfulness.csv` → `results/geometry_of_truth/got_faithfulness_frozen_probes.csv`, `repe_representation.csv` → `results/repe/representation_preservation_val_test.csv`, …); one row per file in `migration_manifest.csv` |
 

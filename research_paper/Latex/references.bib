@@ -1,0 +1,178 @@
+% Bibliography for SAE-Faithful.
+% Every work named in README.md / proposal.md must have an entry here.
+% Add the literature-review summary + differentiation statement for each
+% entry into the literature review section of the report, not just the
+% citation itself (Instructor Review #2 requirement: >=10 cited works,
+% each summarized in your own words, with an explicit statement of how
+% this project differs).
+
+@article{radford2019gpt2,
+  title   = {Language Models are Unsupervised Multitask Learners},
+  author  = {Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  journal = {OpenAI Technical Report},
+  year    = {2019}
+}
+
+@article{gemmateam2024gemma2,
+  title   = {Gemma 2: Improving Open Language Models at a Practical Size},
+  author  = {{Gemma Team}},
+  journal = {arXiv preprint arXiv:2408.00118},
+  year    = {2024}
+}
+
+@misc{gemmascope2024,
+  title        = {Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2},
+  author       = {Lieberum, Tom and Rajamanoharan, Senthooran and Conmy, Arthur and Smith, Lewis and Sonnerat, Nicolas and Varma, Vikrant and Kramar, Janos and Dragan, Anca and Shah, Rohin and Nanda, Neel},
+  howpublished = {arXiv preprint arXiv:2408.05147},
+  year         = {2024}
+}
+
+@article{bricken2023monosemanticity,
+  title   = {Towards Monosemanticity: Decomposing Language Models With Dictionary Learning},
+  author  = {Bricken, Trenton and Templeton, Adly and Batson, Joshua and Chen, Brian and Jermyn, Adam and Conerly, Tom and Turner, Nick and Anil, Cem and Denison, Carson and Askell, Amanda and Lasenby, Robert and Wu, Yuxuan and Kravec, Shauna and Schiefer, Nicholas and Maxwell, Tim and Joseph, Nicholas and Hatfield-Dodds, Zac and Tamkin, Alex and Nguyen, Karina and McLean, Brayden and Burke, Josiah E. and Hume, Tristan and Carter, Shan and Henighan, Tom and Olah, Christopher},
+  journal = {Transformer Circuits Thread},
+  year    = {2023}
+}
+
+@article{gao2024scaling,
+  title   = {Scaling and Evaluating Sparse Autoencoders},
+  author  = {Gao, Leo and la Tour, Tom Dupr{\'e} and Tillman, Henk and Goh, Gabriel and Troll, Rajan and Radford, Alec and Sutskever, Ilya and Leike, Jan and Wu, Jeffrey},
+  journal = {arXiv preprint arXiv:2406.04093},
+  year    = {2024},
+  note    = {Introduces the TopK sparse autoencoder architecture.}
+}
+
+@article{rajamanoharan2024jumping,
+  title   = {Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders},
+  author  = {Rajamanoharan, Senthooran and Lieberum, Tom and Sonnerat, Nicolas and Conmy, Arthur and Varma, Vikrant and Kramar, Janos and Nanda, Neel},
+  journal = {arXiv preprint arXiv:2407.14435},
+  year    = {2024}
+}
+
+@inproceedings{cunningham2023sparse,
+  title     = {Sparse Autoencoders Find Highly Interpretable Features in Language Models},
+  author    = {Cunningham, Hoagy and Ewart, Aidan and Riggs, Logan and Huben, Robert and Sharkey, Lee},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024}
+}
+
+@article{marks2023geometry,
+  title   = {The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets},
+  author  = {Marks, Samuel and Tegmark, Max},
+  journal = {arXiv preprint arXiv:2310.06824},
+  year    = {2023}
+}
+
+@article{zou2023representation,
+  title   = {Representation Engineering: A Top-Down Approach to AI Transparency},
+  author  = {Zou, Andy and Phan, Long and Chen, Sarah and Campbell, James and Guo, Phillip and Ren, Richard and Pan, Alexander and Yin, Xuwang and Mazeika, Mantas and Dombrowski, Ann-Kathrin and Goel, Shashwat and Li, Nathaniel and Byun, Michael J. and Wang, Zifan and Mallen, Alex and Basart, Steven and Koyejo, Sanmi and Song, Dawn and Fredrikson, Matt and Kolter, J. Zico and Hendrycks, Dan},
+  journal = {arXiv preprint arXiv:2310.01405},
+  year    = {2023}
+}
+
+@misc{neuronpedia,
+  title        = {Neuronpedia: An Open Platform for Interpretability},
+  author       = {{Neuronpedia}},
+  howpublished = {\url{https://www.neuronpedia.org}},
+  year         = {2024},
+  note         = {Used for cross-checking auto-generated feature labels (e.g. Feature 974, "mentions of Paris").}
+}
+
+@misc{saelens2024,
+  title        = {SAELens},
+  author       = {Bloom, Joseph and Tigges, Curt and Duong, Anthony and Chanin, David},
+  howpublished = {\url{https://github.com/jbloomAus/SAELens}},
+  year         = {2024},
+  note         = {Library used to load pretrained GPT-2 Small SAEs (release gpt2-small-res-jb).}
+}
+
+@misc{transformerlens2022,
+  title        = {TransformerLens},
+  author       = {Nanda, Neel and Bloom, Joseph},
+  howpublished = {\url{https://github.com/TransformerLensOrg/TransformerLens}},
+  year         = {2022},
+  note         = {Library used for model loading, activation caching, and hook-based interventions.}
+}
+
+% ---- From the team's literature review on origin/dhruv (reports/Latex_report/mybib.bib), Review #8 NOVELTY-RISK ----
+@inproceedings{wu2025axbench,
+  title     = {{AxBench}: Steering {LLMs}? Even Simple Baselines Outperform Sparse Autoencoders},
+  author    = {Wu, Zhengxuan and Arora, Aryaman and Geiger, Atticus and Wang, Zheng and Huang, Jing and Jurafsky, Dan and Manning, Christopher D. and Potts, Christopher},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {267},
+  pages     = {67035--67080},
+  year      = {2025}
+}
+
+@inproceedings{karvonen2025saebench,
+  title     = {{SAEBench}: A Comprehensive Benchmark for Sparse Autoencoders in Language Model Interpretability},
+  author    = {Karvonen, Adam and Rager, Can and Lin, Johnny and Tigges, Curt and Bloom, Joseph Isaac and Chanin, David and Lau, Yeu-Tong and Farrell, Eoin and McDougall, Callum Stuart and Ayonrinde, Kola and Till, Demian and Wearden, Matthew and Conmy, Arthur and Marks, Samuel and Nanda, Neel},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {267},
+  pages     = {29223--29264},
+  year      = {2025}
+}
+
+@inproceedings{paulo2024automatic,
+  title     = {Automatically Interpreting Millions of Features in Large Language Models},
+  author    = {Paulo, Gon{\c{c}}alo Santos and Mallen, Alex Troy and Juang, Caden and Belrose, Nora},
+  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {267},
+  year      = {2025},
+  note      = {First posted as arXiv:2410.13928 (2024)}
+}
+
+% ---- Added 2026-11-09; cited in scripts/geometry_of_truth/17_e2e_inspired_finetune.py as arXiv:2405.12241 ----
+@inproceedings{braun2024e2e,
+  title     = {Identifying Functionally Important Features with End-to-End Sparse Dictionary Learning},
+  author    = {Braun, Dan and Taylor, Jordan and Goldowsky-Dill, Nicholas and Sharkey, Lee},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2024},
+  note      = {arXiv:2405.12241}
+}
+
+@misc{bloom2024gpt2,
+  title        = {Open Source Sparse Autoencoders for all Residual Stream Layers of {GPT2-Small}},
+  author       = {Bloom, Joseph},
+  year         = {2024},
+  howpublished = {\url{https://huggingface.co/jbloom/GPT2-Small-SAEs}},
+  note         = {Released as \texttt{gpt2-small-res-jb}: 24,576 latents, 300M OpenWebText tokens.}
+}
+
+@article{karvonen2025kl,
+  title   = {Revisiting End-to-End Sparse Autoencoder Training: A Short Finetune Is All You Need},
+  author  = {Karvonen, Adam},
+  journal = {arXiv preprint arXiv:2503.17272},
+  year    = {2025}
+}
+
+@article{chaudhary2024evaluating,
+  title   = {Evaluating Open-Source Sparse Autoencoders on Disentangling Factual Knowledge in {GPT-2} Small},
+  author  = {Chaudhary, Maheep and Geiger, Atticus},
+  journal = {arXiv preprint arXiv:2409.04478},
+  year    = {2024}
+}
+
+@article{korznikov2026random,
+  title   = {Sanity Checks for Sparse Autoencoders: Do {SAEs} Beat Random Baselines?},
+  author  = {Korznikov, Anton and Galichin, Andrey and Dontsov, Alexey and Rogov, Oleg and Oseledets, Ivan and Tutubalina, Elena},
+  journal = {arXiv preprint arXiv:2602.14111},
+  year    = {2026}
+}
+
+@article{bussmann2024batchtopk,
+  title   = {{BatchTopK} Sparse Autoencoders},
+  author  = {Bussmann, Bart and Leask, Patrick and Nanda, Neel},
+  journal = {arXiv preprint arXiv:2412.06410},
+  year    = {2024}
+}
+
+@article{engels2024darkmatter,
+  title   = {Decomposing the Dark Matter of Sparse Autoencoders},
+  author  = {Engels, Joshua and Riggs, Logan and Tegmark, Max},
+  journal = {arXiv preprint arXiv:2410.14670},
+  year    = {2024}
+}

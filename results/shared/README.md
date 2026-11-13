@@ -37,3 +37,8 @@ Produced by `scripts/shared/spliced_reconstruction_evaluation.py` and `scripts/s
 * GPT-2's own likelihood preference for true GoT statements is clear only for `cities` (0.82 pairwise accuracy). `neg_cities` is 0.17 (association beats negation), and the numerical sets are near chance. Only `cities` is a meaningful behavioural truth measure.
 * GPT-2's own honesty effect on the next statement token is about 0 (−0.013), so it is descriptive only.
 * "Dead" means never active on 12,700 validation tokens.
+
+**GPT-2 improvement phase (2026-11-10):**
+* `e2_public_sae_reference/` (**E2**, VALIDATION, descriptive): public res-jb SAEs (external reference, not our
+  improvement). Our headline conclusions hold.
+* `m5_confirmatory_test/` (**M5**, CONFIRMED TEST): the single pre-registered test pass of the improvement phase.

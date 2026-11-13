@@ -1,0 +1,13 @@
+{
+  "recorded": "2026-11-09 00:05:46",
+  "note": "recorded before any IMP-L training run",
+  "sha256": {
+    "scripts/geometry_of_truth/22_multilayer_finetune.py": "4ce244ccfabfefd943807e270ec2d3b7a7922462d37dacec6ea4f62851170217",
+    "scripts/geometry_of_truth/23_multilayer_evaluation.py": "d2cddb7228dfae07b2e71554283afc58d12e85d1b29732c6640fb694964ae70d",
+    "scripts/geometry_of_truth/14_method_a_reconstruction_finetune.py": "cf1559e71b966b8ef7216f96b364eda0924192f4a924e594c38de4913d242755",
+    "scripts/geometry_of_truth/17_e2e_inspired_finetune.py": "6d562f02b60241f71980c084a5eb71762610cd08cfe94dae77181e4c3043f475",
+    "data/got/splits/train_AB_groups_truth_aware_pilot.csv": "d43e83833e2d7427bf579c1358cab7068e7b1a34d42ff9bf0cdf769196dcaf41",
+    "results/geometry_of_truth/multilayer_finetune/preregistration.json": "e5b6886988896f1e175bf77c16f7639b65212d0cd6d356ca0ac5e8c6c8b49836",
+    "results/geometry_of_truth/multilayer_finetune/alpha.json": "ee14e85e06e8e25f1737f656988ea42d5d87c9895aed1715774b425f407a81fc"
+  }
+}

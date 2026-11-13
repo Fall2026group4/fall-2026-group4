@@ -1,0 +1,26 @@
+{
+  "B_logistic_C": 1.0,
+  "B_logistic_C_cv_auroc": 0.9569134018866322,
+  "B_probe_train_rows": 418,
+  "excluded_validation_statements": [
+    326
+  ],
+  "val_B_mlp_auroc": 0.964196439843454,
+  "val_B_mlp_auroc_probe_sd": 0.003016212732537383,
+  "val_B_logistic_auroc": 0.9934351723267264,
+  "val_B_massmean_auroc": 0.8942052771114758,
+  "val_pair_acc_logistic": 1.0,
+  "val_pair_acc_massmean": 1.0,
+  "val_pair_acc_mlp": 1.0,
+  "val_margin_logistic": 8.198429107666016,
+  "val_margin_massmean": 2.297552879834249,
+  "cw_B_mlp_auroc": 0.92793839161722,
+  "cw_B_mlp_auroc_probe_sd": 0.004322359101607084,
+  "cw_B_logistic_auroc": 0.976644363085469,
+  "cw_B_massmean_auroc": 0.8390354753187729,
+  "cw_pair_acc_logistic": 1.0,
+  "cw_pair_acc_massmean": 1.0,
+  "cw_pair_acc_mlp": 1.0,
+  "cw_margin_logistic": 6.3553466796875,
+  "cw_margin_massmean": 1.974357861515388
+}

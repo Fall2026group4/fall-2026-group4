@@ -1,0 +1,65 @@
+{
+  "evidence_level": "validation; post-hoc descriptive re-analysis (normal approximation to stored bootstrap CIs)",
+  "n_cells_corrected": 40,
+  "alpha": 0.05,
+  "counts": {
+    "error_matched": {
+      "better": 0,
+      "inconclusive": 7,
+      "worse": 13,
+      "equivalent": 0,
+      "pca_k": "298--519"
+    },
+    "capacity_k128": {
+      "better": 3,
+      "inconclusive": 17,
+      "worse": 0,
+      "equivalent": 0,
+      "pca_k": "128",
+      "better_holm": 1,
+      "seeds_individually_worse": 0
+    },
+    "task_l0_matched": {
+      "better": 8,
+      "inconclusive": 12,
+      "worse": 0,
+      "equivalent": 0,
+      "pca_k": "54--128",
+      "better_holm": 4,
+      "seeds_individually_worse": 0
+    }
+  },
+  "holm_surviving_better_cells": [
+    {
+      "layer": 8,
+      "family": "old",
+      "name": "relu",
+      "reference": "task_l0_matched"
+    },
+    {
+      "layer": 8,
+      "family": "r2",
+      "name": "relu",
+      "reference": "task_l0_matched"
+    },
+    {
+      "layer": 8,
+      "family": "resjb",
+      "name": "resjb_relu_24576",
+      "reference": "task_l0_matched"
+    },
+    {
+      "layer": 11,
+      "family": "r2",
+      "name": "relu",
+      "reference": "capacity_k128"
+    },
+    {
+      "layer": 11,
+      "family": "r2",
+      "name": "relu",
+      "reference": "task_l0_matched"
+    }
+  ],
+  "conclusion": "The pre-registered 'SAE BETTER' cells are nominal per-cell results without correction across cells; only a subset survive Holm. Use 'better under the study's comparison criterion', not 'significantly better'."
+}

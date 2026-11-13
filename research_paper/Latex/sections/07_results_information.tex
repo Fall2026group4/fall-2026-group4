@@ -1,0 +1,100 @@
+\section{Information Preservation}\label{sec:info}
+
+All results in this section are \evlabel{validation} findings (M2; 108 SAEs, 36 PCA references).
+
+\paragraph{Frozen probes overstate the loss.} A logistic truth probe fitted on original activations and applied
+unchanged to SAE reconstructions loses 0.28--0.29 AUROC on GoT (Table~\ref{tab:m2}, Figure~\ref{fig:m2}). Earlier
+versions of this project read this as truth information being lost. Adding isotropic noise with the same norm as the
+SAE error causes almost the same drop (0.25--0.26), and a simpler mass-mean reader loses only 0.02--0.03. Most of the
+frozen-probe collapse is therefore sensitivity of that reader to any perturbation of this size, not SAE-specific loss.
+
+\paragraph{A smaller, real loss remains.} Readers re-trained on the reconstructions are 0.07--0.12 AUROC worse than
+readers trained on the original activations for GoT, and 0.14--0.18 worse for the persona task. Re-training never
+recovers the original performance, so no cell is classified as ``readout shifted''; no cell is ``preserved''. The
+task label can be decoded from the reconstruction error alone (AUROC 0.62--0.77), so the lost information is still in
+the activation, outside the SAE's reconstruction.
+
+\paragraph{At equal reconstruction error, PCA keeps at least as much.} At the same OWT reconstruction error, PCA
+keeps at least as much task information as the SAE in every cell; the SAE is significantly worse in 52 of 81 GoT
+cells, 59 of 99 persona cells and 81 of 90 neutral cells (one-sided paired bootstrap, BH-corrected). This reference
+gives PCA far more dimensions than the SAE uses per token (for the improved SAEs, $k=298$--519 against 128 active
+latents). Section~\ref{sec:pcacm} repeats the GoT comparison at an equal per-token budget, where the verdict reverses
+in some cells; the persona and neutral comparisons have been run at equal error only.
+
+\paragraph{Persona versus generic change.} Part of the persona loss is generic one-word-change information: the
+re-trained gap is 0.07--0.13 larger for persona than for neutral swaps at layers 3--8, and about equal at layers 10--11.
+
+\paragraph{Architecture differences are confounded.} On truth, ReLU loses least and JumpReLU most, the reverse of
+the reconstruction ranking; on persona, ReLU loses most. Because task-level L0 is not matched, we do not interpret
+these differences as architecture effects until E1 is run.
+
+\input{tables/t_m2}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_m2_information}
+  \caption{Information preservation by layer (\evlabel{validation}). Dashed: frozen logistic gap; solid: re-trained
+  logistic gap; dotted grey: frozen gap under norm-matched noise; black: PCA at the ReLU SAE's error.}
+  \label{fig:m2}
+\end{figure}
+
+\subsection{RepE-LM persona preservation in detail (RLM-RP)}\label{sec:rlm}
+All results in this subsection are \evlabel{validation} findings: 216 SAEs, i.e.\ the 108 base SAEs plus the 81
+IMP-L and 27 layer-6 fine-tunes, on the equal-length RepE-LM prompts (final token). Probes and C are fitted on
+training statements only. The historical length-confounded RepE results are not used. The run reproduces M2's
+base-SAE values exactly (maximum difference 0.0) and IMP-L's re-trained persona gaps to $1.6\times10^{-4}$.
+
+\paragraph{Persona information is lost, not only misread.} Unlike the GoT case above, the persona frozen-logistic
+gap (0.10--0.24; Table~\ref{tab:rlm_layers}, Figure~\ref{fig:rlm}) is 1.9--3.4 times the gap caused by same-norm
+noise. A logistic reader re-trained on the reconstructions recovers almost none of it: the re-trained gap is
+0.08--0.22, and its statement-bootstrap interval excludes zero for all 99 base SAEs at layers 1--11. At layers 2--8
+the re-trained persona gap exceeds the neutral-word control by 0.06--0.12, so part of the mid-layer loss is
+persona-specific. At layers 10--11 it does not exceed the neutral gap, so the late loss is generic.
+
+\paragraph{The honest-minus-dishonest difference is distorted.} For each pair, the reconstructed difference
+$\hat\Delta=\hat x_H-\hat x_U$ has a cosine of only 0.52--0.58 (ReLU), 0.35--0.43 (TopK) and 0.38--0.48 (JumpReLU)
+with $\Delta=x_H-x_U$. ReLU shrinks the difference (norm ratio 0.65--0.71). TopK and JumpReLU inflate it (1.2--1.5)
+with an error part larger than $\Delta$ itself. Averaged over pairs, the mean difference direction is kept better
+(cosine 0.70--0.86). This is the representational counterpart of the causal leakage measured in
+\S\ref{sec:causal}.
+
+\paragraph{Wording, shortcuts and robustness.}
+\begin{itemize}
+  \item \textbf{Held-out wording.} The persona probe transfers only weakly to the never-fitted templates T5/T6, even
+        on original activations (AUROC 0.54--0.69). The SAEs lose a further 0.03--0.13.
+  \item \textbf{Synonyms.} Honest-synonym prompts behave like the honest prompts: the synonym gap is within 0.024 of
+        the persona gap. The probe barely separates honest from synonym (AUROC 0.52--0.54), so it mostly reads
+        meaning, not the word.
+  \item \textbf{Length.} Every pair has equal token length, so the length shortcut of the original prompts cannot
+        contribute.
+  \item \textbf{Near duplicates.} Dropping the 14 validation statements that have an opposite-label near duplicate in
+        training changes any gap by at most 0.02.
+\end{itemize}
+
+\paragraph{Architecture differences are partly sparsity.} TopK and JumpReLU have smaller persona gaps than ReLU at
+most layers, but on these prompts ReLU and JumpReLU use 142--214 latents per token against TopK's 128. In an
+exploratory control that keeps each token's 128 largest latents, JumpReLU's re-trained gap rises from 0.144 to 0.210
+at layer 3 and from 0.162 to 0.188 at layer 8, while ReLU changes by at most 0.009. We therefore do not rank
+architectures on persona preservation. A trained task-level L0 match (E1) remains pending.
+
+\paragraph{Fine-tuning barely moves persona preservation.} Method A changes neither the frozen nor the re-trained
+persona gap in any of 12 layer$\times$architecture cells: every difference lies between $-0.004$ and $+0.006$
+(Table~\ref{tab:rlm_finetune}). Output-KL meets the pre-registered rule in three cells for each reader. On the frozen
+reader these are all three architectures at layer 3. On the re-trained reader they are ReLU and TopK at layer 3 and
+JumpReLU at layer 6. Every output-KL change is at most 0.007 AUROC, against gaps of 0.12--0.24, and for ReLU and
+JumpReLU it comes with 4--9\,\% more active latents on these prompts. Four output-KL cells are not creditable
+(IMP-L L0 guard). No cell regresses.
+
+\input{tables/t_rlm_layers}
+\input{tables/t_rlm_finetune}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_rlm_layers}
+  \caption{RLM-RP (\evlabel{validation}; 99 base SAEs, mean over 3 seeds). (a) Persona gaps: frozen logistic, re-trained
+  logistic, and the same-norm noise reference. (b) Frozen gap on held-out wording T5/T6, and the re-trained gap on the
+  neutral control. (c) Per-pair cosine and norm ratio between the reconstructed and original H$-$U difference.}
+  \label{fig:rlm}
+\end{figure}
+
+\pending{M5 held-out confirmation; E1 task-level sparsity control; E2 external SAE reference.}

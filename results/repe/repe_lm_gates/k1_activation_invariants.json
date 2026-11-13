@@ -1,0 +1,36 @@
+{
+  "max_abs_diff_before_slot_layer0": 0.0,
+  "max_abs_diff_before_slot_by_layer": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "min_abs_diff_at_slot_layer0": 0.34371334314346313,
+  "n_pairs_checked": 6072,
+  "n_violations": 0,
+  "tolerance_layers_ge_1": 0.0001,
+  "pass": true,
+  "activation_meta": {
+    "prompts_sha256": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "n_rows": 10120,
+    "hook": "blocks.{L}.hook_resid_pre",
+    "layers": 12,
+    "positions": [
+      "final (last prompt token)",
+      "slot (persona/neutral token)"
+    ],
+    "dtype": "float32",
+    "model": "gpt2-small (transformer_lens default processing, same as SAE training)",
+    "device": "cuda",
+    "torch": "2.14.1+cu130"
+  }
+}

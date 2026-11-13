@@ -1,0 +1,25 @@
+\section{Background: Transformer Activations and SAEs}\label{sec:background}
+
+GPT-2 Small has 12 transformer blocks with a residual stream of width $d=768$. We study the activation entering block
+$L$, \texttt{blocks.$L$.hook\_resid\_pre}, for $L=0,\dots,11$; at $L=0$ this is the token plus position embedding.
+
+An SAE with $m$ latents maps $x\in\mathbb{R}^d$ to
+\begin{equation}
+  z=\sigma\big(W_e(x-b_d)+b_e\big)\in\mathbb{R}^m,\qquad \hat{x}=W_d z+b_d,\qquad e=x-\hat{x},
+\end{equation}
+with decoder columns renormalised to unit norm after every optimisation step. The three activation functions are
+\begin{align}
+  \text{ReLU:}\quad & z=\mathrm{ReLU}(p), && \text{penalty } \textstyle\sum_i z_i,\\
+  \text{TopK:}\quad & z=\mathrm{TopK}_k\big(\mathrm{ReLU}(p)\big),\ k=128, && \text{no penalty},\\
+  \text{JumpReLU (surrogate):}\quad & z=\mathrm{ReLU}(p)\odot H(p-\theta), && \text{penalty } \textstyle\sum_i \sigma\big((p_i-\theta_i)/T\big),
+\end{align}
+where $p$ is the pre-activation, $H$ the step function and $\theta$ a learned per-latent threshold whose gradient uses
+a sigmoid straight-through estimator with $T=0.1$. The training loss is $\mathrm{MSE}(\hat{x},x)+c\cdot\text{penalty}$,
+and a multiplicative controller adjusts $c$ every 25 steps towards a target L0 of 128.
+
+\paragraph{Metrics.} Explained variance is $\mathrm{EV}=1-\sum\|x-\hat{x}\|^2/\sum\|x-\bar{x}\|^2$ and
+$\mathrm{NMSE}=1-\mathrm{EV}$; L0 is the mean number of active latents. An AUROC gap is
+$\mathrm{AUROC}(x)-\mathrm{AUROC}(\hat{x})$ for a given reader. Spliced $\Delta$CE is the increase in next-token
+cross-entropy when $\hat{x}$ replaces $x$ at every non-BOS position; loss recovered is
+$(\mathrm{CE}_{\text{mean-abl}}-\mathrm{CE}_{\text{SAE}})/(\mathrm{CE}_{\text{mean-abl}}-\mathrm{CE}_{\text{orig}})$.
+Causal quantities are defined in \S\ref{sec:causal}.

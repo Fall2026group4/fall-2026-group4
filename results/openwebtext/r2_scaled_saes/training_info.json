@@ -1,0 +1,92 @@
+{
+  "script_sha256": "017b6133426bc1ba5ec551b720877e9172eea9d02de5f777531513e3bde78e88",
+  "modern_sae_sha256": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+  "layers": [
+    1,
+    8,
+    11
+  ],
+  "configs": [
+    [
+      "topk",
+      "topk",
+      12288,
+      [
+        42,
+        1042,
+        2042
+      ]
+    ],
+    [
+      "batchtopk",
+      "batchtopk",
+      12288,
+      [
+        42,
+        1042,
+        2042
+      ]
+    ],
+    [
+      "relu",
+      "relu",
+      12288,
+      [
+        42,
+        1042,
+        2042
+      ]
+    ],
+    [
+      "topk_w3072",
+      "topk",
+      3072,
+      [
+        42,
+        1042,
+        2042
+      ]
+    ],
+    [
+      "topk_frozen_decoder",
+      "topk_frozen_decoder",
+      12288,
+      [
+        42
+      ]
+    ]
+  ],
+  "steps": 24414,
+  "tokens_per_sae": 99999744,
+  "lm_tokens_read": 105859072,
+  "unique_train_tokens_available": 105873677,
+  "input_scale": {
+    "1": 0.5274203151133472,
+    "8": 0.2700424945729014,
+    "11": 0.1230194843624638
+  },
+  "runtime_s": 19721.942451238632,
+  "gpt2_parameters_unchanged": true,
+  "gpu_peak_gb": 15.12,
+  "pilot": false,
+  "hyper": {
+    "batch": 4096,
+    "lr": 0.0002,
+    "warmup": 500,
+    "decay_frac": 0.2,
+    "clip": 1.0,
+    "buffer": 524288,
+    "thr_lr_mult": 1.0,
+    "jump_eps": 0.05,
+    "lam_bounds": [
+      0.001,
+      1000.0
+    ],
+    "autocast": "bf16 forward",
+    "aux_alpha": 0.03125,
+    "aux_k": 512,
+    "dead_tokens": 5000000,
+    "ctrl_eta": 0.01,
+    "target_l0": 128
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "H1-TEST",
+  "date_frozen": "2026-11-13",
+  "status": "FROZEN; NOT EXECUTED (evaluation needs the user's approval and about 1-2 GPU hours)",
+  "purpose": "One confirmatory RepE-LM TEST pass for the persona-representation and causal claims that are VALIDATION-only today.",
+  "data": {
+    "prompts": "data/repe/repe_lm_test/prompts.csv",
+    "statements": 86,
+    "rows": 2408,
+    "templates": "T1-T6, N1-N2 (M1 wording) + T7, T8, N3, N4 (test-only wording, new frames and new slot words)",
+    "prior_exposure": "the 90 source test statements were scored in the retired length-confounded original RepE task; RepE-LM never read them"
+  },
+  "fitting": "Every probe, direction and site is fitted or selected on RepE-LM TRAIN (data/repe/repe_lm/prompts.csv split==train) and applied frozen to TEST. Nothing is tuned on TEST.",
+  "sources": "M5 source list at layers 1, 8, 11: old ReLU/TopK/JumpReLU-3072 and R2 TopK/BatchTopK/ReLU-12288 and TopK-3072 (3 seeds each); R4 KL/MSE TopK (L8/L11); res-jb; R2 random decoder (control).",
+  "sites": {
+    "L1": "persona slot",
+    "L8": "final token",
+    "L11": "final token"
+  },
+  "positive_controls": [
+    "original GPT-2 T_full > 0 at each site with 95% CI low > 0 (M3 replication on TEST)",
+    "persona KL(H||U) > synonym KL(H||Hp) on TEST (K7 replication)"
+  ],
+  "negative_controls": [
+    "neutral swaps N1-N4: persona-probe transfer must be <= 0.55 AUROC (floor)",
+    "matched-norm isotropic and permuted-feature vectors for every M4 patch (200 draws)",
+    "R2 random-decoder SAE"
+  ],
+  "hypotheses": [
+    {
+      "id": "HT1",
+      "metric": "m4__preservation_rec (T_rec/T_full, T2+T4, higher is better)",
+      "comparisons": [
+        "C1",
+        "C3"
+      ],
+      "layers": [
+        8
+      ],
+      "rule": "R2 rule (all 9 seed pairs better AND Welch 95% CI excludes 0)",
+      "validation_result": "IMPROVEMENT (C1 0.625->0.726; C3 0.665->0.754)"
+    },
+    {
+      "id": "HT2",
+      "metric": "rlm__pair_dir_cosine (higher is better)",
+      "comparisons": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "layers": [
+        1,
+        8,
+        11
+      ],
+      "rule": "R2 rule",
+      "validation_result": "IMPROVEMENT in 9/9 cells"
+    },
+    {
+      "id": "HT3",
+      "metric": "repe_persona__refit_logistic_gap (lower is better)",
+      "comparisons": [
+        "C1",
+        "C3"
+      ],
+      "layers": [
+        8
+      ],
+      "rule": "R2 rule",
+      "validation_result": "IMPROVEMENT"
+    },
+    {
+      "id": "HT4",
+      "metric": "persona-probe AUROC on test-only templates T7/T8 (original activations; probe fit on TRAIN T1-T4)",
+      "rule": "descriptive; reported with grouped-bootstrap CI against the neutral N3/N4 floor",
+      "validation_result": "T5/T6 0.62-0.73 at L8/L11"
+    }
+  ],
+  "multiplicity": "Holm across the HT1-HT3 cells (12 cells); a hypothesis is CONFIRMED only if every one of its cells passes after correction.",
+  "reporting": "All cells reported whatever the outcome; a failure to confirm is reported as plainly as a confirmation. TEST rows are used once.",
+  "implementation_rule": "The TEST evaluation script must be written, smoke-tested on VALIDATION rows only, and its hash added here BEFORE it reads a TEST row.",
+  "hashes": {
+    "scripts/repe/28_build_repe_lm_test_split.py": "f5e223c31816237586369bb86691a2268d6cdbc6773d433f1979b4bdccf72cd5",
+    "scripts/repe/20_build_repe_lm_dataset.py": "85c373e489e86d0fe88fbce536eb6661ecb12a4c5e34e4f2ef68211eae93abae",
+    "data/repe/persona_pairs.csv": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+    "data/repe/repe_lm_test/prompts.csv": "4643e8e271a135f1d8c9fe98a92ac745b64b28f7925d2dab9ba9148cc29e2ac1",
+    "data/repe/repe_lm_test/templates.json": "3e1a99bf4926b82a2b9a020f88ba9813b6341cdf22560d873e6f1b8e57e282f4",
+    "data/repe/repe_lm_test/split_verification.json": "8e5b95e231c16bab1a56d1c6b76d397d564a2bf649e1bf30482448210dd61cfb",
+    "data/repe/repe_lm/prompts.csv": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "scripts/shared/r2_comparisons.py": "38b2fcd1eb29a270b6700b3240504ab0d787e44edd969751d5631183a8083b6e",
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "scripts/repe/26_repe_lm_representation_preservation.py": "23cc6259d9de2978bd045cac61ddd67ca0a652d73553b5aa8159f81282c672c3"
+  }
+}

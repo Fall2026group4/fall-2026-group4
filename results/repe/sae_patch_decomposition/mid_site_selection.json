@@ -1,0 +1,75 @@
+{
+  "rule": "among M3-passing train cells at resid_pre layers 6-8 in {slot, final}: E_share closest to 0.5 (handover point), ties -> larger R_A; confirm on validation T2-T4: T_full CI low > 0 and (T_full - T_full_synonym) CI low > 0; else try the next candidate in the same order; if none confirms, proceed with the two fixed sites",
+  "candidates": [
+    {
+      "site": "blocks.8.hook_resid_pre",
+      "group": "final",
+      "E_share": 0.5046068298636842,
+      "R_A_mean": 0.01657925723801061,
+      "dist": 0.004606829863684214
+    },
+    {
+      "site": "blocks.7.hook_resid_pre",
+      "group": "slot",
+      "E_share": 0.46930967569523924,
+      "R_A_mean": 0.015419541268873897,
+      "dist": 0.030690324304760763
+    },
+    {
+      "site": "blocks.7.hook_resid_pre",
+      "group": "final",
+      "E_share": 0.41901753145664117,
+      "R_A_mean": 0.013767153019178392,
+      "dist": 0.08098246854335883
+    },
+    {
+      "site": "blocks.8.hook_resid_pre",
+      "group": "slot",
+      "E_share": 0.4186577617181518,
+      "R_A_mean": 0.01375533249934421,
+      "dist": 0.08134223828184822
+    },
+    {
+      "site": "blocks.6.hook_resid_pre",
+      "group": "slot",
+      "E_share": 0.5999336391512464,
+      "R_A_mean": 0.019711295092679007,
+      "dist": 0.09993363915124642
+    },
+    {
+      "site": "blocks.6.hook_resid_pre",
+      "group": "final",
+      "E_share": 0.2857726062827669,
+      "R_A_mean": 0.009389285421322236,
+      "dist": 0.2142273937172331
+    }
+  ],
+  "tried": [
+    {
+      "site": "blocks.8.hook_resid_pre",
+      "group": "final",
+      "T_full_val_T2_T4": {
+        "mean": 0.022011402334488457,
+        "se": 0.0021904768508734488,
+        "ci_low": 0.01792720005813261,
+        "ci_high": 0.026585962616443345,
+        "p": 4.655278073259429e-24,
+        "n_statements": 89
+      },
+      "excess_over_synonym_val_T2_T4": {
+        "mean": 0.010605360768881501,
+        "se": 0.0013751693526155013,
+        "ci_low": 0.008135416144303678,
+        "ci_high": 0.013702871658071146,
+        "p": 6.191125424745464e-15,
+        "n_statements": 89
+      },
+      "confirmed": true
+    }
+  ],
+  "selected": {
+    "layer": 8,
+    "group": "final",
+    "site": "blocks.8.hook_resid_pre"
+  }
+}

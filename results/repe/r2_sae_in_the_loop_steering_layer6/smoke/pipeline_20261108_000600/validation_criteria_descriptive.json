@@ -1,0 +1,22 @@
+{
+  "topk": {
+    "k=1": {
+      "selected_k": true,
+      "1_effect": false,
+      "2_sign_reversal": true,
+      "3_specificity": false,
+      "4_no_damage_confound": false,
+      "5_wording_cw_validation": false,
+      "VALIDATION_DESCRIPTIVE_VERDICT": "NOT SUPPORTED"
+    },
+    "k=4": {
+      "selected_k": false,
+      "1_effect": false,
+      "2_sign_reversal": true,
+      "3_specificity": false,
+      "4_no_damage_confound": false,
+      "5_wording_cw_validation": false,
+      "VALIDATION_DESCRIPTIVE_VERDICT": "NOT SUPPORTED"
+    }
+  }
+}
