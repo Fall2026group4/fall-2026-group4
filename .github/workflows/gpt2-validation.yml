@@ -56,3 +56,6 @@ jobs:
 
       - name: Reproducibility check (M5 test pass re-derived from committed result files)
         run: python scripts/shared/m5_independent_verification.py
+
+      - name: Registry and documentation-link consistency (manifest scripts exist; relative Markdown links resolve)
+        run: python scripts/shared/registry_consistency_check.py

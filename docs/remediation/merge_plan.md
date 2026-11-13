@@ -1,7 +1,8 @@
 # Merge-resolution plan for the open PRs (2026-11-13). Status: PROPOSAL; REQUIRES TEAM ACTION
 
-Remediation items D3, D4, U2, U4 and Review #8 MERGE-PLAN. Everything here was read from GitHub on 2026-11-13. No
-teammate branch was modified and nothing was merged, closed or commented.
+Remediation items D3, D4, U2, U4 and Review #8 MERGE-PLAN. Everything here was read from GitHub on 2026-11-13 and
+re-checked through the GitHub API at about 08:40 UTC the same day (file lists of #20, #21, #24, #26 and #28 against
+the files tracked on `sae-research`). No teammate branch was modified and nothing was merged, closed or commented.
 
 ## 1. State of the open PRs
 
@@ -24,6 +25,12 @@ teammate branch was modified and nothing was merged, closed or commented.
      layer-10 correction.
    * They also delete five legacy scripts that script 10 imports or cites: `scripts/{cache_geometry_activations,
      prepare_geometry_data,run_geometry_faithfulness,run_geometry_probes,run_geometry_sae}.py`.
+   * Further runtime readers of files they delete (re-checked 08:40 UTC): `scripts/run_geometry_detection.py` reads
+     `sae_feature_test_results.csv` and `sae_top_features_train.csv`; `run_geometry_sae.py` reads
+     `sae_encoding_summary.csv`; `run_geometry_probes.py` and `run_geometry_faithfulness.py` read
+     `baseline_probe_results.csv`. These are legacy scripts deleted by the same PRs, so only script 10 is left broken.
+   * #24 also deletes `cookbooks/02_pretained_sae_baseline.ipynb`. `src/evaluation/detection.py` cites it in its
+     docstring only (provenance, not a runtime dependency).
    * Overall, #21 deletes 29 files tracked on `sae-research` and #24 deletes 30; 26 of these are common to both.
 2. **Shared ledgers (D4).** #26 and #28 each modify the same 7 documentation ledgers as #27:
    `docs/{EXPERIMENT_CHANGELOG,EXPERIMENT_RESULTS_SUMMARY,RESEARCH_DECISIONS,RESEARCH_PROGRESS,RESEARCH_ROADMAP,
@@ -32,18 +39,24 @@ teammate branch was modified and nothing was merged, closed or commented.
 3. **Duplicate script numbers.**
    * #26 adds `scripts/geometry_of_truth/22_truth_direction_causal_test.py`, `scripts/repe/14_causal_reanalysis.py`
      and `scripts/repe/15_sae_in_the_loop_causal.py`. Numbers 22, 14 and 15 already exist here (IMP-L, R1 split prep,
-     R1 fine-tune).
+     R1 fine-tune). RepE numbers 28, 29 and 30 are now also taken on this branch (H1 split, H1 test evaluation, SIL).
    * #28 adds `scripts/geometry_of_truth/{22_method_a_multilayer_finetune,23_method_a_multilayer_evaluation}.py`.
      These are the same experiment family as this branch's IMP-L scripts 22/23, under different names (U4).
    * This branch has its own duplicate: `scripts/repe/11_compare_sae_steering.py` and `11_heldout_steering.py` (D12).
      Renaming is not proposed, because the paths are hashed in pre-registrations.
 4. **`requirements.txt`.** #28 appends `zstandard` at the end of the file; #27 inserts `joblib` and `scipy` in the
    alphabetical block. The hunks do not overlap, so git should merge them without a conflict (not tested by a merge).
-5. **Possible contradictory results (U2, NOT VERIFIED).** #26 runs its own versions of public-SAE splicing,
+5. **SAE-in-the-loop overlap (read-only check of #26).** #26's `scripts/repe/15_sae_in_the_loop_causal.py` Part B
+   `latent_all` patches x_U + D(z_H − z_U) with the SAE error kept. By the identity in the paper (D33), that equals
+   adding one vector to the raw activation. It is therefore the same class as M4's T_rec, and it does not by itself
+   answer Review #8's "adding decoder directions to raw activations is not an SAE intervention". This branch's SIL
+   (`results/repe/sae_in_the_loop_mediation/`) drops the error and splices SAEs downstream, so it is complementary,
+   not a duplicate. Whether #26's numbers agree with M4 is NOT VERIFIED.
+6. **Possible contradictory results (U2, NOT VERIFIED).** #26 runs its own versions of public-SAE splicing,
    sparsity-matched truth, SAE-in-the-loop causal and GoT causal tests. Whether its numbers agree with #27's has not
    been checked. #28's Method-A multilayer results are a Gemma/GPT-2 parallel of IMP-L; whether the conclusions agree
    is likewise NOT VERIFIED.
-6. **#20** deletes `results/figures/`. Those files are referenced from `cookbooks/README.md`, `results/phase1_observations.md`
+7. **#20** deletes `results/figures/`. Those files are referenced from `cookbooks/README.md`, `results/phase1_observations.md`
    and `docs/2026-11-09_review_package_sae_research.md`. They are historical and superseded (feature 974, EDA), so
    deletion is low risk, but the references would break. This is your own PR, so the decision is yours.
 
@@ -54,8 +67,8 @@ MakaveliSimz proposed this order on #27 (2026-11-13), and the evidence above sup
 1. **#27 first.** It deletes nothing and touches no Gemma file, and `main` has not moved.
 2. **#26**, rebased on the new `main`.
    * Resolve the ledger conflicts by keeping both sides.
-   * Renumber its three scripts to the next free numbers: GoT 24; RepE 30 and 31, since 28 and 29 are now taken
-     by H1 on this branch.
+   * Renumber its three scripts to the next free numbers: GoT 24; RepE 31 and 32, since 28, 29 and 30 are now taken
+     on this branch (H1, SIL).
    * Compare its overlapping results with #27's and record agreement or disagreement in `RESEARCH_DECISIONS.md`.
 3. **#28**, rebased on the result.
    * Resolve the ledgers.
@@ -65,7 +78,7 @@ MakaveliSimz proposed this order on #27 (2026-11-13), and the evidence above sup
    * Keep `results/geometry_of_truth/sae_faithfulness_results.csv` and the five legacy scripts that script 10 uses,
      or first change script 10 under a new pre-registration.
    * Merge only one of the two, since they overlap in 26 of their deletions.
-5. **#16 and #17:** close, as superseded and conflicting since October. **#20:** decide (§2.6). **#22:** review.
+5. **#16 and #17:** close, as superseded and conflicting since October. **#20:** decide (§2.7). **#22:** review.
 
 Each merge needs one approving review (the ruleset on `main`). Review #8 asks the reviewer to **re-run one result
 script and say in the review what matched**. For #27, the suggestion is `python

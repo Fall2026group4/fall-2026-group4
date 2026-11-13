@@ -1,0 +1,37 @@
+{
+  "manifest": {
+    "rows": 36,
+    "missing_scripts": [],
+    "changed_since_manifest": [
+      {
+        "task": "A",
+        "script": "scripts/openwebtext/13_consistent_protocol_retrain.py"
+      },
+      {
+        "task": "truth-all-layers-got",
+        "script": "scripts/shared/all_layer_frozen_probe_evaluation.py"
+      },
+      {
+        "task": "honesty-all-layers-repe",
+        "script": "scripts/shared/all_layer_frozen_probe_evaluation.py"
+      }
+    ]
+  },
+  "results_registry": {
+    "paths_checked": 49,
+    "missing": [
+      "results/professor_review_corrections/"
+    ]
+  },
+  "markdown_links": {
+    "files": 101,
+    "broken": []
+  },
+  "checkpoint_registry": {
+    "rows": 638,
+    "hash_ok": 638,
+    "not_on_this_machine": 0,
+    "mismatch": []
+  },
+  "pass": true
+}
