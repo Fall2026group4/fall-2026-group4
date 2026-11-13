@@ -75,6 +75,8 @@ Implemented in `scripts/shared/m2_four_level_faithfulness.py` and `src/evaluatio
 * **References:**
   * norm-matched isotropic noise (is the SAE worse than a random error of the same size?);
   * PCA reconstruction at the SAE's own OWT NMSE (does the SAE beat a linear projection of equal error?);
+  * PCA at k = 128 and at k = the SAE's task L0 (PCA-CM, 2026-11-13; does the SAE beat a fixed subspace with the same
+    per-token active budget?). The two references answer different questions and can disagree;
   * the error-term probe (is the lost signal in e = x − x̂?).
 * **Independence rule:** an evaluation probe is never a training teacher. GoT-train groups A/B:
   * A trains any teacher;

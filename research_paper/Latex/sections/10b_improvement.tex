@@ -51,11 +51,15 @@ reconstructer (JumpReLU) against R2 BatchTopK. Table~\ref{tab:r2_counts} summari
 \item \textbf{Causal preservation.} It improves for the first time under a pre-registered rule.
   \begin{itemize}
   \item TopK $T_{\text{rec}}/T_{\text{full}}$: 0.62$\to$0.73 (L8) and 0.62$\to$0.69 (L11).
+  \item The L8 gain (+0.10) passes the seed-level rule but is borderline at the statement level: one SAE's
+    preservation at L8 can only be resolved to 0.054--0.107 (minimum detectable effect, Section~\ref{sec:stats}), so
+    it is a \evlabel{validation} finding that needs the RepE-LM test split before it is claimed.
   \item BatchTopK reaches 0.75 at L8.
   \end{itemize}
 \item \textbf{Persona representation.} Pair-direction cosine improves everywhere (L8: 0.39$\to$0.49).
 \item \textbf{Persona information.} The re-trained persona gap falls by 27--31\,\% at L8/L11 for TopK. The gap
-  \emph{relative to PCA at equal OWT error}, however, never improves, and for ReLU it regresses at L1 and L8.
+  \emph{relative to PCA at equal OWT error}, however, never improves, and for ReLU it regresses at L1 and L8. This
+  PCA reference is matched on error, not on the number of dimensions (Section~\ref{sec:pcacm}).
 \item \textbf{GoT.} No GoT information metric changes clearly. At L8 the random-decoder baseline has a smaller GoT
   re-fit gap than the trained SAE (0.052 vs 0.081), so this metric does not discriminate there.
 \end{itemize}
@@ -63,8 +67,9 @@ reconstructer (JumpReLU) against R2 BatchTopK. Table~\ref{tab:r2_counts} summari
 \paragraph{Inference.}
 \begin{itemize}
 \item Undertraining explains a large part of the behavioural and causal unfaithfulness we measured. It explains little
-  of the information loss: better reconstruction raises the PCA reference as much as the SAE, and SAEs still do not
-  beat PCA at equal error.
+  of the information loss: better reconstruction raises the error-matched PCA reference as much as the SAE, and SAEs
+  still do not beat PCA at equal error. At an equal per-token budget, the comparison changes
+  (Section~\ref{sec:pcacm}).
 \item Splice damage remains 1.25--1.61$\times$ that of same-norm noise at L8/L11, compared with 1.45--1.96$\times$
   before. So the remaining error is still structured~\citep{engels2024darkmatter}.
 \end{itemize}
@@ -146,7 +151,7 @@ basis is far from the best basis at matched rank, although well above random.
   \begin{itemize}
   \item the frozen GoT loss is mostly probe fragility (H1 holds for GoT);
   \item the persona loss is real (H1 fails for persona, and H2 holds);
-  \item the SAE never beats PCA (H3 holds at all four layers);
+  \item the SAE never beats PCA at equal reconstruction error (H3 holds at all four layers);
   \item the reconstruction carries only part of the persona effect at L8 and L11 (H4).
   \end{itemize}
 \item \textbf{The one exception} is the GoT re-fit gap at L8, which is small with a CI touching zero, as for our own
@@ -187,9 +192,53 @@ on validation rows reproduced the ladder exactly for the OWT metrics and to with
   2\,\% NMSE cost (classified as a regression in NMSE, and within the pre-registered EV guard). It has no GoT effect.
 \end{itemize}
 
-\paragraph{Inference.} The improvement phase's behavioural and reconstruction gains are \evlabel{confirmed}. The
-absence of a truth-information gain is also confirmed: the SAEs reconstruct and behave much better but still do not
-preserve GoT truth information better than PCA at equal error.
+\paragraph{Inference.} The improvement phase's behavioural and reconstruction gains are \evlabel{confirmed}. No
+truth-information gain is detected: the SAEs reconstruct and behave much better but do not preserve GoT truth
+information measurably better, and still not better than PCA at equal error. This is an absence of evidence within the
+design's sensitivity. Between-family differences in the re-fit gap smaller than about 0.05--0.09 AUROC could not have
+been detected (Section~\ref{sec:stats}); the observed differences are at most 0.025. The two A2 regressions
+($|d|=0.012$ and 0.015) are about a quarter of the statement-level minimum detectable effect and are not robust.
 
 \input{tables/t_m5}
 \input{tables/t_m5_counts}
+
+\subsection{PCA-CM: does the SAE--PCA verdict depend on how PCA is matched?}\label{sec:pcacm}
+
+\paragraph{Problem.} Every PCA reference above is matched on OWT reconstruction error. For the trained SAEs this gives
+PCA $k=298$--519 dense components (R2/R4: 404--519), while every SAE uses about 128 active latents per token. The
+random decoder reconstructs worse, so its error-matched PCA gets only $k=143$--164; its ``tie'' with trained SAEs on
+SAE$-$PCA is therefore partly mechanical.
+
+\paragraph{Design} (pre-registered and hashed before the run; \evlabel{validation} only; no test row read; nothing
+trained). For every M5 SAE we compared three PCA references, all fitted on OWT TRAIN: error-matched (as before),
+fixed $k=128$ (the per-token active budget), and $k$ equal to the SAE's mean active latents on GoT prompts. Readers
+are fitted on GoT TRAIN (2,092 rows) and scored on VAL (448 rows, 224 city groups). A family$\times$layer cell is
+``better'' or ``worse'' only if every seed's paired 95\,\% grouped-bootstrap interval of (SAE gap $-$ PCA gap)
+excludes zero.
+
+\paragraph{Results} (Table~\ref{tab:pcacm}).
+\begin{itemize}
+\item \textbf{Equal error (replication).} The SAE is worse in 13 of 20 trained cells and never better. The existing
+  finding replicates on validation.
+\item \textbf{Fixed $k=128$.} Trained SAEs are better in 3 of 20 cells (R2 ReLU at L8 and L11; res-jb at L8) and not
+  worse in the remaining 17; no individual seed's interval favours PCA. At L11, R2 ReLU's gap is 0.076 against PCA's
+  0.153.
+\item \textbf{$k$ matched to task activity} ($k=54$--128). Better in 8 of 20 cells, not worse in the remaining 12.
+\item \textbf{Reconstruction and behaviour.} PCA-128 has NMSE 0.30/0.46/0.43 and $\Delta$CE 0.40/0.99/1.06 nats at
+  L1/L8/L11; every trained SAE beats it on NMSE, $\Delta$CE and KL on every seed.
+\end{itemize}
+
+\paragraph{Statistical status.} ``Better'' here is the study's pre-registered comparison criterion, not a
+family-wise significance claim: the rule is applied per cell without correction. Under an approximate post-hoc Holm
+correction over the 40 capacity-matched cells (normal approximation to the stored intervals), 1 of the 3 cells at
+$k=128$ (R2 ReLU, L11) and 4 of the 8 task-matched cells survive.
+
+\paragraph{Inference.} At matched reconstruction error, PCA generally preserves more truth-related information than
+the evaluated SAEs, but that comparison allows PCA substantially more dimensions than the SAEs' active-feature budget.
+At an equal per-token budget, trained SAEs are never worse and, mainly for ReLU-family SAEs, sometimes better. These
+findings are \evlabel{validation} findings and show that conclusions about representational faithfulness depend on the
+comparison constraint. $k=128$ equalises the per-token active budget, not parameters or representational capacity: a
+TopK SAE chooses 128 of 12,288 learned directions per token, whereas PCA-128 is one fixed subspace. The persona task
+has not been re-tested this way.
+
+\input{tables/t_pcacm}

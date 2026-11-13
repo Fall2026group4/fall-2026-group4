@@ -99,4 +99,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | M4 "SAE-in-the-loop feature patches" | VALID WITHIN SCOPE (VALIDATION) | Cite as "SAE-selected directions, error term kept"; not as SAE-mediated (D33) |
 | `results/shared/pca_capacity_matched/` | VALIDATION FINDING (descriptive), citable with the matching criterion stated | Qualifies every "SAE vs PCA" claim (D34); error-matched claims replicate |
 | `results/shared/power_sensitivity/` | DESCRIPTIVE (design sensitivity) | Cite as an MDE, not as power for the observed effects |
-| "No trained SAE beats PCA" (M2, M5, paper) | VALID ONLY AS AN ERROR-MATCHED STATEMENT | Must state "at equal OWT reconstruction error (k = 298–519)"; false at k = 128 for some ReLU-family cells (D34) |
+| "No trained SAE beats PCA" (M2, M5, paper) | VALID ONLY AS AN ERROR-MATCHED STATEMENT | Must state "at equal OWT reconstruction error (k = 298–519)"; false at k = 128 for some ReLU-family cells (D34). Paper and curated docs revised 2026-11-13 |
+| `results/shared/pca_capacity_matched/posthoc_multiplicity/` | DESCRIPTIVE (post-hoc, approximate) | Cite only to qualify PCA-CM "better" cells as per-cell, not family-wise (D34) |
+| "SAE better than PCA" (PCA-CM) | VALIDATION, per-cell criterion | Never write "significantly better"; write "better under the study's comparison criterion" |
+| R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE | Cite with the per-SAE MDE (0.054–0.107) caveat (D35) |

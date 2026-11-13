@@ -336,3 +336,26 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Proposed wording** (for the user to approve): "At equal reconstruction error, PCA keeps at least as much truth
   information as the SAEs; at an equal per-token active budget, SAEs are never worse than PCA and ReLU-family SAEs
   are better in 3 of 20 layer–family cells (validation)."
+* **Outcome (2026-11-13): APPROVED by the user with a refinement.** Adopted wording: "At matched reconstruction error,
+  PCA generally preserves more truth-related information than the evaluated SAEs. However, this comparison allows PCA
+  substantially more dimensions than the SAE's active-feature budget. Under a fixed 128-dimensional PCA comparison,
+  trained SAEs are better under the study's comparison criterion in 3 of 20 comparisons and not worse in the
+  remaining 17. When PCA dimensionality is matched to task-specific SAE activity, SAEs are better in 8 of 20
+  comparisons and not worse in the remaining 12. These findings are based on validation data and demonstrate that
+  conclusions about representational faithfulness depend on the comparison constraint."
+  * The user asked that "significantly better" be used only if the decision rules support significance. **They do
+    not**: the rule (every seed's paired 95 % bootstrap CI excludes 0) is per cell, with no correction across the 40
+    capacity-matched cells. An approximate post-hoc Holm check (`scripts/shared/pca_cm_posthoc_multiplicity.py`) keeps
+    1 of the 3 k = 128 cells (R2 ReLU L11) and 4 of the 8 task-matched cells. So "better under the study's comparison
+    criterion" is used, and "not worse" replaces "not significantly worse" (no cell and no individual seed favours
+    PCA).
+  * The original equal-error results are kept and presented alongside the capacity-matched ones. No test row was
+    re-read.
+
+## D35. "No truth gain" is reported as a bound; the L8 causal gain as borderline (2026-11-13)
+* From the sensitivity analysis (`results/shared/power_sensitivity/`): between-family GoT comparisons cannot reliably
+  detect changes smaller than about 0.05–0.09 AUROC (observed ≤ 0.025); one SAE's M4 preservation at L8 is resolved
+  only to 0.054–0.107.
+* **Decision (user-approved):** the paper and docs state the GoT null as "no change larger than about 0.05–0.09
+  AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
+  protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.

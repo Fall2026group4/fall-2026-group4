@@ -55,7 +55,7 @@ Implementations:
 |---|---|---|
 | OpenWebText (OWT) | SAE training; reconstruction and behaviour evaluation | old: 800/100/100 documents (101,600 / 12,700 / 12,700 tokens); R2: 100M tokens from parquet shard 78, our sample excluded |
 | Geometry of Truth (GoT) cities (+ neg_cities) | truth information | grouped by city, 70/15/15; GoT-train A/B groups for teacher vs evaluation probes |
-| RepE-LM | persona/honesty information and causal effect | one-token honest/untruthful swaps in fixed templates; train/validation only (no test split yet) |
+| RepE-LM | persona/honesty information and causal effect | one-token honest/untruthful swaps in fixed templates; train/validation; a test split and frozen protocol exist (2026-11-13) but have not been evaluated |
 | Old RepE persona prompts | historical | length-confounded; HISTORICAL |
 
 ## 6. Experimental objectives (in order)
@@ -85,10 +85,16 @@ Full tables: [`results_summary.md`](results_summary.md).
    * A fixed-sparsity KL fine-tune (R4) cut ΔCE by a further 16–17 %.
 2. **Truth information did not follow (TEST).**
    * GoT re-fit gaps show no clear change in 34/34 cells.
-   * No trained SAE beats PCA at equal error, and a random frozen decoder ties them on that metric.
+   * No trained SAE beats PCA at equal reconstruction error (PCA then uses 298–519 dimensions), and a random frozen
+     decoder ties them on that metric.
+   * At an equal 128-dimensional budget (PCA-CM, VALIDATION), trained SAEs are better under the study's criterion in
+     3/20 GoT comparisons and not worse in 17; at task-matched k, better in 8/20 and not worse in 12. **The SAE–PCA
+     verdict depends on the comparison constraint.**
+   * The GoT design cannot reliably detect changes smaller than about 0.05–0.09 AUROC, so "no change" is a bound.
 3. **Persona representation and causal preservation improved on validation only.**
-   * R2 TopK at L8: persona gap 0.156 → 0.108; T_rec/T_full 0.63 → 0.73.
-   * There is no gain relative to PCA.
+   * R2 TopK at L8: persona gap 0.156 → 0.108; T_rec/T_full 0.63 → 0.73 (borderline: per-SAE MDE at L8 is
+     0.054–0.107).
+   * There is no gain relative to PCA at equal error (persona was not re-tested at equal dimensions).
    * R4's behavioural gain came with a causal regression at L11.
 4. **The levels dissociate.** Reconstruction predicts behavioural damage within a layer (M0), but not truth
    preservation. Even the best SAE carries less of the persona effect than a rank-4 supervised subspace (R5).

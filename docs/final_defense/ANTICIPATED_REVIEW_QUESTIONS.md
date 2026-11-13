@@ -33,7 +33,10 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
   * M2 (VALIDATION): the SAE is better than PCA in 0 cells, and worse in 52/81 GoT, 59/99 persona and 81/90 neutral
     cells.
   * M5 (TEST): every trained SAE has SAE − PCA > 0 on GoT (+0.008 to +0.081).
-  * E2: the public res-jb SAE also never beats PCA.
+  * E2: the public res-jb SAE also never beats PCA at equal error.
+  * **Caveat (PCA-CM, VALIDATION):** error-matched PCA uses 298–519 dimensions. At k = 128, trained SAEs are better in
+    3/20 GoT comparisons under our per-cell criterion and never worse; at task-matched k, 8/20. The answer depends on
+    the constraint (`results/shared/pca_capacity_matched/README.md`).
 * **Source:** `results/shared/m2_four_level_faithfulness/`, M5 rows, `results/shared/e2_public_sae_reference/README.md`
 
 ### 3. Why compare ReLU, TopK and JumpReLU?

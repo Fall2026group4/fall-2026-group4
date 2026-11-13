@@ -31,11 +31,23 @@ lower KL are both easier at higher L0, behavioural gains reported without a spar
 benefit; TopK, whose L0 is fixed, is the only architecture where the gain is creditable at every layer.
 
 \paragraph{The negative result is the main finding.} The SAEs studied here reconstruct well by conventional measures,
-yet they lose task information that PCA at equal error keeps, and at mid and late layers their reconstruction carries
+yet they lose task information that PCA at equal error keeps (although PCA then uses 2--4 times as many dimensions as
+the SAE activates per token; at an equal 128-dimensional budget the SAEs are never worse on GoT truth information and
+better in 3 of 20 comparisons), and at mid and late layers their reconstruction carries
 only part of a causal effect that GPT-2 demonstrably carries there. Short fine-tuning improves what it optimises
 (task reconstruction, output agreement) and nothing we could verify beyond that: E3 finds no creditable gain in
 \emph{causal} preservation at the layer-8 site, and the only gains it finds (ReLU and JumpReLU under output-KL, about
 +0.02 of the effect) come with more active latents. All of these are \evlabel{validation} findings.
+
+\paragraph{The PCA verdict depends on the constraint.} ``Better or worse than PCA'' is not a property of an SAE
+alone. Matched on reconstruction error, PCA generally preserves more truth-related information; matched on the
+per-token budget, the SAEs are never worse and sometimes better (Section~\ref{sec:pcacm}, \evlabel{validation}). The
+two references answer different questions: whether the SAE's error is unusually costly for its size, and whether
+sparse, input-dependent selection beats one fixed subspace of the same width. Reports should name the constraint.
+
+\paragraph{What the design can and cannot detect.} The truth-information comparisons can only detect differences of
+about 0.05--0.09 AUROC between SAE families, and the observed differences are at most 0.025. Our ``no truth gain''
+result is therefore a bound, not evidence of preservation.
 
 \paragraph{Persona loss is not only a reader artefact.} For truth statements, most of the frozen-probe collapse is
 reproduced by same-norm noise. For persona instructions it is not: the SAE loses 2--3 times more than the noise does,

@@ -1,4 +1,4 @@
-# PCA-CM: capacity-matched PCA references (2026-11-13). Status: COMPLETED, VALIDATION. Conclusion change reported to the user; paper NOT yet revised
+# PCA-CM: capacity-matched PCA references (2026-11-13). Status: COMPLETED, VALIDATION. Conclusion change approved by the user (D34); paper and docs revised
 
 Evidence level: **validation finding (descriptive)**. No test row is read.
 
@@ -146,8 +146,20 @@ Counts are over the 20 trained family × layer cells: 10 families × L8/L11, ran
 * No multiplicity correction across 66 GoT family cells.
 * Seeds share one data stream.
 
-### 2.5 Status
+### 2.5 Is "better" significant? (post-hoc check, added after the user's review)
 
-The paper text (`00_abstract.tex`, `14_conclusion.tex`, `10b_improvement.tex`, `07_results_information.tex`,
-`12_discussion.tex`) and the curated docs still state the error-matched claim unqualified. Revising them awaits the
-user's review of this result.
+* The pre-registered rule (every seed's paired 95 % CI excludes 0) is applied per cell, with **no correction across
+  cells**.
+* `scripts/shared/pca_cm_posthoc_multiplicity.py` → [`posthoc_multiplicity/`](posthoc_multiplicity/summary.json):
+  normal approximation to the stored CIs, intersection-union over seeds, Holm over the 40 capacity-matched cells.
+  * `capacity_k128`: 1 of 3 SAE BETTER cells survives (R2 ReLU L11).
+  * `task_l0_matched`: 4 of 8 survive (old ReLU L8, R2 ReLU L8 and L11, res-jb L8).
+  * No individual seed's CI favours PCA at either capacity-matched reference.
+* **Consequence:** the paper says "better under the study's comparison criterion", not "significantly better", and
+  "not worse" for the remaining cells. This is descriptive and approximate; it changes no class in `decisions.csv`.
+
+### 2.6 Status
+
+Approved by the user (D34, 2026-11-13). The paper (abstract, §questions, §info, §improvement with a new §PCA-CM and
+Table `t_pcacm`, §statistics, §discussion, §limitations, §conclusion), the curated docs, the defence docs, the course
+report and the slide content now state both the error-matched and the capacity-matched results.

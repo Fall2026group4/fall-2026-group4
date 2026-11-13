@@ -935,7 +935,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   the changelog; not amended.
 * **Evidence label:** no new result.
 
-## 38. In progress: remediation of the 2026-11-12 independent audit (2026-11-13). Status: IN PROGRESS
+## 38. Remediation of the 2026-11-12 independent audit (2026-11-13). Status: PCA-CM COMPLETED; continued in §39
 
 * **Register:** `docs/remediation/issue_register.md` (D1–D15, S1–S12, U1–U4, Review #8 items). It is written as the
   work proceeds.
@@ -976,3 +976,28 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Stopped here** (user rule: stop when a conclusion changes).
   * Unfinished: the paper/doc revision of the PCA claim and the MDE sentences; the PR #27 description update.
   * Next step: the user reviews the PCA-CM before/after report and decides on the wording.
+  * **Resolved in §39** (the user approved D34 with a refinement).
+
+## 39. PCA claim revised with the user-approved wording; MDE and L8 caveats added (2026-11-13). Status: COMPLETED
+
+* **User decision:** D34 approved with refined wording (`docs/RESEARCH_DECISIONS.md` D34 outcome). The user asked
+  for "significantly better" only if the decision rules support significance.
+* **Significance check** (`scripts/shared/pca_cm_posthoc_multiplicity.py` →
+  `results/shared/pca_capacity_matched/posthoc_multiplicity/`; descriptive, post-hoc, 0 test rows):
+  * the PCA-CM rule is per cell with no correction across cells;
+  * an approximate Holm correction over the 40 capacity-matched cells keeps 1/3 SAE-better cells at k = 128 (R2 ReLU
+    L11) and 4/8 at task-matched k;
+  * 0 of 58 per-seed CIs favour PCA at either capacity-matched reference.
+  * **So the paper says "better under the study's comparison criterion" and "not worse", not "significantly".**
+* **Paper** (40 pp, 0 undefined references): abstract, §questions (SQ2), §info, §improvement (persona-vs-PCA
+  qualifier, L8 causal caveat, M5 inference as a bound, new §PCA-CM with Table `t_pcacm`), §causal (the `\pending`
+  MDE note replaced by a Sensitivity paragraph), §statistics (PCA-CM rule, MDE bullets, stale M5 `\pending` removed),
+  §discussion, §limitations (stale "M5 not run" corrected; power and PCA-matching items), §conclusion.
+* **Docs:** README §6.0/§6.3/§9, `research_overview.md`, `results_summary.md` (B1, new B2b/B2c, C3),
+  `limitations_and_future_work.md`, `methodology.md`, defence docs, course report Discussion, slide content (slides 5–6),
+  Review #8 draft (still NOT POSTED). The RepE-LM test-split wording is updated everywhere to "built and frozen, not
+  evaluated".
+* **Preserved:** every error-matched result (M2, M5, E2) is unchanged and is presented alongside PCA-CM.
+* **No scientific conclusion beyond D34 changed, and no metric changed.** The post-hoc check changes no class in
+  `decisions.csv`; it only rules out the word "significantly".
+* **Evidence label:** PCA-CM is VALIDATION; the Holm check and MDE are descriptive.

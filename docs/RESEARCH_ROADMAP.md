@@ -111,7 +111,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
   * **Team coordination (NEW).** Branch `simba-method-a-multilayer` duplicates IMP-L under the same script numbers (22/23),
     and it uses layer 5 instead of layer 3. Agree on one experiment, and renumber, before either merges. Open PRs #20, #21
     and #24 delete files this branch cites.
-  * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Improvement section 10b, with M5, E2, R2, R4 and R5, added 2026-11-10 (37 pp, clean). Remaining placeholders: E1; the minimum-detectable-effect statement; the pipeline diagram (F8); the per-experiment command list for the older experiments.
+  * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Improvement section 10b, with M5, E2, R2, R4 and R5, added 2026-11-10 (37 pp, clean). 2026-11-13: PCA-CM section, MDE statements and the L8 caveat added (40 pp, 0 undefined references); the pipeline diagram exists in `architecture/diagrams/`. Remaining placeholders: E1; the per-experiment command list for the older experiments.
   * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,
@@ -263,15 +263,15 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 
 ## 2026-11-13 additions (audit remediation; register in `docs/remediation/issue_register.md`)
 
-* IN PROGRESS: PCA-CM, the capacity-matched PCA reference (S1), VALIDATION only; `results/shared/pca_capacity_matched/`.
+* DONE: PCA-CM, the capacity-matched PCA reference (S1), VALIDATION only; `results/shared/pca_capacity_matched/`.
 * PARTIALLY RESOLVED: H1 RepE-LM TEST split. Data and protocol are frozen (`data/repe/repe_lm_test/`,
   `results/repe/repe_lm_test_protocol/`); the evaluation is NOT RUN and awaits user approval (about 1–2 GPU hours).
   Next: write script 29, smoke-test it on validation, hash it into the pre-registration, run once.
 * PLANNED (proposed, not approved): a mediated SAE-in-the-loop test. An edit at layer ℓ with SAEs spliced at
   ℓ+1…ℓ+k, so that the effect must pass through SAE nonlinearities (D33).
-* DONE (VALIDATION): PCA-CM. **Awaiting the user:** revise the PCA claim in the paper (`00_abstract`,
-  `07_results_information`, `10b_improvement`, `12_discussion`, `14_conclusion`) and the curated docs (D34).
-* DONE: sensitivity/MDE analysis (`results/shared/power_sensitivity/`). TODO: add the MDE sentences to the paper
-  (§11 statistics, the `\pending` note in §causal) after the PCA decision.
+* DONE (VALIDATION): PCA-CM. Paper and curated docs revised with the user-approved wording (D34, 2026-11-13).
+* DONE: sensitivity/MDE analysis, now in the paper (§statistics, §causal, §discussion, §limitations) (D35).
+* PLANNED (needs a new pre-registration): capacity-matched PCA for the RepE-LM persona task; a test-split
+  confirmation of PCA-CM (GoT test rows were previously exposed, D31, so it would be labelled accordingly).
 * OPEN: off-machine backup (needs a destination); linking the commit email; posting the drafted replies
   (`docs/remediation/review8_response_draft.md`); the team merge order.

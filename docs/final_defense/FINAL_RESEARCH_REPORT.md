@@ -103,7 +103,8 @@ Follow-ups:
     which vanishes without architecture FE).
   * **M1:** RepE-LM, an equal-length one-token persona task; the K1–K7 gates pass.
   * **M2:** the frozen GoT collapse is mostly fragility (0.28 vs noise 0.25); a real re-fit loss of 0.07–0.12
-    remains; the SAE never beats PCA.
+    remains; the SAE never beats PCA at equal error (PCA-CM, 2026-11-13: at k = 128 trained SAEs are never worse
+    and better in 3/20 GoT cells).
   * **M3:** causal sites L1 slot, L8 final, L11 final.
   * **M4:** reconstruction carries 93–97 % at L1 and 62–68 % at L8/L11.
 * **Improvement attempts and verdicts:**
@@ -416,7 +417,7 @@ separate controlled comparisons, not one chain.
    * BatchTopK is not JumpReLU, so it does not settle the threshold-architecture question.
 2. **Best truth preservation:**
    * On the GoT re-fit gap, ReLU (TEST L8 0.028–0.034; L11 0.053–0.077). This is confounded by GoT-prompt L0, and
-     no trained SAE beats PCA.
+     no trained SAE beats error-matched PCA (at k = 128, R2 ReLU is better at L8 and L11; VALIDATION).
    * On M2 (VALIDATION), ReLU loses least and JumpReLU most.
 3. **Best behaviour:**
    * R2 BatchTopK (TEST ΔCE 0.002 / 0.054 / 0.093), then R4 KL TopK at L8/L11 (0.051 / 0.081).

@@ -7,7 +7,8 @@ All numbers were verified on 2026-11-10 against committed files (`RESULTS_VERIFI
 
 Training our SAEs on 1000× more data at 4× width, at the same L0 of 128, cut reconstruction error by 31–74 % and the
 damage to GPT-2's next-token predictions by 35–79 % on held-out test data. It did **not** measurably improve how well
-truth information is preserved, and the SAEs still never beat PCA at equal reconstruction error. **Reconstruction,
+truth information is preserved, and the SAEs still never beat PCA at equal reconstruction error (though at an equal
+128-dimensional budget they are never worse and sometimes better; validation). **Reconstruction,
 behaviour, information and causal faithfulness are separate properties: improving one does not imply the others.**
 
 ## 2. Research question, in plain words
@@ -124,7 +125,8 @@ encoder → sparse codes (L0 ≈ 128 of 3,072 or 12,288) → SAE decoder → x̂
 >
 > The central finding is a dissociation. Within a layer, lower reconstruction error predicts less damage to
 > predictions, but not better truth readout. Truth readout by the original probe collapses, but mostly because the
-> probe is fragile: same-size random noise does almost as much damage. And SAEs never beat PCA at equal error.
+> probe is fragile: same-size random noise does almost as much damage. And SAEs never beat PCA at equal error,
+> although that gives PCA two to four times as many dimensions; at an equal budget the SAEs are never worse.
 >
 > We then improved the SAEs: 100 million training tokens instead of 100 thousand, 4× width, and modern TopK with
 > dead-latent revival. In one pre-registered test pass, reconstruction error fell 31 to 74 percent and prediction

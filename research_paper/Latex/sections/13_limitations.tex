@@ -13,9 +13,14 @@
   \item \textbf{Seeds share data.} Seed spread understates uncertainty.
   \item \textbf{Test exposure.} The GoT test split was scored in earlier frozen-probe evaluations; the original RepE
         test split was touched in a smoke run and is retired with the confounded task.
-  \item \textbf{No held-out confirmation.} Every result except the reconstruction table is a validation finding;
-        the pre-registered held-out evaluation (M5) has not been run. Validation data were also used to compare
+  \item \textbf{Limited held-out confirmation.} M5 confirmed the OWT and GoT results on test; every persona,
+        representation, causal and PCA-CM result is a validation finding. Validation data were also used to compare
         methods, so validation effect sizes may be optimistic.
+  \item \textbf{Statistical power.} Under the current design, GoT comparisons cannot reliably detect changes smaller
+        than about 0.05--0.09 AUROC, and one SAE's causal preservation at layer 8 only to 0.054--0.107.
+  \item \textbf{PCA matching.} The SAE--PCA verdict depends on the constraint (equal error vs equal per-token
+        budget). $k=128$ equalises active dimensions, not parameters; the post-hoc Holm check keeps only 1 of 3 cells
+        at $k=128$.
   \item \textbf{Fine-tuning at one budget.} 500 steps at learning rate $10^{-5}$, the layer-6 setting, was reused at
         layers 3, 8 and 9 without tuning; other budgets could change the classes.
   \item \textbf{Three seeds and many cells.} The ``consistent'' rule (all three seeds, $>2$\,sd) is strict for

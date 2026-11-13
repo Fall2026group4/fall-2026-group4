@@ -19,9 +19,22 @@
   \item \textbf{Seeds.} Three training seeds share the same training data, so seed spread understates uncertainty;
         comparisons that share seeds are paired. The fine-tuning criterion ``consistent'' requires the improvement on
         all three seeds and a mean paired difference larger than twice its standard deviation.
+  \item \textbf{PCA-CM (capacity-matched PCA).} Per seed, a paired statement-grouped bootstrap (1000 resamples,
+        shared within a layer) of SAE gap $-$ PCA gap; a cell is better or worse only if every seed's 95\,\% interval
+        excludes zero. No correction across cells is part of the rule; an approximate post-hoc Holm correction is
+        reported alongside (Section~\ref{sec:pcacm}).
+  \item \textbf{Sensitivity (minimum detectable effect).} At two-sided $\alpha=0.05$ and power 0.80,
+        MDE $=2.80\times$SE, with SE taken from the stored intervals. This describes the design, not post-hoc power.
+        \begin{itemize}
+        \item GoT, one SAE's re-fit gap on TEST ($n=452$): 0.030--0.048 AUROC.
+        \item GoT, between-family comparisons (seed plus statement variance): about 0.05--0.09 AUROC. The observed
+          differences are at most 0.025, so ``no clear change'' means no change larger than about 0.05--0.09 AUROC,
+          not that truth information is preserved.
+        \item M4 causal preservation $T_{\text{rec}}/T_{\text{full}}$, one SAE: 0.013--0.017 at L1, 0.036--0.069 at
+          L11 and 0.054--0.107 at L8, where $T_{\text{full}}$ is only 0.022 nats.
+        \end{itemize}
   \item \textbf{Splits.} Fitting and selection use training data; validation results are reported as
-        \evlabel{validation}. Only the reconstruction table is \evlabel{test}.
+        \evlabel{validation}. The OWT and GoT results of the single pre-registered held-out pass (M5,
+        Section~\ref{sec:m5}) are \evlabel{test}. RepE-LM now has a held-out split and a frozen protocol, but it has not
+        been evaluated, so every persona, representation and causal result remains \evlabel{validation}.
 \end{itemize}
-
-\pending{M5: one pre-registered held-out pass (RepE-LM test, OWT test; GoT test labelled previously exposed),
-hierarchical bootstrap over statements and seeds, Holm within confirmatory families.}

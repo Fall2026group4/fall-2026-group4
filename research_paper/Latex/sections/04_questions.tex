@@ -6,7 +6,8 @@ information and causal behaviour across transformer layers?
 \begin{description}
   \item[SQ1 (reconstruction).] How do ReLU, TopK and JumpReLU SAEs compare across the 12 layers at matched sparsity?
   \item[SQ2 (information).] Which task information survives reconstruction, and is the loss specific to SAEs compared
-        with generic perturbations of the same size and with PCA at the same reconstruction error?
+        with generic perturbations of the same size and with PCA, either at the same reconstruction error or at the
+        same number of active dimensions?
   \item[SQ3 (behaviour).] How much does splicing the SAE in damage GPT-2's predictions, and does reconstruction error
         predict that damage between SAEs at the same layer?
   \item[SQ4 (causal).] Where does GPT-2 carry a persona-instruction effect, and how much of it survives in the SAE

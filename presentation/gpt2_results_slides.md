@@ -34,16 +34,30 @@ Figure: `architecture/diagrams/gpt2_sae_faithfulness_pipeline.svg`.
 
 ## 5. SAE vs PCA depends on how PCA is matched (VAL)
 
-*PENDING: filled in from `results/shared/pca_capacity_matched/` after the run.*
+| PCA reference | PCA dims | SAE better | inconclusive | SAE worse |
+|---|---|---|---|---|
+| Equal reconstruction error | 298–519 | 0 | 7 | 13 |
+| Fixed 128 dims (= SAE active budget) | 128 | 3 | 17 | 0 |
+| Matched to SAE task activity | 54–128 | 8 | 12 | 0 |
+
+* 20 trained SAE family × layer cells, GoT validation (448 statements), re-fit probe gap.
+* "Better" = every seed's paired 95 % CI excludes 0; no correction across cells (approx. Holm keeps 1/3 and 4/8).
+* Example: R2 ReLU L11: SAE 0.076, PCA-128 0.153, error-matched PCA 0.038.
+* Takeaway: "better or worse than PCA" depends on what is held equal.
+* Source: `results/shared/pca_capacity_matched/`.
 
 ## 6. How large an effect could we detect?
 
-*From `results/shared/power_sensitivity/`; filled in after the analysis.*
+* Minimum detectable effect (α 0.05, power 0.80) = 2.8 × SE from the stored bootstrap intervals.
+* GoT, one SAE's re-fit gap: 0.030–0.048 AUROC. Between-family comparisons: **about 0.05–0.09 AUROC**.
+* Observed GoT differences: ≤ 0.025, so "no change" means "no change larger than ≈ 0.05".
+* Causal preservation at L8: one SAE resolved only to 0.054–0.107. The R2 gain (+0.10) is borderline.
+* Source: `results/shared/power_sensitivity/`.
 
 ## 7. Causal faithfulness (VAL)
 
 * The SAE reconstruction carries 93–97 % of the persona effect at L1, but only 62–68 % at L8/L11.
-* R2 raises this to 0.73 at L8 (TopK); R4 lowers it at L11 (0.694 → 0.671).
+* R2 raises this to 0.73 at L8 (TopK; borderline, see slide 6); R4 lowers it at L11 (0.694 → 0.671).
 * The effect is small: 0.022 nats at L8.
 * These patches keep the error term. They show the SAE *selects* effect-carrying directions, not that the effect is
   *mediated* by the SAE.

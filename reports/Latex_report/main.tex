@@ -171,8 +171,11 @@ Faithfulness is level-specific. Better reconstruction reliably improves behaviou
 make an independent reader recover more truth information, and a behaviour-targeted fine-tune can cost causal
 preservation. Three limitations bound these conclusions. First, the GoT comparisons have limited sensitivity: seed
 variability (sd 0.004--0.024) is as large as the observed differences, so a null result there is not evidence of
-preservation. Second, the PCA reference is matched on reconstruction error, not on capacity; a capacity-matched
-comparison is reported in the paper. Third, the SAE-selected feature patches keep the error term, which makes them
+preservation; between-family GoT comparisons cannot reliably detect changes smaller than about 0.05--0.09 AUROC.
+Second, the PCA reference is matched on reconstruction error, not on capacity. With PCA fixed at 128 dimensions, the
+SAEs' per-token active budget, trained SAEs are better under the study's per-cell comparison criterion in 3 of 20 GoT
+comparisons and not worse in the remaining 17 (8 of 20 when PCA is matched to task-specific SAE activity; validation),
+so conclusions about representational faithfulness depend on the comparison constraint. Third, the SAE-selected feature patches keep the error term, which makes them
 mathematically equivalent to adding an input-dependent decoder-space vector to the raw activation; they show that the
 SAE selects directions that carry the effect, not that the effect is mediated by the SAE.
 

@@ -127,13 +127,21 @@ Verified against `results/shared/m5_confirmatory_test/m5_rows.csv`; details in
 | Spliced ΔCE (nats), same (L8 / L11) | 0.133 / 0.204 | 0.062 / 0.096 | **TEST**, improvement |
 | ΔCE, R4 KL fine-tune vs MSE control (L0 fixed at 128) | 0.062 | 0.051 | **TEST**, improvement (NMSE +2 %) |
 | GoT cities re-fit truth gap | 0.061 | 0.056 | **TEST**, no clear change (0/34 cells) |
-| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement (no test split exists) |
-| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement |
+| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement (test split built and frozen, not yet evaluated) |
+| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement (borderline: per-SAE MDE at L8 is 0.054–0.107) |
 | T_rec/T_full, R4 KL vs MSE control (L11) | 0.694 | 0.671 | VALIDATION, **regression** |
 
 * R2 changed data (100M fresh tokens vs 101,600), width (12,288 vs 3,072) and recipe together. The gain is not
   attributed to any one of them.
-* No trained SAE beats PCA at equal error on GoT or persona information.
+* **PCA comparison depends on the constraint (VALIDATION, PCA-CM).** At matched reconstruction error, PCA generally
+  preserves more truth-related information than the evaluated SAEs (SAE worse in 13/20 GoT cells, never better), but
+  that reference gives PCA 298–519 dimensions against the SAEs' 128 active latents. With PCA fixed at 128 dimensions,
+  trained SAEs are better under the study's comparison criterion in 3/20 GoT comparisons and not worse in the other
+  17; with PCA matched to task-specific SAE activity, better in 8/20 and not worse in 12. Not a family-wise
+  significance claim (an approximate Holm check keeps 1/3 and 4/8). Persona information was compared at equal error
+  only. See [`results/shared/pca_capacity_matched/`](results/shared/pca_capacity_matched/README.md).
+* **Power:** GoT comparisons cannot reliably detect changes smaller than about 0.05–0.09 AUROC
+  ([`results/shared/power_sensitivity/`](results/shared/power_sensitivity/README.md)).
 
 ### 6.1 Reconstruction (TEST, 108 runs; `results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/`)
 * **EV falls with depth.** OWT test EV goes from 0.93–0.95 at layers 0–2 to 0.757 (ReLU), 0.815 (TopK) and 0.815
@@ -181,7 +189,9 @@ The table gives gaps averaged over informative layers (lower is better). Per-lay
 * **The earlier "truth drops to near chance" result was mostly fragility of the frozen probe.** Noise of the same norm
   causes almost the same drop, and the simpler mass-mean reader loses only 0.03.
 * **A real but smaller loss remains** for re-trained readers. No cell is "Preserved".
-* **SAEs are never better than PCA** at equal OWT reconstruction error (worse in 52/81, 59/99 and 81/90 cells).
+* **SAEs are never better than PCA at equal OWT reconstruction error** (worse in 52/81, 59/99 and 81/90 cells). This
+  reference gives PCA more dimensions than the SAE activates; at an equal 128-dimensional budget the GoT verdict
+  changes (PCA-CM, above).
 * **The lost information is in the error term** (error-only AUROC 0.62–0.77).
 * **Architecture differences are confounded by prompt-level sparsity**, which is not matched. On GoT, TopK uses 128
   latents, ReLU 32–110 and JumpReLU 23–92 (layers 1–11). This is what E1 addresses.
@@ -312,7 +322,7 @@ and its error part. Each part is patched separately.
 | E1 | DRAFT PRE-REGISTRATION written; NOT RUN |
 | SAE-in-the-loop intervention | M4 feature patches and E3 (fine-tuned SAEs in the forward pass) done |
 | M5 final test | COMPLETED 2026-11-10 (one pass; independently re-verified, `docs/final_defense/EXPERIMENT_AUDIT.md`) |
-| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; RLM-RP and E3; generated tables and PDF/SVG figures; R2/R4/M5 section and the SAE-selection equivalence paragraph; compiles (37 pp, 2026-11-13). Journal and template NOT CHOSEN |
+| Research paper (`research_paper/Latex/`) | IN PROGRESS: all sections, M0–M4 and IMP-L results; RLM-RP and E3; generated tables and PDF/SVG figures; R2/R4/M5 section and the SAE-selection equivalence paragraph; compiles (40 pp, 2026-11-13; PCA-CM section and MDE statements added). Journal and template NOT CHOSEN |
 | Report (`reports/Latex_report/main.tex`) | GPT-2 sections written 2026-11-13 (5 pp; no TODO). Gemma subsection PENDING (teammates); title/abstract framing awaits a team decision |
 | SVG/PDF figures; `.drawio` source + `.svg` | PARTIAL: paper figures PDF+SVG; 21 results figures exported to `figures/vector/` (pixel-identical re-render check); 31 PNGs without a re-runnable script remain; editable `architecture/diagrams/gpt2_sae_faithfulness_pipeline.{drawio,svg}` |
 | Logging instead of `print`; CI | CI workflow `.github/workflows/gpt2-validation.yml` on PR #27 (not on `main` until merged); new shared code uses `logging`; hashed pre-registered scripts unchanged |

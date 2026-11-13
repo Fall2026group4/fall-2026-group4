@@ -246,7 +246,9 @@ Source: `m5_rows.csv`, `comparisons.csv`.
    * On this metric, trained SAEs do **not** beat a random-decoder control.
    * The GoT re-fit gap is a weak discriminator at these layers.
    * This is a single seed (n = 1), so it is descriptive.
-4. **No trained SAE beats PCA** at matched OWT validation NMSE on GoT test (all SAE − PCA values > 0).
+4. **No trained SAE beats PCA** at matched OWT validation NMSE on GoT test (all SAE − PCA values > 0). This is an
+   error-matched statement (PCA k = 298–519). At k = 128 (PCA-CM, VALIDATION only), 3/20 trained cells favour the SAE
+   and none favour PCA (`results/shared/pca_capacity_matched/`).
 
 ---
 

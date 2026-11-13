@@ -34,7 +34,13 @@ Both texts speak for Aditi and touch team decisions, so neither has been posted.
 >   the GoT null is "no detectable change", not "preserved".
 >
 > **Corrections we made ourselves (11-13).**
-> * PCA reference: **[PENDING Aditi's decision (D34). Proposed: "at equal reconstruction error, PCA (298–519 components) keeps at least as much truth information as the SAEs; at an equal active budget of 128 dimensions, SAEs are never worse and ReLU-family SAEs are better in 3 of 20 cells (validation)"]**.
+> * PCA reference (approved 2026-11-13, D34): at matched reconstruction error, PCA generally preserves more
+>   truth-related information than our SAEs, but that comparison gives PCA 298–519 dimensions against the SAEs' 128
+>   active latents. With PCA fixed at 128 dimensions, trained SAEs are better under our per-cell criterion in 3 of 20
+>   GoT comparisons and not worse in the other 17; matched to task-specific SAE activity, 8 of 20 and 12
+>   (validation). The SAE-vs-PCA verdict depends on the constraint; the paper now says so.
+> * The layer-8 causal-preservation gain (0.63 → 0.73, validation) is at the edge of what our per-SAE intervals can
+>   detect (0.054–0.107), and is now reported as borderline.
 > * The "SAE-in-the-loop" patches keep the error term. That makes them mathematically equal to adding an
 >   input-dependent decoder-space vector, so they show that the SAE *selects* effect-carrying directions, not that
 >   the effect is *mediated* by the SAE. The paper now says this, and a mediated test is proposed.
@@ -42,7 +48,7 @@ Both texts speak for Aditi and touch team decisions, so neither has been posted.
 >
 > **Done on the branch since Review #8.**
 > * Multi-layer improvement table (IMP-L at L3/8/9; R2/R4 at L1/8/11).
-> * Paper (37 pp) and the report's GPT-2 sections.
+> * Paper (40 pp) and the report's GPT-2 sections.
 > * 34 new unit tests and a CPU CI workflow.
 > * 21 results figures as SVG/PDF, and an editable `.drawio` diagram.
 > * AxBench, SAEBench and Paulo et al. in both bibliographies.

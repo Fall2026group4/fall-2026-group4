@@ -19,7 +19,7 @@ against `results/shared/m5_confirmatory_test/m5_rows.csv` on 2026-11-12. The exh
 **Headline.** The improvements are real but level-specific:
 * **reconstruction and behaviour improved and were confirmed on TEST;**
 * truth information (GoT) did **not** measurably change;
-* persona/honesty representation and causal preservation improved **on validation only** (RepE-LM has no test split);
+* persona/honesty representation and causal preservation improved **on validation only** (a RepE-LM test split and frozen protocol now exist but have not been evaluated);
 * the one behaviour-targeted fine-tune (R4) cost causal preservation at L11.
 
 ---
@@ -93,7 +93,8 @@ Original-activation logistic AUROC (TEST) is 0.839 at L8 and 0.792 at L11. GoT i
 |---|---|---|---|
 | Frozen original logistic probe on x̂ | whether the model's original readout survives | 0.19–0.32 (L4–11, old SAEs, TEST) | mostly generic fragility: same-norm noise gives 0.25 vs the SAE's 0.28 (M2, VAL) |
 | Re-fit logistic probe on x̂ | whether the information is still linearly present | 0.07–0.12 (M2, VAL); 0.028–0.107 (M5, TEST) | a real but small loss |
-| PCA at matched OWT NMSE | reference | — | **no trained SAE beats PCA** (M2, M5) |
+| PCA at matched OWT NMSE (k = 298–519) | reference | — | **no trained SAE beats error-matched PCA** (M2, M5) |
+| PCA at k = 128 / at the SAE's GoT task L0 (PCA-CM, VAL) | reference | — | SAE better in 3/20 / 8/20 trained cells under the study's criterion, never worse (see B2b) |
 
 ### B2. M5 GoT cities (TEST; re-fit logistic gap ↓; SAE − PCA ↓, < 0 means it beats PCA)
 
@@ -111,6 +112,35 @@ Original-activation logistic AUROC (TEST) is 0.839 at L8 and 0.792 at L11. GoT i
 * Width (A2) REGRESSED GoT at L8 in 2 cells; this could be a false positive (≈ 0.05 chance per cell; no multiplicity
   correction).
 * **Source:** `results/shared/m5_confirmatory_test/m5_rows.csv`.
+
+### B2b. PCA-CM: SAE vs PCA under three matching constraints (VALIDATION; GoT VAL 448 rows; re-fit gap ↓)
+
+| PCA reference | PCA k | SAE better | of which survive approx. Holm | inconclusive | SAE worse |
+|---|---|---|---|---|---|
+| Equal OWT error (existing reference) | 298–519 | 0 | — | 7 | **13** |
+| Fixed k = 128 (per-token active budget) | 128 | **3** (R2 ReLU L8, L11; res-jb L8) | 1 (R2 ReLU L11) | 17 | 0 |
+| k = SAE's GoT task L0 | 54–128 | **8** | 4 | 12 | 0 |
+
+* Counts are over 20 trained family × layer cells (L8, L11); the random decoder is excluded (INCONCLUSIVE against all
+  three references).
+* "Better"/"worse": every seed's paired 95 % grouped-bootstrap CI of (SAE gap − PCA gap) excludes 0. The rule has no
+  correction across cells, so these are **better under the study's comparison criterion**, not family-wise
+  significant. No individual seed's CI favours PCA at k = 128 or task-matched k.
+* Example: R2 ReLU L11, SAE 0.076 vs PCA-128 0.153 vs error-matched PCA (k = 404) 0.038.
+* PCA-128 is far worse on reconstruction and behaviour: NMSE 0.30/0.46/0.43, ΔCE 0.40/0.99/1.06 nats (L1/L8/L11);
+  every trained SAE beats it on NMSE, ΔCE and KL on every seed.
+* **Reading:** at matched reconstruction error PCA generally preserves more truth-related information, but that
+  comparison allows PCA substantially more dimensions than the SAE's active budget. The verdict depends on the
+  constraint. k = 128 equalises active dimensions, not parameters.
+* **Sources:** `results/shared/pca_capacity_matched/` (`decisions.csv`, `posthoc_multiplicity/summary.json`).
+
+### B2c. Sensitivity (minimum detectable effect; α 0.05, power 0.80)
+
+* One SAE's GoT re-fit gap (TEST, n = 452): MDE 0.030–0.048 AUROC.
+* Between-family GoT comparisons (seed + statement variance): **about 0.05–0.09 AUROC**. Observed differences are
+  ≤ 0.025, so "no clear change" means no change larger than about 0.05–0.09 AUROC, not preservation.
+* The 2 A2 "regressions" (|d| 0.012, 0.015) are about a quarter of the statement-level MDE: not robust.
+* **Source:** `results/shared/power_sensitivity/`.
 
 ### B3. Fine-tuning for truth (all VALIDATION)
 
@@ -173,10 +203,14 @@ architectures fire more latents on RepE-LM prompts (up to 208–216 at L1) and f
 | Old SAEs, L1 slot | 1 | T_rec/T_full 0.93–0.97 | MEASUREMENT |
 | Old SAEs, final token | 8 / 11 | 0.62–0.68 | MEASUREMENT |
 | Method A / output-KL (E3) | 8 | ≈ base | NO CLEAR CHANGE / not creditable |
-| R2 TopK vs old TopK | 8 / 11 | 0.625 → 0.726 / 0.620 → 0.692 | VALIDATION IMPROVEMENT |
+| R2 TopK vs old TopK | 8 / 11 | 0.625 → 0.726 / 0.620 → 0.692 | VALIDATION IMPROVEMENT (L8 borderline, see below) |
 | R4 KL vs MSE control | 11 | 0.694 → 0.671 (−0.024, all seeds) | REGRESSION |
 
 * T_full (the whole persona effect) is small: 0.022 nats at L8 and 0.043 at L11.
+* **Sensitivity:** one SAE's T_rec/T_full can be resolved only to 0.013–0.017 at L1, 0.036–0.069 at L11 and
+  **0.054–0.107 at L8** (MDE). The L8 gain (+0.101) passes the seed-level R2 rule (Welch CI [+0.019, +0.182]) but sits
+  at the edge of statement-level detectability. Treat it as a borderline validation finding until the RepE-LM test
+  protocol is run.
 
 ### C4. R5 skyline (VAL; T_k/T_full at L8 final; old SAEs)
 

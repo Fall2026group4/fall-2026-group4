@@ -70,4 +70,7 @@ experiment (R2-clamp; input-dependent clamps, with and without the error term) f
 
 Whether fine-tuning changes this decomposition is tested in E3 (\S\ref{sec:e3}).
 
-\pending{Minimum detectable effect statement (Review \#8 critique 3); M5 held-out confirmation.}
+\paragraph{Sensitivity.} With $T_{\text{full}}=0.022$ nats at the layer-8 final token, one SAE's preservation share
+can only be resolved to 0.054--0.107 there (0.013--0.017 at L1 and 0.036--0.069 at L11; Section~\ref{sec:stats}).
+Differences between SAEs at L8 smaller than this are not interpretable. M5 could not confirm any causal result,
+because RepE-LM had no test split; one now exists, with a frozen protocol, but it has not been run.

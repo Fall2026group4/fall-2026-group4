@@ -7,9 +7,14 @@ faithfulness and causal faithfulness. Reconstruction degrades with depth (OWT te
 layers 0--2, 0.76--0.82 at layer 11). Within a layer, reconstruction error predicts how much splicing the SAE damages
 the model's predictions, but not how much truth information is lost. The apparent collapse of a frozen truth probe
 on SAE reconstructions is largely reproduced by random noise of the same norm, but for persona instructions the SAEs
-lose 2--3 times more than such noise and re-trained readers recover almost none of it; at equal reconstruction error the
-SAEs never preserve task information better than PCA, and they distort the honest-minus-dishonest activation
-difference (per-pair cosine 0.35--0.58). Using an
+lose 2--3 times more than such noise and re-trained readers recover almost none of it, and they distort the
+honest-minus-dishonest activation difference (per-pair cosine 0.35--0.58). At matched reconstruction error, PCA
+generally preserves more truth-related information than the evaluated SAEs. However, this comparison allows PCA
+substantially more dimensions (298--519) than the SAEs' active-feature budget (128). Under a fixed 128-dimensional
+PCA comparison, trained SAEs are better under the study's comparison criterion in 3 of 20 comparisons and not worse in
+the remaining 17; when PCA dimensionality is matched to task-specific SAE activity, they are better in 8 of 20 and not
+worse in the remaining 12 (\evlabel{validation}). Conclusions about representational faithfulness therefore depend on
+the comparison constraint. Using an
 equal-length persona-instruction task built to remove a length shortcut, we locate where GPT-2 carries the
 instruction's effect and decompose it: the SAE-reconstructed activation difference restores 93--97\,\% of the effect
 at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final token, with the remainder in the
@@ -24,9 +29,10 @@ pre-registered $\pm$5\,\% guard. Output-KL never improves truth preservation, an
 preservation (+0.02 of the effect) occur only in those sparsity-violating cells; for TopK, whose sparsity is fixed,
 it has no effect. Retraining our SAEs on 100M tokens at width 12,288 cuts reconstruction error by 31--74\,\% and
 splice damage by 35--79\,\% at layers 1, 8 and 11, raises the persona effect carried at layer 8 from 62\,\% to
-73--75\,\% (validation), and a short KL fine-tune at fixed L0 lowers splice damage by a further 16--17\,\%, at a
+73--75\,\% (validation; a gain at the edge of what the per-SAE intervals can detect), and a short KL fine-tune at fixed L0 lowers splice damage by a further 16--17\,\%, at a
 cost in causal preservation at layer 11; in a single pre-registered held-out evaluation the reconstruction and
-behaviour gains are \evlabel{confirmed}, while truth information still shows no gain over PCA at equal error. Our
+behaviour gains are \evlabel{confirmed}, while truth information shows no confirmed gain; that test could not have
+detected changes smaller than about 0.05--0.09 AUROC. Our
 conclusions also hold for a public 24,576-latent SAE trained on 300M tokens. Unless marked \evlabel{test}, results are
 \evlabel{validation} findings.
 \end{abstract}

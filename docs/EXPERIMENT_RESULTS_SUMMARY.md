@@ -707,3 +707,10 @@ Selected rows (SAE gap mean ± sd over 3 seeds; PCA gap; the class follows the p
 **Sensitivity:**
 * GoT re-fit comparisons: combined MDE ≈ 0.048–0.091 AUROC.
 * M4 preservation MDE: 0.013–0.017 (L1), 0.036–0.069 (L11), 0.054–0.107 (L8).
+
+**PCA-CM post-hoc multiplicity check** (descriptive; `results/shared/pca_capacity_matched/posthoc_multiplicity/`):
+
+| Reference | SAE BETTER (pre-registered, per cell) | surviving approx. Holm over 40 cells | per-seed CIs favouring PCA |
+|---|---|---|---|
+| k = 128 | 3 | 1 (R2 ReLU L11) | 0 / 58 |
+| task-L0-matched | 8 | 4 (old ReLU L8; R2 ReLU L8, L11; res-jb L8) | 0 / 58 |
