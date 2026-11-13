@@ -1,0 +1,4 @@
+layer,identity_mean_kl,identity_max_doc_mean_kl,repeat_mean_kl,repeat_max_doc_mean_kl,v3_threshold,v3_pass
+5,0.0,0.0,0.0,0.0,1e-06,True
+12,0.0,0.0,0.0,0.0,1e-06,True
+19,0.0,0.0,0.0,0.0,1e-06,True

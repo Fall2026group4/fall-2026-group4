@@ -1,0 +1,94 @@
+{
+  "experiment": "gemma_scope_splicing_pile",
+  "status": "SMOKE (pipeline check, not a result)",
+  "created_utc": "2026-11-12T20:06:42+00:00",
+  "n_eval_docs": 8,
+  "n_reference_docs": 4,
+  "layers": [
+    5,
+    12,
+    19
+  ],
+  "model": {
+    "hf_id": "google/gemma-2-2b",
+    "revision": "c5ebcd40d208330abc697524c919956e692655cf",
+    "dtype": "bfloat16",
+    "attn_implementation": "eager",
+    "loaded_commit_check": {
+      "tokenizer": "unverifiable",
+      "model": "unverifiable"
+    },
+    "logits_dtype": "torch.bfloat16"
+  },
+  "sae": {
+    "hf_repo": "google/gemma-scope-2b-pt-res",
+    "hf_revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+    "params_npz_sha256": {
+      "layer_5/width_16k/average_l0_68": "b856c6094e1e059c114befda0233442d8f229252968aa9042bb94b949257ebbf",
+      "layer_12/width_16k/average_l0_82": "afae57c7fdfe6faace4b97d9fe9a184deb08bda8852a4c40b308cf6c72ed8384",
+      "layer_19/width_16k/average_l0_73": "7a9fe27c2d8c1e570c926f2ef7ba3aad46ba836e50c1965333890d7e0be45978"
+    }
+  },
+  "code_provenance": {
+    "available": true,
+    "commit": "13eaecabcf09ae4ee23f3fd169aa46d792261ca2",
+    "dirty_paths": []
+  },
+  "implementation_constants": {
+    "sae_lens_crosscheck_rtol": 0.0001,
+    "v4_l0_factor": 2.0,
+    "batch_size": 1,
+    "tf32": false,
+    "use_cache": false,
+    "deterministic_algorithms": "strict (no warn_only)",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "logit_precision_limitation_H4a": {
+    "what": "model bf16 logits vs float32 recomputation of the same head from its own input (smoke documents)",
+    "logits_dtype": "torch.bfloat16",
+    "final_logit_softcapping": 30.0,
+    "n_predictions": 3846,
+    "mean_kl_fp32_vs_bf16": 0.0008297822273010507,
+    "mean_abs_ce_diff": 0.02644145400541581,
+    "top1_disagreement_rate": 0.02262090483619345,
+    "max_abs_logit_diff": 0.15628623962402344
+  },
+  "hardware": {
+    "gpu": "Tesla T4",
+    "compute_capability": "7.5",
+    "bf16_native": false,
+    "bf16_supported_incl_emulation": true,
+    "model_param_dtype": "torch.bfloat16"
+  },
+  "input_sha256": {
+    "preregistration.json": "9817740a2a184e6b7a88d12a4eeece4519fd638761625839b38e16117ba007cc",
+    "README.md": "5d0913f1275a99695e7b972ae0f6d66f373ca3e873d90f4dc4dac5282a6466d8",
+    "scripts/gemma/03_pile_gemma_scope_splicing.py": "a59adaae2d72ea9174d0c92f57945fa610b411e9385f26d5a00f0310c9b17c03",
+    "src/evaluation/pile_splicing.py": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+    "results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv": "637b6404302120ad3fbc6282df32fb9df193c78f9092d35bd9a96b99e3da1aa3",
+    "results/gemma2_pile/gemma_scope_splicing/sample_info.json": "6502c60845f8e8a97f7c64918d49248f9e6ec4e8ed2a5a212f5f528efbc2ed00"
+  },
+  "output_sha256": {
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/per_doc_metrics.csv": "f60817b1247b1533ee35c04bc3b6357fd9b0a5a6f0fd356fcd62e7d373f3ea2b",
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/per_doc_sum_x.npz": "c33dad653717248bd0dfcc6636f23da84fa9ddb093214d9ea3a38923dddd2e50",
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/summary_by_layer.csv": "462a142e3b2d7493329a906ed0c8c3f9bcaba0648652de422d3a3aca91c38beb",
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/summary_by_layer_source.csv": "6811adc8b5ed1f9821a3e0ddb677540e776569d5eecae5bc650f8875f7dd7662",
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/controls.csv": "a1ee86051f4d1c735939ca65d7c27abf6fd1526a7544a87e16cb982600b13d65",
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/h_g1.csv": "157a178da829476568a028a9a365c6053ebc0c8444e725a6054d7a1335589592",
+    "results/gemma2_pile/gemma_scope_splicing/smoke_hardened/gates.json": "43a8c880911326e97bbe6c97a891d70470d60f39f1c58f9c6623b6d4b1a47aad"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "torch": "2.7.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.21.0",
+    "sae_lens": "6.54.12",
+    "numpy": "2.4.4",
+    "pandas": "2.3.3"
+  },
+  "runtime_s": 171.0,
+  "seconds_per_eval_document": 15.31,
+  "seconds_per_reference_document": 0.96,
+  "projected_full_run_hours": 2.19,
+  "peak_gpu_memory_gb": 10.49
+}
