@@ -90,3 +90,10 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
   * Their MLP-probe results are only partially independent: the probe uses the same train rows and labels as the teacher. Read them together with the L0 drift.
   * The GoT layer-6 test split has now been scored twice for these 9 SAEs, so it can no longer select among them.
   * RepE, OWT and causal results for the fine-tuned SAEs are independent of the GoT training and remain valid.
+
+## 2026-11-13 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `data/repe/repe_lm_test/` | DATA ONLY: FROZEN, NOT EVALUATED | No result may be cited from it until the protocol in `results/repe/repe_lm_test_protocol/` has run once |
+| M4 "SAE-in-the-loop feature patches" | VALID WITHIN SCOPE (VALIDATION) | Cite as "SAE-selected directions, error term kept"; not as SAE-mediated (D33) |

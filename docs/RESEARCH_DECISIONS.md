@@ -302,3 +302,26 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Protocol freezing.** Future frozen protocols are written to a separate file, and committed before the run, so that
   the pre-registration hash stays verifiable after results are added.
 * **Erratum, recorded rather than edited:** the M5 README L0 maximum is 133.39, not 133.2.
+
+## D32. Build the RepE-LM TEST split now; evaluate it only after the user approves (2026-11-13, remediation S3)
+* **Data built:** `data/repe/repe_lm_test/` (86 statements, 2,408 rows) from the 90 `persona_pairs.csv` TEST statements,
+  using M1's builder unchanged.
+  * Same-label near-duplicates of train/validation (4) are dropped.
+  * New test-only wording is added (T7, T8, N3, N4). It was written before any test evaluation, so cross-wording
+    generalisation can be tested on wording no decision has seen.
+* **Protocol frozen:** `results/repe/repe_lm_test_protocol/preregistration.json`, with hypotheses HT1–HT4, the R2 rule,
+  Holm correction across 12 cells, and positive and negative controls.
+  * The evaluation script must be smoke-tested on validation and its hash added before it reads a test row.
+* **Not executed.** About 1–2 GPU hours are needed, and a confirmatory test is a decision for the user.
+* **Disclosed:** the source statements were scored once in the retired, length-confounded RepE task.
+
+## D33. Interpretation of the M4 / R2-clamp "SAE-in-the-loop" interventions (2026-11-13, remediation S5)
+* Every encode → edit → decode patch that keeps the error term equals x + W_dec(z′(x) − z(x)). That is the raw
+  activation plus an input-dependent vector, and a 3,072- or 12,288-latent dictionary spans ℝ⁷⁶⁸.
+  * M4's T_rec and its top-k patches therefore show that the SAE **selects** effect-carrying directions, tested
+    against the random-feature and isotropic controls.
+  * They do not show that the effect is **mediated** by the SAE.
+* The paper's paragraph is renamed "SAE-selected feature patches (error term kept)" and states this argument.
+* Review #8's SAE-in-the-loop requirement is therefore **PARTIALLY RESOLVED**. A distinct intervention is proposed:
+  an edit at layer ℓ with SAEs spliced at later layers, or a run on x̂ without the error term compared against the
+  spliced baseline. The layer-6 R2-clamp (input-dependent clamps, with and without the error term) was NOT SUPPORTED.

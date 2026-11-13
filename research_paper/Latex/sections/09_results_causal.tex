@@ -37,11 +37,26 @@ shares cannot be read additively. The persona-minus-synonym difference is preser
 site. Higher explained variance does not imply higher causal preservation: at layer 11, TopK has higher EV than ReLU
 (0.815 vs 0.757) but keeps less of the effect (0.62 vs 0.68).
 
-\paragraph{SAE-in-the-loop feature patches.} Encoding both prompts, setting the dishonest prompt's top-$k$ features to
+\paragraph{SAE-selected feature patches (error term kept).} Encoding both prompts, setting the dishonest prompt's top-$k$ features to
 their honest values, decoding and keeping the error term restores more than 200 frequency- and magnitude-matched
 random feature sets in all 27 SAE $\times$ site combinations ($p=0.005$, the minimum attainable). The effect is
 distributed: one feature carries 2--10\,\% of $T_{\text{rec}}$ and 64 features 47--74\,\%. This shows that
 SAE-defined directions are causally sufficient when inserted; it does not show that GPT-2 uses SAE features.
+
+\paragraph{What these patches are, mathematically.} Because the error term is kept, every M4 patch has the form
+$x_U+v$ with $v=W_{\text{dec}}(z'-z_U)$; the decoder bias cancels. $T_{\text{rec}}$ adds $v=W_{\text{dec}}(z_H-z_U)$
+and the top-$k$ patch adds $W_{\text{dec},S}(z_{H,S}-z_{U,S})$. Each is therefore identical to adding one vector to
+the dishonest prompt's raw activation. The same holds for any encode--edit--decode intervention that keeps the error,
+including input-dependent clamps: $x'=x+W_{\text{dec}}(z'(x)-z(x))$. Because a dictionary of 3,072 or 12,288
+latents spans $\mathbb{R}^{768}$, lying in decoder space does not restrict $v$. The only SAE-specific ingredient is how
+$v$ is chosen: the encoder's input-dependent latent selection on the two prompts. The matched random-feature-set and
+isotropic controls test that choice. The patches therefore establish that the SAE \emph{selects} input-dependent
+directions that carry the effect when inserted. They do not establish an effect that is \emph{mediated} by the SAE,
+which is what Review~\#8 asked of an SAE-in-the-loop intervention. Establishing mediation needs the downstream
+computation to pass through SAE nonlinearities. Examples are an edit at layer $\ell$ with SAEs spliced at later
+layers, or a run on $\hat{x}$ with no error term, compared against the spliced baseline. The layer-6 clamp
+experiment (R2-clamp; input-dependent clamps, with and without the error term) found no supported effect
+(\evlabel{validation}).
 
 \input{tables/t_m4}
 
