@@ -1013,3 +1013,13 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Addendum** (`results/repe/repe_lm_test_protocol/preregistration_addendum.json`): committed and pushed before
   any TEST row was read. The cell count is corrected from 12 to 13 for Holm.
 * **Next:** run once; document every cell; compare with validation.
+
+## 41. In progress: X0, token exposure within the R2 runs (2026-11-13). Status: PRE-REGISTERED
+
+* **Verified provenance:** the 10M, 25M and 50M checkpoints share width, recipe, seed, data stream and input scale with
+  the final checkpoint. The LR is constant from warmup to 80M tokens, so 10M → 25M → 50M isolates exposure within a
+  run, while 50M → final also includes the LR decay.
+* **Not a data-scaling law,** and it does not attribute the old → R2 gain to data.
+* **Protocol:** `results/openwebtext/r2_scaled_saes/scaling/{README.md,preregistration.json}`; analysis script
+  `scripts/shared/r2_scaling_analysis.py`, written before any output existed. VALIDATION; light ladder; 108
+  checkpoints.

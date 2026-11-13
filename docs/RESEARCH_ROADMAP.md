@@ -112,6 +112,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
     and it uses layer 5 instead of layer 3. Agree on one experiment, and renumber, before either merges. Open PRs #20, #21
     and #24 delete files this branch cites.
   * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Improvement section 10b, with M5, E2, R2, R4 and R5, added 2026-11-10 (37 pp, clean). 2026-11-13: PCA-CM section, MDE statements and the L8 caveat added (40 pp, 0 undefined references); the pipeline diagram exists in `architecture/diagrams/`. Remaining placeholders: E1; the per-experiment command list for the older experiments.
+  * X0 (S8, token exposure within R2 runs): PRE-REGISTERED 2026-11-13; `results/openwebtext/r2_scaled_saes/scaling/`.
   * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,
