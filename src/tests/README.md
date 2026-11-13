@@ -38,3 +38,5 @@ All CPU-only; no checkpoints, caches or model downloads.
   * GoT split independence (groups never cross splits; cities and neg_cities place each city in the same split;
     the A/B halves are disjoint train groups);
   * checkpoint-registry integrity.
+- `test_pca_cm_posthoc.py`: the Holm step-down used by the PCA-CM multiplicity check, and that the check reproduces
+  the pre-registered PCA-CM classes and its committed summary (3 and 8 SAE-better cells; 1 and 4 after Holm).
