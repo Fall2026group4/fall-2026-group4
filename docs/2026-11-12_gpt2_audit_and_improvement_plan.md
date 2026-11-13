@@ -101,6 +101,8 @@ Nothing was modified apart from three documentation files: this new file, plus p
 * **Splits:** grouped 70/15/15 by city or number pair, in `data/got/splits/*.csv`; A/B train groups in
   `train_AB_groups_truth_aware_pilot.csv`.
 * **Primary set:** cities, 1,496 statements, balanced; test n = 452 (M5).
+  * *Erratum (2026-11-13, D1 in `docs/remediation/issue_register.md`): the M5 `got_cities` task pools `cities` and
+    `neg_cities` (2,992 statements; test 226 + 226 = 452). It is not cities-only.*
 * **Excluded:** numerical sets are HIST/diagnostic only, because the second number alone gives AUROC 0.84 (a shortcut).
 * **Activation:** the final token.
 * **Original-activation logistic AUROC (TEST):** 0.839 at L8, 0.792 at L11. GoT is uninformative before about L4.
@@ -226,7 +228,7 @@ The R5 feature patches were run **only on the old SAEs**, never on R2.
 * R2 data-scaling (10M/25M/50M) evaluations;
 * R5 feature patches on R2 SAEs;
 * any RepE-LM test result;
-* a GoT result on neg_cities under R2/M5;
+* a GoT result on neg_cities under R2/M5; *(erratum 2026-11-13: neg_cities is pooled into M5's `got_cities`; what is missing is a separate per-polarity / cross-polarity result)*
 * a width sweep beyond 3,072/12,288;
 * an L0 other than 128 at convergence;
 * inference-time optimisation, Gated SAE, Matryoshka;
@@ -260,7 +262,7 @@ README hash cannot be reproduced.
 | G2 | **Truth signal sits in the error** | GoT error-term AUROC 0.66–0.77 at L8 (old and R2), 0.58–0.66 at L11 (ladder CSVs) | The truth direction is low-variance, so MSE ignores it | already measured | Direction-preserving objective (T2), but see G4 | — |
 | G3 | **Task L0 unmatched** | GoT L0: TopK 128, BatchTopK 80/106, ReLU 89/111, old JumpReLU 63/93 | Threshold architectures fire fewer latents on GoT prompts | Inference-time TopK k truncation of R2 TopK to the other architectures' GoT L0 (no training) | T1-c | Truncation ≠ training at k*; label it as a diagnostic (the RLM-RP truncation control precedent) |
 | G4 | **Truth-aware objectives already failed** | circular original (INV); corrected version worse than recon-only; Method A moves only the frozen reader | A probe-based loss trains the readout, not the information; small n overfits | — | **Do not repeat** without a new mechanism and an independent evaluator | Circularity; test exposure |
-| G5 | **One truth category** | M5 uses cities only; neg_cities is on disk; numerical sets are shortcut-confounded | Cross-polarity generalisation untested under R2 | Train on cities, test on neg_cities (polarity transfer; Bürger et al. 2024) | T1-d | neg_cities shares cities; groups must be kept disjoint across both sets |
+| G5 | **One truth category** | M5 pools cities + neg_cities but reports only the pooled result *(corrected 2026-11-13, D1; originally "M5 uses cities only; neg_cities is on disk")*; numerical sets are shortcut-confounded | Cross-polarity generalisation untested under R2 | Train on cities, test on neg_cities (polarity transfer; Bürger et al. 2024) | T1-d | neg_cities shares cities; groups must be kept disjoint across both sets |
 
 **Conclusion for GoT (VAL + TEST):**
 * Truth information is **not preserved** in the re-trained-reader sense; the gap is about 0.03–0.10 AUROC.

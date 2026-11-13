@@ -81,7 +81,7 @@ See [`methodology.md`](methodology.md):
 Full tables: [`results_summary.md`](results_summary.md).
 
 1. **Reconstruction and behaviour can be improved substantially (TEST).**
-   * Data-scaled R2 SAEs cut OWT NMSE by 40–74 % and spliced ΔCE by 35–79 % at layers 1/8/11.
+   * Data-scaled R2 SAEs cut OWT NMSE by 30.8–73.7 % and spliced ΔCE by 35.5–78.8 % at layers 1/8/11 (M5 comparisons C1–C3, every seed pair).
    * A fixed-sparsity KL fine-tune (R4) cut ΔCE by a further 16–17 %.
 2. **Truth information did not follow (TEST).**
    * GoT re-fit gaps show no clear change in 34/34 cells.

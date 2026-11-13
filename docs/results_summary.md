@@ -84,7 +84,7 @@ against `results/shared/m5_confirmatory_test/m5_rows.csv` on 2026-11-12. The exh
 
 ## B. Geometry of Truth: truth preservation
 
-**Task.** GoT cities: 1,496 statements, balanced, grouped by city; test n = 452. The final-token residual is used.
+**Task.** GoT `got_cities` = the `cities` and `neg_cities` sets pooled (the "geographic" domain): 2 × 1,496 = 2,992 statements, balanced, grouped by city (each city lies in the same split in both sets); train 2,092 / val 448 / test 452 (226 + 226). The final-token residual is used.
 Original-activation logistic AUROC (TEST) is 0.839 at L8 and 0.792 at L11. GoT is uninformative before about L4.
 
 ### B1. Frozen vs re-fit readers
@@ -196,7 +196,7 @@ architectures fire more latents on RepE-LM prompts (up to 208–216 at L1) and f
 
 | Question | Answer | Evidence |
 |---|---|---|
-| Did OWT reconstruction improve? | Yes: −40 to −74 % NMSE (R2) | TEST |
+| Did OWT reconstruction improve? | Yes: −30.8 to −73.7 % NMSE (R2; M5 C1–C3) | TEST |
 | Did behavioural faithfulness improve? | Yes: ΔCE −35 to −79 % (R2); a further −16 to −17 % (R4) | TEST |
 | Did GoT truth preservation improve? | No measurable change (0/34); the metric is underpowered | TEST |
 | Did persona representation improve? | In absolute terms yes (−27 to −31 %); relative to PCA no | VAL only |
