@@ -1,4 +1,4 @@
-# Research roadmap (as of 2026-11-07; final deadline 2026-12-08)
+# Research roadmap (as of 2026-11-12; technical freeze 2026-11-22; final deadline 2026-12-08)
 
 Update this file whenever a task starts, finishes, stops, changes plan, or a new outstanding task is identified (`CLAUDE.md` §1).
 
@@ -39,9 +39,13 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | KL-weight ablation, layer 6 TopK (G8, part): verdict INCONCLUSIVE | `kl_weight_ablation_layer6_topk/` | `2c87a6b` |
 | Documentation system | `CLAUDE.md`, `docs/RESEARCH_*.md`, `docs/EXPERIMENT_*.md` | `7ffdc70`, `3377116` |
 | Repository consolidation for upload: professor-review folders retired (contents verified in the dataset folders), README rewritten, research dependencies pinned, registry rebuilt | `README.md`, `docs/migration_manifest.csv` (`retire_to_backup` rows) | this commit |
+| **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), M6 documentation commit |
 
 ## 2. In progress
-* None. All work is committed locally, and nothing has been pushed.
+* **M6 follow-ups (housekeeping, no new scientific objective):**
+  * M6 evidence-bundle commit from Ronin: `per_doc_sum_x.npz` (SHA-256 `3b2becfb…` in `run_info.json`) and `smoke_hardened/` (H4a values, sae-lens diagnostic, binding V4 check). Not the older `smoke/` folder.
+  * DONE: post-run A11 verification on Ronin (M6 code/results branch, after the full run): 85 passed, 0 failed, 0 skipped.
+  * Merge or cherry-pick the M6 branches to the team branch only with the owner's approval.
 
 ## 3. Outstanding GPT-2 tasks (PLANNED)
 
@@ -90,9 +94,10 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 |---|---|---|---|
 | M1 | Activation extraction pipeline (HF bf16 backend, since TransformerLens is OOM-killed on the 15 GB-RAM host); GoT/RepE final-token caches; grouped splits | PLANNED | P1 |
 | M2 | Original-activation truth/honesty probes per layer (frozen-probe protocol). The `aditi` layer table used a leaky row split, so it must be redone with grouped splits | PLANNED | P1 |
-| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | BLOCKED: weights not cached; disk/RAM check needed | P1 |
+| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | Reconstruction + splicing part → M6 (DONE 2026-11-12, VALIDATION). Frozen-probe gaps on GoT need M1/M2 first: **stretch goal**, only after M6 is complete and only if the 2026-11-22 freeze is not at risk | P1 |
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
 | M5 | Gemma version of the best GPT-2 improvement (e.g. Method A), only if M3 works | PLANNED | P2 |
+| M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D21) | DONE (2026-11-12; COMPLETED, VALIDATION; results `0dbfc80`; H-G1 supported at 5/12/19). Follow-ups in §2 | P0 (team plan: technical contribution before the freeze) |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)
 * **X1. Cross-condition faithfulness table** (proposal Phase 6), crossing:
@@ -121,7 +126,7 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | Width other than 3072 | G5 |
 | Published JumpReLU | G4 |
 | Public-SAE baselines under our pipeline | G9 |
-| Gemma SAEs | M3 |
+| Gemma SAEs | M3, M6 |
 | Prompt-level sparsity matching | S3 |
 | Causal tests beyond layer 6 / on new SAEs | C1, C2 |
 | SAE-in-the-loop interventions | C3 |

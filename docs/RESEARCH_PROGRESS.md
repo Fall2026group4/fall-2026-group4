@@ -454,3 +454,33 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
 * **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
 * **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.
+
+## 19. Gemma Scope SAE reconstruction and splicing on The Pile (pre-registered and run 2026-11-12; branch `simba-gemma-pile`, results on `simba-gemma-m6-results`; Simbanegavi Simbarashe). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Why:** all SAE evidence so far is GPT-2 with in-house SAEs. This extends the reconstruction and behavioural-faithfulness measurements to Gemma-2-2B with published SAEs, on the proposal's Gemma dataset (The Pile). It follows the completed Pile EDA (§3e; `simba-gemma-pile-eda`, `5638350`), which recommended fixing a truncation policy first. Roadmap M6 (reconstruction and splicing part of M3).
+* **Design** (full pre-registration: `results/gemma2_pile/gemma_scope_splicing/README.md` and `preregistration.json`; decision D21):
+  * Pile validation file `monology/pile-uncopyrighted/val.jsonl.zst` (SHA-256 pinned); seed-42 permutation; 512 evaluation + 64 disjoint reference documents (≥ 32 text tokens); BOS + first 1024 tokens per document.
+  * Gemma-2-2B (HF, bf16), `resid_post` at layers 5, 12, 19 (representative depths; **not** mapped to GPT-2 layers).
+  * Gemma Scope width-16k residual SAEs, pinned: `layer_5/width_16k/average_l0_68`, `layer_12/width_16k/average_l0_82`, `layer_19/width_16k/average_l0_73` (= sae-lens `canonical`), HF revision `fd571b47…`.
+  * Reconstruction (EV, cosine, relative error, L0) and splicing (ΔCE, KL, top-1, loss recovered) reported separately, overall and per Pile source, with document-bootstrap CIs.
+  * Controls: repeat pass, identity splice, norm-matched random error, mean ablation (reference set).
+  * Descriptive questions Q1–Q3; one replication hypothesis H-G1 (SAE ΔCE > random-error ΔCE, as in GPT-2 Phase 0 §10); validity gates V1–V5.
+* **Found while preparing (2026-11-12):** the parquet mirror used by the EDA has only a train split, so the evaluation uses the original repository's validation file; Gemma Scope's hook is `resid_post` (sae-lens loader), unlike our GPT-2 `resid_pre`.
+* **Amendment 1 (2026-11-12, before any run):** Gemma-2-2B tokenizer and model pinned to Hugging Face commit `c5ebcd40d208330abc697524c919956e692655cf` (previously "recorded at run time"); any later mismatch is a protocol deviation.
+* **Implementation (2026-11-12):** sampling pipeline and tests (`39ed943`); committed evaluation sample (`a34d975`); splicing script, engineering safeguards A1–A11 and strict deterministic mode (`4708213`, `606a43d`, `13eaeca`); bf16 logits kept (decision H4a), with logit precision measured in the smoke run as a limitation only. Ronin test record: 74 passed, 0 skipped for `4708213` (before the safeguards).
+* **Post-run verification (after the full run):** the complete A11 suite (`python -m pytest -q -rs src/tests`) was run on Ronin on the M6 code/results branch: **85 passed, 0 failed, 0 skipped** (2 deprecation/future warnings; 9.02 s). This verifies the code that produced the results after the fact; it is not a pre-run check.
+* **Run:** full pre-registered run on Ronin (Tesla T4, bf16 emulated, strict determinism), code commit `13eaeca` with a clean tree; 8,067.5 s; peak GPU memory 8.58 GB. Results committed in `0dbfc80`; figures from `scripts/gemma/04_pile_gemma_scope_figures.py`.
+* **Validity gates:** V1–V5 all pass. Hook equals `hidden_states[L+1]` in 1,536/1,536 checks; identity and repeat KL = 0.0 exactly; measured L0 69.5 / 84.8 / 75.1 vs release 68 / 82 / 73.
+* **Results (VALIDATION; 512 documents, 253,632 predictions per layer; 95 % document-bootstrap CIs):**
+  * Reconstruction (Q1): EV 0.813 / 0.770 / 0.789 at layers 5 / 12 / 19; cosine 0.932 / 0.913 / 0.922.
+  * Behavioural splicing (Q2): ΔCE_SAE 0.071 / 0.115 / 0.177 nats per prediction (original CE 1.938); ΔCE_random 0.029 / 0.039 / 0.080; KL 0.082 / 0.120 / 0.179; top-1 agreement 0.887 / 0.857 / 0.838; loss recovered 0.992 / 0.988 / 0.980 against a mean ablation costing ≈ 9 nats.
+  * **H-G1 supported at all three layers**, also under the Bonferroni 98.33 % sensitivity interval. Mean d (doc-mean ΔCE_SAE − doc-mean ΔCE_random): layer 5 0.0409546 [95 %: 0.0356024, 0.0462731; 98.33 %: 0.0345367, 0.0489496]; layer 12 0.0773024 [0.0726970, 0.0822347; 0.0715352, 0.0832376]; layer 19 0.0993482 [0.0938464, 0.1051191; 0.0928295, 0.1061659].
+  * Sources (Q3, descriptive; 6 sources with ≥ 20 documents): ΔCE_SAE varies more across sources than EV; the SAE/random ratio exceeds 1 in all six (no per-source test was pre-registered).
+* **Interpretation:** SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers. This experiment does not identify the mechanism responsible. There is no layer ranking (each layer has a different SAE and L0), no representation-preservation or causal-intervention claim, and no GPT-2 vs Gemma superiority claim. The direction of the effect matches the GPT-2 Phase 0 finding (§10) that H-G1 replicates.
+* **Limitations:**
+  * bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.00083, mean |CE difference| 0.026, top-1 disagreement 2.3 % and max |logit difference| 0.156. This is a measurement floor; results are not adjusted, its effect on the signed paired means was not measured. The hardened smoke run is retained as the evidence bundle `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`, committed from Ronin in the M6 evidence-bundle commit (the older `smoke/` folder is not used).
+  * One SAE per layer, so CIs are not seed variability.
+  * Possible pretraining exposure of Gemma to The Pile.
+  * Loaded model and tokenizer commits recorded as `unverifiable` (A6).
+  * Natural source mixture; 10 of 16 sources LOW-N.
+* **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.

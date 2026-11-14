@@ -1,4 +1,4 @@
-# Results registry (as of 2026-11-07)
+# Results registry (as of 2026-11-12)
 
 Each results folder's `README.md` gives file-level detail. This page lists the results that support claims.
 
@@ -28,6 +28,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | RepE representation preservation | Validation + test + cross-wording | `results/repe/representation_preservation_val_test.csv` |
 | Causal faithfulness (GPT-2, RepE) | Pre-registered test, 200 controls, positive control | `results/repe/steering/causal_random_controls/` |
 | Gemma-2-2B truth steering | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
+| Gemma-2-2B SAE reconstruction and behavioural splicing (M6; **VALIDATION**) | Pre-registered: Gemma Scope width-16k JumpReLU SAEs at `resid_post` layers 5/12/19 on 512 Pile validation documents; gates V1–V5 pass; **H-G1 supported at all three layers** (SAE-splice ΔCE > norm-matched random-error ΔCE; 95 % and Bonferroni 98.33 % CIs exclude 0). Cite as behavioural splicing and reconstruction only: no layer ranking, no representation-preservation, causal or GPT-2 vs Gemma superiority claim; bf16 logit-precision limitation (H4a) | `results/gemma2_pile/gemma_scope_splicing/` (README §2, `h_g1.csv`, `summary_by_layer*.csv`, `figures/`) |
 
 ## Pilots (validation only, not for final claims)
 
