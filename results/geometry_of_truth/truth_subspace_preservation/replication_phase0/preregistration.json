@@ -1,0 +1,169 @@
+{
+  "experiment": "TSP-R Phase 0 (DEV-only eligibility of fresh GoT families)",
+  "date": "2026-11-14",
+  "status": "FROZEN before any fresh-family activation was computed",
+  "source": {
+    "repo": "github.com/saprmarks/geometry-of-truth",
+    "commit": "5d1c630c44f7e50bda7ad86d601ccadf9abc5ddb",
+    "files": [
+      {
+        "file": "sp_en_trans.csv",
+        "upstream_path": "datasets/sp_en_trans.csv",
+        "git_blob_sha1": "f99aa08658917c9000b6db1598458fa29ae4aeea",
+        "sha256": "9afa97c1b8af539a05f47655a80a5c7832c6fdb914885fd24cb4bcccbe2795b5",
+        "bytes": 15231
+      },
+      {
+        "file": "neg_sp_en_trans.csv",
+        "upstream_path": "datasets/neg_sp_en_trans.csv",
+        "git_blob_sha1": "60dd635566cec80004d95cf65a5138da00b4788e",
+        "sha256": "bec33e37047135b15cdd18c0cb0c66b65fb435ace08910cbcc220ce1ef610c96",
+        "bytes": 18063
+      },
+      {
+        "file": "companies_true_false.csv",
+        "upstream_path": "datasets/companies_true_false.csv",
+        "git_blob_sha1": "403a4a911e9ca4421e6d9dfe7db77b931f4db8a6",
+        "sha256": "75a31139def9838dcaa4e2f1e5f3680f44f09f3c94553f9ad3b3a5a476124c8c",
+        "bytes": 91128
+      },
+      {
+        "file": "common_claim_true_false.csv",
+        "upstream_path": "datasets/common_claim_true_false.csv",
+        "git_blob_sha1": "455c67966cac0178035ec7d8e62d7b5cfd9d4779",
+        "sha256": "1889b4793c2ebd13c767eea8b65ebd4a5c2da700567677d512097b495a262576",
+        "bytes": 291796
+      },
+      {
+        "file": "counterfact_true_false.csv",
+        "upstream_path": "datasets/counterfact_true_false.csv",
+        "git_blob_sha1": "7b87800bffb82421accf3033016a1e1826ca2dc9",
+        "sha256": "5af51456d6dbd3a53d8e2ee6e4aadaca7eb02ff9136ad825866458e7283b5273",
+        "bytes": 3107796
+      },
+      {
+        "file": "counterfact.json",
+        "upstream_path": "datasets/counterfact.json",
+        "git_blob_sha1": "34be0e5617d9d4b884fddb197e0f7769d1a31ad3",
+        "sha256": "d017056125178a13728594e66a801357a8db9ed7973a7425554bb4271de9fc6f",
+        "bytes": 45108470
+      },
+      {
+        "file": "cities_cities_conj.csv",
+        "upstream_path": "datasets/cities_cities_conj.csv",
+        "git_blob_sha1": "83fe4da613b308269ffd74080c11c055eb2f5424",
+        "sha256": "80e9987e8abcdd56ac8256d22b8ad6c2d6211e06a6c925c32cfcb0bc93d9d56d",
+        "bytes": 359212
+      },
+      {
+        "file": "cities_cities_disj.csv",
+        "upstream_path": "datasets/cities_cities_disj.csv",
+        "git_blob_sha1": "0dd6fdbd95b34c2182efb1c26f254a574611ae71",
+        "sha256": "5f4883382bb3f8664fa9b0a51cfadec507e130bf21c94f3d04776ca923646565",
+        "bytes": 362021
+      },
+      {
+        "file": "make_conj_disj.py.txt",
+        "upstream_path": "datasets/make_conj_disj.py",
+        "git_blob_sha1": "8f2ed2a7775278fe09ce2d529ae155e3e62db140",
+        "sha256": "08deb7d0d106acefc1c5851c4b5c15f9097cc667fd195c2ceebdddcab1af882b",
+        "bytes": 3241
+      }
+    ],
+    "existing_project_files_match_upstream": [
+      {
+        "file": "data/got/cities.csv",
+        "git_blob_sha1": "333224e86f2eb81e95cc54c5c0fd8a7556c698b9"
+      },
+      {
+        "file": "data/got/neg_cities.csv",
+        "git_blob_sha1": "a6f71db4a309ae9cf586431bc30bb7076e351add"
+      },
+      {
+        "file": "data/got/larger_than.csv",
+        "git_blob_sha1": "6cbe0a0772b654c1e29414034b44bafe73f4dfb3"
+      },
+      {
+        "file": "data/got/smaller_than.csv",
+        "git_blob_sha1": "dd7b6652ab26b508149135779e2fc3e268582314"
+      }
+    ],
+    "license": "no LICENSE file in the repository (GitHub API license: null); raw files are kept locally, gitignored, not redistributed; academic research use only"
+  },
+  "split": {
+    "salt": "TSP-R-phase0-2026-11-14",
+    "dev_fraction": 0.3,
+    "unit": {
+      "sp_en_trans/neg_sp_en_trans": "Spanish word (shared across both files)",
+      "companies_true_false": "company name",
+      "common_claim_true_false": "normalised statement",
+      "counterfact_true_false": "Wikidata relation component (templates shared by relations merged); DEV = components in hash order until >= 30 % rows; TEST rows whose subject is in DEV excluded",
+      "cities_cities_conj/disj": "unordered city pair; TEST pairs sharing a city with DEV excluded"
+    },
+    "amendment": "v2: rows whose normalised statement repeats within the family are excluded (text only). v1 outputs kept in prepare_v1_superseded/; no activation had been computed",
+    "exclusions_all_splits": [
+      "repeated normalised statement within the family",
+      "exact or near (char-4gram tf-idf cos >= 0.90) duplicate of project text",
+      "mentions one of the 113 exposed cities TEST cities"
+    ],
+    "p2_primary_additionally_excludes": "rows mentioning any cities.csv city (TSP training entities); included in a sensitivity analysis",
+    "split_file_sha256": {
+      "cities_cities_conj_splits.csv": "a6328474b7fa86138e5f92bb315fa32f9231e6aa77fe3473f4e681dc1afddb2f",
+      "cities_cities_disj_splits.csv": "f59adfb36b9fdedd01240471c027e3eb0e618eea8490fb7ed7f2cdb7feaeb362",
+      "cities_crossfit_folds.csv": "fdfb0f6e3fabc57761dbd5846c9a6fa457eb1814192f06826ce20ede5c90dba7",
+      "common_claim_true_false_splits.csv": "63ea6313a52086e72c8230d8afab5cdc82e0e698d4064d4d57471e67d7b50ec5",
+      "companies_true_false_splits.csv": "2b65934710d71d7b98c60c4f5ad15205cf2539d653c95a8b2a2a52e3abcd0cb6",
+      "counterfact_true_false_splits.csv": "bd42f47765965a53754500770035467bf815d42fe3c78b0a7fb9f7ebcdc2888a",
+      "neg_sp_en_trans_splits.csv": "669563740b30681472fabfc639607554f6ece6b152f4f8fcda61df7b9c65d1ea",
+      "sp_en_trans_splits.csv": "767f74e83ef06606abfeb7a22e0f39204bf20fc6725a4d4dfeac3e435bc552ca"
+    }
+  },
+  "cities_crossfit": {
+    "groups": 635,
+    "excluded_exposed_test_groups": 113,
+    "fold_sizes": {
+      "0": 212,
+      "1": 212,
+      "2": 211
+    },
+    "roles": {
+      "fold0": {
+        "V": 0,
+        "B": 1,
+        "A": 2
+      },
+      "fold1": {
+        "V": 1,
+        "B": 2,
+        "A": 0
+      },
+      "fold2": {
+        "V": 2,
+        "B": 0,
+        "A": 1
+      }
+    },
+    "note": "fold f: V = f (evaluation), B = f+1 (probes), A = f+2 (S and GoT replay)"
+  },
+  "eligibility_rule": {
+    "metric": "original-activation logistic AUROC, GPT-2 L8 blocks.8.hook_resid_pre final token, pooled out-of-fold scores of GroupKFold(5) over the split unit, C chosen by inner GroupKFold(3) over [0.01, 0.1, 1.0]; DEV usable rows only",
+    "threshold": "eligible for P2 iff L8 AUROC >= 0.7 on the P2-primary DEV rows",
+    "reported_not_decisive": [
+      "L11 AUROC",
+      "entity-level GroupKFold AUROC (counterfact)",
+      "permuted-label AUROC",
+      "surface tf-idf word 1-2gram logistic AUROC",
+      "bootstrap 95 % CI over entities",
+      "R2 base (seeds 42/1042/2042) re-fit and frozen gaps, NMSE, L0 on DEV",
+      "precision proxy and minimal detectable effect for P2"
+    ],
+    "surface_flag": "a family is flagged SURFACE-SOLVABLE if the surface AUROC >= 0.70 (reported; it does not change eligibility)"
+  },
+  "not_used": [
+    "TEST labels",
+    "TEST activations",
+    "any TSP pilot fine-tune (no tsp/ctrl result on fresh data in Phase 0)",
+    "cities TEST rows"
+  ],
+  "script_sha256": "423785fb2742f21b8d199786c0f7b5b34c28246b3851e20da939860f178942dd"
+}

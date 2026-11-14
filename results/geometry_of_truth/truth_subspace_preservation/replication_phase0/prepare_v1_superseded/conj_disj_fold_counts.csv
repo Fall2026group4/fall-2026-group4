@@ -1,0 +1,13 @@
+family,split,fold_as_V,rows_both_cities_in_V
+cities_cities_conj,DEV,0,33
+cities_cities_conj,DEV,1,44
+cities_cities_conj,DEV,2,35
+cities_cities_conj,TEST,0,9
+cities_cities_conj,TEST,1,8
+cities_cities_conj,TEST,2,5
+cities_cities_disj,DEV,0,45
+cities_cities_disj,DEV,1,40
+cities_cities_disj,DEV,2,36
+cities_cities_disj,TEST,0,6
+cities_cities_disj,TEST,1,6
+cities_cities_disj,TEST,2,5

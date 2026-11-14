@@ -1236,3 +1236,11 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * Phase 1: 8 base seeds × 5 arms (adding the label-permuted S control) × 3 folds; Satterthwaite or two-way
     bootstrap intervals; random-effects pooling over held-out families; CI-based non-inferiority guards.
   * ≈ 10–13 h and ≈ 12 GB. Nothing is trained until approved.
+
+## 48. TSP-R Phase 0: fresh GoT families, locked DEV/TEST split, DEV-only eligibility (2026-11-14). Status: IN PROGRESS (pre-registration frozen; eligibility not yet run)
+
+* Approved by the user: Phase 0 only. No SAE training; no TEST labels; Phase 1 not started.
+* Source pinned to saprmarks/geometry-of-truth commit `5d1c630` (2024-08-08); every file verified against the
+  upstream git blob SHA. The project's existing cities/numerical files are byte-identical to upstream.
+* `prepare` (text only) ran; the pre-registration and split files were frozen and committed before any fresh-family
+  activation was computed. Folder: `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`.
