@@ -409,3 +409,13 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * Gemma Scope baselines;
   * a behavioural honesty task;
   * per-polarity GoT re-analysis with SAEs (a new pre-registration is needed; S4 used original activations only).
+
+## D39. TSP pilot reading and next step (2026-11-14)
+* **Reported verdict:** the frozen rule gives NOT SUPPORTED, and that is how it is reported. Effect sizes are given
+  with CIs, and the direction is described as consistent across seeds and specific to the truth subspace.
+* **No claim:** we do not claim "truth preservation improved". The gain from GoT-A replay alone (ctrl vs base) is
+  reported as distribution-matched training, not as a truth-specific method.
+* **Interruption handling:** a separate recovery wrapper trained only the missing runs, after bit-identical
+  reproduction of a completed run. The frozen scripts were not edited. The 9 completed checkpoints were kept.
+* **Next:** any follow-up (more seeds, held-out templates, other layers or architectures) needs a new
+  pre-registration. The pilot's λ, rank and steps are not tuned on these validation results.

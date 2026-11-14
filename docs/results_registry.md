@@ -116,3 +116,10 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | "Frozen GoT collapse is largely perturbation sensitivity" (M2) | WITHDRAWN as worded | S5: 33–50 % is label-aligned SAE error at L6–11 |
 | M2 GoT labels at L0–4 ("uninformative") | VALID FOR THE POOLED TASK ONLY | S4: per polarity, truth is linearly decodable from L1 |
 | Old-architecture rankings on persona/GoT metrics | NOT ROBUST | S3: 13/19 change at matched task L0 |
+
+## 2026-11-14 TSP
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/geometry_of_truth/truth_subspace_preservation/diagnostics/` | VALIDATION, descriptive | Root-cause diagnostics; group-A subspace, group-B readers |
+| `results/geometry_of_truth/truth_subspace_preservation/pilot/` | VALIDATION PILOT, NOT SUPPORTED (frozen rule) | Cite effect sizes only with their CIs and the verdict; never as an improvement |

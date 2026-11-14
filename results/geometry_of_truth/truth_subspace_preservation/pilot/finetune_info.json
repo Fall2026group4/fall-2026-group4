@@ -1,0 +1,85 @@
+{
+  "layer": 8,
+  "name": "topk",
+  "seeds": [
+    42,
+    1042,
+    2042
+  ],
+  "arms": [
+    "ctrl",
+    "tsp",
+    "rand",
+    "pca"
+  ],
+  "steps": 1230,
+  "tokens_per_run": 4998720,
+  "lr": 2e-05,
+  "mu": 1.0,
+  "lam": 1.0,
+  "rank": 8,
+  "subspace_info": {
+    "n_vectors": 27,
+    "singular_values": [
+      4.393141915900802,
+      1.3936232235014407,
+      0.9223818113761928,
+      0.6947345626984643,
+      0.641068903492497,
+      0.6010196751027463,
+      0.5830228892854902,
+      0.548574106303016
+    ],
+    "rank": 8
+  },
+  "n_got_A_rows": 1044,
+  "test_rows_used": 0,
+  "gpt2_parameters_unchanged": true,
+  "checkpoints": {
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/ctrl_topk_seed42/checkpoint.pt": "f1508c4fe3b388568390ea78357897d0052177a127e66a2ff701fde4950293b4",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/tsp_topk_seed42/checkpoint.pt": "8860096e9485d413e3e7ad9e5b3cac65ff1d61b7629f757aaad7bc1ccc64a7ff",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/rand_topk_seed42/checkpoint.pt": "6aa848da25ef99aa809f59a3234ef2e28ffe86da75212a4c45ff57b87e8e765e",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/pca_topk_seed42/checkpoint.pt": "cc29fb96a6889e1fb55f97782452e9e4eb9f45bbc618096c23d67a541124aa4f",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/ctrl_topk_seed1042/checkpoint.pt": "2b23427fcbc846f101196777a96182de1ee1bb76cc2d5a3e9ac6a214bf36ce99",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/tsp_topk_seed1042/checkpoint.pt": "38fdce3824ceefc0ea3487dc4f1330a17d7a45c478a242c23b723da1d7b2f858",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/rand_topk_seed1042/checkpoint.pt": "6d40e2c9a8c65285d4ecb7606db5058a77fa63920de1ea5e0580b3f2e5512f71",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/pca_topk_seed1042/checkpoint.pt": "678d2490792580c23eee6a36cbad2ded8e6c2b7d195e401945e1c0ba35a767ee",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/ctrl_topk_seed2042/checkpoint.pt": "ee9778867db08e24e4c9b76cf39560fdcebdbe9b1f158293b288fc441daa109e",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/tsp_topk_seed2042/checkpoint.pt": "1eb1a8d37bfd270333aaddf2738423ab29af370a6b3ec2f8242e7697315a3141",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/rand_topk_seed2042/checkpoint.pt": "e61e9978d3690545b0f3d9af3897f8a9c61d46aaea5844f2b10ab322aa269055",
+    "results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/layer_8/pca_topk_seed2042/checkpoint.pt": "929ac5040077cdca5eb0c0d64952f5181455bbbdab250fb249e8b87e393bea61"
+  },
+  "recovery": {
+    "note": "Pilot interrupted after 9/12 runs (session end ~17:56 UTC 2026-11-14). The 9 existing checkpoints were kept unchanged; the 3 missing runs were trained by script 25b, which calls the hash-verified frozen script 25 run_one. Monitor rows of the 9 interrupted runs were held in memory and lost; their final values survive in the pilot log.",
+    "frozen_hashes_ok": true,
+    "frozen_script_sha256": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+    "subspace_max_abs_diff": {
+      "tsp": 0.0,
+      "rand": 0.0,
+      "pca": 0.0
+    },
+    "existing_runs": [
+      "ctrl_seed42",
+      "tsp_seed42",
+      "rand_seed42",
+      "pca_seed42",
+      "ctrl_seed1042",
+      "tsp_seed1042",
+      "rand_seed1042",
+      "pca_seed1042",
+      "ctrl_seed2042"
+    ],
+    "missing_runs": [
+      "tsp_seed2042",
+      "rand_seed2042",
+      "pca_seed2042"
+    ],
+    "repro_ctrl_seed2042": {
+      "max_abs_weight_diff": 0.0,
+      "final_nmse_owt": 0.09716968238353729,
+      "final_nmse_got": 0.03212743252515793
+    }
+  },
+  "runtime_s_recovery": 475.9819917678833,
+  "gpu_peak_gb": 2.1028352
+}

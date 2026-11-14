@@ -1174,7 +1174,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * a behavioural honesty task;
   * a per-polarity GoT re-analysis with SAEs.
 
-## 46. TSP: truth-subspace diagnostics and truth-subspace-preserving fine-tune pilot (2026-11-14). Status: IN PROGRESS (plan frozen; pilot running)
+## 46. TSP: truth-subspace diagnostics and truth-subspace-preserving fine-tune pilot (2026-11-14). Status: COMPLETED (VALIDATION pilot; pre-registered verdict NOT SUPPORTED)
 
 * **Why:** R2 improved reconstruction and behaviour but not GoT truth (M5 0/34); truth-aware fine-tuning failed. User
   instruction (2026-11-14): find why, and test a justified method under independent evaluation; validation only.
@@ -1187,3 +1187,19 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Pilot plan:** `results/geometry_of_truth/truth_subspace_preservation/{README.md,preregistration.json}`; R2 TopK L8 ×
   3 seeds; arms ctrl / tsp / rand / pca; group-B readers; co-primary frozen and re-fit logistic gaps; Holm over 2;
   guards on OWT NMSE, ΔCE, persona, M4, L0.
+* **Interruption and recovery:** the pilot stopped after 9/12 fine-tunes when the launching session ended (~17:56 UTC).
+  The recovery wrapper `scripts/geometry_of_truth/25b_truth_subspace_finetune_resume.py` imports the frozen script 25
+  unchanged. Before training it verified the frozen hashes, the subspaces (max |Δ| = 0) and the 9 checkpoint configs,
+  and reproduced ctrl seed 2042 bit-for-bit (max |ΔW| = 0). It then trained the 3 missing runs, all in tmux.
+* **Result (VALIDATION; group-B readers; 3 seeds), tsp vs ctrl:**
+  * frozen logistic gap 0.051 → 0.012 (−0.039 [−0.084, +0.007], Holm 0.135);
+  * re-fit logistic gap 0.019 → −0.001 (−0.020 [−0.058, +0.017], Holm 0.147).
+  * 3/3 seeds favour tsp on both, and both are specific against the random and PCA subspaces.
+  * All guards pass: OWT NMSE identical, ΔCE +0.0004, persona −0.001, M4 +0.006, L0 = 128.
+  * **Pre-registered verdict: NOT SUPPORTED** (CIs include 0).
+* **Secondary (uncorrected):**
+  * error-only truth AUROC 0.708 → 0.609 (p = 0.016);
+  * ctrl vs R2 base (GoT-A replay) frozen gap 0.210 → 0.051 (p = 0.016), at an OWT NMSE cost of +1.6 %.
+* **Evidence label:** exploratory validation finding. Consistent and cost-free, but underpowered. Template-specific
+  generalisation is untested.
+* **Next:** a pre-registered replication with ≥ 5 seeds and a held-out-template truth set (roadmap).

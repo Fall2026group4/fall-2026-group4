@@ -1,4 +1,4 @@
-# TSP: truth-subspace-preserving fine-tuning of R2 TopK (2026-11-14). Status: PRE-REGISTERED (plan below); results in §3 when run
+# TSP: truth-subspace-preserving fine-tuning of R2 TopK (2026-11-14). Status: COMPLETED (VALIDATION pilot); pre-registered verdict NOT SUPPORTED (§3)
 
 Evidence level of everything in this folder: **VALIDATION, exploratory pilot**. No TEST row is read. Nothing here is a
 confirmatory test.
@@ -74,6 +74,101 @@ Run on 2026-11-14 on existing checkpoints only (no training), VALIDATION rows, e
   pipeline. On those 30-step checkpoints the group-B re-fit logistic gap was base 0.091, ctrl 0.074, tsp 0.053,
   rand 0.066, pca 0.044. These are noisy single-seed numbers; they did not change any setting.
 
-## 3. Results
+## 3. Run record, including the interruption
 
-To be added after the runs.
+* **Plan frozen and committed** in `7d28706`, before any full run.
+* **Interruption.** The pilot (script 25) started at 17:36 UTC. It stopped after 9 of 12 fine-tunes, when the Claude
+  session that launched it ended at about 17:56.
+  * The missing runs were tsp, rand and pca for seed 2042. No evaluation had run.
+  * The 9 checkpoints were kept unchanged. Their training-monitor rows were lost (held in memory), but the final
+    values survive in `pilot/logs/01_pilot_interrupted.log`.
+* **Recovery** (`scripts/geometry_of_truth/25b_truth_subspace_finetune_resume.py`, run in tmux session `tsp-recovery`,
+  18:13–18:48 UTC). The wrapper imports the frozen script 25 unchanged and calls its own `run_one`. Before training it
+  verified:
+  * all 12 non-README frozen hashes;
+  * the saved subspaces equal a fresh recomputation (max |Δ| = 0);
+  * all 9 existing checkpoints carry the frozen configuration;
+  * **re-training ctrl seed 2042 reproduced the stored checkpoint bit-for-bit (max |ΔW| = 0)**
+    (`pilot/recovery_check/repro_check.json`).
+
+  It then trained only the 3 missing runs, overwrote nothing, and left GPT-2 parameters unchanged.
+* **Evaluation:** script 26, 1,646 s. **Analysis:** script 27. Logs are in `pilot/logs/02–04_*.log`. Training peak
+  GPU memory and the recovery details are in `pilot/finetune_info.json`.
+* **Checkpoints:** 12 × 75 MB under `pilot/checkpoints/` (not in Git; listed in `docs/checkpoint_registry.csv` as
+  `got_tsp_pilot`).
+
+## 4. Results (VALIDATION; GoT readers fitted on group B only; mean ± sd over 3 seeds)
+
+Original group-B AUROC on validation (n = 448 statements; 1,048 group-B TRAIN rows): logistic 0.819, MLP 0.846, mass-mean
+0.555.
+
+**Lower is better** for every metric below except EV-type and M4 metrics. L0 = 128 exactly on OWT, GoT and RepE-LM prompts
+for every SAE.
+
+| Metric | R2 base | R4 MSE | ctrl | **tsp** | rand | pca |
+|---|---|---|---|---|---|---|
+| Frozen logistic gap (co-primary) | 0.210 ± 0.008 | 0.218 | 0.051 ± 0.014 | **0.012 ± 0.017** | 0.090 | 0.059 |
+| Re-fit logistic gap (co-primary) | 0.063 ± 0.024 | 0.054 | 0.019 ± 0.004 | **−0.001 ± 0.008** | 0.024 | 0.026 |
+| Re-fit MLP gap | 0.031 | 0.017 | 0.037 | 0.027 | 0.028 | 0.026 |
+| Re-fit sparse-z gap (latent-level) | 0.068 | 0.062 | 0.019 | **0.002** | 0.028 | 0.024 |
+| Frozen mass-mean gap | 0.018 | 0.016 | 0.007 | 0.001 | 0.011 | 0.008 |
+| Truth AUROC from the error alone (↓ = less displaced) | 0.708 | 0.715 | 0.708 | **0.609** | 0.743 | 0.716 |
+| GoT task NMSE | 0.840 | 0.838 | 0.037 | 0.043 | 0.053 | 0.037 |
+| OWT NMSE (ladder) | 0.0959 | 0.0956 | 0.0974 | 0.0974 | 0.0971 | 0.0974 |
+| OWT spliced ΔCE (nats) | 0.0603 | 0.0601 | 0.0614 | 0.0618 | 0.0617 | 0.0614 |
+| Persona re-fit gap (RepE-LM) | 0.108 | 0.109 | 0.110 | 0.109 | 0.110 | 0.112 |
+| M4 T_rec/T_full (↑) | 0.726 | 0.720 | 0.706 | 0.711 | 0.719 | 0.712 |
+
+### Pre-registered decision (tsp vs ctrl; paired by seed; se includes statement sampling; df = 2; Holm over 2)
+
+| Metric | Per-seed differences | Mean diff | 95 % CI | Holm p | Rule |
+|---|---|---|---|---|---|
+| Frozen logistic gap | −0.040 / −0.049 / −0.027 | −0.039 | [−0.084, +0.007] | 0.135 | **not met** (3/3 seeds; CI includes 0) |
+| Re-fit logistic gap | −0.021 / −0.023 / −0.016 | −0.020 | [−0.058, +0.017] | 0.147 | **not met** (3/3 seeds; CI includes 0) |
+
+* **Specificity:** met for both metrics. tsp beats rand and pca in 3/3 seeds.
+* **Guards:** all passed:
+  * OWT NMSE identical;
+  * ΔCE +0.0004 (n.s.);
+  * persona −0.001;
+  * M4 +0.006;
+  * L0 = 128.
+* **Verdict (frozen rule): NOT SUPPORTED.** The direction is consistent across seeds, specific to the truth subspace and
+  free of measured costs. It is not distinguishable from zero under 3 seeds plus statement sampling.
+
+### Secondary comparisons (descriptive, uncorrected, same interval method)
+
+* **tsp vs ctrl:**
+  * error-only truth AUROC −0.099 [−0.154, −0.044], p = 0.016 (less truth information left in the error);
+  * sparse-z gap −0.017 [−0.035, +0.000], p = 0.051;
+  * re-fit MLP gap −0.010 [−0.027, +0.008].
+* **tsp vs rand:** frozen gap −0.078 [−0.136, −0.021], p = 0.028.
+* **tsp vs pca:** frozen gap −0.047 [−0.094, −0.001], p = 0.048.
+* **ctrl vs R2 base** (task-distribution replay, the Method-A analogue on R2):
+  * frozen gap −0.159 [−0.247, −0.071], p = 0.016, 3/3;
+  * re-fit gap −0.044 [−0.124, +0.036];
+  * re-fit MLP +0.006 (no change);
+  * cost: OWT NMSE +1.6 % (0.0959 → 0.0974, 3/3 seeds worse, CI excludes 0), ΔCE +1.8 % (0.0603 → 0.0614), M4 −0.020
+    [−0.076, +0.037].
+* **rand vs ctrl:** frozen gap +0.040 (worse in 3/3). A geometry-free subspace penalty hurts readout.
+
+## 5. Interpretation and limitations
+
+* **What is supported (validation, descriptive):**
+  * Most of the frozen-readout recovery comes from training on the task's own prompt distribution (ctrl vs base:
+    0.210 → 0.051, at a small OWT cost).
+  * The truth-subspace term adds a further, consistent reduction (to 0.012 frozen; −0.001 re-fit) and moves
+    truth-predictive signal out of the error (error-only AUROC 0.708 → 0.609). Random and PCA subspaces do not do
+    this.
+* **What is not supported:** the pre-registered claim that TSP improves independently measured truth preservation over
+  ctrl. With df = 2 the intervals are wide.
+* **Limits:**
+  * one layer (L8), one architecture (TopK) and 3 seeds;
+  * GoT-A and validation share templates (cities), so the gain may be distribution-specific: there is no
+    out-of-template or out-of-task test;
+  * the re-fit MLP reader does not improve (0.037 → 0.027, n.s.), so the gain is mainly in linear readers;
+  * the subspace is label-derived from group A. Evaluation probes use disjoint rows (group B) and disjoint cities
+    (validation), but this is supervised preservation, not unsupervised faithfulness;
+  * no test split was used.
+* **Next falsifiable test:** the same arms with more seeds and a held-out-template truth set, under a new
+  pre-registration (see `docs/RESEARCH_ROADMAP.md`).

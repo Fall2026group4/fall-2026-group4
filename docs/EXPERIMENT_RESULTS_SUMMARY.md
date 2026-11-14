@@ -746,3 +746,25 @@ Source: `results/shared/audit_sensitivity/`.
 | S4 GoT probe anomaly | Bag-of-words ≤ 0.55; per-polarity logistic L1–2 0.75–0.77 vs pooled 0.52–0.59 | Pooling hides early-layer truth (post hoc) |
 | S5 noise references | GoT logistic L6–11: SAE 0.26–0.32, isotropic 0.23–0.30, shuffled SAE error 0.15–0.20; 92/99 label-aligned | "Largely perturbation sensitivity" withdrawn |
 | S6 C grid 1e-4…10 | 0/15 class changes; no edge selections | Robust |
+
+## TSP pilot (2026-11-14; VALIDATION; R2 TopK L8; GoT readers fitted on group B; mean of 3 seeds)
+
+| Metric (↓) | R2 base | ctrl (GoT-A replay) | tsp (truth subspace) | rand | pca |
+|---|---|---|---|---|---|
+| Frozen logistic gap | 0.210 | 0.051 | 0.012 | 0.090 | 0.059 |
+| Re-fit logistic gap | 0.063 | 0.019 | −0.001 | 0.024 | 0.026 |
+| Re-fit MLP gap | 0.031 | 0.037 | 0.027 | 0.028 | 0.026 |
+| Error-only truth AUROC | 0.708 | 0.708 | 0.609 | 0.743 | 0.716 |
+| OWT NMSE | 0.0959 | 0.0974 | 0.0974 | 0.0971 | 0.0974 |
+| OWT ΔCE (nats) | 0.0603 | 0.0614 | 0.0618 | 0.0617 | 0.0614 |
+| M4 T_rec/T_full (↑) | 0.726 | 0.706 | 0.711 | 0.719 | 0.712 |
+
+**tsp vs ctrl:**
+
+| Metric | Mean difference [95 % CI] | Holm p |
+|---|---|---|
+| Frozen logistic gap | −0.039 [−0.084, +0.007] | 0.135 |
+| Re-fit logistic gap | −0.020 [−0.058, +0.017] | 0.147 |
+
+3/3 seeds favour tsp on both metrics. Pre-registered verdict: **NOT SUPPORTED**. Source:
+`results/geometry_of_truth/truth_subspace_preservation/`.

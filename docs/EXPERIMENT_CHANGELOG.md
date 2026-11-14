@@ -313,3 +313,13 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 * Added `scripts/geometry_of_truth/24_truth_subspace_diagnostics.py` (root-cause diagnostics, validation),
   `25_truth_subspace_finetune.py`, `26_truth_subspace_evaluation.py`, `27_truth_subspace_analysis.py` (pilot).
 * Added `results/geometry_of_truth/truth_subspace_preservation/{README.md,preregistration.json,diagnostics/}`.
+
+## 2026-11-14 — TSP pilot completed (recovery after interruption)
+* Added `scripts/geometry_of_truth/25b_truth_subspace_finetune_resume.py`: recovery wrapper. It completes the 3 runs
+  missing after the session ended, without modifying frozen script 25.
+* Added `results/geometry_of_truth/truth_subspace_preservation/pilot/{finetune_info.json,finetune_monitor_recovery.csv,
+  subspaces.npz,recovery_check/,eval/,analysis/}`: pilot outputs. Checkpoints and logs stay local (gitignored).
+* Modified `src/sae/checkpoint_registry.py`: added the `got_tsp_pilot` family. `docs/checkpoint_registry.csv` was
+  rebuilt.
+* Modified the TSP README with the results and the interruption record. The journal (§46), results summary, D39,
+  roadmap, registry and manifest were updated.

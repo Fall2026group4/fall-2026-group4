@@ -33,6 +33,9 @@ FAMILIES = [
      'R2 intermediate checkpoints (10M/25M/50M tokens); data-scaling description only'),
     (r'^results/openwebtext/r4_kl_finetune/checkpoints/', 'owt_r4_kl_finetune', 'VALID_SCOPE',
      'R4 KL / MSE-control fine-tunes of R2 TopK (L8, L11); behaviour-only improvement; not for causal claims'),
+    (r'^results/geometry_of_truth/truth_subspace_preservation/pilot/checkpoints/', 'got_tsp_pilot', 'PILOT',
+     'TSP pilot: R2 TopK L8 fine-tunes (ctrl / truth-subspace / random / PCA subspace); validation only; '
+     '3 seed-2042 runs trained by the recovery wrapper 25b (bit-identical reproduction verified)'),
     (r'_p1_seed\d+/', 'owt_p1_pilot', 'PILOT', 'P1 pilot (controller anneal/freeze, JumpReLU threshold init, val selection); seed 42 only'),
     (r'_resume_5000_to_15000/', 'owt_resume_layer6', 'VALID_SCOPE',
      'layer-6 base SAEs of every GoT/RepE/fine-tuning/causal experiment; within-layer comparisons only'),

@@ -301,3 +301,8 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   threshold lr / parameterisation per the paper). The R2 failure is traceable to recipe differences, not the
   architecture.
 * NEW (P2): R4 "compensation" follow-up: constrain the persona-contrast error (T_err) during KL fine-tuning.
+* DONE 2026-11-14: TSP pilot (validation): NOT SUPPORTED by the frozen rule; consistent 3/3 direction, specific,
+  cost-free (D39).
+* NEW (P1, needs a pre-registration): TSP replication with ≥ 5 seeds and a held-out-template truth set (e.g. GoT
+  `sp_en_trans`/`companies`-style sets, or new city templates), plus L11 and BatchTopK; include the ctrl
+  (task-replay) arm and an OWT-only cost check.

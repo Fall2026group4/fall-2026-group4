@@ -1,0 +1,22 @@
+{
+  "primary": {
+    "frozen_logistic_gap": {
+      "pass_rule": false,
+      "p_holm": 0.13516915641864527,
+      "specific_vs_controls": true
+    },
+    "refit_logistic_gap": {
+      "pass_rule": false,
+      "p_holm": 0.1467741708259926,
+      "specific_vs_controls": true
+    }
+  },
+  "guards": {
+    "owt_nmse_le_1_02x_ctrl": true,
+    "splice_dce_le_1_05x_ctrl": true,
+    "persona_refit_gap_le_ctrl_plus_0_02": true,
+    "m4_preservation_ge_ctrl_minus_0_02": true,
+    "l0_owt_128": true
+  },
+  "overall": "NOT SUPPORTED"
+}
