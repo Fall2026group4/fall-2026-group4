@@ -419,3 +419,19 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   reproduction of a completed run. The frozen scripts were not edited. The 9 completed checkpoints were kept.
 * **Next:** any follow-up (more seeds, held-out templates, other layers or architectures) needs a new
   pre-registration. The pilot's λ, rank and steps are not tuned on these validation results.
+
+## D40. TSP verification: what changes and what does not (2026-11-14)
+* **Verdict unchanged:** NOT SUPPORTED stands. The post-hoc Satterthwaite p values (0.023 / 0.0025) are **not**
+  grounds to revise it. They are reported only as the reason the next pre-registration changes its interval method.
+* **Corrected claims:**
+  * "Specific to the truth subspace" applies to the frozen readout only.
+  * "No cost" applies against ctrl. GoT replay costs ≈ 1.6–2 % (NMSE, KL, ΔCE) against R2 base.
+  * The frozen gap and error-only AUROC are readout metrics for TSP: S contains 58 % of the evaluator's direction.
+* **Next design principle:** statement groups, not seeds, are the bottleneck.
+  * Replicate with cross-fitted cities (≈ 635 groups) and fresh held-out GoT families (DEV/TEST split before any
+    activation is computed).
+  * Add a label-permuted S control.
+  * Pre-register Satterthwaite df and CI-based non-inferiority.
+  * No loss or architecture change before the replication. A multi-family "universal" S is a later, separately
+    pre-registered follow-up.
+* **Approval required** for Phase 0 (public data download) and Phase 1 (training).

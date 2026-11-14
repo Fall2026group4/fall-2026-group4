@@ -306,3 +306,13 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * NEW (P1, needs a pre-registration): TSP replication with ≥ 5 seeds and a held-out-template truth set (e.g. GoT
   `sp_en_trans`/`companies`-style sets, or new city templates), plus L11 and BatchTopK; include the ctrl
   (task-replay) arm and an OWT-only cost check.
+* DONE 2026-11-14: TSP-VERIFY. Pilot numbers reproduced independently; verdict confirmed; concerns recorded (D40).
+* SUPERSEDES the "≥ 5 seeds" replication item above. PROPOSED (P1, awaiting approval): TSP-R (design in
+  `docs/2026-11-14_tsp_verification_and_replication_design.md`).
+  * Phase 0 (≈ 1 h, no training): fresh public GoT families with a DEV/TEST hash split made before any activation is
+    computed; DEV eligibility; cities 3-fold cross-fitting.
+  * Phase 1 (≈ 10–13 h): 8 base seeds (5 new R2 TopK L8) × 5 arms (ctrl / tsp / rand / pca / label-permuted S) ×
+    3 folds.
+* NEW (P2, after TSP-R): multi-family "universal" truth subspace (general + polarity directions), separately
+  pre-registered.
+* NEW (P2): minimal-pair difference-preservation loss (no fitted direction) as an exploratory nonlinear alternative.

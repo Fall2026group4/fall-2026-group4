@@ -768,3 +768,20 @@ Source: `results/shared/audit_sensitivity/`.
 
 3/3 seeds favour tsp on both metrics. Pre-registered verdict: **NOT SUPPORTED**. Source:
 `results/geometry_of_truth/truth_subspace_preservation/`.
+
+## TSP-VERIFY (2026-11-14; VALIDATION; independent re-computation of the TSP pilot; post-hoc checks exploratory)
+
+| Check | Result |
+|---|---|
+| Agreement with pilot outputs | AUROC gaps ≤ 0.0003; MLP ≤ 0.0046; NMSE / L0 / ΔCE / KL ≤ 1e-5 |
+| Frozen rule, tsp − ctrl | frozen −0.039 [−0.085, +0.008], Holm 0.140; re-fit −0.020 [−0.058, +0.018], Holm 0.151 → NOT SUPPORTED |
+| Share of variance from statement sampling | re-fit 95 %, frozen 65 % |
+| Frozen-probe direction inside S | 58 % of norm² (chance 1 %) |
+| Re-fit MLP, tsp − ctrl | 3 nets −0.010; 10 nets −0.013; 5 × 256 units −0.016 (all 3/3 seeds) |
+| tsp − rand / pca, re-fit logistic | −0.025 (p 0.24) / −0.027 (p 0.12) |
+| GoT numerical transfer, tsp − ctrl | frozen +0.014, re-fit +0.004 (n.s.) |
+| Error-only AUROC, tsp − ctrl, with statement sampling | −0.099 [−0.189, −0.009], p 0.042 (pilot without statement sampling: p 0.016) |
+| ctrl − R2 base cost | OWT NMSE +1.6 %, KL +1.6 % (p 0.030), ΔCE +1.9 % (p 0.063) |
+| P(pass) at the observed effect, 3 seeds / 112 cities | frozen 0.02; re-fit < 0.001 |
+
+Source: `results/geometry_of_truth/truth_subspace_preservation/verification/`.

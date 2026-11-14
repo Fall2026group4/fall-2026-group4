@@ -1203,3 +1203,36 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Evidence label:** exploratory validation finding. Consistent and cost-free, but underpowered. Template-specific
   generalisation is untested.
 * **Next:** a pre-registered replication with ≥ 5 seeds and a held-out-template truth set (roadmap).
+
+## 47. TSP-VERIFY: independent verification of the TSP pilot, and the TSP-R replication design (2026-11-14). Status: verification COMPLETED (VALIDATION, analysis only, no training); design DRAFT awaiting approval
+
+* **Report:** `docs/2026-11-14_tsp_verification_and_replication_design.md`.
+* **Verification outputs:** `results/geometry_of_truth/truth_subspace_preservation/verification/` (script 28).
+  * It re-implements the loader, SAE forward pass, probes, bootstrap, splicing and statistics without importing the
+    pilot's code.
+  * 0 TEST rows. The pilot folder was untouched.
+* **Agreement:** all pilot numbers reproduce (AUROC ≤ 0.0003; MLP ≤ 0.0046; NMSE, L0, ΔCE and KL ≤ 1e-5). The verdict
+  NOT SUPPORTED is confirmed (Holm 0.140 / 0.151).
+* **Concerns found:**
+  1. The pilot's secondary CIs for error-only AUROC, MLP, sparse-z and kNN omitted statement sampling. Error-only
+     AUROC: p 0.016 → 0.042.
+  2. The frozen probe direction has 58 % of its norm² inside S (chance 1 %), so the frozen-gap gain is close to
+     guaranteed by construction.
+  3. Specificity against rand/pca holds only for the frozen gap, not the re-fit logistic or the MLP.
+  4. The re-fit gap goes below 0 at strong regularisation (enhancement).
+  5. The pilot's 3-net MLP reader was noisy. Larger ensembles show MLP −0.013 / −0.016 (3/3).
+  6. df = 2 applied to a statement-dominated se made the rule very conservative (post hoc Satterthwaite p 0.023 /
+     0.0025; not a result).
+* **Root cause:**
+  * Statement sampling (112 validation cities) carries 95 % of the re-fit variance.
+  * At the observed effects, P(pass) was 0.02 / < 0.001. Even 15 seeds on 112 cities give 0.43.
+  * No transfer to GoT numerical: tsp − ctrl +0.014 frozen, +0.004 re-fit, n.s.; S holds the numerical truth
+    direction at chance level.
+  * There is no held-out wording within cities: an affirmative-only probe scores 0.16 on negations.
+* **Evidence label:** validation verification; the post-hoc analyses are exploratory.
+* **Next (awaiting approval):** TSP-R.
+  * Phase 0: fresh public GoT families, hash-split into DEV/TEST before any activation is computed; DEV eligibility;
+    cities cross-fitting.
+  * Phase 1: 8 base seeds × 5 arms (adding the label-permuted S control) × 3 folds; Satterthwaite or two-way
+    bootstrap intervals; random-effects pooling over held-out families; CI-based non-inferiority guards.
+  * ≈ 10–13 h and ≈ 12 GB. Nothing is trained until approved.

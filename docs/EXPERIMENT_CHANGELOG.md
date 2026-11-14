@@ -323,3 +323,13 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   rebuilt.
 * Modified the TSP README with the results and the interruption record. The journal (§46), results summary, D39,
   roadmap, registry and manifest were updated.
+
+## 2026-11-14 — TSP-VERIFY (independent verification; analysis only)
+* Added `scripts/geometry_of_truth/28_tsp_independent_verification.py`: independent re-implementation of the pilot's
+  metrics and statistics, plus robustness, geometry, wording, numerical-transfer and power checks. Validation only.
+* Added `results/geometry_of_truth/truth_subspace_preservation/verification/` (README, per-SAE metrics, agreement,
+  comparisons, power, bootstrap, info). The log in `verification_logs/` stays local (gitignored).
+* Added `docs/2026-11-14_tsp_verification_and_replication_design.md`: the verification report and the TSP-R design
+  (draft, not frozen).
+* The journal (§47), D40, results summary, roadmap, results registry and manifest were updated. The pilot folder and
+  its pre-registration were not modified. No checkpoints were created.
