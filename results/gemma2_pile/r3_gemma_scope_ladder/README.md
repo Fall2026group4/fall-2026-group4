@@ -419,6 +419,190 @@ the machine is logged in.
 The Gemma Scope SAE repository's file listing was readable without logging in (2026-11-13). Its downloads and the Pile
 file download are also checked at V0.
 
+## Amendments to the pre-registration (made before any run)
+
+### Amendment 1 (2026-11-13): hardware changed from AWS A10G to Kaggle T4 x2
+* **Change:** every part of R3 runs on Kaggle's free **GPU T4 x2** accelerator: two Tesla T4s, 16 GB each,
+  compute capability 7.5, **no native bf16**. This replaces the AWS A10G (`g5.2xlarge`) in the Design table, the
+  Compute section and "Setup on the EC2 machine".
+* **Reason:** our AWS account is on the free plan, which has no GPU instances, so the A10G is not available.
+* **Same GPU class as M6.** M6 ran on a Tesla T4 (compute capability 7.5, bf16 kept as pre-registered, torch
+  2.7.0+cu128, transformers 5.21.0). The Kaggle run installs and records the same torch and transformers versions. If
+  they cannot be installed, the versions used are recorded here as a deviation before any result is read.
+* **Section 1 is not edited.** Where Section 1 and this amendment disagree, this amendment applies.
+
+#### (1) Q0 (T4 vs A10G) is dropped
+* There is only one GPU type, so the T4 vs A10G question cannot be asked. **Part A1 (the M6 rerun with script 03) is
+  not run.** The A10G H4a diagnostic, `m6_rerun_a10g/` and `precision_t4_vs_a10g/q0_*.csv` are dropped.
+* The ladder now runs on the same GPU class as M6, so its numbers are **directly comparable to M6** without a precision
+  correction. This is checked, not assumed, by gate V6, which is revised to compare against M6 itself:
+  * The ladder script on M6's three canonical 16k SAEs is compared with M6's committed per-document rows.
+  * **M6 REPRODUCED EXACTLY:** reconstruction and behaviour sums agree within relative difference 1e-5, and
+    active-latent agreement is ≥ 0.9999. This also checks the 128-token chunking and the SAE-outer loop, as before.
+  * **M6 REPRODUCED WITHIN MARGIN:** not exact, but the 95 % CI of every paired mean difference lies inside the
+    margins fixed for Q0 (ΔCE_SAE and ΔCE_random ±0.005, KL_SAE ±0.005, top-1 ±0.005, EV ±0.001), and every layer's
+    H-G1 verdict is the same. M6 and R3 may still be shown side by side, with the measured difference stated.
+  * **Otherwise the gate fails.** Comparison with M6 is stopped and reported, and R3 is interpreted on its own.
+* M6's results are not edited in any case.
+
+#### (2) Q0b becomes "how far is T4 bf16 from fp32"
+* **fp32 reference (Part A3):**
+  * Gemma-2-2B (same revision) and SAE `layer_12/width_16k/average_l0_82`, both in float32, on the first 64
+    evaluation documents by rank. Conditions and random directions are as in Section 1.
+  * The model's layers are split across the two T4s with a fixed device map, recorded in `run_info.json`. Moving a
+    tensor between GPUs copies it exactly, so the split does not change the arithmetic.
+  * fp32 Gemma (≈ 10.5 GB weights + ≈ 5 GB working memory + ≈ 1.05 GB logits) does not fit on one 16 GB T4, which is
+    why it is split.
+  * The T4 has no TF32, so fp32 matrix products are plain fp32.
+* **Data:**
+  * **Primary bf16 run:** M6's committed T4 per-document rows for those 64 documents and that SAE.
+  * **Also reported:** the Kaggle T4 ladder rows for the same cell, with the same test.
+* **Error per document:** e_i = |metric_T4-bf16,i − metric_fp32,i|. Also reported: the signed difference
+  b_i = metric_T4-bf16,i − metric_fp32,i, which shows whether bf16 pushes a metric up or down on average.
+* **Metrics:** primary ΔCE_SAE. Secondary: original CE, ΔCE_random, KL_SAE, top-1 agreement and the EV terms.
+* **Test:** mean of e and mean of b over the 64 documents, each with a 95 % bootstrap CI (1,000 document resamples,
+  seed 0).
+* **Verdict per metric, against Q0's fixed margins** (±0.005 for the CE-based metrics, KL and top-1; ±0.001 for EV):
+  * **WITHIN MARGIN** if the CI upper bound of mean e is below the margin;
+  * **BEYOND MARGIN** if the CI lower bound is above it;
+  * **INCONCLUSIVE** otherwise.
+  * The primary metric's verdict is the headline. Secondary verdicts are descriptive.
+* **Output:** `precision_t4_vs_fp32/q0b_t4_vs_fp32.csv`, which replaces `precision_t4_vs_a10g/`.
+* **Limits:** as Section 1. One layer, one SAE and 64 documents; fp32 is a reference with much smaller rounding, not
+  exact ground truth.
+
+#### (3) Memory per SAE on a 16 GB T4
+* **Same formula as Section 1:** peak ≈ 7.7 GB (model + working memory, from M6's T4 run) + fp32 SAE weights +
+  128-token encode buffers.
+* **Usable memory on each T4 is measured at V0.** A planning limit of **14 GB per GPU** leaves room for the CUDA
+  context and fragmentation.
+* **Placement:** Gemma always runs on GPU 0. An SAE goes on GPU 0 if its estimated peak is ≤ 14 GB. Otherwise its
+  weights and encode/decode go on GPU 1, and activations are copied between the GPUs exactly.
+
+| Width | Weights (fp32) | Est. peak, all on GPU 0 | Placement | SAEs |
+|---|---|---|---|---|
+| 16k | 0.30 GB | ≈ 8.0 GB | GPU 0 | 15 (A) |
+| 32k | 0.60 GB | ≈ 8.4 GB | GPU 0 | 6 (A) |
+| 65k | 1.21 GB | ≈ 9.0 GB | GPU 0 | 15 (A) |
+| 131k | 2.42 GB | ≈ 10.3 GB | GPU 0 | 6 (B) |
+| 262k | 4.83 GB | ≈ 12.9 GB | GPU 0 | 6 (B) |
+| 524k | 9.67 GB | ≈ 18.2 GB, does not fit one T4 | **needs GPU 1:** ≈ 7.7 GB on GPU 0, ≈ 10.5 GB on GPU 1 | 6 (B) |
+| 1m | 19.34 GB | — | **excluded:** larger than one 16 GB T4 even on its own | 18 |
+
+* **Every Tier A SAE fits on GPU 0 alone.** The second GPU is needed only for the 524k SAEs (Tier B) and the fp32
+  reference.
+* **Width 1M stays excluded.** Splitting one SAE's weights across two GPUs, using bf16 weights or offloading to the
+  CPU would each be a protocol change from M6. It is reported as "not evaluated".
+* **Gate V7 also records, per SAE:** the GPU used for the SAE and the peak memory on each GPU.
+* **Host RAM:** loading the 524k `params.npz` needs about 10 GB. Kaggle's host RAM is recorded at V0. If it is too
+  small, the 524k width is reported as not evaluated.
+
+#### (4) Runtime on the T4, and how Tier A is split into Kaggle runs
+* **Basis:** M6's measured **1.1 s per forward pass** on a T4 replaces the A10G planning value of 0.3 s.
+* **SAE encode/decode:** the same FLOP formula as Section 1, at about 4 TFLOP/s effective fp32 on the T4.
+* **Per SAE:** 512 documents × 3 passes ≈ 28 min, plus encode/decode and download. That gives ≈ 30 min (16k, 32k),
+  ≈ 31 min (65k), ≈ 34 min (131k), ≈ 39 min (262k) and ≈ 48 min (524k).
+* **Shared per-layer controls** (original repeat, identity, mean ablation): ≈ 28 min per layer.
+* **fp32 reference:** a planning value of 1.5 s per fp32 pass (range 1–3 s), so 320 passes ≈ 8 min. With loading,
+  ≈ 0.3 h (at most 0.5 h).
+* **Kaggle limits:** at most 12 h per session and 30 GPU-hours per week. Each run is planned at ≤ 10 h, which leaves
+  a 2 h margin for estimation error.
+
+| Kaggle run | Content | Estimate |
+|---|---|---|
+| K0 | V0 checks; smoke of script 05 (8 documents; measures s/pass and memory on this T4); Part A3 fp32 reference | ≈ 1 h |
+| K1 | Layer 5: 10 SAEs (16k ×5, 65k ×5) + layer controls | ≈ 5.6 h |
+| K2 | Layer 19: 10 SAEs (16k ×5, 65k ×5) + layer controls | ≈ 5.6 h |
+| K3 | Layer 12 Tier A: 16 SAEs (16k ×5, 32k ×6, 65k ×5) + layer controls | ≈ 8.6 h |
+| **Tier A total** | | **≈ 20.8 h** |
+| K4 / K5 / K6 (Tier B) | 131k / 262k / 524k at layer 12, six SAEs each | ≈ 3.4 / 3.9 / 4.8 h (≈ 12.1 h) |
+
+* **Rules (replace Section 1's budget rule):**
+  * After K0, every remaining run is re-projected from the measured times.
+  * A run starts only if its projection is ≤ 10 h. If it is longer, it is split by width into more runs. A split
+    changes only *when* an SAE runs, never *which* SAEs run. Every split is recorded in Section 2.
+  * No run starts if the week's projected cumulative GPU time would exceed 30 h. The run waits for the quota to reset.
+  * How Kaggle counts T4 x2 time against the quota is read from the quota display after K0 and recorded.
+  * **Tier A always runs.** Tier B starts only after every Tier A run has passed its gates.
+  * Tier B runs width by width (131k, then 262k, then 524k). A width runs only if it fits in the weekly quota and its
+    results can be documented before the 2026-11-22 technical freeze.
+  * A width is run for all six L0s or not at all. Unrun widths are reported as "not run (budget)".
+* **Statistics come last.** Bootstrap CIs, L0 bands and H1–H3 are computed only after all per-SAE outputs exist, in
+  one CPU step (script 06 and the aggregate step of script 05). How the work is split into runs therefore cannot affect
+  any test.
+
+#### (5) Per-SAE outputs, resume, and a resume-equals-fresh gate
+* **Saving:** each SAE writes its own folder `ladder/per_sae/layer_{L}_width_{W}_l0_{N}/`, containing:
+  * `per_doc_metrics.csv`;
+  * `per_doc_sum_x.npz`;
+  * `sae_info.json` (`params.npz` SHA-256, measured L0, peak memory per GPU, GPU used, run id, timings);
+  * last, `DONE.json`, holding the SHA-256 of the other three files.
+* **Shared per-layer controls** are saved the same way, in `ladder/per_layer/layer_{L}/`. This folder includes the
+  mean-ablation vector and its SHA-256.
+* **What a run saves:** everything is written under `/kaggle/working/`, so Kaggle keeps it as the run's output.
+* **Resuming:**
+  * The next run attaches the previous run's output as input and copies it in.
+  * It skips every SAE whose `DONE.json` exists and whose hashes match.
+  * A folder without a valid `DONE.json` is unfinished. It is moved, not deleted, to `ladder/incomplete/<run id>/`
+    and that SAE is run again from the start.
+  * Existing complete outputs are never overwritten.
+* **Why skipping is exact:** the random-error generator is re-seeded at the start of each SAE's pass (Section 1,
+  Seeds). An SAE's numbers therefore do not depend on which SAEs ran before it, or in which run.
+* **New gate V9, resume equals fresh:**
+  * **On the GPU.** At the start of every run that resumes from earlier output, one already finished SAE is recomputed
+    from scratch on the first 32 evaluation documents. This is the first finished SAE in pre-registered order.
+  * If the run reuses a layer's saved controls, that layer's mean-ablation vector is also recomputed.
+  * **Pass condition:**
+    * every recomputed per-document value matches its stored value within relative difference 1e-6, that is,
+      |new − stored| ≤ 1e-6 · max(|new|, |stored|), with two exact zeros counted as a match;
+    * the recomputed mean-ablation vector matches the stored one within relative difference 1e-6, that is,
+      ‖v_new − v_stored‖ / ‖v_stored‖ ≤ 1e-6.
+  * **Recorded separately:** whether the recomputed rows and the mean-ablation vector were also **bit-identical**
+    (BIT-IDENTICAL yes or no), together with the largest relative difference seen. This is reported, but a pass does
+    not require it.
+  * **If any value differs by more than 1e-6,** V9 fails and the run stops. Results are not read until the cause is
+    found and recorded.
+  * **In the tests.** `src/tests/test_gemma_r3_ladder.py` adds a CPU test on a toy model: a run interrupted after one
+    SAE and then resumed must produce output files byte-identical to an uninterrupted run.
+* **Per-run record:** each Kaggle run writes `runs/<run id>/run_info.json`, with GPU names, driver, CUDA, torch and
+  transformers versions, host RAM, disk, the SAEs run and skipped, and the V9 result. `ladder/run_info.json` (all
+  output hashes) is still written last, by the final aggregate step.
+
+#### (6) Hugging Face token from Kaggle Secrets
+* **This replaces steps 3–4 and the logout step of "Setup on the EC2 machine".** Steps 1–2 still apply: accept the
+  Gemma licence and create a read token on the account that runs R3.
+* **Storing the token:** it is stored as a Kaggle Secret named `HF_TOKEN` (notebook menu Add-ons → Secrets), attached
+  only to the R3 notebook of that account.
+* **Using the token:**
+  * The notebook reads it in memory with `kaggle_secrets.UserSecretsClient().get_secret("HF_TOKEN")` and passes it to
+    the Hugging Face client in the same process.
+  * It is **never** written to the notebook source, cell output, an environment file, `/kaggle/working`, a log,
+    `run_info.json`, this README or a commit. It is never printed, not even partly.
+* **Gemma comes from Hugging Face.** The model is downloaded from Hugging Face at the pinned revision `c5ebcd4…`.
+  Kaggle's own Gemma copy is not substituted (gate V5).
+* **Gate V0 (revised):**
+  * Two GPUs named "Tesla T4", compute capability 7.5. `torch.cuda.is_bf16_supported(including_emulation=False)` is
+    recorded; False is expected, as in M6.
+  * Notebook internet access is on.
+  * The pinned `config.json` downloads using the secret. If it does not, stop: nothing else is run.
+* **New gate V10, no secret in outputs:**
+  * Before any output leaves Kaggle, every output file and the run log are searched for the token's exact value (the
+    comparison happens in memory, and only "found / not found" is printed) and for the pattern `hf_[A-Za-z0-9]{30,}`.
+  * **Any hit:** the outputs are not downloaded or committed, the token is revoked on huggingface.co, and a new one is
+    made.
+  * The token is revoked anyway once R3 has finished.
+* **The notebook stays private.** Its committed copy, if any, has all outputs cleared.
+
+#### Not changed
+Everything else in Section 1 is unchanged:
+* the research question about width and L0;
+* data, sample, model and SAE revisions, and the 54 pinned SAE IDs and their tiers;
+* conditions, metrics, seeds, bootstrap and determinism settings;
+* H1–H3 and their decision rules, L0 bands, Q1–Q3;
+* gates V1–V5 and V8, and the leakage checks.
+
+No code had been written and no run made when this amendment was committed.
+
 ## 2. After execution
 *(To be completed after the run: runs, gates, Q0 verdicts, results tables, criteria met or not met, limitations,
 deviations, files, Git commit.)*
