@@ -306,3 +306,10 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | this commit | Added `results/shared/audit_sensitivity/s{1..6}_*/` (outputs of the frozen S1–S6 scripts); M its README (§4 results, §5 summary) | AUDIT-SENS full runs on the pre-registered hashes |
 | this commit | M paper `sections/{00_abstract,07_results_information,10b_improvement,11_statistics,12_discussion,13_limitations,14_conclusion}.tex` (new §audit), `main.pdf` (44 pp); M `README.md`, `docs/{results_summary,research_overview,limitations_and_future_work}.md`, `docs/final_defense/{ANTICIPATED_REVIEW_QUESTIONS,RESULTS_VERIFICATION_TABLE}.md`, `reports/Latex_report/main.tex`, `presentation/gpt2_results_slides.md` | D38: conclusions revised to the AUDIT-SENS evidence |
 | this commit | M `src/tests/test_audit_sensitivity.py` (+3 paper-claim tests; suite 80 → 83); M `docs/{RESEARCH_PROGRESS,RESEARCH_DECISIONS,RESEARCH_ROADMAP,EXPERIMENT_RESULTS_SUMMARY,results_registry,EXPERIMENT_CHANGELOG}.md`, `docs/experiment_manifest.csv` (+6 rows) | Documentation rule; D37, D38 |
+
+## 2026-11-14 — TSP plan freeze
+* Added `src/sae/truth_subspace.py` (subspace estimation from group A, controls, losses) and
+  `src/tests/test_truth_subspace.py` (7 tests): new method code.
+* Added `scripts/geometry_of_truth/24_truth_subspace_diagnostics.py` (root-cause diagnostics, validation),
+  `25_truth_subspace_finetune.py`, `26_truth_subspace_evaluation.py`, `27_truth_subspace_analysis.py` (pilot).
+* Added `results/geometry_of_truth/truth_subspace_preservation/{README.md,preregistration.json,diagnostics/}`.

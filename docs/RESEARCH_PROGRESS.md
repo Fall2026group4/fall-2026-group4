@@ -1173,3 +1173,17 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * Gemma Scope;
   * a behavioural honesty task;
   * a per-polarity GoT re-analysis with SAEs.
+
+## 46. TSP: truth-subspace diagnostics and truth-subspace-preserving fine-tune pilot (2026-11-14). Status: IN PROGRESS (plan frozen; pilot running)
+
+* **Why:** R2 improved reconstruction and behaviour but not GoT truth (M5 0/34); truth-aware fine-tuning failed. User
+  instruction (2026-11-14): find why, and test a justified method under independent evaluation; validation only.
+* **Diagnostics (VALIDATION, existing checkpoints, `results/geometry_of_truth/truth_subspace_preservation/diagnostics/`,
+  script 24):** group-A truth subspace S (rank 8) is not low-variance on OWT (share 1.04–1.75); S alone carries linear
+  truth (0.832 vs 0.819); SAEs reconstruct S better than random subspaces, but the discriminative logistic direction is
+  reconstructed worse than a constant (relative error 0.86–3.87); truth is decodable from the error alone (0.72–0.83);
+  R2 halves S-error at L8 without changing the group-B re-fit gap; the old truth-aware pilot's failure is a frozen-MLP
+  readout distortion (re-fit readers: truth-aware 0.037 vs recon-only 0.060). Evidence: exploratory.
+* **Pilot plan:** `results/geometry_of_truth/truth_subspace_preservation/{README.md,preregistration.json}`; R2 TopK L8 ×
+  3 seeds; arms ctrl / tsp / rand / pca; group-B readers; co-primary frozen and re-fit logistic gaps; Holm over 2;
+  guards on OWT NMSE, ΔCE, persona, M4, L0.

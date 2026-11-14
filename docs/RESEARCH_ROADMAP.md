@@ -294,3 +294,10 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   interval (S1); 3 seeds alone cannot support cell-level confirmation of small effects.
 * NEW (P2): report architecture rankings on task prompts only at matched task L0 (S3).
 * NOT PLANNED without approval (training): R2-recipe SAEs at more layers; a valid JumpReLU (X3); Gemma Scope baselines.
+
+## 2026-11-14 (TSP)
+* IN PROGRESS: TSP truth-subspace diagnostics (done) and pilot (R2 TopK L8, validation only; §46 of the journal).
+* NEW (P1): corrected JumpReLU pilot (fixed λ with warm-up, ε and θ₀ rescaled to the E‖x‖² = 768 input scale,
+  threshold lr / parameterisation per the paper). The R2 failure is traceable to recipe differences, not the
+  architecture.
+* NEW (P2): R4 "compensation" follow-up: constrain the persona-contrast error (T_err) during KL fine-tuning.
