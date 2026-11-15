@@ -1,0 +1,90 @@
+# Progress Report: Weeks 10 to 12, Dhruv Rai (retrospective, written 2026-11-14)
+
+**This is a retrospective compilation, written on 2026-11-14 after the fact.** These entries were not submitted
+weekly. Every item comes from the Git history (`git log --all --author="basquedhruv\|Dhruv Rai"`) or from
+pull-request activity on GitHub. Weeks follow the numbering of the 2026-10-25 report (Week 9 = 2026-10-20 to 10-26).
+Teammates' work is not described here.
+
+## How this work maps to the project requirements
+
+Requirement sources, both read on `origin/sae-research` at `d5521c4`:
+* `docs/RESEARCH_ROADMAP.md` (as of 2026-11-10);
+* `docs/remediation/professor_review_compliance.md` (as of 2026-11-13), which quotes Instructor Review #8.
+
+Only mappings that hold literally are listed. Limits are stated where my work covers only part of a requirement.
+
+| Requirement (source) | My evidence | Limits |
+|---|---|---|
+| **C4, GoT causal test** (roadmap §5, P1): "e.g. patching or steering on `cities` statements with true/false preference as outcome". Current state there: "No GoT causal evidence exists" | `results/geometry_of_truth/causal_truth_steering/` on `dhruv-causal` (`989d313`): pre-registered steering test at layers 4/6/8/10, 600 norm-matched random controls per layer, graded positive control, BH within families. Labelled *confirmed test result*. Probe and SAE truth directions were not distinguishable from random directions | One task (cities), one model |
+| **S3, prompt-specific L0** (roadmap §4, P0): "Unaddressed; confounds every GoT/RepE architecture comparison" | `results/shared/sparsity_matched_truth_preservation/` (`989d313`): truth and honesty gaps compared at equal latents on the prompts (top-m, ±10 % matching rule). On GoT, TopK's apparent advantage came from using more latents | Validation finding, not test. The RepE prompts are length-confounded |
+| **G9, public-SAE baselines** (roadmap §3, P1), and **Review #8 critique 2**, "compare with larger or pretrained SAEs" (compliance row 19) | `results/shared/public_sae_spliced_evaluation/` (`989d313`): `gpt2-small-res-jb` at layers 0–11 and `gpt2-small-resid-post-v5-32k` (TopK, k = 32) at layers 1–11, spliced into GPT-2 with a norm-matched random-error control | Validation finding. Covers G9's splicing part only. The public SAEs are not sparsity-matched to ours |
+| **Review #8 peer-review rule**, "Before the next merge, the reviewer re-runs one result script and says what matched" (compliance row 15) | **#27:** re-ran `scripts/shared/m5_independent_verification.py`, all checks pass; showed the reported hash failures were a Windows line-ending (CRLF) false alarm. **#28:** confirmed the branch's files equal `167fadb` after the R3 move; re-derived the M6 numbers from the per-document rows (all match); ran the two M6 test files (59 passed, 1 failed: the H4a tolerance test, off by about 4e-8 on Windows) | — |
+| **R3**, "Gemma-2-2B ladder with Gemma Scope 16k SAEs at about 3 layers and several published L0s", marked *essential* by the 2026-11-10 independent review (roadmap §2) | PR #30 (`dhruv-gemma-r3`): pre-registration (`2118b3c`), Amendment 1 to Kaggle T4 x2 (`8ed8102`), implementation with 51 tests (`07e3c8f`), Kaggle fix (`2d395d0`). Run K0 is in progress on Kaggle | Covers the Pile ladder only. The same R3 entry also asks for the RepE-LM prompts to be re-tokenised and the K1/K2 gates re-run for Gemma; that part is split off as R3b and not started. No R3 results yet |
+| **Review #8 reproducibility**, "pinned environment, results versioning" (compliance row 17) | **Rebuild check** (`results/openwebtext/rebuild_reproducibility_check/`, `989d313`): all 108 in-house SAEs retrained from the committed configuration and compared row by row with the originals; max absolute differences were test EV 0.0013, L0 1.19 and cosine 0.0002. **R3 gate V9:** a resumed run must equal a fresh recomputation within relative difference 1e-6 | V9 is implemented and tested on CPU, but has not yet run on Kaggle |
+
+## Week 10 (2026-10-27 to 11-02)
+
+- **What I did:** no commits by me on any branch in this week.
+- **Evidence:** none in Git.
+- **Problems hit:** none recorded.
+- **Next steps:** none recorded.
+
+## Week 11 (2026-11-03 to 11-09)
+
+- **What I did:**
+  - Merged pull request #23 (`sae-research` into `main`: all-layer baselines, frozen probes, splicing, causal test,
+    layer-6 fine-tuning) on 2026-11-07.
+  - Started the `main` clean-up on branch `cleanup-main` (pull request #24): removed the old scripts, results and
+    cookbook contents from `main` (32 files).
+- **Evidence:** `33dcb9c` (merge of #23), `3cc0c70` (`cleanup-main`, #24).
+- **Problems hit:** the removal in `3cc0c70` also took out a CSV that a Geometry of Truth script needs at run time
+  (found and fixed in Week 12).
+- **Next steps:** finish #24; follow-up causal experiments.
+
+## Week 12 (2026-11-10 to 11-16; up to 2026-11-14)
+
+- **What I did:**
+  - **Causal follow-up experiments** on branch `dhruv-causal` (pull request #26, since closed): reanalysis of the
+    layer-6 causal test, SAE-in-the-loop test, frozen-probe error decomposition; sparsity-matched truth preservation,
+    GoT causal test, public SAE splicing, rebuild check; figures F1–F7. The causal scripts were changed to recompute
+    the final token exactly, so each run fits one Kaggle session.
+  - **`main` clean-up (#24):** restored `results/geometry_of_truth/sae_faithfulness_results.csv`, which GoT script 10
+    needs at run time.
+  - **R3, Gemma Scope width × L0 ladder (my experiment):**
+    - Pre-registration: 54 published Gemma Scope SAEs on M6's Pile sample, layers 5/12/19 (2026-11-13).
+    - Literature comparison: M6's numbers against the Gemma Scope, JumpReLU, SAEBench, TopK and end-to-end SAE papers.
+      At layer 12, M6 matches the Gemma Scope paper within about 5 % (values read from the paper's figures).
+    - Amendment 1 (2026-11-13, before any code or run): hardware moved from an AWS A10G to Kaggle T4 x2.
+    - Implementation (2026-11-14): scripts 05–07 (ladder runs, fp32 reference, resume with gate V9, gates V0–V10,
+      aggregate step, Q0b, figures), 51 tests, and a Kaggle runner notebook.
+    - Moved out of Simba's PR #28 into its own branch `dhruv-gemma-r3` at his request (2026-11-14), without rewriting
+      history: four commits cherry-picked, one revert commit on #28. R3 now has its own pull request, #30.
+    - Kaggle run K0: first attempts failed and were fixed (Kaggle secret name; Kaggle's preinstalled
+      torchvision/torchaudio breaking transformers with the pinned torch 2.7.0). K0 is running now.
+- **Evidence:**
+  - `dhruv-causal` (#26): `d9e14d2`, `eed77a7`, `68181e0`, `989d313` (all 2026-11-10).
+  - `cleanup-main` (#24): `d2f67aa` (2026-11-13).
+  - R3 on `dhruv-gemma-r3` (#30): `2118b3c` pre-registration, `b82e871` literature comparison, `8ed8102` Amendment 1,
+    `07e3c8f` implementation, `961dc60` branch move, `2d395d0` torchvision fix. The same first four were originally
+    `7130f42`, `8c7176b`, `4fd2706`, `24f6261` on #28.
+  - `2bab391` on `simba-gemma-m6-results` (#28): the single revert that took R3 out of #28.
+- **Problems hit:**
+  - The AWS account's free plan has no GPU instances, so R3 moved to Kaggle T4 x2. This dropped the planned
+    T4-vs-A10G comparison (Amendment 1).
+  - R3 had been committed into Simba's PR #28. He asked to keep #28 to M6 only, so it was moved out.
+  - Kaggle K0 attempts failed twice: wrong secret name, then the torchvision incompatibility (fixed in `2d395d0`).
+- **Next steps:**
+  - Let K0 finish. Check the hardware gate (V0), the smoke timings and the fp32 reference (V8).
+  - Re-project and run K1–K3 (Tier A) within the 30 h weekly Kaggle quota. Run Tier B only after Tier A passes,
+    and only before the 2026-11-22 technical freeze.
+  - Run the aggregate step, Q0b and the figures; write Section 2 of the R3 README.
+  - Get #30 reviewed; merge #28 before #30.
+
+## Pull-request reviews in this period (dates not recorded in Git)
+
+- **#27 (`sae-research`):** re-ran `scripts/shared/m5_independent_verification.py`; all checks pass. Found that the
+  reported hash failures were a Windows line-ending (CRLF) false alarm, not changed files.
+- **#28, #29, #22:** re-derived the M6 numbers from the per-document rows; all match. Slide 20 provenance fix.
+- **#28 (head `2bab391`, local check):** files equal `167fadb`; M6 test files 59 passed, 1 failed (H4a tolerance,
+  about 4e-8 on Windows); figures regenerated from the saved tables match the committed ones in content (not byte for
+  byte: different matplotlib version).
