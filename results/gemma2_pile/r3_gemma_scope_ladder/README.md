@@ -1,4 +1,4 @@
-# R3: Gemma Scope width and L0 ladder on The Pile, with an A10G rerun of M6 (2026-11-13). Status: DRAFT PRE-REGISTRATION (committed for team review; not run)
+# R3: Gemma Scope width and L0 ladder on The Pile, with an A10G rerun of M6 (2026-11-13). Status: PRE-REGISTERED (Amendment 1, Clarification 1); code implemented and tested on CPU; NOT RUN
 
 **Owner:** Dhruv Rai. **Roadmap:** R3 (see "Scope relative to the roadmap" below). **Builds on:** M6
 (`results/gemma2_pile/gemma_scope_splicing/`, branch `simba-gemma-m6-results`).
@@ -603,9 +603,77 @@ Everything else in Section 1 is unchanged:
 
 No code had been written and no run made when this amendment was committed.
 
+### Clarification 1 (2026-11-13, before any run): V6 active-latent agreement
+* **What is clarified:** M6 did not save which latents were active per token, so the ladder cannot compare its active
+  latents with M6's. V6's active-latent agreement (≥ 0.9999) therefore compares the **128-token-chunked SAE with the
+  unchunked SAE on the same activations** in the R3 run, for M6's three canonical 16k SAEs.
+* **Measure:** the fraction of (token, latent) active/inactive flags that are the same in both computations.
+* **Not changed:** the V6 tolerances and verdicts in Amendment 1 (1). The per-document sums are still compared with
+  M6's committed rows.
+
 ## 2. After execution
-*(To be completed after the run: runs, gates, Q0 verdicts, results tables, criteria met or not met, limitations,
+*(To be completed after the run: runs, gates, Q0b verdicts, results tables, criteria met or not met, limitations,
 deviations, files, Git commit.)*
 
+### Implementation details decided before any run (2026-11-14; no change to the scientific design)
+These are choices the pre-registration text left open, fixed in code before any GPU run.
+* **Files written:**
+  * `preregistration.json`: machine-readable copy of Section 1 + Amendment 1 + Clarification 1;
+  * `scripts/gemma/05_pile_gemma_scope_ladder.py`: runs K0–K6 and the CPU `--aggregate` step;
+  * `scripts/gemma/06_r3_precision_comparison.py`: Q0b;
+  * `scripts/gemma/07_r3_figures.py`: figures;
+  * `src/tests/test_gemma_r3_ladder.py`: tests;
+  * `notebooks/r3_kaggle_runner.ipynb`: Kaggle runner for one run step plus the V10 scan; outputs cleared.
+* **M6 code is reused, not edited:**
+  * `src/evaluation/pile_splicing.py`: SAE, hooks, masks, sums, bootstrap;
+  * `scripts/gemma/03_pile_gemma_scope_splicing.py`: `summarize()`, loaded from its file, so the metric definitions
+    are identical to M6;
+  * `scripts/gemma/04_pile_gemma_scope_figures.py`: figure style and the line-ending-normalised hashing.
+* **Per-SAE folder:**
+  * Timings, run id and peak memory go in `run_record.json`, not in `sae_info.json`. This keeps `sae_info.json`
+    deterministic, so "resumed equals fresh, byte for byte" can be tested.
+  * `DONE.json` hashes all four files.
+  * Result files are written with LF line endings and with fixed zip timestamps in the `.npz` files, so the same
+    run gives the same bytes on Linux and Windows.
+* **One extra check per SAE (V3, Section 1):** each SAE's recomputed original logits must have the same SHA-256 as
+  the layer's first original pass. A mismatch stops the run.
+* **H2, more than one SAE of a width inside a band:** the one whose measured L0 is closest to the target is used
+  (ties: lower L0). Any other is listed as `also_in_band`. This cannot happen with the release L0s; it can only
+  arise from measured L0s.
+* **H1 secondary (EV) and V6's EV check:** EV is computed over the pooled tokens of the resampled documents, with
+  the same resample for both SAEs or runs, because EV is defined over a set of tokens.
+* **Q0b EV:** each document's own EV, centred on that document's mean. Q0b compares per-document values.
+* **H3 standard error:** the standard deviation (ddof 1) of the 1,000 bootstrap means of d.
+* **fp32 device map:** the embedding, the output head (they share one weight) and layers 0–12 are on GPU 0; layers
+  13–25 and the final norm are on GPU 1.
+* **HF_TOKEN:** the notebook places it in its own process memory; script 05 never reads, prints or stores it.
+* **Budget projection after K0:** the K0 seconds per forward pass, an SAE encode/decode cost at 4 TFLOP/s fp32,
+  and a 50 MB/s download allowance.
+
+**Tests before any run (2026-11-14, local Windows, CPU, torch 2.11.0+cpu, transformers 5.17.0):**
+* `python -m pytest -q src/tests/test_gemma_r3_ladder.py`: **51 passed**.
+* Full suite: 128 passed, 2 failed, 5 errors, 1 skipped. All of these were already present before any R3 file
+  existed, and they are environment-specific: Windows Application Control blocks a pyarrow DLL (5 errors);
+  `zstandard` is not installed (1 skip); the M6 H4a test is off by 4e-8 with this torch; one shared-metrics test
+  fails. The A11 zero-skip suite must be run in the Kaggle environment before results are read.
+* **Dry runs on fake data (not results):** the `--aggregate` step, script 06 and script 07 were run on folders
+  built from M6's committed rows.
+  * With M6's rows unchanged, V6 returned M6 REPRODUCED EXACTLY at all three layers (largest relative difference
+    about 2.5e-16).
+  * The summaries reproduced M6's EV, L0, ΔCE and loss recovered exactly.
+* **GPU parts are not yet run anywhere:** V0, V1, model loading, SAE download, and the fp32 two-GPU split. Their
+  first execution is run K0.
+
 ## 3. If stopped early
-*(To be completed if needed: current status, existing artifacts, unfinished work, exact next steps.)*
+**Status 2026-11-14: paused before any run (pre-registered and implemented; nothing executed on a GPU).**
+* **Existing artifacts:** this README (Section 1, Amendment 1, Clarification 1, Section 2 implementation details),
+  `preregistration.json`, `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No result
+  files.
+* **Unfinished:** runs K0–K6, the `--aggregate` step, Q0b (script 06), the figures (script 07), Section 2 results.
+* **Exact next steps:**
+  1. Commit the code.
+  2. Put that commit's hash in the notebook's `COMMIT` setting.
+  3. Run K0 on Kaggle. Check V0, the smoke timings and the fp32 reference (V8).
+  4. Re-project K1–K6 from K0, then run K1–K3 within the weekly quota, then Tier B under the budget rule.
+  5. Download the outputs, only if V10 passed.
+  6. Run `--aggregate`, script 06 and script 07; fill in Section 2.
