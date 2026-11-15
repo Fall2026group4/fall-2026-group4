@@ -1,0 +1,198 @@
+{
+  "experiment": "gemma_scope_width_l0_ladder_pile",
+  "roadmap_id": "R3",
+  "preregistered_on": "2026-11-13",
+  "owner": "Dhruv Rai",
+  "status": "PLANNED",
+  "evidence_level_on_completion": "VALIDATION (Q0b, Q1-Q3 descriptive; H1-H3 pre-registered directional tests)",
+  "readme": "results/gemma2_pile/r3_gemma_scope_ladder/README.md (Section 1, Amendment 1, Clarification 1)",
+  "builds_on": {
+    "experiment": "M6 gemma_scope_splicing_pile",
+    "folder": "results/gemma2_pile/gemma_scope_splicing",
+    "code_commit": "13eaecabcf09ae4ee23f3fd169aa46d792261ca2",
+    "sample_commit": "a34d975",
+    "sample_manifest": "results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv",
+    "sample_info": "results/gemma2_pile/gemma_scope_splicing/sample_info.json",
+    "sample_manifest_sha256": "637b6404302120ad3fbc6282df32fb9df193c78f9092d35bd9a96b99e3da1aa3",
+    "per_doc_metrics": "results/gemma2_pile/gemma_scope_splicing/per_doc_metrics.csv"
+  },
+  "hardware": {
+    "platform": "Kaggle GPU T4 x2 (Amendment 1)",
+    "gpus": 2,
+    "gpu_name_contains": "T4",
+    "compute_capability": "7.5",
+    "bf16_native_expected": false,
+    "planning_limit_gb_per_gpu": 14.0,
+    "pinned_software": {"torch": "2.7.0+cu128", "transformers": "5.21.0"}
+  },
+  "model": {
+    "hf_id": "google/gemma-2-2b",
+    "dtype": "bfloat16",
+    "attn_implementation": "eager",
+    "revision": "c5ebcd40d208330abc697524c919956e692655cf",
+    "source": "Hugging Face only; Kaggle's own Gemma copy is never substituted"
+  },
+  "hook": {
+    "site": "resid_post",
+    "hf_module": "model.model.layers[L] output hidden state",
+    "transformer_lens_name": "blocks.{L}.hook_resid_post"
+  },
+  "layers": [5, 12, 19],
+  "sae": {
+    "hf_repo": "google/gemma-scope-2b-pt-res",
+    "hf_revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+    "architecture": "jumprelu",
+    "d_in": 2304,
+    "compute_dtype": "float32",
+    "encode_chunk_tokens": 128,
+    "widths_d_sae": {"16k": 16384, "32k": 32768, "65k": 65536, "131k": 131072, "262k": 262144,
+                     "524k": 524288, "1m": 1048576},
+    "canonical_m6_ids": {
+      "5": "layer_5/width_16k/average_l0_68",
+      "12": "layer_12/width_16k/average_l0_82",
+      "19": "layer_19/width_16k/average_l0_73"
+    },
+    "ladder": [
+      {"layer": 5, "width": "16k", "average_l0": [18, 34, 68, 143, 309], "tier": "A"},
+      {"layer": 5, "width": "65k", "average_l0": [17, 29, 53, 105, 211], "tier": "A"},
+      {"layer": 12, "width": "16k", "average_l0": [22, 41, 82, 176, 445], "tier": "A"},
+      {"layer": 12, "width": "32k", "average_l0": [12, 22, 40, 76, 155, 360], "tier": "A"},
+      {"layer": 12, "width": "65k", "average_l0": [21, 38, 72, 141, 297], "tier": "A"},
+      {"layer": 12, "width": "131k", "average_l0": [12, 20, 36, 67, 129, 264], "tier": "B"},
+      {"layer": 12, "width": "262k", "average_l0": [11, 21, 36, 67, 121, 243], "tier": "B"},
+      {"layer": 12, "width": "524k", "average_l0": [22, 29, 46, 65, 115, 227], "tier": "B"},
+      {"layer": 19, "width": "16k", "average_l0": [23, 40, 73, 137, 279], "tier": "A"},
+      {"layer": 19, "width": "65k", "average_l0": [21, 35, 63, 115, 216], "tier": "A"}
+    ],
+    "excluded": [
+      {"layer": 5, "width": "1m", "average_l0": [9, 13, 21, 36, 63, 114]},
+      {"layer": 12, "width": "1m", "average_l0": [19, 26, 58, 73, 107, 207]},
+      {"layer": 19, "width": "1m", "average_l0": [16, 18, 29, 50, 88, 157]}
+    ],
+    "excluded_reason": "fp32 weights (19.34 GB) exceed one 16 GB T4; splitting, bf16 weights or CPU offload would change the M6 protocol",
+    "substitution_allowed": false
+  },
+  "data": {
+    "hf_dataset": "monology/pile-uncopyrighted",
+    "revision": "3be90335b66f24456a5d6659d9c8d208c0357119",
+    "file": "val.jsonl.zst",
+    "bytes": 338045152,
+    "sha256": "db5e5d1532bf8dc33a6589b50ecba1a8c96f7b4b9cb343d168e603c393007c26",
+    "source_label_field": "meta.pile_set_name",
+    "test_file_used": false
+  },
+  "sampling": {
+    "doc_index": "0-based line number in val.jsonl.zst",
+    "rng": "numpy.random.default_rng(seed).permutation(n_lines)",
+    "seed": 42,
+    "min_text_tokens": 32,
+    "n_eval": 512,
+    "n_reference": 64,
+    "order": "read from M6's committed sample_manifest.csv; never regenerated",
+    "disjoint": true,
+    "holdout_reserve": "the next 512 eligible documents of the same permutation; never read by R3"
+  },
+  "tokenization": {
+    "tokenizer": "google/gemma-2-2b",
+    "revision": "c5ebcd40d208330abc697524c919956e692655cf",
+    "prepend_bos": true,
+    "max_tokens_including_bos": 1024,
+    "policy": "truncate: first window only, one window per document, no packing"
+  },
+  "positions": {
+    "bos": "never reconstructed, never spliced, excluded from all metrics",
+    "behaviour_predictions": "positions 1 <= t <= len-2",
+    "batch_size": 1
+  },
+  "conditions": {
+    "per_layer": ["original", "original_repeat", "identity", "mean_ablation"],
+    "per_sae": ["original (recomputed, must equal the layer's first pass bit for bit)", "sae_splice",
+                "norm_matched_random_error"]
+  },
+  "seeds": {
+    "random_error": "1000 + layer",
+    "random_error_reseed": "re-seeded at the start of each SAE's pass over the documents, documents in rank order",
+    "bootstrap": 0
+  },
+  "bootstrap": {"unit": "document", "n_resamples": 1000, "interval": "percentile 95%", "paired": true},
+  "low_n_source_threshold_docs": 20,
+  "determinism": {"tf32": false, "deterministic_algorithms": "strict", "cudnn_deterministic": true,
+                  "CUBLAS_WORKSPACE_CONFIG": ":4096:8", "use_cache": false},
+  "fp32_reference": {
+    "layer": 12,
+    "sae_id": "layer_12/width_16k/average_l0_82",
+    "n_docs": 64,
+    "docs": "first 64 evaluation documents by rank",
+    "conditions": ["original", "original_repeat", "identity", "sae_splice", "norm_matched_random_error"],
+    "device_map": "embedding, output head and layers 0-12 on GPU 0; layers 13-25 and final norm on GPU 1"
+  },
+  "margins": {
+    "delta_ce_sae": 0.005, "delta_ce_random": 0.005, "ce_original": 0.005, "kl_sae": 0.005,
+    "top1_agreement": 0.005, "explained_variance": 0.001
+  },
+  "questions": {
+    "Q0": "dropped (Amendment 1 (1))",
+    "Q0b": {
+      "bf16_primary": "M6 committed T4 rows", "bf16_also": "Kaggle T4 ladder rows",
+      "primary_metric": "delta_ce_sae",
+      "secondary_metrics": ["ce_original", "delta_ce_random", "kl_sae", "top1_agreement", "explained_variance"],
+      "within_margin_if": "95% CI upper bound of mean |bf16 - fp32| < margin",
+      "beyond_margin_if": "95% CI lower bound of mean |bf16 - fp32| > margin",
+      "otherwise": "INCONCLUSIVE"
+    },
+    "H1": {"order": "measured L0 ascending within (layer, width)",
+           "d": "dCE_SAE(lower L0) - dCE_SAE(higher L0), adjacent pairs",
+           "supported_if": "every pair 95% CI lower bound > 0", "contradicted_if": "any pair upper bound < 0",
+           "secondary_metric": "explained_variance (higher L0 predicted higher)"},
+    "H2": {"band_tolerance": 0.10, "anchor": "each 16k SAE; target = its measured Pile L0",
+           "members": "same layer, other widths, |measured L0 - target| <= 0.10 * target",
+           "d": "dCE_SAE(narrower) - dCE_SAE(wider), adjacent pairs by width",
+           "verdict": "intersection-union, as H1"},
+    "H3": {"d": "doc-mean dCE_SAE - doc-mean dCE_random, per SAE",
+           "p": "one-sided, normal approximation z = mean d / bootstrap SE", "correction": "Holm", "alpha": 0.05,
+           "holds_if": "Holm-significant for every evaluated SAE", "mostly_if": "at least two thirds",
+           "otherwise": "NOT GENERAL", "reversal": "95% CI upper bound < 0"}
+  },
+  "validity_gates": {
+    "V0": "two GPUs named Tesla T4, compute capability 7.5; bf16_native recorded; internet on; pinned config.json downloads with the Kaggle secret",
+    "V1": "as M6: data sha256, manifest sha256 = sample_info.json, 512 + 64 disjoint, text and token hashes match",
+    "V2": "hook activation equals hidden_states[L+1] exactly",
+    "V3_max_mean_kl_nats": 1e-6,
+    "V3_original_logits": "per-SAE recomputed original logits equal the layer's first pass bit for bit",
+    "V4_l0_factor": 2.0,
+    "V4": "measured L0 within factor 2 of release average_l0 and EV > 0; a failing SAE is excluded and reported",
+    "V5": "exactly the pinned IDs at the pinned revision; params.npz sha256 recorded",
+    "V6_exact_rel_tol": 1e-5,
+    "V6_active_latent_agreement_min": 0.9999,
+    "V6": "ladder vs M6 committed rows on the canonical 16k SAEs: EXACTLY / WITHIN MARGIN / FAILED",
+    "V7": "per-SAE GPU placement and peak memory per GPU recorded; OOM -> not evaluated",
+    "V8": "fp32 run: float32 parameters and logits, TF32 off, V2 and V3 pass",
+    "V9_rel_tol": 1e-6,
+    "V9_docs": 32,
+    "V9": "resumed run recomputes the first finished SAE (pre-registered order) on the first 32 eval documents and reused mean-ablation vectors; pass within relative difference 1e-6; bit-identity recorded separately",
+    "V10": "no exact token and no hf_[A-Za-z0-9]{30,} in any output file or log before outputs leave Kaggle"
+  },
+  "runs": {
+    "max_hours_per_run": 10.0,
+    "max_hours_per_week": 30.0,
+    "plan": {
+      "K0": "V0, smoke (8 eval + 4 reference docs), fp32 reference",
+      "K1": "layer 5, Tier A",
+      "K2": "layer 19, Tier A",
+      "K3": "layer 12, Tier A",
+      "K4": "layer 12, width 131k",
+      "K5": "layer 12, width 262k",
+      "K6": "layer 12, width 524k"
+    },
+    "tier_b_rule": "only after all Tier A runs pass their gates; whole width or nothing; must finish before the 2026-11-22 technical freeze"
+  },
+  "amendments": [
+    {"id": 1, "date": "2026-11-13", "before_any_run": true,
+     "change": "Hardware AWS A10G -> Kaggle T4 x2; Q0 and Part A1 dropped; Q0b = T4 bf16 vs fp32; T4 memory placement; Kaggle run plan K0-K6; per-SAE outputs with resume and gate V9; HF_TOKEN from Kaggle Secrets and gate V10.",
+     "reason": "The AWS free plan has no GPU instances."}
+  ],
+  "clarifications": [
+    {"id": 1, "date": "2026-11-13", "before_any_run": true,
+     "text": "V6 active-latent agreement compares the 128-token-chunked SAE with the unchunked SAE on the same activations (M6 did not save active-latent sets)."}
+  ]
+}

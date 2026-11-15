@@ -162,8 +162,38 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Hook:** `resid_post`, because that is where these SAEs were trained. Our GPT-2 SAEs use `resid_pre` (D4); the two are conventions of their SAE families.
 * **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
 
+## D22. R3 design and hardware: Gemma Scope width × L0 ladder on Kaggle T4 x2 (2026-11-13 to 2026-11-14)
+* **Decision** (made by the user, Dhruv Rai): R3 evaluates 54 published Gemma Scope residual SAEs on M6's sample.
+  * Tier A: 36 SAEs. Tier B: 18 SAEs (layer 12, widths 131k/262k/524k).
+  * Same data, metrics, controls and determinism settings as M6.
+  * The 1M width is excluded.
+  * This is a new pre-registered experiment, not a substitution in M6. D21's "no other width or L0" rule applies
+    to M6's own SAEs, which are unchanged.
+* **Hardware (R3 Amendment 1):** Kaggle's free GPU T4 x2 instead of an AWS A10G, because the AWS account's free plan
+  has no GPU instances.
+  * **Consequence:** the T4 vs A10G question (Q0) and the A10G rerun of M6 are dropped.
+  * R3 runs on the same GPU class as M6. Gate V6 checks that comparability against M6's committed rows instead of
+    assuming it.
+  * Q0b asks how far T4 bf16 is from fp32 (layer 12, 16k SAE, 64 documents).
+  * **Alternative:** paid A10G time (not available on the free plan).
+* **Running within Kaggle limits:** each session is at most 12 h and the GPU quota is 30 h per week.
+  * Tier A is split into runs K0–K3, each planned at ≤ 10 h. Tier B (K4–K6) runs only after Tier A passes its gates,
+    only within the quota, and only if it can be documented before the 2026-11-22 freeze.
+  * Each SAE writes its own folder, with `DONE.json` written last; a resumed run skips finished SAEs.
+* **Resume check (gate V9, as changed by the user on 2026-11-13):** a resumed run passes if every recomputed value
+  matches the stored one within relative difference 1e-6. The mean-ablation vector uses the same tolerance on the
+  norm of the difference. Bit-identity is recorded separately and is not required. Only a larger difference stops
+  the run.
+  * **Reason:** a strict bit-for-bit rule could stop a valid run over harmless floating-point noise.
+  * **Alternative:** bit-identity required (rejected by the user).
+* **Credentials (gate V10):** the Hugging Face token comes from Kaggle Secrets into process memory only. All outputs
+  are scanned for it before they leave Kaggle; any hit means nothing is downloaded and the token is revoked.
+* **Clarification 1:** V6's active-latent agreement compares the chunked with the unchunked SAE on the same
+  activations, because M6 saved no active-latent sets.
+* **Scope:** the RepE-LM / K1–K2 part of the roadmap's R3 is split off as R3b, with its own pre-registration.
+
 ## Unresolved hypotheses
-* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
+* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k. *(2026-11-14: for Gemma's published SAEs, width at matched L0 is pre-registered as R3's H2 (D22); not run yet.)*
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. Not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. Untested for ReLU/JumpReLU and other layers.
