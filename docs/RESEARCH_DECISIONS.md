@@ -479,3 +479,23 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   sensitivity check.
 * **The evaluation code is frozen separately,** before any Phase 1 SAE is evaluated. The metric definitions are
   already fixed here.
+
+
+## D43. TSP-R verdict and what may be claimed (2026-11-15). Status: DECIDED (by the frozen rules)
+
+* **Claimable (validation, confirmatory, in-distribution):**
+  * On GPT-2 Small L8 R2 TopK SAEs, the truth-subspace penalty reduces the loss of re-fittable linear truth
+    information on held-out city–country statements by 0.021 AUROC versus the identical fine-tune without the penalty.
+  * The effect is truth-specific (vs label-shuffled and random subspaces) and also visible in MLP readers (smaller).
+  * It costs nothing measurable in OWT reconstruction, ΔCE or KL.
+* **Must be qualified:** TRADE-OFF by the frozen rule. Persona and M4 non-inferiority was not demonstrated because
+  the bounds are imprecise (estimates ≈ 0).
+* **Not claimable:**
+  * transfer to other truth families: companies, common_claim and counterfact relations are all null;
+  * "general truth preservation";
+  * any frozen-gap result as information preservation (readout metric).
+* **Lesson for future guards:** behavioural guards need per-item outputs to support a paired statement bootstrap.
+  Ladder-CI approximations are too conservative to establish non-inferiority.
+* **Next candidates** (not started; each needs its own pre-registration):
+  * a multi-family "universal" truth subspace aimed at transfer (Q2);
+  * a precision rerun of the persona/M4 guards with per-item paired bootstraps on the existing checkpoints.

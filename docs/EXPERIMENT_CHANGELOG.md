@@ -366,3 +366,18 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   * It passed on attempt 2. Attempt 1 found a zero-se division bug, now fixed.
 * Added `replication/eval_freeze.json` (hashes) and `replication/eval_integration_test.json`. `.gitignore`: the smoke
   and eval caches.
+
+## 2026-11-15 — TSP-R Phase 1 executed (training + evaluation)
+* Created checkpoints (gitignored):
+  * `results/openwebtext/r2_tspr_base_seeds/` (5 bases; `training_info.json` and `training_monitor.csv` committed);
+  * `replication/checkpoints/` (120 fine-tunes).
+* Committed:
+  * `replication/run_ledger.csv`, `base_qc.json`, `smoke_repro/repro.json`;
+  * `eval/ladder_fold0.{csv,json}`;
+  * `eval/analysis/*` (cities analysis committed first, then TEST families and the final verdict);
+  * README.
+* `scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py`: fix 1 (`allow_pickle=True` for the final stage's own
+  npz; no metric change).
+* `src/sae/checkpoint_registry.py`: added families `got_tspr_replication`, `owt_r2_tspr_base`, `got_tspr_smoke`. The
+  registry was rebuilt (780 checkpoints).
+* The journal (§50), results summary, D43, roadmap, results registry and manifest were updated.

@@ -1289,18 +1289,29 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Next, after approval:** repro check → 5 new bases + QC → 120 fine-tunes (≈ 5–6.5 GPU-h) → freeze the evaluation
   code → evaluation (≈ 5–8 CPU-h).
 
-## 50. TSP-R Phase 1: training and cities analysis (2026-11-15). Status: cities analysis COMPLETED and committed before any TEST access; fresh-family TEST stage pending
+## 50. TSP-R Phase 1: replication of the TSP fine-tune (2026-11-15). Status: COMPLETED (VALIDATION, confirmatory; pre-registered D42)
 
-* **Training:**
-  * The repro check matched bit-for-bit (max |Δw| = 0).
-  * 5 new bases: QC passed (EV 0.90510–0.90542 vs 0.90525–0.90531; 99,999,744 tokens; L0 128; 0 dead).
-  * 120 / 120 fine-tunes completed (≈ 115 s each; L0 = 128 in every run; ledger with SHA-256s).
-* **Cities (pre-registered primary):**
-  * H1 tsp − ctrl re-fit logistic gap −0.0207 [−0.0261, −0.0153], p 7e-10, 8/8 seeds.
-  * Gatekeeping: H2 vs shuf and H3 vs rand both rejected.
-  * Labels: SUPPORTED (meaningful); truth-specific; linear and nonlinear.
+* **Execution:** every stopping rule passed.
+  * The repro check is bit-identical.
+  * 5 new bases passed QC (EV within 0.0002 of the originals; full tokens; L0 128; 0 dead).
+  * 120 / 120 fine-tunes ran, with L0 = 128 in every run.
+  * The cities analysis was committed (`a6a514f`) before any fresh TEST access.
+* **Primary (cities, 635 cross-fitted groups, 8 seeds)** — re-fit logistic gap:
+  * H1 tsp − ctrl −0.0207 [−0.0261, −0.0153], p 7e-10, 8/8 seeds;
+  * H2 vs shuf −0.0202, H3 vs rand −0.0220 (both rejected under gatekeeping).
+  * **SUPPORTED (meaningful); truth-specific; linear and nonlinear** (MLP −0.0032 [−0.0054, −0.0011]).
+  * No distortion: tsp's absolute gap is 0.0117, still > 0.
+  * Every sensitivity analysis agrees: two-way bootstrap, pilot rule, old/new seeds, each fold, the 523
+    previously-train-only cities.
 * **Cost guards:**
-  * OWT NMSE, ΔCE and KL pass.
-  * The persona and M4 guards fail by the frozen rule because of wide bounds. Their point estimates are ≈ 0.
-  * → TRADE-OFF qualifier (see the README).
-* **Next:** locked TEST stage (companies, common_claim, counterfact), then the final verdict.
+  * OWT NMSE, ΔCE and KL non-inferior (bounds ≤ +0.54 %).
+  * The persona and M4 guards fail by the frozen rule because of imprecise bounds (estimates −0.002 / +0.004). This
+    gives the TRADE-OFF qualifier: non-inferiority not demonstrated, not violated.
+* **Locked TEST families:**
+  * companies −0.0036 [−0.0129, +0.0057];
+  * common_claim −0.0012 (no distortion);
+  * counterfact (exploratory) +0.0008 [−0.0026, +0.0043] despite ≈ 0.016 headroom.
+  * → no transfer beyond cities.
+* **Evidence label:** validation, confirmatory (in-distribution). Transfer claims remain unsupported.
+* **Deviation:** a loader fix in the `final` stage (`allow_pickle`); no metric changed.
+* Folder: `results/geometry_of_truth/truth_subspace_preservation/replication/`.

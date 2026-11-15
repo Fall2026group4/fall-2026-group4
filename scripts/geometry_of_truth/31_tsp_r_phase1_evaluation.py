@@ -599,13 +599,13 @@ def extract(model, statements, bs=32):
 
 def test_estimates(fam):
     d = EV / 'test'
-    o = dict(np.load(d / f'{fam}__orig.npz'))
+    o = dict(np.load(d / f'{fam}__orig.npz', allow_pickle=True))   # own output; groups saved as object array (fix 1)
     W = T.group_bootstrap_counts(o['groups'], N_BOOT, np.random.default_rng(BOOT_SEED + 50 + list(FRESH).index(fam)))
     ob = T.weighted_auroc(o['y'], o['logistic'], W)
     oa = float(o['auroc'])
     gap = {}
     for s in sae_list():
-        z = dict(np.load(d / f"{fam}__{s['sae_id']}.npz"))
+        z = dict(np.load(d / f"{fam}__{s['sae_id']}.npz", allow_pickle=True))
         assert str(z['sha256']) == s['sha256']
         for rd in ('refit_logistic', 'frozen_logistic'):
             pt = oa - T.weighted_auroc(o['y'], z[rd])

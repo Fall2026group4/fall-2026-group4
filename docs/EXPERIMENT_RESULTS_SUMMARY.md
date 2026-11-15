@@ -801,3 +801,21 @@ Source: `results/geometry_of_truth/truth_subspace_preservation/verification/`.
 * P1, cities cross-fitting (635 groups): power ≈ 0.97–0.99 at −0.020 with 8 seeds.
 
 Source: `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`.
+
+
+## TSP-R Phase 1 (2026-11-15; VALIDATION, confirmatory, pre-registered)
+
+| Quantity | tsp − ctrl [95 % CI] | Decision |
+|---|---|---|
+| **H1** cities re-fit logistic gap (8 seeds, 635 groups) | **−0.0207 [−0.0261, −0.0153]**, p 7e-10, 8/8 | SUPPORTED (meaningful) |
+| H2 vs shuf / H3 vs rand | −0.0202 [−0.0267, −0.0137] / −0.0220 [−0.0274, −0.0166] | both rejected → truth-specific |
+| Cities re-fit MLP 10 × 64 / 5 × 256 | −0.0032 [−0.0054, −0.0011] / −0.0069 [−0.0125, −0.0012] | linear and nonlinear |
+| Cities frozen logistic (readout) | −0.0348 [−0.0409, −0.0287] | — |
+| Absolute re-fit gap, base / ctrl / tsp | 0.0675 / 0.0324 / 0.0117 | no distortion |
+| OWT NMSE / ΔCE / KL relative | +0.02 % / −0.25 % / +0.06 % (bounds ≤ +0.54 %) | non-inferior |
+| Persona gap / M4 | −0.0020 (bound +0.033) / +0.0037 (bound −0.061) | not demonstrated (imprecise) → TRADE-OFF |
+| companies TEST (secondary) | −0.0036 [−0.0129, +0.0057] | no detectable transfer |
+| common_claim TEST (distortion check) | −0.0012 [−0.0034, +0.0010] | no distortion |
+| counterfact TEST (exploratory) | +0.0008 [−0.0026, +0.0043] | no transfer |
+
+Source: `results/geometry_of_truth/truth_subspace_preservation/replication/`.

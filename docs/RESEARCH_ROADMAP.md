@@ -315,10 +315,13 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
     * Amendment proposed (D41): P1 becomes the sole primary; companies a secondary; common_claim an enhancement
       check.
   * DONE 2026-11-15: TSP-R Phase 1 pre-registration frozen (D42; `replication/`).
-  * NEXT (awaiting explicit launch approval): repro check → 5 new base SAEs + QC → 120 fine-tunes → freeze the
-    evaluation code → evaluation.
-  * TODO with the training commit: add checkpoint-registry families for `replication/checkpoints/` and
-    `r2_tspr_base_seeds/`.
+  * DONE 2026-11-15: TSP-R Phase 1 (D43). Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear;
+    TRADE-OFF qualifier (imprecise persona/M4 guards); no transfer to companies / common_claim / counterfact.
+  * NEW (P1, needs a pre-registration; no training): paired per-item persona/M4 guard re-evaluation of the existing
+    TSP-R fold-0 checkpoints.
+  * NEW (P2, needs a pre-registration): multi-family truth subspace for transfer (Q2), evaluated on the locked
+    fresh-family TEST splits only after a new DEV-based design.
+  * DONE: checkpoint-registry families for `replication/checkpoints/` and `r2_tspr_base_seeds/`.
   * Phase 1 (≈ 10–13 h): 8 base seeds (5 new R2 TopK L8) × 5 arms (ctrl / tsp / rand / pca / label-permuted S) ×
     3 folds.
 * NEW (P2, after TSP-R): multi-family "universal" truth subspace (general + polarity directions), separately
