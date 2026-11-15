@@ -46,7 +46,8 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
   * M6 evidence-bundle commit from Ronin: `per_doc_sum_x.npz` (SHA-256 `3b2becfb…` in `run_info.json`) and `smoke_hardened/` (H4a values, sae-lens diagnostic, binding V4 check). Not the older `smoke/` folder.
   * DONE: post-run A11 verification on Ronin (M6 code/results branch, after the full run): 85 passed, 0 failed, 0 skipped.
   * Merge or cherry-pick the M6 branches to the team branch only with the owner's approval.
-* **R3 Gemma Scope width × L0 ladder (Dhruv Rai; D22):** IN PROGRESS. Pre-registered with Amendment 1 (Kaggle
+* **R3 Gemma Scope width × L0 ladder (Dhruv Rai; D22; branch `dhruv-gemma-r3`, its own PR, separate from M6's
+  PR #28):** IN PROGRESS. Pre-registered with Amendment 1 (Kaggle
   T4 x2) and Clarification 1. Code, tests (51 passed on CPU) and the Kaggle notebook are written. **Not run.**
   * Next: commit; run K0 on Kaggle (V0, smoke timings, fp32 reference); then K1–K3 within the weekly quota.
   * Tier B (K4–K6) only after Tier A passes its gates, and only before the 2026-11-22 freeze.
@@ -103,7 +104,7 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
 | M5 | Gemma version of the best GPT-2 improvement (e.g. Method A), only if M3 works | PLANNED | P2 |
 | M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D21) | DONE (2026-11-12; COMPLETED, VALIDATION; results `0dbfc80`; H-G1 supported at 5/12/19). Follow-ups in §2 | P0 (team plan: technical contribution before the freeze) |
-| R3 | **Gemma Scope width × L0 ladder on The Pile** (named R3 on `sae-research`): M6's sample, data and controls; 54 pinned SAEs (Tier A 36, Tier B 18; 1M excluded) at layers 5/12/19; H1 L0 within width, H2 width at matched L0, H3 H-G1 across the ladder, Q0b T4 bf16 vs fp32. Pre-registration `results/gemma2_pile/r3_gemma_scope_ladder/` (D22) | IN PROGRESS (pre-registered; implemented; NOT RUN). Runs K0–K6 on Kaggle T4 x2 | P1 |
+| R3 | **Gemma Scope width × L0 ladder on The Pile** (named R3 on `sae-research`): M6's sample, data and controls; 54 pinned SAEs (Tier A 36, Tier B 18; 1M excluded) at layers 5/12/19; H1 L0 within width, H2 width at matched L0, H3 H-G1 across the ladder, Q0b T4 bf16 vs fp32. Pre-registration `results/gemma2_pile/r3_gemma_scope_ladder/` (D22); branch `dhruv-gemma-r3` | IN PROGRESS (pre-registered; implemented; NOT RUN). Runs K0–K6 on Kaggle T4 x2 | P1 |
 | R3b | **RepE-LM prompts re-tokenised for Gemma and the K1/K2 gates re-run** (the part of `sae-research`'s R3 not covered by the ladder) | PLANNED; needs its own pre-registration | P2 |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)

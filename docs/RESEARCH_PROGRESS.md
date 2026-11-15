@@ -485,7 +485,7 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Natural source mixture; 10 of 16 sources LOW-N.
 * **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.
 
-## 20. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `simba-gemma-m6-results`; Dhruv Rai). Status: IN PROGRESS: pre-registered and implemented, NOT RUN
+## 20. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai). Status: IN PROGRESS: pre-registered and implemented, NOT RUN
 
 * **Why:** M6 measured one width-16k SAE per layer. For Gemma, the only lever on reconstruction that needs no
   training is to move along the published width × L0 ladder. R3 measures that trade-off with M6's data, metrics and
