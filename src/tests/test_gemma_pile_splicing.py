@@ -309,8 +309,10 @@ def test_A1_assert_finite_rejects_nan_and_inf():
 
 def test_A1_nonfinite_columns_finds_bad_numeric_columns_only():
     pd = pytest.importorskip('pandas')
-    df = pd.DataFrame({'a': [1.0, 2.0], 'b': [1.0, np.inf], 'c': [np.nan, 1.0], 'name': ['x', 'y'],
-                       'flag': [True, False]})
+    # Text column as object dtype, as under pandas 2.3.3 used by the M6 run. pandas 3 defaults text to StringDtype,
+    # which np.issubdtype in the run-time helper cannot interpret; the helper is kept byte-identical to the run.
+    df = pd.DataFrame({'a': [1.0, 2.0], 'b': [1.0, np.inf], 'c': [np.nan, 1.0],
+                       'name': pd.Series(['x', 'y'], dtype=object), 'flag': [True, False]})
     assert ps.nonfinite_columns(df) == ['b', 'c']
     assert ps.nonfinite_columns(df, ['a']) == []
 
