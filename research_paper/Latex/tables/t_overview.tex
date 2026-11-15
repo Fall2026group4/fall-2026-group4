@@ -1,0 +1,24 @@
+% hand-written study overview (no new numbers; every value appears in the generated tables or result READMEs)
+\begin{table}[t]
+\centering
+\small
+\caption{Study overview. GPT-2 and Gemma use different SAE families, hook conventions and data, so their results are
+reported side by side and never ranked against each other.}
+\label{tab:overview}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lll}
+\toprule
+ & GPT-2 Small & Gemma-2-2B \\
+\midrule
+Layers and site & all 12 layers, \texttt{blocks.$L$.hook\_resid\_pre} & layers 5, 12, 19, \texttt{blocks.$L$.hook\_resid\_post} \\
+SAEs & in-house ReLU, TopK, JumpReLU (sigmoid surrogate); & public Gemma Scope JumpReLU, width 16{,}384 \\
+ & width 3{,}072, target L0 128, 3 seeds (108 SAEs); & (pinned IDs \texttt{average\_l0\_68/82/73}) \\
+ & data-scaled R2 SAEs, width 12{,}288; public \texttt{gpt2-small-res-jb} & \\
+Datasets & OpenWebText; Geometry of Truth (\texttt{cities}, \texttt{neg\_cities}); RepE-LM & The Pile (validation file) \\
+Levels evaluated & reconstruction, information, behaviour, causal & reconstruction, behaviour \\
+Strongest evidence & \evlabel{test} (reconstruction), \evlabel{confirmed test} (R2/R4 scaling), & \evlabel{validation} \\
+ & \evlabel{validation} (information, causal) & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

@@ -1,0 +1,14 @@
+\section{Conclusion}\label{sec:conclusion}
+
+Sparse autoencoders can reconstruct language-model activations well while failing to preserve all of the information
+and causal structure that the model uses. In GPT-2 Small, reconstruction quality depended on layer and architecture,
+and within a layer it robustly predicted how much splicing an SAE damaged next-token prediction, but it did not robustly
+predict truth-information loss, persona information was lost even by SAEs that reconstructed well, and at later sites
+the reconstruction retained only about two-thirds of a located causal effect. Improvement is possible but
+level-specific. Scaling data and width substantially improved reconstruction and behavioural faithfulness on held-out
+data without a confirmed gain in truth information, and behaviour-targeted training improved behaviour at a cost in
+reconstruction and causal preservation. In Gemma-2-2B, public Gemma Scope SAEs again produced more behavioural damage
+than norm-matched random errors. No single metric establishes that an SAE is faithful. Reconstruction quality is
+necessary evidence, but it is insufficient by itself, and future SAE evaluations should report reconstruction,
+information, behavioural and causal evidence separately, with the reader, the reference constraint and the evidence
+status stated for each.

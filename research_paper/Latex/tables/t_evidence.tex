@@ -1,0 +1,40 @@
+% hand-written evidence-status and provenance table (no numbers; labels from docs/results_registry.md and result READMEs)
+\begin{table}[ht]
+\centering
+\small
+\caption{Evidence status and provenance of every experiment used in this paper. Paths are relative to
+\texttt{results/}. Historical results that are superseded (original length-confounded RepE probes, early steering,
+the circular truth-aware objective) are kept in the repository but are not used as evidence.}
+\label{tab:evidence}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llll}
+\toprule
+Experiment & Level & Evidence label & Result folder \\
+\midrule
+OWT reconstruction, 108 SAEs & reconstruction & \evlabel{test} & \texttt{openwebtext/reconstruction\_evaluation/uninterrupted\_protocol/} \\
+Phase-0 splicing & behaviour & \evlabel{validation} & \texttt{openwebtext/spliced\_evaluation/} \\
+M0 within-layer reanalysis & behaviour, information & \evlabel{validation} & \texttt{shared/m0\_within\_layer\_reanalysis/} \\
+M1 RepE-LM construction gates & task validity & \evlabel{validation} (train gates) & \texttt{repe/repe\_lm\_gates/} \\
+M2 four-level information & information & \evlabel{validation} & \texttt{shared/m2\_four\_level\_faithfulness/} \\
+RLM-RP persona preservation & information & \evlabel{validation} & \texttt{repe/repe\_lm\_representation\_preservation/} \\
+PCA-CM capacity-matched PCA & information & \evlabel{validation} & \texttt{shared/pca\_capacity\_matched/} \\
+M3 causal site sweep & causal (original model) & \evlabel{validation} & \texttt{repe/causal\_site\_sweep/} \\
+M4 causal decomposition & causal & \evlabel{validation} & \texttt{repe/sae\_patch\_decomposition/} \\
+R5 low-rank causal reference & causal & \evlabel{validation} (descriptive) & \texttt{repe/r5\_causal\_subspace\_skyline/} \\
+Method A, IMP-L, output-KL & all levels & \evlabel{validation} & \texttt{geometry\_of\_truth/\{method\_a,e2e\_inspired\}\_layer6/}, \texttt{geometry\_of\_truth/multilayer\_finetune/} \\
+E3 causal preservation after fine-tuning & causal & \evlabel{validation} & \texttt{repe/e3\_finetuned\_causal\_preservation/} \\
+R2 data-scaled SAEs & all levels & \evlabel{validation}; OWT/GoT \evlabel{confirmed test} & \texttt{openwebtext/r2\_scaled\_saes/} \\
+R4 KL fine-tune at fixed L0 & all levels & \evlabel{validation}; OWT/GoT \evlabel{confirmed test} & \texttt{openwebtext/r4\_kl\_finetune/} \\
+M5 confirmatory test pass & reconstruction, behaviour, information & \evlabel{confirmed test} & \texttt{shared/m5\_confirmatory\_test/} \\
+E2 public \texttt{gpt2-small-res-jb} & information, causal & \evlabel{validation} & \texttt{shared/e2\_public\_sae\_reference/} \\
+M6 Gemma Scope on The Pile & reconstruction, behaviour & \evlabel{validation} & \texttt{gemma2\_pile/gemma\_scope\_splicing/} \\
+\midrule
+E1 task-L0-matched TopK & information, causal & draft pre-registration, not run & \texttt{shared/e1\_task\_l0\_matched\_topk/} \\
+SIL mediated SAE-in-the-loop & causal & \evlabel{pre-registered only} & \texttt{repe/sae\_in\_the\_loop\_mediation/} \\
+RepE-LM held-out test & information, causal & protocol frozen, no results & \texttt{repe/repe\_lm\_test\_protocol/} \\
+PCA-CM test confirmation & information & \evlabel{pre-registered only} & \texttt{shared/pca\_capacity\_matched\_test\_protocol/} \\
+R3 Gemma Scope width $\times$ L0 & reconstruction, behaviour & \evlabel{pre-registered only} (separate PR) & not merged \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
