@@ -355,3 +355,14 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   plan_matrix.csv, plan_info.json, subspaces.npz (dry-run outputs).
 * The journal (§49), D42, roadmap and registry were updated. No checkpoints were created; the pilot and all
   historical results are unchanged.
+
+## 2026-11-15 — TSP-R Phase 1 evaluation code frozen (second freeze; before any training)
+* Added `scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py` (stages cities / owt / ladder / analyze / test /
+  final) and `src/evaluation/tspr_stats.py` (weighted bootstrap AUROC, hierarchical seed + statement se with
+  Satterthwaite df, gatekeeping with Holm, labels, non-inferiority).
+* Added unit tests `src/tests/test_tspr_stats.py` (7) and the integration test
+  `scripts/geometry_of_truth/31b_tsp_r_eval_integration_test.py`.
+  * The integration test used identical arms plus a null-decoder arm on existing checkpoints; no training, no TEST.
+  * It passed on attempt 2. Attempt 1 found a zero-se division bug, now fixed.
+* Added `replication/eval_freeze.json` (hashes) and `replication/eval_integration_test.json`. `.gitignore`: the smoke
+  and eval caches.
