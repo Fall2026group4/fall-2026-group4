@@ -1288,3 +1288,19 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * The shuf control holds 8 % of an independent truth direction (S_tsp 50–55 %).
 * **Next, after approval:** repro check → 5 new bases + QC → 120 fine-tunes (≈ 5–6.5 GPU-h) → freeze the evaluation
   code → evaluation (≈ 5–8 CPU-h).
+
+## 50. TSP-R Phase 1: training and cities analysis (2026-11-15). Status: cities analysis COMPLETED and committed before any TEST access; fresh-family TEST stage pending
+
+* **Training:**
+  * The repro check matched bit-for-bit (max |Δw| = 0).
+  * 5 new bases: QC passed (EV 0.90510–0.90542 vs 0.90525–0.90531; 99,999,744 tokens; L0 128; 0 dead).
+  * 120 / 120 fine-tunes completed (≈ 115 s each; L0 = 128 in every run; ledger with SHA-256s).
+* **Cities (pre-registered primary):**
+  * H1 tsp − ctrl re-fit logistic gap −0.0207 [−0.0261, −0.0153], p 7e-10, 8/8 seeds.
+  * Gatekeeping: H2 vs shuf and H3 vs rand both rejected.
+  * Labels: SUPPORTED (meaningful); truth-specific; linear and nonlinear.
+* **Cost guards:**
+  * OWT NMSE, ΔCE and KL pass.
+  * The persona and M4 guards fail by the frozen rule because of wide bounds. Their point estimates are ≈ 0.
+  * → TRADE-OFF qualifier (see the README).
+* **Next:** locked TEST stage (companies, common_claim, counterfact), then the final verdict.
