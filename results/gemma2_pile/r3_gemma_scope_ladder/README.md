@@ -649,6 +649,14 @@ These are choices the pre-registration text left open, fixed in code before any 
 * **HF_TOKEN:** the notebook places it in its own process memory; script 05 never reads, prints or stores it.
 * **Budget projection after K0:** the K0 seconds per forward pass, an SAE encode/decode cost at 4 TFLOP/s fp32,
   and a 50 MB/s download allowance.
+* **Kaggle environment fix: torchvision and torchaudio removed.** Kaggle preinstalls torchvision 0.26, built for
+  torch 2.11.
+  * **What happened:** with the pinned torch 2.7.0, transformers' import failed while loading Gemma ("operator
+    torchvision::nms does not exist"), and the Kaggle run crashed.
+  * **The fix:** the notebook's install cell now ends with `pip uninstall -y -q torchvision torchaudio`.
+  * **Why this is safe:** R3 uses neither package; transformers needs torchvision only for image models.
+  * **Not changed:** the protocol. torch 2.7.0+cu128 and transformers 5.21.0 stay pinned, as in M6, and the model,
+    SAEs, data, metrics, gates and criteria are unchanged.
 
 **Tests before any run (2026-11-14, local Windows, CPU, torch 2.11.0+cpu, transformers 5.17.0):**
 * `python -m pytest -q src/tests/test_gemma_r3_ladder.py`: **51 passed**.
