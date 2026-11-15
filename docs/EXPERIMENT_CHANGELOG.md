@@ -346,3 +346,12 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 * `.gitignore`: raw fresh downloads (`data/got/fresh/raw_*/`; no upstream licence). The DEV activations under
   `data/got/activations/gpt2_small/fresh_phase0/` and the logs stay local.
 * The journal (§48), D41, results summary, roadmap, registry and manifest were updated. No checkpoints were created.
+
+## 2026-11-15 — TSP-R Phase 1 pre-registration (no training)
+* Added `scripts/geometry_of_truth/30_tsp_r_phase1_training.py`: stages plan / repro / base / base_qc / finetune. It
+  reuses `run_one` from script 25 and `train` from script 17 unchanged (constants patched only); atomic saves; a
+  resumable run ledger.
+* Added `results/geometry_of_truth/truth_subspace_preservation/replication/`: README, preregistration.json,
+  plan_matrix.csv, plan_info.json, subspaces.npz (dry-run outputs).
+* The journal (§49), D42, roadmap and registry were updated. No checkpoints were created; the pilot and all
+  historical results are unchanged.

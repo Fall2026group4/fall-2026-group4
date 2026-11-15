@@ -462,3 +462,20 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Rejected options:**
   * Re-splitting counterfact by entity: TEST is locked by relation.
   * Lowering the 0.70 threshold: it is frozen.
+
+
+## D42. TSP-R Phase 1 frozen design (2026-11-15). Status: DECIDED (pre-registration frozen; launch awaits approval)
+
+* D41 was approved in principle by the user; 8 seeds and 120 runs.
+* Cities (cross-fitted) are the sole confirmatory dataset. The random-effects P2 is withdrawn.
+* **Hypothesis family:** H1 tsp < ctrl as the gate, then Holm over H2 tsp < shuf and H3 tsp < rand. pca is outside
+  the family.
+* **Uncertainty and threshold:** Satterthwaite df with a seed + city-bootstrap se; SESOI 0.010 with TOST
+  equivalence.
+* **Labels:** information-vs-readout and distortion qualifiers.
+* **Guards:** non-inferiority vs ctrl with one-sided 95 % bounds.
+* **New base seeds** reuse script 17's `train()` with SEEDS patched and write to a new folder. They are exchangeable
+  with the originals: same recipe and tokens, a different random batch order. Old-vs-new seeds is a pre-registered
+  sensitivity check.
+* **The evaluation code is frozen separately,** before any Phase 1 SAE is evaluated. The metric definitions are
+  already fixed here.

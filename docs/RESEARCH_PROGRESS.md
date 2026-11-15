@@ -1268,3 +1268,23 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Conclusion:** Phase 1 is justified for Q1 only. Q2 cannot be answered decisively with public GoT data at GPT-2
   L8. A design amendment is proposed (D41) and awaits the user's decision.
 * **Evidence label:** validation (DEV only).
+
+## 49. TSP-R Phase 1 pre-registration frozen (2026-11-15). Status: PRE-REGISTERED; not started (launch awaits explicit approval)
+
+* The user approved D41 in principle and chose the 8-seed, 120-run design.
+* **Frozen:**
+  * `results/geometry_of_truth/truth_subspace_preservation/replication/preregistration.json`;
+  * script 30 (training wrapper reusing the hash-verified recipes of scripts 25 and 17);
+  * the plan matrix and the fold subspaces.
+* **Design:**
+  * Cities are the sole confirmatory dataset.
+  * H1 (tsp vs ctrl) gates H2 (vs shuf) and H3 (vs rand), with Holm over H2 and H3; FWER 0.05.
+  * SESOI 0.010. Uncertainty combines seed and city-bootstrap components with Satterthwaite df.
+  * Cost guards: CI-based non-inferiority.
+  * companies is a secondary estimate, common_claim a distortion check, counterfact exploratory.
+* **Dry run (no training):**
+  * 120 runs; no path collisions; 74 GB free; ≈ 8.8 GB new.
+  * The truth subspace is only partly stable across folds (overlap 0.26–0.31; leading direction stable).
+  * The shuf control holds 8 % of an independent truth direction (S_tsp 50–55 %).
+* **Next, after approval:** repro check → 5 new bases + QC → 120 fine-tunes (≈ 5–6.5 GPU-h) → freeze the evaluation
+  code → evaluation (≈ 5–8 CPU-h).

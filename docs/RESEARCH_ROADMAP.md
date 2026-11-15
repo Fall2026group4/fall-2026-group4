@@ -314,7 +314,11 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
     * common_claim has no headroom. The random-effects P2 is infeasible.
     * Amendment proposed (D41): P1 becomes the sole primary; companies a secondary; common_claim an enhancement
       check.
-  * NEXT (awaiting approval): freeze the amended TSP-R Phase 1 pre-registration (D41), then train.
+  * DONE 2026-11-15: TSP-R Phase 1 pre-registration frozen (D42; `replication/`).
+  * NEXT (awaiting explicit launch approval): repro check → 5 new base SAEs + QC → 120 fine-tunes → freeze the
+    evaluation code → evaluation.
+  * TODO with the training commit: add checkpoint-registry families for `replication/checkpoints/` and
+    `r2_tspr_base_seeds/`.
   * Phase 1 (≈ 10–13 h): 8 base seeds (5 new R2 TopK L8) × 5 arms (ctrl / tsp / rand / pca / label-permuted S) ×
     3 folds.
 * NEW (P2, after TSP-R): multi-family "universal" truth subspace (general + polarity directions), separately
