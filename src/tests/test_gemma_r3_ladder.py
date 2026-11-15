@@ -498,6 +498,96 @@ def test_v10_secret_scan_finds_token_and_pattern_without_revealing_them(s05, tmp
         [{'file': 'log.txt', 'kind': 'hf_pattern'}]
 
 
+# ================================================================== Clarification 2: K0 record, step K0F, fp32 output
+def _write_record(root: Path, name: str, status: str, spp):
+    d = root / 'runs' / name
+    d.mkdir(parents=True)
+    (d / 'run_info.json').write_text(json.dumps({'status': status, 'smoke': {'seconds_per_pass': spp}}))
+
+
+def test_projection_uses_only_a_finished_k0_record(s05, tmp_path):
+    assert s05.latest_k0_sec_per_pass(tmp_path) is None
+    _write_record(tmp_path, 'K0_20261115T010000Z', 'finished', 0.562)
+    _write_record(tmp_path, 'K0_20261115T020000Z', 'crashed: RuntimeError: CUDA error', 0.9)   # newer, but crashed
+    _write_record(tmp_path, 'K0_20261115T030000Z', 'stopped: V0 FAILED', 0.7)
+    assert s05.latest_k0_sec_per_pass(tmp_path) == 0.562
+
+
+def _fake_gpu_env(s05, monkeypatch, v0_effect):
+    """Pretend a clean checkout and a GPU, then let check_v0 stop or crash: nothing touches CUDA."""
+    monkeypatch.setattr(s05.ps, 'git_provenance', lambda repo, paths: {'available': True, 'commit': 'x' * 40,
+                                                                       'dirty_paths': []})
+    monkeypatch.setattr(s05.torch.cuda, 'is_available', lambda: True)
+    monkeypatch.setattr(s05, 'enable_strict_determinism', lambda: None)
+
+    def v0(cfg, out_root, run_id):
+        raise v0_effect
+    monkeypatch.setattr(s05, 'check_v0', v0)
+
+
+@pytest.mark.parametrize('effect, status', [(SystemExit('V0 FAILED: no GPU'), 'stopped: V0 FAILED: no GPU'),
+                                            (RuntimeError('CUDA error: unspecified launch failure'),
+                                             'crashed: RuntimeError: CUDA error: unspecified launch failure')])
+def test_run_record_is_written_even_when_a_step_stops_or_crashes(s05, monkeypatch, tmp_path, effect, status):
+    _fake_gpu_env(s05, monkeypatch, effect)
+    with pytest.raises(type(effect)):
+        s05.main(['--run', 'K0', '--out', str(tmp_path)])
+    recs = list((tmp_path / 'runs').glob('K0_*/run_info.json'))
+    assert len(recs) == 1
+    rec = json.loads(recs[0].read_text())
+    assert rec['status'] == status and rec['run'] == 'K0'
+    assert s05.latest_k0_sec_per_pass(tmp_path) is None          # a stopped or crashed K0 never feeds a projection
+
+
+def test_k0f_sets_launch_blocking_and_needs_no_weekly_hours(s05, monkeypatch, tmp_path):
+    monkeypatch.setenv('CUDA_LAUNCH_BLOCKING', 'x')   # registers the original state, so it is restored afterwards
+    monkeypatch.delenv('CUDA_LAUNCH_BLOCKING')
+    _fake_gpu_env(s05, monkeypatch, SystemExit('V0 FAILED: test'))
+    with pytest.raises(SystemExit, match='V0 FAILED'):          # got past argument checks without --week-used-hours
+        s05.main(['--run', 'K0F', '--out', str(tmp_path)])
+    assert s05.os.environ.get('CUDA_LAUNCH_BLOCKING') == '1'
+    rec = json.loads(next((tmp_path / 'runs').glob('K0F_*/run_info.json')).read_text())
+    assert rec['cuda_launch_blocking'] == '1'
+
+
+def test_launch_blocking_only_for_k0f_and_budget_rule_unchanged(s05, monkeypatch, tmp_path):
+    monkeypatch.setenv('CUDA_LAUNCH_BLOCKING', 'x')
+    monkeypatch.delenv('CUDA_LAUNCH_BLOCKING')
+    _fake_gpu_env(s05, monkeypatch, SystemExit('V0 FAILED: test'))
+    with pytest.raises(SystemExit, match='V0 FAILED'):
+        s05.main(['--run', 'K0', '--out', str(tmp_path)])
+    assert 'CUDA_LAUNCH_BLOCKING' not in s05.os.environ
+    with pytest.raises(SystemExit, match='week-used-hours'):
+        s05.main(['--run', 'K1', '--out', str(tmp_path)])
+    with pytest.raises(SystemExit, match='--widths needs'):
+        s05.main(['--run', 'K0F', '--out', str(tmp_path), '--widths', '16k'])
+
+
+def test_crashed_fp32_folder_is_moved_aside_and_a_finished_one_is_never_overwritten(s05, tmp_path):
+    final = tmp_path / 'fp32_reference'
+    final.mkdir()
+    (final / 'per_doc_metrics.csv').write_text('left by the crashed K0\n')     # written, but never marked DONE
+    staging = s05.prepare_output_dir(final, tmp_path, 'K0F_x')
+    assert staging.name == 'fp32_reference.partial' and staging.is_dir() and not final.exists()
+    assert (tmp_path / 'incomplete' / 'K0F_x' / 'fp32_reference' / 'per_doc_metrics.csv').exists()
+    (staging / 'per_doc_metrics.csv').write_text('clean run\n')
+    s05.finalize_output_dir(staging, final)
+    assert s05.is_done(final) and not staging.exists()
+    with pytest.raises(SystemExit, match='refusing to overwrite'):
+        s05.prepare_output_dir(final, tmp_path, 'K0F_y')
+
+
+def test_q0b_refuses_an_unfinished_fp32_reference(s05, s06, tmp_path):
+    d = tmp_path / 'fp32_reference'
+    d.mkdir()
+    (d / 'per_doc_metrics.csv').write_text('a\n1\n')
+    assert not s06.fp32_reference_finished(d)
+    s05.write_done(d)
+    assert s06.fp32_reference_finished(d)
+    (d / 'per_doc_metrics.csv').write_text('a\n2\n')
+    assert not s06.fp32_reference_finished(d)
+
+
 def test_helpers_are_pure_math_not_rounded(s05):
     """Guard against silently rounding CIs or p-values (all reported values are full precision)."""
     p = s05.one_sided_p(0.123456789, 0.1)

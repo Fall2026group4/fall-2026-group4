@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """R3: Gemma Scope width x L0 ladder on The Pile, and the fp32 reference (GPU, inference only; Kaggle T4 x2).
 
-Pre-registration: results/gemma2_pile/r3_gemma_scope_ladder/README.md (Section 1, Amendment 1, Clarification 1)
+Pre-registration: results/gemma2_pile/r3_gemma_scope_ladder/README.md (Section 1, Amendment 1, Clarifications 1-2)
 and preregistration.json. Sample: M6's committed sample_manifest.csv / sample_info.json (never regenerated).
 
-Runs (Amendment 1 (4)); one Kaggle session each, outputs under --out (default: the results folder):
+Runs (Amendment 1 (4), Clarification 2); one Kaggle session each, outputs under --out (default: the results folder):
   K0  V0 hardware/access, V1 sample, SMOKE ladder (8 eval + 4 reference documents; measures seconds per pass and
-      memory; not a result), then the fp32 reference (Part A3: layer 12, M6's 16k SAE, first 64 eval documents).
+      memory; not a result). K1-K6 project their run time from this record.
+  K0F the fp32 reference on its own (Part A3: layer 12, M6's 16k SAE, first 64 eval documents; Gemma split across
+      both T4s), with CUDA_LAUNCH_BLOCKING=1 for this step only (Clarification 2). Can be retried at any time.
   K1  layer 5 Tier A        K2  layer 19 Tier A        K3  layer 12 Tier A
   K4  layer 12 width 131k   K5  layer 12 width 262k    K6  layer 12 width 524k (SAE on GPU 1)
   --aggregate (CPU): pooled tables, L0 bands, H1-H3, V6 against M6's committed rows, gates.json, run_info.json.
+Every GPU step writes runs/<run id>/run_info.json even when it stops or crashes (status 'finished', 'stopped: ...' or
+'crashed: ...'); only a 'finished' K0 record is used for the K1-K6 projection.
 
 Per layer, shared controls (original, original_repeat, identity, mean_ablation) are written once to
 ladder/per_layer/layer_{L}/. Per SAE, ladder/per_sae/layer_{L}_width_{W}_l0_{N}/ holds per_doc_metrics.csv,
@@ -25,6 +29,7 @@ STOPPED_<run id>.json and exits.
 
 Run from repository root:
     python scripts/gemma/05_pile_gemma_scope_ladder.py --run K0 --out /kaggle/working/r3_out
+    python scripts/gemma/05_pile_gemma_scope_ladder.py --run K0F --out /kaggle/working/r3_out
     python scripts/gemma/05_pile_gemma_scope_ladder.py --run K1 --out /kaggle/working/r3_out \\
         --resume-from /kaggle/input/<previous run output>/r3_out --week-used-hours 1.2
     python scripts/gemma/05_pile_gemma_scope_ladder.py --aggregate --out results/gemma2_pile/r3_gemma_scope_ladder
@@ -71,6 +76,8 @@ BASE_GB = 7.7           # model + working memory on the T4, from M6 (8.58 GB pea
 GPU_LIMIT_GB = 14.0     # planning limit per 16 GB T4 (Amendment 1 (3))
 CHUNK = 128
 RUN_IDS = ['K0', 'K1', 'K2', 'K3', 'K4', 'K5', 'K6']
+STEP_IDS = ['K0', 'K0F'] + RUN_IDS[1:]   # K0F: the fp32 reference as its own Kaggle step (Clarification 2)
+BUDGETED_RUNS = RUN_IDS[1:]               # the ladder runs that need --week-used-hours
 SMOKE_N_EVAL, SMOKE_N_REF = 8, 4
 TRACKED_INPUTS = ['scripts/gemma/05_pile_gemma_scope_ladder.py', 'src/evaluation/pile_splicing.py',
                   'results/gemma2_pile/r3_gemma_scope_ladder/preregistration.json',
@@ -954,20 +961,58 @@ def copy_resume_input(src: Path, out_root: Path) -> List[str]:
 
 
 def latest_k0_sec_per_pass(out_root: Path) -> Optional[float]:
+    """Seconds per forward pass from the newest K0 record that FINISHED (Clarification 2). A K0 that stopped or
+    crashed does not count, so a projection is never based on a run that did not complete."""
     recs = sorted((out_root / 'runs').glob('K0_*/run_info.json'))
     for p in reversed(recs):
-        val = json.loads(p.read_text(encoding='utf-8')).get('smoke', {}).get('seconds_per_pass')
-        if val:
+        rec = json.loads(p.read_text(encoding='utf-8'))
+        val = rec.get('smoke', {}).get('seconds_per_pass')
+        if rec.get('status') == 'finished' and val:
             return float(val)
     return None
 
 
+def prepare_output_dir(final: Path, out_root: Path, run_id: str) -> Path:
+    """Staging folder for an output that is declared finished only at the end (DONE.json written last).
+    A finished ``final`` is never overwritten; an unfinished one (no valid DONE.json, e.g. left by a crash) and any
+    leftover staging folder are moved, never deleted, to <out_root>/incomplete/<run id>/."""
+    final, out_root = Path(final), Path(out_root)
+    if is_done(final):
+        raise SystemExit(f'refusing to overwrite the finished output {final}')
+    staging = final.with_name(final.name + '.partial')
+    for leftover in (final, staging):
+        if leftover.exists():
+            dest = out_root / 'incomplete' / run_id / leftover.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            if dest.exists():
+                raise FileExistsError(f'refusing to overwrite {dest}')
+            shutil.move(str(leftover), str(dest))
+    staging.mkdir(parents=True)
+    return staging
+
+
+def finalize_output_dir(staging: Path, final: Path) -> None:
+    """Move a complete staging folder into place, then write DONE.json (last)."""
+    os.replace(staging, final)
+    write_done(final)
+
+
+def synchronize_all_gpus() -> None:
+    """Wait for every queued kernel on every GPU, so an asynchronous CUDA error surfaces here, before any output is
+    written or declared finished."""
+    for i in range(torch.cuda.device_count()):
+        torch.cuda.synchronize(i)
+
+
 def fp32_reference(cfg: dict, eval_docs: List[dict], out_root: Path, run_id: str, sae_loader) -> dict:
-    """Part A3 / Q0b: Gemma and the SAE in float32 across both T4s; layer 12, M6's 16k SAE, first 64 documents."""
+    """Part A3 / Q0b, run as its own step K0F (Clarification 2): Gemma and the SAE in float32 across both T4s;
+    layer 12, M6's 16k SAE, first 64 documents. Outputs are written to fp32_reference.partial/ and become
+    fp32_reference/ (with DONE.json) only after the GPUs have finished all work and the model has been released
+    cleanly. A crash at any point therefore leaves no folder that looks finished."""
+    import gc
     ref = cfg['fp32_reference']
-    out_dir = out_root / 'fp32_reference'
-    if out_dir.exists():
-        raise SystemExit(f'refusing to overwrite {out_dir}')
+    final = out_root / 'fp32_reference'
+    staging = prepare_output_dir(final, out_root, run_id)
     model = load_model(cfg, torch.float32, fp32_device_map(26))
     docs = eval_docs[:ref['n_docs']]
     ctx = LadderContext(model=model, eval_docs=docs, ref_docs=[], load_sae=sae_loader, device='cuda:0',
@@ -978,22 +1023,30 @@ def fp32_reference(cfg: dict, eval_docs: List[dict], out_root: Path, run_id: str
                                         controls[controls.condition == 'original']['logits_sha256'])}
     df, sum_x, info, record = evaluate_sae(ctx, layer, sid, docs, hashes)
     probe = _forward(ctx, _as_input(ctx, docs[0])).logits
-    v8 = {'param_dtypes': sorted({str(p.dtype) for p in model.parameters()}), 'logits_dtype': str(probe.dtype),
+    probe_dtype = str(probe.dtype)
+    del probe
+    synchronize_all_gpus()                     # every fp32 pass, including the probe, has completed without error
+    v8 = {'param_dtypes': sorted({str(p.dtype) for p in model.parameters()}), 'logits_dtype': probe_dtype,
           'tf32_matmul': torch.backends.cuda.matmul.allow_tf32, 'device_map': fp32_device_map(26),
+          'cuda_launch_blocking': os.environ.get('CUDA_LAUNCH_BLOCKING'),
           'V2_pass': gates['V2']['pass'], 'V3_pass': gates['V3']['pass'] and info['V3_original_logits_match']}
     v8['pass'] = (v8['param_dtypes'] == ['torch.float32'] and v8['logits_dtype'] == 'torch.float32'
                   and not v8['tf32_matmul'] and v8['V2_pass'] and v8['V3_pass'])
     if not v8['pass']:
         stop(out_root, run_id, f'V8 FAILED: {v8}', {'V8': v8, 'gates': gates})
-    out_dir.mkdir(parents=True)
     pd.concat([controls.drop(columns=['logits_sha256']).assign(sae_id=None), df]).reindex(
-        columns=RESULT_COLUMNS).to_csv(out_dir / 'per_doc_metrics.csv', index=False, lineterminator='\n')
-    save_npz_deterministic(out_dir / 'per_doc_sum_x.npz', sum_x=sum_x, ranks=np.asarray([d['rank'] for d in docs]))
-    write_json(out_dir / 'gates.json', {**gates, 'V8': v8, 'sae_info': info})
-    write_json(out_dir / 'run_info.json', {'run_id': run_id, 'status': 'fp32 reference (Part A3)', **record,
-                                           'passes': ctx.n_passes, 'pass_seconds': round(ctx.pass_seconds, 1)})
-    del model
+        columns=RESULT_COLUMNS).to_csv(staging / 'per_doc_metrics.csv', index=False, lineterminator='\n')
+    save_npz_deterministic(staging / 'per_doc_sum_x.npz', sum_x=sum_x, ranks=np.asarray([d['rank'] for d in docs]))
+    write_json(staging / 'gates.json', {**gates, 'V8': v8, 'sae_info': info})
+    passes, pass_seconds = ctx.n_passes, round(ctx.pass_seconds, 1)
+    del ctx, model                             # release the two-GPU model, then check the GPUs are still healthy
+    gc.collect()
     torch.cuda.empty_cache()
+    synchronize_all_gpus()
+    write_json(staging / 'run_info.json', {'run_id': run_id, 'status': 'fp32 reference (Part A3), step K0F',
+                                           **record, 'passes': passes, 'pass_seconds': pass_seconds,
+                                           'clean_gpu_release': True})
+    finalize_output_dir(staging, final)
     return {'V8': v8, 'seconds': record['seconds']}
 
 
@@ -1002,7 +1055,8 @@ def gpu_run(args, cfg: dict) -> None:
     out_root = Path(args.out)
     out_root.mkdir(parents=True, exist_ok=True)
     run_id = f"{args.run}_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
-    if (out_root / 'runs' / run_id).exists():
+    run_dir = out_root / 'runs' / run_id
+    if run_dir.exists():
         raise SystemExit(f'run folder {run_id} exists')
     copied = copy_resume_input(Path(args.resume_from), out_root) if args.resume_from else []
     provenance = ps.git_provenance(REPO, TRACKED_INPUTS)
@@ -1011,80 +1065,96 @@ def gpu_run(args, cfg: dict) -> None:
     if not torch.cuda.is_available():
         raise SystemExit('CUDA is required')
     enable_strict_determinism()
-    v0 = check_v0(cfg, out_root, run_id)
-    ladder = ladder_from_prereg(cfg)
-    plan = plan_runs(ladder)
-    order = [r['sae_id'] for r in ladder]
-    canonical = list(cfg['sae']['canonical_m6_ids'].values())
-    sae_hashes: Dict[str, str] = {}
-    loader = make_sae_loader(cfg, sae_hashes)
-    record = {'run_id': run_id, 'run': args.run, 'started_utc': datetime.now(timezone.utc).isoformat(),
-              'code_provenance': provenance, 'V0': v0, 'host': host_facts(out_root),
-              'resume_input_files_copied': len(copied),
+    record = {'run_id': run_id, 'run': args.run, 'status': 'started',
+              'started_utc': datetime.now(timezone.utc).isoformat(), 'code_provenance': provenance,
+              'cuda_launch_blocking': os.environ.get('CUDA_LAUNCH_BLOCKING'), 'resume_input_files_copied': len(copied),
               'input_sha256': {rel(p): ps.sha256_file(p) for p in (PREREG, EXP / 'README.md', Path(__file__),
                                                                    REPO / 'src/evaluation/pile_splicing.py')}}
+    sae_hashes: Dict[str, str] = {}
+    try:
+        record['V0'] = check_v0(cfg, out_root, run_id)
+        record['host'] = host_facts(out_root)
+        ladder = ladder_from_prereg(cfg)
+        plan = plan_runs(ladder)
+        order = [r['sae_id'] for r in ladder]
+        canonical = list(cfg['sae']['canonical_m6_ids'].values())
+        loader = make_sae_loader(cfg, sae_hashes)
 
-    def placement(sid):
-        where = sae_placement(parse_sae_id(sid)['d_sae'], cfg['hardware']['planning_limit_gb_per_gpu'])
-        if where == 'excluded':
-            raise SystemExit(f'{sid} is excluded by the memory rule and must not be in a run')
-        return 'cuda:0' if where == 'gpu0' else 'cuda:1'
+        def placement(sid):
+            where = sae_placement(parse_sae_id(sid)['d_sae'], cfg['hardware']['planning_limit_gb_per_gpu'])
+            if where == 'excluded':
+                raise SystemExit(f'{sid} is excluded by the memory rule and must not be in a run')
+            return 'cuda:0' if where == 'gpu0' else 'cuda:1'
 
-    if args.run == 'K0':
-        eval_docs, ref_docs, v1 = load_sample(cfg, out_root, run_id, SMOKE_N_EVAL, SMOKE_N_REF)
-        record['V1'] = v1
-        model = load_model(cfg, torch.bfloat16, 'cuda:0')
-        smoke_ids = canonical + ['layer_12/width_65k/average_l0_72']
-        ctx = LadderContext(model=model, eval_docs=eval_docs, ref_docs=ref_docs, load_sae=loader, device='cuda:0',
-                            sae_device=placement, order=smoke_ids, check_unchunked_ids=canonical)
-        smoke_dir = out_root / 'smoke' / run_id / 'ladder'
-        recs = []
-        for layer in sorted({parse_sae_id(s)['layer'] for s in smoke_ids}):
-            recs.append(run_layer(ctx, layer, [s for s in smoke_ids if parse_sae_id(s)['layer'] == layer],
-                                  smoke_dir, run_id))
-        record['smoke'] = {'status': 'SMOKE (timing and memory; not a result)', 'layers': recs,
-                           'seconds_per_pass': ctx.pass_seconds / max(ctx.n_passes, 1), 'passes': ctx.n_passes,
-                           'peak_memory_gb': peak_memory_by_gpu()}
-        print(f"smoke: {record['smoke']['seconds_per_pass']:.3f} s per pass", flush=True)
-        for k in RUN_IDS[1:]:
-            print(f'  projected {k}: {project_run_hours(plan[k], record["smoke"]["seconds_per_pass"]):.2f} h')
-        del model, ctx
-        torch.cuda.empty_cache()
-        full_eval, _, _ = load_sample(cfg, out_root, run_id, cfg['fp32_reference']['n_docs'], 1)
-        record['fp32_reference'] = fp32_reference(cfg, full_eval, out_root, run_id, loader)
-    else:
-        ids = plan[args.run]
-        if args.widths:
-            ids = [s for s in ids if parse_sae_id(s)['width'] in args.widths]
-        spp = latest_k0_sec_per_pass(out_root)
-        if spp is None:
-            raise SystemExit('no K0 record found: run K0 first (or pass its output with --resume-from)')
-        layers = sorted({parse_sae_id(s)['layer'] for s in ids})
-        new_layers = sum(not is_done(out_root / 'ladder/per_layer' / f'layer_{L}') for L in layers)
-        todo = [s for s in ids if not is_done(out_root / 'ladder/per_sae' / sae_folder_name(s))]
-        projected = project_run_hours(todo, spp, new_layers=new_layers)
-        budget = may_start(projected, args.week_used_hours)
-        record['budget'] = {'seconds_per_pass_from_K0': spp, 'projected_hours': projected,
-                            'week_used_hours': args.week_used_hours, **budget}
-        if not budget['ok']:
-            stop(out_root, run_id, f'run not started: {budget["reasons"]}', {'budget': record['budget']})
-        eval_docs, ref_docs, v1 = load_sample(cfg, out_root, run_id)
-        record['V1'] = v1
-        model = load_model(cfg, torch.bfloat16, 'cuda:0')
-        ctx = LadderContext(model=model, eval_docs=eval_docs, ref_docs=ref_docs, load_sae=loader, device='cuda:0',
-                            sae_device=placement, order=order, check_unchunked_ids=canonical,
-                            v9_docs=int(cfg['validity_gates']['V9_docs']),
-                            v9_rtol=float(cfg['validity_gates']['V9_rel_tol']))
-        record['layers'] = [run_layer(ctx, L, [s for s in ids if parse_sae_id(s)['layer'] == L],
-                                      out_root / 'ladder', run_id) for L in layers]
-        record['seconds_per_pass'] = ctx.pass_seconds / max(ctx.n_passes, 1)
-    record['params_npz_sha256'] = sae_hashes
-    record['peak_memory_gb'] = peak_memory_by_gpu()
-    record['runtime_s'] = round(time.time() - t_start, 1)
-    run_dir = out_root / 'runs' / run_id
-    run_dir.mkdir(parents=True)
-    write_json(run_dir / 'run_info.json', record)
-    print(f'run {run_id} finished in {record["runtime_s"] / 3600:.2f} h; record: {run_dir / "run_info.json"}')
+        if args.run == 'K0':
+            eval_docs, ref_docs, v1 = load_sample(cfg, out_root, run_id, SMOKE_N_EVAL, SMOKE_N_REF)
+            record['V1'] = v1
+            model = load_model(cfg, torch.bfloat16, 'cuda:0')
+            smoke_ids = canonical + ['layer_12/width_65k/average_l0_72']
+            ctx = LadderContext(model=model, eval_docs=eval_docs, ref_docs=ref_docs, load_sae=loader,
+                                device='cuda:0', sae_device=placement, order=smoke_ids, check_unchunked_ids=canonical)
+            smoke_dir = out_root / 'smoke' / run_id / 'ladder'
+            recs = []
+            for layer in sorted({parse_sae_id(s)['layer'] for s in smoke_ids}):
+                recs.append(run_layer(ctx, layer, [s for s in smoke_ids if parse_sae_id(s)['layer'] == layer],
+                                      smoke_dir, run_id))
+            spp = ctx.pass_seconds / max(ctx.n_passes, 1)
+            record['smoke'] = {'status': 'SMOKE (timing and memory; not a result)', 'layers': recs,
+                               'seconds_per_pass': spp, 'passes': ctx.n_passes,
+                               'peak_memory_gb': peak_memory_by_gpu(),
+                               'projected_hours': {k: project_run_hours(plan[k], spp) for k in BUDGETED_RUNS}}
+            print(f'smoke: {spp:.3f} s per pass', flush=True)
+            for k, h in record['smoke']['projected_hours'].items():
+                print(f'  projected {k}: {h:.2f} h')
+        elif args.run == 'K0F':
+            full_eval, _, v1 = load_sample(cfg, out_root, run_id, cfg['fp32_reference']['n_docs'], 1)
+            record['V1'] = v1
+            record['fp32_reference'] = fp32_reference(cfg, full_eval, out_root, run_id, loader)
+        else:
+            ids = plan[args.run]
+            if args.widths:
+                ids = [s for s in ids if parse_sae_id(s)['width'] in args.widths]
+            spp = latest_k0_sec_per_pass(out_root)
+            if spp is None:
+                raise SystemExit('no finished K0 record found: run K0 first (or pass its output with --resume-from)')
+            layers = sorted({parse_sae_id(s)['layer'] for s in ids})
+            new_layers = sum(not is_done(out_root / 'ladder/per_layer' / f'layer_{L}') for L in layers)
+            todo = [s for s in ids if not is_done(out_root / 'ladder/per_sae' / sae_folder_name(s))]
+            projected = project_run_hours(todo, spp, new_layers=new_layers)
+            budget = may_start(projected, args.week_used_hours)
+            record['budget'] = {'seconds_per_pass_from_K0': spp, 'projected_hours': projected,
+                                'week_used_hours': args.week_used_hours, **budget}
+            if not budget['ok']:
+                stop(out_root, run_id, f'run not started: {budget["reasons"]}', {'budget': record['budget']})
+            eval_docs, ref_docs, v1 = load_sample(cfg, out_root, run_id)
+            record['V1'] = v1
+            model = load_model(cfg, torch.bfloat16, 'cuda:0')
+            ctx = LadderContext(model=model, eval_docs=eval_docs, ref_docs=ref_docs, load_sae=loader,
+                                device='cuda:0', sae_device=placement, order=order, check_unchunked_ids=canonical,
+                                v9_docs=int(cfg['validity_gates']['V9_docs']),
+                                v9_rtol=float(cfg['validity_gates']['V9_rel_tol']))
+            record['layers'] = [run_layer(ctx, L, [s for s in ids if parse_sae_id(s)['layer'] == L],
+                                          out_root / 'ladder', run_id) for L in layers]
+            record['seconds_per_pass'] = ctx.pass_seconds / max(ctx.n_passes, 1)
+        record['status'] = 'finished'
+    except SystemExit as exc:
+        record['status'] = f'stopped: {exc}'
+        raise
+    except BaseException as exc:
+        record['status'] = f'crashed: {type(exc).__name__}: {exc}'
+        raise
+    finally:
+        # Written in every case (Clarification 2), so what a step measured is never lost to a later failure.
+        record['params_npz_sha256'] = sae_hashes
+        try:
+            record['peak_memory_gb'] = peak_memory_by_gpu()
+        except Exception as exc:  # noqa: BLE001  the GPU may be unusable after a CUDA error
+            record['peak_memory_gb'] = f'unavailable ({type(exc).__name__})'
+        record['runtime_s'] = round(time.time() - t_start, 1)
+        run_dir.mkdir(parents=True, exist_ok=True)
+        write_json(run_dir / 'run_info.json', record)
+        print(f'run {run_id}: {record["status"]} after {record["runtime_s"] / 3600:.2f} h; '
+              f'record: {run_dir / "run_info.json"}', flush=True)
 
 
 # ===================================================================================================== aggregate
@@ -1300,9 +1370,19 @@ def aggregate(cfg: dict, out_root: Path) -> None:
 
 
 # ========================================================================================================= main
+def enable_launch_blocking() -> None:
+    """K0F only (Clarification 2): make CUDA report an error at the call that caused it. Must be set before CUDA is
+    initialised in this process; it changes when errors are reported, not what is computed."""
+    if torch.cuda.is_initialized():
+        raise SystemExit('K0F must start in a fresh process: CUDA was already initialised, so '
+                         'CUDA_LAUNCH_BLOCKING=1 would have no effect')
+    os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--run', choices=RUN_IDS, help='which Kaggle run to execute (Amendment 1 (4))')
+    ap.add_argument('--run', choices=STEP_IDS,
+                    help='which Kaggle step to execute (Amendment 1 (4); K0F: Clarification 2)')
     ap.add_argument('--aggregate', action='store_true', help='CPU step after all runs')
     ap.add_argument('--out', default=str(EXP), help='output root (on Kaggle: a folder under /kaggle/working)')
     ap.add_argument('--resume-from', default=None, help="previous run's output root, copied in first (no overwrite)")
@@ -1312,15 +1392,17 @@ def main(argv=None):
     args = ap.parse_args(argv)
     if bool(args.run) == bool(args.aggregate):
         raise SystemExit('give exactly one of --run or --aggregate')
-    if args.run and args.run != 'K0' and args.week_used_hours is None:
+    if args.run in BUDGETED_RUNS and args.week_used_hours is None:
         raise SystemExit('--week-used-hours is required for K1-K6 (budget rule)')
-    if args.widths and (not args.run or args.run == 'K0' or any(w not in WIDTHS for w in args.widths)):
+    if args.widths and (args.run not in BUDGETED_RUNS or any(w not in WIDTHS for w in args.widths)):
         raise SystemExit('--widths needs a run K1-K6 and known widths')
     cfg = json.loads(PREREG.read_text(encoding='utf-8'))
     if args.aggregate:
         aggregate(cfg, Path(args.out))
-    else:
-        gpu_run(args, cfg)
+        return
+    if args.run == 'K0F':
+        enable_launch_blocking()
+    gpu_run(args, cfg)
 
 
 if __name__ == '__main__':

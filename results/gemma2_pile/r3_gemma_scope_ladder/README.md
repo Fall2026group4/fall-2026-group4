@@ -611,6 +611,30 @@ No code had been written and no run made when this amendment was committed.
 * **Not changed:** the V6 tolerances and verdicts in Amendment 1 (1). The per-document sums are still compared with
   M6's committed rows.
 
+### Clarification 2 (2026-11-15, before any result is read): the fp32 reference runs as its own Kaggle step
+* **What is clarified:** the fp32 reference (Part A3, used by Q0b) runs as its own Kaggle step, **K0F**, instead of
+  at the end of K0.
+  * K0 is now V0, V1 and the timing smoke run only.
+  * K0F is the fp32 reference only, run in a fresh session with `CUDA_LAUNCH_BLOCKING=1` set for that step alone.
+  * K0F can be run or retried at any time. It does not block K1–K6.
+* **Why:** the first K0 attempt passed V0, V1 and the smoke run, then crashed at the end of the fp32 step with "CUDA
+  error: unspecified launch failure" (see Section 2, Run attempts).
+  * It was the first step to use both T4s. The error is reported asynchronously, so the failing kernel is not
+    known.
+  * `CUDA_LAUNCH_BLOCKING=1` makes CUDA report an error at the call that caused it. It changes when errors are
+    reported, not what is computed.
+* **Safeguards that come with it:**
+  * Every step writes its run record (`runs/<run id>/run_info.json`) even when it stops or crashes, with its status.
+  * K1–K6 project their run time only from a K0 record with status `finished`.
+  * The fp32 outputs are written to `fp32_reference.partial/`. They become `fp32_reference/` with a `DONE.json` only
+    after both GPUs have finished all work and the model has been released cleanly.
+  * Script 06 (Q0b) uses only an fp32 folder with a valid `DONE.json`. A folder left by a crash is moved to
+    `incomplete/`, never used.
+* **Not changed:** everything else. That includes the fp32 design (same model revision, SAE, 64 documents,
+  conditions, random directions and device map), Q0b and its margins, the ladder, H1–H3, the gates, the run plan
+  K1–K6 and the budget rule.
+* **No result had been read:** the smoke run produces timings only, labelled SMOKE.
+
 ## 2. After execution
 *(To be completed after the run: runs, gates, Q0b verdicts, results tables, criteria met or not met, limitations,
 deviations, files, Git commit.)*
@@ -671,17 +695,42 @@ These are choices the pre-registration text left open, fixed in code before any 
   * The summaries reproduced M6's EV, L0, ΔCE and loss recovered exactly.
 * **GPU parts are not yet run anywhere:** V0, V1, model loading, SAE download, and the fp32 two-GPU split. Their
   first execution is run K0.
+* **After Clarification 2 (2026-11-15):** R3 tests **58 passed**. Seven new tests cover:
+  * the run record being written when a step stops or crashes;
+  * only a finished K0 feeding the projection;
+  * K0F setting `CUDA_LAUNCH_BLOCKING` and needing no weekly hours;
+  * a crashed fp32 folder being moved aside, and a finished one never being overwritten;
+  * Q0b refusing an unfinished fp32 folder.
+
+  Full suite: 136 passed, 2 failed, 5 errors (the same pre-existing, environment-specific failures; the earlier skip
+  now runs because `zstandard` 0.23.0 is installed).
+
+### Run attempts (Kaggle)
+* **K0, attempt with the torchvision fix** (run id `K0_20261115T024202Z`, code `961dc60`; the scripts are identical
+  in `2d395d0`). Status: **crashed; nothing from it is used.**
+  * The torchvision/torchaudio uninstall was entered in the Kaggle copy of the notebook. Software: torch 2.7.0+cu128,
+    transformers 5.21.0, CUDA 12.8, 2 × Tesla T4.
+  * V0, V1 and the SMOKE run completed. The smoke run measured 0.562 s per forward pass, with projected K1 2.92 h,
+    K2 2.92 h, K3 4.47 h, K4 2.18 h, K5 2.65 h and K6 3.60 h.
+  * The fp32 reference then crashed at `torch.cuda.empty_cache()` after the model was released, with "CUDA error:
+    unspecified launch failure".
+  * Its run record was never written, because the code at that time wrote it only at the end. K1 therefore cannot
+    use these timings.
+  * The fp32 files written just before the crash are not used. Under Clarification 2 they would be moved to
+    `incomplete/`.
+  * V10: PASS.
+  * The smoke numbers above are copied from the Kaggle log, for the record only.
 
 ## 3. If stopped early
-**Status 2026-11-14: paused before any run (pre-registered and implemented; nothing executed on a GPU).**
-* **Existing artifacts:** this README (Section 1, Amendment 1, Clarification 1, Section 2 implementation details),
-  `preregistration.json`, `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No result
-  files.
-* **Unfinished:** runs K0–K6, the `--aggregate` step, Q0b (script 06), the figures (script 07), Section 2 results.
+**Status 2026-11-15: no finished run yet.** One K0 attempt crashed in the fp32 step (Section 2, Run attempts).
+* **Existing artifacts:** this README (Section 1, Amendment 1, Clarifications 1–2, Section 2), `preregistration.json`,
+  `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No result files.
+* **Unfinished:** K0 (to be rerun, now smoke only), K0F, K1–K6, the `--aggregate` step, Q0b (script 06), the figures
+  (script 07), Section 2 results.
 * **Exact next steps:**
-  1. Commit the code.
-  2. Put that commit's hash in the notebook's `COMMIT` setting.
-  3. Run K0 on Kaggle. Check V0, the smoke timings and the fp32 reference (V8).
-  4. Re-project K1–K6 from K0, then run K1–K3 within the weekly quota, then Tier B under the budget rule.
-  5. Download the outputs, only if V10 passed.
-  6. Run `--aggregate`, script 06 and script 07; fill in Section 2.
+  1. Commit and push. Put the new commit's hash in the notebook's `COMMIT` setting.
+  2. Rerun K0 (about 15 minutes). Check that its run record says `finished`.
+  3. Run K1–K3, each passing the previous output with `RESUME_FROM`, within the weekly quota. Then Tier B under the
+     budget rule.
+  4. Run K0F separately, in a fresh session; retry it if it fails. It does not block K1–K3.
+  5. Download outputs only if V10 passed. Then run `--aggregate`, script 06 and script 07, and fill in Section 2.

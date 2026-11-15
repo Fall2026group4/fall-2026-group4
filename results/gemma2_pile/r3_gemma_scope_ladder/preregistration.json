@@ -176,7 +176,8 @@
     "max_hours_per_run": 10.0,
     "max_hours_per_week": 30.0,
     "plan": {
-      "K0": "V0, smoke (8 eval + 4 reference docs), fp32 reference",
+      "K0": "V0, V1, smoke (8 eval + 4 reference docs); its finished run record feeds the K1-K6 projection",
+      "K0F": "fp32 reference only (Clarification 2), fresh session, CUDA_LAUNCH_BLOCKING=1; retryable; does not block K1-K6",
       "K1": "layer 5, Tier A",
       "K2": "layer 19, Tier A",
       "K3": "layer 12, Tier A",
@@ -193,6 +194,9 @@
   ],
   "clarifications": [
     {"id": 1, "date": "2026-11-13", "before_any_run": true,
-     "text": "V6 active-latent agreement compares the 128-token-chunked SAE with the unchunked SAE on the same activations (M6 did not save active-latent sets)."}
+     "text": "V6 active-latent agreement compares the 128-token-chunked SAE with the unchunked SAE on the same activations (M6 did not save active-latent sets)."},
+    {"id": 2, "date": "2026-11-15", "before_any_result_read": true,
+     "text": "The fp32 reference runs as its own Kaggle step K0F (fresh session, CUDA_LAUNCH_BLOCKING=1 for that step only) instead of at the end of K0. Every step writes its run record even when it stops or crashes; K1-K6 use only a finished K0 record; fp32 outputs are declared finished (DONE.json) only after both GPUs completed and the model was released cleanly, and Q0b uses only a finished fp32 folder. Nothing else in the protocol changes.",
+     "reason": "The first K0 attempt crashed with 'CUDA error: unspecified launch failure' at the end of the fp32 step, the first step using both T4s."}
   ]
 }

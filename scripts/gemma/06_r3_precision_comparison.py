@@ -5,7 +5,8 @@ Pre-registration: results/gemma2_pile/r3_gemma_scope_ladder/README.md, Amendment
 (questions.Q0b, margins). Q0 (T4 vs A10G) was dropped by Amendment 1 (1).
 
 Cell: layer 12, SAE layer_12/width_16k/average_l0_82, the first 64 evaluation documents by rank.
-  fp32    : fp32_reference/per_doc_metrics.csv + per_doc_sum_x.npz        (script 05, run K0)
+  fp32    : fp32_reference/per_doc_metrics.csv + per_doc_sum_x.npz        (script 05, step K0F; must have a valid
+            DONE.json, Clarification 2)
   primary : M6's committed T4 bf16 rows (gemma_scope_splicing/per_doc_metrics.csv + per_doc_sum_x.npz)
   also    : the Kaggle T4 ladder rows for the same SAE (ladder/per_sae/layer_12_width_16k_l0_82/), if present
 
@@ -22,7 +23,7 @@ Per-document metrics (each from that document's own rows):
   top1_agreement     top1_agree / n_pred                        sae_splice
   explained_variance 1 - sse / (sum_sq - ||sum_x||^2 / n_tok)   the document's own EV (its own token mean)
 
-Run from repository root (after K0, and after K3 if the ladder rows should be included):
+Run from repository root (after K0F, and after K3 if the ladder rows should be included):
     python scripts/gemma/06_r3_precision_comparison.py
     python scripts/gemma/06_r3_precision_comparison.py --r3-root /path/to/r3_out
 Refuses to overwrite existing outputs.
@@ -112,6 +113,20 @@ def compare_runs(bf16: pd.DataFrame, fp32: pd.DataFrame, margins: dict, idx: np.
 
 
 # ================================================================================================= file plumbing
+def fp32_reference_finished(folder: Path) -> bool:
+    """True if ``folder`` has a DONE.json listing exactly its other files with matching SHA-256 (written last by
+    step K0F, Clarification 2)."""
+    done = Path(folder) / 'DONE.json'
+    if not done.is_file():
+        return False
+    try:
+        listed = json.loads(done.read_text(encoding='utf-8'))['files']
+    except (ValueError, KeyError):
+        return False
+    present = {p.name for p in Path(folder).iterdir() if p.is_file() and p.name != 'DONE.json'}
+    return set(listed) == present and all(ps.sha256_file(Path(folder) / n) == h for n, h in listed.items())
+
+
 def load_sum_x(npz_path: Path, layer: Optional[int] = None) -> Dict[int, np.ndarray]:
     with np.load(npz_path) as z:
         sx = z['sum_x']
@@ -136,6 +151,9 @@ def main(argv=None):
         raise SystemExit(f'refusing to overwrite {clash} in {out_dir}')
 
     fp_dir = root / 'fp32_reference'
+    if not fp32_reference_finished(fp_dir):
+        raise SystemExit(f'{fp_dir} is not a finished fp32 reference (no valid DONE.json): run step K0F '
+                         '(Clarification 2); output left by a crashed run is never used')
     fp_rows = pd.read_csv(fp_dir / 'per_doc_metrics.csv')
     fp_rows = fp_rows[(fp_rows.layer == layer) & (fp_rows.sae_id == sid)]
     ranks = sorted(int(r) for r in fp_rows['rank'].unique())
