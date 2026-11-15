@@ -1237,10 +1237,34 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
     bootstrap intervals; random-effects pooling over held-out families; CI-based non-inferiority guards.
   * ≈ 10–13 h and ≈ 12 GB. Nothing is trained until approved.
 
-## 48. TSP-R Phase 0: fresh GoT families, locked DEV/TEST split, DEV-only eligibility (2026-11-14). Status: IN PROGRESS (pre-registration frozen; eligibility not yet run)
+## 48. TSP-R Phase 0: fresh GoT families, locked DEV/TEST split, DEV-only eligibility (2026-11-14/15). Status: COMPLETED (VALIDATION, DEV only; no training)
 
-* Approved by the user: Phase 0 only. No SAE training; no TEST labels; Phase 1 not started.
-* Source pinned to saprmarks/geometry-of-truth commit `5d1c630` (2024-08-08); every file verified against the
-  upstream git blob SHA. The project's existing cities/numerical files are byte-identical to upstream.
-* `prepare` (text only) ran; the pre-registration and split files were frozen and committed before any fresh-family
-  activation was computed. Folder: `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`.
+* Approved by the user: Phase 0 only. No SAE was trained, no TEST label or activation was used, and Phase 1 has not
+  started. Folder: `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/` (script 29).
+* **Source:** saprmarks/geometry-of-truth, pinned to commit `5d1c630`; every file matches its upstream blob SHA.
+  * The project's existing cities and numerical files are byte-identical to upstream.
+  * There is no licence file, so the raw files are kept local and gitignored.
+* **Freeze:** the pre-registration, splits and cities folds were committed (`a7e42ad`) before any activation was
+  computed. Amendment v2 (made before the freeze) excludes repeated statements; companies had label-conflicting
+  duplicates.
+* **Leakage found and removed:**
+  * common_claim contains 3 exact and 13 near copies of RepE facts.
+  * counterfact names project cities in 2,205 rows (620 exposed TEST cities).
+  * DEV/TEST share no unit and, after the guards, no entity.
+* **Eligibility** (frozen rule, L8 AUROC ≥ 0.70):
+  * companies 0.791: eligible.
+  * common_claim 0.708 (CI includes 0.70): eligible.
+  * sp_en / neg_sp_en 0.51: ineligible.
+  * counterfact 0.625 across held-out relations: ineligible. It scores 0.786 within relations.
+  * conj/disj (secondary) 0.61–0.62, with only 65–70 TEST rows left.
+* **Headroom** (R2 base re-fit gap on DEV):
+  * companies: +0.023 (seeds −0.014 to +0.053);
+  * common_claim: +0.001, i.e. nothing to recover.
+* **Feasibility:**
+  * The drafted random-effects P2 is infeasible with k = 2.
+  * companies MDE ≈ 0.033; common_claim MDE 0.014, which exceeds its headroom.
+  * P1 (635 cross-fitted cities groups) keeps power ≈ 0.97–0.99 at the observed −0.020 with 8 seeds, but only
+    ≈ 0.3–0.6 at the SESOI.
+* **Conclusion:** Phase 1 is justified for Q1 only. Q2 cannot be answered decisively with public GoT data at GPT-2
+  L8. A design amendment is proposed (D41) and awaits the user's decision.
+* **Evidence label:** validation (DEV only).

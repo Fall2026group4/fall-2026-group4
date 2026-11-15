@@ -435,3 +435,30 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * No loss or architecture change before the replication. A multi-family "universal" S is a later, separately
     pre-registered follow-up.
 * **Approval required** for Phase 0 (public data download) and Phase 1 (training).
+
+
+## D41. TSP-R Phase 0 outcome: Q2 is not decisively testable with public GoT at GPT-2 L8 (2026-11-15). Status: PROPOSED, awaiting the user's decision
+
+* **Facts** (DEV only):
+  * Of the five independent fresh families, only companies (0.791) and common_claim (0.708) pass the frozen
+    eligibility rule.
+  * common_claim has no reconstruction headroom (R2 base gap ≈ 0.001).
+  * companies' conservative MDE (≈ 0.033) exceeds the pilot's in-distribution effect (0.020).
+  * Random-effects pooling with k = 2 is infeasible.
+* **Decided now:**
+  * The frozen eligibility rule stands. counterfact is ineligible (0.625 across relations), even though it would
+    pass under entity-level CV (0.786). Switching units post hoc would be a deviation.
+  * sp_en is ineligible: GPT-2 Small has no truth signal for it.
+  * conj/disj are dropped: they are not independent and too small.
+* **Proposed amendment to the TSP-R pre-registration** (before Phase 1, for the user):
+  1. P1 (cross-fitted cities, re-fit logistic gap, tsp vs ctrl, plus shuf/rand specificity) is the **sole
+     confirmatory primary**.
+  2. companies TEST is a pre-registered secondary: an estimate with its CI and a stated MDE of ≈ 0.03. It does not
+     count as confirmatory.
+  3. common_claim is a pre-registered no-headroom / enhancement check: TSP should not move its gap; a negative gap
+     beyond −0.01 counts as distortion.
+  4. counterfact held-out-relation TEST is optional, labelled EXPLORATORY. It adds ≈ 9 CPU-hours of readers.
+  5. The random-effects P2 is withdrawn.
+* **Rejected options:**
+  * Re-splitting counterfact by entity: TEST is locked by relation.
+  * Lowering the 0.70 threshold: it is frozen.

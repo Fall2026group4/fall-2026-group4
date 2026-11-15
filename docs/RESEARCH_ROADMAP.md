@@ -309,8 +309,12 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * DONE 2026-11-14: TSP-VERIFY. Pilot numbers reproduced independently; verdict confirmed; concerns recorded (D40).
 * SUPERSEDES the "≥ 5 seeds" replication item above. PROPOSED (P1, awaiting approval): TSP-R (design in
   `docs/2026-11-14_tsp_verification_and_replication_design.md`).
-  * Phase 0 (≈ 1 h, no training): fresh public GoT families with a DEV/TEST hash split made before any activation is
-    computed; DEV eligibility; cities 3-fold cross-fitting.
+  * DONE 2026-11-15 — Phase 0 (DEV only; `replication_phase0/`).
+    * Eligible: companies and common_claim. Ineligible: counterfact (across relations), sp_en, conj/disj.
+    * common_claim has no headroom. The random-effects P2 is infeasible.
+    * Amendment proposed (D41): P1 becomes the sole primary; companies a secondary; common_claim an enhancement
+      check.
+  * NEXT (awaiting approval): freeze the amended TSP-R Phase 1 pre-registration (D41), then train.
   * Phase 1 (≈ 10–13 h): 8 base seeds (5 new R2 TopK L8) × 5 arms (ctrl / tsp / rand / pca / label-permuted S) ×
     3 folds.
 * NEW (P2, after TSP-R): multi-family "universal" truth subspace (general + polarity directions), separately

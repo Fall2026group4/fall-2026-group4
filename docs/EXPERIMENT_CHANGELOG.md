@@ -333,3 +333,16 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   (draft, not frozen).
 * The journal (§47), D40, results summary, roadmap, results registry and manifest were updated. The pilot folder and
   its pre-registration were not modified. No checkpoints were created.
+
+## 2026-11-14/15 — TSP-R Phase 0 (fresh GoT families; DEV only; no training)
+* Added `scripts/geometry_of_truth/29_tsp_r_phase0_fresh_families.py` (`prepare` text-only stage; `eligibility`
+  DEV-only stage). The fix 1 loader change (`keep_default_na=False`) came after eligibility attempt 1 found an empty
+  DEV set; no output had been written.
+* Added `data/got/fresh/splits/` (locked DEV/TEST split files, no labels, no text; cities 3-fold cross-fitting
+  folds).
+* Added `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`: preregistration, integrity,
+  leakage, split counts, DEV label balance, conj/disj fold counts, eligibility, headroom, feasibility, README.
+  `prepare_v1_superseded/` keeps the pre-freeze v1 outputs (superseded by the v2 duplicate rule).
+* `.gitignore`: raw fresh downloads (`data/got/fresh/raw_*/`; no upstream licence). The DEV activations under
+  `data/got/activations/gpt2_small/fresh_phase0/` and the logs stay local.
+* The journal (§48), D41, results summary, roadmap, registry and manifest were updated. No checkpoints were created.

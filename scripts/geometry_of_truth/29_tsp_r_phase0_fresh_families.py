@@ -519,7 +519,7 @@ def eligibility():
     elig, head, timing = [], [], {}
     for name, (f, role) in FAMILIES.items():
         raw = pd.read_csv(RAW / f)
-        sp = pd.read_csv(SPLITS / f'{name}_splits.csv')
+        sp = pd.read_csv(SPLITS / f'{name}_splits.csv', keep_default_na=False)   # '' must stay '' (fix 1)
         dev = sp[(sp.split == 'DEV') & (sp.excluded == '')].copy()
         assert (sp.loc[dev.index, 'split'] == 'DEV').all()
         dev['statement'] = raw.statement.to_numpy()[dev.row_id]

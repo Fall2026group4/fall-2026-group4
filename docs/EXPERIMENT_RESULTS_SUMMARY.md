@@ -785,3 +785,19 @@ Source: `results/shared/audit_sensitivity/`.
 | P(pass) at the observed effect, 3 seeds / 112 cities | frozen 0.02; re-fit < 0.001 |
 
 Source: `results/geometry_of_truth/truth_subspace_preservation/verification/`.
+
+
+## TSP-R Phase 0: fresh GoT families, DEV only (2026-11-14/15; VALIDATION)
+
+| Family | DEV L8 AUROC [95 % CI] | Eligible (≥ 0.70) | R2 base re-fit gap (3 seeds) | TEST units | Conservative MDE |
+|---|---|---|---|---|---|
+| companies_true_false | 0.791 [0.755, 0.825] | yes | +0.023 (−0.014 / +0.053 / +0.028) | 204 companies | ≈ 0.033 |
+| common_claim_true_false | 0.708 [0.680, 0.734] | yes (marginal) | +0.001 (no headroom) | 3,070 | ≈ 0.014 |
+| counterfact_true_false (held-out relations) | 0.625 [0.618, 0.632]; within-relation 0.786 | no | +0.009 | 10,001 subjects | ≈ 0.008 |
+| sp_en_trans / neg_sp_en_trans | 0.513 / 0.512 | no | noise | 229 words | — |
+| cities_cities_conj / disj (secondary) | 0.613 / 0.620 | n/a | +0.015 to +0.066 | 65 / 70 | — |
+
+* The drafted random-effects P2 is infeasible with k = 2.
+* P1, cities cross-fitting (635 groups): power ≈ 0.97–0.99 at −0.020 with 8 seeds.
+
+Source: `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`.
