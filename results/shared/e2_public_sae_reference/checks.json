@@ -1,0 +1,33 @@
+{
+  "adapter": {
+    "1": {
+      "max_abs_diff": 3.814697265625e-06,
+      "pass_": true,
+      "weights_sha256": "f28edd189f39a566af489bf86b340e799d8297adb57bb78220ca664b60aa1830"
+    },
+    "8": {
+      "max_abs_diff": 7.62939453125e-06,
+      "pass_": true,
+      "weights_sha256": "d46a41aa7a9e0475c135e41dde0cb3d8510528ce3140568a18a0e29d3a624d8b"
+    },
+    "10": {
+      "max_abs_diff": 1.1444091796875e-05,
+      "pass_": true,
+      "weights_sha256": "8039df054735de8291683f77557913ad67cae327ea7a0f0e6a10e9bbe3ec1d0f"
+    },
+    "11": {
+      "max_abs_diff": 1.52587890625e-05,
+      "pass_": true,
+      "weights_sha256": "1cb4a926a342336734e12452c9eba94663b9b4855494a9ebebaba7ea104f89e6"
+    }
+  },
+  "hashes": {
+    "scripts/shared/e2_public_sae_reference.py": "09a2d80859dd37012c9d0d8ad2892ed56a1f7b944d960163ff95f280616e2341",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+    "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "scripts/shared/spliced_reconstruction_evaluation.py": "2d5f3aff55b5d391bb6dc6b2db6c5c94bac5b07f626b3bafa303acd54f9e42bf",
+    "results/shared/e2_public_sae_reference/README.md": "7385c368a82f2a76e5dd57a877cbb08e78788022fdda5407d2bb7b3ac9627883"
+  },
+  "test_rows_used": 0
+}

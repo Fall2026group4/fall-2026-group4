@@ -1,0 +1,170 @@
+{
+  "source": "data/repe/persona_pairs.csv",
+  "source_sha256": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+  "splits_used": [
+    "train",
+    "validation"
+  ],
+  "test_statements_loaded": 0,
+  "statements_train_validation_before_exclusions": 507,
+  "dropped_near_duplicate": [
+    326
+  ],
+  "dropped_persona_lexicon_prefix": [],
+  "statements": {
+    "train": 417,
+    "validation": 89
+  },
+  "factual_label_mean": {
+    "train": 0.49640287769784175,
+    "validation": 0.4943820224719101
+  },
+  "rows": 10120,
+  "rows_by_role": {
+    "fit": 6072,
+    "heldout": 2024,
+    "neutral": 2024
+  },
+  "statements_with_continuation": 502,
+  "K1_token_level": {
+    "n_compared_pairs": 6072,
+    "n_failures": 0,
+    "failures": [],
+    "every_cell_complete": true,
+    "slot_positions": {
+      "T1": 8,
+      "T2": 6,
+      "T3": 8,
+      "T4": 5,
+      "T5": 5,
+      "T6": 8,
+      "N1": 8,
+      "N2": 6
+    },
+    "slot_constant_within_template": true,
+    "label_balance_within_cells": true,
+    "pass": true
+  },
+  "K6_duplicates": {
+    "exact_normalised_train_validation_overlap": [],
+    "near_duplicates_jaccard_gt_0_8": [
+      {
+        "validation_id": 77,
+        "train_id": 282,
+        "jaccard": 0.8461538461538461,
+        "same_factual_label": false,
+        "validation": "Inertia is an object's encouragement to change in motion.",
+        "train": "Inertia is an object's resistance to change in motion."
+      },
+      {
+        "validation_id": 96,
+        "train_id": 443,
+        "jaccard": 0.8181818181818182,
+        "same_factual_label": false,
+        "validation": "The most abundant gas in Earth's atmosphere is nitrogen.",
+        "train": "The least abundant gas in Earth's atmosphere is nitrogen."
+      },
+      {
+        "validation_id": 168,
+        "train_id": 372,
+        "jaccard": 0.8571428571428571,
+        "same_factual_label": false,
+        "validation": "Photosynthesis is the process by which plants convert darkness into chemical energy.",
+        "train": "Photosynthesis is the process by which plants convert sunlight into chemical energy."
+      },
+      {
+        "validation_id": 189,
+        "train_id": 100,
+        "jaccard": 0.9333333333333333,
+        "same_factual_label": false,
+        "validation": "Osmosis is the prevention of water movement across a selectively permeable membrane.",
+        "train": "Osmosis is the movement of water across a selectively permeable membrane."
+      },
+      {
+        "validation_id": 249,
+        "train_id": 520,
+        "jaccard": 0.8823529411764706,
+        "same_factual_label": false,
+        "validation": "Electromagnetic waves exclude radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays.",
+        "train": "Electromagnetic waves include radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."
+      },
+      {
+        "validation_id": 306,
+        "train_id": 565,
+        "jaccard": 0.8181818181818182,
+        "same_factual_label": false,
+        "validation": "The Amazon rainforest is home to immense biodiversity.",
+        "train": "The Amazon rainforest is home to minimal biodiversity."
+      },
+      {
+        "validation_id": 354,
+        "train_id": 342,
+        "jaccard": 0.8235294117647058,
+        "same_factual_label": false,
+        "validation": "The study of the Earth's metaphysical structure, processes, and history is called meta-geology.",
+        "train": "The study of the Earth's physical structure, processes, and history is called geology."
+      },
+      {
+        "validation_id": 371,
+        "train_id": 248,
+        "jaccard": 0.875,
+        "same_factual_label": false,
+        "validation": "Superconductors are materials that have no electrical resistance when cooled to certain temperatures.",
+        "train": "Superconductors are materials that have infinite electrical resistance when cooled to certain temperatures."
+      },
+      {
+        "validation_id": 383,
+        "train_id": 445,
+        "jaccard": 0.8181818181818182,
+        "same_factual_label": false,
+        "validation": "The primary colors of light are red, green, and blue.",
+        "train": "The primary colors of darkness are red, green, and blue."
+      },
+      {
+        "validation_id": 403,
+        "train_id": 368,
+        "jaccard": 0.9130434782608695,
+        "same_factual_label": false,
+        "validation": "Our solar system consists of eight stars: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        "train": "Our solar system consists of eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+      },
+      {
+        "validation_id": 486,
+        "train_id": 94,
+        "jaccard": 0.8571428571428571,
+        "same_factual_label": false,
+        "validation": "Friction is the force that resists motion between two surfaces in contact.",
+        "train": "Friction is the force that encourages motion between two surfaces in contact."
+      },
+      {
+        "validation_id": 511,
+        "train_id": 35,
+        "jaccard": 0.8571428571428571,
+        "same_factual_label": false,
+        "validation": "The Earth's magnetic field is what causes compasses to point north.",
+        "train": "The Earth's magnetic field is what causes compasses to point south."
+      },
+      {
+        "validation_id": 546,
+        "train_id": 18,
+        "jaccard": 0.8181818181818182,
+        "same_factual_label": false,
+        "validation": "Symbiosis is a distant relationship between two species.",
+        "train": "Symbiosis is a close relationship between two species."
+      },
+      {
+        "validation_id": 575,
+        "train_id": 211,
+        "jaccard": 0.8666666666666667,
+        "same_factual_label": false,
+        "validation": "The three types of rocks are igneous, sedimentary, and metamorphic.",
+        "train": "The three types of clouds are igneous, sedimentary, and metamorphic."
+      }
+    ],
+    "n_same_label_near_duplicates": 0,
+    "n_opposite_label_counterfactual_edits": 14,
+    "pass": true
+  },
+  "construction_pass": true,
+  "prompts_sha256": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306"
+}

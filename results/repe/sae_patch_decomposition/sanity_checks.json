@@ -1,0 +1,42 @@
+{
+  "max_identity_abs_err": 9.5367431640625e-07,
+  "max_start_at_layer_kl": 0.0,
+  "max_abs_T_rec_vs_feature_all": 2.120419942575058e-06,
+  "max_abs_shapley_sum_err": 5.551115123125783e-17,
+  "T_full_vs_M3": [
+    {
+      "site": "L1 slot",
+      "m4": 0.035601421934521635,
+      "m3": 0.035601357238094225
+    },
+    {
+      "site": "L8 final",
+      "m4": 0.017256438001249163,
+      "m3": 0.017256364007863515
+    },
+    {
+      "site": "L11 final",
+      "m4": 0.034990547663668915,
+      "m3": 0.034990480043575835
+    }
+  ],
+  "T_full_identical_across_saes": 0.0,
+  "pass": true,
+  "runtime_s": 1670.2865543365479,
+  "test_rows_used": 0,
+  "script_sha256": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+  "sites": [
+    [
+      1,
+      "slot"
+    ],
+    [
+      8,
+      "final"
+    ],
+    [
+      11,
+      "final"
+    ]
+  ]
+}

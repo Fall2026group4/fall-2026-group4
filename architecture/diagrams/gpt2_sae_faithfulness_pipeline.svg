@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="550" viewBox="0 0 1120 550" font-family="Helvetica, Arial, sans-serif">
+<title>GPT-2 SAE faithfulness pipeline</title>
+<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b6577"/></marker></defs>
+<rect width="1120" height="550" fill="#ffffff"/>
+<line x1="256" y1="72.0" x2="290" y2="72.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="526" y1="72.0" x2="560" y2="72.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="678.0" y1="104" x2="678.0" y2="150" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="678.0" y1="214" x2="678.0" y2="250" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="678.0" y1="314" x2="678.0" y2="350" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="560" y1="382.0" x2="526" y2="492.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="549.0" y="437.0" font-size="10" fill="#333">x̂ replaces x</text>
+<line x1="796" y1="382.0" x2="860" y2="182.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="796" y1="382.0" x2="860" y2="282.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="796" y1="382.0" x2="860" y2="382.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="796" y1="382.0" x2="860" y2="492.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<line x1="796" y1="72.0" x2="860" y2="282.0" stroke="#5b6577" stroke-width="1.4" marker-end="url(#arr)"/>
+<text x="821.2" y="135.0" font-size="10" fill="#333">probes fitted on original x</text>
+<g><title>data/</title><rect x="20" y="40" width="236" height="64" rx="8" fill="#eef3fb" stroke="#5b6577"/>
+<text x="138.0" y="62.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">Data</text>
+<text x="138.0" y="76.0" font-size="11" text-anchor="middle" fill="#111">OWT · GoT (cities+neg_cities)</text>
+<text x="138.0" y="90.0" font-size="11" text-anchor="middle" fill="#111">RepE-LM persona pairs</text>
+</g>
+<g><title>transformer_lens HookedTransformer</title><rect x="290" y="40" width="236" height="64" rx="8" fill="#eef3fb" stroke="#5b6577"/>
+<text x="408.0" y="69.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">GPT-2 Small (frozen)</text>
+<text x="408.0" y="83.0" font-size="11" text-anchor="middle" fill="#111">layers 0 … L−1</text>
+</g>
+<g><title>spliced_reconstruction_evaluation.py: hook_name, Splicer.logprobs</title><rect x="560" y="40" width="236" height="64" rx="8" fill="#fff6e5" stroke="#5b6577"/>
+<text x="678.0" y="69.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">x = blocks.L.hook_resid_pre</text>
+<text x="678.0" y="83.0" font-size="11" text-anchor="middle" fill="#111">(BOS excluded)</text>
+</g>
+<g><title>src/sae/modern_sae.py: pre</title><rect x="560" y="150" width="236" height="64" rx="8" fill="#e9f6ee" stroke="#5b6577"/>
+<text x="678.0" y="179.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">Encoder</text>
+<text x="678.0" y="193.0" font-size="11" text-anchor="middle" fill="#111">pre = W_enc (x − b_dec) + b_enc</text>
+</g>
+<g><title>src/sae/modern_sae.py: activate</title><rect x="560" y="250" width="236" height="64" rx="8" fill="#e9f6ee" stroke="#5b6577"/>
+<text x="678.0" y="279.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">Activation → z</text>
+<text x="678.0" y="293.0" font-size="11" text-anchor="middle" fill="#111">ReLU · TopK(k=128) · BatchTopK · JumpReLU</text>
+</g>
+<g><title>src/sae/modern_sae.py: decode</title><rect x="560" y="350" width="236" height="64" rx="8" fill="#e9f6ee" stroke="#5b6577"/>
+<text x="678.0" y="379.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">Decoder</text>
+<text x="678.0" y="393.0" font-size="11" text-anchor="middle" fill="#111">x̂ = W_dec z + b_dec ;  e = x − x̂</text>
+</g>
+<g><title>Splicer.logprobs</title><rect x="290" y="460" width="236" height="64" rx="8" fill="#eef3fb" stroke="#5b6577"/>
+<text x="408.0" y="489.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">GPT-2 layers L … 11</text>
+<text x="408.0" y="503.0" font-size="11" text-anchor="middle" fill="#111">→ next-token distribution</text>
+</g>
+<g><title>faithfulness_metrics.reconstruction_metrics</title><rect x="860" y="150" width="236" height="64" rx="8" fill="#f3eefb" stroke="#5b6577"/>
+<text x="978.0" y="179.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">1 Reconstruction</text>
+<text x="978.0" y="193.0" font-size="11" text-anchor="middle" fill="#111">NMSE · EV · cosine · L0</text>
+</g>
+<g><title>m2_four_level_faithfulness.evaluate_source</title><rect x="860" y="250" width="236" height="64" rx="8" fill="#f3eefb" stroke="#5b6577"/>
+<text x="978.0" y="272.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">2 Information</text>
+<text x="978.0" y="286.0" font-size="11" text-anchor="middle" fill="#111">frozen probe on x̂ · re-fit probe</text>
+<text x="978.0" y="300.0" font-size="11" text-anchor="middle" fill="#111">noise and PCA references</text>
+</g>
+<g><title>spliced_reconstruction_evaluation.owt_eval</title><rect x="860" y="350" width="236" height="64" rx="8" fill="#f3eefb" stroke="#5b6577"/>
+<text x="978.0" y="379.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">3 Behaviour (splice x̂)</text>
+<text x="978.0" y="393.0" font-size="11" text-anchor="middle" fill="#111">ΔCE · KL(p_orig ‖ p_spliced)</text>
+</g>
+<g><title>24_sae_patch_decomposition.decompose</title><rect x="860" y="460" width="236" height="64" rx="8" fill="#f3eefb" stroke="#5b6577"/>
+<text x="978.0" y="489.0" font-size="11" text-anchor="middle" fill="#111" font-weight="bold">4 Causal (RepE-LM)</text>
+<text x="978.0" y="503.0" font-size="11" text-anchor="middle" fill="#111">Δ = Δ_rec + Δ_err ; T_rec / T_full</text>
+</g>
+</svg>

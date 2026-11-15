@@ -1,0 +1,41 @@
+{
+  "stage": "M2 four-level information faithfulness",
+  "date": "2026-11-08",
+  "approved_by_user": "2026-11-08 (\"I approve proceeding with M2 and M3\")",
+  "evidence_label": "VALIDATION scoring; all fitting and C selection on TRAIN; test rows dropped on load (GoT cache file is combined) and never used",
+  "questions": {
+    "SQ2": "Per layer x architecture x task: is task information in the SAE reconstruction preserved, only shifted in readout, reduced for some probe families, or not recovered by any tested family; and is the loss SAE-specific (vs noise) and worse or better than PCA at the same OWT error?"
+  },
+  "tasks": {
+    "got_cities": "GoT cities + neg_cities (geographic), existing grouped split, final token",
+    "repe_persona": "M1 RepE-LM T1-T4, variants H/U, final token, statement-grouped",
+    "repe_neutral": "M1 RepE-LM N1-N2 (tall/short, red/blue), final token: ALWAYS reported beside persona"
+  },
+  "sources": {
+    "sae": "108 uninterrupted OWT SAEs (layer-0 JumpReLU seed 42 flagged unmatched; excluded from summaries)",
+    "pca": "PCA on OWT TRAIN activations (101,600 tokens, BOS excluded), one per layer x architecture: k = smallest with OWT VALIDATION NMSE <= that architecture's mean OWT validation NMSE (M0 table)",
+    "noise": "x + eta, ||eta_i|| = ||x_i - x_hat_i||, isotropic, 200 draws; frozen linear probes only"
+  },
+  "probes": {
+    "frozen": "original logistic (StandardScaler + L2, C from {0.01,0.1,1} by 3-fold grouped CV on train x) and mass-mean direction, applied unchanged",
+    "refit": "logistic (same C procedure on the source), MLP 768-64-1 (3 inits, scores averaged), kNN k=15 (standardised), sparse-z logistic on SAE codes (MaxAbs scaled, C by grouped CV); original counterparts fitted identically on x; sparse-z is compared with the original logistic",
+    "error_term": "frozen original logistic direction a on e = x - x_hat alone; identity a.x = a.x_hat + a.e checked numerically",
+    "learning_curve": "logistic at 50 % of train groups vs 100 %"
+  },
+  "metrics": "AUROC on validation (higher better); gap = AUROC(original) - AUROC(source), lower better; 1000 paired grouped bootstrap resamples over validation statements, identical across sources of one task and layer",
+  "labels": "src/evaluation/information_levels.py:label_cell, rules exactly as in the M0-M5 plan refinement 3 (tolerance 0.02; 'Not recovered' requires all 4 families reduced, all original family AUROC >= 0.75, no sample-inefficiency (source gains >= 0.02 from 50->100 % while original gains < 0.01), and SAE refit-logistic gap > PCA's at matched NMSE). Cells with original refit-logistic AUROC < 0.60 are 'Uninformative'. Displacement flag: error-term AUROC CI low > 0.5. 'Irrecoverable' is never claimed.",
+  "hypotheses": {
+    "H2a": "SAE frozen gap > noise frozen gap (logistic and mass-mean): one-sided paired bootstrap p; BH over the 108 SAEs per task",
+    "H2b": "SAE refit-logistic gap vs PCA at matched NMSE: one-sided p for SAE better and for SAE worse; BH over 108 per task"
+  },
+  "sparsity_width": "task-prompt L0 and live latents (M0) reported per cell; within-layer Spearman of gaps vs task L0, live latents and task error (descriptive); PCA reference is matched on error, not L0",
+  "smoke_test_disclosure": "Ran on layers 0 and 6, seed 42, PCA from 5 chunks, in a scratch directory to check mechanics; label counts for those 18 cells were printed. One change followed: PCA k is matched on OWT validation NMSE instead of train eigenvalues (the smoke PCA overshot the target 0.17 vs 0.05). No rule or threshold was changed.",
+  "outputs": "results/shared/m2_four_level_faithfulness/ (refuses to overwrite)",
+  "hashes": {
+    "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+    "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+    "src/tests/test_information_levels.py": "d96ded5cef0cbfc0e2c7cdeba81110c3427cb08346e5798e5d5c4885d34ea06c",
+    "data/repe/repe_lm/prompts.csv": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "results/shared/m0_within_layer_reanalysis/merged_validation_table.csv": "d1307aaa69cd5661d59fc0ed9a1c1892fd0130a51e9542bcac619111b48ed181"
+  }
+}

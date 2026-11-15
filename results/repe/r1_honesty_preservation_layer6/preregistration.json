@@ -1,0 +1,80 @@
+{
+  "written": "2026-11-07 23:44:52",
+  "experiment": "R1 RepE honesty representation preservation, GPT-2 Small layer 6",
+  "documents": [
+    "results/repe/r1_honesty_preservation_layer6/README.md (as drafted, commit d17bb00)",
+    "same README \u00a710 pre-training addendum (clarifications; criteria unchanged)"
+  ],
+  "split_file": "data/repe/splits/r1_train_AB_groups.csv",
+  "split_file_sha256": "8cd694363c180afb63b79477a35da26c70b0a0414b507ffe4222a04022174131",
+  "excluded_validation_statements": [
+    326
+  ],
+  "bases": {
+    "relu/42": "results/openwebtext/convergence/layer_6/relu_l0_128_uninterrupted_seed42/checkpoint_step_15000.pt",
+    "relu/1042": "results/openwebtext/convergence/layer_6/relu_l0_128_uninterrupted_seed1042/checkpoint_step_15000.pt",
+    "relu/2042": "results/openwebtext/convergence/layer_6/relu_l0_128_uninterrupted_seed2042/checkpoint_step_15000.pt",
+    "topk/42": "results/openwebtext/convergence/layer_6/topk_l0_128_uninterrupted_seed42/checkpoint_step_15000.pt",
+    "topk/1042": "results/openwebtext/convergence/layer_6/topk_l0_128_uninterrupted_seed1042/checkpoint_step_15000.pt",
+    "topk/2042": "results/openwebtext/convergence/layer_6/topk_l0_128_uninterrupted_seed2042/checkpoint_step_15000.pt",
+    "jumprelu/42": "results/openwebtext/convergence/layer_6/jumprelu_l0_128_uninterrupted_seed42/checkpoint_step_15000.pt",
+    "jumprelu/1042": "results/openwebtext/convergence/layer_6/jumprelu_l0_128_uninterrupted_seed1042/checkpoint_step_15000.pt",
+    "jumprelu/2042": "results/openwebtext/convergence/layer_6/jumprelu_l0_128_uninterrupted_seed2042/checkpoint_step_15000.pt"
+  },
+  "base_sha256": {
+    "relu/42": "412f213a236b022f024bab535ed558fdcd8b185aca5c7e7fb5b76386d864a96a",
+    "relu/1042": "1896c4681f319aa20b551ab21c8881b680aa82c605e5bce6b29cedddf757cdc2",
+    "relu/2042": "92814e0c12fc2dedfddddaf208981ff35caa187dd8773faa69d191db2b8e44c9",
+    "topk/42": "c2e5bfe96edf8a95df6a94cad15cc2fadb50ac31de52aaeefe7e4cfebc18b6b4",
+    "topk/1042": "0816c8e236fa0684b17b8e258eccbafeeb1a8c07e145926034711dcf7dff544c",
+    "topk/2042": "45dabc8ca0a51b957b054555a8bf2bf07f7e3266485d6f5728a05d7c4f3e0301",
+    "jumprelu/42": "154497465dd486d4da0812f3d33a2f05b1a403199ea691cd5c50deb32f1cf2cb",
+    "jumprelu/1042": "000394125529a4c4dd4ba94a5a18f61e013232f95a8e7766e917236d301cc03b",
+    "jumprelu/2042": "f6a86530b4e7a574a72df07ccfd9b4841547b294a3aaea60e1134eb543d9c54d"
+  },
+  "arms": {
+    "r_recon": "0.5 MSE(RepE-A rows) + 0.5 MSE(OWT train)",
+    "r_honesty": "r_recon + lambda * L_pair (honest-vs-untruthful, same statement)",
+    "r_samepersona": "r_recon + lambda * L_same (same persona, different statements; control)",
+    "reference_only": "base (9), Method A (relu/jumprelu got_replay, topk = pilot reconstruction-only)"
+  },
+  "lambda_rule": "per SAE and arm, at initialisation on all A rows: lambda * L(all A) = 0.5 * MSE_RepE(all A)",
+  "protocol": {
+    "lr": 1e-05,
+    "steps": 500,
+    "clip": 10.0,
+    "pair_batch": 32,
+    "owt_batch": 128,
+    "optimizer": "Adam",
+    "decoder_renormalisation": true,
+    "checkpoint_selection": null,
+    "sparsity": "relu/jumprelu: penalty on all rows, controller continued from base coef (target 128, every 25, rate 0.5, EMA L0 on OWT rows); topk: fixed k",
+    "seeds": [
+      42,
+      1042,
+      2042
+    ],
+    "torch_and_batch_seed": "SAE seed"
+  },
+  "runs": {
+    "new": 27,
+    "repro_check": "r_recon topk seed 42 trained twice; must be bit-identical; excluded"
+  },
+  "evaluation": "scripts/repe/16_r1_evaluation.py: validation (89 statements) + cross-wording validation (89); test NOT scored (deferred, user instruction 2026-11-07)",
+  "primary_metric": "B-MLP AUROC gap (768-64-1, 5 inits 42/123/456/789/2026, fitted on ORIGINAL train-B rows, applied frozen to reconstructions), validation",
+  "criteria": {
+    "consistent": "better on all 3 seeds AND mean paired difference > 2 x sd of paired differences",
+    "R1a": "r_recon B-MLP gap consistently lower than base (validation)",
+    "R1b_primary": "r_honesty B-MLP gap consistently lower than r_recon (validation) AND lower than r_samepersona on all 3 seeds",
+    "R1_transfer": "cross-wording: mean paired diff (r_honesty - r_recon) of B-MLP gap < 0 and < 0 on >= 2/3 seeds",
+    "guards_vs_own_base": [
+      "OWT validation L0 within +-5 % (every seed)",
+      "RepE validation-prompt L0 within +-5 % (every seed)",
+      "OWT validation EV >= base - 0.02 (every seed)",
+      "OWT dead fraction <= base + 0.05 (every seed)",
+      "OWT spliced CE increase <= base + 0.01 nats (mean over seeds)",
+      "GoT geographic B-MLP gap <= base + 0.02 (mean over seeds)"
+    ],
+    "verdict": "SUPPORTED = R1b AND R1_transfer AND all guards for r_honesty and r_recon; NOT SUPPORTED = R1b fails; INCONCLUSIVE otherwise. r_samepersona guard failures are flagged."
+  }
+}

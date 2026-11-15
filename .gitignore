@@ -71,3 +71,5 @@ tempCodeRunnerFile.py
 data/activations/
 data/*/activations/
 *.bak
+data/openwebtext/stream_shards/
+data/openwebtext/stream_tokens/

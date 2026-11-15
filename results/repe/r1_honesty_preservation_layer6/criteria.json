@@ -1,0 +1,208 @@
+{
+  "relu": {
+    "tests": {
+      "R1a_r_recon_lt_base": {
+        "pass": false,
+        "diffs": [
+          -0.00202,
+          -0.02123,
+          -0.02878
+        ]
+      },
+      "R1b_r_honesty_lt_r_recon_consistent": {
+        "pass": true,
+        "diffs": [
+          -0.00962,
+          -0.01189,
+          -0.01886
+        ]
+      },
+      "R1b_r_honesty_lt_r_samepersona_all_seeds": {
+        "pass": true,
+        "diffs": [
+          -0.00088,
+          -0.00401,
+          -0.02007
+        ]
+      },
+      "R1_transfer_cw": {
+        "pass": true,
+        "diffs": [
+          -0.01702,
+          -0.00295,
+          -0.01452
+        ]
+      }
+    },
+    "R1a_pass": false,
+    "R1b_pass": true,
+    "guards": {
+      "r_recon": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": false,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      },
+      "r_honesty": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": false,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      },
+      "r_samepersona": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": false,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      }
+    },
+    "guards_pass_r_honesty_and_r_recon": false,
+    "r_samepersona_guard_flag": true,
+    "VERDICT": "INCONCLUSIVE"
+  },
+  "topk": {
+    "tests": {
+      "R1a_r_recon_lt_base": {
+        "pass": false,
+        "diffs": [
+          0.01144,
+          -0.0148,
+          -0.00932
+        ]
+      },
+      "R1b_r_honesty_lt_r_recon_consistent": {
+        "pass": false,
+        "diffs": [
+          -0.00452,
+          0.01573,
+          0.02765
+        ]
+      },
+      "R1b_r_honesty_lt_r_samepersona_all_seeds": {
+        "pass": false,
+        "diffs": [
+          -0.00376,
+          0.00942,
+          0.02472
+        ]
+      },
+      "R1_transfer_cw": {
+        "pass": false,
+        "diffs": [
+          0.00412,
+          0.01555,
+          0.01161
+        ]
+      }
+    },
+    "R1a_pass": false,
+    "R1b_pass": false,
+    "guards": {
+      "r_recon": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": true,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      },
+      "r_honesty": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": true,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": false
+      },
+      "r_samepersona": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": true,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      }
+    },
+    "guards_pass_r_honesty_and_r_recon": false,
+    "r_samepersona_guard_flag": false,
+    "VERDICT": "NOT SUPPORTED"
+  },
+  "jumprelu": {
+    "tests": {
+      "R1a_r_recon_lt_base": {
+        "pass": false,
+        "diffs": [
+          -0.00465,
+          -0.01161,
+          0.00144
+        ]
+      },
+      "R1b_r_honesty_lt_r_recon_consistent": {
+        "pass": false,
+        "diffs": [
+          0.00848,
+          0.0103,
+          0.00672
+        ]
+      },
+      "R1b_r_honesty_lt_r_samepersona_all_seeds": {
+        "pass": false,
+        "diffs": [
+          0.01161,
+          0.01626,
+          0.01068
+        ]
+      },
+      "R1_transfer_cw": {
+        "pass": false,
+        "diffs": [
+          -0.00553,
+          0.00404,
+          0.00651
+        ]
+      }
+    },
+    "R1a_pass": false,
+    "R1b_pass": false,
+    "guards": {
+      "r_recon": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": true,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      },
+      "r_honesty": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": true,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      },
+      "r_samepersona": {
+        "owt_l0_within_5pct": true,
+        "repe_val_l0_within_5pct": false,
+        "owt_ev_ge_base_minus_0.02": true,
+        "dead_le_base_plus_0.05": true,
+        "owt_splice_ce_le_base_plus_0.01_mean": true,
+        "got_geo_B_mlp_gap_le_base_plus_0.02_mean": true
+      }
+    },
+    "guards_pass_r_honesty_and_r_recon": true,
+    "r_samepersona_guard_flag": true,
+    "VERDICT": "NOT SUPPORTED"
+  },
+  "EXPLORATORY_spearman_val_B_mlp_gap_vs_repe_val_l0_all_main_saes": {
+    "rho": -0.3354954848172344,
+    "p": 0.02426036173537192,
+    "n": 45
+  }
+}

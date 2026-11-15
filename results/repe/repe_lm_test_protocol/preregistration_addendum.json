@@ -1,0 +1,29 @@
+{
+  "id": "H1-TEST addendum",
+  "date_frozen": "2026-11-13 08:14:13",
+  "purpose": "Implementation freeze required by the protocol implementation_rule: the TEST evaluation script, smoke-tested on VALIDATION rows only, is hashed here before it reads a TEST row.",
+  "smoke_test": {
+    "split": "RepE-LM VALIDATION (1,780 rows); 6 SAEs (old TopK s42, R2 TopK s42 at L1/8/11)",
+    "result": "reproduces the committed validation ladder: max |diff| <= 1e-4 on pair_dir_cosine, persona refit/frozen gaps, held-out gaps, T_rec/T_full, T_full; live activations vs cache <= 1.8e-4; M4 rows identical to S24.build_rows",
+    "files": "smoke_validation/"
+  },
+  "checkpoints": "81 sources (L1 23, L8 29, L11 29); 78 in-house hashes equal docs/checkpoint_registry.csv; all 81 equal the validation ladder hashes; listed in checkpoint_hashes.csv",
+  "clarifications": [
+    "Multiplicity: the protocol text says 12 HT1-HT3 cells, but its own lists give 13 (HT1 2 + HT2 9 + HT3 2). Holm is applied over all 13 (more conservative). A cell is CONFIRMED only if the R2 rule classes it IMPROVEMENT on TEST (all 9 seed pairs better and Welch 95% CI excludes 0) AND its Welch two-sided p, Holm-adjusted over the 13 cells, is < 0.05. A hypothesis is CONFIRMED only if every one of its cells is confirmed.",
+    "Metrics are the ladder definitions computed by unchanged imported code; no PCA reference is computed on TEST (not part of HT1-HT4).",
+    "Near-duplicate sensitivity: no same-label near-duplicates remain in the TEST statements; the 12 opposite-label counterfactual edits carry no persona-label information (both personas per statement) and are not excluded.",
+    "HT4 neutral floor: persona probe (fit on TRAIN T1-T4 original activations) AUROC on N1/N2 and N3/N4 TEST rows must be <= 0.55; positive control: M3/M4 T_full > 0 with 95% CI low > 0 at each site; K7: persona KL(H||U) > synonym KL(H||Hp).",
+    "All cells, comparisons and controls are reported whatever the outcome; TEST rows are read once."
+  ],
+  "hashes": {
+    "scripts/repe/29_repe_lm_test_evaluation.py": "c99957ee80e882426dd3baac6f7b1a53c1be852698d74e81880021db6289c6c8",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+    "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+    "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "results/openwebtext/r2_scaled_saes/comparisons.csv": "70297aa8a8d90a551c83e557bba5c757e848baa5e9c912a262d9a2b5b8ea869c",
+    "results/repe/repe_lm_test_protocol/checkpoint_hashes.csv": "3ea3863fc4cfcb02e918e9c856740ed97ad166fe4f679e7a9a36849c052fb29b",
+    "results/repe/repe_lm_test_protocol/preregistration.json": "1cf5d87c45a280213636cb87fe176e7a092960ed7646de1fa3fa366afd65fe26"
+  }
+}

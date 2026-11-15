@@ -47,6 +47,9 @@ def load_sae(path, device='cpu', architecture=None, k=None):
     """
     ckpt = torch.load(path, map_location='cpu', weights_only=False)
     cfg = ckpt.get('config') or {}
+    if cfg.get('format') == 'modern_v1':        # R2 streaming-trained SAEs (src/sae/modern_sae.py)
+        from src.sae.modern_sae import build_from_checkpoint
+        return build_from_checkpoint(ckpt).to(device).eval(), ckpt
     orig = cfg.get('original_config') or {}
     state = ckpt['model_state_dict']
     d_sae, d_in = state['encoder.weight'].shape
