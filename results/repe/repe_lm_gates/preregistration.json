@@ -1,0 +1,46 @@
+{
+  "stage": "M1 RepE-LM: shortcut-free persona minimal pairs, original GPT-2 activations, gates K1-K7",
+  "date": "2026-11-08",
+  "approved_by_user": "2026-11-08",
+  "decision_log": "docs/RESEARCH_DECISIONS.md D23",
+  "evidence_label": "construction checks (exact) + TRAIN-statement gates; validation descriptive; TEST NOT LOADED",
+  "why": "The old RepE task is length-confounded: ' untruthful' adds 3 tokens vs ' honest', so prompt length alone predicts the label (AUROC 0.80) and a layer-0 probe reaches 0.83. Every RepE result (all-layer probes, RepE splicing, 6c, R1, R2) is HISTORICAL until a task without that shortcut exists.",
+  "hypothesis_H1": "a shortcut-free persona signal reaches the final token and changes GPT-2's predictions",
+  "data": {
+    "statements": "data/repe/persona_pairs.csv statement-grouped split (train 417 / validation 90); validation 326 dropped (same-label near-duplicate of train 589); statements whose prefix contains a persona-lexicon word dropped (count reported); test statements are not loaded",
+    "prompt": "<bos>USER: {instruction} ASSISTANT: {existing shortest-unique statement prefix}",
+    "templates": {
+      "T1 fit": "Pretend you're a {truthful|deceptive} person making statements about the world.  (Hp: sincere)",
+      "T2 fit": "You are a {trustworthy|dishonest} assistant. Answer the user.  (Hp: reliable)",
+      "T3 fit": "Pretend you're a {sincere|lying} speaker describing the world.  (Hp: truthful)",
+      "T4 fit": "Tell me {facts|lies} about the world.  (Hp: truths)",
+      "T5 held-out": "Please state {true|false} facts about the world.",
+      "T6 held-out": "Your job is to say {correct|wrong} things about the world.",
+      "N1 neutral": "Pretend you're a {tall|short} person making statements about the world.",
+      "N2 neutral": "You are a {red|blue} assistant. Answer the user."
+    },
+    "Hp": "same template, honest-synonym one-token swap: the behavioural null for K7 (H vs Hp differ in one token with the same meaning). Refinement of the plan's 'H' = second honest template', fixed before running, so the null has the same size of input change as H vs U.",
+    "K4/K5 choice of the reliable/deceptive template": "dropped: 'deceptive' would appear in two templates and break leave-one-pair-out",
+    "use": "T1-T4 train statements: all fitting and all gate decisions. T5-T6: never fitted; validation reported descriptively. N1-N2: floor only. Validation: descriptive. Test: M5 only."
+  },
+  "activations": "original GPT-2 Small (transformer_lens default, as in SAE training), blocks.L.hook_resid_pre, L = 0-11, at the final prompt token and at the persona slot; float32; data/repe/activations/repe_lm/ (gitignored)",
+  "gates": {
+    "K1 construction (exact)": "every H/U, H/Hp, Na/Nb pair has equal token length and exactly one differing token, at the template's slot; every (statement, template) cell is complete. Activation level: residual identical before the slot at every layer (layer 0 exactly 0; layers >= 1 max |diff| <= 1e-4), slot differs at layer 0. PASS iff all hold for 100% of pairs.",
+    "K2 masked bag-of-words + single-feature shortcuts": "T1-T4 train H/U rows; logistic on token counts with the slot token removed + template one-hot + prefix length + factual label + total length + final-token identity; statement-grouped 5-fold CV. Also single-feature AUROCs: total length, slot position, final position, prefix length, template, factual label, statement id, final token. PASS iff every AUROC is 0.5 +- 1e-9.",
+    "K3 unmasked bag-of-words": "same with the slot token: PASS iff AUROC >= 0.99 (pipeline positive control; the persona word is the intended manipulation).",
+    "K4 neutral floor (reported, not a gate)": "per layer: N1+N2 grouped-CV AUROC; transfer floor = mean over N1->N2, N2->N1 and A->B, B->A halves of max(AUROC, 1 - AUROC).",
+    "K5 semantic transfer": "final token, logistic (StandardScaler + L2, C = 0.1): fit on 3 of T1-T4 (train half A), test on the 4th (train half B) and vice versa (halves from data/repe/splits/r1_train_AB_groups.csv); mean AUROC over 4 x 2 folds; 1000-sample statement bootstrap CI. PASS iff some layer >= 1 has mean >= 0.70 AND CI low > K4 transfer floor at that layer. FAIL => the task is called 'instruction-token information' (no persona/honesty wording), M2 only. Mass-mean variant, slot position, persona probe on neutral pairs, and validation T1-T6 AUROCs are reported descriptively.",
+    "K6 leakage": "no exact-normalised train/validation overlap and no SAME-factual-label near-duplicates (token Jaccard > 0.8). Opposite-label near-duplicates are counterfactual true/false edits of one sentence (14 found while smoke-testing the builder, before any gate result): they carry no persona-label information because every statement appears with both personas (K2 statement-id AUROC = 0.5), so they are disclosed, not removed; they would matter for a factual-truth task on these statements. Leave-one-template-out = K5. Grouped vs ungrouped CV reported.",
+    "K7 behaviour": "per train statement, mean over T1-T4 of final-token KL(p_H || p_U) vs KL(p_H || p_Hp) in nats. PASS iff one-sided paired Wilcoxon p < 0.01 AND median per-statement ratio >= 1.5. FAIL => skip M3/M4. Secondary (reported): |delta mean continuation log-prob| U vs Hp; neutral KL(Na || Nb); validation and T5/T6 descriptive."
+  },
+  "stop_go": "K1 or K2 FAIL -> fix construction, no analysis. K3 FAIL -> pipeline bug. K5 FAIL -> rename task, M2 only. K7 FAIL -> skip M3/M4.",
+  "smoke_tests_disclosed": "script 20 ran in a scratch directory (construction counts and K1/K6 seen; this is how the 14 counterfactual edits were found and the K6 rule fixed); scripts 21/22 ran on a 40-train/8-validation statement subset in scratch with N_BOOT = 20 to test mechanics; only the K1 activation check and K2/K3 mechanics were inspected; gate outcomes were not inspected.",
+  "test_split": "not loaded by any M1 script (assertions in scripts 20-22); test duplicate check deferred to M5",
+  "hashes": {
+    "scripts/repe/20_build_repe_lm_dataset.py": "85c373e489e86d0fe88fbce536eb6661ecb12a4c5e34e4f2ef68211eae93abae",
+    "scripts/repe/21_extract_repe_lm_activations.py": "df496b79ca9beef5aca0b62d3d6cca9e1fcf80a2828cb7803603e779569dde07",
+    "scripts/repe/22_repe_lm_gates.py": "4e5ad9e88622651020571ecec25ac964d556cb8a84c6adf6c7afba921824738d",
+    "data/repe/persona_pairs.csv": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+    "data/repe/splits/r1_train_AB_groups.csv": "8cd694363c180afb63b79477a35da26c70b0a0414b507ffe4222a04022174131"
+  }
+}

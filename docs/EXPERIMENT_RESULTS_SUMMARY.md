@@ -384,3 +384,333 @@ Source: `results/geometry_of_truth/kl_weight_ablation_layer6_topk/summary.csv`, 
 * The endpoints differ in truth gap by only +0.007, below the 0.02 threshold.
 * BEHAV and truth non-inferiority pass; TRADE fails.
 * Paired sd of the truth gap is about 0.02, larger than every between-method difference.
+
+## 10. R1: RepE honesty-preservation fine-tuning, layer 6 (VALIDATION; mean over 3 seeds; statement 326 excluded)
+Source: `results/repe/r1_honesty_preservation_layer6/summary.csv`, `per_sae.csv`, `criteria.json`.
+
+Original GPT-2: B-MLP AUROC 0.964 (cross-wording 0.928), B-logistic 0.993, B-mass-mean 0.894; pair accuracy 1.0.
+Gaps = original − reconstruction AUROC (↓ better).
+
+| Arch | Variant | val B-MLP gap ↓ | cw B-MLP gap ↓ | val B-logistic gap ↓ | pair-dir cos ↑ | RepE val EV ↑ | RepE val L0 | OWT val EV ↑ | OWT ΔCE ↓ |
+|---|---|---|---|---|---|---|---|---|---|
+| ReLU | base | .198 | .243 | .258 | .710 | .785 | 163.9 | .828 | .177 |
+| ReLU | R-recon | .180 | .236 | .244 | .728 | .824 | 177.7 | .826 | .178 |
+| ReLU | R-samepersona | .175 | .236 | .237 | .729 | .828 | 190.2 | .825 | .175 |
+| ReLU | R-honesty | .167 | .225 | .244 | .915 | .820 | 175.1 | .826 | .178 |
+| TopK | base | .092 | .134 | .089 | .799 | .803 | 128 | .853 | .104 |
+| TopK | R-recon | .088 | .117 | .076 | .811 | .832 | 128 | .853 | .104 |
+| TopK | R-samepersona | .091 | .116 | .080 | .811 | .832 | 128 | .852 | .105 |
+| TopK | R-honesty | .101 | .128 | .086 | .870 | .828 | 128 | .852 | .108 |
+| JumpReLU | base | .072 | .109 | .068 | .838 | .845 | 179.4 | .862 | .093 |
+| JumpReLU | R-recon | .067 | .094 | .056 | .850 | .873 | 185.0 | .860 | .094 |
+| JumpReLU | R-samepersona | .062 | .091 | .054 | .858 | .877 | 193.0 | .861 | .092 |
+| JumpReLU | R-honesty | .075 | .096 | .054 | .915 | .869 | 181.1 | .861 | .093 |
+
+**Primary paired difference R-honesty − R-recon (val B-MLP gap; seeds 42/1042/2042):** ReLU −.010/−.012/−.019;
+TopK −.005/+.016/+.028; JumpReLU +.008/+.010/+.007.
+
+**Verdicts:** ReLU INCONCLUSIVE (R1b and transfer met; RepE-prompt L0 guard failed); TopK NOT SUPPORTED (also GoT
+guard failed for R-honesty); JumpReLU NOT SUPPORTED. R1a (R-recon < base, consistent) not met anywhere. Method A
+(GoT fine-tuning) changes RepE gaps by ≤ .008. Exploratory TopK bases at k = 164 / 180: val gap .082 / .075.
+
+## 11. R2: SAE-in-the-loop clamp of honesty features, layer 6 (VALIDATION, descriptive; mean ± sd over 3 seeds; base SAEs; statement 326 excluded)
+Source: `results/repe/r2_sae_in_the_loop_steering_layer6/validation_summary.csv`, `validation_criteria_descriptive.json`, `k_selection.json`.
+
+E = 1 − ΣKL(p_H‖p_U′)/ΣKL(p_H‖p_U) (↑ better; 1 = honest output fully recovered). Positive control (activation patch) E = 0.188 (`val`), 0.404 (`cw`).
+Baseline mean KL(p_H‖p_U) = 0.020 nats. α = 1 is a full clamp to the honest-train mean, with the error term kept.
+
+| Arch | k | E(α=1) | E(α=−1) | C2 mean / q95 | C3 q95 | E unrelated | logistic probe shift ↑ | OWT ΔCE target / C2 q95 ↓ | cw E(α=1) |
+|---|---|---|---|---|---|---|---|---|---|
+| ReLU | 1* | −0.110 ± .006 | −0.058 | −0.012 / .004 | .009 | −0.005 | .146 | .017 / .001 | −0.083 |
+| ReLU | 4 | −0.127 ± .015 | −0.087 | −0.044 / .005 | .009 | −0.034 | .221 | .019 / .002 | −0.106 |
+| ReLU | 16 | −0.178 ± .038 | −0.258 | −0.145 / −.011 | −.016 | −0.251 | .357 | .034 / .006 | −0.098 |
+| TopK | 1* | −0.103 ± .039 | −0.070 | −0.027 / .004 | .005 | −0.062 | .311 | .029 / .002 | −0.039 |
+| TopK | 4 | −0.164 ± .026 | −0.226 | −0.124 / −.007 | −.046 | −0.176 | .453 | .079 / .010 | −0.086 |
+| TopK | 16 | −0.532 ± .045 | −0.531 | −0.470 / −.113 | −.250 | −0.537 | .643 | .135 / .028 | −0.227 |
+| JumpReLU | 1* | −0.115 ± .031 | −0.057 | −0.045 / .003 | .005 | −0.033 | .440 | .043 / .005 | −0.059 |
+| JumpReLU | 4 | −0.287 ± .092 | −0.288 | −0.142 / −.013 | −.054 | −0.419 | .502 | .094 / .014 | −0.109 |
+| JumpReLU | 16 | −0.854 ± .349 | −0.745 | −0.647 / −.195 | −.329 | −0.877 | .600 | .176 / .040 | −0.280 |
+
+\* k selected on validation (argmax of mean E(α = 1)); optimistic.
+
+* No-error reconstruction splice: E = −4.27 (ReLU), −3.75 (TopK), −2.83 (JumpReLU).
+* **Descriptive verdict: NOT SUPPORTED, all architectures, all k.** Criterion 1 fails (BH q = 1), as do 3, 4 and 5. Criterion 2 passes but is uninformative.
+* R1 SAEs (exploratory): R-honesty − R-recon E(α = 1) at k = 1: ReLU +0.028 ± 0.060, TopK +0.002 ± 0.003, JumpReLU −0.001 ± 0.001.
+
+## 12. M0: within-layer reanalysis of existing results (VALIDATION; 107 matched SAEs; no new model runs)
+Source: `results/shared/m0_within_layer_reanalysis/` (README §3).
+
+**Primary model:** outcome ~ β·log error + layer FE + architecture FE + log L0, with a Freedman–Lane within-layer permutation (5000).
+
+| Predictor → outcome | β [95 % CI] | p (Holm) | Secondary model (no arch FE) β, p | Verdict |
+|---|---|---|---|---|
+| OWT NMSE → GoT logistic gap (layers 4–11) | 0.268 [0.056, 0.477] | 0.044 | −0.005, 0.89 | Formal pass, **fragile** (architecture = 99.8 % of within-layer NMSE variance) |
+| GoT relative error → GoT logistic gap | 0.005 [−0.059, 0.080] | 1.00 | 0.020, 0.25 | NOT SUPPORTED |
+| OWT NMSE → OWT splice ΔCE | 0.165 [0.134, 0.265] | 0.0008 | 0.202, 0.0002 | **SUPPORTED** |
+| GoT relative error → OWT splice ΔCE | −0.012 [−0.060, 0.028] | 1.00 | −0.045, 0.002 | NOT SUPPORTED |
+
+**Architecture (OWT validation):**
+* **Layers 4–11:** JumpReLU < TopK < ReLU in NMSE (p ≤ 0.003); TopK ≈ JumpReLU at layers 10–11.
+* **Layers 0–2:** ReLU is lowest; ReLU ≈ JumpReLU at layer 2.
+* **L0:** ReLU uses 4–7 % more latents than TopK. An L0 adjustment (sweep elasticity ≈ −0.4) changes no ranking except two near-ties.
+* **Task-prompt L0 is unmatched:** on GoT, TopK 128, ReLU 8–110, JumpReLU 12–92.
+
+**Corrections:**
+* The pooled ρ = 0.89 between EV and RepE persona shift is ρ = 0.05 within layer.
+* The splice-ratio range is 0.76–2.89 per run (0.82–2.65 per cell), not "1.0–2.6×".
+
+## 13. M1: RepE-LM equal-length persona task, gates K1–K7 (TRAIN gates; validation descriptive)
+Source: `results/repe/repe_lm_gates/` (README §4). 506 statements × 20 one-token-swap variants.
+
+| Gate | Status | Key number |
+|---|---|---|
+| K1 construction | PASS | 6,072 pairs; pre-slot residual diff 0.0 at all 12 layers |
+| K2 shortcuts | PASS | every shortcut AUROC 0.5000 (max deviation 5.6e-17) |
+| K3 positive control | PASS | 1.000 |
+| K4 neutral floor | reported | transfer floor 0.50–0.57; neutral decodability 0.58–0.75 |
+| K5 semantic transfer | PASS (narrow) | leave-one-pair-out 0.701 at L8 and L11 (CI low 0.689 / 0.691) |
+| K6 leakage | PASS | 0 same-label near-duplicates; 14 counterfactual edits disclosed |
+| K7 behaviour | PASS | median KL ratio 1.99; Wilcoxon p 3e-68; median KL(H‖U) 0.019 nats |
+
+## 14. M2: four-level information faithfulness (VALIDATION; 108 SAEs + 36 PCA; GoT cities, RepE-LM persona and neutral)
+Source: `results/shared/m2_four_level_faithfulness/` (README §2). Gaps are the mean over informative layers and seeds (AUROC; lower is better).
+
+| Task | Arch | Frozen logistic | Noise | Frozen mass-mean | Re-trained logistic | PCA re-trained | MLP | Error-term AUROC |
+|---|---|---|---|---|---|---|---|---|
+| GoT | ReLU / TopK / JumpReLU | 0.287 / 0.275 / 0.286 | 0.259 / 0.246 / 0.257 | 0.033 / 0.024 / 0.026 | 0.066 / 0.075 / 0.118 | 0.042 / 0.032 / 0.030 | 0.049 / 0.037 / 0.066 | 0.675 / 0.615 / 0.632 |
+| Persona | ReLU / TopK / JumpReLU | 0.198 / 0.162 / 0.155 | 0.076 / 0.072 / 0.064 | 0.091 / 0.066 / 0.062 | 0.179 / 0.147 / 0.143 | 0.131 / 0.116 / 0.114 | 0.232 / 0.190 / 0.177 | 0.773 / 0.719 / 0.721 |
+| Neutral | ReLU / TopK / JumpReLU | 0.113 / 0.098 / 0.094 | 0.048 / 0.046 / 0.043 | 0.049 / 0.038 / 0.035 | 0.099 / 0.090 / 0.083 | 0.066 / 0.064 / 0.062 | 0.033 / 0.031 / 0.031 | 0.636 / 0.615 / 0.619 |
+
+* **Labels:**
+  * 0 Preserved and 0 Readout shifted on every task;
+  * GoT: 21 "Not recovered by tested families" (layers 5–9), 60 Reduced;
+  * persona: 99 Reduced; neutral: 90 Reduced;
+  * displacement flag in 97.5–100 % of informative cells.
+* **H2a (SAE > noise):** GoT 40/81 (excess 0.026), persona 99/99 (0.100), neutral 90/90 (0.058).
+* **H2b (vs PCA):** SAE better in 0 cells; worse in 52/81, 59/99 and 81/90.
+* **Persona − neutral** re-trained gap: +0.07 to +0.13 at layers 3–8; ≈ 0 at layers 10–11.
+
+## 15. M3: causal site sweep in original GPT-2 (TRAIN selection, VALIDATION confirmation)
+Source: `results/repe/causal_site_sweep/` (README §2).
+* **Sanity checks:** all 0.0.
+* **Baseline:** KL(p_H‖p_U) = 0.033 nats.
+* **Passing cells:** 50/65.
+* **Share of the effect restored (validation):**
+  * persona slot: 0.97 (L1) → 0.11 (L11);
+  * final token: 0.03 (L1) → 0.95 (L11);
+  * handover at layers 7–8;
+  * post-slot instruction: up to 0.28.
+* **Selected and confirmed sites:**
+  * L1 slot: R_A 0.0356 [0.0278, 0.0450];
+  * L11 final: 0.0350 [0.0276, 0.0436].
+* **Synonym control:** R_S ≈ 0.5 R_A at every site.
+* **T1:** no persona-specific excess on validation.
+
+## 16. M4: SAE causal-faithfulness decomposition (VALIDATION; T2–T4 primary; 9 SAEs per site)
+Source: `results/repe/sae_patch_decomposition/` (README §2).
+
+| Site | T_full (nats) | Preserved by reconstruction, ReLU / TopK / JumpReLU | Error alone | \|I\|/T_full |
+|---|---|---|---|---|
+| L1 slot | 0.0435 | 0.94 / 0.93 / 0.97 | 0.14 / 0.16 / 0.03 | 0.10–0.14 |
+| L8 final (A1) | 0.0220 | 0.62 / 0.62 / 0.66 | 0.45 / 0.09 / 0.11 | 0.12 / 0.32 / 0.26 |
+| L11 final | 0.0430 | 0.68 / 0.62 / 0.68 | 0.40 / 0.06 / 0.11 | 0.16 / 0.38 / 0.28 |
+
+* **Checks:** all exact; T_full equals M3.
+* **Synonym:** similar preservation; T_rec − S_rec > 0 at every site. T1 ≈ synonym.
+* **Features:** k* = 64 for every SAE; 1 feature = 2–10 % of T_rec; 64 = 47–74 %; beats matched random sets (p = 0.005).
+* **H4a/b/c:** pass 9/9. Additive reading is not allowed for TopK/JumpReLU at L8/L11.
+
+## 17. IMP-L: Method A and output-KL fine-tuning at layers 3, 8, 9 (VALIDATION; 3 seeds; paired; 95 % t-interval, df = 2)
+Source: `results/geometry_of_truth/multilayer_finetune/` (README §2). Lower is better for gaps and KL.
+
+**Method A (truth):**
+
+| Layer | SAE | Truth gap (B-MLP) base / OWT-only / Method A / output-KL (mean ± sd) | Method A − base [95 % CI] | GoT rel. error, Method A vs base | Re-trained geo gap, Method A − base [95 % CI] | Method A truth class |
+|---|---|---|---|---|---|---|
+| 3 | ReLU | 0.293 ± 0.008 / 0.292 ± 0.008 / 0.275 ± 0.002 / 0.287 ± 0.003 | -0.018 [-0.041, +0.005] | -62.0 % | +0.010 [-0.028, +0.048] | NO IMPROVEMENT |
+| 3 | TopK | 0.227 ± 0.008 / 0.227 ± 0.011 / 0.129 ± 0.007 / 0.155 ± 0.017 | -0.098 [-0.107, -0.089] | -74.0 % | -0.005 [-0.104, +0.094] | PRELIMINARY IMPROVEMENT |
+| 3 | JumpReLU | 0.294 ± 0.015 / 0.295 ± 0.015 / 0.282 ± 0.021 / 0.298 ± 0.009 | -0.012 [-0.043, +0.019] | -61.1 % | +0.002 [-0.026, +0.031] | NO IMPROVEMENT |
+| 8 | ReLU | 0.234 ± 0.047 / 0.228 ± 0.050 / 0.180 ± 0.062 / 0.180 ± 0.062 | -0.054 [-0.095, -0.013] | -73.5 % | +0.006 [-0.024, +0.035] | PRELIMINARY IMPROVEMENT |
+| 8 | TopK | 0.157 ± 0.057 / 0.178 ± 0.048 / 0.083 ± 0.030 / 0.089 ± 0.005 | -0.074 [-0.202, +0.054] | -85.4 % | -0.032 [-0.082, +0.019] | NO IMPROVEMENT |
+| 8 | JumpReLU | 0.260 ± 0.052 / 0.260 ± 0.044 / 0.200 ± 0.040 / 0.212 ± 0.034 | -0.060 [-0.247, +0.127] | -79.6 % | -0.005 [-0.023, +0.014] | NO IMPROVEMENT |
+| 9 | ReLU | 0.214 ± 0.021 / 0.210 ± 0.021 / 0.167 ± 0.015 / 0.199 ± 0.003 | -0.047 [-0.065, -0.030] | -72.6 % | +0.010 [-0.011, +0.031] | PRELIMINARY IMPROVEMENT |
+| 9 | TopK | 0.160 ± 0.031 / 0.158 ± 0.041 / 0.127 ± 0.021 / 0.136 ± 0.033 | -0.033 [-0.061, -0.005] | -85.4 % | +0.005 [-0.034, +0.043] | NO IMPROVEMENT |
+| 9 | JumpReLU | 0.258 ± 0.026 / 0.262 ± 0.024 / 0.152 ± 0.005 / 0.174 ± 0.023 | -0.106 [-0.162, -0.050] | -78.7 % | +0.002 [-0.039, +0.043] | PRELIMINARY IMPROVEMENT |
+
+**Output-KL (behaviour and truth):**
+
+| Layer | SAE | OWT KL base → Method A → output-KL | output-KL − Method A [95 % CI] | GoT stmt KL, output-KL − Method A | OWT ΔCE, output-KL vs Method A | OWT L0, output-KL vs base | Truth gap, output-KL − Method A | Behaviour class | Truth class | Failed guards |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 3 | ReLU | 0.0940 → 0.0933 → 0.0811 | -0.0121 [-0.0140, -0.0102] | -0.050 | -10.4 % | +3.5 % | +0.012 [-0.000, +0.024] | PRELIMINARY IMPROVEMENT | REGRESSION | — |
+| 3 | TopK | 0.0673 → 0.0663 → 0.0609 | -0.0054 [-0.0058, -0.0049] | -0.036 | -4.3 % | +0.0 % | +0.027 [-0.001, +0.054] | PRELIMINARY IMPROVEMENT | REGRESSION | — |
+| 3 | JumpReLU | 0.0541 → 0.0530 → 0.0445 | -0.0086 [-0.0101, -0.0071] | -0.037 | -13.5 % | +4.6 % | +0.016 [-0.017, +0.048] | PRELIMINARY IMPROVEMENT | NO IMPROVEMENT | — |
+| 8 | ReLU | 0.2431 → 0.2422 → 0.1998 | -0.0424 [-0.0443, -0.0406] | -0.151 | -17.1 % | +5.8 % | -0.000 [-0.037, +0.037] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+| 8 | TopK | 0.1439 → 0.1417 → 0.1270 | -0.0147 [-0.0157, -0.0137] | -0.078 | -11.3 % | +0.0 % | +0.006 [-0.065, +0.076] | PRELIMINARY IMPROVEMENT | NO IMPROVEMENT | — |
+| 8 | JumpReLU | 0.1360 → 0.1339 → 0.1120 | -0.0220 [-0.0240, -0.0199] | -0.103 | -18.5 % | +8.1 % | +0.011 [-0.065, +0.087] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+| 9 | ReLU | 0.2713 → 0.2698 → 0.2256 | -0.0443 [-0.0453, -0.0432] | -0.202 | -16.3 % | +5.3 % | +0.033 [-0.006, +0.071] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+| 9 | TopK | 0.1610 → 0.1588 → 0.1435 | -0.0154 [-0.0164, -0.0143] | -0.081 | -8.9 % | +0.0 % | +0.010 [-0.024, +0.043] | PRELIMINARY IMPROVEMENT | NO IMPROVEMENT | — |
+| 9 | JumpReLU | 0.1538 → 0.1523 → 0.1285 | -0.0239 [-0.0259, -0.0218] | -0.112 | -15.0 % | +8.1 % | +0.022 [-0.024, +0.068] | NOT CREDITABLE (guard failed) | NOT CREDITABLE (guard failed) | l0_within_5pct_of_base |
+
+* **Base SAEs:** OWT val EV 0.904–0.914 (L3), 0.800–0.840 (L8), 0.784–0.829 (L9). L0 ReLU 134–135, TopK 128,
+  JumpReLU 131–132.
+* **Criteria met:** T_method_a 4/9; B_kl 5/9 (4/9 not creditable, L0 guard); T_kl 0/9 (2 regressions at layer 3).
+
+## 18. RLM-RP: RepE-LM persona representation preservation (VALIDATION; 216 SAEs; final token)
+Source: `results/repe/repe_lm_representation_preservation/` (README §2). AUROC gaps = original − reconstructed (↓).
+Cells are ranges over layers 1–11 of the mean over 3 seeds.
+
+| Quantity | ReLU | TopK | JumpReLU |
+|---|---|---|---|
+| Frozen logistic gap | 0.113–0.243 | 0.095–0.197 | 0.109–0.184 |
+| Noise reference | 0.033–0.097 | 0.037–0.091 | 0.035–0.080 |
+| Re-trained logistic gap | 0.095–0.223 | 0.083–0.181 | 0.097–0.177 |
+| Held-out T5/T6 frozen gap | 0.026–0.128 | 0.026–0.100 | 0.028–0.098 |
+| Per-pair cos(Δ, Δ̂) | 0.52–0.58 | 0.35–0.43 | 0.38–0.48 |
+| Per-pair ‖Δ̂‖/‖Δ‖ | 0.65–0.71 | 1.32–1.46 | 1.22–1.35 |
+| EV on RepE-LM prompts | 0.66–0.90 | 0.73–0.87 | 0.73–0.92 |
+| L0 on RepE-LM prompts | 160–214 | 128 | 142–208 |
+
+* **Fine-tunes (classes per reader):**
+  * Method A: NO IMPROVEMENT 12/12 on both readers (changes −0.004 to +0.006).
+  * Output-KL: PRELIMINARY IMPROVEMENT in 3/12 per reader (frozen: L3 all architectures; re-trained: L3 ReLU and
+    TopK, L6 JumpReLU), at most 0.007 AUROC, with RepE-LM L0 +4–9 % for ReLU/JumpReLU.
+  * 4/12 not creditable; 0 regressions.
+
+## 19. E3: causal preservation after fine-tuning (VALIDATION; L8 final; T2–T4; T_full = 0.0220 nats; 3 seeds)
+Source: `results/repe/e3_finetuned_causal_preservation/` (README §2). T_rec/T_full (↑), mean ± sd.
+
+| SAE | base | OWT-only | Method A | output-KL | E3-H1 (A) | E3-H2 (KL vs A) |
+|---|---|---|---|---|---|---|
+| ReLU | 0.621 ± 0.015 | 0.621 ± 0.016 | 0.622 ± 0.016 | 0.640 ± 0.016 | NO IMPROVEMENT | NOT CREDITABLE (+0.018 [+0.011, +0.025]; OWT L0 +5.8 %) |
+| TopK | 0.625 ± 0.039 | 0.632 ± 0.024 | 0.615 ± 0.005 | 0.619 ± 0.037 | NO IMPROVEMENT | NO IMPROVEMENT (+0.005 [−0.078, +0.088]) |
+| JumpReLU | 0.665 ± 0.011 | 0.669 ± 0.029 | 0.669 ± 0.025 | 0.687 ± 0.014 | NO IMPROVEMENT | NOT CREDITABLE (+0.018 [−0.020, +0.057]; OWT L0 +8.1 %) |
+
+* **Checks:** M4 reproduced exactly; all 36 SAEs pass the H4a/H4b/H4c controls.
+* **Specificity:** T_rec − S_rec changes by at most 0.0006 nats.
+* **Regressions:** none.
+
+
+## 20. R2: data-scaled SAEs, before → after (VALIDATION; TEST in §24; 3 seeds; Welch 95 % CI)
+
+Source: `results/openwebtext/r2_scaled_saes/comparisons.csv` (README §2). Old = in-house width 3072, 101,600
+tokens. R2 = in-house width 12,288, 100M tokens. TopK shown (C1); other comparisons in the README.
+
+| Layer | Metric | Old TopK | R2 TopK | Δ (95 % CI) | Improvement | Class |
+|---|---|---|---|---|---|---|
+| L1 | NMSE ↓ | 0.0811 ± 0.0004 | 0.0255 ± 0.0001 | −0.0556 (−0.0567, −0.0545) | 68.5 % | IMPROVEMENT |
+| L1 | ΔCE ↓ | 0.0256 ± 0.0015 | 0.0063 ± 0.0008 | −0.0193 (−0.0224, −0.0161) | 75.3 % | IMPROVEMENT |
+| L1 | T_rec/T_full ↑ | 0.931 ± 0.014 | 0.988 ± 0.005 | +0.057 (+0.025, +0.088) | 6.1 % | IMPROVEMENT |
+| L8 | NMSE ↓ | 0.1643 ± 0.0005 | 0.0959 ± 0.0001 | −0.0684 (−0.0696, −0.0671) | 41.6 % | IMPROVEMENT |
+| L8 | ΔCE ↓ | 0.1259 ± 0.0043 | 0.0603 ± 0.0018 | −0.0656 (−0.0747, −0.0565) | 52.1 % | IMPROVEMENT |
+| L8 | persona re-fit gap ↓ | 0.156 ± 0.017 | 0.108 ± 0.009 | −0.048 (−0.082, −0.014) | 30.7 % | IMPROVEMENT |
+| L8 | persona SAE − PCA ↓ | 0.033 ± 0.017 | 0.027 ± 0.009 | −0.006 (−0.041, +0.028) | — | NO CLEAR CHANGE |
+| L8 | GoT re-fit gap ↓ | 0.061 ± 0.015 | 0.055 ± 0.022 | −0.006 (−0.051, +0.040) | — | NO CLEAR CHANGE |
+| L8 | T_rec/T_full ↑ | 0.625 ± 0.039 | 0.726 ± 0.020 | +0.101 (+0.019, +0.182) | 16.1 % | IMPROVEMENT |
+| L11 | NMSE ↓ | 0.1891 ± 0.0005 | 0.1129 ± 0.0002 | −0.0762 (−0.0773, −0.0751) | 40.3 % | IMPROVEMENT |
+| L11 | ΔCE ↓ | 0.2129 ± 0.0018 | 0.0995 ± 0.0011 | −0.1134 (−0.1171, −0.1097) | 53.3 % | IMPROVEMENT |
+| L11 | persona re-fit gap ↓ | 0.149 ± 0.015 | 0.109 ± 0.008 | −0.040 (−0.071, −0.008) | 26.7 % | IMPROVEMENT |
+| L11 | T_rec/T_full ↑ | 0.620 ± 0.004 | 0.692 ± 0.002 | +0.073 (+0.064, +0.082) | 11.8 % | IMPROVEMENT |
+
+Class counts over 51 cells each:
+
+| Comparison | IMPROVEMENT | NO CLEAR CHANGE | REGRESSION |
+|---|---|---|---|
+| C1 (TopK) | 37 | 14 | 0 |
+| C2 (ReLU) | 30 | 18 | 3 (SAE − PCA persona gap at L1 and L8; neutral re-fit gap at L11) |
+| C3 (BatchTopK vs old JumpReLU) | 36 | 15 | 0 |
+| A1 (data and recipe) | 34 | 17 | 0 |
+| A2 (width) | 27 | 21 | 3 |
+
+Random-decoder baseline at L8: EV 0.59, ΔCE 0.62, T_rec/T_full 0.02, GoT re-fit gap 0.052 (smaller than the trained
+SAE's 0.081).
+
+## 21. R4: KL fine-tune at fixed L0 (VALIDATION; TEST in §24; 3 seeds paired)
+
+Source: `results/openwebtext/r4_kl_finetune/comparisons.csv`.
+
+| Layer | Metric | MSE control | KL | Δ ± sd | Class |
+|---|---|---|---|---|---|
+| L8 | ΔCE ↓ | 0.0601 | 0.0493 | −0.0107 ± 0.0011 (−17.9 %) | PRELIMINARY IMPROVEMENT |
+| L8 | T_rec/T_full ↑ | 0.720 | 0.710 | −0.011 ± 0.016 | NO IMPROVEMENT |
+| L11 | ΔCE ↓ | 0.0997 | 0.0814 | −0.0183 ± 0.0012 (−18.4 %) | PRELIMINARY IMPROVEMENT |
+| L11 | T_rec/T_full ↑ | 0.694 | 0.671 | −0.024 ± 0.002 | REGRESSION |
+
+* Information gaps (K2): NO IMPROVEMENT.
+* EV cost: −0.002; the guard passes.
+
+## 22. R5: rank-k causal skyline at the M4 sites (VALIDATION; descriptive)
+
+Source: `results/repe/r5_causal_subspace_skyline/summary.csv`. Share of the persona effect T_k/T_full.
+
+| Site | k | DAS (learned) | PCA | Random mean | SAE top-k features |
+|---|---|---|---|---|---|
+| L1 slot | 1 / 4 | 0.915 / 1.016 | 0.430 / 1.000 | 0.000 / 0.004 | 0.04–0.07 / 0.11–0.16 |
+| L8 final | 1 / 4 / 64 | 0.641 / 0.913 / 1.289 | 0.358 / 0.518 / 0.826 | 0.002 / 0.008 / 0.110 | 0.04–0.05 / 0.10–0.16 / 0.34–0.48 |
+| L11 final | 1 / 4 / 64 | 0.401 / 0.619 / 0.888 | 0.379 / 0.587 / 0.839 | 0.002 / 0.008 / 0.127 | 0.03–0.05 / 0.08–0.14 / 0.32–0.46 |
+
+## 23. E2: public res-jb SAEs (VALIDATION; descriptive)
+
+Source: `results/shared/e2_public_sae_reference/hypotheses.csv`. Layers 8 and 10 are pre-registered; 1 and 11 are an
+extension.
+
+| Hypothesis | GoT cities | RepE-LM persona |
+|---|---|---|
+| H1 (frozen loss mostly fragility) | HOLDS at L8, L10, L11 | does not hold at any layer (the loss is real) |
+| H2 (re-fit loss real) | holds at L10, L11; not at L8 (CI low −0.001) | HOLDS at all layers |
+| H3 (SAE never beats PCA) | HOLDS | HOLDS |
+| H4 (partial causal preservation) | — | HOLDS at L8 (0.559) and L11 (0.612); not at L1 (0.979) |
+
+## 24. M5: confirmatory TEST pass (single run; 81 SAEs; 552 test rows)
+
+Source: `results/shared/m5_confirmatory_test/comparisons.csv`, `m5_rows.csv`. Evidence: **CONFIRMED TEST RESULT**.
+
+| ID | NMSE improvement | ΔCE improvement | Improved / no change / regressed |
+|---|---|---|---|
+| C1 (TopK) | 40–69 % | 53–75 % | 17 / 7 / 0 |
+| C2 (ReLU) | 31–64 % | 35–73 % | 17 / 7 / 0 |
+| C3 (BatchTopK vs old JumpReLU) | 42–74 % | 55–79 % | 17 / 7 / 0 |
+| A1 (data and recipe) | 22–35 % | 34–40 % | 17 / 7 / 0 |
+| A2 (width) | 20–52 % | 26–58 % | 16 / 6 / 2 (GoT re-fit and SAE − PCA at L8) |
+| K1 (R4 KL vs MSE) | −2 % | 16–17 % | 4 / 2 / 2 (NMSE at L8 and L11) |
+| K4 (R4 KL vs R2 base) | −2 % | 16–17 % | 4 / 2 / 2 (NMSE at L8 and L11) |
+
+* GoT re-fit and SAE − PCA gaps: no improvement in any comparison.
+* TopK ΔCE on TEST: 0.133 → 0.062 at L8 and 0.204 → 0.096 at L11.
+
+## PCA-CM: capacity-matched PCA references (2026-11-13; VALIDATION; GoT VAL n = 448)
+
+**PCA references on OWT validation:**
+
+| Layer | PCA-128 NMSE | PCA-128 ΔCE (nats) | PCA-512 NMSE | PCA-128 GoT re-fit gap | PCA-512 GoT re-fit gap |
+|---|---|---|---|---|---|
+| 1 | 0.296 | 0.399 | 0.026 | — | — |
+| 8 | 0.462 | 0.989 | 0.094 | 0.058 | 0.011 |
+| 11 | 0.434 | 1.059 | 0.105 | 0.153 | 0.014 |
+
+**SAE vs PCA on the GoT re-fit gap** (20 trained family × layer cells):
+
+| Reference | SAE BETTER | INCONCLUSIVE | SAE WORSE |
+|---|---|---|---|
+| error-matched (k 298–519) | 0 | 7 | 13 |
+| k = 128 | 3 | 17 | 0 |
+| task-L0-matched (k 54–128) | 8 | 12 | 0 |
+
+Selected rows (SAE gap mean ± sd over 3 seeds; PCA gap; the class follows the pre-registered paired-bootstrap rule):
+
+| Layer | SAE | SAE gap | PCA-128 | error-matched PCA (k) |
+|---|---|---|---|---|
+| 8 | R2 TopK | 0.055 ± 0.022 | 0.058 (INCONCLUSIVE) | 0.012 (509–510; WORSE) |
+| 8 | R2 ReLU | 0.012 ± 0.005 | 0.058 (BETTER) | 0.009 (446; INCONCLUSIVE) |
+| 11 | R2 TopK | 0.100 ± 0.030 | 0.153 (INCONCLUSIVE) | 0.014 (498–499; WORSE) |
+| 11 | R2 ReLU | 0.076 ± 0.003 | 0.153 (BETTER) | 0.038 (404; WORSE) |
+
+**Sensitivity:**
+* GoT re-fit comparisons: combined MDE ≈ 0.048–0.091 AUROC.
+* M4 preservation MDE: 0.013–0.017 (L1), 0.036–0.069 (L11), 0.054–0.107 (L8).
+
+**PCA-CM post-hoc multiplicity check** (descriptive; `results/shared/pca_capacity_matched/posthoc_multiplicity/`):
+
+| Reference | SAE BETTER (pre-registered, per cell) | surviving approx. Holm over 40 cells | per-seed CIs favouring PCA |
+|---|---|---|---|
+| k = 128 | 3 | 1 (R2 ReLU L11) | 0 / 58 |
+| task-L0-matched | 8 | 4 (old ReLU L8; R2 ReLU L8, L11; res-jb L8) | 0 / 58 |

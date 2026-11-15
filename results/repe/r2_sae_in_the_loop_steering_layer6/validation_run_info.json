@@ -1,0 +1,15 @@
+{
+  "script_sha256": "0a0f4fc78822b6e57559d1295b438389b2967256b2e518db534944dcb4d3dfb5",
+  "stage": "validation",
+  "test_rows_read": false,
+  "n_val_statements": 89,
+  "n_cw_statements": 89,
+  "val_baseline_mean_KL_HU": 0.020149873569607735,
+  "positive_control_E": {
+    "val": 0.18816792452027487,
+    "cw": 0.4036102201391648
+  },
+  "owt_sequences": 100,
+  "gpu_peak_allocated_mb": 5622.7,
+  "runtime_seconds": 4511.0
+}

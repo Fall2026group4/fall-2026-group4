@@ -1,0 +1,22 @@
+\section{Behavioural Faithfulness}\label{sec:behaviour}
+
+Splicing the reconstruction into GPT-2 at every non-BOS position increases next-token cross-entropy by 0.009--0.026
+nats at layer 1 and by 0.213--0.358 nats at layer 11 (Table~\ref{tab:splice}, \evlabel{validation}); loss recovered
+relative to mean ablation stays at or above 0.93. An identity splice changes nothing (exactly 0). The true-versus-false
+likelihood preference on GoT \texttt{cities} (0.82 originally) is unchanged within $\pm$0.025 through layer 8 and drops
+by 0.04--0.09 at layers 9--11.
+
+\paragraph{SAE error is more harmful than random error.} Replacing the SAE error by isotropic noise of the same norm
+gives a smaller cross-entropy increase in most runs: the ratio of SAE-induced to noise-induced damage is 0.76--2.89
+per run (median 1.64); 7 of 107 runs are below 1, all at layers 1--3.
+
+\paragraph{Within a layer, reconstruction error predicts behavioural damage but not truth readout (M0).}
+Table~\ref{tab:m0} reports within-layer regressions over the 107 matched SAEs. Lower OWT NMSE goes with less splice
+damage ($\beta=0.165$ per unit log NMSE, Holm $p=0.0008$; per-layer Spearman $\rho$ 0.80--0.97 from layer 3). For the
+frozen GoT truth gap, the formal test passes (Holm $p=0.044$), but architecture explains 99.8\,\% of the within-layer
+NMSE variance and the association disappears without architecture fixed effects ($p=0.89$); GoT reconstruction error
+has no association. Two earlier claims are corrected: a pooled correlation of 0.89 between reconstruction and persona
+preservation is 0.05 within layer, and the range of the SAE-versus-noise damage ratio is the one given above.
+
+\input{tables/t_splice}
+\input{tables/t_m0}

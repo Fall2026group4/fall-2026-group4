@@ -1,0 +1,60 @@
+\section{Discussion}\label{sec:discussion}
+
+\paragraph{Reconstruction is a proxy for behaviour, not for information.} Within a layer, an SAE with lower
+reconstruction error damages the model's predictions less, but it does not keep more truth information. Reconstruction
+metrics average over all directions weighted by their variance; the information that distinguishes true from false
+statements, or honest from dishonest instructions, lies in small differences between nearly identical activations.
+
+\paragraph{Why the causal effect leaks.} M4 makes this concrete. An SAE can reconstruct the honest and the dishonest
+activation well individually and still reconstruct their difference poorly, because the two reconstruction errors do
+not cancel. At mid and late sites about a third of the effect is outside the reconstructed difference, and for TopK
+and JumpReLU part of it exists only when reconstruction and error act together through GPT-2's nonlinear downstream
+computation.
+
+\paragraph{What fine-tuning changes, and what it does not.} The fine-tuning experiments separate three things
+that are often reported as one. (i) \emph{Task reconstruction} improves reliably: reconstruction error on truth
+statements falls by 61--85\,\% in every cell. (ii) \emph{Frozen-probe preservation} improves in direction
+everywhere and meets the pre-registered criterion in 4 of 9 cells, but a re-trained reader recovers no more truth
+information from the fine-tuned reconstruction than from the original one (no cell changes consistently). Because M2
+showed that frozen-probe gaps are dominated by the probe's sensitivity to off-distribution perturbations, the most
+economical reading is that reconstruction fine-tuning moves the reconstruction back towards the region where the
+original probe's decision boundary was fitted, rather than restoring information the SAE had discarded. (iii)
+\emph{Behavioural preservation} improves with an output-KL term in all 9 cells, of which 5 are creditable (the other 4
+fail the sparsity guard); it does not transfer to truth preservation, which is unchanged or slightly worse. (iv)
+\emph{Persona representation and causal preservation} are untouched by Method A (RLM-RP and E3: no change in any cell),
+and output-KL moves them only where it also adds active latents. Improving one level of faithfulness therefore
+does not improve the others, and a claim of ``more faithful SAEs'' must name the level.
+
+\paragraph{Sparsity is part of the price.} For ReLU and JumpReLU at layers 8 and 9 the output-KL gain comes with a
+5--8\,\% rise in L0 that the continued sparsity controller does not correct. Since lower reconstruction error and
+lower KL are both easier at higher L0, behavioural gains reported without a sparsity guard would overstate the
+benefit; TopK, whose L0 is fixed, is the only architecture where the gain is creditable at every layer.
+
+\paragraph{The negative result is the main finding.} The SAEs studied here reconstruct well by conventional measures,
+yet they lose task information that PCA at equal error keeps (although PCA then uses 2--4 times as many dimensions as
+the SAE activates per token; at an equal 128-dimensional budget no SAE is classified worse on GoT truth information, and they are
+better in 3 of 20 comparisons), and at mid and late layers their reconstruction carries
+only part of a causal effect that GPT-2 demonstrably carries there. Short fine-tuning improves what it optimises
+(task reconstruction, output agreement) and nothing we could verify beyond that: E3 finds no creditable gain in
+\emph{causal} preservation at the layer-8 site, and the only gains it finds (ReLU and JumpReLU under output-KL, about
++0.02 of the effect) come with more active latents. All of these are \evlabel{validation} findings.
+
+\paragraph{The PCA verdict depends on the constraint.} ``Better or worse than PCA'' is not a property of an SAE
+alone. Matched on reconstruction error, PCA generally preserves more truth-related information; matched on the
+per-token budget, no SAE is classified worse (which is not equivalence) and some are better (Section~\ref{sec:pcacm}, \evlabel{validation}). The
+two references answer different questions: whether the SAE's error is unusually costly for its size, and whether
+sparse, input-dependent selection beats one fixed subspace of the same width. Reports should name the constraint.
+
+\paragraph{What the design can and cannot detect.} The truth-information comparisons can only detect differences of
+about 0.05--0.09 AUROC between SAE families, and the observed differences are at most 0.025. Our ``no truth gain''
+result is therefore a bound, not evidence of preservation.
+
+\paragraph{Persona loss is not only a reader artefact.} For truth statements, most of the frozen-probe collapse is
+reproduced by same-norm noise. For persona instructions it is not: the SAE loses 2--3 times more than the noise does,
+re-trained readers recover almost none of it, and the per-pair honest-minus-dishonest difference keeps a cosine of only
+0.35--0.58. A single word changes these activations, and the SAEs reconstruct the two prompts of a pair with errors
+that do not cancel. This is consistent with M4: what is lost in representation is also what leaks out of the causal
+effect.
+
+\pending{Revise after E1, E2 and M5; in particular, whether the conclusions hold for an externally trained SAE
+(E2) and at task-level matched sparsity (E1).}

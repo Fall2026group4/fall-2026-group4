@@ -1,0 +1,11 @@
+{
+  "n_train_pairs": 1251,
+  "n_validation_pairs": 267,
+  "test_rows_used": 0,
+  "L1_identity_share": 1.0000000000000002,
+  "L8_identity_share": 0.9999999999999999,
+  "L11_identity_share": 1.0,
+  "runtime_s": 2661.8148200511932,
+  "script_sha256": "78a6c533b4af742eaeb148b00666d77f93cd72c0b98efae6c850e0d57d095d74",
+  "identity_ok": true
+}

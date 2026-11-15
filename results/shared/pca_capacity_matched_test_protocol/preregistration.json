@@ -1,0 +1,32 @@
+{
+  "id": "PCA-CM-T",
+  "date_frozen": "2026-11-13 08:18:14",
+  "status": "RULES FROZEN; NOT EXECUTED; needs user approval",
+  "families": {
+    "P1": "all 20 trained cells at capacity_k128: no SAE WORSE",
+    "P2": [
+      "L8 r2 relu",
+      "L11 r2 relu",
+      "L8 resjb"
+    ],
+    "P3": [
+      "L8 old relu",
+      "L8 r2 relu",
+      "L8 resjb",
+      "L11 old jumprelu",
+      "L11 old relu",
+      "L11 r2 batchtopk",
+      "L11 r2 relu",
+      "L11 resjb"
+    ]
+  },
+  "rule": "per-seed paired grouped-bootstrap 95% CI (1000 resamples) of SAE - PCA refit logistic gap; confirmed if every seed CI high < 0 and Holm-adjusted (normal approx., intersection-union) p < 0.05 within family",
+  "test_label": "TEST (GoT rows previously exposed in M5; PCA arms unseen)",
+  "hashes": {
+    "results/shared/pca_capacity_matched/rows.csv": "e38f7d5c190e864cc302d6d0468a41eb2c0f45478b8777bb4b9f1d1debbf3963",
+    "results/shared/pca_capacity_matched/decisions.csv": "0ff8f1ed3482ff498cb19b54100be9ff1731bebb61ddc3c418151861423011b3",
+    "results/shared/pca_capacity_matched/got_paired.csv": "5ba2bca1f78af42126e23924fe150694018389487d52cacb12997c2515fc1592",
+    "scripts/shared/pca_capacity_matched.py": "f545601b129c77875c25202de5810dc7889fbb77b1766de4bc1e74e9e44340fd",
+    "results/shared/pca_capacity_matched_test_protocol/README.md": "68e7d3bbdf3ffe25d3e074e939e6edb640eb0bce49706400070dfd93c663e8de"
+  }
+}

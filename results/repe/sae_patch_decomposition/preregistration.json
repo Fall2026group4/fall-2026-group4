@@ -1,0 +1,55 @@
+{
+  "stage": "M4 SAE causal-faithfulness decomposition",
+  "date": "2026-11-08",
+  "approved_by_user": "2026-11-08 (\"I approve proceeding to M4 with a documented amendment\")",
+  "evidence_label": "VALIDATION (decomposition, controls, hypotheses); TRAIN (mid-site rule input from M3, feature ranking, k choice); test not loaded",
+  "amendment_A1_mid_site": {
+    "why": "M3's rule selected near-endpoint sites (L1 slot E=0.97, L11 final E=0.96) where carrying the effect is close to tautological; the handover region (layers 6-8) is where an SAE decomposition is informative (D24).",
+    "rule": "Among M3 TRAIN cells at blocks.{6,7,8}.hook_resid_pre in groups {slot, final} that passed M3's pre-registered criteria, choose the cell with E_share (train, T1-T4) closest to 0.5 (the handover point), ties -> larger R_A. Confirm on VALIDATION T2-T4 using original activations only: T_full CI low > 0 AND (T_full - T_full_synonym) CI low > 0. If not confirmed, try the next candidate in the same order; if none confirms, proceed with the two fixed sites and report why.",
+    "no_sae_used": "the selection and confirmation run before any SAE is loaded (scripts/repe/24_*.py: select_mid_site)",
+    "disclosure": "The M3 train/validation tables were seen before writing this rule; by them the rule picks blocks.8.hook_resid_pre final (train E 0.505). The smoke test (1/10 of pairs) also confirmed it. No SAE result was seen for any mid-layer site before the rule was fixed."
+  },
+  "sites": "blocks.1.hook_resid_pre persona slot; blocks.11.hook_resid_pre final token; + A1 mid site",
+  "saes": "9 base uninterrupted OWT SAEs per site layer (relu/topk/jumprelu x seeds 42/1042/2042), not retrained",
+  "pairs": "validation: T1-T4 (H/U/Hp) 356 pairs; N1-N2 neutral 178 pairs. train T2-T4 (1251 pairs) only for feature attribution and k.",
+  "quantities": {
+    "differences": "Delta = x_H - x_U; Delta_rec = x_hat_H - x_hat_U; Delta_err = e_H - e_U; identity checked (max abs error)",
+    "T(v)": "KL(p_H||p_U) - KL(p_H||p_{U + v at the site position}), final-token next-token distribution, nats; patched runs start at the site layer from the clean U residual (start_at_layer); v = 0 must reproduce the clean output",
+    "decomposition": "T_full, T_rec, T_err, I = T_full - T_rec - T_err, phi_rec/phi_err (two-player Shapley, sum = T_full), linearity T(Delta_rec/2) - T_rec/2",
+    "preservation": "T_rec / T_full (ratio of statement means, bootstrap CI); Shapley share phi_rec / T_full; |I| / T_full",
+    "other_direction": "H - v toward U: TB_full, TB_rec, TB_err",
+    "synonym_control": "Hp run restored toward H with Delta_S = x_H - x_Hp split the same way: S_full, S_rec, S_err; persona-specific preservation T_rec - S_rec",
+    "neutral_control": "Nb run restored toward Na (N1, N2) with the same decomposition",
+    "vector_controls": "20 isotropic matched-norm draws for Delta_rec and for Delta_err; 20 decoder-span shuffles (Delta_z permuted across features, rescaled to ||Delta_rec||)"
+  },
+  "features": {
+    "patch": "U's features F set to H's values, error kept: v_F = W_dec[:, F] (z_H - z_U)[F]; patching all features must equal T_rec",
+    "ranking": "first-order attribution on TRAIN T2-T4: a_j = mean over pairs of -(dz_j W_j) . dKL(p_H||p_{U+v})/dv at v=0; features with |corr(activation, token position)| > 0.3 on OWT validation, and features with zero mean |dz|, excluded",
+    "k": "smallest k in {1,4,16,64} with TRAIN T_F(k) >= 0.5 x TRAIN T_rec (T2-T4), else 64",
+    "controls_validation": "200 random feature sets matched per feature on (OWT-validation activation-frequency decile x TRAIN mean |dz| decile); 200 isotropic vectors with ||v_F|| per pair; top-|dz| sets (no attribution) at every k",
+    "interpretation_limit": "a feature patch changing the output shows that this SAE-defined direction is causally sufficient when inserted; it does NOT show that GPT-2 uses SAE features"
+  },
+  "template_sets": "PRIMARY = T2-T4 pooled; T1 reported separately as a negative/control case (it did not exceed its synonym control in M3); all T1-T4 also reported; no template excluded from the data",
+  "hypotheses_primary_T2_T4": {
+    "H4a sufficiency": "T_rec > controls: paired p of (T_rec - mean isotropic) and (T_rec - mean shuffle), max of the two; BH over SAE x site (27); pass needs q < 0.05, T_rec CI low > 0 and mean T_rec > q95 of both control distributions",
+    "H4b rec vs err": "phi_rec - phi_err > 0, bootstrap p; BH over 27",
+    "H4c features": "T_F(k*) > random feature sets: empirical p = (1 + #sets >= T_F)/(1 + 200); BH over 27; pass also needs T_F(k*) CI low > 0",
+    "claim_rule": "a claim per architecture x site needs >= 2 of 3 seeds passing; additive (Shapley) reading only if |I|/T_full CI high < 0.2, otherwise only the sufficiency (T_rec) and error (T_err) bounds are interpreted"
+  },
+  "pre_written_readings": {
+    "high T_rec, low T_err": "the SAE reconstruction is behaviourally sufficient at this site",
+    "low T_rec, high T_err": "the behaviour-relevant difference sits in the SAE error (faithfulness failure)",
+    "large |I|": "interaction-dominated; only bounds",
+    "H4a holds, H4c fails": "the information is in the reconstruction but not concentrated in few features"
+  },
+  "sanity_checks": "identity error < 1e-3; v=0 patch KL < 1e-6; Shapley sum error < 1e-9; all-features patch = T_rec within 1e-4; T_full identical across SAEs; T_full equals M3 validation R_A within 1e-5",
+  "smoke_test_disclosure": "Ran on 1/10 of the pairs with 3-5 control draws in scratch to check mechanics (fixed: CPU/GPU generator mismatch, inference-tensor in the gradient, decoder-weight grad tracking, a pandas boolean combination). Only sanity values and the mid-site selection were inspected; no hypothesis outcome was inspected.",
+  "outputs": "results/repe/sae_patch_decomposition/ (refuses to overwrite)",
+  "hashes": {
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "data/repe/repe_lm/prompts.csv": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "results/repe/causal_site_sweep/cells_train.csv": "6f20e90fed1b5b3ac8e3e59961acebfaf1e5797831df5dd0a5bd64607e6554b0",
+    "results/repe/causal_site_sweep/cells_validation.csv": "1097b9f47fca19d02f980eba431a8d8889042fa26c1e9237aee64016628b1185"
+  }
+}

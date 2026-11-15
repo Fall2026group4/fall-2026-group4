@@ -1,0 +1,59 @@
+{
+  "written": "2026-11-08 00:07:15",
+  "experiment": "R2 SAE-in-the-loop honesty-feature intervention, GPT-2 Small layer 6, final prompt token",
+  "documents": [
+    "README.md \u00a70-\u00a711 as drafted (commit d17bb00)",
+    "README.md \u00a712 pre-run addendum"
+  ],
+  "stage_now": "VALIDATION only (user decision 2026-11-08: validation now, test later). No test row is read.",
+  "saes_primary": {
+    "relu/42": "412f213a236b022f024bab535ed558fdcd8b185aca5c7e7fb5b76386d864a96a",
+    "relu/1042": "1896c4681f319aa20b551ab21c8881b680aa82c605e5bce6b29cedddf757cdc2",
+    "relu/2042": "92814e0c12fc2dedfddddaf208981ff35caa187dd8773faa69d191db2b8e44c9",
+    "topk/42": "c2e5bfe96edf8a95df6a94cad15cc2fadb50ac31de52aaeefe7e4cfebc18b6b4",
+    "topk/1042": "0816c8e236fa0684b17b8e258eccbafeeb1a8c07e145926034711dcf7dff544c",
+    "topk/2042": "45dabc8ca0a51b957b054555a8bf2bf07f7e3266485d6f5728a05d7c4f3e0301",
+    "jumprelu/42": "154497465dd486d4da0812f3d33a2f05b1a403199ea691cd5c50deb32f1cf2cb",
+    "jumprelu/1042": "000394125529a4c4dd4ba94a5a18f61e013232f95a8e7766e917236d301cc03b",
+    "jumprelu/2042": "f6a86530b4e7a574a72df07ccfd9b4841547b294a3aaea60e1134eb543d9c54d"
+  },
+  "saes_secondary_exploratory": "R1 r_recon and r_honesty (18): targets + 200 random-feature controls, validation only",
+  "intervention": "z_F <- z_F + alpha (mu_F - z_F); error kept (primary) / no error (secondary); final token",
+  "alphas": [
+    -1.0,
+    -0.5,
+    0.0,
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ],
+  "primary_alphas": [
+    1.0,
+    -1.0
+  ],
+  "k_grid": [
+    1,
+    4,
+    16
+  ],
+  "min_train_active_rate": 0.05,
+  "feature_score": "paired d over 417 train pairs; top-|d|",
+  "targets": "train persona means of z",
+  "k_selection_rule": "per architecture, k maximising mean E(alpha=1, U->H, error kept) over 3 seeds on validation (default wording); frozen for the test stage",
+  "controls": {
+    "C2": "200 random candidate-feature sets of size k (target set excluded), clamped to their own honest means, alpha 1",
+    "C3": "200 Gaussian unit directions, per-prompt norm = target ||dx||",
+    "unrelated": "top-k features by factual-label d (within persona, averaged; target set excluded), clamped to their true-statement mean, alpha 1",
+    "raw_direction": "train mass-mean persona direction, per-prompt norm-matched",
+    "positive": "final-token activation patch x_H -> U prompt",
+    "recon_splice": "decode(z), no error",
+    "damage": "alpha-1 edit at all non-BOS positions of the 100 OWT validation sequences (128 tokens) vs the 200 C2 sets",
+    "specificity": "U->H edit applied to honest prompts"
+  },
+  "control_seed": 20261108,
+  "bootstrap": "2000 statement resamples, seed 0",
+  "outcome": "E = 1 - sum KL(p_H||p_U') / sum KL(p_H||p_U), next-token at final position (6c definition)",
+  "test_criteria_unchanged": "README \u00a77 (to be applied once, on test, after approval)",
+  "validation_report": "the \u00a77 criteria are also computed on validation, DESCRIPTIVELY, for every k and for the selected k (optimistic, since k is selected on the same data); wording check on the cross-wording validation set replaces criterion 5 at this stage"
+}

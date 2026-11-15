@@ -17,3 +17,21 @@ Status legend: **AUTHORITATIVE** = use for claims; **VALID (scope)** = correct w
 * Figures: `figures/all_layers_*.png`.
 
 **Spliced-in causal evaluation (Phase 0, 2026-11-07):** `spliced_evaluation/` — **AUTHORITATIVE (validation only)**. GPT-2 predictions with `hook_resid_pre` replaced by each of the 108 uninterrupted SAE reconstructions, with identity, fp16, mean-ablation and norm-matched random-error controls. See `results/shared/README.md`. This is separate from the steering results.
+
+**R1 honesty-preservation fine-tuning (2026-11-07):** `r1_honesty_preservation_layer6/` — **PILOT, validation only**.
+Verdict ReLU INCONCLUSIVE, TopK/JumpReLU NOT SUPPORTED; see its README §11. Checkpoints in
+`sae_finetuning/r1_honesty_preservation_layer6/` (gitignored; SHA-256 in `docs/checkpoint_registry.csv`).
+**R2 SAE-in-the-loop intervention (2026-11-08):** `r2_sae_in_the_loop_steering_layer6/` — **validation stage only (descriptive)**.
+Verdict NOT SUPPORTED for all architectures and k; test stage deferred. See its README §13 and the figure
+`figures/r2_sae_in_the_loop_validation.png`.
+
+**RepE-LM (corrected, equal-length task) results, current evidence (2026-11-10):**
+* `repe_lm_gates/` (M1), `causal_site_sweep/` (M3), `sae_patch_decomposition/` (M4).
+* `repe_lm_representation_preservation/` (**RLM-RP**, VALIDATION): 216 SAEs, persona preservation with controls.
+  This is the current source for every RepE representation claim.
+* `e3_finetuned_causal_preservation/` (**E3**, VALIDATION): causal preservation of the IMP-L layer-8 fine-tunes.
+* The length-confounded results above (`representation_preservation*.csv`, `all_layer_frozen_probe_evaluation/`,
+  `steering/`, R1, R2) are HISTORICAL (D23) and are not evidence.
+
+* `r5_causal_subspace_skyline/` (**R5**, VALIDATION, descriptive): rank-k DAS/PCA/random subspaces vs SAE feature
+  patches at the M4 sites. A rank-4 subspace carries 0.91 of the L8 persona effect; SAE top-4 features 0.10–0.16.

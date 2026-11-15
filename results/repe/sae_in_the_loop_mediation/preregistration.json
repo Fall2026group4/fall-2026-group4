@@ -1,0 +1,26 @@
+{
+  "id": "SIL",
+  "date_frozen": "2026-11-13 08:21:40",
+  "split": "RepE-LM VALIDATION",
+  "edit": "layer 1 persona slot, full latent swap z_U -> z_H",
+  "configs": {
+    "D0": [],
+    "D1": [
+      8
+    ],
+    "D2": [
+      8,
+      11
+    ]
+  },
+  "gate": "KL(p^D2_H||p^D2_U) CI low > 0 on pilot; < 5 min per triple",
+  "rule": "MEDIATED: every seed T_S CI low > 0 and T_S - iso and T_S - shuf paired CI low > 0; NOT MEDIATED: every seed T_S CI includes 0; else MIXED",
+  "hashes": {
+    "scripts/repe/30_sae_in_the_loop_mediation.py": "7218d12cf7bc8852b2d46f7fb4a4729be76b0e2d070b491bac82f180f2125c9f",
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "data/repe/repe_lm/prompts.csv": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "results/repe/sae_in_the_loop_mediation/README.md": "7f6c1755f549377eadee98a26f8b7a2f5f0bc479074603ea00c71532642de976"
+  }
+}

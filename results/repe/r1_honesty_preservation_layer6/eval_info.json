@@ -1,0 +1,16 @@
+{
+  "script_sha256": "117fd5eacc34667c5a930b24fca1e45efa3209310db0e97bc52140278c19927f",
+  "data": "validation + cross-wording validation; statement 326 excluded",
+  "test_rows_used": false,
+  "mlp_probe_seeds": [
+    42,
+    123,
+    456,
+    789,
+    2026
+  ],
+  "bootstrap_resamples": 1000,
+  "n_saes": 51,
+  "gpu_peak_allocated_mb": 8546.8,
+  "runtime_seconds": 542.4
+}

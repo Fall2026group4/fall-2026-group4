@@ -1,0 +1,48 @@
+\section{Conclusion and Future Work}\label{sec:conclusion}
+
+Across all layers of GPT-2 Small, three SAE architectures reconstruct activations well by conventional measures, but
+reconstruction quality predicts behavioural damage rather than information preservation, frozen-probe ``truth loss''
+is largely perturbation sensitivity, PCA at equal reconstruction error preserves at least as much task information
+as the SAEs (while using more dimensions than the SAEs activate per token), and at mid and late
+layers the SAE reconstruction carries only about two-thirds of a causal effect located in the original model.
+Short fine-tuning improves the faithfulness level it optimises (task reconstruction, or output agreement with an
+output-KL term) but not truth information as seen by a re-trained reader, and the behavioural gains of ReLU and
+JumpReLU at depth come with a sparsity cost. On the persona task the SAEs lose information that re-trained readers
+cannot recover and distort the honest-minus-dishonest difference, and neither fine-tuning method creditably improves
+persona representation or the causal effect carried at layer 8.
+
+\paragraph{Improving the SAEs.} Training our own SAEs on 1000$\times$ more data at 4$\times$ the width (R2,
+Section~\ref{sec:improve}) changes several of these conclusions and leaves others intact.
+\begin{itemize}
+\item \textbf{Confirmed on held-out data:} reconstruction error falls by 31--74\,\% and splice damage by
+  35--79\,\%.
+\item \textbf{Validation:} the persona effect carried by the reconstruction at layer 8 rises from 62\,\% to
+  73--75\,\%, and representation fidelity improves.
+\item \textbf{Unchanged:}
+  \begin{itemize}
+  \item SAEs still do not beat PCA at equal error on task information;
+  \item truth information shows no confirmed gain, within a design that cannot detect changes smaller than about
+    0.05--0.09 AUROC;
+  \item a supervised rank-4 subspace carries more of the persona effect at layer 8 than the full SAE reconstruction.
+  \end{itemize}
+\item \textbf{KL fine-tune at fixed L0:} it adds a confirmed 16--17\,\% behavioural gain, but reduces causal
+  preservation at layer 11. Faithfulness levels must therefore be optimised and reported separately.
+\item \textbf{External SAE:} the same conclusions hold for a public SAE trained on 300M tokens.
+\item \textbf{The PCA comparison depends on the constraint} (\evlabel{validation}). At an equal 128-dimensional
+  budget, trained SAEs are better than PCA under the study's comparison criterion in 3 of 20 GoT comparisons and not
+  classified worse in the remaining 17; with PCA matched to task-specific SAE activity, better in 8 of 20 and not
+  classified worse in 12 (no equivalence or non-inferiority is claimed).
+\item \textbf{The layer-8 causal gain} (62\,\% to 73\,\%) is at the edge of what the per-SAE intervals can detect and
+  awaits the RepE-LM test split.
+\end{itemize}
+Except where marked \evlabel{test}, results are \evlabel{validation} findings.
+
+\paragraph{Future work.}
+\begin{itemize}
+\item Gemma-2-2B, using Gemma Scope SAEs as the external anchor and, where feasible, our own data-scaled TopK SAEs at
+  one middle layer. The ladder transfers directly, with the KL fine-tune only as a behaviour-only add-on.
+\item Evaluating the frozen RepE-LM test protocol, so that the persona and causal results can be confirmed.
+\item Capacity-matched PCA for the persona task, and a pre-registered test-split confirmation of PCA-CM.
+\item Task-level sparsity matching.
+\item Supervised-subspace (DAS) skylines as a standard reference for causal SAE evaluations.
+\end{itemize}

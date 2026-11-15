@@ -150,11 +150,212 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Alternatives considered:** keep the folders (rejected by the user: no separate folder in the final structure); delete without backup (rejected: the 30 gitignored checkpoint copies exist nowhere else in this form).
 * **Earlier errors stay documented:** the corrections (optimiser-state inconsistency, unmatched sparsity, steering without an SAE in the forward pass, retrained-probe faithfulness, leaky Gemma split) remain described in `RESEARCH_PROGRESS.md` §6, this log (D5–D7) and the changelog.
 
+## D21. R1 design, test deferral and outcome (2026-11-07)
+* **Decision:** test whether a paired honest-vs-untruthful contrast loss (no probe in the loss) improves honesty preservation, against RepE reconstruction-only and a same-persona-pair control, with independent probes fitted on a disjoint train half (B).
+* **Why no probe-based objective:** the D12/D16 circularity lesson; the contrast loss targets activations, and the primary metric is a nonlinear probe fitted on B only.
+* **Test split:** the drafted plan included one test pass; on 2026-11-07 the user instructed that the test split be preserved, so the R1 verdict is validation-only and the test pass is deferred pending approval. Recorded in the pre-registration addendum before training.
+* **Guard scope:** clarified before training: the verdict needs the guards of R-honesty and R-recon.
+* **Outcome:** ReLU INCONCLUSIVE; TopK/JumpReLU NOT SUPPORTED. The contrast loss strongly improves direction-level fidelity but changes probe AUROC only for ReLU, the architecture with the worst base preservation, and there it coincides with RepE-prompt L0 drift.
+* **Consequence:** prompt-specific L0 control (S3) is needed before any honesty-preservation claim; R2 uses base SAEs as its primary set, so it is not blocked by R1's verdict.
+
+## D22. R2 staging and outcome (2026-11-08)
+* **Decision (user, 2026-11-08):** run the R2 smoke test, the k selection and all controls on validation only, report them as VALIDATION evidence, and stop before the test stage. The script's `--test` refuses.
+* **Corrections before the run (README §12):**
+  * the OWT damage set is the 100 cached validation sequences, not 200;
+  * criterion 5 is checked on cross-wording validation at this stage.
+  * Pipeline-test outcomes (TopK E < 0) were seen before freezing; the protocol was not changed.
+* **Outcome:** NOT SUPPORTED for all architectures and all k. Clamped honesty features move outputs *away* from the honest-persona distribution, and further than random-feature or matched-norm controls do.
+  * The probe-score manipulation check moves the right way on default wording only.
+  * Criterion 2 passing is recorded as uninformative.
+* **Consequence:**
+  * No causal SAE-feature faithfulness claim at layer 6.
+  * The test stage is unlikely to change criterion 1. Running it remains the user's decision.
+  * Any per-statement-clamp or alternative-site follow-up needs a new pre-registration.
+
+## D23. Reframe as a layer-wise measurement study; start M0–M5 (2026-11-08)
+* **Decision (user approved 2026-11-08):** the thesis becomes a layer-wise measurement of how faithfully ReLU, TopK and JumpReLU SAEs of GPT-2 Small preserve reconstruction, task information, behaviour and causal effects. Fine-tuning becomes secondary. M0–M5 implement it (plan presented 2026-11-08); M0 and M1 are executed first, then the user decides on M2/M3.
+* **Why:**
+  * the 2026-11-08 audit found that the RepE persona prompts are length-confounded (' untruthful' adds 3 tokens; length alone gives AUROC 0.80);
+  * pooled-across-layer correlations were reported as if within-layer;
+  * frozen-logistic failures were read as information loss without noise or PCA references;
+  * the layer-6 causal site carries only about 20 % of the persona effect.
+* **Reclassified as HISTORICAL** (kept, not cited for their original claims):
+  * all-layer RepE probe results;
+  * the RepE parts of splicing;
+  * 6c causal random controls;
+  * R1 and R2;
+  * GoT numerical as a truth measure (surface shortcut, AUROC 0.84).
+
+  Gemma steering moves to an appendix.
+* **Refinements fixed before running** (in the pre-registrations):
+  * M0 uses Freedman–Lane within-layer permutation, and GoT relative squared error instead of task NMSE;
+  * M1's K7 null is an honest-synonym one-token swap (Hp);
+  * K6 forbids same-label near-duplicates and discloses the 14 opposite-label counterfactual edits found while building the dataset.
+* **Test split:** untouched by M0 and M1; M5 only, with approval.
+
+## D24. M3 outcome and the M4 site question (2026-11-08)
+* **Outcome:** the pre-registered rule selected L1 slot and L11 final; both confirmed on validation. M4 is justified by the rule.
+* **Issue recorded, not acted on:** both sites are near-endpoints (E ≈ 0.96), where "carrying the effect" is close to tautological. The layer 6–8 cells, where the effect is split between the slot and the final token, are more informative.
+* **Decision:** adding such a site requires a pre-registration amendment before M4. This is left to the user.
+* **T1 (truthful/deceptive):** has no effect beyond its synonym control. Persona-specific claims rest on T2–T4.
+
+## D25. M4 approved with amendment A1 (mid-depth site) (2026-11-08)
+* **Decision (user, 2026-11-08):** run M4 at the two M3 sites plus one layer 6–8 site.
+* **Rule for the added site (A1):** fixed before running. Choose the M3-passing slot/final cell with train E closest to 0.5, then confirm it on validation T2–T4 with original activations, without SAEs. By the M3 tables this is L8 final.
+* **Template sets:** T2–T4 is the primary persona set. T1 is kept and reported as a control case.
+* **Feature claims:** limited to "SAE-defined directions are causally sufficient when inserted"; never "GPT-2 uses SAE features".
+
+## D26. IMP-L outcome and its reading (2026-11-09)
+* **Run:** run as pre-registered after user approval. The criteria were not changed after the results were seen.
+* **Classification:** exactly as `criteria.json` gives it. The NOT CREDITABLE cells (ReLU/JumpReLU output-KL at layers 8–9) are excluded from rankings but reported.
+* **Reading:** the frozen-probe Method A truth gains are reported with the re-trained-reader null beside them. They are not called information recovery, because M2 showed that frozen-probe gaps are dominated by probe fragility.
+* **Next experiments:** none started. E3, an L0-matched output-KL variant and extra seeds each need their own pre-registration and approval.
+
+## D27. Reading of IMP-L fixed for the paper; next-experiment order (user, 2026-11-09)
+* **Reading (user):**
+  * Method A improves frozen-probe preservation in 4/9 cells.
+  * Re-trained probes show no consistent information gain.
+  * Output-KL improves behavioural preservation in 5/9 creditable cells, and does not improve truth preservation.
+  * The paper must keep these distinctions and must not claim truth-information recovery.
+  * Every finding stays VALIDATION until the approved final test.
+* **Order:** E3 (causal evaluation of the existing layer-8 fine-tunes), then E2 (public SAE reference), then E1
+  (task-level sparsity matching).
+* **Approval:** each needs the user's approval of its pre-registration before running. M5, pushing and merging still
+  need separate approval.
+* **E2 scope:** use the cached layer-8 and layer-10 public SAEs; do not download layer 6.
+* **E1 protocol:** do not train through script 13, because it evaluates on the OWT test split.
+
+## D28. E3 and RLM-RP run; their implementation choices (2026-11-10)
+* **Approval:** the user approved running E3 and the RepE completion work (RLM-RP). M5, the test split, pushing and
+  merging remain excluded.
+* **E3 implementation (fixed after a mechanics-only smoke test, before any result):**
+  * per-SAE reseeding, so control draws are paired across arms;
+  * M4 reproduction on the deterministic columns, because M4's single random stream cannot be replayed;
+  * BH over the 36 SAEs.
+* **RLM-RP:**
+  * layer-6 fine-tunes are included, with the uninterrupted base as source (asserted); layer-6 classes are not
+    guard-checked because no IMP-L-format guards exist;
+  * the IMP-L reproduction tolerance (1e-3 for the gap, 1e-4 for L0) was set from smoke-test mechanics, because
+    IMP-L encoded a different row subset; M2 must match exactly;
+  * the L0-truncation control is exploratory.
+* **Reading:**
+  * Method A changes neither persona representation nor causal preservation.
+  * Output-KL's causal and representational gains appear only with extra active latents (not creditable for
+    ReLU/JumpReLU at L8). TopK, whose L0 is fixed, shows no causal change.
+  * An L0-matched output-KL variant (roadmap G8/S4) is therefore the decisive follow-up for any "output-KL improves
+    causal faithfulness" claim.
+
 ## Unresolved hypotheses
 * **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
-* **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. Not tested.
-* **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. Untested for ReLU/JumpReLU and other layers.
+* **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
+* **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
 * **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
-* **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6.
+* **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
+* **H9:** Fine-tuning improves causal preservation. **Tested at L8 final (E3, D28):** Method A no; output-KL not creditably (gains only with L0 drift; TopK unchanged).
+* **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**
+
+## D29. GPT-2 improvement phase: design choices and outcomes (2026-11-10)
+* **Approval:** the user's full execution approval for GPT-2 improvements (R1, R2 and other justified experiments;
+  M5 once frozen). Gemma deferred: inspect and plan only.
+* **Choices made before results:**
+  * modern JumpReLU abandoned in the pilot (L0 would not settle; disclosed);
+  * R5 DAS initialised at PCA after the smoke test showed random init under-fits PCA (disclosed);
+  * E2-H3 PCA matching clarified as M2's OWT-validation NMSE (the code reuses M2 unchanged);
+  * the M5 SAE list contains every SAE of each family (no selection).
+* **Outcomes:**
+  * **R2 is adopted as the improved GPT-2 SAE set.** Reconstruction and behaviour are confirmed on TEST; the causal
+    and representation gains are validation-only.
+  * **R4 (KL at fixed L0) is a behaviour-only tool.** Its behaviour gain is confirmed on TEST, but it costs causal
+    preservation at L11 (validation), so it is not the default SAE for causal or information analyses.
+  * **Information preservation is not improved** relative to PCA by any method. This remains a headline negative
+    result.
+* **Operational rule from 2026-11-10 (user):** one memory-heavy job at a time on the 15 GB host. Wait loops must not
+  use a `pgrep -f` pattern that appears in their own command line.
+
+## D30. Methods to carry forward to Gemma-2-2B (recommendation, 2026-11-10)
+* **Carry forward:**
+  * the evaluation ladder: reconstruction, splicing with noise reference, M2 readers with PCA and noise references,
+    RLM-RP, M4 decomposition, R5 skyline;
+  * the random-decoder baseline;
+  * an external public anchor: Gemma Scope, in place of res-jb;
+  * TopK/BatchTopK SAEs trained with the R2 recipe (AuxK, decoder-transposed init, scale folding, streaming), if
+    compute allows;
+  * the KL fine-tune only as a behaviour-only add-on at fixed L0.
+* **Do not carry forward:**
+  * the in-house sigmoid-surrogate JumpReLU;
+  * the L1-controller ReLU as a primary architecture (worst reconstruction and behaviour, PCA regressions);
+  * output-KL with a drifting L0.
+* **Feasibility on this host (inspected; not run):**
+  * Gemma-2-2B bf16 in Hugging Face transformers runs at about 7.7k tokens/s with 7.3 GB of VRAM. TransformerLens'
+    CPU-side load exceeds the 15 GB of host RAM, so the ladder needs an HF-hook path.
+  * One middle-layer TopK SAE (d_model 2304, width 16k) on 100M tokens is about 3.6 h of activation generation per
+    pass. Train several SAEs per pass from one activation stream, as R2 did.
+  * Use Gemma Scope SAEs at the matching layer as the external anchor first: this needs no training.
+
+## D31. M5 evidence label and protocol-freezing practice (2026-11-10, final defense audit)
+* **M5 label.** M5 results are cited as "CONFIRMED TEST RESULT (previously exposed test rows; exposure limited to
+  the old reference SAEs)".
+  * The OWT and GoT test rows were scored for the old SAEs before M5 (README §10).
+  * No R2/R4 decision used them.
+* **Protocol freezing.** Future frozen protocols are written to a separate file, and committed before the run, so that
+  the pre-registration hash stays verifiable after results are added.
+* **Erratum, recorded rather than edited:** the M5 README L0 maximum is 133.39, not 133.2.
+
+## D32. Build the RepE-LM TEST split now; evaluate it only after the user approves (2026-11-13, remediation S3)
+* **Data built:** `data/repe/repe_lm_test/` (86 statements, 2,408 rows) from the 90 `persona_pairs.csv` TEST statements,
+  using M1's builder unchanged.
+  * Same-label near-duplicates of train/validation (4) are dropped.
+  * New test-only wording is added (T7, T8, N3, N4). It was written before any test evaluation, so cross-wording
+    generalisation can be tested on wording no decision has seen.
+* **Protocol frozen:** `results/repe/repe_lm_test_protocol/preregistration.json`, with hypotheses HT1–HT4, the R2 rule,
+  Holm correction across 12 cells, and positive and negative controls.
+  * The evaluation script must be smoke-tested on validation and its hash added before it reads a test row.
+* **Not executed.** About 1–2 GPU hours are needed, and a confirmatory test is a decision for the user.
+* **Disclosed:** the source statements were scored once in the retired, length-confounded RepE task.
+
+## D33. Interpretation of the M4 / R2-clamp "SAE-in-the-loop" interventions (2026-11-13, remediation S5)
+* Every encode → edit → decode patch that keeps the error term equals x + W_dec(z′(x) − z(x)). That is the raw
+  activation plus an input-dependent vector, and a 3,072- or 12,288-latent dictionary spans ℝ⁷⁶⁸.
+  * M4's T_rec and its top-k patches therefore show that the SAE **selects** effect-carrying directions, tested
+    against the random-feature and isotropic controls.
+  * They do not show that the effect is **mediated** by the SAE.
+* The paper's paragraph is renamed "SAE-selected feature patches (error term kept)" and states this argument.
+* Review #8's SAE-in-the-loop requirement is therefore **PARTIALLY RESOLVED**. A distinct intervention is proposed:
+  an edit at layer ℓ with SAEs spliced at later layers, or a run on x̂ without the error term compared against the
+  spliced baseline. The layer-6 R2-clamp (input-dependent clamps, with and without the error term) was NOT SUPPORTED.
+
+## D34. PCA-CM changes the "SAEs never beat PCA" conclusion; the revision waits for the user (2026-11-13)
+* The pre-registered interpretation I2 was triggered (`results/shared/pca_capacity_matched/README.md` §2.3).
+  * At equal error, PCA (298–519 components) keeps as much or more GoT truth information: replicated on validation.
+  * At an equal per-token active budget (k = 128) or task-L0-matched k, trained SAEs are never worse than PCA, and
+    ReLU-family SAEs are better in some cells.
+* **Decision:** the paper's abstract, conclusion and §improvement, and the curated docs, are **not** revised in this
+  task. The user's instruction requires stopping before a conclusion change.
+* **Proposed wording** (for the user to approve): "At equal reconstruction error, PCA keeps at least as much truth
+  information as the SAEs; at an equal per-token active budget, SAEs are never worse than PCA and ReLU-family SAEs
+  are better in 3 of 20 layer–family cells (validation)."
+* **Outcome (2026-11-13): APPROVED by the user with a refinement.** Adopted wording: "At matched reconstruction error,
+  PCA generally preserves more truth-related information than the evaluated SAEs. However, this comparison allows PCA
+  substantially more dimensions than the SAE's active-feature budget. Under a fixed 128-dimensional PCA comparison,
+  trained SAEs are better under the study's comparison criterion in 3 of 20 comparisons and not worse in the
+  remaining 17. When PCA dimensionality is matched to task-specific SAE activity, SAEs are better in 8 of 20
+  comparisons and not worse in the remaining 12. These findings are based on validation data and demonstrate that
+  conclusions about representational faithfulness depend on the comparison constraint."
+  * The user asked that "significantly better" be used only if the decision rules support significance. **They do
+    not**: the rule (every seed's paired 95 % bootstrap CI excludes 0) is per cell, with no correction across the 40
+    capacity-matched cells. An approximate post-hoc Holm check (`scripts/shared/pca_cm_posthoc_multiplicity.py`) keeps
+    1 of the 3 k = 128 cells (R2 ReLU L11) and 4 of the 8 task-matched cells. So "better under the study's comparison
+    criterion" is used, and "not worse" replaces "not significantly worse" (no cell and no individual seed favours
+    PCA).
+  * The original equal-error results are kept and presented alongside the capacity-matched ones. No test row was
+    re-read.
+
+## D35. "No truth gain" is reported as a bound; the L8 causal gain as borderline (2026-11-13)
+* From the sensitivity analysis (`results/shared/power_sensitivity/`): between-family GoT comparisons cannot reliably
+  detect changes smaller than about 0.05–0.09 AUROC (observed ≤ 0.025); one SAE's M4 preservation at L8 is resolved
+  only to 0.054–0.107.
+* **Decision (user-approved):** the paper and docs state the GoT null as "no change larger than about 0.05–0.09
+  AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
+  protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.

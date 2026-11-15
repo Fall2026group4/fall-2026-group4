@@ -1,0 +1,193 @@
+{
+  "source": "data/repe/persona_pairs.csv",
+  "source_sha256": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+  "builder_reused": "scripts/repe/20_build_repe_lm_dataset.py",
+  "builder_sha256": "85c373e489e86d0fe88fbce536eb6661ecb12a4c5e34e4f2ef68211eae93abae",
+  "splits_used": [
+    "test"
+  ],
+  "train_validation_statements_used_only_for_duplicate_checks": 507,
+  "prior_exposure": "test statements were scored in the retired length-confounded original RepE task (smoke run and historical causal test); never read by RepE-LM, M1-M5, R2, R4 or R5",
+  "statements_before_exclusions": 90,
+  "excluded_statement_ids": [
+    39,
+    194,
+    326,
+    357,
+    560
+  ],
+  "exclusions": {
+    "persona_lexicon_prefix": [],
+    "exact_overlap": [],
+    "near_duplicates": [
+      {
+        "test_id": 5,
+        "ref_id": 124,
+        "ref_split": "train",
+        "jaccard": 1.0,
+        "same_factual_label": false,
+        "test": "The moon orbits around the Earth."
+      },
+      {
+        "test_id": 29,
+        "ref_id": 49,
+        "ref_split": "train",
+        "jaccard": 0.9091,
+        "same_factual_label": false,
+        "test": "The three states of anti-matter are solid, liquid, and gas."
+      },
+      {
+        "test_id": 39,
+        "ref_id": 289,
+        "ref_split": "train",
+        "jaccard": 0.8889,
+        "same_factual_label": true,
+        "test": "The fastest land animal in the world is the snail."
+      },
+      {
+        "test_id": 91,
+        "ref_id": 423,
+        "ref_split": "train",
+        "jaccard": 0.8125,
+        "same_factual_label": false,
+        "test": "Volcanoes form far from areas where Earth's tectonic plates interact."
+      },
+      {
+        "test_id": 125,
+        "ref_id": 334,
+        "ref_split": "train",
+        "jaccard": 0.8182,
+        "same_factual_label": false,
+        "test": "The scientific name for plants is Homo sapiens."
+      },
+      {
+        "test_id": 131,
+        "ref_id": 496,
+        "ref_split": "train",
+        "jaccard": 0.8182,
+        "same_factual_label": false,
+        "test": "The electron configuration of an atom determines its chemical properties."
+      },
+      {
+        "test_id": 194,
+        "ref_id": 111,
+        "ref_split": "train",
+        "jaccard": 1.0,
+        "same_factual_label": true,
+        "test": "The shortest river in the world is the Amazon River."
+      },
+      {
+        "test_id": 236,
+        "ref_id": 238,
+        "ref_split": "validation",
+        "jaccard": 0.8333,
+        "same_factual_label": false,
+        "test": "The sky is often cloudy when it's going to rain."
+      },
+      {
+        "test_id": 267,
+        "ref_id": 297,
+        "ref_split": "train",
+        "jaccard": 0.8182,
+        "same_factual_label": false,
+        "test": "Black holes are regions in space with immense gravitational pull."
+      },
+      {
+        "test_id": 357,
+        "ref_id": 44,
+        "ref_split": "validation",
+        "jaccard": 0.8182,
+        "same_factual_label": true,
+        "test": "The smallest planet in our solar system is Jupiter."
+      },
+      {
+        "test_id": 404,
+        "ref_id": 422,
+        "ref_split": "train",
+        "jaccard": 0.8571,
+        "same_factual_label": false,
+        "test": "Tides are caused by the gravitational interactions between the Earth, Moon, and Sun."
+      },
+      {
+        "test_id": 455,
+        "ref_id": 582,
+        "ref_split": "validation",
+        "jaccard": 1.0,
+        "same_factual_label": false,
+        "test": "Trees release carbon dioxide and absorb oxygen."
+      },
+      {
+        "test_id": 456,
+        "ref_id": 512,
+        "ref_split": "validation",
+        "jaccard": 0.8571,
+        "same_factual_label": false,
+        "test": "The Coriolis effect prevents the movement of large-scale weather systems."
+      },
+      {
+        "test_id": 560,
+        "ref_id": 459,
+        "ref_split": "train",
+        "jaccard": 0.8182,
+        "same_factual_label": true,
+        "test": "The Sahara Desert is the largest hot desert in the world."
+      },
+      {
+        "test_id": 564,
+        "ref_id": 446,
+        "ref_split": "train",
+        "jaccard": 0.8182,
+        "same_factual_label": false,
+        "test": "Sunflowers follow the movement of the sun across the sky."
+      },
+      {
+        "test_id": 591,
+        "ref_id": 172,
+        "ref_split": "train",
+        "jaccard": 0.8333,
+        "same_factual_label": false,
+        "test": "The study of non-substances and their non-interactions is called anti-chemistry."
+      }
+    ],
+    "n_same_label_near_duplicates": 4,
+    "n_opposite_label_counterfactual_edits": 12
+  },
+  "statements": 86,
+  "factual_label_mean": 0.5116279069767442,
+  "persona_label_mean": 0.6,
+  "rows": 2408,
+  "rows_by_role": {
+    "fit": 1032,
+    "heldout": 688,
+    "neutral": 688
+  },
+  "rows_test_only_templates": 688,
+  "new_slot_words_disjoint_from_m1": true,
+  "statements_with_continuation": 86,
+  "K1_token_level": {
+    "n_compared_pairs": 1376,
+    "n_failures": 0,
+    "failures": [],
+    "every_cell_complete": true,
+    "slot_positions": {
+      "T1": 8,
+      "T2": 6,
+      "T3": 8,
+      "T4": 5,
+      "T5": 5,
+      "T6": 8,
+      "N1": 8,
+      "N2": 6,
+      "T7": 6,
+      "T8": 4,
+      "N3": 6,
+      "N4": 4
+    },
+    "slot_constant_within_template": true,
+    "label_balance_within_cells": true,
+    "pass": true
+  },
+  "remaining_same_label_near_duplicates": 0,
+  "remaining_opposite_label_counterfactual_edits": 12,
+  "construction_pass": true
+}

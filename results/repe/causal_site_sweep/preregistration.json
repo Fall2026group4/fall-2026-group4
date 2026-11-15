@@ -1,0 +1,33 @@
+{
+  "stage": "M3 positive-control causal site sweep (original GPT-2 only)",
+  "date": "2026-11-08",
+  "approved_by_user": "2026-11-08",
+  "evidence_label": "TRAIN selection; VALIDATION confirmation; no SAE; test not loaded",
+  "hypothesis_H3": "some non-trivial site carries the persona-instruction effect",
+  "data": "M1 RepE-LM T1-T4 (H, U, Hp), train 417 statements x 4 = 1668 pairs; validation 89 x 4 = 356",
+  "sites": "blocks.L.hook_resid_pre L=0..11 and blocks.11.hook_resid_post (13) x position groups {slot, post_slot_instruction, assistant_span (' ASSISTANT:' 4 tokens), prefix_excl_final, final} = 65 cells",
+  "outcomes": {
+    "R_A (primary)": "KL(p_H||p_U) - KL(p_H||p_{U<-H at cell}), next-token at final prompt token, nats",
+    "R_B": "KL(p_U||p_H) - KL(p_U||p_{H<-U}) (other direction)",
+    "R_S synonym control": "KL(p_H||p_Hp) - KL(p_H||p_{Hp<-H}) (same-meaning one-token change at the same cell)",
+    "R_W wrong statement": "U <- H activations of another statement with the same template and token length (descriptive; identical to R_A at instruction-span cells by causality)",
+    "random": "U + eta, ||eta|| = ||x_H - x_U|| per patched position, random direction; 50 draws at screening, 200 for candidates; computed on a fixed 480-pair train subset stratified by template (120 per template) - a conservative choice (wider spread than the full-sample mean) made for runtime",
+    "C_A": "continuation: |lp_H - lp_U| - |lp_H - lp_{U<-H}|, mean log-prob per continuation token (secondary)",
+    "E_share": "mean R_A / mean KL(p_H||p_U) (descriptive)"
+  },
+  "statistics": "per-statement means (pairs averaged within statement), 2000 bootstrap resamples over statements; one-sided normal-approximation p from the bootstrap SE. Cell p = max(p[R_A>0], p[R_A-R_S>0], p[R_B>0]); Holm over all 65 cells.",
+  "selection": "PASS if Holm p < 0.05 AND mean R_A > q95 of 200 random draws AND the cell is not a trivial sanity cell (layer-0 slot = the input token itself; resid_post 11 final = the output). Select at most 3: earliest (lowest layer; ties larger R_A), peak (largest R_A), latest (highest layer). Candidates for the 200 draws: R_A CI low > 0 and R_A > q95 of the 50 screening draws.",
+  "confirmation": "validation: selected cells re-run with all controls and 200 random draws on all 356 pairs; CONFIRMED if R_A CI low > 0. All 65 cells reported on validation descriptively (controls, no random).",
+  "per_template": "every cell reported per template on train and validation, with per-template random q95; T1 flagged (weak behaviour in M1)",
+  "stop_rule": "no passing cell, or no selected cell confirmed on validation -> causal branch stops (M4 not justified)",
+  "sanity_checks": "all-positions patch at resid_pre 0/6/11 reproduces p_H (KL < 1e-5); self-patch gives R = 0; layer-0 slot and resid_post-11 final give R_A = KL(p_H||p_U)",
+  "smoke_test_disclosure": "Ran on 1/12 of pairs with 4-8 random draws in scratch (counts of candidates/selected printed: 53, 2). Changes after smoke: (1) bug fix - TransformerLens's tokenizer adds BOS on encode, so positions are computed with the plain GPT-2 tokenizer used in script 20; (2) random controls restricted to a stratified 480-pair subset for runtime (estimated 3.5 GPU h otherwise). No threshold or rule changed.",
+  "outputs": "results/repe/causal_site_sweep/ (refuses to overwrite)",
+  "hashes": {
+    "scripts/repe/23_positive_control_site_sweep.py": "76fd7d98debe9078c816b93a60802ad00fa3b5015b06ffadc92fb5daa6a38f33",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "src/tests/test_patching.py": "2b1b75108785e31c245f01dc59389e157939334225049f872f670cff4e547b74",
+    "data/repe/repe_lm/prompts.csv": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+    "data/repe/repe_lm/templates.json": "649d4a0d6939af3430072b50849cff325f22df7e08c42522c27202587ac4d1d2"
+  }
+}

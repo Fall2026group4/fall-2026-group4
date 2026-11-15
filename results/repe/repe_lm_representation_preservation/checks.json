@@ -1,0 +1,62 @@
+{
+  "test_rows": 0,
+  "groups_cross_split": 0,
+  "statements_cross_split": 0,
+  "pairs_equal_length": true,
+  "n_rows": {
+    "p_tr": 3336,
+    "p_va": 712,
+    "syn_va": 712,
+    "hhp_va": 712,
+    "ho_va": 356,
+    "n_tr": 1668,
+    "n_va": 356,
+    "all_va": 1780,
+    "pair_H": 356,
+    "pair_U": 356
+  },
+  "n_validation_statements": 89,
+  "n_train_statements": 417,
+  "near_duplicate_validation_statements": [
+    77,
+    96,
+    168,
+    189,
+    249,
+    306,
+    354,
+    371,
+    383,
+    403,
+    486,
+    511,
+    546,
+    575
+  ],
+  "truncation_decode_max_abs_err": 0.0,
+  "reproduction": {
+    "m2_frozen_logistic_gap_max_abs_diff": 0.0,
+    "m2_frozen_massmean_gap_max_abs_diff": 0.0,
+    "m2_refit_logistic_gap_max_abs_diff": 0.0,
+    "m2_task_cosine_max_abs_diff": 0.0,
+    "m2_task_l0_max_abs_diff": 0.0,
+    "m2_task_nmse_max_abs_diff": 0.0,
+    "m2_rows_compared": 108,
+    "impl_refit_gap_max_abs_diff": 0.00015780835753054223,
+    "impl_persona_l0_max_abs_diff": 7.372223933543864e-06,
+    "impl_rows_compared": 108,
+    "tolerances": {
+      "impl_refit_gap_max_abs_diff": 0.001,
+      "impl_persona_l0_max_abs_diff": 0.0001,
+      "m2": 1e-06
+    },
+    "pass": true
+  },
+  "n_saes": 216,
+  "runtime_s": 493.3028767108917,
+  "test_rows_used": 0,
+  "script_sha256": "23cc6259d9de2978bd045cac61ddd67ca0a652d73553b5aa8159f81282c672c3",
+  "smoke": false,
+  "layer0_note": "persona AUROC 0.5 by construction at layer 0; direction metrics NaN",
+  "pass": true
+}

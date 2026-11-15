@@ -1,0 +1,48 @@
+{
+  "selected": [
+    {
+      "role": "earliest+peak",
+      "site": "blocks.1.hook_resid_pre",
+      "group": "slot",
+      "R_A_train": 0.03204874711782968,
+      "E_share": 0.9754367431584313,
+      "R_A_validation": 0.035601357238094225,
+      "R_A_validation_ci": [
+        0.027768525941343058,
+        0.044999989146383174
+      ],
+      "R_B_validation": 0.03964477600609201,
+      "R_S_validation": 0.017807429423038718,
+      "E_share_validation": 0.9708582113065394,
+      "random_q95_validation": 0.003908687597474722,
+      "confirmed": true
+    },
+    {
+      "role": "latest",
+      "site": "blocks.11.hook_resid_pre",
+      "group": "final",
+      "R_A_train": 0.031534235243847936,
+      "E_share": 0.9597770424896995,
+      "R_A_validation": 0.034990480043575835,
+      "R_A_validation_ci": [
+        0.02762959451887652,
+        0.04355116319036064
+      ],
+      "R_B_validation": 0.0384298076221833,
+      "R_S_validation": 0.017673353187680183,
+      "E_share_validation": 0.9541994323607895,
+      "random_q95_validation": -0.0071591662365428806,
+      "confirmed": true
+    }
+  ],
+  "n_passing_cells": 50,
+  "n_candidates": 55,
+  "M4_justified": true,
+  "rule": "Holm(max p of R_A>0, R_A-R_S>0, R_B>0) < 0.05 over 65 cells AND R_A > q95 of 200 matched-norm random draws AND not a trivial sanity cell; earliest/peak/latest; confirmed on validation if R_A CI low > 0",
+  "n_train_pairs": 1668,
+  "n_validation_pairs": 356,
+  "runtime_s": 5785.26721739769,
+  "script_sha256": "76fd7d98debe9078c816b93a60802ad00fa3b5015b06ffadc92fb5daa6a38f33",
+  "sanity_pass": true,
+  "test_rows_used": 0
+}

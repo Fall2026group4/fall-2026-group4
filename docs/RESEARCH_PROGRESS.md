@@ -203,7 +203,7 @@ The full chronological history of the project, reconstructed on 2026-11-07 from 
 
 ## 6. Professor-review corrections (2026-11-04). Status: COMPLETED, VALIDATED [VERIFIED]
 
-Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04_code_audit.md` and `docs/2026-11-04_methodology_changes.md`. Run on top of `326b0f6`, originally into `results/professor_review_corrections/`, and migrated on 2026-11-06 (§7).
+Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`, with `docs/2026-11-04_code_audit.md` and `docs/2026-11-04_methodology_changes.md`. Run on top of `326b0f6`, originally into `results/professor_review_corrections/`, and migrated on 2026-11-06 (§7).
 
 * **6a. Optimiser-state consistency (Task A).**
   * Layer 6 had been resumed with Adam state restored; layers 2/10 were warm-started with Adam reset.
@@ -424,6 +424,30 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
 
 ---
 
+## 16a. In progress: RepE honesty R1 (representation preservation) and R2 (SAE-in-the-loop intervention) (2026-11-07). Status: R1 COMPLETED at validation (§19); R2 validation stage COMPLETED (§20); both test stages DEFERRED
+
+* **Audit (read-only, done):**
+  * No RepE fine-tuning exists.
+  * No SAE-in-the-loop intervention has ever been run. Scripts 10–12 had no SAE in the forward pass; 6c added decoder directions to the raw activation.
+  * An additive feature edit with the error term kept is mathematically identical to direction steering. R2 therefore uses input-dependent clamps.
+  * **Leakage found:** validation statement 326 is a near-duplicate of train statement 589. It is excluded from all R1/R2 validation scores.
+  * The RepE test split was scored before (6c, all-layer) but never used for selection. This is disclosed.
+* **R1:** RepE reconstruction fine-tuning (R-recon) vs a paired-contrast objective (R-honesty) vs a same-persona-pair control, all with OWT replay.
+  * Layer 6, 3 architectures × 3 seeds, 27 runs.
+  * Probes fitted on the train-B half only. Guards on OWT and RepE-prompt L0.
+* **R2:** encode → clamp the selected features towards the target-persona mean → decode + error, at the final token.
+  * 9 base SAEs.
+  * 200 random-feature, 200 matched-norm, unrelated-feature, raw-direction and positive controls; OWT damage test.
+  * k chosen on validation; one held-out test pass.
+* **Plans:** `results/repe/r1_honesty_preservation_layer6/README.md`, `results/repe/r2_sae_in_the_loop_steering_layer6/README.md`.
+* **Unfinished:** everything after the plan. Nothing has been trained or evaluated, and no data files have been created.
+* **Next steps after approval:**
+  1. write `preregistration.json` and the hashes;
+  2. script 14 (splits, held-out wording);
+  3. R2 smoke test;
+  4. R1 training and evaluation;
+  5. R2 validation k-selection, then the test pass.
+
 ## 17. Where we stand (2026-11-07)
 
 * **Answered, at validation level unless noted:**
@@ -454,3 +478,563 @@ Full report: `docs/2026-11-04_professor_review_report.md`, with `docs/2026-11-04
   * Rewrote `README.md`; added the missing research dependencies to `requirements.txt`; extended `.gitignore` (activation caches, `.bak`).
 * **Checks:** 25 tests pass; all 90 tracked Python files compile; every script-to-script path reference resolves (except the documented old→new map in `scripts/shared/write_manifest.py`); no checkpoints, caches, logs, credentials or absolute home paths tracked.
 * **Not done / open:** the EC2-only checkpoints (about 9 GB) have no off-machine backup after 2026-11-06 (roadmap §11). Planned RepE experiments R1/R2 are deliberately excluded from this commit.
+
+## 19. R1: RepE honesty-preservation fine-tuning, layer 6 (2026-11-07). Status: COMPLETED, VALIDATION; ReLU INCONCLUSIVE, TopK and JumpReLU NOT SUPPORTED [VERIFIED]
+
+* **Question:** can fine-tuning an SAE with a paired honest-vs-untruthful contrast term improve preservation of GPT-2's honesty representation (layer 6), beyond plain RepE reconstruction fine-tuning and a same-persona-pair control, without sparsity or reconstruction damage?
+* **Protocol:** pre-registration committed as drafted (`d17bb00`), then finalised before training (`211218f`, addendum §10).
+  * Arms R-recon / R-honesty / R-samepersona from the 9 uninterrupted bases; Method A protocol (Adam 1e-5, 500 steps, OWT replay).
+  * New split `data/repe/splits/r1_train_AB_groups.csv`: A (208 statements) trains, B (209) fits the independent probes.
+  * Validation statement 326 excluded. **Test not touched**: §6 test pass deferred at the user's instruction.
+* **Execution:** 28/28 runs (reproduction check bit-identical), 58 s; evaluation of 51 SAEs, 542 s. Smoke tests before freezing are disclosed in the README.
+* **Results (validation, B-MLP AUROC gap, original AUROC 0.964):**
+  * ReLU: base 0.198 → R-recon 0.180 → R-honesty 0.167. R-honesty < R-recon on 3/3 seeds (mean −0.0135, sd 0.0048), < R-samepersona on 3/3, transfers to cross-wording. **But** the RepE-prompt L0 guard fails (+6.8 % / +8.4 %), and the logistic probe shows no R-honesty gain (−0.0003). → **INCONCLUSIVE**.
+  * TopK (0.092 → 0.101) and JumpReLU (0.072 → 0.075): R-honesty no better or worse than R-recon → **NOT SUPPORTED**. TopK R-honesty also fails the GoT guard (+0.025).
+  * R1a (RepE reconstruction fine-tuning beats base) not met for any architecture.
+  * Direction-level metrics (pair-direction cosine +0.07 to +0.20) improve strongly; they measure the training objective and are not counted as evidence.
+  * OWT reconstruction and splice behaviour unchanged (ΔEV ≥ −0.002, ΔCE ≤ 0.005 nats). Pair accuracy is at ceiling (1.0) everywhere.
+* **Evidence label:** VALIDATION finding. **Files:** `results/repe/r1_honesty_preservation_layer6/` (README §11), figure `results/repe/figures/r1_honesty_preservation_layer6.png`.
+* **Limitations:** 3 seeds; 89 statements (per-SAE CI ≈ ±0.04); single λ; overfitting to 208 statements; RepE-prompt L0 uncontrolled for ReLU/JumpReLU.
+* **Next steps:** R1 test pass only with approval; an L0-controlled R1 variant (roadmap §2); R2 after the user reviews this report.
+
+## 20. R2: SAE-in-the-loop clamp of honesty features, layer 6 (2026-11-08). Status: VALIDATION STAGE COMPLETED; NOT SUPPORTED (descriptive); test stage DEFERRED [VERIFIED]
+
+* **Question:** does clamping the honesty-selected SAE features of an untruthful-persona prompt towards the honest-train mean (encode → clamp → decode + error, final token, `blocks.6.hook_resid_pre`) move GPT-2's next-token distribution towards the honest prompt's, more than random-feature, matched-norm, unrelated-feature and raw-direction controls?
+* **Protocol:**
+  * pre-registration drafted in `d17bb00`, finalised in `b232ce4` (script SHA `0a0f4fc7…`, §12 addendum);
+  * user decision 2026-11-08: validation now, test later. `--test` refuses; `test_rows_read: false`.
+* **Execution:**
+  * 9 base SAEs with all controls;
+  * 18 R1 SAEs (EXPLORATORY), targets plus C2 only;
+  * k ∈ {1, 4, 16}, α ∈ {−1 … 2};
+  * 75 min, peak 5.6 GB.
+* **Results (validation, default wording, base SAEs, k = 1 selected for every architecture):**
+  * Positive control (activation patch): E = 0.188. Baseline mean KL(p_H‖p_U) is 0.020 nats.
+  * E(α = 1): ReLU −0.110 ± 0.006, TopK −0.103 ± 0.039, JumpReLU −0.115 ± 0.031. Every k is worse (down to −0.85).
+    * This is below the random-feature C2 mean (−0.01 to −0.05) and q95 (+0.003 to +0.004), and below matched-norm C3 (q95 ≈ +0.005 to +0.009).
+    * Empirical p 0.68–1.0; BH q = 1.
+  * Criteria: 1 effect FAIL everywhere; 2 sign reversal passes but is uninformative (both α signs harm); 3 specificity FAIL; 4 damage FAIL (target OWT ΔCE 0.017–0.18 vs C2 q95 0.001–0.04); 5 cross-wording FAIL.
+  * **Verdict: NOT SUPPORTED for all architectures and all k.**
+  * Representation-level: the edit is well formed (re-encoding attainment 0.77–0.99).
+  * Probe score: the edit closes 15–44 % of the U→H logistic-probe gap on `val`, but reverses it on `cw`.
+  * Behaviour: absent or adverse.
+  * The no-error reconstruction splice gives E ≈ −3 to −4: the behaviourally relevant difference lives largely in the SAE error term.
+  * R1 SAEs: R-honesty − R-recon differences in E ≈ 0.
+* **Conclusion:** no causal SAE-feature faithfulness claim. H7 remains null at layer 6.
+* **Evidence label:** VALIDATION finding (descriptive; selected-k numbers optimistic).
+* **Files:** `results/repe/r2_sae_in_the_loop_steering_layer6/` (README §13), figure `results/repe/figures/r2_sae_in_the_loop_validation.png`.
+* **Limitations:**
+  * a small behavioural signal at this site (positive control 19 %);
+  * a population-mean clamp only;
+  * an unexplained `cw` probe-sign reversal;
+  * 3 seeds;
+  * 89 statements.
+* **Next steps:**
+  * R2 test stage (k = 1 frozen) needs user approval;
+  * an optional new pre-registration for a per-statement clamp or a later layer.
+
+## 21. In progress: M0 within-layer reanalysis and M1 RepE-LM gates (2026-11-08). Status: PRE-REGISTERED
+
+* **Why (D23):** the 2026-11-08 audit showed four problems:
+  * the RepE persona prompts are length-confounded;
+  * earlier "reconstruction tracks preservation" correlations were pooled across layers;
+  * frozen-probe failures were read as information loss;
+  * the layer-6 causal site is weak.
+
+  The user approved the M0–M5 programme and asked for M0 and M1 to run now. M2–M5 wait for approval.
+* **M0:** existing validation CSVs only. Within-layer regressions (layer FE + architecture FE + log L0; Freedman–Lane permutation), an L0-adjusted architecture table, and pooled-vs-within corrections. `results/shared/m0_within_layer_reanalysis/`.
+* **M1:** 8 one-token-swap templates (T1–T4 fit, T5–T6 held out, N1–N2 neutral) on train (417) and validation (89) statements. Original GPT-2 activations at 12 layers; gates K1–K7. `results/repe/repe_lm_gates/`. Test statements are not loaded.
+* **Pre-registrations with hashes:** `preregistration.json` in each folder. The smoke tests are disclosed in the M1 pre-registration.
+* **Next:** run M0; run M1 (scripts 20 → 21 → 22); document; report to the user; stop.
+
+## 22. M0: within-layer reanalysis (2026-11-08). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Run:** `scripts/shared/m0_within_layer_reanalysis.py`, on the pre-registered hash (`ebdc1be`). Validation CSVs only; no model or test row.
+* **Results:**
+  * **Behaviour:** within a layer, lower OWT reconstruction error goes with less splice damage (β = 0.165 per log NMSE, Holm p = 0.0008; per-layer ρ 0.80–0.97 from layer 3).
+  * **Truth readout:** within a layer, reconstruction error does **not** usefully predict the GoT frozen-logistic gap. The formal pass for OWT NMSE (Holm p = 0.044) depends on architecture fixed effects that absorb 99.8 % of the within-layer NMSE variance, and it vanishes without them (p = 0.89). GoT task error: no association.
+  * **Architectures:** the rankings survive an L0 adjustment, apart from two near-ties.
+  * **Effective width and task-prompt L0** differ strongly between architectures.
+* **Corrected claims:**
+  * the pooled "reconstruction tracks honesty preservation" is a pooling artefact (0.89 → 0.05);
+  * the splice SAE/random ratio is 0.76–2.89, not 1.0–2.6×.
+* **Evidence label:** VALIDATION reanalysis. **Files:** `results/shared/m0_within_layer_reanalysis/`.
+* **Limitations:** 9 SAEs per layer; architecture and error nearly collinear; 1000-step elasticities.
+
+## 23. M1: RepE-LM equal-length persona task (2026-11-08). Status: COMPLETED; all gates PASS (K5 narrowly) [VERIFIED]
+
+* **Run:** scripts 20 → 21 → 22, on the pre-registered hashes (`ebdc1be`). Train and validation statements only; test not loaded.
+* **Results:**
+  * The length/position/template confound is eliminated by construction: K1 bit-identical, K2 all AUROC 0.5000.
+  * A persona-meaning signal transfers across word pairs only modestly (K5 0.70 at layers 8 and 11; mass-mean 0.63).
+  * Persona swaps change GPT-2's next-token distribution about 2× more than honest-synonym swaps (K7). The absolute effect is small (0.019 nats).
+* **Caveats:**
+  * generic one-token-change decodability is large (neutral 0.58–0.75);
+  * template T1 and held-out T5/T6 have near-neutral behavioural effects;
+  * ungrouped CV leaks heavily (0.92–0.99 vs 0.63–0.84).
+* **Decision gates:** M2 and M3 allowed. **Awaiting user approval** before either starts.
+* **Files:** `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. Activations are in `data/repe/activations/repe_lm/` (712 MB, gitignored).
+
+## 24. In progress: M2 information faithfulness and M3 causal site sweep (2026-11-08). Status: PRE-REGISTERED
+
+* **Approved by the user 2026-11-08,** after the M0/M1 report.
+* **M2:** 108 SAEs + 36 PCA references + norm-matched noise, 12 layers, on GoT cities, RepE-LM persona and RepE-LM neutral. Probe ladder: frozen logistic/mass-mean; re-trained logistic, MLP and kNN; sparse-z; error term; learning curve. Four-level labels; H2a (vs noise), H2b (vs PCA). `results/shared/m2_four_level_faithfulness/`.
+* **M3:** original GPT-2 activation patching, 65 cells. H→U and U→H; synonym, wrong-statement and matched-norm random controls; per template (T1 flagged). Holm; ≤ 3 sites; validation confirmation. `results/repe/causal_site_sweep/`.
+* **New modules with tests:** `src/evaluation/{information_levels,patching}.py`. The smoke tests and changes made after them are disclosed in each pre-registration.
+* **Next:** run both; document; report; stop before M4.
+
+## 25. M2: four-level information faithfulness (2026-11-08). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Run:** on the pre-registered hashes (`b384622`); 432 cells; 39 min; all numerical checks pass; 0 test rows.
+* **Results:**
+  * The GoT frozen-logistic collapse (0.28) is mostly generic sensitivity to perturbations of that size: noise of the same norm gives 0.25 and PCA 0.22, while mass-mean loses 0.03.
+  * Re-trained readers show a smaller but real reduction (GoT 0.07–0.12; persona 0.14–0.18).
+  * No cell is Preserved or Readout shifted.
+  * SAEs are never better than PCA at equal OWT error, and are worse in most cells.
+  * The lost information is decodable from the error term.
+  * On truth, ReLU loses least and JumpReLU most, the reverse of reconstruction.
+  * Persona loses 0.07–0.13 more than neutral one-word changes at layers 3–8 only.
+* **Evidence label:** VALIDATION. **Files:** `results/shared/m2_four_level_faithfulness/`.
+* **Corrects:** "truth is lost / near chance" (the frozen-probe reading). Use the re-trained and noise-referenced numbers instead.
+
+## 26. M3: causal site sweep, original GPT-2 (2026-11-08). Status: COMPLETED; sites found and confirmed; M4 justified by the rule [VERIFIED]
+
+* **Run:** on the pre-registered hashes (`b384622`); 96 min GPU; sanity checks exact.
+* **Results:**
+  * The persona-instruction effect is carried by the persona-slot token early and by the final token late, with the handover at layers 7–8. The instruction words after the slot carry up to 28 %.
+  * 50/65 cells pass. The selected sites are L1 slot (earliest and peak) and L11 final (latest), both confirmed on validation.
+  * T1 shows no effect beyond its synonym control.
+* **Caveats:**
+  * the selected sites are near-trivial endpoints (E ≈ 0.96);
+  * the mid-depth split sites (layers 6–8) are more informative but need an amendment;
+  * the random control is weak.
+* **Next:** M4, if the user approves (and decides on an amendment adding a mid-depth site).
+
+## 27. In progress: M4 SAE causal-faithfulness decomposition (2026-11-08). Status: PRE-REGISTERED (with amendment A1)
+
+* **Design:** L1 slot, L11 final, and an A1 mid site (layers 6–8, handover rule, confirmed without SAEs). 9 base SAEs per site.
+* **Measured:** T_full/T_rec/T_err, interaction, Shapley shares, linearity, the opposite direction, synonym and neutral controls, vector controls, and feature patches with matched random feature sets. Primary set T2–T4; T1 reported as a control. `results/repe/sae_patch_decomposition/`.
+
+## 28. M4: SAE causal-faithfulness decomposition (2026-11-08). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Run:** on the pre-registered hashes (`15131fe`); 28 min. A1 selected L8 final (confirmed without SAEs). All checks pass; T_full reproduces M3 to 7e-8.
+* **Results (T2–T4):**
+  * The SAE-reconstructed difference restores 93–97 % of the persona effect at the L1 persona slot, but only 62–68 % at the L8 and L11 final token.
+  * There, ReLU's error carries 40–45 % on its own. For TopK and JumpReLU, about a third of the effect requires reconstruction and error together (interaction too large for an additive reading).
+  * The persona > synonym distinction is preserved in the reconstruction. T1 behaves like a synonym.
+  * Feature patches beat matched random sets but need 64 features for 47–74 % of T_rec; single features give 2–10 %.
+* **Evidence label:** VALIDATION. **Files:** `results/repe/sae_patch_decomposition/`.
+* **Next:** M5 (test) only with the user's written approval.
+
+## 29. Instructor Review #8 response: README, paper skeleton, IMP-L pre-registration (2026-11-08/09). Status: COMPLETED (IMP-L results in §30)
+
+* **Review #8** (project-board ticket, 2026-11-08) was read in full, together with Reviews #2–#7. Its blockers for the
+  11-10 session are a multi-layer improvement table and a paper skeleton. It credits only work merged to `main`,
+  which stops at PR #23 (`33dcb9c`).
+* **README** rewritten (`fb00cee`): current findings, historical results separated, corrections table, test-split
+  exposure, progress table.
+* **Paper skeleton** in `research_paper/Latex/`:
+  * every section is present;
+  * M0–M4 tables and PDF/SVG figures are generated by `scripts/shared/build_paper_artifacts.py` from the committed
+    result files;
+  * it compiles with latexmk (15 pages; no undefined references);
+  * pending sections are marked in the PDF.
+* **IMP-L** (`results/geometry_of_truth/multilayer_finetune/`): the layer-6 OWT-only / Method A / output-KL
+  protocols at layers 3, 8, 9 (81 runs). The scripts reuse the layer-6 training code unchanged.
+  * The evaluation was smoke-tested on the layer-8 base SAEs. It reproduced the committed M2 layer-8 re-trained gaps
+    exactly (GoT 0.034/0.061/0.085; persona 0.212/0.156/0.162).
+  * `--prepare` runs the bit-identical reproduction checks and writes the pre-registration.
+  * Training waits for the user's sign-off on the configuration.
+* **Evidence label:** none yet; no new result.
+* **Next:** user sign-off → `--train` → evaluation → improvement table → E3 at layer 8.
+
+## 30. IMP-L results: fine-tuning at layers 3, 8 and 9 (2026-11-09). Status: COMPLETED. Evidence: VALIDATION
+
+* **Run:**
+  * User approval on 2026-11-09. 81 fine-tunes and a 108-SAE validation evaluation.
+  * Scripts and criteria unchanged from the pre-registration (hashes verified). Not one test row was used.
+  * Base checkpoints and GPT-2 were unchanged after training.
+* **Method A** (criterion T_method_a: consistent vs both base and OWT-only):
+  * Met in **4/9 cells**: L3 TopK, L8 ReLU, L9 ReLU, L9 JumpReLU.
+  * The frozen B-MLP truth gap fell on every seed in 9/9 cells (4–47 %).
+  * GoT reconstruction error fell 61–85 %.
+  * OWT-only moved the gap by at most 0.021.
+  * All guards passed.
+* **Re-trained readers** (reported, not a criterion): no consistent change vs base in any cell (all CIs include 0).
+  The frozen-probe gain is therefore read as restoring the original probe's readout, not as recovering information.
+  This qualifies the Method A result.
+* **Output-KL:**
+  * OWT KL (−8 to −18 %) and GoT statement KL fell vs Method A, consistently in all 9 cells.
+  * ReLU/JumpReLU L0 rose 5.3–8.1 % at layers 8 and 9, so those 4/9 cells are **NOT CREDITABLE**. Behaviour is
+    creditable in 5/9.
+  * The truth gap never improved vs Method A. **REGRESSION** at L3 ReLU (+0.012) and L3 TopK (+0.027); both CIs just
+    reach 0.
+* **Overall:** the layer-6 pattern replicates at three further layers.
+  * Task reconstruction and behavioural faithfulness can be improved.
+  * Truth information, as seen by a re-fitted reader, is not improved.
+  * Behavioural gains for ReLU/JumpReLU at depth cost sparsity beyond the guard.
+* **Paper:**
+  * §10.1 is written, with the summary table and figure; the per-layer tables are in the appendix.
+  * The abstract and discussion are updated.
+  * The paper compiles (20 pages).
+  * `build_paper_artifacts.py` now writes deterministic PDF/SVG (fixed metadata and SVG hash salt), so a reviewer can
+    regenerate the figures and check for an empty diff.
+* **Next:**
+  * E3 (causal preservation of the layer-8 SAEs) needs its own pre-registration.
+  * L0-matched output-KL for ReLU/JumpReLU, and more seeds for the borderline Method A cells (not approved).
+  * Push/PR and the Review #8 reply are awaiting user approval.
+
+## 31. Paper refinement, E3/E2/E1 draft pre-registrations, review package (2026-11-09). Status: IN PROGRESS (awaiting approval to run E3)
+
+* **Paper.** Revised to keep the user's reading of IMP-L (D27):
+  * a new "Evidence status" paragraph in §5: everything except the OWT reconstruction table is VALIDATION, and
+    nothing is a confirmed held-out result;
+  * every results section opens with its label;
+  * "confirmed" is replaced by "replicated on validation" for the M3 sites;
+  * the abstract states the three levels separately: task reconstruction, frozen-probe vs re-trained-probe truth,
+    and behaviour (5/9 creditable);
+  * the discussion gains "What fine-tuning changes, and what it does not" and "Sparsity is part of the price";
+  * seven new limitations: no held-out confirmation, one fine-tuning budget, three seeds and multiplicity, the
+    frozen-probe criterion, output-KL L0 drift, the weak layer-3 logistic signal, and untested causal preservation;
+  * the conclusion is updated. The paper compiles (21 pages).
+* **Draft pre-registrations** (not run; no script written yet; hashes are recorded at `--prepare`, after approval):
+  * **E3** `results/repe/e3_finetuned_causal_preservation/`: 36 existing layer-8 SAEs, M4 decomposition at L8 final,
+    H1 Method A, H2 output-KL, H3 specificity. Output-KL ReLU/JumpReLU are not creditable a priori. About 40 min GPU.
+  * **E2** `results/shared/e2_public_sae_reference/`: public res-jb SAEs at L8 and L10 (cached). H1–H4 test whether our
+    four headline conclusions hold. About 30 min GPU.
+  * **E1** `results/shared/e1_task_l0_matched_topk/`: 36 new TopK SAEs at task-matched k (layers 1, 8, 11; GoT and
+    RepE). About 1.2 h GPU.
+* **Review package:** `docs/2026-11-09_review_package_sae_research.md`.
+  * The M0 re-run and the paper-artifact regeneration were verified byte-identical on a clean `git archive` export of
+    `HEAD`, and the tests pass there.
+  * Teammate branch `simba-method-a-multilayer` overlaps IMP-L (same script numbers 22/23; layer 5 instead of 3);
+    this is flagged for a team decision.
+* **Evidence label:** no new result.
+* **Next:** user approval of E3 → implement script 25 → `--prepare` (hashes, reproduction of M4 L8 rows) → run.
+
+
+## 32. E3 causal preservation after fine-tuning, and RLM-RP RepE-LM representation preservation (2026-11-10). Status: COMPLETED. Evidence: VALIDATION
+
+* **Approval:** the user approved both on 2026-11-10 ("Complete causal faithfulness evaluation (E3) ... Complete RepE
+  representation preservation ... generalization and robustness"). M5 and the test split remain excluded.
+* **E3:** `results/repe/e3_finetuned_causal_preservation/`.
+  * 36 layer-8 SAEs (9 base + 27 IMP-L fine-tunes), M4 protocol at the L8 final token, M4 functions imported unchanged.
+  * The 2026-11-09 draft criteria are unchanged. §1.8 adds implementation details (per-SAE reseeding, M4 reproduction
+    on deterministic columns, BH over 36).
+  * `preregistration.json` hashes the scripts, data and 36 checkpoints. The smoke test showed only mechanics.
+* **RLM-RP:** `results/repe/repe_lm_representation_preservation/`.
+  * 216 SAEs: 108 base at layers 0–11, 81 IMP-L, and 27 layer-6 fine-tunes.
+  * Probes: frozen logistic and mass-mean, re-trained logistic, a noise reference.
+  * Reconstruction: MSE, EV, cosine, L0, dead fraction. Geometry: H − U direction cosine and norm retention.
+  * Robustness: held-out wording T5/T6, synonym, neutral, near-duplicate sensitivity, and an exploratory L0-truncation
+    control.
+  * Pre-registered classes on frozen and re-trained persona gaps, kept separate. M2 and IMP-L reproduction checks.
+* **Paper (Phase 5):** new generated tables `t_impl_l0` (L0 on OWT / GoT / RepE-LM per IMP-L cell) and
+  `t_impl_readers` (frozen MLP vs frozen logistic vs re-trained readers).
+* **Results E3** (1830 s; all sanity checks pass; M4 reproduced exactly, 0.0; GPT-2 unchanged; 0 test rows):
+  * causal preservation T_rec/T_full at L8 final:
+    * base: ReLU 0.621, TopK 0.625, JumpReLU 0.665;
+    * Method A: 0.622 / 0.615 / 0.669;
+    * output-KL: 0.640 / 0.619 / 0.687;
+  * **E3-H1 (Method A): NO IMPROVEMENT in 3/3.**
+  * **E3-H2 (output-KL vs Method A):**
+    * TopK: NO IMPROVEMENT (+0.005, CI −0.078 to +0.088);
+    * ReLU: NOT CREDITABLE. The criterion itself was met (+0.018 [+0.011, +0.025]) but OWT L0 is +5.8 %.
+    * JumpReLU: NOT CREDITABLE, and its criterion was not met (+0.018, not consistent).
+  * No regression. The persona-specific part (T_rec − S_rec) moves by at most 0.0006 nats. All 36 SAEs pass the M4
+    control tests.
+* **Results RLM-RP** (493 s; 216/216 SAEs; checks pass; M2 reproduced exactly; IMP-L to 1.6e-4):
+  * Persona loss is real for base SAEs at layers 1–11:
+    * the frozen gap (0.10–0.24) is 1.9–3.4× the same-norm noise reference;
+    * the re-trained gap is 0.08–0.22, with its CI excluding 0 for all 99 SAEs.
+  * The per-pair H−U cosine is only 0.35–0.58. ReLU shrinks the difference; TopK and JumpReLU inflate it.
+  * Held-out wording transfers weakly even on original activations (0.54–0.69). Synonyms behave like the persona
+    word. Near-duplicate sensitivity is ≤ 0.02.
+  * Truncation control: JumpReLU's apparent advantage is partly extra L0.
+  * Method A: NO IMPROVEMENT in 12/12 cells on both readers.
+  * Output-KL: PRELIMINARY IMPROVEMENT in 3/12 cells per reader (at most 0.007 AUROC), with RepE-LM L0 +4–9 %.
+    4 cells are not creditable; there are no regressions.
+* **Paper:** new §7.1 (RLM-RP) and §10.2 (E3); RepE research questions in §4. §10 now has `t_impl_readers` and
+  `t_impl_l0`. The abstract, discussion, limitations, conclusion, statistics and appendix are updated. The abstract's
+  ambiguous "5 of 9 creditable" now reads "5 of 9 cells are creditable; 4 fail the L0 guard". Compiles, 29 pages,
+  0 overfull boxes, 0 undefined references.
+* **Unfinished:**
+  * M5 (needs separate approval);
+  * E1 and E2 (pre-registered drafts, not run);
+  * an L0-matched output-KL variant;
+  * the minimum-detectable-effect statement.
+
+## 33. Independent research review and improvement strategy (2026-11-10). Status: COMPLETED (recommendation only; no experiment run)
+
+* **Document:** `docs/2026-11-10_independent_research_review.md`.
+  * Repository audit; literature review of about 25 papers, links checked.
+  * Planning-only throughput measurements: GPT-2 to L8 about 63k tokens/s; Gemma-2-2B full forward bf16 about 7.7k
+    tokens/s, 7.3 GB. TransformerLens loading of Gemma exceeds host RAM, so use HF bf16.
+* **Main judgement:** the dominant weakness is SAE quality.
+  * Ours: 101,600 unique tokens, width 3,072.
+  * res-jb: 300M tokens, 24,576 latents. Gemma Scope: billions of tokens.
+  * Every faithfulness conclusion is therefore exposed to the "under-trained SAEs" objection.
+* **Recommendation:** apply the existing ladder to strong SAEs (E2; data-scaled retraining; Gemma Scope), test KL
+  fine-tuning only at fixed L0, add a causal skyline and a random baseline, then run M5. Roadmap updated (R1–R7,
+  proposed). Evidence label: none (no new result).
+
+
+## 34. GPT-2 improvement phase: R2, R4, R5, E2 and M5 (2026-11-10). Status: COMPLETED. Evidence: VALIDATION; M5 CONFIRMED TEST
+
+* **Approval:** the user gave full execution approval for the GPT-2 improvement phase on 2026-11-10 (R1, R2, other
+  justified GPT-2 experiments, final M5 after the protocol is frozen). Gemma is deferred.
+* **R2** (`results/openwebtext/r2_scaled_saes/`, pre-registered with hashes):
+  * 39 SAEs on 100M fresh OWT tokens each (shard 78, excluding the 98 documents matching our sample);
+  * layers 1, 8, 11; TopK, BatchTopK and ReLU at width 12,288 × 3 seeds; TopK-3072 × 3 (width ablation); a
+    frozen-random-decoder TopK × 1;
+  * script `scripts/openwebtext/17_streaming_sae_training.py`, module `src/sae/modern_sae.py`;
+  * a modern JumpReLU (STE) was attempted in the pilot and abandoned (L0 would not settle); disclosed in the README.
+* **Evaluation harness:** `scripts/shared/sae_ladder_evaluation.py`, the same ladder for old, R2 and res-jb SAEs,
+  built from imported M2/RLM-RP/M4/splicing code. Comparisons: `scripts/shared/r2_comparisons.py`, implementing the
+  pre-registered rule. E2: `scripts/shared/e2_public_sae_reference.py`.
+* **Unfinished at the time of this entry (superseded by the results below):** training, ladders, comparisons, M5, paper.
+* **Status update (2026-11-10, 15:30 UTC):**
+  * **Done:**
+    * R2 training: 39 SAEs and 156 checkpoints; GPT-2 parameters unchanged; every L0 within 1 % of 128.
+    * R4 fine-tune: 12 checkpoints, GPT-2 unchanged.
+    * R5 causal skyline (results in its README).
+    * E2 adapter check: passes at layers 1, 8, 10 and 11.
+    * M5: smoke test on validation reproduces the ladder; protocol frozen with hashes; no test row read.
+* **OOM incident (2026-11-10, about 15:00 UTC):**
+  * **Cause:** four ladder or evaluation processes, each about 4.4 GB of host RAM, ran at once on the 15 GB host. They
+    were the chain's R2 ladders, the M5 smoke test and two R4 ladders.
+  * **Killed by the kernel OOM killer:**
+    * R2 ladder L11, at about 8 of 14 SAEs; partial file kept in the scratchpad, not used;
+    * R2 ladder L1;
+    * R4 ladders L8 and L11.
+  * **Stopped deliberately:** one freshly started rerun, which had not finished any SAE.
+  * **Not affected:** checkpoints, finished results, Git.
+  * **Recovery:**
+    * at the user's instruction, every memory-heavy job now runs one at a time;
+    * a serial queue waits until no heavy job is running and at least 8 GB is available;
+    * steps with an existing output are skipped;
+    * RAM, VRAM and disk are logged every minute.
+  * The killed runs are rerun from scratch. Their results do not depend on run order, because the harness is
+    deterministic; M5's smoke test confirms this.
+* **Results (details in each folder's README):**
+  * **R2** (`results/openwebtext/r2_scaled_saes/`), VALIDATION:
+    * All C1–C3, A1 and A2 comparisons improve reconstruction and behaviour at L1, L8 and L11:
+      * NMSE −31 to −74 %;
+      * ΔCE −37 to −82 %;
+      * TopK L8 ΔCE 0.126 → 0.060, L11 0.213 → 0.100.
+    * Causal T_rec/T_full: TopK 0.62 → 0.73 (L8) and 0.62 → 0.69 (L11); BatchTopK reaches 0.75 at L8.
+    * Pair-direction cosine improves everywhere.
+    * Persona re-fit gap −27 to −31 % at L8/L11 (TopK).
+    * SAE − PCA gap: never improves; regresses for ReLU at L1 and L8.
+    * GoT: no clear change. The random decoder beats the trained SAE on the GoT re-fit gap at L8.
+    * Cell counts are in the README. No SAE was excluded for L0.
+  * **R4** (`results/openwebtext/r4_kl_finetune/`), VALIDATION:
+    * KL vs MSE control: ΔCE −18 % at L8 and L11, PRELIMINARY IMPROVEMENT; EV guard passes (−0.002).
+    * Information: NO IMPROVEMENT.
+    * T_rec/T_full at L11: −0.024 on all seeds, REGRESSION.
+    * Use it as a behaviour-only tool.
+  * **R5** (`results/repe/r5_causal_subspace_skyline/`), VALIDATION, descriptive:
+    * At k = 4, a learned subspace carries 1.02 / 0.91 / 0.62 (L1 / L8 / L11). PCA carries 1.00 / 0.52 / 0.59, SAE
+      top-4 features 0.08–0.16, random subspaces 0.01.
+    * At L8, rank 4 carries more than the whole SAE reconstruction.
+  * **E2** (`results/shared/e2_public_sae_reference/`), VALIDATION:
+    * On res-jb, H1 holds for GoT and fails for persona; H2 holds except GoT at L8; H3 holds everywhere; H4 holds at
+      L8 and L11.
+    * Our conclusions transfer to an external 300M-token SAE.
+  * **M5** (`results/shared/m5_confirmatory_test/`), CONFIRMED TEST:
+    * One run: 81 SAEs, 552 test rows.
+    * C1, C2, C3, A1: 17 improved / 7 no change / 0 regressed each.
+    * A2: 2 GoT regressions at L8.
+    * K1/K4: ΔCE −16 to −17 % confirmed; NMSE +2 % (regression, expected cost).
+    * GoT information: no improvement anywhere.
+* **Paper:** new section `10b_improvement.tex` (Problem → Solution → Pipeline → Results → Inference), tables
+  `t_r2_c1/c2/c3/counts`, `t_r4`, `t_r5`, `t_e2`, `t_m5`, `t_m5_counts`. Abstract and conclusion updated. No new
+  figures, per the user. 37 pp, clean build.
+* **Operational issues (both resolved):**
+  * the OOM incident above;
+  * two self-matching `pgrep -f` wait loops, which held up the serial queue for 10 min.
+
+## 35. Final defense verification and audit (2026-11-10). Status: COMPLETED (verification only; no experiment run)
+
+* **Task:** an independent verification of every reported result before the final professor presentation.
+* **Constraints:** no rerun, no checkpoint loaded, no result or historical README modified.
+* **Deliverables:** `docs/final_defense/` contains:
+  * `FINAL_RESEARCH_REPORT.md`;
+  * `DEFENSE_CHEATSHEET.md` (renamed 2026-11-12 from `PROFESSOR_DEFENSE_CHEATSHEET.md`);
+  * `RESULTS_VERIFICATION_TABLE.md`;
+  * `ANTICIPATED_REVIEW_QUESTIONS.md` (renamed 2026-11-12 from `PROFESSOR_QUESTIONS_AND_ANSWERS.md`);
+  * `EXPERIMENT_AUDIT.md`.
+
+  Also new: the read-only re-check script `scripts/shared/m5_independent_verification.py`.
+* **M5 verified COMPLETE:**
+  * 11/11 code and config hashes in `preregistration.json` match;
+  * 81/81 expected rows (23/29/29), 0 duplicate keys, 0 duplicate checkpoint hashes;
+  * 136/136 decision classes reproduced by an independent implementation of the R2 and IMP-L rules;
+  * clean log exit; `test_rows_used` 552.
+* **Findings recorded (no artifact edited):**
+  1. The M5 README states an OWT test L0 range of 127.6–133.2. The true maximum is 133.39 (old ReLU, L11, seed
+     2042). It is inside ±10 %, so no exclusion changes.
+  2. The pre-run M5 README hash cannot be reproduced, because results were appended to the same file. The design text
+     is therefore not byte-verifiable; the code hashes are.
+  3. The pre-registration and the results were committed together (`af52b0b`). Their order rests on file times and the
+     in-script hash guard.
+  4. The M5 OWT and GoT test rows had been scored earlier for the old reference SAEs (README §10). M5 should be
+     labelled "previously exposed (reference SAEs only)". No R2/R4 choice used test numbers (D31).
+  5. A1 confounds token count with recipe. "Longer training alone helps" is NOT VERIFIED. The R2 10M/25M/50M
+     checkpoints remain unevaluated.
+  6. New descriptive observation from the M5 rows: the random frozen-decoder TopK has a GoT SAE − PCA re-fit gap of
+     −0.003 (L8) and −0.013 (L11), against +0.008 to +0.081 for every trained SAE. That metric does not separate
+     trained from random SAEs (n = 1).
+* **Tests:** 35 passed.
+* **Evidence label:** no new result. All verified numbers keep their original labels.
+
+## 36. GPT-2 audit and evidence-based improvement plan (2026-11-12). Status: COMPLETED (analysis only; no experiment run)
+
+* **Deliverable:** `docs/2026-11-12_gpt2_audit_and_improvement_plan.md`, a read-only audit of code, CSVs and
+  checkpoints at `446beea`, plus a literature check and pre-registration drafts. No script, result or checkpoint was
+  changed; nothing was committed.
+* **Re-verified:** M5 test values (`m5_rows.csv`), R2 ladder values, R5 summary.
+* **New descriptive observation (VALIDATION, from existing ladder CSVs):**
+  * RepE-LM persona-contrast norm retention ‖Δ̂‖/‖Δ‖ is 0.62–0.71 for ReLU-family SAEs (shrinkage), against 1.09–1.46
+    for TopK, BatchTopK and the old JumpReLU (inflation), with cos(Δ, Δ̂) of only 0.37–0.52 for the latter.
+  * The two families distort the honesty contrast in opposite directions.
+  * The support-flip explanation for TopK is a HYPOTHESIS.
+* **Gaps found:**
+  * the R2 10M/25M/50M checkpoints have never been evaluated (`r2_scaled_saes/scaling/` is empty);
+  * the R5 feature arm used old SAEs only;
+  * there is no RepE-LM test split;
+  * there is no modern JumpReLU.
+* **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6.
+* **Evidence label:** no new result; the one new observation is VALIDATION, descriptive.
+
+## 37. Documentation cleanup, consolidation and PR preparation (2026-11-12). Status: COMPLETED (no experiment run)
+
+* **Checkpoint first:** `b927f27` preserved the current work. The push also published the 22 earlier local commits
+  (R1-honesty through M5 and the final-defense docs), fast-forward `875bc7f..b927f27`, after the user's approval.
+* **New curated documents:**
+  * `docs/research_overview.md`;
+  * `docs/methodology.md` (includes the table of 12 methodological corrections);
+  * `docs/experiment_history.md` (39 experiments with verdicts);
+  * `docs/results_summary.md`;
+  * `docs/limitations_and_future_work.md`.
+* **Renames** (bytes unchanged; log in `docs/archive/README.md`, rows in `docs/migration_manifest.csv`): the
+  2026-11-04 review report moved to `docs/archive/`; two `final_defense` files given neutral names.
+* **Corrections found while writing:**
+  * The 2026-11-12 audit had called the contrast-distortion finding new; RLM-RP (§32) reported it first. An erratum
+    was added.
+  * M5 classes the R4 NMSE change (+2 %) as REGRESSION; the docs now say so explicitly.
+  * The RepE-LM task L0 per family was re-read from the ladder CSVs (L8: old JumpReLU 167, old ReLU 161, R2 BatchTopK
+    141, R2 ReLU 145).
+* **Validation:**
+  * 35 tests pass; all tracked Python compiles;
+  * 0 broken Markdown links in 27 files;
+  * `m5_independent_verification.py`: 11/11 hashes OK, 136 rows, 0 mismatches;
+  * no secrets or absolute home paths;
+  * no file under `scripts/`, `results/`, `src/` or `data/` changed.
+* **Process note:** `git mv` pre-staged the renames, so they landed in `e2becfa` rather than in `768831a`. Recorded in
+  the changelog; not amended.
+* **Evidence label:** no new result.
+
+## 38. Remediation of the 2026-11-12 independent audit (2026-11-13). Status: PCA-CM COMPLETED; continued in §39
+
+* **Register:** `docs/remediation/issue_register.md` (D1–D15, S1–S12, U1–U4, Review #8 items). It is written as the
+  work proceeds.
+* **PCA-CM (S1), PRE-REGISTERED and RUNNING:** capacity-matched PCA references (k = 128, k = GoT task L0, and the
+  existing error-matched k), VALIDATION only.
+  * Protocol: `results/shared/pca_capacity_matched/{README.md,preregistration.json}`.
+  * The protocol was hashed before the full run and committed while the run was in progress, before any full-run
+    output existed (D31).
+  * A smoke run on validation (16 sequences, PCA from 5 chunks) checked the pipeline. Its numbers are not used.
+* **PCA-CM RESULT (VALIDATION; 0 test rows; 3,724 s):**
+  * **Reconstruction and behaviour:** every trained SAE beats PCA at k = 128 on NMSE, ΔCE and KL (30/30 cells).
+    PCA-128 has NMSE 0.30/0.46/0.43 and ΔCE 0.40/0.99/1.06 nats at L1/L8/L11.
+  * **GoT re-fit gap:**
+    * against error-matched PCA (k = 298–519), SAE WORSE in 13/20 trained cells and never better: the existing
+      finding replicates;
+    * against capacity-matched k = 128, SAE BETTER in 3/20 (R2 ReLU L8/L11, res-jb L8), never worse, 17
+      inconclusive;
+    * against task-L0-matched k, SAE BETTER in 8/20, never worse;
+    * the random decoder is inconclusive against every reference.
+  * **Pre-registered I2 triggered:** "SAEs never beat PCA" holds only at equal error. **Conclusion change reported to
+    the user; the paper and curated docs were NOT revised** pending the user's review (D34).
+* **Sensitivity (S2/S7), descriptive:**
+  * The M5 GoT re-fit comparisons can detect only about 0.048–0.091 AUROC (seed + statement), against observed
+    |d| ≤ 0.025.
+  * The M4 preservation MDE at L8 is 0.054–0.107 per SAE, so the R2-vs-old +0.101 (VAL) is at the edge of
+    detectability.
+  * Files: `results/shared/power_sensitivity/`.
+* **Also done (committed):**
+  * D1/D2 doc fixes;
+  * bibliography fixes;
+  * 34 tests and CI (GitHub run 43375816244: success);
+  * RepE-LM test split and frozen protocol (not evaluated);
+  * SAE-in-the-loop equivalence paragraph;
+  * course report sections;
+  * vector figures and editable diagram;
+  * remediation register, compliance matrix, merge plan, backup plan.
+* **Evidence label:** PCA-CM is a VALIDATION finding (descriptive); the sensitivity analysis is descriptive.
+* **Stopped here** (user rule: stop when a conclusion changes).
+  * Unfinished: the paper/doc revision of the PCA claim and the MDE sentences; the PR #27 description update.
+  * Next step: the user reviews the PCA-CM before/after report and decides on the wording.
+  * **Resolved in §39** (the user approved D34 with a refinement).
+
+## 39. PCA claim revised with the user-approved wording; MDE and L8 caveats added (2026-11-13). Status: COMPLETED
+
+* **User decision:** D34 approved with refined wording (`docs/RESEARCH_DECISIONS.md` D34 outcome). The user asked
+  for "significantly better" only if the decision rules support significance.
+* **Significance check** (`scripts/shared/pca_cm_posthoc_multiplicity.py` →
+  `results/shared/pca_capacity_matched/posthoc_multiplicity/`; descriptive, post-hoc, 0 test rows):
+  * the PCA-CM rule is per cell with no correction across cells;
+  * an approximate Holm correction over the 40 capacity-matched cells keeps 1/3 SAE-better cells at k = 128 (R2 ReLU
+    L11) and 4/8 at task-matched k;
+  * 0 of 58 per-seed CIs favour PCA at either capacity-matched reference.
+  * **So the paper says "better under the study's comparison criterion" and "not worse", not "significantly".**
+* **Paper** (40 pp, 0 undefined references): abstract, §questions (SQ2), §info, §improvement (persona-vs-PCA
+  qualifier, L8 causal caveat, M5 inference as a bound, new §PCA-CM with Table `t_pcacm`), §causal (the `\pending`
+  MDE note replaced by a Sensitivity paragraph), §statistics (PCA-CM rule, MDE bullets, stale M5 `\pending` removed),
+  §discussion, §limitations (stale "M5 not run" corrected; power and PCA-matching items), §conclusion.
+* **Docs:** README §6.0/§6.3/§9, `research_overview.md`, `results_summary.md` (B1, new B2b/B2c, C3),
+  `limitations_and_future_work.md`, `methodology.md`, defence docs, course report Discussion, slide content (slides 5–6),
+  Review #8 draft (still NOT POSTED). The RepE-LM test-split wording is updated everywhere to "built and frozen, not
+  evaluated".
+* **Preserved:** every error-matched result (M2, M5, E2) is unchanged and is presented alongside PCA-CM.
+* **No scientific conclusion beyond D34 changed, and no metric changed.** The post-hoc check changes no class in
+  `decisions.csv`; it only rules out the word "significantly".
+* **Evidence label:** PCA-CM is VALIDATION; the Holm check and MDE are descriptive.
+
+## 40. In progress: H1-TEST, the single RepE-LM held-out evaluation (2026-11-13). Status: IMPLEMENTATION FROZEN; TEST PASS RUNNING
+
+* **Authorised by the user** (2026-11-13: "You have my authorization to run this evaluation using the existing
+  checkpoints").
+* **Script:** `scripts/repe/29_repe_lm_test_evaluation.py`. It reuses the ladder's M2, RLM-RP and M4 functions and the
+  R2 rule unchanged.
+* **Smoke test (VALIDATION only):** reproduces the committed ladder to ≤ 1e-4.
+* **Checkpoints:** all 81 equal their registry and ladder hashes.
+* **Addendum** (`results/repe/repe_lm_test_protocol/preregistration_addendum.json`): committed and pushed before
+  any TEST row was read. The cell count is corrected from 12 to 13 for Holm.
+* **Next:** run once; document every cell; compare with validation.
+
+## 41. In progress: X0, token exposure within the R2 runs (2026-11-13). Status: PRE-REGISTERED
+
+* **Verified provenance:** the 10M, 25M and 50M checkpoints share width, recipe, seed, data stream and input scale with
+  the final checkpoint. The LR is constant from warmup to 80M tokens, so 10M → 25M → 50M isolates exposure within a
+  run, while 50M → final also includes the LR decay.
+* **Not a data-scaling law,** and it does not attribute the old → R2 gain to data.
+* **Protocol:** `results/openwebtext/r2_scaled_saes/scaling/{README.md,preregistration.json}`; analysis script
+  `scripts/shared/r2_scaling_analysis.py`, written before any output existed. VALIDATION; light ladder; 108
+  checkpoints.
+
+## 42. SIL (SAE-in-the-loop mediated intervention) pre-registered; PCA-CM test confirmation assessed (2026-11-13). Status: PRE-REGISTERED / RULES FROZEN
+
+* **SIL (Review #8 C3):** `results/repe/sae_in_the_loop_mediation/`. A layer-1 latent swap is made in a model with SAEs
+  spliced (error dropped) at layer 1 and downstream at 8 / 8+11, against matched isotropic, shuffled-latent and
+  neutral controls.
+  * Unlike M4, every path to the output in D1/D2 passes through downstream SAE codes.
+  * At the edit layer itself the edit is still W_dec Δz (stated, not overclaimed).
+  * Feasibility gate first, on a 2-SAE pilot; VALIDATION only.
+* **PCA-CM-T:** PCA-CM is pre-registered exploratory work on validation. A test confirmation is justified, but GoT test
+  rows are previously exposed and only the PCA arms are unseen. The confirmatory families (P1 no-worse over 20 cells;
+  P2 3 cells; P3 8 cells) are frozen in `results/shared/pca_capacity_matched_test_protocol/`. **NOT EXECUTED;** it
+  needs the user's approval.
+* **Wording:** "not worse" is now "not classified worse" everywhere, with the note that the ±0.02 equivalence class
+  was met in 0/40 capacity-matched cells. It is not an equivalence or non-inferiority claim.
