@@ -150,8 +150,9 @@ Verified against `results/shared/m5_confirmatory_test/m5_rows.csv`; details in
 * **107 of 108 runs are matched.** The exception is layer-0 JumpReLU seed 42 (L0 73.6, about 96 % dead latents).
 * **Matched leader by layer:** ReLU at layer 1; ReLU ≈ JumpReLU at layer 2; JumpReLU at layers 3–9; JumpReLU ≈ TopK at
   layers 10–11.
-* **Effective width differs** (live latents of 3072): ReLU 2920–3063, TopK 1711–2851, JumpReLU 469–2947
-  (`results/shared/m0_within_layer_reanalysis/architecture_by_layer.csv`).
+* **Effective width differs** (live latents of 3072): ReLU 2920–3063, TopK 1711–2851, JumpReLU 469–2941
+  (`results/shared/m0_within_layer_reanalysis/architecture_by_layer.csv`; JumpReLU upper bound corrected 2026-11-15 from
+  a transcribed 2947, see `docs/DEAD_LATENT_AUDIT.md`).
 
 ### 6.2 M0: within-layer reanalysis (VALIDATION; `results/shared/m0_within_layer_reanalysis/`)
 

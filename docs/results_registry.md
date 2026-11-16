@@ -104,3 +104,10 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/shared/pca_capacity_matched/posthoc_multiplicity/` | DESCRIPTIVE (post-hoc, approximate) | Cite only to qualify PCA-CM "better" cells as per-cell, not family-wise (D34) |
 | "SAE better than PCA" (PCA-CM) | VALIDATION, per-cell criterion | Never write "significantly better"; write "better under the study's comparison criterion" |
 | R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE | Cite with the per-SAE MDE (0.054–0.107) caveat (D35) |
+
+## 2026-11-15 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/dead_latent_audit/` (`docs/DEAD_LATENT_AUDIT.md`) | VALIDATION FINDING (descriptive diagnostic) | Dead fraction of 108 base and 36 trained R2 SAEs, plus 3 frozen-random-decoder baselines, on OWT validation (12,700 tokens). Cite as a diagnostic, not as evidence of faithfulness; it makes no attribution to data, recipe, duration or width |
+| Appendix / M0 JumpReLU alive-latent range "469–2,947" | SUPERSEDED by "469–2,941" (transcription correction) | Source value `architecture_by_layer.csv` is 2,941.0, unchanged |

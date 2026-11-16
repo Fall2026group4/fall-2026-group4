@@ -1,0 +1,24 @@
+PASS alive + dead = width for every row
+PASS dead_fraction = dead/width for every row
+PASS recomputed dead_fraction equals stored value (|diff|<=1e-6)
+PASS no duplicate run identifiers
+PASS no duplicate checkpoint hashes
+PASS every row evaluated on 12,700 OWT validation tokens
+PASS base: all 108 layer x architecture x seed combinations present (found 108; missing [])
+PASS R2: all 39 layer x family x seed combinations present (found 39; missing [])
+PASS L1: 9 old-ladder rows matched to base rows
+PASS L1: old-ladder checkpoint hashes equal base hashes
+PASS L1: old-ladder dead fraction equals base dead fraction
+PASS L8: 9 old-ladder rows matched to base rows
+PASS L8: old-ladder checkpoint hashes equal base hashes
+PASS L8: old-ladder dead fraction equals base dead fraction
+PASS L11: 9 old-ladder rows matched to base rows
+PASS L11: old-ladder checkpoint hashes equal base hashes
+PASS L11: old-ladder dead fraction equals base dead fraction
+PASS appendix alive-latent sentence found in research_paper/Latex/sections/12_appendix.tex
+INFO appendix relu alive 2920-3063; per-run range (all runs) 2907-3066; per-layer seed-mean range (L0-matched, M0 method) 2919.7-3062.7
+PASS appendix relu range 2920-3063 reproduced by per-layer seed means (got 2920-3063)
+INFO appendix topk alive 1711-2851; per-run range (all runs) 1698-2865; per-layer seed-mean range (L0-matched, M0 method) 1711.0-2851.3
+PASS appendix topk range 1711-2851 reproduced by per-layer seed means (got 1711-2851)
+INFO appendix jumprelu alive 469-2941; per-run range (all runs) 133-2944; per-layer seed-mean range (L0-matched, M0 method) 469.0-2941.0
+PASS appendix jumprelu range 469-2941 reproduced by per-layer seed means (got 469-2941)

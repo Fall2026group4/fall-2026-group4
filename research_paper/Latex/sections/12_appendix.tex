@@ -22,18 +22,29 @@ tokens. A multiplicative controller adjusted the sparsity coefficient every 25 s
 JumpReLU (surrogate temperature $T=0.1$); TopK fixes L0 by construction. Decoder columns were renormalised to unit norm
 after every step. ReLU runs 2--6\,\% above the target L0; a within-layer adjustment using the L0 elasticity measured in
 an earlier sweep changes no ranking except two near-ties. Of 3{,}072 latents, ReLU keeps 2{,}920--3{,}063 alive, TopK
-1{,}711--2{,}851 and JumpReLU 469--2{,}947.
+1{,}711--2{,}851 and JumpReLU 469--2{,}941.
 
 \paragraph{Scaled SAEs and behaviour-targeted fine-tune.} The scaled SAEs (TopK with an auxiliary dead-latent loss
 \citep{gao2024scaling}, BatchTopK \citep{bussmann2024batchtopk} and ReLU controlled to L0 = 128; width 12{,}288; three
 seeds) were trained on activations streamed from GPT-2, with the encoder initialised to the decoder transpose, input
-scaling folded into the weights and cosine decay; 39 SAEs were trained in 5.5 hours on one NVIDIA A10G. A TopK width
+scaling folded into the weights and cosine decay; 39 R2 runs were evaluated: 36 trained SAEs and 3
+frozen-random-decoder baselines, run in 5.5 hours on one NVIDIA A10G. A TopK width
 ablation at 3{,}072 latents separates data and recipe from width (on validation, equal-width retraining accounts for
 23--35\,\% of the NMSE reduction). A modern straight-through JumpReLU did not settle at L0 = 128 in a pilot and was
 abandoned before the full run. A comparison is an improvement only if all nine new/old seed pairs favour the new SAE and
 the Welch 95\,\% interval excludes zero. The behaviour-targeted fine-tune trains the scaled TopK SAEs for 5M tokens at
 learning rate $2\times10^{-5}$ with NMSE plus $\alpha\,\mathrm{KL}(p_{\text{orig}}\|p_{\text{spliced}})$, $\alpha$ set by
 first-batch scale matching.
+
+\paragraph{Dead-latent audit.} As a diagnostic requested during the course, we counted dead latents, defined as
+latents that never fire ($z>0$) on the 12{,}700-token OWT validation set. All 108 base SAEs and all 36 trained scaled
+SAEs were audited; the 3 frozen-random-decoder baselines were audited separately and are not counted as trained SAEs.
+Per-run values are in \nolinkurl{results/shared/dead_latent_audit/dead_latents_by_sae.csv}. Some base families have
+substantial dead fractions, especially JumpReLU and TopK at early layers; the worst run is the unmatched layer-0
+JumpReLU run (seed 42), with about 95.7\,\% of its latents dead. Every trained scaled SAE has at most 0.36\,\% dead
+latents on this set. The scaled TopK SAEs at the base width of 3{,}072 have none, so the reduction cannot be explained
+by increased width alone; data, training duration and recipe changed together, so we do not attribute it to any one
+factor. Fewer dead latents does not by itself imply better information, behavioural or causal faithfulness.
 
 \paragraph{Truth-focused fine-tuning.} Every fine-tune starts from a base SAE and runs 500 Adam steps at learning rate
 $10^{-5}$ with the sparsity controller continued from the base coefficient. Guards: OWT L0 within $\pm5\,\%$ of the base,

@@ -1070,3 +1070,45 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
 * **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; PRE-REGISTERED, code implemented, NOT RUN. Not part of M6.
+
+## 44. Dead-latent audit of the GPT-2 base and R2 SAEs (2026-11-15). Status: COMPLETED (descriptive audit; no model trained or run). Evidence: VALIDATION [VERIFIED]
+
+* **Why:** the instructor asked on 2026-11-10 for the dead-latent fraction of every old (base) and R2 SAE.
+  * This is a diagnostic audit, not a new headline result.
+  * Gemma Scope is not included, because no document says the request covers it.
+* **Method:** stored evaluation artifacts only; no model, SAE or activation was loaded.
+  * Script: `results/shared/dead_latent_audit/build_dead_latent_audit.py`.
+  * Report: `docs/DEAD_LATENT_AUDIT.md`.
+* **Definition (existing, unchanged):** a latent is dead if it never fires (z > 0) on the evaluated corpus.
+  * Source: `src/evaluation/faithfulness_metrics.py`, `reconstruct` / `dead_fraction`.
+  * Corpus: the layer's OWT validation cache, 12,700 non-BOS tokens.
+  * Base and R2 were scored by the same function on the same corpus.
+  * The R2 training-time AuxK rule (no firing in the last 5M training tokens) is a different rule and is not used.
+* **Coverage:**
+  * 108/108 base SAEs;
+  * 36/36 trained R2 SAEs;
+  * 3 R2 frozen-random-decoder baselines, audited separately and not counted as trained SAEs;
+  * public res-jb (3 layers) as a labelled reference only.
+  * No run is missing.
+* **Checks:** all pass. These cover:
+  * alive + dead = width;
+  * fraction = dead / width;
+  * equality with the stored values;
+  * no duplicate IDs or hashes;
+  * all combinations present;
+  * the old-SAE rows of the R2 ladder equal the base rows;
+  * the appendix alive-latent ranges for ReLU, TopK and JumpReLU, after the correction below.
+* **Results (descriptive):**
+  * **Old SAEs have substantial dead fractions,** especially early-layer JumpReLU and TopK.
+    * Per run: ReLU 0.20–5.37 %, TopK 6.7–44.7 %, JumpReLU 4.2–95.7 %.
+    * Layer-0 JumpReLU is the worst cell: 88.4 % mean, or 84.7 % over the L0-matched seeds.
+  * **Every trained R2 SAE has a dead fraction ≤ 0.36 %.**
+  * **The same-width R2 TopK-3072 arm has zero dead latents.** So increased width alone cannot explain the reduction.
+  * Data, training duration and recipe changed together, so **no causal attribution to any single factor** is made.
+  * **No claim is made that a lower dead fraction implies greater information, behavioural or causal
+    faithfulness.**
+* **Transcription correction:** the JumpReLU alive-latent range "469–2,947" is corrected to **469–2,941**.
+  * Corrected in `research_paper/Latex/sections/12_appendix.tex`, `results/shared/m0_within_layer_reanalysis/README.md`
+    and `README.md`.
+  * 2,941.0 is the value in M0 `architecture_by_layer.csv`, which is unchanged. This is not a new result.
+* **Status:** documented, not committed. It awaits the user's local commit.

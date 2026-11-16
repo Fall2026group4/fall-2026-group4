@@ -282,3 +282,13 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   confirmation of PCA-CM (GoT test rows were previously exposed, D31, so it would be labelled accordingly).
 * OPEN: off-machine backup (needs a destination); linking the commit email; posting the drafted replies
   (`docs/remediation/review8_response_draft.md`); the team merge order.
+
+## 2026-11-15 additions (dead-latent audit)
+
+* DONE (descriptive audit; instructor request of 2026-11-10): dead-latent fraction for every base and R2 GPT-2 SAE.
+  * Covered: 108/108 base SAEs, 36/36 trained R2 SAEs, and 3 frozen-random-decoder baselines (separately).
+  * Outputs: `results/shared/dead_latent_audit/`, `docs/DEAD_LATENT_AUDIT.md`.
+  * Not a headline result. It quantifies the "dead latents" motivation of G3/G11, which stay PLANNED.
+* DONE: appendix transcription correction, JumpReLU alive latents 469–2,947 → 469–2,941.
+* OPEN (optional, not requested): whether the paper should cite the audit, for example one sentence in the appendix.
+  Needs the user's decision.

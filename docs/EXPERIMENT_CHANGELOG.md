@@ -310,3 +310,13 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | this commit | M paper `00_abstract`, `10b_improvement`, `12_discussion`, `14_conclusion`; `README.md`, `docs/{research_overview,results_summary}.md` | "not worse" → "not classified worse"; explicit non-equivalence note (0/40 cells met the ±0.02 equivalence class) |
 | this commit | Added `scripts/shared/registry_consistency_check.py`, `docs/remediation/checks/2026-11-13_registry_check.json`; M `.github/workflows/gpt2-validation.yml` (new step) | Phase 6: manifest scripts exist (36 rows; 3 rows have stale "current" hashes from documented 11-07 changes `9446e56`, `83bd9a9`, left unmodified because the manifest is append-only); 0 broken links in 101 Markdown files; 638/638 registered checkpoints match their SHA-256 |
 | this commit | M `docs/remediation/merge_plan.md` | Re-checked PR #20/#21/#24/#26/#28 file lists against this branch: exact runtime readers of deleted files; #26's SAE-in-the-loop Part B is error-kept (equivalent to M4); RepE numbers 28–30 now taken |
+
+## 2026-11-15: dead-latent audit (instructor request of 2026-11-10)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | Added `results/shared/dead_latent_audit/{build_dead_latent_audit.py,dead_latents_by_sae.csv,summary_by_family_layer.csv,checks.txt}` | Dead-latent fraction for every base (108) and R2 (36 trained + 3 frozen-random-decoder) GPT-2 SAE, from stored evaluation CSVs only. The script refuses to overwrite its outputs. A rerun after the typo fix gave byte-identical CSVs |
+| this commit | Added `docs/DEAD_LATENT_AUDIT.md` | Audit report: definition, coverage, results, checks, provenance |
+| this commit | M `research_paper/Latex/sections/12_appendix.tex`, `results/shared/m0_within_layer_reanalysis/README.md`, `README.md` | Transcription correction: JumpReLU alive-latent range 469–2,947 → 469–2,941 (`architecture_by_layer.csv` holds 2,941.0, unchanged). No result changed |
+| this commit | M `research_paper/Latex/main.pdf` (rebuilt) | Appendix correction |
+| this commit | M `docs/{RESEARCH_PROGRESS,EXPERIMENT_CHANGELOG,EXPERIMENT_RESULTS_SUMMARY,RESEARCH_ROADMAP,results_registry}.md`, `docs/experiment_manifest.csv` (+1 row via `append_experiment`) | Documentation rule |
