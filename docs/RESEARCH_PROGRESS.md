@@ -1071,7 +1071,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
 * **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; PRE-REGISTERED, code implemented, NOT RUN. Not part of M6.
 
-## 44. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16). Status: IN PROGRESS: pre-registered and implemented, NOT RUN
+## 44. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16). Status: IN PROGRESS: pre-registered, ongoing; no result claimed
 
 * **Why:** M6 measured one width-16k SAE per layer. For Gemma, the only lever on reconstruction that needs no
   training is to move along the published width × L0 ladder. R3 measures that trade-off with M6's data, metrics and
@@ -1116,7 +1116,18 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   from M6's rows. With M6's rows unchanged, V6 reported M6 REPRODUCED EXACTLY.
 * **Literature context:** `results/gemma2_pile/r3_gemma_scope_ladder/literature_comparison.md` compares M6 with
   published Gemma Scope, JumpReLU, SAEBench, TopK and end-to-end SAE numbers. Context only; not evidence for R3.
-* **Not run:** no GPU step has executed. V0, V1, model loading, SAE download and the fp32 split are first exercised
-  by run K0.
-* **Next:** commit; run K0 on Kaggle; then K1–K3, Tier B under the budget rule; then `--aggregate`, script 06,
-  script 07, and Section 2 of the README.
+* **Not run (as of 2026-11-14):** no GPU step had executed. V0, V1, model loading, SAE download and the fp32 split
+  are first exercised by run K0.
+* **Clarification 2 (2026-11-15, `e2b7b3a`, before any result was read):** the first K0 attempt crashed at the end of
+  the fp32 step ("CUDA error: unspecified launch failure"). The fp32 reference became its own step, K0F, with
+  `CUDA_LAUNCH_BLOCKING=1`. Run records are now written even when a step stops or crashes. R3 tests: 58 passed.
+* **Runs so far (2026-11-16):** K1 (layer 5, Tier A) finished on Kaggle in 7.64 h, against 3.11 h projected. K2
+  (layer 19) is running. The outputs are on Kaggle, not in the repository, and no metric has been read.
+* **Deviation 1 (2026-11-16):** K3 is split into K3a (layer 12, widths 16k and 32k) and K3b (width 65k), so that
+  each run stays under Kaggle's 10 h limit. This uses the existing `--widths` option; no code changed.
+* **Deviation 2 (2026-11-16, before any Tier A result was looked at):** Tier B (131k/262k/524k, runs K4–K6) is
+  cancelled because of the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota. H1–H3 are tested on
+  Tier A only (layers 5/12/19, widths 16k/32k/65k, 36 SAEs). Decision D37; README "Deviations".
+* **Status:** pre-registered, ongoing; no result claimed.
+* **Next:** K3a, then K3b (each with `RESUME_FROM`); K0F in a separate session; then `--aggregate`, script 06,
+  script 07 and Section 2 of the README, all before the 2026-11-22 freeze.

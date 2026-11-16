@@ -405,3 +405,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Clarification 1:** V6's active-latent agreement compares the chunked with the unchunked SAE on the same
   activations, because M6 saved no active-latent sets.
 * **Scope:** the RepE-LM / K1–K2 part of the roadmap's R3 is split off as R3b, with its own pre-registration.
+* **Deviations (2026-11-16, decided by the team; recorded before any Tier A result was looked at):**
+  * **Deviation 1:** K1 took 7.64 h against 3.11 h projected. K3 is split into K3a (layer 12, widths 16k and 32k)
+    and K3b (width 65k), so each run stays under the 10 h Kaggle limit.
+    * **Alternative:** one K3 run, which would risk hitting the limit and losing the session.
+  * **Deviation 2:** Tier B (layer 12, widths 131k/262k/524k; K4–K6) is cancelled. H1–H3 are tested on Tier A only.
+    * **Reason:** the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota.
+    * **Consequence:** H2's width comparison stops at 65k; H3's Holm family is Tier A only.
+    * **Alternative:** running Tier B after the freeze, which would leave it undocumented in the deliverable.
+  * Recorded in the R3 README ("Deviations") and in `preregistration.json` (`deviations`). Section 1 is not edited.

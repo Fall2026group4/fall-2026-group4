@@ -1,4 +1,4 @@
-# R3: Gemma Scope width and L0 ladder on The Pile, with an A10G rerun of M6 (2026-11-13). Status: PRE-REGISTERED (Amendment 1, Clarification 1); code implemented and tested on CPU; NOT RUN
+# R3: Gemma Scope width and L0 ladder on The Pile, with an A10G rerun of M6 (2026-11-13). Status: pre-registered, ongoing; no result claimed
 
 **Owner:** Dhruv Rai. **Roadmap:** R3 (see "Scope relative to the roadmap" below). **Builds on:** M6
 (`results/gemma2_pile/gemma_scope_splicing/`, branch `simba-gemma-m6-results`).
@@ -635,6 +635,41 @@ No code had been written and no run made when this amendment was committed.
   K1–K6 and the budget rule.
 * **No result had been read:** the smoke run produces timings only, labelled SMOKE.
 
+## Deviations from the pre-registration
+These are changes to the run plan made after runs started. Each is recorded with its reason and what it changes. No
+hypothesis, metric, decision rule, gate or SAE in Tier A is changed.
+
+### Deviation 1 (2026-11-16): K3 is split into K3a and K3b
+* **What happened:** K1 (layer 5, Tier A) took **7.64 h** on Kaggle, against **3.11 h** projected from K0. The
+  projection underestimated the real run time by a factor of about 2.5.
+* **Why it matters:** K3 (layer 12, Tier A) has 16 SAEs, more than K1, so run as one step it would risk going over
+  Kaggle's 10 h limit per run (Amendment 1 (4)).
+* **The change:** K3 runs as two steps, each resuming from the previous output (`RESUME_FROM`):
+  * **K3a:** layer 12, widths 16k and 32k (`--run K3 --widths 16k 32k`);
+  * **K3b:** layer 12, width 65k (`--run K3 --widths 65k`).
+  
+  This uses the existing `--widths` option (notebook setting `WIDTHS`); no code was changed. The SAEs, their order,
+  the layer controls, the resume gate V9 and every metric are the same as for an unsplit K3.
+* **Not changed:** K1 and K2, the Tier A ladder, H1–H3, Q0b, the gates and the budget rule for K3.
+
+### Deviation 2 (2026-11-16): Tier B is cancelled
+* **The change:** Tier B (layer 12, widths 131k, 262k and 524k; runs K4, K5 and K6; 18 SAEs) will not be run.
+* **Why:**
+  * The project's technical freeze is on **2026-11-22**.
+  * The Kaggle quota is 30 GPU-hours per week, and K1 showed that runs take about 2.5 times longer than projected
+    (Deviation 1). Tier A (K2, K3a, K3b) and K0F come first, so Tier B could not finish before the freeze.
+* **What it changes:**
+  * **H1, H2 and H3 are tested on Tier A only:** layers 5, 12 and 19; widths 16k, 32k and 65k (36 SAEs).
+  * H2's width comparisons stop at 65k. At layer 12 the primary band compares 16k, 32k and 65k only. The 131k,
+    262k and 524k members listed in Section 1 are not run.
+  * H3's Holm family contains the Tier A tests only.
+  * The second GPU is still used by K0F. It is no longer needed for any SAE, because every Tier A SAE fits on GPU 0
+    (Amendment 1 (3)).
+* **When it was decided:** before any Tier A result was looked at. K1's outputs had been produced, but no metric
+  from them had been read, aggregated or compared. Only its run time was used.
+* Tier B under the budget rule (Section 1 and Amendment 1 (4)) is therefore not run. Section 1 is not edited, so the
+  original plan stays on record.
+
 ## 2. After execution
 *(To be completed after the run: runs, gates, Q0b verdicts, results tables, criteria met or not met, limitations,
 deviations, files, Git commit.)*
@@ -722,15 +757,17 @@ These are choices the pre-registration text left open, fixed in code before any 
   * The smoke numbers above are copied from the Kaggle log, for the record only.
 
 ## 3. If stopped early
-**Status 2026-11-15: no finished run yet.** One K0 attempt crashed in the fp32 step (Section 2, Run attempts).
-* **Existing artifacts:** this README (Section 1, Amendment 1, Clarifications 1–2, Section 2), `preregistration.json`,
-  `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No result files.
-* **Unfinished:** K0 (to be rerun, now smoke only), K0F, K1–K6, the `--aggregate` step, Q0b (script 06), the figures
-  (script 07), Section 2 results.
+**Status 2026-11-16: ongoing; no result claimed.** K1 finished on Kaggle (7.64 h) and K2 is running. Their
+outputs are on Kaggle, not in the repository, and no metric from them has been read. Tier B is cancelled
+(Deviation 2).
+* **Existing artifacts:** this README (Section 1, Amendment 1, Clarifications 1–2, Deviations 1–2, Section 2),
+  `preregistration.json`, `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No result
+  files in the repository.
+* **Unfinished:** K2 (running), K3a, K3b, K0F, the `--aggregate` step, Q0b (script 06), the figures (script 07),
+  Section 2 results.
 * **Exact next steps:**
-  1. Commit and push. Put the new commit's hash in the notebook's `COMMIT` setting.
-  2. Rerun K0 (about 15 minutes). Check that its run record says `finished`.
-  3. Run K1–K3, each passing the previous output with `RESUME_FROM`, within the weekly quota. Then Tier B under the
-     budget rule.
-  4. Run K0F separately, in a fresh session; retry it if it fails. It does not block K1–K3.
-  5. Download outputs only if V10 passed. Then run `--aggregate`, script 06 and script 07, and fill in Section 2.
+  1. When K2 finishes, run K3a (`RUN = 'K3'`, `WIDTHS = ['16k', '32k']`), then K3b (`RUN = 'K3'`,
+     `WIDTHS = ['65k']`), each passing the previous output with `RESUME_FROM`, within the weekly quota.
+  2. Run K0F separately, in a fresh session; retry it if it fails.
+  3. Download outputs only if V10 passed. Then run `--aggregate`, script 06 and script 07, and fill in Section 2.
+     All of this must happen before the 2026-11-22 technical freeze.

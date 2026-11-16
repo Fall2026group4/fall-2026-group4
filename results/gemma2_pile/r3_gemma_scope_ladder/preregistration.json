@@ -180,12 +180,12 @@
       "K0F": "fp32 reference only (Clarification 2), fresh session, CUDA_LAUNCH_BLOCKING=1; retryable; does not block K1-K6",
       "K1": "layer 5, Tier A",
       "K2": "layer 19, Tier A",
-      "K3": "layer 12, Tier A",
-      "K4": "layer 12, width 131k",
-      "K5": "layer 12, width 262k",
-      "K6": "layer 12, width 524k"
+      "K3": "layer 12, Tier A; split into K3a (--widths 16k 32k) and K3b (--widths 65k), each resuming from the previous output (Deviation 1)",
+      "K4": "layer 12, width 131k - CANCELLED (Deviation 2)",
+      "K5": "layer 12, width 262k - CANCELLED (Deviation 2)",
+      "K6": "layer 12, width 524k - CANCELLED (Deviation 2)"
     },
-    "tier_b_rule": "only after all Tier A runs pass their gates; whole width or nothing; must finish before the 2026-11-22 technical freeze"
+    "tier_b_rule": "only after all Tier A runs pass their gates; whole width or nothing; must finish before the 2026-11-22 technical freeze; not applied: Tier B CANCELLED (Deviation 2)"
   },
   "amendments": [
     {"id": 1, "date": "2026-11-13", "before_any_run": true,
@@ -198,5 +198,13 @@
     {"id": 2, "date": "2026-11-15", "before_any_result_read": true,
      "text": "The fp32 reference runs as its own Kaggle step K0F (fresh session, CUDA_LAUNCH_BLOCKING=1 for that step only) instead of at the end of K0. Every step writes its run record even when it stops or crashes; K1-K6 use only a finished K0 record; fp32 outputs are declared finished (DONE.json) only after both GPUs completed and the model was released cleanly, and Q0b uses only a finished fp32 folder. Nothing else in the protocol changes.",
      "reason": "The first K0 attempt crashed with 'CUDA error: unspecified launch failure' at the end of the fp32 step, the first step using both T4s."}
+  ],
+  "deviations": [
+    {"id": 1, "date": "2026-11-16", "before_any_tier_a_result_read": true,
+     "change": "K3 split into K3a (layer 12, widths 16k and 32k) and K3b (layer 12, width 65k) via the existing --widths option; no code change.",
+     "reason": "K1 took 7.64 h against 3.11 h projected; each run must stay under the 10 h Kaggle cap."},
+    {"id": 2, "date": "2026-11-16", "before_any_tier_a_result_read": true,
+     "change": "Tier B (layer 12, widths 131k, 262k and 524k; runs K4-K6) cancelled. H1-H3 are tested on Tier A only (layers 5, 12, 19; widths 16k, 32k, 65k; 36 SAEs). The ladder list is kept as pre-registered.",
+     "reason": "The 2026-11-22 technical freeze and the 30 h weekly Kaggle quota."}
   ]
 }
