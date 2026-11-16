@@ -1,5 +1,21 @@
 # Progress Report: Weeks 10 to 12, Dhruv Rai (retrospective, written 2026-11-14)
 
+## In my own words
+
+My part of the project was the causal tests and R3. In the Geometry of Truth causal test, I asked whether the truth
+directions that probes find in GPT-2 Small actually change which answer the model prefers on the cities task. I added
+each direction to the model's activations at one token and compared the effect with 600 random directions of the same
+size. A positive control showed that the test could detect even a 1 % push. Still, the probe directions did no better
+than random, and 0 of 108 SAE direction tests survived correction. This means we could not show that these directions
+are causal on this task, not that they have no causal role. In this test the model never runs through the SAE; we only
+take a direction from the SAE and add it. My SAE-in-the-loop test on RepE does run through the SAE, but it used the
+older prompts with a length problem, so it only counts as supporting evidence. For Simba's PR #28, I checked that the
+branch files matched his commit `167fadb` after R3 was moved out, and I ran the M6 tests: 59 passed and 1 failed on a
+very small float tolerance. I also compared Simba's M6 numbers with the Gemma Scope paper, and at layer 12 our ΔCE and
+FVU are within about 5 % and 2 % of the values read from the paper's figures. R3 measures how width and L0 change
+reconstruction and behaviour across 36 Gemma Scope SAEs at layers 5, 12 and 19. It is still running on Kaggle, so I am
+not claiming any result yet.
+
 **This is a retrospective compilation, written on 2026-11-14 after the fact.** These entries were not submitted
 weekly. Every item comes from the Git history (`git log --all --author="basquedhruv\|Dhruv Rai"`) or from
 pull-request activity on GitHub. Weeks follow the numbering of the 2026-10-25 report (Week 9 = 2026-10-20 to 10-26).
