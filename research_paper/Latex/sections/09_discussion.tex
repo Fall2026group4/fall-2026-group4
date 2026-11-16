@@ -1,0 +1,50 @@
+\section{Discussion and Limitations}\label{sec:discussion}
+
+\paragraph{What reconstruction quality does and does not tell us.} Reconstruction quality is informative about
+behaviour. Within a GPT-2 layer, SAEs with lower reconstruction error damage next-token prediction less; across depth,
+reconstruction and splice damage degrade together; and the large reconstruction gains of the scaled SAEs brought large,
+confirmed behavioural gains. It is not informative in the same way about information or causal preservation. It does
+not robustly predict truth-information loss within a layer, SAEs that reconstruct well still lose persona information,
+the scaled SAEs brought no confirmed gain in truth information, and the architecture with higher explained variance at
+layer 11 retains less of the causal effect. A plausible explanation is that reconstruction metrics weight directions by
+their variance, whereas task information and causal effects live in small differences between nearly identical
+activations, which an SAE can reconstruct poorly even when it reconstructs each activation well.
+
+\paragraph{Measurement choices change information conclusions.} A frozen probe mixes two questions: whether the
+information is still present, and whether the reconstruction stays where that probe was fitted. On truth statements
+the second dominates, and the same reader produced the only apparent truth gain of fine-tuning. Information claims
+should therefore name the reader, and comparisons with PCA should name what is matched: equal reconstruction error asks
+whether the SAE's error is unusually costly, whereas an equal per-token budget asks whether sparse, input-dependent
+selection beats one fixed subspace of the same width.
+
+\paragraph{Faithfulness is not one scalar.} Each improvement method improved what it optimised and little else.
+Truth-focused fine-tuning moved a frozen reader; scaling improved reconstruction and behaviour; behaviour-targeted
+training improved behaviour at a cost elsewhere; and an apparent causal gain from output-KL disappeared when sparsity was
+fixed. A claim that one SAE is ``more faithful'' than another is only meaningful when it names the level. The Gemma
+result extends the behavioural part of this account to a second model and an independently trained SAE family.
+
+\paragraph{Limitations.}
+\begin{itemize}
+  \item \textbf{Scope.} Two models and a finite set of SAEs: three in-house architectures at one operating point, one
+        data-scaled recipe and one public family in GPT-2, and one public SAE per layer at three layers of Gemma-2-2B.
+        Our JumpReLU uses a surrogate gradient and has many dead latents at layer 0, and a modern JumpReLU could not be
+        trained to the target sparsity in the scaling experiment.
+  \item \textbf{No controlled cross-model comparison.} Gemma was evaluated at two levels only, and the settings
+        differ in too many respects to compare the models.
+  \item \textbf{Sparsity matching.} Architectures are matched on OWT, not on task prompts; a TopK experiment trained
+        at task-matched sparsity has been drafted but not run.
+  \item \textbf{Causal evidence.} One persona-instruction effect of 0.02--0.04 nats at three sites of one model. The
+        patches retain the error term and do not test mediation through SAE latents; a mediated SAE-in-the-loop
+        experiment is pre-registered but not run.
+  \item \textbf{Evidence status.} Only the base reconstruction table and the improvement-phase comparisons on OWT
+        and truth data are held-out results. Every persona, causal, capacity-matched PCA and Gemma result is a
+        validation finding. A held-out RepE-LM test protocol is frozen but has produced no results. Three seeds share
+        training data, so seed spread understates uncertainty, and fine-tuning criteria are applied per cell without
+        multiplicity correction.
+  \item \textbf{R3.} A pre-registered robustness study of how Gemma Scope width and sparsity affect reconstruction and
+        behavioural splicing at the M6 layers is under review and has not produced a finished run. It is
+        \evlabel{pre-registered only}, and none of our conclusions depends on it.
+\end{itemize}
+Natural next steps are to evaluate the frozen RepE-LM test protocol, to repeat the capacity-matched PCA comparison on
+test data and on the persona task, to run the mediated intervention, and to extend the information and causal levels
+to Gemma-2-2B.

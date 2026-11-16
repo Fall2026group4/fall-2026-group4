@@ -1,0 +1,222 @@
+\section{Experimental Details}\label{app:details}
+
+\paragraph{Datasets and splits.} OWT: 1{,}000 documents from \texttt{Skylion007/openwebtext} (streaming shuffle with
+seed 42, 100--20{,}000 characters, exact deduplication), split 800/100/100 by document and truncated to 128 tokens,
+giving 101{,}600 training, 12{,}700 validation and 12{,}700 test tokens excluding BOS. The scaled SAEs use 100M further
+tokens from a shard that excludes every document in this sample. Geometry of Truth: \texttt{cities} and
+\texttt{neg\_cities}, 1{,}496 statements each, split by city into 1{,}046/224/226 per set; the training split is further
+divided into city groups A (training objectives) and B (evaluation probes). The numerical sets have a surface shortcut
+(the second number alone gives AUROC 0.84) and are used only as a diagnostic. RepE-LM: 506 statements (train 417,
+validation 89, and a separate held-out test split) times 20 prompt variants. Templates T1--T4 swap truthful/deceptive,
+trustworthy/dishonest, sincere/lying and facts/lies, each with an honest-synonym control; T5--T6 are held-out wordings;
+N1--N2 swap neutral words (tall/short, red/blue). Seven pre-registered construction gates verify the task
+(Table~\ref{tab:m1}); every shortcut feature, including length, has AUROC 0.50. The Pile: validation file of
+\texttt{monology/pile-uncopyrighted} (pinned revision and SHA-256); a seeded permutation (seed 42) over document indices
+selects the first 512 documents with at least 32 tokens as the evaluation set and the next 64 as a disjoint reference
+set for the mean-ablation vector; each document is tokenized with BOS and truncated to 1{,}024 tokens. The Pile test
+file was never downloaded.
+
+\paragraph{Base SAE training.} Each base SAE was trained in one uninterrupted run of 15{,}000 Adam steps (learning rate
+$3\times10^{-4}$, batch 256 sampled with replacement, gradient clipping at 10), about 38 passes over the training
+tokens. A multiplicative controller adjusted the sparsity coefficient every 25 steps towards L0 = 128 for ReLU and
+JumpReLU (surrogate temperature $T=0.1$); TopK fixes L0 by construction. Decoder columns were renormalised to unit norm
+after every step. ReLU runs 2--6\,\% above the target L0; a within-layer adjustment using the L0 elasticity measured in
+an earlier sweep changes no ranking except two near-ties. Of 3{,}072 latents, ReLU keeps 2{,}920--3{,}063 alive, TopK
+1{,}711--2{,}851 and JumpReLU 469--2{,}947.
+
+\paragraph{Scaled SAEs and behaviour-targeted fine-tune.} The scaled SAEs (TopK with an auxiliary dead-latent loss
+\citep{gao2024scaling}, BatchTopK \citep{bussmann2024batchtopk} and ReLU controlled to L0 = 128; width 12{,}288; three
+seeds) were trained on activations streamed from GPT-2, with the encoder initialised to the decoder transpose, input
+scaling folded into the weights and cosine decay; 39 SAEs were trained in 5.5 hours on one NVIDIA A10G. A TopK width
+ablation at 3{,}072 latents separates data and recipe from width (on validation, equal-width retraining accounts for
+23--35\,\% of the NMSE reduction). A modern straight-through JumpReLU did not settle at L0 = 128 in a pilot and was
+abandoned before the full run. A comparison is an improvement only if all nine new/old seed pairs favour the new SAE and
+the Welch 95\,\% interval excludes zero. The behaviour-targeted fine-tune trains the scaled TopK SAEs for 5M tokens at
+learning rate $2\times10^{-5}$ with NMSE plus $\alpha\,\mathrm{KL}(p_{\text{orig}}\|p_{\text{spliced}})$, $\alpha$ set by
+first-batch scale matching.
+
+\paragraph{Truth-focused fine-tuning.} Every fine-tune starts from a base SAE and runs 500 Adam steps at learning rate
+$10^{-5}$ with the sparsity controller continued from the base coefficient. Guards: OWT L0 within $\pm5\,\%$ of the base,
+OWT EV at most 0.005 below the base (output-KL: 0.02 below Method A), spliced $\Delta$CE at most $1.10\times$ the base,
+and no loss of the truth preference beyond 0.018. A first truth-aware objective distilled a linear probe's logits and
+appeared to remove most of the truth gap; an audit found that the evaluation probe was the training teacher (same rows,
+labels and weights). In a corrected design (teacher fitted on group A, probes on group B, random-teacher control) that
+objective was worse than plain reconstruction fine-tuning on every seed (TopK group-B MLP gap 0.189 versus 0.107; random
+teacher 0.165). Under output-KL fine-tuning, OWT L0 rose by 3.5--8.1\,\% for ReLU and JumpReLU, while TopK is
+fixed at 128 (Table~\ref{tab:impl_l0}).
+
+\section{Statistical Procedures and Sensitivity}\label{app:stats}
+
+\begin{itemize}
+  \item \textbf{Within-layer reanalysis.} Fixed-effects regressions (layer and architecture fixed effects, log L0) with
+        Freedman--Lane permutation within layer (5{,}000 permutations), bootstrap intervals (2{,}000) and Holm
+        correction over four primary tests.
+  \item \textbf{Information.} Statement-grouped paired bootstrap, one-sided tests against noise and PCA references,
+        Benjamini--Hochberg correction across SAEs per task; a 0.02 AUROC tolerance defines ``preserved''.
+  \item \textbf{Causal.} Holm correction over 65 cells; 200 matched-norm random vectors per cell; synonym and neutral
+        controls; for latent patches, 200 random latent sets matched on activation frequency and magnitude.
+  \item \textbf{Fine-tuning.} Paired by seed; mean, sd, per-seed values and a 95\,\% $t$-interval with two degrees of
+        freedom. The ``consistent'' rule (all three seeds and $|$mean$|>2$\,sd) is not equivalent to that interval. No
+        correction is applied across the 9--12 cells of a criterion.
+  \item \textbf{Capacity-matched PCA.} Per seed, a paired statement-grouped bootstrap (1{,}000 resamples) of SAE gap minus
+        PCA gap; a cell is better or worse only if every seed's interval excludes zero. An approximate post-hoc Holm
+        correction is reported alongside.
+  \item \textbf{Minimum detectable effect} (MDE $=2.80\times$SE at two-sided $\alpha=0.05$ and power 0.80): one SAE's
+        truth re-fit gap on test 0.030--0.048 AUROC; between-family truth comparisons about 0.05--0.09 AUROC; one SAE's
+        causal preservation share 0.013--0.017 at layer 1, 0.036--0.069 at layer 11 and 0.054--0.107 at layer 8.
+  \item \textbf{Gemma.} One pretrained SAE per layer; 95\,\% percentile intervals from 1{,}000 document resamples (seed
+        0), with a Bonferroni (98.33\,\%) sensitivity interval for H-G1.
+\end{itemize}
+Raw MSE is never averaged across layers, and MSE improvement is $100\times(\text{baseline}-\text{improved})/\text{baseline}$.
+
+\section{Causal Analysis Details}\label{app:causal}
+
+\paragraph{Decomposition.} At a site, $\Delta=x_H-x_U$, $\Delta_{\text{rec}}=\hat{x}_H-\hat{x}_U$ and
+$\Delta_{\text{err}}=e_H-e_U$, so $\Delta=\Delta_{\text{rec}}+\Delta_{\text{err}}$ exactly. With
+$T(v)=\mathrm{KL}(p_H\|p_U)-\mathrm{KL}(p_H\|p_{U+v})$ we define $T_{\text{full}}=T(\Delta)$,
+$T_{\text{rec}}=T(\Delta_{\text{rec}})$, $T_{\text{err}}=T(\Delta_{\text{err}})$, the interaction
+$I=T_{\text{full}}-T_{\text{rec}}-T_{\text{err}}$ and Shapley shares $\phi_{\text{rec}}=(T_{\text{rec}}+T_{\text{full}}-T_{\text{err}})/2$,
+which are not interpreted additively when the interaction is large. All exact checks pass ($\Delta$ identity error
+$9.5\times10^{-7}$; $T_{\text{full}}$ reproduces the site sweep to $7\times10^{-8}$).
+
+\paragraph{Why the patches are not mediation.} Because the error term is kept, every patch has the form $x_U+v$ with
+$v=W_d(z'-z_U)$, and the decoder bias cancels. $T_{\text{rec}}$ adds $v=W_d(z_H-z_U)$ and a top-$k$ patch adds
+$W_{d,S}(z_{H,S}-z_{U,S})$, so each is identical to adding one vector to the dishonest prompt's activation. The same holds
+for any encode--edit--decode intervention that keeps the error, including input-dependent clamps:
+$x'=x+W_d(z'(x)-z(x))$. Because a dictionary of 3{,}072 or 12{,}288 latents spans the residual stream, lying in decoder
+space does not restrict $v$. The only SAE-specific ingredient is how $v$ is chosen, namely the encoder's input-dependent
+latent selection, which the matched random-latent and isotropic controls test. Establishing mediation would require the
+downstream computation to pass through SAE nonlinearities, for example with SAEs spliced at later layers or without the
+error term. A layer-6 clamp experiment of that kind found no supported effect (\evlabel{validation}).
+
+\paragraph{Site-sweep controls.} A same-meaning synonym swap travels the same route as the persona swap at about half
+the size, and the persona-minus-synonym difference is preserved in the reconstruction at every site. Template T1
+(truthful/deceptive) has no effect beyond its synonym control and serves as a control case, so T2--T4 form the primary
+set. The instruction words after the persona slot carry up to 0.28 of the effect.
+
+\input{tables/t_m4}
+\input{tables/t_r5}
+
+\section{Additional GPT-2 Results}\label{app:gpt2}
+
+The splicing table (Table~\ref{tab:splice}) also reports the model's preference for true over false truth statements
+(0.82 originally), which is unchanged within $\pm0.025$ through layer 8 and drops by 0.04--0.09 at layers 9--11. In the
+persona analysis, the probe transfers only weakly to the held-out wordings T5/T6 even on original activations (AUROC
+0.54--0.69), honest-synonym prompts behave like honest prompts (synonym gap within 0.024 of the persona gap), and
+dropping the 14 validation statements with an opposite-label near duplicate in training changes any gap by at most 0.02.
+An exploratory control that keeps each token's 128 largest latents raises JumpReLU's re-trained persona gap from 0.144
+to 0.210 at layer 3 and from 0.162 to 0.188 at layer 8, while ReLU changes by at most 0.009, which is why architectures
+are not ranked on persona preservation.
+
+\input{tables/t_splice}
+\input{tables/t_m0}
+\input{tables/t_m1}
+\input{tables/t_m2}
+\input{tables/t_rlm_layers}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{fig_rlm_layers}
+  \caption{Persona representation preservation (\evlabel{validation}; 99 base SAEs, mean over 3 seeds). (a) Persona gaps:
+  frozen logistic, re-trained logistic and the norm-matched noise reference. (b) Frozen gap on held-out wording T5/T6,
+  and the re-trained gap on the neutral control. (c) Per-pair cosine and norm ratio between the reconstructed and
+  original honest-minus-dishonest difference.}
+  \label{fig:rlm}
+\end{figure}
+
+\clearpage
+\input{tables/t_finetune_l6}
+\input{tables/t_impl_summary}
+\input{tables/t_impl_readers}
+\input{tables/t_impl_l0}
+\input{tables/t_rlm_finetune}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{fig_impl_multilayer.pdf}
+  \caption{Truth-focused fine-tuning: per-arm means ($\pm$1 sd over 3 seeds) of the independent truth gap (top) and OWT
+  spliced KL (bottom) at layers 3, 8 and 9 (\evlabel{validation}). Output-KL points for ReLU and JumpReLU at layers 8 and
+  9 violate the pre-registered L0 guard.}
+  \label{fig:impl}
+\end{figure}
+
+\input{tables/t_impl_layer3}
+\input{tables/t_impl_layer8}
+\input{tables/t_impl_layer9}
+\clearpage
+\input{tables/t_e3}
+\input{tables/t_e3_classes}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\linewidth]{fig_e3_preservation}
+  \caption{Causal preservation at the layer-8 final token for base, OWT-only, Method A and output-KL SAEs
+  (\evlabel{validation}; bars: mean of 3 seeds; dots: seeds). Output-KL ReLU and JumpReLU violate the pre-registered L0
+  guard.}
+  \label{fig:e3}
+\end{figure}
+
+\clearpage
+\input{tables/t_r2_c1}
+\input{tables/t_r2_c2}
+\input{tables/t_r2_c3}
+\input{tables/t_r2_counts}
+\input{tables/t_m5_counts}
+\clearpage
+\input{tables/t_r4}
+\input{tables/t_e2}
+
+\clearpage
+\section{Gemma-2-2B Details}\label{app:m6}
+
+\paragraph{Validity gates.} All five gates passed before any result was read: sample integrity (data SHA-256 and
+tokenizer revision match the pre-registration; 512 + 64 disjoint documents); hook equivalence (the hooked activation
+equals the model's hidden state in all 1{,}536 checks); determinism and identity (identity-splice and repeat-pass mean KL
+exactly 0.0); SAE sanity (measured L0 69.5, 84.8 and 75.1 against release values 68, 82 and 73); and no substitution of
+the pinned SAEs.
+
+\paragraph{Known limitations.} The logits are computed in bf16 as pre-registered. A smoke-run measurement on eight
+documents found a mean KL from an fp32 output head of 0.00083 and a mean absolute CE difference of 0.026 nats per
+prediction; this floor is small next to the SAE effect on KL but was not repeated on the full run, and its effect on the
+signed paired differences was not measured. Gemma's pretraining data are not public, so Gemma may have seen some of these
+documents; this affects absolute cross-entropy but not the paired comparisons. Loss recovered (0.98--0.99) is high only
+because mean ablation is very destructive (about 9 nats).
+
+\paragraph{Per-source variation and reproducibility.} Six Pile sources have at least 20 evaluation documents (457
+documents); the SAE-to-random $\Delta$CE ratio exceeds 1 in each of them at every layer, but no per-source test was
+pre-registered, so this is descriptive only. The run used code commit \texttt{13eaeca} from a clean tree on one Tesla T4
+GPU (no native bf16) with strict deterministic algorithms, PyTorch 2.7.0 and transformers 5.21.0, took 8{,}067.5\,s and
+peaked at 8.58\,GB of GPU memory. Model and tokenizer were pinned to revision \texttt{c5ebcd40} of
+\texttt{google/gemma-2-2b}, SAEs to revision \texttt{fd571b47} of \texttt{google/gemma-scope-2b-pt-res}, and data to
+revision \texttt{3be90335} of \texttt{monology/pile-uncopyrighted}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{fig2_splicing_by_layer}
+  \caption{Gemma-2-2B behavioural splicing (\evlabel{validation}): $\Delta$CE for the SAE splice and the norm-matched
+  random-error control, KL from the original distribution, top-1 agreement and loss recovered, with 95\,\%
+  document-bootstrap intervals. Layers are described side by side, not ranked.}
+  \label{fig:m6-splice}
+\end{figure}
+
+\section{Leakage Controls and Test Exposure}\label{app:exposure}
+
+OWT is split by document and truth statements by city, so no document or city appears in two splits. Training objectives
+use city group A only, and evaluation probes are fitted on group B. The Gemma evaluation and reference documents are
+disjoint, and the mean-ablation vector uses the reference set only. The OWT test split was used for the reconstruction
+table and once more in the pre-registered confirmatory pass. The truth test split was scored for all 108 base SAEs with
+frozen probes and twice for historical layer-6 fine-tunes before that pass, so it is treated as previously exposed. The
+RepE-LM test split has a frozen protocol but no reported result.
+
+\section{Evidence Status and Provenance}\label{app:provenance}
+
+Table~\ref{tab:evidence} lists every experiment, its level, its evidence label and its result folder in the repository
+\texttt{Fall2026group4/\allowbreak{}fall-2026-group4}. Tables and GPT-2 figures are generated by
+\texttt{scripts/\allowbreak{}shared/\allowbreak{}build\_paper\_artifacts.py} from committed result files, and the Gemma figures by
+\texttt{scripts/\allowbreak{}gemma/\allowbreak{}04\_pile\_gemma\_scope\_figures.py}. GPT-2 experiments used PyTorch, TransformerLens
+\citep{transformerlens2022} and SAELens \citep{saelens2024} on one NVIDIA A10G. Several earlier analyses were corrected
+during the project (an architecture summary over unmatched runs, length-confounded persona prompts, the circular
+objective, and correlations pooled across layers); the superseded results are kept in the repository with their status
+labels and are not used as evidence.
+
+\input{tables/t_evidence}

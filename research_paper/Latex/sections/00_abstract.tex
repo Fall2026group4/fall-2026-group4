@@ -1,21 +1,16 @@
 \begin{abstract}
-Sparse autoencoders (SAEs) are widely used to explain what language models represent, and such explanations assume
-that an SAE reconstruction is a faithful stand-in for the activation it replaces. We ask to what extent SAEs preserve
-the information and behaviour of a language model beyond reconstructing its activations well. We separate four
-levels of faithfulness (reconstruction, information preservation, behavioural faithfulness and causal preservation)
-and measure each one separately. In GPT-2 Small we train 108 ReLU, TopK and JumpReLU SAEs at all twelve layers at
-matched sparsity and evaluate them on OpenWebText, Geometry of Truth and an equal-length persona-instruction task
-built to remove a prompt-length shortcut. Reconstruction quality depends strongly on layer and architecture, and no
-architecture is best at every layer. Within a layer, reconstruction error robustly predicts how much splicing the SAE
-into the model damages next-token prediction, but it does not robustly predict the loss of truth information.
-Frozen probes overstate information loss on truth statements, whereas persona information is genuinely lost, and
-the SAE reconstruction carries 93--97\,\% of a located persona-instruction effect at an early site but only
-62--68\,\% at later sites. Truth-focused fine-tuning improves what a frozen probe reads without a robust gain for
-re-trained readers or causal preservation. Scaling training data and SAE width substantially improves reconstruction
-and behavioural faithfulness in a pre-registered held-out test, without a confirmed gain in truth information, and a
-behaviour-targeted fine-tune trades a small reconstruction cost and some causal preservation for lower behavioural
-damage. In Gemma-2-2B, public Gemma Scope SAEs spliced at three pre-registered layers on The Pile cause more
-next-token damage than norm-matched random errors. Reconstruction quality is necessary evidence, but it is
-insufficient by itself to establish SAE faithfulness; information, behavioural and causal preservation need
-separate evaluation.
+Sparse autoencoders (SAEs) are widely used to interpret language-model activations, an approach that assumes an SAE
+reconstruction is a faithful substitute for the activation it replaces. We test this assumption by measuring four
+levels of faithfulness separately: reconstruction, information preservation, behavioural faithfulness and causal
+preservation. In GPT-2 Small we evaluate 108 in-house ReLU, TopK and JumpReLU SAEs across all twelve layers, together
+with data-scaled, behaviour-targeted and public SAEs; in Gemma-2-2B we evaluate public Gemma Scope SAEs at three layers.
+Four findings emerge. First, within a layer, reconstruction error predicts the behavioural damage caused by splicing an
+SAE into the model, but it does not robustly predict the loss of truth information. Second, conclusions about
+information depend on how it is measured: frozen probes exaggerate the loss, re-trained readers reveal a smaller but
+real loss, and whether an SAE or PCA preserves more depends on the comparison constraint. Third, the reconstruction
+preserves most of a located causal effect at an early site but only about two-thirds of it at later sites. Fourth,
+more data and wider SAEs improve reconstruction and behaviour on held-out data without a confirmed gain in truth
+information, and behaviour-targeted training is a trade-off. In Gemma-2-2B, SAE errors also damage next-token
+prediction more than random errors of equal norm. Reconstruction quality is necessary but insufficient evidence of
+SAE faithfulness.
 \end{abstract}

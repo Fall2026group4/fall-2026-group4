@@ -1,0 +1,63 @@
+\section{Improvement Attempts}\label{sec:improve}
+
+We tested three ways of improving faithfulness and asked whether a gain at one level transfers to the others. Every
+improved SAE was trained by us.
+
+\subsection{Truth-focused fine-tuning: a frozen-reader gain only}\label{sec:finetune}
+
+Method A fine-tunes an existing SAE for 500 steps on reconstruction of truth statements from city group A, with OWT
+replay, against an OWT-only control trained for the same number of steps. A first truth-aware objective was found to be
+circular, because its training teacher was also the evaluation probe; every result here uses probes fitted on original
+activations of group B, which no objective sees (Appendix~\ref{app:details}). In the pre-registered experiment at layers
+3, 8 and 9 (81 fine-tunes covering Method A, the OWT-only control and an output-KL variant), Method A passed every
+guard, cut reconstruction error on truth statements by 61--85\,\% and lowered the pre-registered truth gap, measured by a frozen nonlinear probe, on all three seeds in all nine
+layer$\times$architecture cells. The criterion of consistent improvement against both the base SAE and the control was
+met in four of nine cells (outcome class ``preliminary improvement'').
+
+This gain is specific to that frozen reader. A frozen logistic probe fitted on the same activations, and re-trained
+readers on truth and on persona prompts, show no consistent change in any cell (Appendix Table~\ref{tab:impl_readers}).
+Method A therefore mostly moves reconstructions back towards the region where the original probe was fitted; it does
+not measurably restore information that a re-trained reader can recover. It also left causal preservation at the
+layer-8 site unchanged: after every fine-tune the reconstruction still carried 0.61--0.69 of the effect (Appendix
+Table~\ref{tab:e3}). Adding an output-KL term improved behaviour on every seed in every cell, but for ReLU and JumpReLU
+at layers 8 and 9 it raised L0 by 5.3--8.1\,\%, beyond the pre-registered $\pm5\,\%$ guard, so those four cells are
+``not creditable''. It never improved the truth gap, and its only causal gains (about $+0.02$ of the effect)
+occurred in cells that violated the sparsity guard.
+
+\subsection{More data and wider SAEs: confirmed reconstruction and behaviour gains}\label{sec:r2}
+
+Our base SAEs were trained on 101{,}600 tokens, and their validation EV was still rising when training stopped. We
+therefore retrained SAEs at layers 1, 8 and 11 with width 12{,}288 and 100M tokens each, with comparisons and their rule
+fixed before training, and then evaluated every improvement-phase comparison once on the OWT and truth test splits
+under a frozen protocol (81 SAEs). The reconstruction and behaviour gains are \evlabel{confirmed test} findings
+(Table~\ref{tab:m5}): across layers and comparisons NMSE fell by 31--74\,\% and spliced $\Delta$CE by 35--79\,\%. For
+TopK at layers 8 and 11, test NMSE fell from 0.160 and 0.185 to 0.094 and 0.111, and $\Delta$CE from 0.133 and 0.204
+to 0.062 and 0.096 nats. On the same held-out test, the remaining TopK splice damage is still 1.20 and 1.48 times
+that of norm-matched random error at layers 8 and 11, so the remaining error is still more harmful than random error
+of the same size \citep{engels2024darkmatter}.
+
+Truth information did not follow. No comparison improved the re-trained truth gap or the SAE-minus-PCA gap on test,
+and the width ablation made both slightly worse at layer 8 ($|d|=0.012$--0.015 AUROC, about one quarter of the
+minimum detectable effect); these are small regressions, not robust evidence of a meaningful degradation. This is an
+absence of evidence within the design's sensitivity: differences between SAE families smaller than about 0.05--0.09
+AUROC could not have been detected, and the observed differences are at most 0.025. The re-trained truth gap also does
+not discriminate trained SAEs from the frozen-random-decoder baseline at layer 8, where on validation data the baseline
+had the smaller gap (0.052 versus 0.081 for the matched trained SAE, seed 42). On validation data, the re-trained
+persona gap fell by 27--31\,\% for TopK at layers 8 and 11, but the persona gap relative to error-matched PCA did not
+improve, and causal preservation rose from 0.62 to 0.73 at layer 8 and from 0.62 to 0.69 at layer 11. These
+two results are \evlabel{validation} only, and the layer-8 causal gain is close to what the per-SAE intervals can
+resolve.
+
+\subsection{Behaviour-targeted training: a trade-off}\label{sec:r4}
+
+Because the earlier output-KL gains were confounded by sparsity drift, we fine-tuned the scaled TopK SAEs, whose L0
+is fixed at 128, with a reconstruction plus output-KL objective \citep{karvonen2025kl,braun2024e2e} for 5M tokens at
+layers 8 and 11, against a reconstruction-only control on identical tokens. On the held-out test (\evlabel{confirmed
+test}), spliced $\Delta$CE fell from 0.062 and 0.096 to 0.051 and 0.081 nats, an improvement of 16--17\,\%, while NMSE
+rose by about 2\,\%, a regression within the pre-registered explained-variance guard. On validation data no information
+gap changed, the per-pair persona direction cosine fell by 0.012--0.013, and causal preservation at layer 11 decreased
+from 0.694 to 0.671 on every seed (outcome class ``regression''); at layer 8 it did not change (Appendix Table~\ref{tab:r4}). A
+behavioural objective thus improves behaviour creditably once sparsity is fixed, at a small cost in reconstruction and
+a loss of causal preservation at one of two sites.
+
+\input{tables/t_m5}
