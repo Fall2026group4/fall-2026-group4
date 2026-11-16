@@ -1,0 +1,70 @@
+{
+  "stage": "M0",
+  "evidence": "validation reanalysis of existing results (no new model runs)",
+  "n_runs": 108,
+  "n_included": 107,
+  "excluded": [
+    {
+      "layer": 0,
+      "architecture": "jumprelu",
+      "seed": 42,
+      "owt_val_l0": 74.61637795275591
+    }
+  ],
+  "primary": [
+    {
+      "predictor": "log_owt_nmse",
+      "outcome": "got_logistic_gap",
+      "beta": 0.26817867988292193,
+      "ci95_low": 0.0557462668876728,
+      "ci95_high": 0.4766485498470095,
+      "beta_std": 1.5112886482325791,
+      "p_perm": 0.014597080583883223,
+      "p_holm": 0.04379124175164967,
+      "n": 72
+    },
+    {
+      "predictor": "log_got_rel_err",
+      "outcome": "got_logistic_gap",
+      "beta": 0.005309255058793359,
+      "ci95_low": -0.05932416690244066,
+      "ci95_high": 0.07977882212693024,
+      "beta_std": 0.059695466647765025,
+      "p_perm": 0.8680263947210558,
+      "p_holm": 1.0,
+      "n": 72
+    },
+    {
+      "predictor": "log_owt_nmse",
+      "outcome": "owt_delta_ce",
+      "beta": 0.16481723836680123,
+      "ci95_low": 0.13402790944878568,
+      "ci95_high": 0.26495387088632233,
+      "beta_std": 0.5615443941573389,
+      "p_perm": 0.0001999600079984003,
+      "p_holm": 0.0007998400319936012,
+      "n": 107
+    },
+    {
+      "predictor": "log_got_rel_err",
+      "outcome": "owt_delta_ce",
+      "beta": -0.011790048462546176,
+      "ci95_low": -0.05995960979654735,
+      "ci95_high": 0.02776085624921102,
+      "beta_std": -0.08231173162684802,
+      "p_perm": 0.6266746650669867,
+      "p_holm": 1.0,
+      "n": 107
+    }
+  ],
+  "ranking_flips_after_l0_adjustment": 2,
+  "input_sha256": {
+    "results/shared/spliced_evaluation/unified_comparison.csv": "58f04354054924bedd6e26e8cd988611a78405ff3308abfeb7450027a13b799c",
+    "results/geometry_of_truth/all_layer_frozen_probe_evaluation/per_run.csv": "86925c23d37a113136963078513a44dbb21326e94790d41852c86b2120b7ce59",
+    "results/openwebtext/reconstruction_evaluation/uninterrupted_protocol/all_layers_per_run.csv": "8134366d4e2d7cd19916face92fcb09ead0a574d3b98f3c8a211fd947b55bb46"
+  },
+  "script_sha256": "5a1635a265c95b2eec015075c3dedbaccddca2849b939a8ef1848404c8df99c5",
+  "n_perm": 5000,
+  "n_boot": 2000,
+  "seed": 20261108
+}

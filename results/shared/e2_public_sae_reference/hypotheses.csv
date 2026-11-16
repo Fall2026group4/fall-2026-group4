@@ -1,0 +1,29 @@
+layer,scope,hypothesis,task,sae,noise,holds,rule,ci_low,p,pca,ci_high,above_controls,resjb_nmse,resjb_l0,ours_delta_ce_range,ours_nmse_range,q_bh
+11,extension (R1),E2-H1,GoT cities,0.3120017538265306,0.22198431521045914,True,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+11,extension (R1),E2-H2,GoT cities,0.14389349489795922,,True,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),0.11042729591836734,0.000999000999000999,,,,,,,,0.0011655011655011655
+11,extension (R1),E2-H3,GoT cities,0.14389349489795922,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.04159359056122458,,,,,,,
+11,extension (R1),E2-H1,RepE-LM persona,0.24990531498548163,0.06208046648150489,False,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+11,extension (R1),E2-H2,RepE-LM persona,0.23369050624921095,,True,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),0.1939202357656861,0.000999000999000999,,,,,,,,0.0011655011655011655
+11,extension (R1),E2-H3,RepE-LM persona,0.23369050624921095,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.06630318141648783,,,,,,,
+11,extension (R1),E2-H4,RepE-LM persona (M4 site),0.6115858847474968,,True,preservation CI high < 0.80 and T_rec above matched-norm and shuffle controls,,,,0.6444326375462703,True,,,,,
+11,extension (R1),E2-H5 (descriptive),OWT,0.2765422615172371,,,,,,,,,0.19343793992396452,61.18472440944882,0.2113-0.3608,0.1886-0.2487,
+1,extension (R1),E2-H1,RepE-LM persona,0.14957076126751678,0.028064401590708332,False,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+1,extension (R1),E2-H2,RepE-LM persona,0.13405030930438078,,True,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),0.10927360813028665,0.000999000999000999,,,,,,,,0.0011655011655011655
+1,extension (R1),E2-H3,RepE-LM persona,0.13405030930438078,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.06833890922863273,,,,,,,
+1,extension (R1),E2-H4,RepE-LM persona (M4 site),0.9785611277559773,,False,preservation CI high < 0.80 and T_rec above matched-norm and shuffle controls,,,,0.9874436435651113,True,,,,,
+1,extension (R1),E2-H5 (descriptive),OWT,0.016069800967261905,,,,,,,,,0.05263740690392904,15.150708661417323,0.0065-0.0274,0.0647-0.0814,
+8,pre-registered,E2-H1,GoT cities,0.3092713647959183,0.24665706712372448,True,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+8,pre-registered,E2-H2,GoT cities,0.024553571428571397,,False,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),-0.0014229910714285833,0.030969030969030968,,,,,,,,0.030969030969030968
+8,pre-registered,E2-H3,GoT cities,0.024553571428571397,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.011818399234693855,,,,,,,
+8,pre-registered,E2-H1,RepE-LM persona,0.2465913394773388,0.07450937381643752,False,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+8,pre-registered,E2-H2,RepE-LM persona,0.22288063375836387,,True,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),0.18969195808610032,0.000999000999000999,,,,,,,,0.0011655011655011655
+8,pre-registered,E2-H3,RepE-LM persona,0.22288063375836387,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.11217807095063759,,,,,,,
+8,pre-registered,E2-H4,RepE-LM persona (M4 site),0.5586477182801797,,True,preservation CI high < 0.80 and T_rec above matched-norm and shuffle controls,,,,0.6006798844181477,True,,,,,
+8,pre-registered,E2-H5 (descriptive),OWT,0.16796670580667164,,,,,,,,,0.147561386483129,67.54330708661418,0.1144-0.2251,0.1596-0.2000,
+10,pre-registered,E2-H1,GoT cities,0.30759725765306123,0.24216757015306123,True,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+10,pre-registered,E2-H2,GoT cities,0.13215481505102034,,True,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),0.1017214405293368,0.000999000999000999,,,,,,,,0.0011655011655011655
+10,pre-registered,E2-H3,GoT cities,0.13215481505102034,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.02772241709183665,,,,,,,
+10,pre-registered,E2-H1,RepE-LM persona,0.24240152758490086,0.05834123690190629,False,noise frozen gap >= 0.5 x SAE frozen gap,,,,,,,,,,
+10,pre-registered,E2-H2,RepE-LM persona,0.22437981315490474,,True,re-fit gap > 0 with CI low > 0 (BH over layers x tasks),0.18837701994697648,0.000999000999000999,,,,,,,,0.0011655011655011655
+10,pre-registered,E2-H3,RepE-LM persona,0.22437981315490474,,True,"SAE re-fit gap >= PCA re-fit gap - 0.02 (PCA at the SAE OWT validation NMSE, as in M2)",,,0.0671711273829062,,,,,,,
+10,pre-registered,E2-H5 (descriptive),OWT,0.23281374976748512,,,,,,,,,0.19153972228038074,56.27133858267717,0.1603-0.2851,0.1818-0.2332,

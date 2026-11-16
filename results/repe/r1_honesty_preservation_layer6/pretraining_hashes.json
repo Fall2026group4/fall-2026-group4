@@ -1,0 +1,13 @@
+{
+  "recorded": "2026-11-07 23:44:52",
+  "note": "recorded before any R1 run; README hash is the pre-training version (it is updated with results later and is not re-verified)",
+  "sha256": {
+    "scripts/repe/14_prepare_r1_r2_splits_and_wording.py": "9158f99b7253d6a7ffc1389e2bc26bf544cedff6b97ab67a5642a3fcaf6a3e3e",
+    "scripts/repe/15_r1_honesty_finetune.py": "956d150027af64668b2bfed069082531e2fe3e1c386c45e64991764beeda6b71",
+    "scripts/repe/16_r1_evaluation.py": "117fd5eacc34667c5a930b24fca1e45efa3209310db0e97bc52140278c19927f",
+    "data/repe/splits/r1_train_AB_groups.csv": "8cd694363c180afb63b79477a35da26c70b0a0414b507ffe4222a04022174131",
+    "data/repe/persona_pairs.csv": "5188c1402eb1ecb9fa6ba9497776d3af616af4af83463ebe2420c1f89909b2ff",
+    "results/repe/r1_honesty_preservation_layer6/preregistration.json": "9dfb2ab19beafe2060cfe096ca89d09313a6a7c39924586ca3f8942833ab18d3",
+    "results/repe/r1_honesty_preservation_layer6/README.md": "03b288806183308f32d7dfa948b6d53e747469c8de9fd5b144c9549caa0b3ab0"
+  }
+}

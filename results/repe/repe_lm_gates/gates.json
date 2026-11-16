@@ -1,0 +1,318 @@
+{
+  "K1": {
+    "token_level": true,
+    "activation_level": true,
+    "n_token_pairs": 6072,
+    "n_activation_pairs": 6072,
+    "max_abs_diff_before_slot_by_layer": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "min_abs_diff_at_slot_layer0": 0.34371334314346313,
+    "status": "PASS"
+  },
+  "K2": {
+    "max_abs_deviation_from_0_5": 5.551115123125783e-17,
+    "status": "PASS"
+  },
+  "K3": {
+    "auroc": 0.9999999999999999,
+    "status": "PASS"
+  },
+  "K4": {
+    "status": "REPORTED (floor, not a gate)",
+    "neutral_grouped_cv_by_layer": {
+      "0": 0.5,
+      "1": 0.6072,
+      "2": 0.5983,
+      "3": 0.5822,
+      "4": 0.5782,
+      "5": 0.5775,
+      "6": 0.5969,
+      "7": 0.6163,
+      "8": 0.6156,
+      "9": 0.6701,
+      "10": 0.7061,
+      "11": 0.7522
+    },
+    "neutral_transfer_floor_by_layer": {
+      "0": 0.5,
+      "1": 0.5277,
+      "2": 0.5451,
+      "3": 0.5675,
+      "4": 0.56,
+      "5": 0.564,
+      "6": 0.5525,
+      "7": 0.5392,
+      "8": 0.5272,
+      "9": 0.5041,
+      "10": 0.5151,
+      "11": 0.54
+    }
+  },
+  "K5": {
+    "lopo_logistic_by_layer": {
+      "0": 0.5,
+      "1": 0.5269,
+      "2": 0.5461,
+      "3": 0.5681,
+      "4": 0.5866,
+      "5": 0.5948,
+      "6": 0.6453,
+      "7": 0.6931,
+      "8": 0.7011,
+      "9": 0.6931,
+      "10": 0.6768,
+      "11": 0.701
+    },
+    "lopo_ci_low_by_layer": {
+      "0": 0.5,
+      "1": 0.526,
+      "2": 0.5444,
+      "3": 0.5642,
+      "4": 0.5817,
+      "5": 0.5894,
+      "6": 0.6367,
+      "7": 0.6815,
+      "8": 0.6888,
+      "9": 0.6816,
+      "10": 0.6663,
+      "11": 0.6907
+    },
+    "passing_layers": [
+      8,
+      11
+    ],
+    "status": "PASS"
+  },
+  "K6": {
+    "duplicates": {
+      "exact_normalised_train_validation_overlap": [],
+      "near_duplicates_jaccard_gt_0_8": [
+        {
+          "validation_id": 77,
+          "train_id": 282,
+          "jaccard": 0.8461538461538461,
+          "same_factual_label": false,
+          "validation": "Inertia is an object's encouragement to change in motion.",
+          "train": "Inertia is an object's resistance to change in motion."
+        },
+        {
+          "validation_id": 96,
+          "train_id": 443,
+          "jaccard": 0.8181818181818182,
+          "same_factual_label": false,
+          "validation": "The most abundant gas in Earth's atmosphere is nitrogen.",
+          "train": "The least abundant gas in Earth's atmosphere is nitrogen."
+        },
+        {
+          "validation_id": 168,
+          "train_id": 372,
+          "jaccard": 0.8571428571428571,
+          "same_factual_label": false,
+          "validation": "Photosynthesis is the process by which plants convert darkness into chemical energy.",
+          "train": "Photosynthesis is the process by which plants convert sunlight into chemical energy."
+        },
+        {
+          "validation_id": 189,
+          "train_id": 100,
+          "jaccard": 0.9333333333333333,
+          "same_factual_label": false,
+          "validation": "Osmosis is the prevention of water movement across a selectively permeable membrane.",
+          "train": "Osmosis is the movement of water across a selectively permeable membrane."
+        },
+        {
+          "validation_id": 249,
+          "train_id": 520,
+          "jaccard": 0.8823529411764706,
+          "same_factual_label": false,
+          "validation": "Electromagnetic waves exclude radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays.",
+          "train": "Electromagnetic waves include radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, and gamma rays."
+        },
+        {
+          "validation_id": 306,
+          "train_id": 565,
+          "jaccard": 0.8181818181818182,
+          "same_factual_label": false,
+          "validation": "The Amazon rainforest is home to immense biodiversity.",
+          "train": "The Amazon rainforest is home to minimal biodiversity."
+        },
+        {
+          "validation_id": 354,
+          "train_id": 342,
+          "jaccard": 0.8235294117647058,
+          "same_factual_label": false,
+          "validation": "The study of the Earth's metaphysical structure, processes, and history is called meta-geology.",
+          "train": "The study of the Earth's physical structure, processes, and history is called geology."
+        },
+        {
+          "validation_id": 371,
+          "train_id": 248,
+          "jaccard": 0.875,
+          "same_factual_label": false,
+          "validation": "Superconductors are materials that have no electrical resistance when cooled to certain temperatures.",
+          "train": "Superconductors are materials that have infinite electrical resistance when cooled to certain temperatures."
+        },
+        {
+          "validation_id": 383,
+          "train_id": 445,
+          "jaccard": 0.8181818181818182,
+          "same_factual_label": false,
+          "validation": "The primary colors of light are red, green, and blue.",
+          "train": "The primary colors of darkness are red, green, and blue."
+        },
+        {
+          "validation_id": 403,
+          "train_id": 368,
+          "jaccard": 0.9130434782608695,
+          "same_factual_label": false,
+          "validation": "Our solar system consists of eight stars: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+          "train": "Our solar system consists of eight planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+        },
+        {
+          "validation_id": 486,
+          "train_id": 94,
+          "jaccard": 0.8571428571428571,
+          "same_factual_label": false,
+          "validation": "Friction is the force that resists motion between two surfaces in contact.",
+          "train": "Friction is the force that encourages motion between two surfaces in contact."
+        },
+        {
+          "validation_id": 511,
+          "train_id": 35,
+          "jaccard": 0.8571428571428571,
+          "same_factual_label": false,
+          "validation": "The Earth's magnetic field is what causes compasses to point north.",
+          "train": "The Earth's magnetic field is what causes compasses to point south."
+        },
+        {
+          "validation_id": 546,
+          "train_id": 18,
+          "jaccard": 0.8181818181818182,
+          "same_factual_label": false,
+          "validation": "Symbiosis is a distant relationship between two species.",
+          "train": "Symbiosis is a close relationship between two species."
+        },
+        {
+          "validation_id": 575,
+          "train_id": 211,
+          "jaccard": 0.8666666666666667,
+          "same_factual_label": false,
+          "validation": "The three types of rocks are igneous, sedimentary, and metamorphic.",
+          "train": "The three types of clouds are igneous, sedimentary, and metamorphic."
+        }
+      ],
+      "n_same_label_near_duplicates": 0,
+      "n_opposite_label_counterfactual_edits": 14,
+      "pass": true
+    },
+    "status": "PASS",
+    "leave_one_template_out": "= K5 (each T1-T4 template has its own word pair)",
+    "grouped_vs_ungrouped_cv_final": {
+      "0": {
+        "persona_grouped_cv": 0.5,
+        "persona_ungrouped_cv": 0.199
+      },
+      "1": {
+        "persona_grouped_cv": 0.6324,
+        "persona_ungrouped_cv": 0.9218
+      },
+      "2": {
+        "persona_grouped_cv": 0.6844,
+        "persona_ungrouped_cv": 0.9604
+      },
+      "3": {
+        "persona_grouped_cv": 0.7142,
+        "persona_ungrouped_cv": 0.9626
+      },
+      "4": {
+        "persona_grouped_cv": 0.72,
+        "persona_ungrouped_cv": 0.9602
+      },
+      "5": {
+        "persona_grouped_cv": 0.7431,
+        "persona_ungrouped_cv": 0.9675
+      },
+      "6": {
+        "persona_grouped_cv": 0.7786,
+        "persona_ungrouped_cv": 0.9808
+      },
+      "7": {
+        "persona_grouped_cv": 0.8109,
+        "persona_ungrouped_cv": 0.9878
+      },
+      "8": {
+        "persona_grouped_cv": 0.8128,
+        "persona_ungrouped_cv": 0.9881
+      },
+      "9": {
+        "persona_grouped_cv": 0.8199,
+        "persona_ungrouped_cv": 0.9904
+      },
+      "10": {
+        "persona_grouped_cv": 0.8088,
+        "persona_ungrouped_cv": 0.9867
+      },
+      "11": {
+        "persona_grouped_cv": 0.8404,
+        "persona_ungrouped_cv": 0.9874
+      }
+    }
+  },
+  "K7": {
+    "train": {
+      "n_statements": 417,
+      "median_kl_H_U": 0.018561012228019536,
+      "median_kl_H_Hp": 0.009159071429166943,
+      "median_ratio": 1.990899732870328,
+      "frac_statements_U_gt_Hp": 0.973621103117506,
+      "wilcoxon_p": 3.2813845119729717e-68,
+      "neutral_median_kl_Na_Nb": 0.0036841632099822164,
+      "continuation_n": 414,
+      "continuation_median_absdiff_U": 0.05948920547962189,
+      "continuation_median_absdiff_Hp": 0.03687155246734619,
+      "continuation_wilcoxon_p": 2.4122307919297968e-49,
+      "continuation_mean_signed_U_minus_H_by_factual_label": {
+        "0": 6.646023561748174e-05,
+        "1": -0.029314490378771013
+      },
+      "pass": true
+    },
+    "validation_descriptive": {
+      "n_statements": 89,
+      "median_kl_H_U": 0.02212062117177993,
+      "median_kl_H_Hp": 0.01165593380574137,
+      "median_ratio": 2.118316379111714,
+      "frac_statements_U_gt_Hp": 0.9550561797752809,
+      "wilcoxon_p": 4.588722998314208e-16,
+      "neutral_median_kl_Na_Nb": 0.00395630719140172,
+      "continuation_n": 88,
+      "continuation_median_absdiff_U": 0.06678842008113861,
+      "continuation_median_absdiff_Hp": 0.04442670941352844,
+      "continuation_wilcoxon_p": 3.324186875275417e-11,
+      "continuation_mean_signed_U_minus_H_by_factual_label": {
+        "0": -0.008679954128132926,
+        "1": -0.03186651995015699
+      },
+      "heldout_T5_median_kl_H_U": 0.004494138062000275,
+      "heldout_T6_median_kl_H_U": 0.00653937878087163
+    },
+    "status": "PASS"
+  },
+  "decision": {
+    "M2_allowed": true,
+    "M3_allowed": true,
+    "notes": []
+  },
+  "script_sha256": "4e5ad9e88622651020571ecec25ac964d556cb8a84c6adf6c7afba921824738d"
+}

@@ -1,0 +1,37 @@
+{
+  "experiment": "M5 confirmatory TEST pass (GPT-2 improvement phase)",
+  "date": "2026-11-10",
+  "approved_by_user": "2026-11-10: approval to conduct the final M5 evaluation once methods and protocol are frozen",
+  "sae_families": [
+    "old relu/topk/jumprelu x3",
+    "r2 topk/batchtopk/relu/topk_w3072 x3",
+    "r2 topk_frozen_decoder x1",
+    "r4 kl/mse x3 (L8, L11)",
+    "resjb (descriptive)"
+  ],
+  "layers": [
+    1,
+    8,
+    11
+  ],
+  "data": [
+    "OWT test (100 seq, 12,700 tokens)",
+    "GoT cities+neg_cities test (L8, L11)"
+  ],
+  "comparisons": "C1,C2,C3,A1,A2 (R2 rule); K1,K4 (IMP-L paired rule)",
+  "runs": 1,
+  "hashes": {
+    "scripts/shared/m5_confirmatory_test.py": "ec8e264a7818b6553ec0558381e9cc5809d9098a57cb0adfc814107f7f6a4616",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+    "scripts/shared/r2_comparisons.py": "38b2fcd1eb29a270b6700b3240504ab0d787e44edd969751d5631183a8083b6e",
+    "scripts/shared/spliced_reconstruction_evaluation.py": "2d5f3aff55b5d391bb6dc6b2db6c5c94bac5b07f626b3bafa303acd54f9e42bf",
+    "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+    "scripts/openwebtext/03_training_sae.py": "6587a1bfeba82244faa5478b278938ff8e884eb9c9f8b662b6eb1ddf5f0b1fe6",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+    "src/sae/modern_sae.py": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+    "results/openwebtext/r2_scaled_saes/training_info.json": "c71c2edeffdcf9ee0cf1fe5c561b68abd3ec26cdb2082e5240956526866457b7",
+    "results/openwebtext/r4_kl_finetune/finetune_info.json": "2cd102352815d942f8bb7c87c0da9357d9919899dc49f8807a6808571e672655",
+    "results/shared/m5_confirmatory_test/README.md": "9cf13943fe29b649668034865e1630013a7e06d08f55a09a027083c370feffae"
+  }
+}

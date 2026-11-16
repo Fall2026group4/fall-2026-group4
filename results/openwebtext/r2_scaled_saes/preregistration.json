@@ -1,0 +1,16 @@
+{
+  "experiment": "R2 data-scaled SAE retraining (GPT-2 Small, layers 1, 8, 11)",
+  "date": "2026-11-10 08:22:45",
+  "approved_by_user": "2026-11-10 (full execution approval: R1, R2 and GPT-2 improvement experiments)",
+  "design": "results/openwebtext/r2_scaled_saes/README.md section 1",
+  "tokens_per_sae": 99999744,
+  "hashes": {
+    "scripts/openwebtext/17_streaming_sae_training.py": "017b6133426bc1ba5ec551b720877e9172eea9d02de5f777531513e3bde78e88",
+    "src/sae/modern_sae.py": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "data/openwebtext/stream_tokens/shard78_chunks.npy": "51a90ff3cd952bfbc801014bcdcc8255e939eb18f33926c518914af8bb0e754d",
+    "data/openwebtext/stream_tokens/shard79_chunks.npy": "b2845c070990a00028ff2287fb6e49cc41591a8f89bfee14a731b2fb47ddae25",
+    "results/openwebtext/r2_scaled_saes/README.md": "5f2caee99eb483b9fe12e8b53cdac2bbec7d4926b0b1adbea669722a116e1fa0"
+  },
+  "note": "script hash refreshed after removing the abandoned JumpReLU config, before the run"
+}

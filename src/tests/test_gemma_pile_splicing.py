@@ -309,8 +309,10 @@ def test_A1_assert_finite_rejects_nan_and_inf():
 
 def test_A1_nonfinite_columns_finds_bad_numeric_columns_only():
     pd = pytest.importorskip('pandas')
-    df = pd.DataFrame({'a': [1.0, 2.0], 'b': [1.0, np.inf], 'c': [np.nan, 1.0], 'name': ['x', 'y'],
-                       'flag': [True, False]})
+    # Text column as object dtype, as under pandas 2.3.3 used by the M6 run. pandas 3 defaults text to StringDtype,
+    # which np.issubdtype in the run-time helper cannot interpret; the helper is kept byte-identical to the run.
+    df = pd.DataFrame({'a': [1.0, 2.0], 'b': [1.0, np.inf], 'c': [np.nan, 1.0],
+                       'name': pd.Series(['x', 'y'], dtype=object), 'flag': [True, False]})
     assert ps.nonfinite_columns(df) == ['b', 'c']
     assert ps.nonfinite_columns(df, ['a']) == []
 
@@ -391,8 +393,11 @@ def test_H4a_logit_precision_is_zero_for_identical_and_small_for_bf16_rounding()
     pm = ps.prediction_mask(torch.ones_like(ids))
     exact = 30.0 * torch.tanh((h @ w.T) / 30.0)
     same = ps.logit_precision_sums(exact, h, w, 30.0, ids, pm, chunk=4)
-    assert same['n_pred'] == 7 and same['kl_ref_vs_model_sum'] == pytest.approx(0, abs=1e-9)
-    assert same['abs_ce_diff_sum'] == pytest.approx(0, abs=1e-9) and same['max_abs_logit_diff'] < 1e-5
+    # The reference is recomputed chunk by chunk in float32, so it can differ from `exact` (one full matmul) by
+    # ~1 ulp depending on the BLAS backend (seen: KL sum 3.8e-8, |CE| sum 9.5e-7). Tolerances are float32-level,
+    # still >= 200x below the bf16 signal checked next (KL sum ~2e-4, |CE| sum ~5e-2 for this input).
+    assert same['n_pred'] == 7 and same['kl_ref_vs_model_sum'] == pytest.approx(0, abs=1e-6)
+    assert same['abs_ce_diff_sum'] == pytest.approx(0, abs=1e-5) and same['max_abs_logit_diff'] < 1e-5
     rounded = ps.logit_precision_sums(exact.to(torch.bfloat16), h, w, 30.0, ids, pm)
     assert 0 < rounded['max_abs_logit_diff'] <= 0.25        # bf16 spacing is at most 0.125 below |logit| 32
     assert 0 <= rounded['kl_ref_vs_model_sum'] / rounded['n_pred'] < 1e-2

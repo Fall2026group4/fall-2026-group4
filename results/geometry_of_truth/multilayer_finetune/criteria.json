@@ -1,0 +1,601 @@
+{
+  "layers_evaluated": [
+    3,
+    8,
+    9
+  ],
+  "layer3_jumprelu": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.00332,
+            -0.00731,
+            -0.02659
+          ]
+        },
+        "vs_owt_only": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.00977,
+            -0.00743,
+            -0.02113
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "NO IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.00802,
+            -0.00853,
+            -0.00921
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.0357,
+            -0.0422,
+            -0.03359
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.01279,
+          0.00403,
+          0.02989
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "PRELIMINARY IMPROVEMENT",
+      "class_truth": "NO IMPROVEMENT"
+    }
+  },
+  "layer3_relu": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.02381,
+            -0.02246,
+            -0.00698
+          ]
+        },
+        "vs_owt_only": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.02475,
+            -0.01924,
+            -0.00638
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "NO IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.0118,
+            -0.013,
+            -0.0116
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.05053,
+            -0.04996,
+            -0.05067
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.0169,
+          0.01091,
+          0.00723
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "PRELIMINARY IMPROVEMENT",
+      "class_truth": "REGRESSION"
+    }
+  },
+  "layer3_topk": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.09509,
+            -0.09732,
+            -0.10189
+          ]
+        },
+        "vs_owt_only": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.09292,
+            -0.09608,
+            -0.10626
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "PRELIMINARY IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.00535,
+            -0.00554,
+            -0.00518
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.03774,
+            -0.0336,
+            -0.03808
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.03848,
+          0.01692,
+          0.02437
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "PRELIMINARY IMPROVEMENT",
+      "class_truth": "REGRESSION"
+    }
+  },
+  "layer8_jumprelu": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.1464,
+            -0.01097,
+            -0.02194
+          ]
+        },
+        "vs_owt_only": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.14243,
+            -0.02224,
+            -0.01439
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "NO IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.02282,
+            -0.02184,
+            -0.02121
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.09552,
+            -0.10324,
+            -0.10989
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.04474,
+          -0.01549,
+          0.0048
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": false,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "NOT CREDITABLE (guard failed)",
+      "class_truth": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer8_relu": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.03509,
+            -0.06011,
+            -0.06659
+          ]
+        },
+        "vs_owt_only": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.02909,
+            -0.05654,
+            -0.05576
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "PRELIMINARY IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.04305,
+            -0.0416,
+            -0.04266
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.13472,
+            -0.13005,
+            -0.18967
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.01191,
+          0.01655,
+          -0.00526
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": false,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "NOT CREDITABLE (guard failed)",
+      "class_truth": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer8_topk": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.10773,
+            -0.09868,
+            -0.01436
+          ]
+        },
+        "vs_owt_only": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.10721,
+            -0.14081,
+            -0.03498
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "NO IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.01459,
+            -0.01436,
+            -0.01515
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.08706,
+            -0.07122,
+            -0.07586
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          -0.01588,
+          0.03786,
+          -0.00544
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "PRELIMINARY IMPROVEMENT",
+      "class_truth": "NO IMPROVEMENT"
+    }
+  },
+  "layer9_jumprelu": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.13004,
+            -0.10275,
+            -0.08526
+          ]
+        },
+        "vs_owt_only": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.12147,
+            -0.12638,
+            -0.08291
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "PRELIMINARY IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.02452,
+            -0.02294,
+            -0.02412
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.11066,
+            -0.12657,
+            -0.09744
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.04249,
+          0.01747,
+          0.00633
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": false,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "NOT CREDITABLE (guard failed)",
+      "class_truth": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer9_relu": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.0395,
+            -0.05048,
+            -0.05251
+          ]
+        },
+        "vs_owt_only": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.03562,
+            -0.04672,
+            -0.04921
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "PRELIMINARY IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.04447,
+            -0.04452,
+            -0.04377
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.20258,
+            -0.18678,
+            -0.21776
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.04796,
+          0.03302,
+          0.01718
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": false,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "NOT CREDITABLE (guard failed)",
+      "class_truth": "NOT CREDITABLE (guard failed)"
+    }
+  },
+  "layer9_topk": {
+    "truth_informative_at_layer": true,
+    "method_a": {
+      "T_method_a": {
+        "vs_base": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.0361,
+            -0.04229,
+            -0.0202
+          ]
+        },
+        "vs_owt_only": {
+          "pass": false,
+          "paired_diffs_by_seed": [
+            -0.01919,
+            -0.06435,
+            -0.01
+          ]
+        }
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.005": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_truth": "NO IMPROVEMENT"
+    },
+    "kl": {
+      "B_kl": {
+        "owt_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.01501,
+            -0.01582,
+            -0.01526
+          ]
+        },
+        "got_statement_kl": {
+          "pass": true,
+          "paired_diffs_by_seed": [
+            -0.09396,
+            -0.06903,
+            -0.08131
+          ]
+        }
+      },
+      "T_kl": {
+        "pass": false,
+        "paired_diffs_by_seed": [
+          0.01291,
+          0.02094,
+          -0.00515
+        ]
+      },
+      "guards": {
+        "l0_within_5pct_of_base": true,
+        "owt_ev_ge_ref_minus_0.02": true,
+        "owt_delta_ce_le_1.10x_base": true,
+        "cities_pref_ge_base_minus_0.018": true
+      },
+      "class_behaviour": "PRELIMINARY IMPROVEMENT",
+      "class_truth": "NO IMPROVEMENT"
+    }
+  }
+}

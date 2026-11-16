@@ -1,0 +1,137 @@
+{
+  "layer3_relu_seed42": {
+    "median_local_recon": 0.11767416447401047,
+    "median_kl": 0.06191129609942436,
+    "alpha": 1.9006897268801417
+  },
+  "layer3_relu_seed1042": {
+    "median_local_recon": 0.11439331620931625,
+    "median_kl": 0.06090034544467926,
+    "alpha": 1.8783689217859858
+  },
+  "layer3_relu_seed2042": {
+    "median_local_recon": 0.11693694069981575,
+    "median_kl": 0.06161030754446983,
+    "alpha": 1.8980093649980823
+  },
+  "layer3_topk_seed42": {
+    "median_local_recon": 0.11067867651581764,
+    "median_kl": 0.05461165867745876,
+    "alpha": 2.026649239304296
+  },
+  "layer3_topk_seed1042": {
+    "median_local_recon": 0.10642582550644875,
+    "median_kl": 0.052646275609731674,
+    "alpha": 2.021526200549995
+  },
+  "layer3_topk_seed2042": {
+    "median_local_recon": 0.10819420218467712,
+    "median_kl": 0.05351650342345238,
+    "alpha": 2.0216978924909266
+  },
+  "layer3_jumprelu_seed42": {
+    "median_local_recon": 0.12365487590432167,
+    "median_kl": 0.04539569094777107,
+    "alpha": 2.723934217602059
+  },
+  "layer3_jumprelu_seed1042": {
+    "median_local_recon": 0.12705088406801224,
+    "median_kl": 0.049896154552698135,
+    "alpha": 2.5463061273354572
+  },
+  "layer3_jumprelu_seed2042": {
+    "median_local_recon": 0.12613196671009064,
+    "median_kl": 0.04317653924226761,
+    "alpha": 2.9213079353662956
+  },
+  "layer8_relu_seed42": {
+    "median_local_recon": 1.0584460496902466,
+    "median_kl": 0.18110893666744232,
+    "alpha": 5.8442508093004655
+  },
+  "layer8_relu_seed1042": {
+    "median_local_recon": 1.0284274816513062,
+    "median_kl": 0.1810140609741211,
+    "alpha": 5.6814784228189685
+  },
+  "layer8_relu_seed2042": {
+    "median_local_recon": 1.0467931032180786,
+    "median_kl": 0.20504587143659592,
+    "alpha": 5.1051654728964735
+  },
+  "layer8_topk_seed42": {
+    "median_local_recon": 0.8313880264759064,
+    "median_kl": 0.11683028563857079,
+    "alpha": 7.116202977093714
+  },
+  "layer8_topk_seed1042": {
+    "median_local_recon": 0.80826336145401,
+    "median_kl": 0.11214419454336166,
+    "alpha": 7.207358033513603
+  },
+  "layer8_topk_seed2042": {
+    "median_local_recon": 0.8149003982543945,
+    "median_kl": 0.11393893882632256,
+    "alpha": 7.152079935521863
+  },
+  "layer8_jumprelu_seed42": {
+    "median_local_recon": 0.9180743396282196,
+    "median_kl": 0.1161576509475708,
+    "alpha": 7.903692371005366
+  },
+  "layer8_jumprelu_seed1042": {
+    "median_local_recon": 0.9146449267864227,
+    "median_kl": 0.1233881264925003,
+    "alpha": 7.412746694407554
+  },
+  "layer8_jumprelu_seed2042": {
+    "median_local_recon": 0.9218406081199646,
+    "median_kl": 0.12295730412006378,
+    "alpha": 7.497241540200145
+  },
+  "layer9_relu_seed42": {
+    "median_local_recon": 1.565865159034729,
+    "median_kl": 0.22349144518375397,
+    "alpha": 7.006376274256402
+  },
+  "layer9_relu_seed1042": {
+    "median_local_recon": 1.4987345337867737,
+    "median_kl": 0.22548940032720566,
+    "alpha": 6.646585301180337
+  },
+  "layer9_relu_seed2042": {
+    "median_local_recon": 1.487918734550476,
+    "median_kl": 0.234110027551651,
+    "alpha": 6.355638629029682
+  },
+  "layer9_topk_seed42": {
+    "median_local_recon": 1.1863186359405518,
+    "median_kl": 0.13460826128721237,
+    "alpha": 8.813119080479874
+  },
+  "layer9_topk_seed1042": {
+    "median_local_recon": 1.1818999648094177,
+    "median_kl": 0.12429583072662354,
+    "alpha": 9.508765965037801
+  },
+  "layer9_topk_seed2042": {
+    "median_local_recon": 1.1971541047096252,
+    "median_kl": 0.12896554172039032,
+    "alpha": 9.282743969743255
+  },
+  "layer9_jumprelu_seed42": {
+    "median_local_recon": 1.3565444946289062,
+    "median_kl": 0.13419820368289948,
+    "alpha": 10.10851455086777
+  },
+  "layer9_jumprelu_seed1042": {
+    "median_local_recon": 1.3586478233337402,
+    "median_kl": 0.14505746215581894,
+    "alpha": 9.366273221258329
+  },
+  "layer9_jumprelu_seed2042": {
+    "median_local_recon": 1.3512659072875977,
+    "median_kl": 0.1344757154583931,
+    "alpha": 10.048400952406016
+  }
+}

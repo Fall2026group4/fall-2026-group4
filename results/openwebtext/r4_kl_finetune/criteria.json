@@ -1,0 +1,23 @@
+{
+  "guard": {
+    "8": {
+      "ev_kl": 0.9024652039915965,
+      "ev_mse": 0.9043702983922213,
+      "ok": true
+    },
+    "11": {
+      "ev_kl": 0.8849250081072652,
+      "ev_mse": 0.8873674709561961,
+      "ok": true
+    }
+  },
+  "rule": "IMP-L paired by seed; guard EV(kl) >= EV(mse) - 0.02",
+  "counts": {
+    "K1|PRELIMINARY IMPROVEMENT": 4,
+    "K1|descriptive": 8,
+    "K2|NO IMPROVEMENT": 8,
+    "K3|NO IMPROVEMENT": 1,
+    "K3|REGRESSION": 1,
+    "K4|PRELIMINARY IMPROVEMENT": 4
+  }
+}

@@ -1,0 +1,11 @@
+check,feature,auroc,n
+K2_masked_bow,bag-of-words + template + lengths + factual label + final token,0.5,3336
+K3_unmasked_bow,bag-of-words + template + lengths + factual label + final token,0.9999999999999999,3336
+K2_single_feature_shortcut,n_tokens,0.5,3336
+K2_single_feature_shortcut,slot_pos,0.5,3336
+K2_single_feature_shortcut,final_pos,0.5,3336
+K2_single_feature_shortcut,prefix_tokens,0.5,3336
+K2_single_feature_shortcut,template,0.5,3336
+K2_single_feature_shortcut,factual_label,0.5,3336
+K2_single_feature_shortcut,statement_id,0.5,3336
+K2_single_feature_shortcut,final_token,0.49999999999999994,3336

@@ -1,0 +1,40 @@
+\section{Statistical Analysis}\label{sec:stats}
+
+\begin{itemize}
+  \item \textbf{Pre-registration.} Every experiment from M0 onwards wrote its hypotheses, criteria and script hashes to
+        \texttt{preregistration.json} before running; scripts refuse to overwrite outputs.
+  \item \textbf{Within-layer inference (M0).} Fixed-effects regressions with Freedman--Lane permutation within layer
+        (5000 permutations), bootstrap CIs (2000) and Holm correction over four primary pairs.
+  \item \textbf{Information (M2).} Statement-grouped bootstrap (paired over the same rows), one-sided tests against
+        noise and PCA references, Benjamini--Hochberg correction across SAEs per task; a 0.02 AUROC tolerance defines
+        ``preserved''.
+  \item \textbf{Causal (M3/M4).} Holm-corrected tests over 65 cells; 200 matched-norm random vectors per cell; synonym
+        and neutral controls; for features, 200 random feature sets matched on activation frequency and $|\Delta z|$.
+  \item \textbf{Fine-tuning comparisons (IMP-L, RLM-RP, E3).} Paired by seed within layer and architecture; mean,
+        sd, per-seed values and a 95\,\% $t$-interval with 2 degrees of freedom. The pre-registered ``consistent''
+        rule (all three seeds and $|$mean$|>2$ sd) is not equivalent to that interval: a cell can meet the rule while
+        its interval touches zero. Per-SAE uncertainty in RLM-RP and E3 comes from a statement-grouped bootstrap
+        (1000 and 2000 resamples). E3's M4 control tests use Benjamini--Hochberg correction over its 36 SAEs. No
+        correction is applied across the 9--12 cells of a fine-tuning criterion.
+  \item \textbf{Seeds.} Three training seeds share the same training data, so seed spread understates uncertainty;
+        comparisons that share seeds are paired. The fine-tuning criterion ``consistent'' requires the improvement on
+        all three seeds and a mean paired difference larger than twice its standard deviation.
+  \item \textbf{PCA-CM (capacity-matched PCA).} Per seed, a paired statement-grouped bootstrap (1000 resamples,
+        shared within a layer) of SAE gap $-$ PCA gap; a cell is better or worse only if every seed's 95\,\% interval
+        excludes zero. No correction across cells is part of the rule; an approximate post-hoc Holm correction is
+        reported alongside (Section~\ref{sec:pcacm}).
+  \item \textbf{Sensitivity (minimum detectable effect).} At two-sided $\alpha=0.05$ and power 0.80,
+        MDE $=2.80\times$SE, with SE taken from the stored intervals. This describes the design, not post-hoc power.
+        \begin{itemize}
+        \item GoT, one SAE's re-fit gap on TEST ($n=452$): 0.030--0.048 AUROC.
+        \item GoT, between-family comparisons (seed plus statement variance): about 0.05--0.09 AUROC. The observed
+          differences are at most 0.025, so ``no clear change'' means no change larger than about 0.05--0.09 AUROC,
+          not that truth information is preserved.
+        \item M4 causal preservation $T_{\text{rec}}/T_{\text{full}}$, one SAE: 0.013--0.017 at L1, 0.036--0.069 at
+          L11 and 0.054--0.107 at L8, where $T_{\text{full}}$ is only 0.022 nats.
+        \end{itemize}
+  \item \textbf{Splits.} Fitting and selection use training data; validation results are reported as
+        \evlabel{validation}. The OWT and GoT results of the single pre-registered held-out pass (M5,
+        Section~\ref{sec:m5}) are \evlabel{test}. RepE-LM now has a held-out split and a frozen protocol, but it has not
+        been evaluated, so every persona, representation and causal result remains \evlabel{validation}.
+\end{itemize}

@@ -1,0 +1,16 @@
+{
+  "split": "validation",
+  "got_split": "val",
+  "n_owt_sequences": 100,
+  "n_got_eval_rows": 448,
+  "n_pca_train_tokens": 101600,
+  "smoke": false,
+  "test_rows_used": 0,
+  "L1_owt_val_tokens": 12700,
+  "L8_owt_val_tokens": 12700,
+  "L11_owt_val_tokens": 12700,
+  "runtime_s": 3724.2436628341675,
+  "script_sha256": "f545601b129c77875c25202de5810dc7889fbb77b1766de4bc1e74e9e44340fd",
+  "n_rows": 96,
+  "n_paired": 174
+}

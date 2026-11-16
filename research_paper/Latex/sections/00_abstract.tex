@@ -1,0 +1,40 @@
+\begin{abstract}
+Sparse autoencoders (SAEs) are widely used to explain what large language models represent, which presumes that an
+SAE is a faithful stand-in for the activations it replaces. We audit that presumption at all twelve layers of GPT-2
+Small for three SAE architectures (ReLU, TopK and a sigmoid-surrogate JumpReLU; 108 SAEs at matched sparsity, three
+seeds each), separating four levels of faithfulness: reconstruction, task-information preservation, behavioural
+faithfulness and causal faithfulness. Reconstruction degrades with depth (OWT test explained variance 0.93--0.95 at
+layers 0--2, 0.76--0.82 at layer 11). Within a layer, reconstruction error predicts how much splicing the SAE damages
+the model's predictions, but not how much truth information is lost. The apparent collapse of a frozen truth probe
+on SAE reconstructions is largely reproduced by random noise of the same norm, but for persona instructions the SAEs
+lose 2--3 times more than such noise and re-trained readers recover almost none of it, and they distort the
+honest-minus-dishonest activation difference (per-pair cosine 0.35--0.58). At matched reconstruction error, PCA
+generally preserves more truth-related information than the evaluated SAEs. However, this comparison allows PCA
+substantially more dimensions (298--519) than the SAEs' active-feature budget (128). Under a fixed 128-dimensional
+PCA comparison, trained SAEs are better under the study's comparison criterion in 3 of 20 comparisons and not classified worse in
+the remaining 17; when PCA dimensionality is matched to task-specific SAE activity, they are better in 8 of 20 and not
+classified worse in the remaining 12 (\evlabel{validation}). Conclusions about representational faithfulness therefore depend on
+the comparison constraint. Using an
+equal-length persona-instruction task built to remove a length shortcut, we locate where GPT-2 carries the
+instruction's effect and decompose it: the SAE-reconstructed activation difference restores 93--97\,\% of the effect
+at the layer-1 persona token but only 62--68\,\% at the layer-8 and layer-11 final token, with the remainder in the
+reconstruction error or in an interaction between reconstruction and error. Short fine-tuning at layers 3, 6, 8 and 9
+separates these levels again. Reconstruction fine-tuning on truth statements cuts their reconstruction error by
+61--85\,\% and lowers the truth gap measured by a frozen nonlinear probe fitted on original activations, meeting its
+pre-registered criterion in 4 of 9 layer--architecture cells beyond layer 6; frozen logistic and re-trained probes show
+no consistent gain, so we do not claim that truth information is recovered, and it leaves persona representation and
+causal preservation unchanged. Adding an output-KL term improves behavioural faithfulness consistently in all 9 cells,
+but only 5 are creditable: in the other 4 (ReLU and JumpReLU at layers 8--9) L0 rose 5.3--8.1\,\%, beyond the
+pre-registered $\pm$5\,\% guard. Output-KL never improves truth preservation, and its apparent gains in causal
+preservation (+0.02 of the effect) occur only in those sparsity-violating cells; for TopK, whose sparsity is fixed,
+it has no effect. Retraining our SAEs on 100M tokens at width 12,288 cuts reconstruction error by 31--74\,\% and
+splice damage by 35--79\,\% at layers 1, 8 and 11, raises the persona effect carried at layer 8 from 62\,\% to
+73--75\,\% (validation; a gain at the edge of what the per-SAE intervals can detect), and a short KL fine-tune at fixed L0 lowers splice damage by a further 16--17\,\%, at a
+cost in causal preservation at layer 11; in a single pre-registered held-out evaluation the reconstruction and
+behaviour gains are \evlabel{confirmed}, while truth information shows no confirmed gain; that test could not have
+detected changes smaller than about 0.05--0.09 AUROC. Our
+conclusions also hold for a public 24,576-latent SAE trained on 300M tokens. Unless marked \evlabel{test}, results are
+\evlabel{validation} findings.
+\end{abstract}
+
+\pending{Abstract to be revised after E1. Numbers are validation-stage unless marked \evlabel{test}.}

@@ -1,0 +1,37 @@
+\section{Datasets and Experimental Setup}\label{sec:setup}
+
+\paragraph{OpenWebText (OWT).} 1000 documents sampled from \texttt{Skylion007/openwebtext} (streaming shuffle, seed
+42, 100--20{,}000 characters, exact deduplication), split 800/100/100 by document. Each document is truncated to 128
+tokens; excluding BOS this gives 101{,}600 / 12{,}700 / 12{,}700 training, validation and test tokens.
+
+\paragraph{Geometry of Truth (GoT).} The \texttt{cities} and \texttt{neg\_cities} sets \citep{marks2023geometry}
+(1496 statements each) form the ``geographic'' truth task, with city-grouped splits of 1046/224/226 per set. The
+numerical sets have a surface shortcut (the second number alone gives AUROC 0.84) and are used only as a diagnostic.
+
+\paragraph{RepE-LM persona task.} Our original persona prompts (``Pretend you're an honest/untruthful person'') had a
+length shortcut: \emph{untruthful} is three tokens longer than \emph{honest}, and prompt length alone predicts the
+label with AUROC 0.80. We therefore built RepE-LM: 506 statements (train 417, validation 89) times 20 prompt variants,
+in which the two prompts of each pair differ in exactly one token at a fixed position. Templates T1--T4 swap
+truthful/deceptive, trustworthy/dishonest, sincere/lying and facts/lies, each with an honest-synonym control; T5--T6
+are held out; N1--N2 swap neutral words (tall/short, red/blue). Seven pre-registered gates (Table~\ref{tab:m1})
+verify the construction.
+
+\paragraph{SAE training.} For each layer, architecture and seed (42, 1042, 2042) we train one SAE with width 3072,
+Adam (learning rate $3\times10^{-4}$), batch 256 sampled with replacement, gradient clipping at 10, and one
+uninterrupted run of 15{,}000 steps (3.84M samples, about 38 passes over the training tokens). Architectures are
+compared only when every run's L0 is within $\pm$10\,\% of the target; 107 of 108 runs qualify (layer-0 JumpReLU seed
+42 does not).
+
+\paragraph{Splits.} Probes and selections use training data; results are reported on validation unless labelled
+\evlabel{test}. The RepE-LM test split has never been built or accessed. The GoT test split was scored in earlier
+frozen-probe evaluations and is treated as previously exposed (Appendix~\ref{app:exposure}).
+
+\paragraph{Evidence status of every result in this paper.} Apart from the OWT reconstruction table
+(\evlabel{test}), \emph{every} result reported here (M0--M4 and the fine-tuning experiments) is a
+\evlabel{validation} finding. Hypotheses, criteria and scripts were fixed before each run, but the held-out test
+evaluation (M5) has not been run, so no result is a confirmed held-out finding. When a site or effect selected on training prompts
+is said to have \emph{replicated}, it means only that it held again on validation prompts. Fine-tuning
+classes (\evlabel{preliminary improvement}, \evlabel{no improvement}, \evlabel{not creditable},
+\evlabel{regression}) are validation classes; none of them is a confirmed result.
+
+\input{tables/t_m1}

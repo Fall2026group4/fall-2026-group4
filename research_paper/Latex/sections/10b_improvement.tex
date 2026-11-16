@@ -1,0 +1,244 @@
+\section{Improving the SAEs: Data-Scaled Retraining and a Fixed-L0 KL Fine-tune}\label{sec:improve}
+
+This section reports the GPT-2 improvement phase (R2, R4) and two reference experiments (R5, E2). Everything here is a
+\evlabel{validation} finding, except Section~\ref{sec:m5}, which is the single pre-registered \evlabel{test} pass.
+\textbf{All improved SAEs are trained by us.} The public \texttt{gpt2-small-res-jb} SAEs~\citep{bloom2024gpt2} serve only as an external reference
+(E2). They are never counted as our improvement.
+
+\subsection{R2: data-scaled retraining}\label{sec:r2}
+
+\paragraph{Problem.} Our base SAEs were trained on 101,600 OWT tokens, at width 3,072, and their validation EV was
+still rising when training stopped (Instructor Review \#8). It is therefore unclear which of our findings reflect SAEs
+in general and which reflect undertraining.
+
+\paragraph{Solution.} We retrained at layers 1, 8 and 11 with a modern recipe and about 1000$\times$ more data:
+\begin{itemize}
+\item TopK with an AuxK dead-latent loss~\citep{gao2024scaling}, BatchTopK~\citep{bussmann2024batchtopk}, and ReLU with an L1 coefficient
+  controlled to L0\,=\,128;
+\item width 12,288, plus a TopK-3072 width ablation;
+\item 100M fresh OWT tokens per SAE (shard 78, excluding every document in our own sample);
+\item encoder initialised to the decoder transpose, input scaling folded into the weights, cosine decay;
+\item three seeds each;
+\item a frozen-random-decoder TopK as a random baseline~\citep{korznikov2026random}.
+\end{itemize}
+A modern JumpReLU (STE) did not settle at L0\,=\,128 in the pilot. It was abandoned and disclosed before the full run.
+
+\paragraph{Pipeline.}
+\begin{enumerate}
+\item Activations are streamed from GPT-2 into a GPU buffer. 39 SAEs were trained in 5.5\,h on one A10G, and GPT-2's
+  parameters were unchanged afterwards.
+\item Every SAE (old, R2 and res-jb) goes through one evaluation \emph{ladder}. It imports the existing M2 (information), RLM-RP
+  (representation), M4 (causal) and splicing (behaviour) code unchanged. This harness reproduces the committed old-SAE
+  results (splicing $\leq 2\times10^{-5}$, M4 $\leq 10^{-6}$, logistic gaps $\leq 8\times10^{-4}$).
+\item The comparisons and their rule were fixed and hashed before training:
+  \begin{itemize}
+  \item IMPROVEMENT requires all 9 new/old seed pairs to favour the new SAE \emph{and} a Welch 95\,\% interval
+    excluding 0.
+  \item Every SAE had OWT L0 within $\pm$10\,\% of 128, so none was excluded.
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{Results.} Tables~\ref{tab:r2_c1} and~\ref{tab:r2_c3} give before/after values for TopK and for the best old
+reconstructer (JumpReLU) against R2 BatchTopK. Table~\ref{tab:r2_counts} summarises all comparisons.
+\begin{itemize}
+\item \textbf{Reconstruction and behaviour.} Both improve at every layer and for every architecture.
+  \begin{itemize}
+  \item NMSE falls by 31--74\,\% and spliced $\Delta$CE by 37--82\,\%.
+  \item For TopK at L8, $\Delta$CE falls from 0.126 to 0.060 nats, and at L11 from 0.213 to 0.100.
+  \item At equal width (A1), data and recipe alone give 23--35\,\% of the NMSE reduction and 33--38\,\% of the
+    $\Delta$CE reduction. Width (A2) gives the rest.
+  \end{itemize}
+\item \textbf{Causal preservation.} It improves for the first time under a pre-registered rule.
+  \begin{itemize}
+  \item TopK $T_{\text{rec}}/T_{\text{full}}$: 0.62$\to$0.73 (L8) and 0.62$\to$0.69 (L11).
+  \item The L8 gain (+0.10) passes the seed-level rule but is borderline at the statement level: one SAE's
+    preservation at L8 can only be resolved to 0.054--0.107 (minimum detectable effect, Section~\ref{sec:stats}), so
+    it is a \evlabel{validation} finding that needs the RepE-LM test split before it is claimed.
+  \item BatchTopK reaches 0.75 at L8.
+  \end{itemize}
+\item \textbf{Persona representation.} Pair-direction cosine improves everywhere (L8: 0.39$\to$0.49).
+\item \textbf{Persona information.} The re-trained persona gap falls by 27--31\,\% at L8/L11 for TopK. The gap
+  \emph{relative to PCA at equal OWT error}, however, never improves, and for ReLU it regresses at L1 and L8. This
+  PCA reference is matched on error, not on the number of dimensions (Section~\ref{sec:pcacm}).
+\item \textbf{GoT.} No GoT information metric changes clearly. At L8 the random-decoder baseline has a smaller GoT
+  re-fit gap than the trained SAE (0.052 vs 0.081), so this metric does not discriminate there.
+\end{itemize}
+
+\paragraph{Inference.}
+\begin{itemize}
+\item Undertraining explains a large part of the behavioural and causal unfaithfulness we measured. It explains little
+  of the information loss: better reconstruction raises the error-matched PCA reference as much as the SAE, and SAEs
+  still do not beat PCA at equal error. At an equal per-token budget, the comparison changes
+  (Section~\ref{sec:pcacm}).
+\item Splice damage remains 1.25--1.61$\times$ that of same-norm noise at L8/L11, compared with 1.45--1.96$\times$
+  before. So the remaining error is still structured~\citep{engels2024darkmatter}.
+\end{itemize}
+
+\input{tables/t_r2_c1}
+\input{tables/t_r2_c3}
+\input{tables/t_r2_counts}
+
+\subsection{R4: KL fine-tuning at fixed L0}\label{sec:r4}
+
+\paragraph{Problem.} IMP-L's output-KL fine-tune improved behaviour, but for ReLU and JumpReLU only with L0 drift
+(not creditable). For TopK it showed no effect, on weak SAEs.
+
+\paragraph{Solution.} We fine-tune the strong R2 TopK-12288 SAEs, whose L0 is fixed at exactly 128.
+\begin{itemize}
+\item The objective is NMSE plus $\alpha\,$KL$(p_{\text{orig}}\Vert p_{\text{spliced}})$, after \citet{karvonen2025kl}.
+\item The run is short: 5M tokens, about 5\,\% of the training budget.
+\item An MSE-only control continues on identical tokens.
+\end{itemize}
+
+\paragraph{Pipeline.}
+\begin{itemize}
+\item Layers 8 and 11, 3 seeds, learning rate $2\times10^{-5}$.
+\item $\alpha$ is set by first-batch scale matching.
+\item The same ladder evaluates every SAE.
+\item The IMP-L rule applies: better on all 3 seeds and $|\bar d|>2\,$sd, with an EV guard.
+\end{itemize}
+
+\paragraph{Results} (Table~\ref{tab:r4}).
+\begin{itemize}
+\item Spliced $\Delta$CE falls by 18\,\% against the MSE control at both layers (L8: 0.060$\to$0.049; L11:
+  0.100$\to$0.081), with KL down 13--17\,\%. The cost is $-0.002$ EV, so the guard passes.
+\item Information gaps do not change.
+\item Pair-direction cosine drops by 0.012--0.013.
+\item At L11, causal preservation \emph{decreases}: 0.694$\to$0.671, \evlabel{regression}, all seeds.
+\end{itemize}
+
+\paragraph{Inference.} A behavioural objective improves behaviour creditably once sparsity is fixed. Its gain does not
+transfer to information, representation or the causal persona effect, and partly reverses the causal effect. This is a
+further dissociation between faithfulness levels, so the KL fine-tune is a behaviour-only tool.
+
+\input{tables/t_r4}
+
+\subsection{R5: how much of the persona effect can a low-rank intervention carry?}\label{sec:r5}
+
+\paragraph{Problem.} M4's shares (62--68\,\% for the reconstruction, 2--74\,\% for top-$k$ features) had no
+reference point.
+
+\paragraph{Solution.} At each M4 site and rank $k$ we compare:
+\begin{itemize}
+\item a supervised subspace learned on TRAIN pairs (DAS-style; \citealp{chaudhary2024evaluating});
+\item PCA of the TRAIN differences;
+\item the mass-mean direction;
+\item 20 random subspaces;
+\item M4's SAE feature patches.
+\end{itemize}
+
+\paragraph{Results} (Table~\ref{tab:r5}).
+\begin{itemize}
+\item The effect is low-rank:
+  \begin{itemize}
+  \item one learned direction carries 0.92 (L1), 0.64 (L8) and 0.40 (L11);
+  \item four learned directions carry 1.02, 0.91 and 0.62.
+  \end{itemize}
+\item Four SAE features carry 0.10--0.16.
+\item At L8 a rank-4 subspace carries more of the effect than the whole SAE reconstruction (0.91 vs 0.62--0.67).
+\item Random subspaces carry $\leq$0.13 even at $k=64$.
+\end{itemize}
+
+\paragraph{Inference.} The reconstruction's partial share at L8/L11 is a property of the SAE, not of the task. The SAE
+basis is far from the best basis at matched rank, although well above random.
+
+\input{tables/t_r5}
+
+\subsection{E2: do our conclusions hold for an external SAE?}\label{sec:e2}
+
+\begin{itemize}
+\item \textbf{Conclusions that hold for res-jb} (24,576 latents, 300M tokens; Table~\ref{tab:e2}):
+  \begin{itemize}
+  \item the frozen GoT loss is mostly probe fragility (H1 holds for GoT);
+  \item the persona loss is real (H1 fails for persona, and H2 holds);
+  \item the SAE never beats PCA at equal reconstruction error (H3 holds at all four layers);
+  \item the reconstruction carries only part of the persona effect at L8 and L11 (H4).
+  \end{itemize}
+\item \textbf{The one exception} is the GoT re-fit gap at L8, which is small with a CI touching zero, as for our own
+  SAEs.
+\item \textbf{Inference.} Instructor Review \#8's concern that our SAEs are small and unconverged does not explain
+  these conclusions.
+\end{itemize}
+
+\input{tables/t_e2}
+
+\subsection{M5: confirmatory test pass}\label{sec:m5}
+
+\paragraph{Protocol.} Before any test row was read, we froze and hashed the following, and then ran it once:
+\begin{itemize}
+\item the script and every module it imports;
+\item the full SAE list: 81 SAEs, with no selection;
+\item the metrics;
+\item the rules (C1--C3, A1, A2: the R2 rule; K1, K4: the IMP-L rule).
+\end{itemize}
+It reads OWT test (12,700 tokens per layer) and GoT cities+neg\_cities test (452 rows): 552 test rows in total.
+RepE-LM has no test split, so the persona, representation and causal results stay \evlabel{validation}. A smoke run
+on validation rows reproduced the ladder exactly for the OWT metrics and to within $10^{-4}$ for GoT.
+
+\paragraph{Results} (\evlabel{test}; Tables~\ref{tab:m5} and~\ref{tab:m5_counts}).
+\begin{itemize}
+\item \textbf{R2: every reconstruction and behaviour cell replicates.}
+  \begin{itemize}
+  \item NMSE falls by 31--74\,\% and spliced $\Delta$CE by 35--79\,\% at layers 1, 8 and 11, for all three
+    comparisons and both ablations.
+  \item For TopK, L8 $\Delta$CE falls from 0.133 to 0.062 nats and L11 from 0.204 to 0.096.
+  \end{itemize}
+\item \textbf{GoT information shows no confirmed improvement.}
+  \begin{itemize}
+  \item No comparison improves the GoT re-fit gap or the SAE$-$PCA gap.
+  \item Width alone (A2) makes both slightly \emph{worse} at L8 (\evlabel{regression}).
+  \end{itemize}
+\item \textbf{R4:} the KL fine-tune lowers $\Delta$CE by 16--17\,\% against the MSE control at both layers, at a
+  2\,\% NMSE cost (classified as a regression in NMSE, and within the pre-registered EV guard). It has no GoT effect.
+\end{itemize}
+
+\paragraph{Inference.} The improvement phase's behavioural and reconstruction gains are \evlabel{confirmed}. No
+truth-information gain is detected: the SAEs reconstruct and behave much better but do not preserve GoT truth
+information measurably better, and still not better than PCA at equal error. This is an absence of evidence within the
+design's sensitivity. Between-family differences in the re-fit gap smaller than about 0.05--0.09 AUROC could not have
+been detected (Section~\ref{sec:stats}); the observed differences are at most 0.025. The two A2 regressions
+($|d|=0.012$ and 0.015) are about a quarter of the statement-level minimum detectable effect and are not robust.
+
+\input{tables/t_m5}
+\input{tables/t_m5_counts}
+
+\subsection{PCA-CM: does the SAE--PCA verdict depend on how PCA is matched?}\label{sec:pcacm}
+
+\paragraph{Problem.} Every PCA reference above is matched on OWT reconstruction error. For the trained SAEs this gives
+PCA $k=298$--519 dense components (R2/R4: 404--519), while every SAE uses about 128 active latents per token. The
+random decoder reconstructs worse, so its error-matched PCA gets only $k=143$--164; its ``tie'' with trained SAEs on
+SAE$-$PCA is therefore partly mechanical.
+
+\paragraph{Design} (pre-registered and hashed before the run; \evlabel{validation} only; no test row read; nothing
+trained). For every M5 SAE we compared three PCA references, all fitted on OWT TRAIN: error-matched (as before),
+fixed $k=128$ (the per-token active budget), and $k$ equal to the SAE's mean active latents on GoT prompts. Readers
+are fitted on GoT TRAIN (2,092 rows) and scored on VAL (448 rows, 224 city groups). A family$\times$layer cell is
+``better'' or ``worse'' only if every seed's paired 95\,\% grouped-bootstrap interval of (SAE gap $-$ PCA gap)
+excludes zero.
+
+\paragraph{Results} (Table~\ref{tab:pcacm}).
+\begin{itemize}
+\item \textbf{Equal error (replication).} The SAE is worse in 13 of 20 trained cells and never better. The existing
+  finding replicates on validation.
+\item \textbf{Fixed $k=128$.} Trained SAEs are better in 3 of 20 cells (R2 ReLU at L8 and L11; res-jb at L8) and not
+  worse in the remaining 17; no individual seed's interval favours PCA. At L11, R2 ReLU's gap is 0.076 against PCA's
+  0.153.
+\item \textbf{$k$ matched to task activity} ($k=54$--128). Better in 8 of 20 cells, not classified worse in the remaining 12.
+\item \textbf{Reconstruction and behaviour.} PCA-128 has NMSE 0.30/0.46/0.43 and $\Delta$CE 0.40/0.99/1.06 nats at
+  L1/L8/L11; every trained SAE beats it on NMSE, $\Delta$CE and KL on every seed.
+\end{itemize}
+
+\paragraph{Statistical status.} ``Better'' here is the study's pre-registered comparison criterion, not a
+family-wise significance claim: the rule is applied per cell without correction. Under an approximate post-hoc Holm
+correction over the 40 capacity-matched cells (normal approximation to the stored intervals), 1 of the 3 cells at
+$k=128$ (R2 ReLU, L11) and 4 of the 8 task-matched cells survive. ``Not worse'' means only that no interval favours PCA. It is not an equivalence or non-inferiority result: the pre-registered $\pm0.02$ equivalence class is met in 0 of the 40 capacity-matched cells, because the paired intervals (half-width about 0.03--0.05) are wider than the margin.
+
+\paragraph{Inference.} At matched reconstruction error, PCA generally preserves more truth-related information than
+the evaluated SAEs, but that comparison allows PCA substantially more dimensions than the SAEs' active-feature budget.
+At an equal per-token budget, no trained SAE is classified worse than PCA and, mainly for ReLU-family SAEs, some are better. These
+findings are \evlabel{validation} findings and show that conclusions about representational faithfulness depend on the
+comparison constraint. $k=128$ equalises the per-token active budget, not parameters or representational capacity: a
+TopK SAE chooses 128 of 12,288 learned directions per token, whereas PCA-128 is one fixed subspace. The persona task
+has not been re-tested this way.
+
+\input{tables/t_pcacm}
