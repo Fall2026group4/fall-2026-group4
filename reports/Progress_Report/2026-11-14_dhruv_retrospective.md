@@ -104,3 +104,33 @@ Only mappings that hold literally are listed. Limits are stated where my work co
 - **#28 (head `2bab391`, local check):** files equal `167fadb`; M6 test files 59 passed, 1 failed (H4a tolerance,
   about 4e-8 on Windows); figures regenerated from the saved tables match the committed ones in content (not byte for
   byte: different matplotlib version).
+
+## Week of 2026-11-08 (added 2026-11-16; dates are local time, UTC-5)
+
+- **2026-11-10, causal follow-ups on `dhruv-causal` (PR #26):** `d9e14d2` (reanalysis of the layer-6 causal test,
+  SAE-in-the-loop test, probe error decomposition), `eed77a7` (GoT causal test, sparsity-matched preservation, public
+  SAE splicing, figures), `68181e0` (exact final-token recomputation so the runs fit in one Kaggle session) and
+  `989d313` (the run outputs).
+- **2026-11-13:** `d2f67aa` on `cleanup-main` (#24) kept a file that GoT script 10 needs. For R3: pre-registration
+  `2118b3c`, literature comparison `b82e871`, and Amendment 1 `8ed8102` (move from AWS A10G to Kaggle T4 x2).
+- **2026-11-14, R3 code and branch:** implementation `07e3c8f` (scripts 05 to 07, tests, Kaggle notebook); R3 moved
+  out of #28 into `dhruv-gemma-r3` (`961dc60`, with the revert `2bab391` on #28); Kaggle torchvision fix `2d395d0`;
+  this report `33a7df3`; Clarification 2 `e2b7b3a` (the fp32 reference becomes its own step, K0F).
+- **2026-11-14, first K0 run on Kaggle** (run id `K0_20261115T024202Z`, UTC): it crashed at the end of the fp32
+  step, so nothing from it is used (R3 README, "Run attempts"). This led to Clarification 2.
+- **2026-11-14 evening (GitHub shows 2026-11-15 UTC), PR reviews, all approved:** #28 (rechecked the output hashes,
+  re-derived the headline numbers from the per-document rows, confirmed the branch equals `167fadb`); #29 (checked
+  the slides against the M6 outputs and asked for a fix to the provenance line on slide 20); #22 (Pile EDA; confirmed
+  it has no file overlap with #28).
+
+## Week of 2026-11-15 (up to 2026-11-16)
+
+- **2026-11-16, `d11c93e`:** merged `origin/main` into `dhruv-gemma-r3` after #28 was merged. My doc entries were
+  renumbered to D37 and §44. The M6 files are unchanged.
+- **2026-11-16, `10286e7`:** recorded R3 Deviations 1 and 2 (K3 split into K3a and K3b; Tier B cancelled) before any
+  Tier A result was looked at.
+- **2026-11-16, PR #30:** base changed from `simba-gemma-m6-results` to `main` (Instructor Review #9); review requested
+  from Simba. `268fae3` added the "In my own words" section to this report.
+- **R3 runs on Kaggle (R3 README, Section 3, as of 2026-11-16):** K1 (layer 5) finished in 7.64 h, and K2 (layer 19)
+  has started. The outputs are still on Kaggle and no metric has been read, so no result is claimed. The run record of
+  the K0 rerun that K1 used is not in the repository yet.
