@@ -588,9 +588,18 @@ def test_q0b_refuses_an_unfinished_fp32_reference(s05, s06, tmp_path):
     assert not s06.fp32_reference_finished(d)
 
 
+# matplotlib version that wrote the committed R3 SVGs (2026-11-17, `de58a2e`). figure_info.json does not record it, so it
+# is pinned here. SVG bytes are not stable across matplotlib versions.
+R3_FIGURES_MATPLOTLIB = '3.10.7'
+
+
 def test_vector_figures_reproduce_the_committed_svgs(tmp_path):
     """Script 08 (script 07 run unchanged, PNG saves redirected to SVG) redraws the committed R3 figures from the
     committed tables: SVG only, LF line endings, byte-identical to results/.../figures/ (Instructor Review #9)."""
+    mpl = pytest.importorskip('matplotlib')
+    if mpl.__version__ != R3_FIGURES_MATPLOTLIB:
+        pytest.skip(f'committed R3 SVGs were written with matplotlib {R3_FIGURES_MATPLOTLIB}; installed is '
+                    f'{mpl.__version__}, and SVG bytes are not stable across matplotlib versions')
     exp = ROOT / 'results/gemma2_pile/r3_gemma_scope_ladder'
     committed = exp / 'figures'
     if not (exp / 'ladder/run_info.json').exists() or not committed.exists():
