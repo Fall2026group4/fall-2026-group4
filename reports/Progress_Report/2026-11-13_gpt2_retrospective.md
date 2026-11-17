@@ -2,9 +2,8 @@
 
 **This is a retrospective compilation, written on 2026-11-13.** These entries were not submitted weekly. Each entry is
 taken from the dated journal (`docs/RESEARCH_PROGRESS.md`, section numbers in brackets) and the Git history of
-`sae-research`. Weeks with no dated GPT-2 evidence are marked as such and left empty. The weekly table covers
-GPT-2 work only; teammates' Gemma and branch work is not listed in it. Individual explanations, including Simbarashe's
-Gemma contribution, are in the final section.
+`sae-research`. Weeks with no dated GPT-2 evidence are marked as such and left empty. Teammates' Gemma and
+branch work is not described here.
 
 | Week of | GPT-2 work (evidence) | Status label |
 |---|---|---|
@@ -24,22 +23,3 @@ Gemma contribution, are in the final section.
 * Link `as650@gwu.edu` to the GitHub account.
 * Team merge order for #27, #26, #28, #21 and #24.
 * Journal choice and template; revised presentation deck; poster; videos.
-
-## Individual Contribution Explanations
-
-*Each team member writes their own explanation. Aditi Shukla and Dhruv Rai will add theirs separately.*
-
-### Simbarashe Simbanegavi
-
-My main contributions focused on the Method A improvement experiments and on extending our SAE faithfulness study to
-Gemma-2-2B. For Method A, I tested whether fine-tuning an SAE on truth-related examples could improve the preservation
-of task information without damaging the language model's normal behaviour. The experiments showed some improvements
-when we used the original frozen probe, but those improvements were not robust when the probe was re-trained, so we
-could not claim that the SAE genuinely preserved more truth information.
-
-For the Gemma experiment, I used public Gemma Scope SAEs at three layers and tested what happened when their
-reconstructed activations were placed back into Gemma-2-2B. At all three layers, SAE reconstruction error caused more
-next-token prediction damage than a random error of the same size. This supported our broader finding from GPT-2 that
-reconstruction quality alone does not fully describe behavioural faithfulness. My main takeaway is that an SAE should
-not be judged only by how accurately it reconstructs activations; we also need to test whether it preserves
-information and model behaviour.
