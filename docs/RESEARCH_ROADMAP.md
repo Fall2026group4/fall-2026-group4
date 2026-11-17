@@ -224,6 +224,12 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
   * `architecture_summary.csv`;
   * warm-start/resume cross-layer runs;
   * Gemma row-split baseline.
+* **Method A layers 5/6/9 extension** (`simba-method-a-multilayer`, `28ad5cf`/`b64e6ed`/`7f2557b`): EXCLUDED from the
+  final scope before the 2026-11-22 technical freeze (`RESEARCH_DECISIONS.md` D37, 2026-11-16).
+  * Status: unmerged exploratory validation work, branch-only and not cited.
+  * Reasons: the criterion was met in 1/9 cells; layer 6 duplicates existing evidence; the layer-9 disagreement with
+    IMP-L is unresolved; there is no re-trained-reader analysis.
+  * Reconciling the two pipelines is out of scope.
 
 ## 11. Housekeeping awaiting approval (not to be done without explicit approval)
 * ~~Deleting `results/professor_review_corrections/`, `scripts/professor_review/`, `src/tests/test_professor_review.py`~~ **DONE 2026-11-07** (approved by the user): retired to `../backups/2026-11-07_retired_professor_review_folders/` after hash verification; Git history keeps the tracked files. The two `.bak` files remain on disk, now gitignored; deleting them still needs approval.

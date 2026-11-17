@@ -1112,3 +1112,34 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
     and `README.md`.
   * 2,941.0 is the value in M0 `architecture_by_layer.csv`, which is unchanged. This is not a new result.
 * **Status:** documented, not committed. It awaits the user's local commit.
+
+## 45. Method A layers 5/6/9 extension audited and excluded from the final scope (2026-11-16). Status: EXCLUDED (documentation only; no experiment run). Evidence: VALIDATION, EXPLORATORY [BRANCH-ONLY]
+
+* **Branch:** `simba-method-a-multilayer` (Simbanegavi Simbarashe). The local ref is at `b64e6ed`; `origin` is at
+  `7f2557b`.
+* **Commits:**
+  * `28ad5cf`: scripts 22/23 for layers 3 and 9.
+  * `b64e6ed`: layer 3 replaced by layer 5. Scripts only; these are already in this branch's history.
+  * `7f2557b`: results in `results/geometry_of_truth/method_a_multilayer/`, 12 files. Not merged.
+* **Design:**
+  * Method A (GoT group-A reconstruction with OWT replay) vs an OWT-only control, 500 steps.
+  * ReLU / TopK / JumpReLU × seeds 42 / 1042 / 2042.
+  * New layers 5 and 9 (36 fine-tunes). Layer 6 reused from `method_a_layer6/per_sae.csv`.
+  * Validation only; no test rows.
+* **Result:**
+  * The success criterion was met in **1/9 cells** (L5 ReLU, paired change −0.066 in the frozen B-MLP gap). The
+    criterion: Method A lower than both base and OWT-only on all 3 seeds, with mean > 2 sd.
+  * All guards pass in every cell.
+  * Method A lowered the gap in 25/27 seed pairs.
+* **Unresolved layer-9 disagreement with IMP-L (`multilayer_finetune/`):**
+  * IMP-L classes L9 ReLU and L9 JumpReLU as PRELIMINARY IMPROVEMENT; this branch does not.
+  * The base B-MLP gaps for the same base SAEs differ (ReLU 0.214 vs 0.246, TopK 0.160 vs 0.198, JumpReLU 0.258 vs
+    0.234), so the two evaluation pipelines are not identical. The cause was not investigated.
+* **Provenance caveats:**
+  * Outputs renamed after the run. `eval_info.json` records the `b64e6ed` evaluation-script hash, whose code writes
+    `*_3_6_9` filenames. The committed files are named `*_5_6_9`, and the script was edited in `7f2557b`.
+  * The pre-registration was written by the script at run time and committed together with the results.
+  * `pretraining_hashes.json` still refers to "layer-3/layer-9".
+  * The 36 checkpoints are not in `checkpoint_registry.csv`.
+  * There is no re-trained-reader analysis.
+* **Final scope decision:** EXCLUDED (D37). Not merged and not cited; the branch is kept unchanged as the record.

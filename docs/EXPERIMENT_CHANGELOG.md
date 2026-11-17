@@ -320,3 +320,9 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | this commit | M `research_paper/Latex/sections/12_appendix.tex`, `results/shared/m0_within_layer_reanalysis/README.md`, `README.md` | Transcription correction: JumpReLU alive-latent range 469–2,947 → 469–2,941 (`architecture_by_layer.csv` holds 2,941.0, unchanged). No result changed |
 | this commit | M `research_paper/Latex/main.pdf` (rebuilt) | Appendix correction |
 | this commit | M `docs/{RESEARCH_PROGRESS,EXPERIMENT_CHANGELOG,EXPERIMENT_RESULTS_SUMMARY,RESEARCH_ROADMAP,results_registry}.md`, `docs/experiment_manifest.csv` (+1 row via `append_experiment`) | Documentation rule |
+
+## 2026-11-16: Method A multi-layer extension scope decision (documentation only)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | M `docs/{RESEARCH_DECISIONS,RESEARCH_PROGRESS,RESEARCH_ROADMAP,results_registry,EXPERIMENT_CHANGELOG}.md` | D37: the `simba-method-a-multilayer` extension (layers 5/6/9; `28ad5cf`, `b64e6ed`, `7f2557b`) was audited and excluded from the final scope. No result, paper, manifest or checkpoint-registry file changed; branch results not merged |

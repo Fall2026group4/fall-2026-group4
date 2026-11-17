@@ -374,3 +374,24 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
 * **Outcome (2026-11-12):** M6 COMPLETED, VALIDATION (`results/gemma2_pile/gemma_scope_splicing/`, README §2). Gates V1–V5 pass; H-G1 supported at layers 5, 12 and 19. SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; the experiment does not identify the mechanism responsible. No numerical ranking against GPT-2 (model, hook, SAE family, width, L0, corpus and context differ).
 * **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, PRE-REGISTERED, not run; its own decision record lives on that branch and is not part of M6.
+
+## D37. Method A layers 5/6/9 extension excluded from the final scope (user, 2026-11-16)
+* **Context:** this resolves the Instructor Review #9 scope-freeze item on the separate Method A multi-layer extension.
+  The exact review text is not stored in the repository.
+* **Decision:** the extension on branch `simba-method-a-multilayer` stays unmerged, exploratory validation work.
+  * Commits: `28ad5cf`, `b64e6ed`, and `7f2557b` (results, on `origin` only).
+  * It is excluded from the final manuscript and from the final scientific scope.
+  * Its results are not cited and must not be used for final claims.
+  * The branch and its artifacts are kept unchanged: not merged, renamed, regenerated or deleted.
+* **Reasons:**
+  * validation-only exploratory work;
+  * the success criterion was met in 1/9 cells, and only layer-5 ReLU is genuinely new positive evidence;
+  * layer 6 duplicates `method_a_layer6/`;
+  * layer 9 disagrees with the IMP-L pipeline the manuscript uses, and the baseline discrepancy is unresolved;
+  * provenance is weaker than IMP-L's;
+  * there is no re-trained-reader analysis, which is central to the final Method A conclusion;
+  * the manuscript's conclusion does not change;
+  * reconciling the two pipelines would be new scope just before the 2026-11-22 technical freeze.
+* **Consequences:**
+  * The Method A evidence in the paper remains layer 6 plus IMP-L at layers 3, 8 and 9 (`multilayer_finetune/`).
+  * No manuscript, results, experiment-manifest or checkpoint-registry change.
