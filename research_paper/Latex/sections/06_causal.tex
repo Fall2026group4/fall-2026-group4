@@ -1,0 +1,54 @@
+\section{Causal Preservation}\label{sec:causal}
+
+\paragraph{Where GPT-2 carries the persona effect.} Before asking whether an SAE preserves a causal effect, we
+located one in the original model. For each RepE-LM pair, the honest and dishonest instructions change the next-token
+distribution by a mean $\mathrm{KL}(p_H\|p_U)$ of 0.033 nats. Copying the honest activation into the dishonest run at
+one layer and position group restores a share of that divergence. The effect is carried by the persona word early
+(share 0.97 at the layer-1 persona slot) and by the final token late (0.95 at layer 11), with a handover at layers 7--8
+(Figure~\ref{fig:m3}, left). Of 65 cells, 50 pass the pre-registered test against 200 matched-norm random vectors with
+Holm correction. The analysis sites were selected on training prompts and replicated on validation prompts: the layer-1
+persona slot, the layer-11 final token and, by a pre-registered amendment, the layer-8 final token. Synonym and template
+controls are described in Appendix~\ref{app:causal}.
+
+\paragraph{How much of the effect the reconstruction retains.} At a site, the activation difference between the two
+prompts splits exactly into a reconstructed part and an error part. We patch each part into the dishonest run and
+measure the share of the full effect it restores, together with their interaction. The reconstructed difference
+restores 93--97\,\% of the effect at the layer-1 persona slot but only 62--68\,\% at the layer-8 and layer-11 final token
+(Figure~\ref{fig:m3}, right). At the later sites ReLU's error part alone carries 40--45\,\%, and for TopK and JumpReLU the
+interaction is large (0.26--0.38 of the effect), so their shares cannot be read additively. Higher explained variance
+does not imply higher causal preservation: at layer 11 TopK has higher EV than ReLU (0.815 versus 0.757) but retains
+less of the effect (0.62 versus 0.68). This ordering is at sparsity matched on OWT. When task-level L0 is matched by
+truncation, 13 of 19 orderings of the base architectures on task metrics change (Appendix~\ref{sec:audit}), and this
+layer-11 causal ordering was not re-tested at matched task L0. The example therefore shows that EV and causal
+preservation can disagree; it does not rank the architectures.
+
+\paragraph{Feature patches and their interpretation.} Patching only the top-$k$ SAE latents, with the error term kept,
+restores more of the effect than 200 frequency- and magnitude-matched random latent sets for every SAE and site
+($p=0.005$, the minimum attainable), and the effect is distributed: one latent carries 2--10\,\% of the reconstructed
+share and 64 latents carry 47--74\,\%. Because the error term is retained, every such patch is equivalent to adding a
+single vector to the original activation; these experiments therefore show which directions the SAE selects and how
+much of the effect its reconstruction preserves, not that downstream computation is mediated through SAE
+nonlinearities (Appendix~\ref{app:causal}).
+
+\paragraph{A low-rank reference.} In a descriptive comparison (\evlabel{validation}), the effect is low-rank: at layer 8 a supervised rank-4 subspace carries more of it
+than the whole SAE reconstruction (0.91 versus 0.62--0.67), whereas random subspaces carry at most 0.13 even at rank 64
+(Appendix Table~\ref{tab:r5}). The partial preservation at later sites is thus a property of the SAE basis, not of the
+task. The effect is small at layer 8 (0.022 nats), so one SAE's preservation share there can only be resolved to about
+0.05--0.11, and smaller differences between SAEs at that site are not interpretable.
+
+\begin{figure}[t]
+  \centering
+  \begin{minipage}[t]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig_m3_sites}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.49\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{fig_m4_preservation}
+  \end{minipage}
+  \caption{Causal site and causal preservation in GPT-2 Small (\evlabel{validation}). Left: share of the
+  persona-instruction effect restored by patching one position group at one layer of the original model. Right: share
+  carried by the SAE-reconstructed activation difference at the three selected sites (mean $\pm$ sd over 3 seeds;
+  templates T2--T4). Per-architecture decomposition values are in Appendix Table~\ref{tab:m4}.}
+  \label{fig:m3}\label{fig:m4}
+\end{figure}

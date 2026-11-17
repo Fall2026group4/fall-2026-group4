@@ -30,7 +30,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | GPT-2 improved SAEs (R2), reconstruction and behaviour, **CONFIRMED TEST** (M5, 2026-11-10) | Old vs R2 SAEs at L1/L8/L11: NMSE −31 to −74 %, spliced ΔCE −35 to −79 %; R4 KL fine-tune ΔCE −16 to −17 %; GoT information unchanged; single pre-registered run. Test rows previously scored for the old reference SAEs only (D31); independently re-verified in `docs/final_defense/EXPERIMENT_AUDIT.md` | `results/shared/m5_confirmatory_test/` |
 | GPT-2 improved SAEs (R2), all ladder levels, VALIDATION | 39 in-house SAEs (100M tokens, width 12,288/3,072) vs old base SAEs; causal T_rec/T_full 0.62 → 0.73 at L8 (validation only) | `results/openwebtext/r2_scaled_saes/` |
 | Gemma-2-2B truth steering (appendix only, D23) | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
-| Gemma-2-2B SAE reconstruction and behavioural splicing (M6, D36; **VALIDATION**) | Pre-registered: Gemma Scope width-16k JumpReLU SAEs at `resid_post` layers 5/12/19 on 512 Pile validation documents; gates V1–V5 pass; **H-G1 supported at all three layers** (SAE-splice ΔCE > norm-matched random-error ΔCE; 95 % and Bonferroni 98.33 % CIs exclude 0). Cite as behavioural splicing and reconstruction only: no layer ranking, no representation-preservation, causal or GPT-2 vs Gemma superiority claim; bf16 logit-precision limitation (H4a). Gemma information and causal faithfulness not tested | `results/gemma2_pile/gemma_scope_splicing/` (README §2, `h_g1.csv`, `summary_by_layer*.csv`, `figures/`) |
+| Gemma-2-2B SAE reconstruction and behavioural splicing (M6, D44; **VALIDATION**) | Pre-registered: Gemma Scope width-16k JumpReLU SAEs at `resid_post` layers 5/12/19 on 512 Pile validation documents; gates V1–V5 pass; **H-G1 supported at all three layers** (SAE-splice ΔCE > norm-matched random-error ΔCE; 95 % and Bonferroni 98.33 % CIs exclude 0). Cite as behavioural splicing and reconstruction only: no layer ranking, no representation-preservation, causal or GPT-2 vs Gemma superiority claim; bf16 logit-precision limitation (H4a). Gemma information and causal faithfulness not tested | `results/gemma2_pile/gemma_scope_splicing/` (README §2, `h_g1.csv`, `summary_by_layer*.csv`, `figures/`) |
 
 ## Pilots (validation only, not for final claims)
 
@@ -104,3 +104,16 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/shared/pca_capacity_matched/posthoc_multiplicity/` | DESCRIPTIVE (post-hoc, approximate) | Cite only to qualify PCA-CM "better" cells as per-cell, not family-wise (D34) |
 | "SAE better than PCA" (PCA-CM) | VALIDATION, per-cell criterion | Never write "significantly better"; write "better under the study's comparison criterion" |
 | R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE | Cite with the per-SAE MDE (0.054–0.107) caveat (D35) |
+
+## 2026-11-15 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/dead_latent_audit/` (`docs/DEAD_LATENT_AUDIT.md`) | VALIDATION FINDING (descriptive diagnostic) | Dead fraction of 108 base and 36 trained R2 SAEs, plus 3 frozen-random-decoder baselines, on OWT validation (12,700 tokens). Cite as a diagnostic, not as evidence of faithfulness; it makes no attribution to data, recipe, duration or width |
+| Appendix / M0 JumpReLU alive-latent range "469–2,947" | SUPERSEDED by "469–2,941" (transcription correction) | Source value `architecture_by_layer.csv` is 2,941.0, unchanged |
+
+## 2026-11-16 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/geometry_of_truth/method_a_multilayer/` on branch `simba-method-a-multilayer` (`7f2557b`; Method A layers 5/6/9) | BRANCH-ONLY; EXPLORATORY / VALIDATION; UNMERGED; NOT CITED in the final manuscript | Do not use for final claims (D45). Criterion met in 1/9 cells; layer-9 disagreement with IMP-L unresolved; provenance caveats in `RESEARCH_PROGRESS.md` §53. Cite IMP-L (`multilayer_finetune/`) and `method_a_layer6/` instead |

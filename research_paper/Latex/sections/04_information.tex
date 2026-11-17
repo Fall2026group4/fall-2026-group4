@@ -1,0 +1,49 @@
+\section{Information}\label{sec:info}
+
+\paragraph{Frozen readers exaggerate the loss of truth information.} A logistic truth probe fitted on original
+activations and applied unchanged to SAE reconstructions loses 0.28--0.29 AUROC on Geometry of Truth
+(Figure~\ref{fig:m2}). Isotropic noise with the norm of the SAE error produces almost the same drop (0.25--0.26), and a
+simpler mass-mean reader loses only 0.02--0.03. Frozen readers therefore exaggerate the loss: isotropic noise of the
+same norm also causes a large drop. But part of the frozen gap (about a third to a half at layers 6--11) is SAE error
+aligned with the truth labels: a shuffled copy of the SAE's own error lowers the frozen reader's AUROC by only
+0.15--0.20 at those layers, against 0.26--0.32 for the error itself (\evlabel{validation}; Appendix~\ref{sec:audit}).
+The collapse is therefore not mostly generic perturbation.
+
+\paragraph{Re-trained readers show a smaller but real loss.} Readers re-trained on the reconstructions are 0.07--0.12
+AUROC worse than readers trained on original activations, and no cell is classified as preserved. The label can also be
+decoded from the reconstruction error alone (AUROC 0.62--0.68), so part of the truth information remains in the
+activation but outside the reconstruction.
+
+\paragraph{Persona information is lost, not merely misread.} On the equal-length RepE-LM prompts the frozen persona
+gap is 1.9--3.4 times the gap caused by norm-matched noise, and re-trained readers recover little of it: the
+re-trained gap is 0.08--0.22, and its statement-bootstrap interval excludes zero for all 99 base SAEs at layers 1--11.
+The loss is not specific to the persona contrast. A neutral one-word swap also loses information, and the raw persona
+gap is larger only because the persona contrast is far more decodable: normalised by that headroom, no layer shows a
+persona-specific loss, and the neutral contrast loses a significantly larger share at layers 5 and 7--11
+(Appendix~\ref{sec:audit}). What the SAEs lose is therefore generic one-word instruction information. The persona contrast is also distorted geometrically: for each pair, the
+reconstructed honest-minus-dishonest difference has a cosine of only 0.35--0.58 with the original difference, even
+though the mean difference direction over all pairs is kept better (0.70--0.86). The SAE reconstructs each prompt
+reasonably well but their difference poorly, because the two reconstruction errors do not cancel.
+
+\paragraph{The SAE-versus-PCA verdict depends on the constraint.} Matched to the SAE's OWT reconstruction error, PCA
+keeps at least as much task information in every cell, and the SAE is worse under the per-cell criterion in 52 of 81
+truth cells, 59 of 99 persona cells and 81 of 90 neutral cells, with no family-wise correction. In the pre-registered capacity-matched replication on the 20 trained
+family$\times$layer cells (Table~\ref{tab:pcacm}), the SAE is worse in 13 and never better. That comparison, however,
+gives PCA 298--519 dense components, whereas each SAE activates about 128 latents per token. Restricted to $k=128$
+components, no trained SAE is classified worse and three of 20 cells are better; with $k$ matched to each SAE's
+task-level activity ($k=54$--128), eight are better and none worse. Under an approximate post-hoc Holm correction over
+the 40 capacity-matched cells, one of the three and four of the eight remain. ``Not worse'' is not equivalence: the
+pre-registered $\pm0.02$ equivalence class is met in none of the 40 cells, because the paired intervals are wider than
+the margin. Whether an SAE preserves more information than PCA therefore depends on whether reconstruction error or the
+per-token active budget is equalised. The persona and neutral tasks were compared at equal error only.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_m2_information}
+  \caption{Information preservation by layer for the base GPT-2 SAEs (\evlabel{validation}). Dashed: frozen logistic
+  AUROC gap; solid: re-trained logistic gap; dotted grey: frozen gap under norm-matched noise; black: PCA matched to the
+  ReLU SAE's reconstruction error. Per-architecture values are in Appendix Table~\ref{tab:m2}.}
+  \label{fig:m2}
+\end{figure}
+
+\input{tables/t_pcacm}
