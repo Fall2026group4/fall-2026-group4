@@ -47,3 +47,16 @@ All CPU-only; no checkpoints, caches or model downloads.
   fresh render from `results/repe/repe_lm_test_evaluation/`; the hypothesis verdicts; every H1-TEST number quoted in
   the paper text (cells, controls, HT4, the 90 secondary counts) matches the artifacts; and the stale "borderline,
   pending the test" phrasings are gone from the paper sections. Skipped if the artifacts are absent.
+
+## Added 2026-11-17 (withdrawn-claims regression guard, D36/D38)
+
+- `test_withdrawn_claims_regression.py` (14 tests): fails if a claim withdrawn by AUDIT-SENS (D38: S2 persona-specific
+  loss; S5 "frozen collapse is mostly perturbation / reader fragility", including its plain-summary form) or
+  superseded by H1-TEST (D36: "the RepE-LM test has produced no results") is asserted in the paper sections, the
+  course report, `docs/plain_summary.md`, the curated summary docs, the GPT-2 slide notes or `README.md`.
+  * Text is normalised first (LaTeX comments, commands, `~` and `\,` spacing, Markdown emphasis, line wrapping and
+    case), so re-worded or re-wrapped copies are still caught.
+  * A sentence that marks the claim as historical ("withdrawn", "superseded", "invalid", …) is allowed.
+  * The research ledgers (`RESEARCH_PROGRESS.md`, `RESEARCH_DECISIONS.md`) are not scanned, because they record
+    withdrawals on purpose. Missing files are skipped, so the test runs on every branch.
+  * Four self-tests cover the matcher (LaTeX, Markdown, comments, historical mentions).

@@ -381,3 +381,14 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 * `src/sae/checkpoint_registry.py`: added families `got_tspr_replication`, `owt_r2_tspr_base`, `got_tspr_smoke`. The
   registry was rebuilt (780 checkpoints).
 * The journal (§50), results summary, D43, roadmap, results registry and manifest were updated.
+
+## 2026-11-17 — Regression guard for withdrawn claims (no experiment run)
+* Added `src/tests/test_withdrawn_claims_regression.py` (14 tests). It protects the D36 (H1-TEST) and D38 (AUDIT-SENS
+  S2, S5) corrections when the restructured manuscript (#31) and `main` are integrated with this branch: the older
+  exact-string checks in `test_audit_sensitivity.py` and `test_h1_test_paper_claims.py` miss re-worded or re-wrapped
+  copies. Those files are unchanged.
+* Checked on copies of other branches (not modified): #31 at `66c114f` fails 4 checks (`04_information.tex`,
+  `08_generalisation.tex`, `09_discussion.tex`); `main` at `bf25b40` fails 5 (abstract, information section,
+  conclusion, `docs/plain_summary.md`). This branch passes.
+* M `src/tests/README.md` (entry for the new test).
+* No results, frozen records, checkpoints or scripts changed.
