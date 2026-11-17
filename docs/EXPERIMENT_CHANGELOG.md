@@ -326,3 +326,9 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | Commit | Files | Reason |
 |---|---|---|
 | this commit | M `docs/{RESEARCH_DECISIONS,RESEARCH_PROGRESS,RESEARCH_ROADMAP,results_registry,EXPERIMENT_CHANGELOG}.md` | D37: the `simba-method-a-multilayer` extension (layers 5/6/9; `28ad5cf`, `b64e6ed`, `7f2557b`) was audited and excluded from the final scope. No result, paper, manifest or checkpoint-registry file changed; branch results not merged |
+
+## 2026-11-17: PR #31 reviewer-driven manuscript corrections (Aditi Shukla, Dhruv Rai; wording only)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | M `research_paper/Latex/sections/{02_setup,04_information,07_improvement,08_generalisation,09_discussion,12_appendix}.tex`, `research_paper/Latex/tables/{t_evidence,t_overview}.tex`, `research_paper/Latex/main.pdf` (rebuilt, 36 pp) | **Changes:** (1) Frozen-probe interpretation revised per S5/D38 (`results/shared/audit_sensitivity/`, on `sae-research`): frozen readers exaggerate the loss, but about a third to a half of the frozen gap at layers 6–11 is label-aligned SAE error. (2) RepE-LM held-out TEST results added (`results/repe/repe_lm_test_evaluation/`, on `sae-research`): HT2 confirmed in 9/9 cells; HT1/HT3 not confirmed, only their TopK L8 cells passed (0.602 → 0.729, Holm p = 0.021; −0.048, Holm p = 0.046), both fragile under statement sampling (S1, Holm p = 0.156); the "evaluate the test protocol" next step was removed. (3) R3 status set to completed at validation, PR #30 under review; not used as evidence. (4) Causal patching (error term kept, no routing through the SAE) is distinguished from splicing. (5) "Significantly worse" changed to "worse under the per-cell criterion" (no family-wise correction, D34). No result file changed. TSP not added (team scope decision); D37/§44/§26 not renumbered |

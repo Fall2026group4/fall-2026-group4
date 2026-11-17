@@ -4,8 +4,9 @@
 
 To check that our conclusions are not an artefact of small, in-house SAEs, we applied the same evaluation to the public
 \texttt{gpt2-small-res-jb} SAEs (24{,}576 latents, 300M training tokens) at layers 8 and 10, with layers 1 and 11 as a
-labelled extension (\evlabel{validation}; Appendix Table~\ref{tab:e2}). The pattern holds: the frozen truth loss is
-mostly reader fragility, the persona loss is real and survives re-training, the SAE does not beat PCA at equal
+labelled extension (\evlabel{validation}; Appendix Table~\ref{tab:e2}). The pattern holds: the frozen truth reader
+again exaggerates the loss (the label-aligned share of the frozen gap was not measured for this family), the persona
+loss is real and survives re-training, the SAE does not beat PCA at equal
 reconstruction error, and the reconstruction carries only part of the persona effect at layers 8 and 11 (0.56 and 0.61).
 The one exception is the re-trained truth gap at layer 8, which is small with an interval touching zero, as for our own
 SAEs. This is a single public family, so it shows that the conclusions do not depend on our training recipe, not that

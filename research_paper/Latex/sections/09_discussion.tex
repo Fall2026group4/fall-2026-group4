@@ -12,7 +12,9 @@ activations, which an SAE can reconstruct poorly even when it reconstructs each 
 
 \paragraph{Measurement choices change information conclusions.} A frozen probe mixes two questions: whether the
 information is still present, and whether the reconstruction stays where that probe was fitted. On truth statements
-the second dominates, and the same reader produced the only apparent truth gain of fine-tuning. Information claims
+both contribute: much of the frozen drop is generic reader sensitivity, but about a third to a half of it at layers
+6--11 is SAE error aligned with the truth labels. The same reader produced the only apparent truth gain of
+fine-tuning. Information claims
 should therefore name the reader, and comparisons with PCA should name what is matched: equal reconstruction error asks
 whether the SAE's error is unusually costly, whereas an equal per-token budget asks whether sparse, input-dependent
 selection beats one fixed subspace of the same width.
@@ -36,15 +38,16 @@ result extends the behavioural part of this account to a second model and an ind
   \item \textbf{Causal evidence.} One persona-instruction effect of 0.02--0.04 nats at three sites of one model. The
         patches retain the error term and do not test mediation through SAE latents; a mediated SAE-in-the-loop
         experiment is pre-registered but not run.
-  \item \textbf{Evidence status.} Only the base reconstruction table and the improvement-phase comparisons on OWT
-        and truth data are held-out results. Every persona, causal, capacity-matched PCA and Gemma result is a
-        validation finding. A held-out RepE-LM test protocol is frozen but has produced no results. Three seeds share
-        training data, so seed spread understates uncertainty, and fine-tuning criteria are applied per cell without
-        multiplicity correction.
-  \item \textbf{R3.} A pre-registered robustness study of how Gemma Scope width and sparsity affect reconstruction and
-        behavioural splicing at the M6 layers is under review and has not produced a finished run. It is
-        \evlabel{pre-registered only}, and none of our conclusions depends on it.
+  \item \textbf{Evidence status.} The held-out results are the base reconstruction table, the improvement-phase
+        comparisons on OWT and truth data, and one pre-registered RepE-LM test evaluation. In that evaluation the
+        per-pair persona direction cosine was confirmed in all nine cells; the causal-preservation and persona re-fit
+        hypotheses were not confirmed, only their TopK layer-8 cells passed, and both of those cells are fragile once
+        statement sampling is included (Section~\ref{sec:r2}). Every other persona, causal, capacity-matched PCA and
+        Gemma result is a validation finding. Three seeds share training data, so seed spread understates
+        uncertainty, and fine-tuning criteria are applied per cell without multiplicity correction.
+  \item \textbf{R3.} A pre-registered study of how Gemma Scope width and sparsity affect reconstruction and
+        behavioural splicing at the M6 layers has completed for 36 SAEs (widths 16k--65k) at \evlabel{validation}
+        level (PR \#30, under review). None of our conclusions depends on it.
 \end{itemize}
-Natural next steps are to evaluate the frozen RepE-LM test protocol, to repeat the capacity-matched PCA comparison on
-test data and on the persona task, to run the mediated intervention, and to extend the information and causal levels
+Natural next steps are to repeat the capacity-matched PCA comparison on test data and on the persona task, to run the mediated intervention, and to extend the information and causal levels
 to Gemma-2-2B.

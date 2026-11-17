@@ -38,8 +38,10 @@ loss from generic perturbation: isotropic noise with the norm of the SAE error, 
 \emph{Behaviour} is measured by splicing $\hat{x}$ into one layer at every non-BOS position and recording the increase
 in next-token cross-entropy ($\Delta$CE, nats per prediction), the KL divergence from the original distribution, and
 loss recovered relative to mean ablation; a norm-matched random-error control replaces the SAE error by a random
-direction of the same norm. \emph{Causal preservation} is measured by activation patching between paired prompts
-(Section~\ref{sec:causal}).
+direction of the same norm. Among the four levels, splicing is the only measurement in which the model's forward pass
+runs through the SAE output. \emph{Causal preservation} is measured by activation patching between paired prompts;
+because the SAE error term is kept, each patch adds a vector to the original activation and does not route
+computation through the SAE (Section~\ref{sec:causal}).
 
 \paragraph{Evidence and statistics.}\label{sec:evidence} Each result carries one evidence level: \evlabel{test}
 (a held-out split evaluated once under a written protocol), \evlabel{confirmed test} (a pre-registered comparison

@@ -44,9 +44,14 @@ AUROC could not have been detected, and the observed differences are at most 0.0
 not discriminate trained SAEs from the frozen-random-decoder baseline at layer 8, where on validation data the baseline
 had the smaller gap (0.052 versus 0.081 for the matched trained SAE, seed 42). On validation data, the re-trained
 persona gap fell by 27--31\,\% for TopK at layers 8 and 11, but the persona gap relative to error-matched PCA did not
-improve, and causal preservation rose from 0.62 to 0.73 at layer 8 and from 0.62 to 0.69 at layer 11. These
-two results are \evlabel{validation} only, and the layer-8 causal gain is close to what the per-SAE intervals can
-resolve.
+improve, and causal preservation rose from 0.62 to 0.73 at layer 8 and from 0.62 to 0.69 at layer 11. A single
+pre-registered evaluation on the held-out RepE-LM test split then tested these representation and causal gains. The
+per-pair persona direction cosine improved in all nine cells (three comparisons at layers 1, 8 and 11;
+\evlabel{confirmed test}). The causal-preservation and persona re-fit hypotheses were not confirmed as a whole: only
+their TopK layer-8 cells passed, with causal preservation rising from 0.602 to 0.729 (Holm $p=0.021$) and the persona
+re-fit gap changing by $-0.048$ (Holm $p=0.046$). Both cells are fragile: once statement-sampling uncertainty is
+included in a sensitivity analysis, their Holm $p$ is 0.156. The layer-11 causal gain remains \evlabel{validation}
+only.
 
 \subsection{Behaviour-targeted training: a trade-off}\label{sec:r4}
 
