@@ -1,0 +1,12 @@
+{
+  "clean_gpu_release": true,
+  "pass_seconds": 345.8,
+  "passes": 385,
+  "peak_memory_gb": {
+    "cuda:0": 11.827,
+    "cuda:1": 4.37
+  },
+  "run_id": "K0F_20261117T083512Z",
+  "seconds": 322.67,
+  "status": "fp32 reference (Part A3), step K0F"
+}

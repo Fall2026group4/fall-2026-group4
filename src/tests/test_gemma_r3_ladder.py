@@ -588,6 +588,25 @@ def test_q0b_refuses_an_unfinished_fp32_reference(s05, s06, tmp_path):
     assert not s06.fp32_reference_finished(d)
 
 
+def test_vector_figures_reproduce_the_committed_svgs(tmp_path):
+    """Script 08 (script 07 run unchanged, PNG saves redirected to SVG) redraws the committed R3 figures from the
+    committed tables: SVG only, LF line endings, byte-identical to results/.../figures/ (Instructor Review #9)."""
+    exp = ROOT / 'results/gemma2_pile/r3_gemma_scope_ladder'
+    committed = exp / 'figures'
+    if not (exp / 'ladder/run_info.json').exists() or not committed.exists():
+        pytest.skip('R3 aggregate outputs are not committed')
+    s08 = _load(ROOT / 'scripts/gemma/08_r3_vector_figures.py', 's08')
+    out = tmp_path / 'figures'
+    s08.main(['--r3-root', str(exp), '--out-dir', str(out)])
+    made = sorted(p.name for p in out.iterdir())
+    assert made == sorted(p.name for p in committed.iterdir())
+    assert not [n for n in made if n.endswith('.png')]
+    for name in made:
+        data = (out / name).read_bytes()
+        assert b'\r\n' not in data, name
+        assert data == (committed / name).read_bytes(), name
+
+
 def test_helpers_are_pure_math_not_rounded(s05):
     """Guard against silently rounding CIs or p-values (all reported values are full precision)."""
     p = s05.one_sided_p(0.123456789, 0.1)

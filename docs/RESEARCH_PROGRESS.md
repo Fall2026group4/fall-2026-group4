@@ -1071,7 +1071,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
 * **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; ONGOING, NO RESULT CLAIMED, code implemented. Not part of M6.
 
-## 44. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16). Status: IN PROGRESS: pre-registered, ongoing; no result claimed
+## 44. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16). Status: COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2)
 
 * **Why:** M6 measured one width-16k SAE per layer. For Gemma, the only lever on reconstruction that needs no
   training is to move along the published width × L0 ladder. R3 measures that trade-off with M6's data, metrics and
@@ -1134,6 +1134,28 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Amendment 2 (2026-11-16, before any result was read):** the Kaggle weekly quota is now 45 h (Colab Pro
   linked), so the pre-registered 30 h weekly cap is raised to 45 h. No SAE, metric or gate changes; Tier B stays
   cancelled because of the freeze.
-* **Status:** pre-registered, ongoing; no result claimed.
-* **Next:** finish K3b; K0F in a separate session; then `--aggregate`, script 06, script 07 and Section 2 of the
-  README; send the tables and gate checks to Simba for review, all before the 2026-11-22 freeze.
+* **Runs completed (2026-11-17):** K3b (layer 12, 65k) in 3.61 h (`K3_20261117T003032Z`) and K0F (fp32 reference)
+  in 0.21 h (`K0F_20261117T083512Z`). All six runs (K0, K1, K2, K3a, K3b, K0F) finished with V10 PASS; all 36
+  Tier A SAEs have complete outputs.
+* **Gates:** V0–V5, V7–V10 PASS; V6 **M6 REPRODUCED WITHIN MARGIN** at layers 5, 12 and 19 (not exactly: largest
+  relative difference of the per-document sums 0.021–0.036), so M6 and R3 can be shown side by side.
+* **Results (VALIDATION; README Section 2):**
+  * **H1** (higher L0 within a width lowers ΔCE_SAE): SUPPORTED in 7/7 Tier A cells; all 29 adjacent pairs have CI
+    lower bound > 0 (smallest d 0.0132 [0.0114, 0.0152], layer 5 65k). EV secondary: SUPPORTED in 7/7.
+  * **H2** (wider at matched L0 lowers ΔCE_SAE): SUPPORTED in all 4 bands formed from measured L0 (layer 12 at
+    L0 ≈ 23, 43, 85; layer 19 at ≈ 41). No band formed at layer 5 or at layer 19 L0 ≈ 23 (measured L0s 10.3 % and
+    11.7 % apart). Smallest d 0.0081 [0.0059, 0.0104] (layer 12, 32k → 65k at L0 ≈ 80). The wider SAE always had
+    the lower measured L0 (1.9–9.3 %).
+  * **H3** (H-G1 per SAE, Holm over 36): HOLDS ACROSS THE LADDER, 36/36, no reversal. Smallest d 0.0053
+    [0.0023, 0.0087] (layer 5 65k/211). At M6's three SAEs, d matches M6 to three decimals.
+  * **Q0b** (T4 bf16 vs fp32, layer 12 16k/82, 64 documents): headline ΔCE_SAE WITHIN MARGIN, mean error
+    0.00267 [0.00218, 0.00319] < 0.005. Top-1 agreement BEYOND MARGIN (0.00886 [0.00712, 0.01077] > 0.005);
+    the other secondary metrics WITHIN MARGIN.
+  * Q1–Q3 descriptive: EV 0.66–0.91, ΔCE_SAE 0.019–0.374, loss recovered 0.957–0.998 across the 36 SAEs.
+* **Limitations:** Tier A only (16k–65k); H2 has four bands, none at layer 5; one SAE per configuration (CIs over
+  documents, not seeds); the 512 documents were already read by M6; Q0b covers one cell.
+* **Analysis code:** `--aggregate` and script 06 unchanged. Figures: new `scripts/gemma/08_r3_vector_figures.py`
+  runs script 07 unchanged and writes SVG instead of PNG (Instructor Review #9); PDF could not be written on the
+  Windows machine (fontTools DLL blocked by Application Control).
+* **Status:** COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2).
+* **Next:** Simba reviews the aggregate tables and gate checks on PR #30 before merge.

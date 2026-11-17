@@ -414,3 +414,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
     * **Consequence:** H2's width comparison stops at 65k; H3's Holm family is Tier A only.
     * **Alternative:** running Tier B after the freeze, which would leave it undocumented in the deliverable.
   * Recorded in the R3 README ("Deviations") and in `preregistration.json` (`deviations`). Section 1 is not edited.
+* **Outcome (2026-11-17):** COMPLETED, VALIDATION, Tier A only. H1 SUPPORTED in 7/7 Tier A cells; H2 SUPPORTED in 4/4 bands that formed (none at layer 5); H3 HOLDS ACROSS THE LADDER (36/36, no reversal); Q0b headline WITHIN MARGIN (ΔCE_SAE mean |T4 bf16 − fp32| 0.00267 [0.00218, 0.00319] < 0.005), top-1 agreement BEYOND MARGIN; V6 M6 REPRODUCED WITHIN MARGIN at all three layers. Details in the R3 README,
+  Section 2.
+* **Figures as SVG (2026-11-17, decided by the user per Instructor Review #9):** script 07 is pre-registered code,
+  so it is not edited; `scripts/gemma/08_r3_vector_figures.py` runs it unchanged and redirects PNG saves to SVG.
+  **Alternative:** PDF, which could not be written on the machine used (fontTools DLL blocked by Windows
+  Application Control).
+* **Committed outputs:** the files listed in Section 1 (ladder tables incl. the 6.3 MB `per_doc_metrics.csv`,
+  approved by the user; `fp32_reference/`; `precision_t4_vs_fp32/`; `figures/`). The 166 MB per-SAE folders and
+  per-run records stay in the Kaggle outputs (not listed in Section 1).

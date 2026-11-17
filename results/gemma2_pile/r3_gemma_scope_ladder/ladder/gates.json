@@ -1,0 +1,106 @@
+{
+  "H3_overall": "HOLDS ACROSS THE LADDER",
+  "V3_controls": [
+    {
+      "condition": "identity",
+      "layer": 5,
+      "max_doc_mean_kl": 0.0,
+      "mean_kl": 0.0
+    },
+    {
+      "condition": "original_repeat",
+      "layer": 5,
+      "max_doc_mean_kl": 0.0,
+      "mean_kl": 0.0
+    },
+    {
+      "condition": "identity",
+      "layer": 12,
+      "max_doc_mean_kl": 0.0,
+      "mean_kl": 0.0
+    },
+    {
+      "condition": "original_repeat",
+      "layer": 12,
+      "max_doc_mean_kl": 0.0,
+      "mean_kl": 0.0
+    },
+    {
+      "condition": "identity",
+      "layer": 19,
+      "max_doc_mean_kl": 0.0,
+      "mean_kl": 0.0
+    },
+    {
+      "condition": "original_repeat",
+      "layer": 19,
+      "max_doc_mean_kl": 0.0,
+      "mean_kl": 0.0
+    }
+  ],
+  "V4_excluded": [],
+  "V6": [
+    {
+      "active_latent_agreement": 0.9999999980787221,
+      "delta_ce_random_verdict": "EQUIVALENT",
+      "delta_ce_sae_verdict": "EQUIVALENT",
+      "explained_variance_verdict": "EQUIVALENT",
+      "hg1_m6": "supported",
+      "hg1_ours": "supported",
+      "kl_sae_verdict": "EQUIVALENT",
+      "layer": 5,
+      "max_rel_diff_sums": 0.031055841635129443,
+      "sae_id": "layer_5/width_16k/average_l0_68",
+      "top1_agreement_verdict": "EQUIVALENT",
+      "verdict": "M6 REPRODUCED WITHIN MARGIN"
+    },
+    {
+      "active_latent_agreement": 0.9999999985590415,
+      "delta_ce_random_verdict": "EQUIVALENT",
+      "delta_ce_sae_verdict": "EQUIVALENT",
+      "explained_variance_verdict": "EQUIVALENT",
+      "hg1_m6": "supported",
+      "hg1_ours": "supported",
+      "kl_sae_verdict": "EQUIVALENT",
+      "layer": 12,
+      "max_rel_diff_sums": 0.036036036036036036,
+      "sae_id": "layer_12/width_16k/average_l0_82",
+      "top1_agreement_verdict": "EQUIVALENT",
+      "verdict": "M6 REPRODUCED WITHIN MARGIN"
+    },
+    {
+      "active_latent_agreement": 0.9999999985590415,
+      "delta_ce_random_verdict": "EQUIVALENT",
+      "delta_ce_sae_verdict": "EQUIVALENT",
+      "explained_variance_verdict": "EQUIVALENT",
+      "hg1_m6": "supported",
+      "hg1_ours": "supported",
+      "kl_sae_verdict": "EQUIVALENT",
+      "layer": 19,
+      "max_rel_diff_sums": 0.020618556701030927,
+      "sae_id": "layer_19/width_16k/average_l0_73",
+      "top1_agreement_verdict": "EQUIVALENT",
+      "verdict": "M6 REPRODUCED WITHIN MARGIN"
+    }
+  ],
+  "not_run": [
+    "layer_12/width_131k/average_l0_12",
+    "layer_12/width_131k/average_l0_20",
+    "layer_12/width_131k/average_l0_36",
+    "layer_12/width_131k/average_l0_67",
+    "layer_12/width_131k/average_l0_129",
+    "layer_12/width_131k/average_l0_264",
+    "layer_12/width_262k/average_l0_11",
+    "layer_12/width_262k/average_l0_21",
+    "layer_12/width_262k/average_l0_36",
+    "layer_12/width_262k/average_l0_67",
+    "layer_12/width_262k/average_l0_121",
+    "layer_12/width_262k/average_l0_243",
+    "layer_12/width_524k/average_l0_22",
+    "layer_12/width_524k/average_l0_29",
+    "layer_12/width_524k/average_l0_46",
+    "layer_12/width_524k/average_l0_65",
+    "layer_12/width_524k/average_l0_115",
+    "layer_12/width_524k/average_l0_227"
+  ]
+}

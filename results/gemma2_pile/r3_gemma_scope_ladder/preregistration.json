@@ -3,7 +3,7 @@
   "roadmap_id": "R3",
   "preregistered_on": "2026-11-13",
   "owner": "Dhruv Rai",
-  "status": "PLANNED",
+  "status": "COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2); README Section 2",
   "evidence_level_on_completion": "VALIDATION (Q0b, Q1-Q3 descriptive; H1-H3 pre-registered directional tests)",
   "readme": "results/gemma2_pile/r3_gemma_scope_ladder/README.md (Section 1, Amendment 1, Clarification 1)",
   "builds_on": {

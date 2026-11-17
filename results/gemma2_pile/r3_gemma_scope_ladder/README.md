@@ -1,4 +1,4 @@
-# R3: Gemma Scope width and L0 ladder on The Pile, with an A10G rerun of M6 (2026-11-13). Status: pre-registered, ongoing; no result claimed
+# R3: Gemma Scope width and L0 ladder on The Pile, with an A10G rerun of M6 (2026-11-13). Status: COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2)
 
 **Owner:** Dhruv Rai. **Roadmap:** R3 (see "Scope relative to the roadmap" below). **Builds on:** M6
 (`results/gemma2_pile/gemma_scope_splicing/`, branch `simba-gemma-m6-results`).
@@ -683,8 +683,171 @@ hypothesis, metric, decision rule, gate or SAE in Tier A is changed.
   been read.
 
 ## 2. After execution
-*(To be completed after the run: runs, gates, Q0b verdicts, results tables, criteria met or not met, limitations,
-deviations, files, Git commit.)*
+
+**Evidence level of everything in this section: VALIDATION** (pre-registered rules applied once; Pile validation
+documents already read by M6; one SAE per (layer, width, L0), so CIs are document-bootstrap, not seed variability).
+**Tier B (131k, 262k, 524k; 18 SAEs): not run (Deviation 2).** The 1M width: not evaluated (Section 1).
+
+### Runs (Kaggle, 2 × Tesla T4; outputs downloaded only after V10 passed)
+
+| Step | What | Run id | Code | Run time | Status | V10 |
+|---|---|---|---|---|---|---|
+| K0 | V0, V1, smoke timings | `K0_20261115T031856Z` | `e2b7b3a` | 0.15 h | finished | PASS |
+| K1 | layer 5; 16k, 65k (10 SAEs) | `K1_20261115T072548Z` | `e2b7b3a` | 7.64 h | finished | PASS |
+| K2 | layer 19; 16k, 65k (10 SAEs) | `K2_20261116T044900Z` | `e2b7b3a` | 8.01 h | finished | PASS |
+| K3a | layer 12; 16k, 32k (11 SAEs) | `K3_20261116T141625Z` | `268fae3` | 8.85 h | finished | PASS |
+| K3b | layer 12; 65k (5 SAEs) | `K3_20261117T003032Z` | `268fae3` | 3.61 h | finished | PASS |
+| K0F | fp32 reference (layer 12, 16k/82, 64 documents) | `K0F_20261117T083512Z` | `268fae3` | 0.21 h | finished | PASS |
+
+* Every run record says `finished`, with no uncommitted code (`dirty_paths` empty). The files the runs execute (scripts
+  03 and 05, `src/evaluation/pile_splicing.py`, M6's sample files and the notebook) are identical at `e2b7b3a` and
+  `268fae3`. In between, only the R3 README and `preregistration.json` (Deviations) and unrelated files from `main`
+  changed.
+* All 36 Tier A SAEs have a per-SAE folder with a valid `DONE.json`; the three per-layer control folders and the fp32
+  folder are also complete. Nothing was moved to `incomplete/`.
+* `--aggregate`, script 06 and the figures were run on CPU (local Windows, 2026-11-17) at code `87fc248` plus the new
+  script 08 (below).
+
+### Gates (all pass)
+
+| Gate | Result |
+|---|---|
+| V0 hardware | PASS in every run (2 × Tesla T4, compute capability 7.5, gated model access) |
+| V1 sample | PASS in every run (512 + 64 documents, disjoint, all hashes match) |
+| V2 hook | PASS: 512/512 documents at layers 5, 12 and 19; 64/64 in the fp32 run |
+| V3 determinism | PASS: identity and repeat mean KL exactly 0.0 at every layer; every SAE's recomputed original logits identical to the layer's first pass |
+| V4 SAE sanity | PASS for all 36 (measured L0 within 2× of release, from 12.5 to 461.5; EV 0.66–0.91). None excluded |
+| V5 no substitution | PASS: exactly the 36 pinned Tier A IDs evaluated; `params.npz` SHA-256 recorded for each |
+| V6 consistency with M6 | **M6 REPRODUCED WITHIN MARGIN** at layers 5, 12 and 19 (not EXACTLY: largest relative difference of the per-document sums 0.031 / 0.036 / 0.021). Every paired-difference CI inside its margin, H-G1 verdicts identical; active-latent agreement 0.999999998–0.999999999 (≥ 0.9999). M6 and R3 may be shown side by side |
+| V7 memory | Peak GPU memory 8.15–8.86 GB per SAE, all on GPU 0; no out-of-memory |
+| V8 fp32 | PASS: float32 parameters and logits, TF32 off, `CUDA_LAUNCH_BLOCKING=1`, V2 and V3 pass |
+| V9 resume | PASS and bit-identical (largest relative difference 0.0) in K2, K3a and K3b; K3b also checked the reused layer-12 mean-ablation vector. K1 started fresh (no finished SAE to recompute) |
+| V10 secret scan | PASS in all six runs (no hits) |
+
+### H1: higher L0 within a width gives lower ΔCE_SAE: **SUPPORTED in all 7 Tier A cells**
+`ladder/h1_l0_within_width.csv`. d = ΔCE_SAE(lower L0) − ΔCE_SAE(higher L0), 95 % CI, 29 adjacent pairs.
+
+| Cell | Pairs | Smallest d [95 % CI] among the pairs | Verdict |
+|---|---|---|---|
+| L5 16k | 4 | 0.0208 [0.0180, 0.0238] | SUPPORTED |
+| L5 65k | 4 | 0.0132 [0.0114, 0.0152] | SUPPORTED |
+| L12 16k | 4 | 0.0385 [0.0359, 0.0411] | SUPPORTED |
+| L12 32k | 5 | 0.0289 [0.0268, 0.0312] | SUPPORTED |
+| L12 65k | 4 | 0.0268 [0.0247, 0.0290] | SUPPORTED |
+| L19 16k | 4 | 0.0475 [0.0443, 0.0508] | SUPPORTED |
+| L19 65k | 4 | 0.0339 [0.0313, 0.0365] | SUPPORTED |
+
+* Every one of the 29 pairs has a CI lower bound > 0; no pair is contradicted.
+* Secondary (EV, same rule): SUPPORTED in all 7 cells.
+* Tier B cells (L12 131k, 262k, 524k): not run (Deviation 2).
+
+### H2: wider SAE at matched L0 gives lower ΔCE_SAE: **SUPPORTED in all 4 bands that formed**
+`ladder/l0_bands.csv`, `ladder/h2_width_matched_l0.csv`. Bands come from **measured** L0 (±10 % of a 16k anchor), as
+pre-registered; they differ from the expected table in Section 1:
+* **Formed:** layer 12 at 22.8, 43.4 and 84.8 (16k, 32k, 65k each), and layer 19 at 40.7 (16k vs 65k/35).
+* **Not formed:** layer 5 at 19.4 (65k/17 measured 17.4, −10.3 %), and layer 19 at 23.2 (65k/21 measured 20.5,
+  −11.7 %). So **H2 has no test at layer 5**, and its layer-19 test is at L0 ≈ 40 instead of ≈ 23.
+* The primary band (layer 12 at 22.8) has its three Tier A members only; its 131k/262k/524k members were not run
+  (Deviation 2).
+
+| Band (layer, target L0) | Pair (narrower → wider) | Measured L0 | d [95 % CI] | Verdict |
+|---|---|---|---|---|
+| 12, 22.8 (primary) | 16k → 32k | 22.8 → 22.4 | 0.0496 [0.0450, 0.0541] | |
+| | 32k → 65k | 22.4 → 21.7 | 0.0416 [0.0368, 0.0467] | SUPPORTED |
+| 12, 43.4 | 16k → 32k | 43.4 → 41.1 | 0.0328 [0.0287, 0.0370] | |
+| | 32k → 65k | 41.1 → 39.1 | 0.0204 [0.0176, 0.0234] | SUPPORTED |
+| 12, 84.8 | 16k → 32k | 84.8 → 80.0 | 0.0167 [0.0141, 0.0196] | |
+| | 32k → 65k | 80.0 → 76.5 | 0.0081 [0.0059, 0.0104] | SUPPORTED |
+| 19, 40.7 | 16k → 65k | 40.7 → 36.9 | 0.0623 [0.0573, 0.0674] | SUPPORTED |
+
+* **Stated limitation (pre-registered):** L0 is matched to ±10 %, not equal. In every pair the wider SAE had the
+  lower measured L0 (by 1.9 % to 9.3 %).
+* The smallest effect is at layer 12, L0 ≈ 80 (32k → 65k: 0.0081 nats per prediction).
+
+### H3: H-G1 for every SAE: **HOLDS ACROSS THE LADDER (36 of 36)**
+`ladder/h3_hg1_ladder.csv`. d = doc-mean ΔCE_SAE − doc-mean ΔCE_random, 95 % CI; one-sided p (normal approximation to
+the bootstrap), Holm over 36 SAEs at α = 0.05.
+* All 36 SAEs are Holm-significant with d > 0. No reversal (no CI upper bound < 0).
+* Smallest effects: layer 5 65k/211, d = 0.0053 [0.0023, 0.0087], p = 8.4e-4; layer 5 16k/309, d = 0.0066
+  [0.0040, 0.0096], p = 2.0e-6. Largest: layer 12 32k/12, d = 0.313 [0.300, 0.329].
+* At M6's three SAEs: d = 0.0410 / 0.0774 / 0.0994 (layers 5 / 12 / 19), the same as M6's H-G1 values to three
+  decimals.
+* **Descriptive (no test):** the token-weighted ratio ΔCE_SAE / ΔCE_random (`summary_by_sae.csv`) ranges from 1.45
+  (layer 19 16k/279) to 6.15 (layer 12 32k/12). Within every cell it falls as L0 rises (figure 3).
+
+### Q0b: how far is T4 bf16 from fp32 (layer 12, 16k/82, 64 documents): **WITHIN MARGIN (headline)**
+`precision_t4_vs_fp32/q0b_t4_vs_fp32.csv`. Primary bf16 run: M6's committed T4 rows. e = |bf16 − fp32| per
+document; b = bf16 − fp32 (signed).
+
+| Metric (margin) | Mean e [95 % CI] | Mean b [95 % CI] | Verdict |
+|---|---|---|---|
+| **ΔCE_SAE (0.005), primary** | **0.00267 [0.00218, 0.00319]** | −0.00056 [−0.00141, 0.00029] | **WITHIN MARGIN** |
+| Original CE (0.005) | 0.00238 [0.00184, 0.00302] | +0.00113 [+0.00039, +0.00188] | WITHIN MARGIN |
+| ΔCE_random (0.005) | 0.00268 [0.00216, 0.00323] | +0.00056 [−0.00026, +0.00141] | WITHIN MARGIN |
+| KL_SAE (0.005) | 0.00186 [0.00161, 0.00214] | +0.00157 [+0.00118, +0.00191] | WITHIN MARGIN |
+| Top-1 agreement (0.005) | 0.00886 [0.00712, 0.01077] | +0.00262 [−0.00014, +0.00527] | **BEYOND MARGIN** |
+| EV (0.001) | 0.00016 [0.00012, 0.00021] | −0.00006 [−0.00011, +0.00000] | WITHIN MARGIN |
+
+* The Kaggle T4 ladder rows for the same cell give the same verdicts (ΔCE_SAE mean e 0.00310 [0.00254, 0.00368],
+  WITHIN MARGIN; top-1 agreement BEYOND MARGIN).
+* **Reading, within the rule:** on this cell, T4 bf16 moves ΔCE_SAE by about 0.003 nats per prediction from fp32, inside
+  the 0.005 margin, with no detectable sign. Top-1 agreement moves by about 0.009 per document, beyond its 0.005 margin.
+  bf16 makes the original CE and KL_SAE slightly higher on average (signed CIs above 0). Secondary verdicts are
+  descriptive.
+* **Limits (pre-registered):** one layer, one SAE, 64 documents; fp32 is a reference with smaller rounding, not exact
+  truth.
+
+### Q1–Q3 (descriptive; no test)
+`ladder/summary_by_sae.csv`, `ladder/summary_by_sae_source.csv`, figures 1, 2 and 5.
+* **Q1:** EV 0.74–0.91 (layer 5), 0.66–0.89 (layer 12), 0.71–0.89 (layer 19). Within each width, EV rises with L0.
+* **Q2:** ΔCE_SAE 0.019–0.168 (layer 5), 0.029–0.365 (layer 12), 0.063–0.374 (layer 19) nats per prediction; loss
+  recovered 0.957–0.998. Loss recovered stays near 1 while ΔCE ranges from 0.019 to 0.374, so it is read together with
+  ΔCE.
+* **Q3:** per-source values are in `summary_by_sae_source.csv` and figure 5 (sources with ≥ 20 documents; LOW-N
+  sources not interpreted).
+* As pre-registered: no ranking of layers and no "best SAE".
+
+### Criteria summary
+
+| Question | Pre-registered rule | Result |
+|---|---|---|
+| H1 | SUPPORTED per cell if every adjacent pair's CI > 0 | **Met:** 7/7 Tier A cells SUPPORTED (EV too) |
+| H2 | SUPPORTED per band, same rule | **Met in every band that formed:** 4/4 SUPPORTED. No band at layer 5 (measured L0s 10.3 % apart) |
+| H3 | HOLDS if Holm-significant for every SAE | **Met:** HOLDS ACROSS THE LADDER, 36/36, no reversal |
+| Q0b | Headline ΔCE_SAE: WITHIN if CI upper bound < margin | **WITHIN MARGIN** (0.00267 [0.00218, 0.00319] < 0.005); top-1 agreement BEYOND MARGIN (secondary) |
+| V6 | EXACTLY / WITHIN MARGIN / fail | WITHIN MARGIN at all three layers |
+
+### Limitations
+* **Tier A only.** H1–H3 cover widths 16k–65k (36 SAEs). Nothing is claimed for 131k–1M (Deviation 2; 1M excluded).
+* **H2 is narrow:** four bands, three at layer 12 and one at layer 19; none at layer 5. Matched L0 is ±10 %, not equal,
+  and the wider SAE always had the lower L0.
+* **One SAE per configuration:** CIs are over documents, not over SAE training seeds.
+* **bf16 floor:** Q0b shows bf16 moves top-1 agreement by about 0.009 per document on one cell. Top-1 differences
+  between SAEs smaller than that should not be read. ΔCE_SAE differences in H1–H3 (smallest pair 0.0081) are larger
+  than the measured ΔCE floor (≈ 0.003), but Q0b covers one cell only.
+* **Not fresh data:** the 512 evaluation documents were already read by M6.
+* **Possible pretraining exposure** of Gemma to The Pile (unverified, as M6).
+
+### Files committed (`results/gemma2_pile/r3_gemma_scope_ladder/`)
+* `ladder/`: `per_doc_metrics.csv` (6.3 MB; every document × SAE × condition row), `summary_by_sae.csv`,
+  `summary_by_sae_source.csv`, `controls.csv`, `l0_bands.csv`, `h1_l0_within_width.csv`, `h2_width_matched_l0.csv`,
+  `h3_hg1_ladder.csv`, `v6_m6_consistency.csv`, `gates.json`, `run_info.json` (SHA-256 of every output).
+* `fp32_reference/`: `per_doc_metrics.csv`, `gates.json`, `run_info.json`.
+* `precision_t4_vs_fp32/`: `q0b_t4_vs_fp32.csv`, `q0b_info.json`.
+* `figures/`: six SVG figures and `figure_info.json`.
+* **Not committed** (kept in the Kaggle outputs and the downloaded `results.zip`): the per-SAE and per-layer folders
+  (`ladder/per_sae/`, 166 MB; `ladder/per_layer/`), per-run records `runs/*/run_info.json`, logs, V10 reports, the
+  smoke folder, and `fp32_reference/per_doc_sum_x.npz` and `DONE.json`. Section 1 did not list them. The aggregate step
+  and script 06 need them to be re-run from scratch; the committed tables are enough to re-draw the figures.
+* Section 1 also listed a pooled `ladder/per_doc_sum_x.npz`. The aggregate step does not write one; the
+  per-document sums stay in the per-SAE folders.
+
+### Figures as SVG (Instructor Review #9)
+* `scripts/gemma/08_r3_vector_figures.py` runs script 07 **unchanged** and redirects each PNG save to SVG (the
+  pattern of `scripts/shared/export_vector_figures.py`), so script 07's recorded hash stays valid. No PNG is written.
+* SVG only, not PDF: matplotlib's PDF writer needs a fontTools DLL that Windows Application Control blocks on the
+  machine used.
+* The SVGs are written with LF line endings and fixed ids. Two runs gave byte-identical files.
 
 ### Implementation details decided before any run (2026-11-14; no change to the scientific design)
 These are choices the pre-registration text left open, fixed in code before any GPU run.
@@ -769,24 +932,11 @@ These are choices the pre-registration text left open, fixed in code before any 
   * The smoke numbers above are copied from the Kaggle log, for the record only.
 
 ## 3. If stopped early
-**Status 2026-11-16: ongoing; no result claimed.** Tier B is cancelled (Deviation 2).
-
-| Step | Layer, widths | Run id | Finished | Run time | V10 |
-|---|---|---|---|---|---|
-| K1 | 5; 16k, 65k | `K1_20261115T072548Z` | yes | 7.64 h | PASS |
-| K2 | 19; 16k, 65k | `K2_20261116T044900Z` | 2026-11-16 | 8.01 h | PASS |
-| K3a | 12; 16k, 32k | `K3_20261116T141625Z` | 2026-11-16 | 8.85 h | PASS |
-| K3b | 12; 65k | – | running | – | – |
-
-The outputs are on Kaggle, not in the repository, and no metric from them has been read. The weekly GPU cap is now
-45 h (Amendment 2).
-* **Existing artifacts:** this README (Section 1, Amendment 1, Clarifications 1–2, Deviations 1–2, Amendment 2,
-  Section 2), `preregistration.json`, `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No
-  result files in the repository.
-* **Unfinished:** K3b (running), K0F, the `--aggregate` step, Q0b (script 06), the figures (script 07), Section 2
-  results.
-* **Exact next steps:**
-  1. Let K3b finish (`RUN = 'K3'`, `WIDTHS = ['65k']`, resuming from K3a's output).
-  2. Run K0F separately, in a fresh session; retry it if it fails.
-  3. Download outputs only if V10 passed. Then run `--aggregate`, script 06 and script 07, and fill in Section 2.
-     Send the tables and gate checks to the reviewer (Simba) before the 2026-11-22 technical freeze.
+**Status 2026-11-17: not stopped. COMPLETED, VALIDATION (Tier A); Tier B not run (Deviation 2).** All runs finished
+with V10 PASS and all gates passed (Section 2).
+* **Status history:** 2026-11-15 K0 rerun and K1; 2026-11-16 K2 and K3a; 2026-11-17 K3b, K0F, then `--aggregate`,
+  Q0b and the figures (Section 2, Runs).
+* **Next steps:**
+  1. Simba reviews the aggregate tables and gate checks on PR #30 before merge (his request of 2026-11-16).
+  2. Optional, not pre-registered: the holdout reserve (Section 1, Leakage) applies only if R3 is later used to choose
+     an SAE.
