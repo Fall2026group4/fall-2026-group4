@@ -670,6 +670,18 @@ hypothesis, metric, decision rule, gate or SAE in Tier A is changed.
 * Tier B under the budget rule (Section 1 and Amendment 1 (4)) is therefore not run. Section 1 is not edited, so the
   original plan stays on record.
 
+### Amendment 2 (2026-11-16, during the runs, before any result was read): weekly GPU cap raised from 30 h to 45 h
+* **What changed:** the Kaggle weekly GPU quota is now 45 h, because a Colab Pro account was linked. The
+  pre-registered cap of 30 GPU-hours per week (Amendment 1 (4)) is therefore raised to 45 h.
+* **Not changed:**
+  * the SAEs, the metrics, the gates, H1–H3, Q0b and the 10 h limit per run;
+  * Deviation 2: Tier B stays cancelled, because the 2026-11-22 freeze still leaves no time for it.
+* **Code:** script 05's own budget check (`may_start`) still uses 30 h and is not changed. K3b started under that
+  existing 30 h check (25.5 h used plus its projection), and K0F has no budget check, so no run depends on the new
+  45 h value.
+* **No result had been read:** K1, K2 and K3a had finished, but their outputs were still on Kaggle and no metric had
+  been read.
+
 ## 2. After execution
 *(To be completed after the run: runs, gates, Q0b verdicts, results tables, criteria met or not met, limitations,
 deviations, files, Git commit.)*
@@ -757,17 +769,24 @@ These are choices the pre-registration text left open, fixed in code before any 
   * The smoke numbers above are copied from the Kaggle log, for the record only.
 
 ## 3. If stopped early
-**Status 2026-11-16: ongoing; no result claimed.** K1 finished on Kaggle (7.64 h) and K2 is running. Their
-outputs are on Kaggle, not in the repository, and no metric from them has been read. Tier B is cancelled
-(Deviation 2).
-* **Existing artifacts:** this README (Section 1, Amendment 1, Clarifications 1–2, Deviations 1–2, Section 2),
-  `preregistration.json`, `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No result
-  files in the repository.
-* **Unfinished:** K2 (running), K3a, K3b, K0F, the `--aggregate` step, Q0b (script 06), the figures (script 07),
-  Section 2 results.
+**Status 2026-11-16: ongoing; no result claimed.** Tier B is cancelled (Deviation 2).
+
+| Step | Layer, widths | Run id | Finished | Run time | V10 |
+|---|---|---|---|---|---|
+| K1 | 5; 16k, 65k | `K1_20261115T072548Z` | yes | 7.64 h | PASS |
+| K2 | 19; 16k, 65k | `K2_20261116T044900Z` | 2026-11-16 | 8.01 h | PASS |
+| K3a | 12; 16k, 32k | `K3_20261116T141625Z` | 2026-11-16 | 8.85 h | PASS |
+| K3b | 12; 65k | – | running | – | – |
+
+The outputs are on Kaggle, not in the repository, and no metric from them has been read. The weekly GPU cap is now
+45 h (Amendment 2).
+* **Existing artifacts:** this README (Section 1, Amendment 1, Clarifications 1–2, Deviations 1–2, Amendment 2,
+  Section 2), `preregistration.json`, `literature_comparison.md`, scripts 05–07, the tests and the Kaggle notebook. No
+  result files in the repository.
+* **Unfinished:** K3b (running), K0F, the `--aggregate` step, Q0b (script 06), the figures (script 07), Section 2
+  results.
 * **Exact next steps:**
-  1. When K2 finishes, run K3a (`RUN = 'K3'`, `WIDTHS = ['16k', '32k']`), then K3b (`RUN = 'K3'`,
-     `WIDTHS = ['65k']`), each passing the previous output with `RESUME_FROM`, within the weekly quota.
+  1. Let K3b finish (`RUN = 'K3'`, `WIDTHS = ['65k']`, resuming from K3a's output).
   2. Run K0F separately, in a fresh session; retry it if it fails.
   3. Download outputs only if V10 passed. Then run `--aggregate`, script 06 and script 07, and fill in Section 2.
-     All of this must happen before the 2026-11-22 technical freeze.
+     Send the tables and gate checks to the reviewer (Simba) before the 2026-11-22 technical freeze.

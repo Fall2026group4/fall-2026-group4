@@ -246,7 +246,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
     causal faithfulness" claim.
 
 ## Unresolved hypotheses
-* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k. *(2026-11-14: for Gemma's published SAEs, width at matched L0 is pre-registered as R3's H2 (D37); not run yet.)*
+* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k. *(2026-11-14: for Gemma's published SAEs, width at matched L0 is pre-registered as R3's H2 (D37); ongoing, no result claimed.)*
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
@@ -373,7 +373,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Hook:** `resid_post`, because that is where these SAEs were trained. Our GPT-2 SAEs use `resid_pre` (D4); the two are conventions of their SAE families.
 * **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
 * **Outcome (2026-11-12):** M6 COMPLETED, VALIDATION (`results/gemma2_pile/gemma_scope_splicing/`, README §2). Gates V1–V5 pass; H-G1 supported at layers 5, 12 and 19. SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; the experiment does not identify the mechanism responsible. No numerical ranking against GPT-2 (model, hook, SAE family, width, L0, corpus and context differ).
-* **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, PRE-REGISTERED, not run; its own decision record lives on that branch and is not part of M6.
+* **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, ONGOING, NO RESULT CLAIMED; its own decision record lives on that branch and is not part of M6.
 
 ## D37. R3 design and hardware: Gemma Scope width × L0 ladder on Kaggle T4 x2 (2026-11-13 to 2026-11-14)
 * **Numbering:** recorded as D22 on `dhruv-gemma-r3` before `main` was merged in; renumbered D37 on 2026-11-16 because `main` already uses D22 to D36 (M6 is D36).

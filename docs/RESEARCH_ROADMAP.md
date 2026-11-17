@@ -45,15 +45,17 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), `28a7d85`, `167fadb` (documentation); docs merged with #27 on 2026-11-15 (D36) |
 ## 2. In progress
 * **Gemma M6 integration (2026-11-15):** PR #28 documentation reconciled with the merged #27 ledgers (M6 = D36, progress §43, results summary §25). M6 itself is COMPLETED, VALIDATION (§1, §6). Merge needs the owner's approval and review.
-* **R3 (Gemma Scope width × L0 ladder):** PR #30 (`dhruv-gemma-r3`, owner Dhruv Rai). PRE-REGISTERED ONLY; code implemented and CPU-tested; **NOT RUN**. Separate from M6; no R3 result exists.
+* **R3 (Gemma Scope width × L0 ladder):** PR #30 (`dhruv-gemma-r3`, owner Dhruv Rai). **ONGOING, NO RESULT CLAIMED**; code implemented and CPU-tested. Separate from M6; no R3 result exists.
 * **R3 Gemma Scope width × L0 ladder (Dhruv Rai; D37; branch `dhruv-gemma-r3`, its own PR, separate from M6's
   PR #28):** IN PROGRESS: pre-registered, ongoing; no result claimed. Pre-registered with Amendment 1 (Kaggle
-  T4 x2), Clarifications 1–2 and Deviations 1–2. Tests: 58 passed on CPU.
-  * **Status 2026-11-16:** K1 finished (7.64 h); K2 running. No metric has been read.
+  T4 x2), Clarifications 1–2, Deviations 1–2 and Amendment 2 (weekly cap 30 h → 45 h). Tests: 58 passed on CPU.
+  * **Status 2026-11-16:** K1 (7.64 h), K2 (8.01 h) and K3a (8.85 h) finished, V10 PASS for K2 and K3a; K3b
+    running. The outputs are on Kaggle; no metric has been read.
   * **Deviation 1:** K3 is split into K3a (16k and 32k) and K3b (65k).
   * **Deviation 2:** Tier B (K4–K6) is CANCELLED, because of the 2026-11-22 freeze and the weekly quota. H1–H3 are
     tested on Tier A only.
-  * Next: K3a, K3b, K0F; then `--aggregate`, script 06 (Q0b) and script 07 (figures), before the freeze.
+  * Next: K3b, K0F; then `--aggregate`, script 06 (Q0b) and script 07 (figures); Simba reviews the aggregate
+    before merge, all before the freeze.
   * PR #30's base is changed from `simba-gemma-m6-results` (already merged) to `main` (Instructor Review #9).
 * **M0–M5 measurement programme (D23, approved 2026-11-08).** P0.
   * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. **DONE 2026-11-08** (validation): splice damage tracks reconstruction within layer; truth-readout gap does not (formal pass fragile).
@@ -188,8 +190,8 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
 | M5 | Gemma version of the best GPT-2 improvement. Per D30: R2-recipe TopK/BatchTopK at one middle layer (100M tokens; about 3.6 h activation generation per pass), the full ladder, R5 skyline, optional R4 KL as a behaviour-only add-on. Not Method A. | PLANNED | P1 |
 | M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D36) | DONE (2026-11-12; COMPLETED, VALIDATION; results `0dbfc80`; H-G1 supported at 5/12/19). Follow-ups in §2 | P0 (team plan: technical contribution before the freeze) |
-| R3 | **Gemma Scope width × L0 ladder on The Pile** (54 published SAEs at layers 5/12/19; same sample and controls as M6). PR #30, branch `dhruv-gemma-r3` | PRE-REGISTERED ONLY; code implemented and CPU-tested; NOT RUN. Not part of M6 | set by the owner (Dhruv Rai) |
-| R3 | **Gemma Scope width × L0 ladder on The Pile** (named R3 on `sae-research`): M6's sample, data and controls; 54 pinned SAEs (Tier A 36, Tier B 18; 1M excluded) at layers 5/12/19; H1 L0 within width, H2 width at matched L0, H3 H-G1 across the ladder, Q0b T4 bf16 vs fp32. Pre-registration `results/gemma2_pile/r3_gemma_scope_ladder/` (D37); branch `dhruv-gemma-r3` | IN PROGRESS (pre-registered, ongoing; no result claimed). Tier A only: K1 done, K2 running, then K3a/K3b and K0F; Tier B (K4–K6) cancelled (Deviation 2, D37) | P1 |
+| R3 | **Gemma Scope width × L0 ladder on The Pile** (54 published SAEs at layers 5/12/19; same sample and controls as M6). PR #30, branch `dhruv-gemma-r3` | ONGOING, NO RESULT CLAIMED; code implemented and CPU-tested. Not part of M6 | set by the owner (Dhruv Rai) |
+| R3 | **Gemma Scope width × L0 ladder on The Pile** (named R3 on `sae-research`): M6's sample, data and controls; 54 pinned SAEs (Tier A 36, Tier B 18; 1M excluded) at layers 5/12/19; H1 L0 within width, H2 width at matched L0, H3 H-G1 across the ladder, Q0b T4 bf16 vs fp32. Pre-registration `results/gemma2_pile/r3_gemma_scope_ladder/` (D37); branch `dhruv-gemma-r3` | IN PROGRESS (pre-registered, ongoing; no result claimed). Tier A only: K1, K2, K3a done, K3b running, then K0F; Tier B (K4–K6) cancelled (Deviation 2, D37) | P1 |
 | R3b | **RepE-LM prompts re-tokenised for Gemma and the K1/K2 gates re-run** (the part of `sae-research`'s R3 not covered by the ladder) | PLANNED; needs its own pre-registration | P2 |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)

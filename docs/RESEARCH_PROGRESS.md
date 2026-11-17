@@ -1069,7 +1069,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * Natural source mixture; 10 of 16 sources LOW-N.
 * **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
-* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; PRE-REGISTERED, code implemented, NOT RUN. Not part of M6.
+* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; ONGOING, NO RESULT CLAIMED, code implemented. Not part of M6.
 
 ## 44. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16). Status: IN PROGRESS: pre-registered, ongoing; no result claimed
 
@@ -1128,6 +1128,12 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Deviation 2 (2026-11-16, before any Tier A result was looked at):** Tier B (131k/262k/524k, runs K4–K6) is
   cancelled because of the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota. H1–H3 are tested on
   Tier A only (layers 5/12/19, widths 16k/32k/65k, 36 SAEs). Decision D37; README "Deviations".
+* **Runs (2026-11-16):** K2 (layer 19) finished in 8.01 h (`K2_20261116T044900Z`) and K3a (layer 12, 16k and
+  32k) in 8.85 h (`K3_20261116T141625Z`); V10 PASS for both. K3b (layer 12, 65k) has started. The outputs are
+  still on Kaggle and no metric has been read.
+* **Amendment 2 (2026-11-16, before any result was read):** the Kaggle weekly quota is now 45 h (Colab Pro
+  linked), so the pre-registered 30 h weekly cap is raised to 45 h. No SAE, metric or gate changes; Tier B stays
+  cancelled because of the freeze.
 * **Status:** pre-registered, ongoing; no result claimed.
-* **Next:** K3a, then K3b (each with `RESUME_FROM`); K0F in a separate session; then `--aggregate`, script 06,
-  script 07 and Section 2 of the README, all before the 2026-11-22 freeze.
+* **Next:** finish K3b; K0F in a separate session; then `--aggregate`, script 06, script 07 and Section 2 of the
+  README; send the tables and gate checks to Simba for review, all before the 2026-11-22 freeze.

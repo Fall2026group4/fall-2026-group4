@@ -174,7 +174,7 @@
   },
   "runs": {
     "max_hours_per_run": 10.0,
-    "max_hours_per_week": 30.0,
+    "max_hours_per_week": 45.0,
     "plan": {
       "K0": "V0, V1, smoke (8 eval + 4 reference docs); its finished run record feeds the K1-K6 projection",
       "K0F": "fp32 reference only (Clarification 2), fresh session, CUDA_LAUNCH_BLOCKING=1; retryable; does not block K1-K6",
@@ -190,7 +190,10 @@
   "amendments": [
     {"id": 1, "date": "2026-11-13", "before_any_run": true,
      "change": "Hardware AWS A10G -> Kaggle T4 x2; Q0 and Part A1 dropped; Q0b = T4 bf16 vs fp32; T4 memory placement; Kaggle run plan K0-K6; per-SAE outputs with resume and gate V9; HF_TOKEN from Kaggle Secrets and gate V10.",
-     "reason": "The AWS free plan has no GPU instances."}
+     "reason": "The AWS free plan has no GPU instances."},
+    {"id": 2, "date": "2026-11-16", "before_any_result_read": true,
+     "change": "Weekly GPU cap raised from 30 h to 45 h (runs.max_hours_per_week). No SAE, metric or gate changes; Tier B stays cancelled (Deviation 2). Script 05's own budget check (may_start, 30 h) is unchanged because no budgeted run is left to start.",
+     "reason": "The Kaggle weekly quota is now 45 h (Colab Pro linked)."}
   ],
   "clarifications": [
     {"id": 1, "date": "2026-11-13", "before_any_run": true,
