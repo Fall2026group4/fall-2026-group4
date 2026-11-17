@@ -1,0 +1,7 @@
+layer,condition,mean_kl,max_doc_mean_kl
+5,identity,0.0,0.0
+5,original_repeat,0.0,0.0
+12,identity,0.0,0.0
+12,original_repeat,0.0,0.0
+19,identity,0.0,0.0
+19,original_repeat,0.0,0.0
