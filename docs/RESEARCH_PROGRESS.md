@@ -904,7 +904,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * the R5 feature arm used old SAEs only;
   * there is no RepE-LM test split;
   * there is no modern JumpReLU.
-* **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6 (the GPT-2 test pass of the 2026-11-12 audit plan, planned; not the completed Gemma M6 experiment of §43).
+* **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6 (the GPT-2 test pass of the 2026-11-12 audit plan, planned; not the completed Gemma M6 experiment of §51).
 * **Evidence label:** no new result; the one new observation is VALIDATION, descriptive.
 
 ## 37. Documentation cleanup, consolidation and PR preparation (2026-11-12). Status: COMPLETED (no experiment run)
@@ -1039,10 +1039,13 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Wording:** "not worse" is now "not classified worse" everywhere, with the note that the ±0.02 equivalence class
   was met in 0/40 capacity-matched cells. It is not an equivalence or non-inferiority claim.
 
-## 43. Gemma Scope SAE reconstruction and splicing on The Pile (pre-registered and run 2026-11-12; branch `simba-gemma-pile`, results on `simba-gemma-m6-results`; Simbanegavi Simbarashe; numbered §19 on #28, renumbered §43 when merged with #27 on 2026-11-15). Status: COMPLETED, VALIDATION [VERIFIED]
+> **Numbering (2026-11-17, agreed on PR #31):** §43–§50 are reserved for PR #35 (`sae-research`). M6 moved from §43 to
+> §51; this PR's entries moved from §44–§45 to §52–§53; §54 is reserved for R3 (PR #30).
+
+## 51. Gemma Scope SAE reconstruction and splicing on The Pile (pre-registered and run 2026-11-12; branch `simba-gemma-pile`, results on `simba-gemma-m6-results`; Simbanegavi Simbarashe; numbered §19 on #28, renumbered §43 when merged with #27 on 2026-11-15 and §51 on 2026-11-17). Status: COMPLETED, VALIDATION [VERIFIED]
 
 * **Why:** all SAE evidence so far is GPT-2 with in-house SAEs. This extends the reconstruction and behavioural-faithfulness measurements to Gemma-2-2B with published SAEs, on the proposal's Gemma dataset (The Pile). It follows the completed Pile EDA (§3e; `simba-gemma-pile-eda`, `5638350`), which recommended fixing a truncation policy first. Roadmap M6 (reconstruction and splicing part of M3).
-* **Design** (full pre-registration: `results/gemma2_pile/gemma_scope_splicing/README.md` and `preregistration.json`; decision D36):
+* **Design** (full pre-registration: `results/gemma2_pile/gemma_scope_splicing/README.md` and `preregistration.json`; decision D44):
   * Pile validation file `monology/pile-uncopyrighted/val.jsonl.zst` (SHA-256 pinned); seed-42 permutation; 512 evaluation + 64 disjoint reference documents (≥ 32 text tokens); BOS + first 1024 tokens per document.
   * Gemma-2-2B (HF, bf16), `resid_post` at layers 5, 12, 19 (representative depths; **not** mapped to GPT-2 layers).
   * Gemma Scope width-16k residual SAEs, pinned: `layer_5/width_16k/average_l0_68`, `layer_12/width_16k/average_l0_82`, `layer_19/width_16k/average_l0_73` (= sae-lens `canonical`), HF revision `fd571b47…`.
@@ -1071,7 +1074,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
 * **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; PRE-REGISTERED, code implemented, NOT RUN. Not part of M6.
 
-## 44. Dead-latent audit of the GPT-2 base and R2 SAEs (2026-11-15). Status: COMPLETED (descriptive audit; no model trained or run). Evidence: VALIDATION [VERIFIED]
+## 52. Dead-latent audit of the GPT-2 base and R2 SAEs (2026-11-15). Status: COMPLETED (descriptive audit; no model trained or run). Evidence: VALIDATION [VERIFIED]
 
 * **Why:** the instructor asked on 2026-11-10 for the dead-latent fraction of every old (base) and R2 SAE.
   * This is a diagnostic audit, not a new headline result.
@@ -1113,7 +1116,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * 2,941.0 is the value in M0 `architecture_by_layer.csv`, which is unchanged. This is not a new result.
 * **Status:** documented, not committed. It awaits the user's local commit.
 
-## 45. Method A layers 5/6/9 extension audited and excluded from the final scope (2026-11-16). Status: EXCLUDED (documentation only; no experiment run). Evidence: VALIDATION, EXPLORATORY [BRANCH-ONLY]
+## 53. Method A layers 5/6/9 extension audited and excluded from the final scope (2026-11-16). Status: EXCLUDED (documentation only; no experiment run). Evidence: VALIDATION, EXPLORATORY [BRANCH-ONLY]
 
 * **Branch:** `simba-method-a-multilayer` (Simbanegavi Simbarashe). The local ref is at `b64e6ed`; `origin` is at
   `7f2557b`.
@@ -1142,4 +1145,4 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * `pretraining_hashes.json` still refers to "layer-3/layer-9".
   * The 36 checkpoints are not in `checkpoint_registry.csv`.
   * There is no re-trained-reader analysis.
-* **Final scope decision:** EXCLUDED (D37). Not merged and not cited; the branch is kept unchanged as the record.
+* **Final scope decision:** EXCLUDED (D45). Not merged and not cited; the branch is kept unchanged as the record.

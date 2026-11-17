@@ -15,7 +15,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **OWT** is GPT-2's training distribution, and the standard SAE training and evaluation corpus.
 * **GoT** provides paired true/false statements whose structure isolates truth. Used: cities + neg_cities (geographic), larger_than + smaller_than (numerical).
 * **RepE** persona prompts give a contrastive honesty signal.
-* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments. *(Updated 2026-11-12: used as the Gemma reconstruction and splicing dataset, D36.)*
+* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments. *(Updated 2026-11-12: used as the Gemma reconstruction and splicing dataset, D44.)*
 
 ## D3. Train SAEs in house instead of using public SAEs (2026-10-30, `8dc0b6e`)
 * **Reason:** public SAEs (`gpt2-small-res-jb`, the v5-32k TopK) differ in width, data, sparsity and training. An architecture comparison needs one protocol.
@@ -251,7 +251,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
-* **H6:** Results transfer to Gemma-2-2B SAEs. *(2026-11-12, M6, D36, VALIDATION: the behavioural-splicing finding replicates in direction with Gemma Scope SAEs at layers 5/12/19 (H-G1 supported at all three); reconstruction measured descriptively. Gemma information (truth/persona) and causal preservation remain untested.)*
+* **H6:** Results transfer to Gemma-2-2B SAEs. *(2026-11-12, M6, D44, VALIDATION: the behavioural-splicing finding replicates in direction with Gemma Scope SAEs at layers 5/12/19 (H-G1 supported at all three); reconstruction measured descriptively. Gemma information (truth/persona) and causal preservation remain untested.)*
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
 * **H9:** Fine-tuning improves causal preservation. **Tested at L8 final (E3, D28):** Method A no; output-KL not creditably (gains only with L0 drift; TopK unchanged).
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**
@@ -360,8 +360,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
   protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.
 
-## D36. Gemma/Pile experiment design (M6): Gemma Scope SAEs at layers 5/12/19, Pile validation, 1024-token truncation (2026-11-12)
-* **Numbering:** recorded as D21 on PR #28 before PR #27 was merged; renumbered D36 on 2026-11-15 because #27 already uses D21–D35. Content unchanged.
+> **Numbering (2026-11-17, agreed on PR #31):** D36–D43 are reserved for PR #35 (`sae-research`), whose frozen,
+> hash-pinned records cite them. M6 moved from D36 to D44, this PR's Method A decision from D37 to D45, and D46 is
+> reserved for R3 (PR #30).
+
+## D44. Gemma/Pile experiment design (M6): Gemma Scope SAEs at layers 5/12/19, Pile validation, 1024-token truncation (2026-11-12)
+* **Numbering:** recorded as D21 on PR #28 before PR #27 was merged; renumbered D36 on 2026-11-15 because #27 already uses D21–D35; renumbered D44 on 2026-11-17 so that PR #35 keeps D36–D43 (M6: D21 → D36 → D44). Content unchanged.
 * **Decision** (made by the user, Simbanegavi Simbarashe, after the completed Pile EDA): the next Gemma contribution is Pile → Gemma-2-2B activations → Gemma Scope SAE reconstruction → splicing evaluation (roadmap M6). No other new scientific objective. The Gemma GoT frozen-probe experiment is a stretch goal, started only after M6 is complete and only if the 2026-11-22 technical freeze is not at risk.
 * **Role of The Pile:** Gemma's natural-text evaluation corpus for reconstruction and behaviour, analogous in role (not in content) to OWT for GPT-2.
 * **Data:** `monology/pile-uncopyrighted/val.jsonl.zst` (revision and SHA-256 pinned). The EDA's parquet mirror has no validation split. The test file is never used.
@@ -375,7 +379,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Outcome (2026-11-12):** M6 COMPLETED, VALIDATION (`results/gemma2_pile/gemma_scope_splicing/`, README §2). Gates V1–V5 pass; H-G1 supported at layers 5, 12 and 19. SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; the experiment does not identify the mechanism responsible. No numerical ranking against GPT-2 (model, hook, SAE family, width, L0, corpus and context differ).
 * **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, PRE-REGISTERED, not run; its own decision record lives on that branch and is not part of M6.
 
-## D37. Method A layers 5/6/9 extension excluded from the final scope (user, 2026-11-16)
+## D45. Method A layers 5/6/9 extension excluded from the final scope (user, 2026-11-16; numbered D37 until 2026-11-17)
 * **Context:** this resolves the Instructor Review #9 scope-freeze item on the separate Method A multi-layer extension.
   The exact review text is not stored in the repository.
 * **Decision:** the extension on branch `simba-method-a-multilayer` stays unmerged, exploratory validation work.

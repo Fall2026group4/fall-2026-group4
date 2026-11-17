@@ -4,8 +4,10 @@ Sparse autoencoders can reconstruct language-model activations well without pres
 Within a layer, reconstruction error predicts behavioural damage but not robustly the loss of truth information.
 Information conclusions depend on the reader and on the comparison constraint. The reconstruction preserves a located
 causal effect well at an early site and only about two-thirds of it at later sites. Better training improves
-reconstruction and behaviour on held-out data without a confirmed gain in truth information, and behaviour-targeted
-training is a trade-off. Public Gemma Scope SAEs show the same behavioural pattern in Gemma-2-2B. Reconstruction quality
+reconstruction and behaviour on held-out data, and held-out persona data confirm a more faithful honest-minus-dishonest
+difference, but there is no confirmed gain in truth information. A truth-subspace penalty preserves the targeted truth
+information in distribution without transfer to other statement families, and behaviour-targeted training is a
+trade-off. Public Gemma Scope SAEs show the same behavioural pattern in Gemma-2-2B. Reconstruction quality
 is necessary but insufficient evidence of faithfulness, and SAE evaluations should report reconstruction, information,
 behavioural and causal evidence separately, naming the reader, the reference constraint and the evidence status of each
 claim.

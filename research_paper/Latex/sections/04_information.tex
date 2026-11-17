@@ -6,8 +6,8 @@ activations and applied unchanged to SAE reconstructions loses 0.28--0.29 AUROC 
 simpler mass-mean reader loses only 0.02--0.03. Frozen readers therefore exaggerate the loss: isotropic noise of the
 same norm also causes a large drop. But part of the frozen gap (about a third to a half at layers 6--11) is SAE error
 aligned with the truth labels: a shuffled copy of the SAE's own error lowers the frozen reader's AUROC by only
-0.15--0.20 at those layers, against 0.26--0.32 for the error itself. The collapse is therefore not mostly generic
-perturbation.
+0.15--0.20 at those layers, against 0.26--0.32 for the error itself (\evlabel{validation}; Appendix~\ref{sec:audit}).
+The collapse is therefore not mostly generic perturbation.
 
 \paragraph{Re-trained readers show a smaller but real loss.} Readers re-trained on the reconstructions are 0.07--0.12
 AUROC worse than readers trained on original activations, and no cell is classified as preserved. The label can also be
@@ -17,8 +17,10 @@ activation but outside the reconstruction.
 \paragraph{Persona information is lost, not merely misread.} On the equal-length RepE-LM prompts the frozen persona
 gap is 1.9--3.4 times the gap caused by norm-matched noise, and re-trained readers recover little of it: the
 re-trained gap is 0.08--0.22, and its statement-bootstrap interval excludes zero for all 99 base SAEs at layers 1--11.
-Part of the loss is generic, since a neutral one-word swap also loses information, but at layers 2--8 the persona gap
-exceeds the neutral control by 0.06--0.12. The persona contrast is also distorted geometrically: for each pair, the
+The loss is not specific to the persona contrast. A neutral one-word swap also loses information, and the raw persona
+gap is larger only because the persona contrast is far more decodable: normalised by that headroom, no layer shows a
+persona-specific loss, and the neutral contrast loses a significantly larger share at layers 5 and 7--11
+(Appendix~\ref{sec:audit}). What the SAEs lose is therefore generic one-word instruction information. The persona contrast is also distorted geometrically: for each pair, the
 reconstructed honest-minus-dishonest difference has a cosine of only 0.35--0.58 with the original difference, even
 though the mean difference direction over all pairs is kept better (0.70--0.86). The SAE reconstructs each prompt
 reasonably well but their difference poorly, because the two reconstruction errors do not cancel.

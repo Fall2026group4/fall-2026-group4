@@ -17,7 +17,10 @@ restores 93--97\,\% of the effect at the layer-1 persona slot but only 62--68\,\
 (Figure~\ref{fig:m3}, right). At the later sites ReLU's error part alone carries 40--45\,\%, and for TopK and JumpReLU the
 interaction is large (0.26--0.38 of the effect), so their shares cannot be read additively. Higher explained variance
 does not imply higher causal preservation: at layer 11 TopK has higher EV than ReLU (0.815 versus 0.757) but retains
-less of the effect (0.62 versus 0.68).
+less of the effect (0.62 versus 0.68). This ordering is at sparsity matched on OWT. When task-level L0 is matched by
+truncation, 13 of 19 orderings of the base architectures on task metrics change (Appendix~\ref{sec:audit}), and this
+layer-11 causal ordering was not re-tested at matched task L0. The example therefore shows that EV and causal
+preservation can disagree; it does not rank the architectures.
 
 \paragraph{Feature patches and their interpretation.} Patching only the top-$k$ SAE latents, with the error term kept,
 restores more of the effect than 200 frequency- and magnitude-matched random latent sets for every SAE and site

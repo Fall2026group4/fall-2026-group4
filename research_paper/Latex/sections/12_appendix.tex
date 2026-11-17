@@ -77,8 +77,43 @@ fixed at 128 (Table~\ref{tab:impl_l0}).
         causal preservation share 0.013--0.017 at layer 1, 0.036--0.069 at layer 11 and 0.054--0.107 at layer 8.
   \item \textbf{Gemma.} One pretrained SAE per layer; 95\,\% percentile intervals from 1{,}000 document resamples (seed
         0), with a Bonferroni (98.33\,\%) sensitivity interval for H-G1.
+  \item \textbf{What the confirmatory intervals cover.} The pre-registered comparison rules use Welch tests over three
+        seeds per arm on one fixed evaluation set, so they generalise over SAE training seeds, not over statements or
+        documents. The sensitivity analysis S1 (Appendix~\ref{sec:audit}) adds the cluster-sampling variance (paired
+        cluster bootstrap, 2{,}000 resamples; degrees of freedom the smaller of Satterthwaite and Welch, so the interval is
+        never narrower than the seed-only one).
 \end{itemize}
 Raw MSE is never averaged across layers, and MSE improvement is $100\times(\text{baseline}-\text{improved})/\text{baseline}$.
+
+\section{Audit Sensitivity Analyses}\label{sec:audit}
+
+After an independent audit of the code and results we ran six pre-registered sensitivity analyses on validation rows
+only (no test row read; \texttt{results/\allowbreak{}shared/\allowbreak{}audit\_sensitivity/}). None is a new
+confirmatory test, and none changes a frozen verdict.
+\begin{itemize}
+  \item \textbf{S1, statement and document uncertainty.} The seed-only intervals of the OWT and truth test pass and of
+        the RepE-LM test omit the sampling of documents or statements, which accounts for 33--99\,\% of each
+        comparison's variance on validation. Adding it, HT2 holds in all nine cells, but the TopK cells of HT1 (adjusted
+        95\,\% CI $[+0.014, +0.240]$) and HT3 ($[-0.093, -0.002]$) no longer pass Holm over the 13 cells (adjusted
+        $p=0.156$ for both). Sixteen of 18 reconstruction and behaviour cells of the OWT test pass hold; the exceptions
+        are the small layer-1 $\Delta$CE gains of ReLU and of BatchTopK over JumpReLU.
+  \item \textbf{S2, persona versus neutral.} Normalised by decodable headroom, no layer shows a persona-specific loss;
+        the neutral one-word contrast loses a significantly larger share at layers 5 and 7--11. The earlier reading that
+        part of the persona loss is persona-specific is withdrawn.
+  \item \textbf{S3, matched task-level L0.} Truncating every SAE to the smallest natural task-level L0 among the
+        compared arms leaves 54 of 57 scaled-versus-base comparison classes unchanged, including the layer-8 causal gain
+        of BatchTopK over JumpReLU, but changes the ordering of the base architectures in 13 of 19 metric--layer cells.
+  \item \textbf{S4, pooled truth task.} Text-only baselines are at chance (AUROC at most 0.55). Pooling
+        \texttt{cities} with \texttt{neg\_cities} makes the label truth combined with negation: within one polarity a
+        linear probe reads truth from layer 1 (0.75--0.77), while the pooled probe stays at 0.52--0.59 at layers 1--2.
+        Low pooled AUROC at early layers is therefore not evidence that truth is absent (a post-hoc reading).
+  \item \textbf{S5, noise references.} The SAE's own error, reassigned at random to other statements, reproduces only
+        50--67\,\% of the frozen logistic truth drop at layers 6--11, so 33--50\,\% of that drop is aligned with the
+        input and its label (92 of 99 cells; Section~\ref{sec:info}). The frozen truth-reader drop is therefore partly
+        generic reader sensitivity and partly label-aligned SAE error.
+  \item \textbf{S6, probe regularisation.} An 11-value regularisation grid changes no comparison class, and no probe
+        selects a grid edge.
+\end{itemize}
 
 \section{Causal Analysis Details}\label{app:causal}
 
@@ -217,7 +252,9 @@ use city group A only, and evaluation probes are fitted on group B. The Gemma ev
 disjoint, and the mean-ablation vector uses the reference set only. The OWT test split was used for the reconstruction
 table and once more in the pre-registered confirmatory pass. The truth test split was scored for all 108 base SAEs with
 frozen probes and twice for historical layer-6 fine-tunes before that pass, so it is treated as previously exposed. The
-RepE-LM test split was evaluated once, under its frozen protocol (Section~\ref{sec:r2}).
+RepE-LM test split was evaluated once, under its frozen protocol (Section~\ref{sec:h1test}), and is now spent. The
+truth-subspace experiment used cross-fitted folds of the training and validation cities only and never loaded the
+cities test split.
 
 \section{Evidence Status and Provenance}\label{app:provenance}
 
