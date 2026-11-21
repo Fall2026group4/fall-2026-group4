@@ -1,4 +1,4 @@
-# SIL: SAE-in-the-loop (mediated) persona intervention (2026-11-13). Status: PRE-REGISTERED; pilot pending
+# SIL: SAE-in-the-loop (mediated) persona intervention (2026-11-13). Status: COMPLETED (2026-11-21; VALIDATION). Rule: MEDIATED for every family, but the negative control also passes (not SAE-specific)
 
 * **Evidence level:** VALIDATION only. No test row is read; nothing is trained.
 * **Requirement (Review #8, Major):** "SAE-in-the-loop intervention (your roadmap C3). Adding decoder directions to raw
@@ -89,6 +89,41 @@ All controls are applied at the same slot, in the same spliced model, with 20 dr
   Expected at most a few minutes on one A10G.
 * Pilot: 2 triples. Full run: 19 triples. It runs only after the H1-TEST pass has finished.
 
-## 7. Results
+## 7. Results (run 2026-11-21; script hash verified against the pre-registration)
 
-Pending.
+**Pilot gate: PASSED.** R2 TopK s42 and old TopK s42: spliced persona KL(p^D2_H ‖ p^D2_U) = 0.042 (CI low 0.035)
+and 0.042 (CI low 0.036); 117 s and 89 s per triple (limit 5 min). Outputs: `pilot/`.
+
+**Full run:** 19 triples (6 families × 3 seeds + the random-decoder control; 2 unavailable sources skipped), 25.6 min.
+Outputs: `validation/{per_pair.csv, summary.csv, checks.json}`. No test row read.
+
+| Family | D0 = {} retained (T_S / T_full) | D1 = {8} | D2 = {8, 11} | D2 MEDIATED (seeds) |
+|---|---|---|---|---|
+| R2 TopK | 1.02 | 0.88 | **0.90** | 3/3 |
+| R2 BatchTopK | 1.00 | 0.95 | **0.92** | 3/3 |
+| old JumpReLU-3072 | 1.03 | 0.99 | **0.91** | 3/3 |
+| old TopK-3072 | 1.04 | 0.93 | **0.82** | 3/3 |
+| old ReLU-3072 | 0.97 | 0.72 | 0.53 | 3/3 |
+| R2 ReLU | 1.01 | 0.68 | 0.47 | 3/3 |
+| **R2 random-decoder TopK (negative control)** | 0.83 | 0.59 | **0.51** | **1/1** |
+
+Mean over seeds. T_full (original model) = 0.0435. Neutral-swap T_S at D2: 0.003–0.010 for trained SAEs, **0.028**
+for the random-decoder control.
+
+**Pre-registered rule:** every trained family is **MEDIATED** at D0, D1 and D2 on every seed (T_S CI low > 0 and
+above the iso and shuffled controls).
+
+**Validity caveat (decisive for interpretation):** the pre-registered **negative control (random-decoder TopK) is
+also classified MEDIATED**. The rule therefore does not distinguish a trained SAE from a random-decoder autoencoder.
+A full latent swap z_U → z_H decodes to (approximately) the reconstruction of the honest activation, so any
+autoencoder with non-trivial reconstruction carries part of the effect. **The MEDIATED label is not evidence of
+SAE-specific mediation.** Label: VALIDATION; the specificity question is INCONCLUSIVE under this design.
+
+**What does discriminate (descriptive):** the fraction of the effect retained when SAEs replace the residual stream
+at layers 8 and 11 as well (D2). TopK, BatchTopK and JumpReLU retain 0.82–0.92; both ReLU families retain about 0.5,
+the same as the random-decoder control (0.51). So the downstream ReLU bottlenecks lose about half the persona effect,
+and the sparse codes of the other architectures carry most of it. The random-decoder control also produces a
+3–10× larger neutral-swap effect, i.e. its "effect" is less specific to the persona change.
+
+**Not changed:** no threshold or rule was altered after seeing results. A specificity-based rule (e.g. trained D2
+retention minus random-decoder retention, with a seed-level CI) would need a new pre-registration and is not claimed.
