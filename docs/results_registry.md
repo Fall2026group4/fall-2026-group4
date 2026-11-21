@@ -128,6 +128,19 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/` | VALIDATION (DEV only; feasibility) | Fresh-family eligibility and headroom; no TSP result. The TEST splits in `data/got/fresh/splits/` are LOCKED (never read) |
 | `results/geometry_of_truth/truth_subspace_preservation/replication/` | VALIDATION, confirmatory (pre-registered) | Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear, with the TRADE-OFF qualifier (persona/M4 non-inferiority not demonstrated). Fresh-family TEST results are secondary or exploratory and null. Cite the cities effect only as in-distribution |
 
+## 2026-11-15 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/dead_latent_audit/` (`docs/DEAD_LATENT_AUDIT.md`) | VALIDATION FINDING (descriptive diagnostic) | Dead fraction of 108 base and 36 trained R2 SAEs, plus 3 frozen-random-decoder baselines, on OWT validation (12,700 tokens). Cite as a diagnostic, not as evidence of faithfulness; it makes no attribution to data, recipe, duration or width |
+| Appendix / M0 JumpReLU alive-latent range "469–2,947" | SUPERSEDED by "469–2,941" (transcription correction) | Source value `architecture_by_layer.csv` is 2,941.0, unchanged |
+
+## 2026-11-16 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/geometry_of_truth/method_a_multilayer/` on branch `simba-method-a-multilayer` (`7f2557b`; Method A layers 5/6/9) | BRANCH-ONLY; EXPLORATORY / VALIDATION; UNMERGED; NOT CITED in the final manuscript | Do not use for final claims (D45). Criterion met in 1/9 cells; layer-9 disagreement with IMP-L unresolved; provenance caveats in `RESEARCH_PROGRESS.md` §53. Cite IMP-L (`multilayer_finetune/`) and `method_a_layer6/` instead |
+
 ## 2026-11-21 additions (final week)
 | Result | Status | Location |
 |---|---|---|

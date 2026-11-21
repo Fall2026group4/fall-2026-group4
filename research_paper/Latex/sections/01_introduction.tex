@@ -1,40 +1,62 @@
 \section{Introduction}\label{sec:intro}
 
 Sparse autoencoders decompose a model's dense activations into a larger set of sparsely active latents, many of which
-look human-interpretable \citep{bricken2023monosemanticity,cunningham2023sparse}. They have become a standard tool of
-mechanistic interpretability, with architectures that trade off reconstruction against sparsity in different ways
-\citep{gao2024scaling,rajamanoharan2024jumping}. Interpretability claims made through an SAE --- that the model
-represents truth with certain features, or that a feature controls a behaviour --- inherit an assumption: that the
-SAE is a \emph{faithful} replacement for the activation it reconstructs.
+appear human-interpretable \citep{bricken2023monosemanticity,cunningham2023sparse}. They have become a standard tool of
+mechanistic interpretability, with architectures that trade reconstruction against sparsity in different ways
+\citep{gao2024scaling,rajamanoharan2024jumping} and public suites for GPT-2 Small \citep{bloom2024gpt2} and Gemma 2
+\citep{gemmascope2024}. Claims made through an SAE, for example that a model represents truth with certain latents,
+rest on an assumption that is rarely tested directly: that the SAE is a \emph{faithful} replacement for the activation
+it reconstructs.
 
-Faithfulness has several distinct meanings that are often conflated:
+SAEs are usually trained and compared on reconstruction error and sparsity. These quantities average closeness over
+all directions and inputs, so they are dominated by high-variance directions shared by most inputs, whereas the
+differences a task depends on can lie in small, low-variance directions. An SAE can therefore reconstruct activations
+well on average while discarding or distorting what the model actually uses.
+
+We ask \emph{to what extent SAEs preserve the information and behaviour of language models beyond reconstructing
+activations well}, and answer it by measuring four levels of faithfulness separately (Figure~\ref{fig:framework}):
+\emph{reconstruction} (is the reconstruction close to the activation?), \emph{information} (can task labels still be
+recovered from it?), \emph{behaviour} (does the model behave the same when it is spliced in?) and \emph{causal
+preservation} (does it carry a specific effect the model is known to use?). None of these levels implies the others,
+and each result in this paper is attributed to exactly one of them.
+
+We study GPT-2 Small \citep{radford2019gpt2}, where we can train our own SAEs at every layer with several seeds,
+locate causal effects and run pre-registered improvement experiments, and Gemma-2-2B \citep{gemmateam2024gemma2}, where
+public Gemma Scope SAEs let us test whether the behavioural finding holds for a different model and an independently
+trained SAE family. Because the two settings differ in model, SAE family, width, sparsity, hook point, data and context
+length, Gemma is used to test the direction of an effect, not to rank the models.
+
+The study is an evaluation rather than a new SAE method, and it yields four findings:
 \begin{enumerate}
-  \item \textbf{Reconstruction}: the reconstruction $\hat{x}$ is close to the activation $x$.
-  \item \textbf{Information preservation}: task information that the model encodes (here, whether a statement is true;
-        whether a persona instruction is honest) can still be read from $\hat{x}$.
-  \item \textbf{Behavioural faithfulness}: the model behaves the same when $\hat{x}$ replaces $x$.
-  \item \textbf{Causal faithfulness}: $\hat{x}$ carries the specific causal effect the model uses for a task.
+  \item Reconstruction quality is useful but does not by itself establish information faithfulness: within a layer,
+        reconstruction error predicts behavioural damage but does not robustly predict truth-information loss
+        (Sections~\ref{sec:recon}--\ref{sec:behaviour}).
+  \item Conclusions about information depend on the measurement: frozen readers exaggerate the loss, re-trained readers
+        show a smaller but real loss, and SAE-versus-PCA verdicts depend on the comparison constraint
+        (Section~\ref{sec:info}).
+  \item SAE reconstructions preserve a located causal effect well at an early site but substantially less at later
+        sites (Section~\ref{sec:causal}).
+  \item Better training improves reconstruction and behavioural faithfulness on held-out data but yields no confirmed
+        gain in truth information, and behaviour-targeted training is a trade-off (Section~\ref{sec:improve}).
 \end{enumerate}
-Explained variance is dominated by high-variance directions shared by all inputs, while task-relevant differences can
-be small, low-variance directions. Good reconstruction therefore does not guarantee the other three properties. This
-paper measures each level separately, at every layer of GPT-2 Small \citep{radford2019gpt2}.
+The behavioural finding is supported in Gemma-2-2B and the main GPT-2 conclusions hold for a public SAE family
+(Section~\ref{sec:general}).
 
-\paragraph{Contributions.}
-\begin{itemize}
-  \item A matched-sparsity comparison of ReLU, TopK and JumpReLU SAEs at all 12 layers of GPT-2 Small, with three seeds
-        (\S\ref{sec:recon}).
-  \item A four-level information test that separates readout shift from information loss using frozen and re-trained
-        readers, norm-matched noise and PCA references (\S\ref{sec:info}).
-  \item A within-layer analysis showing that reconstruction error predicts behavioural damage but not truth readout,
-        and that earlier pooled correlations were artefacts of mixing layers (\S\ref{sec:behaviour}).
-  \item A shortcut-free persona-instruction task, a pre-registered causal site sweep, and a decomposition of the
-        causal effect into reconstruction, error and interaction parts (\S\ref{sec:causal}).
-  \item Pre-registered fine-tuning experiments, including an audit that found our own earlier truth-aware objective
-        to be circular (\S\ref{sec:finetune}).
-\end{itemize}
-
-\paragraph{Scope of the claims.} All in-house SAEs have 3072 latents (4$\times$ expansion), target L0 = 128 and are
-trained on 101{,}600 OpenWebText tokens. The results describe these SAEs; whether they hold for larger, longer-trained
-SAEs is tested only partially (\S\ref{sec:limits}).
-
-\pending{Final framing paragraph (Review \#8: lead with the audit's negative finding) after IMP-L and M5.}
+\begin{figure}[t]
+\centering
+\small
+\setlength{\fboxsep}{6pt}
+\begin{tabular}{@{}c@{\hspace{0.3em}}c@{\hspace{0.3em}}c@{\hspace{0.3em}}c@{\hspace{0.3em}}c@{\hspace{0.3em}}c@{\hspace{0.3em}}c@{}}
+\fbox{\parbox[c][6.8em][c]{0.19\linewidth}{\centering{\footnotesize Level 1}\\\textbf{Reconstruction}\\[0.3em]Is $\hat{x}$ close to $x$?\\[0.2em]\footnotesize EV, NMSE, L0}}
+& $\rightarrow$ &
+\fbox{\parbox[c][6.8em][c]{0.19\linewidth}{\centering{\footnotesize Level 2}\\\textbf{Information}\\[0.3em]Can task labels be read from $\hat{x}$?\\[0.2em]\footnotesize frozen and re-trained readers}}
+& $\rightarrow$ &
+\fbox{\parbox[c][6.8em][c]{0.19\linewidth}{\centering{\footnotesize Level 3}\\\textbf{Behaviour}\\[0.3em]Does the model behave the same with $\hat{x}$ spliced in?\\[0.2em]\footnotesize $\Delta$CE, KL}}
+& $\rightarrow$ &
+\fbox{\parbox[c][6.8em][c]{0.19\linewidth}{\centering{\footnotesize Level 4}\\\textbf{Causal}\\[0.3em]Does $\hat{x}$ carry an effect the model uses?\\[0.2em]\footnotesize activation patching}}
+\end{tabular}
+\caption{The four levels of faithfulness evaluated in this study. Each level has its own metrics, controls and
+evidence label. GPT-2 Small is evaluated at all four levels; Gemma-2-2B at the reconstruction and behavioural levels
+only.}
+\label{fig:framework}
+\end{figure}

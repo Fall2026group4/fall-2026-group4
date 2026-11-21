@@ -159,8 +159,8 @@ def table_m2():
     head = ('Task & SAE & Frozen log. & Noise & Frozen m.-mean & Re-trained log. & PCA re-tr. & MLP & Error AUROC \\\\\n\\midrule\n')
     write_table('t_m2', head + rows,
                 'M2 information preservation (VALIDATION): AUROC gaps (original $-$ reconstructed; $\\downarrow$), mean '
-                'over informative layers (GoT 4--11, RepE-LM 1--11) and 3 seeds. ``Noise'' adds isotropic noise with the '
-                'norm of the SAE error; ``PCA'' is matched to the SAE\'s OWT validation NMSE. Error AUROC: label decoded '
+                "over informative layers (GoT 4--11, RepE-LM 1--11) and 3 seeds. ``Noise'' adds isotropic noise with the "
+                "norm of the SAE error; ``PCA'' is matched to the SAE's OWT validation NMSE. Error AUROC: label decoded "
                 'from the error term alone.', 'tab:m2', ['m2'], 'llccccccc')
 
 
@@ -471,8 +471,8 @@ def table_rlm_layers():
             '$\\cos(\\Delta,\\hat\\Delta)$ & $\\|\\hat\\Delta\\|/\\|\\Delta\\|$ & m.-m. cos & EV & L0 \\\\\n\\midrule\n')
     write_table('t_rlm_layers', head + rows,
                 'RLM-RP: RepE-LM persona preservation by layer for the 99 base SAEs at layers 1--11 (VALIDATION; final '
-                'token; mean$\\pm$sd over 3 seeds where shown). ``Orig.'': frozen logistic AUROC on original activations. '
-                'Gaps are original $-$ reconstructed AUROC ($\\downarrow$). ``Noise'': frozen gap under isotropic noise with '
+                "token; mean$\\pm$sd over 3 seeds where shown). ``Orig.'': frozen logistic AUROC on original activations. "
+                "Gaps are original $-$ reconstructed AUROC ($\\downarrow$). ``Noise'': frozen gap under isotropic noise with "
                 'the SAE error\'s norm. Held-out: frozen persona probe on never-fitted templates T5/T6. $\\Delta=x_H-x_U$ per '
                 'pair; EV and L0 on all RepE-LM validation prompts (L0 matched on OWT, not here). Layer 0 is excluded: '
                 'AUROC is 0.5 by construction.', 'tab:rlm_layers', ['rlm_summary', 'rlm_orig'], 'llcccccccccccc')

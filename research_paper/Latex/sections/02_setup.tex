@@ -1,0 +1,60 @@
+\section{Setup}\label{sec:setup}
+
+\input{tables/t_overview}
+
+\paragraph{Models and SAEs.} GPT-2 Small has 12 blocks and a residual stream of width 768. All GPT-2 SAEs read the
+activation entering block $L$ (\texttt{blocks.$L$.hook\_resid\_pre}); the beginning-of-sequence (BOS) position is
+excluded from training and splicing. Our base SAEs map $x$ to $z=\sigma(W_e(x-b_d)+b_e)$ and $\hat{x}=W_dz+b_d$ with
+reconstruction error $e=x-\hat{x}$, using three activation functions: ReLU with an L1 penalty, TopK with $k=128$
+\citep{gao2024scaling}, and a JumpReLU whose threshold gradient uses a sigmoid surrogate, which is simpler than the
+published estimator \citep{rajamanoharan2024jumping}. Each has 3{,}072 latents and a target L0 (mean active latents per
+token) of 128 and is trained at every layer with three seeds, giving 108 SAEs. Architectures are compared only when
+every run's L0 is within $\pm10\,\%$ of the target; 107 of 108 runs qualify, and the unmatched layer-0 JumpReLU run is
+kept but excluded from rankings. For the scaling experiment (Section~\ref{sec:r2}) we trained SAEs at layers 1, 8 and
+11 with 12{,}288 latents on 100M further tokens, together with a width ablation and a random-decoder baseline
+\citep{korznikov2026random}. The public \texttt{gpt2-small-res-jb} SAEs \citep{bloom2024gpt2} serve only as an external
+reference. In Gemma-2-2B we use the public width-16k Gemma Scope JumpReLU SAEs at layers 5, 12 and 19
+\citep{gemmascope2024}, applied to the output of each layer (\texttt{resid\_post}), the site they were trained on, with
+model, tokenizer, SAE and data revisions pinned before the run. The two hook conventions follow each SAE family and
+imply no layer correspondence between the models. Training details are in Appendix~\ref{app:details}.
+
+\paragraph{Data.} OpenWebText (OWT) documents, split by document, are used to train the base SAEs and to measure
+reconstruction and splicing. The Geometry of Truth \texttt{cities} and \texttt{neg\_cities} statements
+\citep{marks2023geometry}, split by city, form the truth task; the training split is divided into city groups A and B,
+so that training objectives may use only group A and independent evaluation probes are fitted on group B. For the
+persona task we built RepE-LM, in which an honest and a dishonest instruction differ in exactly one token at a fixed
+position, with honest-synonym and neutral-word controls and held-out wordings. It replaces persona prompts derived from
+representation engineering \citep{zou2023representation} whose length alone predicted the label (AUROC 0.80); results
+obtained with those prompts are not used. For Gemma we draw 512 evaluation and 64 disjoint reference documents from the
+validation file of the uncopyrighted Pile \citep{gao2020pile}, truncated to 1{,}024 tokens. Split sizes, templates and
+sampling are in Appendix~\ref{app:details}.
+
+\paragraph{Four levels and their controls.}\label{sec:levels}
+\emph{Reconstruction} is measured by explained variance, $\mathrm{EV}=1-\sum\|x-\hat{x}\|^2/\sum\|x-\bar{x}\|^2$, its
+complement NMSE, and L0. \emph{Information} is measured by the AUROC gap between a reader applied to original
+activations and to reconstructions. A \emph{frozen} reader is fitted on original activations and applied unchanged; a
+\emph{re-trained} reader is fitted on reconstructions of training statements. Two references separate SAE-specific
+loss from generic perturbation: isotropic noise with the norm of the SAE error, and PCA fitted on OWT activations.
+\emph{Behaviour} is measured by splicing $\hat{x}$ into one layer at every non-BOS position and recording the increase
+in next-token cross-entropy ($\Delta$CE, nats per prediction), the KL divergence from the original distribution, and
+loss recovered relative to mean ablation; a norm-matched random-error control replaces the SAE error by a random
+direction of the same norm. Among the four levels, splicing is the only measurement in which the model's forward pass
+runs through the SAE output. \emph{Causal preservation} is measured by activation patching between paired prompts;
+because the SAE error term is kept, each patch adds a vector to the original activation and does not route
+computation through the SAE (Section~\ref{sec:causal}).
+
+\paragraph{Evidence and statistics.}\label{sec:evidence} Each result carries one evidence level: \evlabel{test}
+(a held-out split evaluated once under a written protocol), \evlabel{confirmed test} (a pre-registered comparison
+first seen on validation and confirmed in one pre-registered held-out evaluation), \evlabel{validation} (a
+pre-registered analysis on validation data, which were also used to compare methods, so effect sizes may be
+optimistic), \evlabel{pre-registered only} (a fixed protocol that has not produced results) or, where applicable,
+\evlabel{exploratory} (not pre-registered, or diagnostic). Unless marked otherwise, results are \evlabel{validation}
+findings. Within validation experiments, pre-registered outcome classes such as ``preliminary improvement'', ``no
+improvement'', ``not creditable'' (a guard failed) and ``regression'' describe the result of a comparison; they do not
+raise or change its evidence level. From the
+within-layer reanalysis onwards, hypotheses, criteria and script hashes were written before each run; test splits were
+never used for training, tuning or method selection. Seeded GPT-2 comparisons are paired by seed; fine-tuning
+comparisons use the pre-registered ``consistent'' rule (better on all three seeds and a mean paired difference above
+twice its standard deviation); family comparisons use Welch intervals and require all nine seed pairs to agree.
+Gemma intervals are document-bootstrap intervals over one pretrained SAE per layer, not seed variability. Full
+procedures and the minimum detectable effects of the design are in Appendix~\ref{app:stats}.
