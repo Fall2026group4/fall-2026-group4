@@ -533,3 +533,8 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * one focused PR per completed and validated phase, based on `sae-research` (stacked), never merged without the
     user's approval.
 
+## D48. TI-1 verdict and what may be claimed (2026-11-21). Status: DECIDED (by the frozen TI-1 rule)
+* **Verdict:** TSP GENERALISES across layer (L8 → L11) and SAE type (TopK, BatchTopK, ReLU) for GoT cities in GPT-2 Small: 3/3 eligible cells SUPPORTED after Holm, cost guard met.
+* **May be claimed (VALIDATION):** "Truth-subspace-preserving fine-tuning reduces the cities refit-probe gap by 0.015–0.042 AUROC vs a reconstruction-only control at matched L0, in every tested layer/architecture, at ≤ +2.5 % OWT NMSE; the gain is truth-specific (beats a random subspace)."
+* **May not be claimed:** transfer to other truth families (not tested here; TSP-R found none); any Gemma result; frozen-probe gains as evidence (circular).
+* **Consequence:** TI-1 positive, so TI-2 (multi-family) and TI-G (Gemma transfer) stay first in the improvement queue; both wait for disk.

@@ -436,3 +436,11 @@ No experiment, code or result changes. Both sides kept in full in the four doc l
 | `docs/experiment_manifest.csv` | both sides' rows kept (M6 row appended after XT-G0) | append-only ledger |
 | `docs/plain_summary.md` (from PR #33) | one sentence reworded: "same-sized random noise caused almost the same drop, so the probe was reacting to any disturbance" → noise explains part of the drop; a third to a half at the middle and later GoT layers is label-aligned SAE error | that sentence is the claim withdrawn in D38 / AUDIT-S5; `test_withdrawn_claims_regression.py` failed on it after the merge (user approved the fix 2026-11-21) |
 Historical changelog rows above that say "D36" for M6 describe those commits as made, and are left unchanged.
+
+## 2026-11-21: TI-1 results (TSP generalisation)
+| File | Change | Reason |
+|---|---|---|
+| `scripts/geometry_of_truth/32_tsp_generalisation.py` | modified | OOM fix in `stage_eval` (batch 16 → 4, same for original log-probs); `stage_analyze` dict-access fix (`r.seed` → `r['seed']`). Neither changes any computation |
+| `results/geometry_of_truth/tsp_generalisation/{ledger_*.csv, eval/, analysis/}` | added | 81 fine-tunes evaluated; pre-registered analysis |
+| `results/geometry_of_truth/tsp_generalisation/README.md` | updated | results, criteria, deviations |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | appended | documentation rule (CLAUDE.md §1); §56, D48; 81 checkpoint rows (checkpoints not committed) |

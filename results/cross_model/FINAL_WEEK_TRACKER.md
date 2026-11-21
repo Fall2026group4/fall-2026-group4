@@ -13,6 +13,7 @@ TEST = confirmed test, EXPL = exploratory. GPU: A10G 23 GB; at most 2 GPU jobs a
 | XT-G0 extraction + gates | Gemma-2-2B | 0–25 | GoT (4 sets + fresh DEV), RepE-LM, OWT 800 / 100 docs | K1 PASS (6,072 pairs bit-identical before the slot); K7 persona / neutral KL median ratio 5.1, Wilcoxon p 7e-77 (GPT-2: 1.99); OWT tokens 101,600 / 12,700 (= GPT-2) | `results/gemma/xtg_task_baselines/gates/` |
 | TI-1 gate | GPT-2 original | 1, 8, 11 | cities folds | eligible: L8 (0.78–0.83), L11 (0.74–0.77); **L1 NOT eligible (0.51) → L1_topk not run** | `results/geometry_of_truth/tsp_generalisation/gate_eligibility.json` |
 | TI-1 R0 | TopK L8 | 8 | 30 steps | run_one_general == frozen run_one bit-for-bit | `.../gate_r0_repro.json` |
+| **TI-1 result** | R2 L11 TopK, L8 BatchTopK, L8 ReLU | 8, 11 | cities, 3 seeds × 3 folds, 81 fine-tunes | **GENERALISES**: tsp − ctrl refit gap −0.042 / −0.015 / −0.026, all p_holm < 1e-3, 3/3 seeds; cost guard met (NMSE ≤ +2.5 %, L0 ±0.2 %) | `results/geometry_of_truth/tsp_generalisation/analysis/` (§56, D48) |
 | XB A2 check | Gemma | 5, 12 | 8 docs | layer-major == document-major bit-for-bit | `xb_matched_splicing/smoke/` |
 | XT-G smoke | GPT-2 res-jb | 8 | GoT, RepE-LM | pipeline works (EXPL; full-run numbers supersede) | `xtg_truth_preservation/smoke/` |
 
@@ -21,7 +22,6 @@ TEST = confirmed test, EXPL = exploratory. GPU: A10G 23 GB; at most 2 GPU jobs a
 |---|---|---|---|
 | XB gemma queue | pile own (triplets) → pile shared (all 26) → owt shared (all 26) → owt own (triplets) | 09:30 | ~14:00–15:00 |
 | XB gpt2 queue (layer-major, A3) | owt shared (resumed at 96/512) → pile shared | 09:40 | ~15:00 |
-| TI-1 | L11_topk → L8_batchtopk → L8_relu (27 fine-tunes each) + eval | 09:30 | ~21:00 |
 | XT-G Gemma smoke | layer 12, timing | 09:45 | ~10:15 |
 
 ## Pending (approved scope, in order)

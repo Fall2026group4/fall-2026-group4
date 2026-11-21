@@ -854,3 +854,13 @@ Source: `results/gemma2_pile/gemma_scope_splicing/` (`summary_by_layer.csv`, `h_
 * SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; this experiment does not identify the mechanism responsible.
 * No representation-preservation, causal-intervention or GPT-2 vs Gemma superiority claim.
 * **Limitation (H4a, measurement floor only, results not adjusted):** bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.0008297822, mean |CE difference| 0.0264414540, top-1 disagreement 0.0226209048 and max |logit difference| 0.1562862396. Hardened smoke outputs: `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`.
+
+## TI-1: TSP generalisation (2026-11-21; VALIDATION; pre-registered; 3 seeds × 3 folds per cell)
+| Cell | tsp − ctrl refit gap [95 % CI] | p_holm | tsp − rand | OWT NMSE vs base | L0 change | Label |
+|---|---|---|---|---|---|---|
+| L8 TopK (TSP-R reference, 8 seeds) | −0.0207 [−0.0261, −0.0153] | — | −0.0220 | non-inferior | 0 | SUPPORTED |
+| L11 TopK | −0.0415 [−0.0533, −0.0298] | 9.1e-5 | −0.0489 | +2.5 % | 0.0 % | SUPPORTED (meaningful) |
+| L8 BatchTopK | −0.0153 [−0.0241, −0.0065] | 7.1e-4 | −0.0217 | +1.6 % | +0.1 % | SUPPORTED (meaningful) |
+| L8 ReLU | −0.0258 [−0.0316, −0.0201] | 2.9e-10 | −0.0258 | +0.3 % | +0.2 % | SUPPORTED (meaningful) |
+
+Lower is better. Source: `results/geometry_of_truth/tsp_generalisation/analysis/`. L1 not eligible.

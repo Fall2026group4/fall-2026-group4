@@ -313,8 +313,8 @@ def stage_eval(cell):
     model = HookedTransformer.from_pretrained('gpt2-small', device='cuda').eval()
     orig_lp = []
     with torch.no_grad():
-        for b in range(0, len(seqs), 16):
-            ss = seqs[b:b + 16]
+        for b in range(0, len(seqs), 4):        # must equal the splice batch size (orig_lp is indexed b // bs)
+            ss = seqs[b:b + 4]
             Tm = max(len(q) for q in ss)
             toks = torch.full((len(ss), Tm), 50256, dtype=torch.long)
             for i, q in enumerate(ss):
@@ -328,7 +328,7 @@ def stage_eval(cell):
             continue
         sae = SAEnp(s['path'])
         H, l0 = sae.np(Xall.numpy())
-        sp = S31.splice_per_seq(model, seqs, lambda x: (sae.m(x)[0],), orig_lp)
+        sp = S31.splice_per_seq(model, seqs, lambda x: (sae.m(x)[0],), orig_lp, bs=4)   # bs 4: GPU shared (same metric)
         rr = dict(sae_id=s['sae_id'], arm=s['arm'], seed=s['seed'], fold=s['fold'],
                   owt_nmse=float(((Xall.numpy() - H) ** 2).sum() / den), owt_l0=float(l0.mean()),
                   owt_dce=float((sp[:, 1] - sp[:, 0]).sum() / sp[:, 3].sum()), owt_kl=float(sp[:, 2].sum() / sp[:, 3].sum()))
@@ -386,7 +386,7 @@ def stage_analyze():
         base = o[o.arm == 'base'].set_index('seed')
         for arm in ARMS:
             a = o[o.arm == arm]
-            rel = {m: float(np.mean([(r[m] - base.loc[r.seed, m]) / base.loc[r.seed, m] for r in a.to_dict('records')]))
+            rel = {m: float(np.mean([(r[m] - base.loc[r['seed'], m]) / base.loc[r['seed'], m] for r in a.to_dict('records')]))
                    for m in ('owt_nmse', 'owt_dce', 'owt_kl', 'owt_l0')}
             rows.append(dict(cell=cell, reader='owt_cost', contrast=f'{arm}-base(rel)', **rel,
                              l0_within_5pct=bool(all(abs((r['owt_l0'] - base.loc[r['seed'], 'owt_l0']) /
