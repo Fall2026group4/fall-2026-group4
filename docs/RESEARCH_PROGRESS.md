@@ -1315,3 +1315,41 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Evidence label:** validation, confirmatory (in-distribution). Transfer claims remain unsupported.
 * **Deviation:** a loader fix in the `final` stage (`allow_pickle`); no metric changed.
 * Folder: `results/geometry_of_truth/truth_subspace_preservation/replication/`.
+
+## 51. Final-week programme: audit, cross-model infrastructure, Gemma task baselines (2026-11-21). Status: Phase 1 COMPLETED (infrastructure, gates, XT-G0); XB, XT-G/DX and TI-1 IN PROGRESS
+
+* **Audit:** `docs/2026-11-21_final_week_technical_audit.md`, approved by the user. Teammate evidence found:
+  * M6 (merged into `main`);
+  * R3 (PR #30, open);
+  * `dhruv-causal` (unmerged, no PR).
+
+  The `sae-research` docs that said "no Gemma SAEs" were out of date.
+* **Shared infrastructure:**
+  * `src/models/backends.py`: one hook interface for GPT-2 (TransformerLens) and Gemma (HF).
+  * `src/evaluation/pile_splicing.py`: byte-identical copy of M6's module from `main`.
+  * `scripts/cross_model/00–03`, `10`.
+  * 9 new unit tests.
+* **Gates [VERIFIED]:**
+  * G-HOOK: the TL residual is the HF residual minus its per-token mean (rel. diff ≤ 3e-7).
+  * The Pile sample reproduces M6's hashes (576/576).
+  * Identity and repeat controls are exactly 0.
+  * Gemma SAE ΔCE agrees with M6's own per-document rows (mean diff 0.0004 nats).
+  * Layer-major and document-major runs are bit-identical.
+* **XT-G0 [VALIDATION, COMPLETED]** (`results/gemma/xtg_task_baselines/`):
+  * Gemma GoT, RepE-LM and OWT activations mirror the GPT-2 caches.
+  * K1 passes: 6,072 pairs bit-identical before the slot.
+  * K7 persona/neutral KL ratio 5.1 (GPT-2: 1.99), p = 7e-77.
+* **Ceiling finding (exploratory smoke, L12):** Gemma's original GoT cities AUROC is 1.000. Cities cannot discriminate
+  Gemma SAEs at mid depth, so XT-G amendment A2 adds the companies and common_claim DEV families and a d′ metric for
+  both models.
+* **TI-1 gates:**
+  * L1 is not eligible (original pooled cities AUROC 0.51); L8 and L11 are eligible.
+  * R0: the generalised fine-tune equals the frozen TSP recipe bit-for-bit.
+* **Operational:**
+  * Several runs were interrupted by GPU OOM. XB amendments A1–A3 fix this; they are implementation only.
+  * A non-destructive disk guard is in place (free space 16 GB; an EBS increase has been requested by the user).
+* **Running:**
+  * XB, both models, both corpora;
+  * XT-G/DX: Gemma all layers, then the GPT-2 depth-matched layers;
+  * TI-1: L11 TopK, L8 BatchTopK, L8 ReLU.
+* **Tracker:** `results/cross_model/FINAL_WEEK_TRACKER.md`.

@@ -126,3 +126,11 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/geometry_of_truth/truth_subspace_preservation/verification/` | VALIDATION verification (post-hoc checks exploratory) | Confirms the pilot numbers and the NOT SUPPORTED verdict. Supersedes the pilot's secondary CIs for error-only AUROC / MLP / sparse-z / kNN, which omitted statement sampling. Specificity holds for the frozen gap only |
 | `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/` | VALIDATION (DEV only; feasibility) | Fresh-family eligibility and headroom; no TSP result. The TEST splits in `data/got/fresh/splits/` are LOCKED (never read) |
 | `results/geometry_of_truth/truth_subspace_preservation/replication/` | VALIDATION, confirmatory (pre-registered) | Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear, with the TRADE-OFF qualifier (persona/M4 non-inferiority not demonstrated). Fresh-family TEST results are secondary or exploratory and null. Cite the cities effect only as in-distribution |
+
+## 2026-11-21 additions (final week)
+| Result | Status | Location |
+|---|---|---|
+| XT-G0 Gemma task activations, K1 / K7 gates | VALIDATION (completed; gates passed) | `results/gemma/xtg_task_baselines/` |
+| XB matched splicing (GPT-2 vs Gemma) | PRE-REGISTERED, in progress; gate outputs only | `results/cross_model/xb_matched_splicing/` |
+| XT-G / DX truth preservation (both models) | PRE-REGISTERED, in progress; smoke outputs are EXPLORATORY, not citable | `results/cross_model/xtg_truth_preservation/` |
+| TI-1 TSP generalisation | PRE-REGISTERED, gates passed, in progress | `results/geometry_of_truth/tsp_generalisation/` |
