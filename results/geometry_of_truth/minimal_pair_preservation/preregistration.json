@@ -1,0 +1,39 @@
+{
+ "experiment": "TI-3: minimal-pair difference preservation (EXPLORATORY pilot), GPT-2 R2 TopK L8",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED, EXPLORATORY (frozen before any gate, training or outcome)",
+ "approved_by": "user, 2026-11-21 (Option B item 6)",
+ "evidence_level_on_completion": "EXPLORATORY (no confirmatory claim)",
+ "pilot_reading": "promising iff mp-ctrl cities refit gap CI high < 0 AND mp-mp_shuf < 0 on >= 2/3 folds AND cost limits (NMSE <= +3 %, dCE <= +5 %, L0 = 128) AND pair term decreased in every mp run",
+ "gates": {
+  "R0": "no-pair trainer reproduces TSP-R f0_ctrl_s42 <= 1e-6",
+  "pairs": "true pairs same city/pol, shuffled derangement",
+  "tspr_ctrl_hashes": "match run_ledger"
+ },
+ "failure_conditions": [
+  "any gate fails -> stop TI-3",
+  "divergence -> exclude and report"
+ ],
+ "runs": {
+  "new": 18,
+  "reused_tspr_ctrl": 9
+ },
+ "schedule_rule": "skipped if it cannot start by 2026-11-22 14:30 UTC",
+ "test_data_used": false,
+ "hashes": {
+  "scripts/geometry_of_truth/36_minimal_pair_preservation.py": "a68ea789843c03fbed40a3c2fd3e645dbdef1d654fdb1bc03db794779cd71760",
+  "scripts/geometry_of_truth/34_tsp_multifamily.py": "de853c63f653b07498cd559ff333b318242ef3efc147d25c56d9d204e4710590",
+  "scripts/geometry_of_truth/35_tsp_kl_factorial.py": "3999cf9bd0ed35eafbef43608c8b9ed7ead7fedd1f5dd2ff2a6f78c37009d3ff",
+  "scripts/shared/e1_task_l0_matched_topk.py": "6b6f0cd36ac37b4f9e0cad2da2f8e210dec0606f88342edc03851efd27fb5f6f",
+  "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+  "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
+  "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "8e93527a8a3a55d79bc753bba8ea97688c24e88e3e8933616471e8d8cf40f7ed",
+  "scripts/geometry_of_truth/29_tsp_r_phase0_fresh_families.py": "8d4eb535a8a0f2041811a06c02247eaee44fcce23dd1ef96ca231ee540e86f89",
+  "src/evaluation/tspr_stats.py": "e3eb4593887875a29d955264e7700961118f9d9083a2d9d8fa4dfdc40f634fd6",
+  "data/got/fresh/splits/cities_crossfit_folds.csv": "fdfb0f6e3fabc57761dbd5846c9a6fa457eb1814192f06826ce20ede5c90dba7",
+  "data/got/fresh/splits/companies_true_false_splits.csv": "2b65934710d71d7b98c60c4f5ad15205cf2539d653c95a8b2a2a52e3abcd0cb6",
+  "results/geometry_of_truth/truth_subspace_preservation/replication/run_ledger.csv": "589d8d986d908b71cec2a4d2957255651e8478c623f4620154d1c9ff8ae708d6",
+  "results/geometry_of_truth/minimal_pair_preservation/README.md": "4bd49db56f90c6b9d405ac8d6095ef9028d92cb540d38bc189625ab7b6e316b1",
+  "src/tests/test_minimal_pair_preservation.py": "69a0d83e665f2bd0a2fbf134f6f89e9875827ef39c1a99e41738d98ccbeaf9e7"
+ }
+}
