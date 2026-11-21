@@ -1,0 +1,8 @@
+{
+ "corpus": "pile",
+ "seconds": 13.4,
+ "manifest_sha256": "a6dc803f603489cda5e0147576f6599df91588a05fdc1adba76f326a2152b91a",
+ "span_tokens_gpt2_mean": 512.4513888888889,
+ "span_tokens_gemma_mean": 471.015625,
+ "gemma_tokens_per_gpt2_token": 0.9191420595449433
+}

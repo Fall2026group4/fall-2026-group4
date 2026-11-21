@@ -1,0 +1,64 @@
+{
+ "experiment": "XB_matched_cross_model_splicing",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED (frozen before any XB output exists)",
+ "evidence_level_on_completion": "VALIDATION (Pile validation file; OWT shard 00077 never used for any of our training). Descriptive cross-model comparison; directional within-model tests.",
+ "research_question": "Under one shared protocol (same text, same context rule, same controls, same uncertainty estimate, depth-matched sites), how much does splicing SAE reconstructions degrade next-token behaviour in GPT-2 Small vs Gemma-2-2B, relative to each model's own controls?",
+ "models": {
+  "gpt2": {"loader": "transformer_lens HookedTransformer.from_pretrained('gpt2-small') default processing", "precision": "float32", "site": "blocks.L.hook_resid_pre", "layers": "0-11", "depth_fraction": "L/12", "bos_id": 50256, "gate_G_HOOK": "TL resid_pre == HF hidden_states[L] minus per-token mean over d_model (rel diff <= 3e-7 at L 0,3,6,9,11; logits max |dlogp| 9e-5), verified 2026-11-21"},
+  "gemma": {"loader": "HF google/gemma-2-2b rev c5ebcd40d208330abc697524c919956e692655cf, bf16, eager attention (M6-identical)", "site": "output of model.model.layers[L] (resid_post)", "layers": "0-25", "depth_fraction": "(L+1)/26", "bos_id": 2}
+ },
+ "depth_triplets": {
+  "T_B": {"gpt2": [3, 6, 9], "gemma": [5, 12, 19], "fractions_gpt2": [0.25, 0.5, 0.75], "fractions_gemma": [0.231, 0.5, 0.769]},
+  "T_A": {"gpt2": [1, 8, 11], "gemma": [1, 16, 23], "fractions_gpt2": [0.083, 0.667, 0.917], "fractions_gemma": [0.077, 0.654, 0.923]}
+ },
+ "corpora": {
+  "pile": "M6 committed sample (512 eval + 64 reference; origin/main bf25b40 results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv); text hashes re-verified",
+  "owt_xm": "new: OpenWebText shard 00077, rng 20261121 permutation, >= 32 text tokens in both tokenizers, exclude any text whose SHA-256 is in our 1,000-document OWT sample or shards 00078/00079; first 512 eligible eval, next 64 reference"
+ },
+ "context": {
+  "primary": "shared span: longest character prefix with <= 1023 text tokens under BOTH tokenizers; BOS prepended; batch rows never padded across documents (one document per forward batch)",
+  "secondary": "own-1024: each model's own first 1023 text tokens (Gemma on Pile == M6 input); run only at the triplet layers"
+ },
+ "positions": "BOS never reconstructed, spliced or scored; predictions scored at 1 <= t <= len-2",
+ "saes": {
+  "gpt2": {
+   "resjb": "jbloom/GPT2-Small-SAEs-Reformatted, ReLU, d_sae 24576 (32x), layers 0-11 (public)",
+   "old": "in-house uninterrupted ReLU/TopK/JumpReLU, d_sae 3072 (4x), target L0 128, seeds 42/1042/2042, layers 0-11; labelled UNDER-TRAINED (101,600 tokens)",
+   "r2": "in-house R2 topk/batchtopk/relu (12288 = 16x, L0 128) and topk_w3072, topk_frozen_decoder controls, seeds 42/1042/2042, layers 1/8/11"
+  },
+  "gemma": {
+   "gemmascope_16k_canonical": "google/gemma-scope-2b-pt-res rev fd571b47, width_16k canonical average_l0 per sae_lens 6.54.12 (7.1x), layers 0-25 (public, JumpReLU)",
+   "batch2_ladder": "16k non-canonical L0s and 65k (28.4x) at T_B layers, 32k (14.2x) at layer 12: Pile shared span only; added in a later batch, listed here so strata are pre-registered"
+  }
+ },
+ "conditions": ["original", "original_repeat (first 8 docs; determinism)", "identity (first 8 docs)", "sae_splice", "norm_matched_random_error: x + ||x - x_hat|| u, u isotropic Gaussian unit vector; generator seeded by (model, layer, doc rank) so every SAE of a (model, layer, doc) gets the SAME directions (paired across SAEs)", "mean_ablation: mean of the layer over the 64 reference documents' non-BOS tokens"],
+ "metrics": {
+  "reconstruction": {"EV": "higher; M6 definition with per-document sums (exact pooled mean via stored per-document sum_x)", "NMSE": "lower", "cosine": "higher", "rel_sq_error": "lower"},
+  "sparsity": {"L0": "reported", "L0_over_d_model": "reported", "d_sae_over_d_model": "reported", "active_fraction_L0_over_d_sae": "reported"},
+  "behaviour_raw": {"dCE": "lower (nats/prediction)", "KL": "lower", "top1_agreement": "higher"},
+  "behaviour_normalised (cross-model use)": {"loss_recovered": "higher = (CE_mean - CE_sae)/(CE_mean - CE_orig)", "ratio_sae_over_random": ">1 = SAE error more harmful than random error of equal norm", "excess_rel": "lower = (dCE_sae - dCE_random)/CE_orig", "dCE_rel": "lower = dCE_sae/CE_orig", "KL_over_KL_mean": "lower"}
+ },
+ "uncertainty": "1000 document-bootstrap resamples, seed 0, percentile 95% CI; for cross-model differences the SAME resample indices are used for both models (paired by document, since both see identical text). Seeds (in-house) are reported as mean and per-seed values; cross-model intervals use the per-SAE doc bootstrap pooled over seeds by averaging per resample.",
+ "hypotheses": {
+  "XB_H1": "Per model, corpus and SAE: dCE_sae > dCE_random (paired doc-bootstrap 95% CI lower bound > 0 = supported; upper < 0 = contradicted; else inconclusive). Holm over SAEs within each (model, corpus) family using bootstrap p = share of resamples with d <= 0 (two-sided doubled).",
+  "XB_H2 (descriptive, cross-model)": "Within each depth triplet and corpus: paired differences gemma - gpt2 of loss_recovered, ratio, excess_rel, dCE_rel, KL_over_KL_mean, for each SAE track. A difference is only called 'cross-model difference' inside a MATCHED stratum (below) and when its 95% CI excludes 0; everything else is labelled 'unmatched, descriptive'.",
+  "XB_H3 (descriptive)": "Within each model: Spearman correlation of dCE_rel and ratio with depth fraction across all layers (canonical/public SAE track)."
+ },
+ "comparison_tracks": {
+  "public_vs_public": "GPT-2 res-jb (ReLU 32x) vs Gemma Scope (JumpReLU): DIFFERENT architectures, never called architecture-matched",
+  "inhouse_vs_public": "GPT-2 R2 (TopK/BatchTopK/ReLU 16x, L0 128) vs Gemma Scope 16k canonical: training-history mismatch disclosed",
+  "matched_stratum": "a GPT-2 SAE and a Gemma SAE at the same triplet position are MATCHED iff measured L0/d_model AND d_sae/d_model each agree within +-15% (ratio in [0.85, 1.15]); candidate pairs res-jb <-> Gemma 65k ladder, R2 <-> Gemma 32k at L12 (batch 2)",
+  "within_model": "every model's own SAEs vs its random/mean controls"
+ },
+ "gates": {
+  "G_HOOK": "passed 2026-11-21 (see models.gpt2)",
+  "V_IDENT": "identity splice: |dCE| < 1e-6 (gpt2 fp32) / < 1e-3 (gemma bf16) and KL < 1e-6 / 1e-3 on the first 8 docs",
+  "V_REPEAT": "repeat original: CE equal within 1e-6 (gpt2) / bit-identical under deterministic algorithms (gemma)",
+  "V_M6": "Gemma own-1024 Pile canonical 16k at layers 5/12/19 reproduces M6 summary_by_layer within the R3 margins (dCE +-0.005 nats, KL +-0.005, EV +-0.001); otherwise STOP and investigate",
+  "V_FINITE": "all metrics finite",
+  "V_SAE_EQUIV": "Gemma Scope JumpReLU (M6 class) matches sae_lens forward on 4096 tokens (max |dx_hat| < 1e-3 relative); res-jb adapter already verified by E2"
+ },
+ "not_claimed": ["any ranking of GPT-2 vs Gemma from raw nats", "architecture-matched conclusions (no public GPT-2 JumpReLU exists; in-house JumpReLU is not a valid JumpReLU)", "TEST-level confirmation"],
+ "test_data_used": false
+}

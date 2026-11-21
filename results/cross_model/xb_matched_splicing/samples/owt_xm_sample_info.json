@@ -1,0 +1,16 @@
+{
+ "shard": "train-00077-of-00080.parquet",
+ "n_rows": 100172,
+ "seed": 20261121,
+ "examined": 576,
+ "skipped_short": 0,
+ "skipped_duplicate_of_our_data": 0,
+ "excluded_hashes": 201246,
+ "order_head_sha256": "1de4bfab207706084633d62ed7a95565e6a543452814fe784447a0e6c2f749e2",
+ "corpus": "owt_xm",
+ "seconds": 15.8,
+ "manifest_sha256": "ce24c96e3ac14e18923200c1c140ed40565b8dc251f5febee17695cdc23fa621",
+ "span_tokens_gpt2_mean": 702.7291666666666,
+ "span_tokens_gemma_mean": 685.234375,
+ "gemma_tokens_per_gpt2_token": 0.9751045032759182
+}

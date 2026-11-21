@@ -499,3 +499,20 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Next candidates** (not started; each needs its own pre-registration):
   * a multi-family "universal" truth subspace aimed at transfer (Q2);
   * a precision rerun of the persona/M4 guards with per-item paired bootstraps on the existing checkpoints.
+
+## D44. Final-week cross-model protocol and execution rules (2026-11-21). Status: DECIDED (user approved the plan)
+* **Fair comparison.** GPT-2 vs Gemma claims use only within-model-normalised metrics, at depth-matched sites, on the
+  same text, with the same controls and the same paired document bootstrap. Raw nats are never ranked.
+* **Separate tracks:** public-vs-public, in-house-vs-public, matched strata (L0/d and d_sae/d within ±15 %) and
+  within-model. **No architecture-matched claim is made:** no public GPT-2 JumpReLU exists, and the in-house JumpReLU
+  is not valid.
+* **Hook conventions:** each SAE family keeps its own training convention (GPT-2 centred TL residual, Gemma raw HF
+  residual). G-HOOK shows behaviour is identical.
+* **Ceiling rule (XT-G A2):** a task with original AUROC ≥ 0.99 is flagged and is not used for cross-model truth
+  claims. Harder fresh families (DEV) and d′ are added for both models.
+* **TI-1 eligibility:** the TSP-R Phase 0 rule (original AUROC ≥ 0.70) excludes GPT-2 L1.
+* **Execution:**
+  * at most two Gemma-sized GPU jobs at once, with layer-major SAE loading;
+  * a non-destructive disk guard (pause, never delete);
+  * one focused PR per completed and validated phase, based on `sae-research` (stacked), never merged without the
+    user's approval.

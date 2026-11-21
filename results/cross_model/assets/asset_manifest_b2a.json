@@ -1,0 +1,114 @@
+{
+ "batch": "b2a",
+ "created": "2026-11-21 09:28:19",
+ "files": [
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_5/width_16k/average_l0_18/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_5/width_16k/average_l0_18/params.npz",
+   "bytes": 302131416,
+   "sha256": "1362fbd402cbae4b547550c7cfe930bc91076b63a8dd7596cc04ba1c3e286b3e",
+   "seconds": 5.3
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_5/width_16k/average_l0_34/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_5/width_16k/average_l0_34/params.npz",
+   "bytes": 302131416,
+   "sha256": "6eab949115577cec248d2ddd2906a20e211d963623d9df9a83515edaa4d7c50c",
+   "seconds": 3.0
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_5/width_16k/average_l0_143/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_5/width_16k/average_l0_143/params.npz",
+   "bytes": 302131416,
+   "sha256": "9b364240057a34b23e7c1a039e81c91972cf05f10408845d8a169c29a9a5dd30",
+   "seconds": 65.3
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_5/width_16k/average_l0_309/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_5/width_16k/average_l0_309/params.npz",
+   "bytes": 302131416,
+   "sha256": "cd724b65d2c7efb683bd616aefbb8ed10f1b5879545b707c48cb9262c04f6e2f",
+   "seconds": 26.4
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_16k/average_l0_22/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_16k/average_l0_22/params.npz",
+   "bytes": 302131416,
+   "sha256": "605a0b6f0ba839d0f88ddaec7bf2332313c7cd088c7fc6d38c31dbaaaeb67b03",
+   "seconds": 4.6
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_16k/average_l0_41/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_16k/average_l0_41/params.npz",
+   "bytes": 302131416,
+   "sha256": "8e7440a5ed7eb6c9c7721a4750fcd1993756730f682817a479bab0bf71f4604f",
+   "seconds": 4.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_16k/average_l0_176/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_16k/average_l0_176/params.npz",
+   "bytes": 302131416,
+   "sha256": "f9286f5d86723c6962d02beb7be477b51da3008868f8db161ac750f3b8c52b95",
+   "seconds": 4.4
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_16k/average_l0_445/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_16k/average_l0_445/params.npz",
+   "bytes": 302131416,
+   "sha256": "c15d6521490e32cc1b1b5ba0331039a5c6c1d6b35fa261cc2fe55e9b2d737480",
+   "seconds": 5.3
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_19/width_16k/average_l0_23/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_19/width_16k/average_l0_23/params.npz",
+   "bytes": 302131416,
+   "sha256": "28f6e736665d3cd7f1f1fa40394e8707af3aba9274c64cd4c8d1038ff19adb14",
+   "seconds": 4.4
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_19/width_16k/average_l0_40/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_19/width_16k/average_l0_40/params.npz",
+   "bytes": 302131416,
+   "sha256": "f8fd2ddf9c8d63c2cacd8c7b0572a3577cde59cddd9d55b547e84849e0a64385",
+   "seconds": 4.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_19/width_16k/average_l0_137/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_19/width_16k/average_l0_137/params.npz",
+   "bytes": 302131416,
+   "sha256": "12a531eb516f231891548b7b4de49be17bf4572636e29f2ad54231482703704f",
+   "seconds": 4.2
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_19/width_16k/average_l0_279/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_19/width_16k/average_l0_279/params.npz",
+   "bytes": 302131416,
+   "sha256": "e717173d0318295fedd873083aac9c072c09e78ceeb4e35d6800a60eda0114e6",
+   "seconds": 4.1
+  }
+ ]
+}

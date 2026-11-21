@@ -1,0 +1,15 @@
+{
+ "args": {
+  "model": "gpt2",
+  "saes": "resjb",
+  "layers": "8",
+  "tag": "smoke1",
+  "smoke": true,
+  "jobs": 2
+ },
+ "layers": [
+  8
+ ],
+ "minutes": 9.314085507392884,
+ "script_sha256": "c23e01e659c6694e95751f3d1036e18fac8fdcd94816b5b296e996c183da5736"
+}
