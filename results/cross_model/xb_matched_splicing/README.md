@@ -1,4 +1,4 @@
-# XB: matched cross-model SAE splicing (GPT-2 Small vs Gemma-2-2B). Status: PRE-REGISTERED; gates PASSED; full runs IN PROGRESS
+# XB: matched cross-model SAE splicing (GPT-2 Small vs Gemma-2-2B). Status: COMPLETED (2026-11-21; VALIDATION). Primary 1024 arm reported as pre-registered, with a decisive context caveat; see A4
 
 **Plan:** `docs/2026-11-21_final_week_technical_audit.md` (approved 2026-11-21).
 **Pre-registration:** `preregistration.json`, frozen before any output. Hashes are in `frozen_hashes_pre_run.txt` and
@@ -55,10 +55,76 @@ KL/KL_mean. Raw nats are reported but never ranked across models.
 | V_IDENT / V_REPEAT (smoke, 8 docs, both models) | ΔCE and KL exactly 0.0 |
 | Paired vs M6's own per-doc rows (Gemma own-1024, layers 5/12, 8 docs) | SAE ΔCE mean diff 0.0004 nats, max 0.008 (bf16 floor); random-control values differ by design (new paired directions) |
 | A2 layer-major = document-major (Gemma, 8 docs × 2 layers) | all sums identical (max diff 0.0) |
-| V_M6 (512-doc summary within the R3 margins) | evaluated on the full own-1024 run (pending) |
+| V_M6 (512-doc summary within the R3 margins) | **PASS**: own-1024 Pile ΔCE L5 / L12 / L19 = 0.0708 / 0.1144 / 0.1772 vs M6 0.0708 / 0.1146 / 0.1773 (EV within 0.0001) |
 
-## 3. Results
-Pending: full runs in `runs/` (in progress), then `scripts/cross_model/03_matched_splicing_analysis.py`.
+## 3. Results (frozen analysis `03_matched_splicing_analysis.py --tag v1`; `analysis_v1/`)
+
+**Runs:** all six complete.
+* Gemma: Pile and OWT-XM, shared span, all 26 layers; own-1024 at the triplet layers.
+* GPT-2: Pile and OWT-XM, shared span, all 12 layers, 159 SAEs.
+
+**Gates:** V_IDENT and V_REPEAT max |ΔCE| = 0.0; V_M6 PASS.
+
+### 3.1 Decisive caveat: GPT-2 SAEs are evaluated far outside their training context
+
+The GPT-2 SAEs were trained on 128-token contexts (R2 `CTX = 128`; res-jb 128). The primary shared span averages
+703 / 512 GPT-2 tokens (OWT-XM / Pile), so most scored positions lie beyond position 127. There the GPT-2 SAEs break
+down:
+
+| GPT-2 SAE (shared span) | L0 per token | OWT VAL EV at 128 tokens (ladder) | EV here |
+|---|---|---|---|
+| res-jb L1 / L8 / L11 | 580 / 415 / 180 (vs 15 / 68 / 61 at 128 tokens) | 0.95 / 0.85 / 0.81 | **−20.3 / −5.1 / −0.06** (OWT-XM) |
+| res-jb L3 | 2,616 | — | **−3,266** |
+| R2 (TopK / BatchTopK / ReLU) L1 / L8 / L11 | 257 / 246 / 171 (mean) | 0.98 / 0.89 / 0.87 (mean of the three) | 0.15 / 0.28 / 0.72 |
+
+Negative EV means the reconstruction error is larger than the activation's variance.
+
+Gemma Scope (trained at 1024 tokens) stays in distribution: EV 0.74–0.88 and L0 65–97 at the triplet layers.
+
+**Consequence:**
+* The primary GPT-2 numbers measure **long-context failure of 128-token SAEs**, not ordinary SAE faithfulness.
+* The norm-matched random control inherits the inflated error norm, which is why GPT-2 SAEs look "less harmful
+  than random".
+* **No GPT-2 vs Gemma comparison from the primary arm is interpretable as an SAE comparison.**
+* The context-controlled comparison is amendment A4 (128-token shared span, `a4_ctx128/`), frozen and run before
+  this analysis was read. A4 was triggered by the L0 values alone.
+
+### 3.2 Pre-registered outcomes (reported exactly as computed)
+
+* **XB_H1** (SAE ΔCE > norm-matched random ΔCE, Holm within model × corpus × context):
+
+  | Model | Cells supported | Contradicted (SAE less harmful than random) |
+  |---|---|---|
+  | **Gemma** | **64/64** (26 + 26 shared, 6 + 6 own) | 0 |
+  | **GPT-2** | **0/318** | 70 (46 OWT-XM, 24 Pile) |
+
+  The GPT-2 result follows from §3.1 and is not evidence about SAE quality.
+* **XB_H2** (cross-model differences):
+  * **no matched stratum exists**: 0 of 54 slot × family pairs pass the frozen ±15 % L0/d_model and d_sae/d_model
+    rule;
+  * so every cross-model row is "unmatched, descriptive" (`cross_model.csv`). Not relaxed.
+* **XB_H3** (depth trend of the SAE / random ratio):
+  * Gemma canonical: no trend (Spearman 0.03 / 0.22 over 26 layers, OWT-XM / Pile);
+  * GPT-2 res-jb: −0.80 (OWT-XM, p = 0.002) and −0.32 (Pile, p = 0.31). These are confounded by §3.1.
+
+**Descriptive (triplet slots, shared span):**
+
+| | Gemma canonical: SAE / random ΔCE | Gemma canonical: loss recovered |
+|---|---|---|
+| Range | 1.3–3.3 | 0.97–1.00 |
+
+**What may be cited:**
+* the Gemma results (in distribution);
+* the gates;
+* the fact that GPT-2's 128-token SAEs fail on long contexts.
+
+**Not to be cited:** any primary-arm GPT-2 vs Gemma comparison.
+
+**Files:**
+* `runs/*/per_doc.csv` and `DONE.json` (committed);
+* `runs/*/sum_x.npz` (per-document activation sums; 38–243 MB each; not committed; SHA-256 in
+  `runs_sum_x_sha256.txt`);
+* `analysis_v1/`.
 
 ## 4. Files
 * `samples/`: manifests (ids and hashes only, no text) and sample info.

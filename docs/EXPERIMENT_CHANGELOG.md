@@ -498,3 +498,11 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/repe/sae_in_the_loop_mediation/{pilot/, validation/}` | added | SIL pilot gate (passed) and full run |
 | both `README.md` | updated | results, criteria, the SIL negative-control caveat |
 | `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv` | appended | documentation rule; §57, §58, D49. No code changed; no checkpoints created |
+
+## 2026-11-21: XB primary results
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xb_matched_splicing/runs/*/{per_doc.csv, DONE.json}` | added | six completed runs; `sum_x.npz` (38–243 MB each) not committed, SHA-256 in `runs_sum_x_sha256.txt` |
+| `results/cross_model/xb_matched_splicing/analysis_v1/` | added | frozen analysis |
+| `results/cross_model/xb_matched_splicing/README.md`, `AMENDMENTS.md` | updated | results with the context caveat; operational note (expandable_segments restart) |
+| `docs/*` ledgers | appended | §59, D50, results summary, roadmap, registry, manifest |

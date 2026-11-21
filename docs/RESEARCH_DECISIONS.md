@@ -568,3 +568,13 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Label:** the pre-registered rule gives MEDIATED for every family. Because the pre-registered random-decoder negative control is also MEDIATED, SIL is reported as "MEDIATED by the pre-registered rule; the rule is not specific (negative control passes); SAE-specific mediation is INCONCLUSIVE".
 * **Reported descriptively:** D2 retention (0.82–0.92 for TopK/BatchTopK/JumpReLU vs ≈ 0.5 for ReLU and the control).
 * **Not done:** no post-hoc specificity rule is applied. A retention-minus-control test would need a new pre-registration.
+
+## D50. How XB's primary arm is reported (2026-11-21). Status: DECIDED (follows the frozen analysis; no rule changed)
+* **Report everything as computed:** gates, XB_H1–H3, and the infeasible matched stratum.
+* **Lead with the context caveat:**
+  * the GPT-2 SAEs' training context (128 tokens) is far shorter than the scored spans;
+  * their reconstructions fail there (EV negative for res-jb);
+  * so the primary arm compares an in-distribution Gemma SAE with out-of-distribution GPT-2 SAEs.
+* **Not citable:** any primary-arm GPT-2 vs Gemma difference, and the GPT-2 "SAE less harmful than random" verdicts.
+* **Citable:** the Gemma results, the gates, and the GPT-2 long-context breakdown itself (a finding about 128-token SAEs).
+* **The cross-model comparison of record is A4** (`xb_matched_splicing/a4_ctx128/`), pre-registered before this analysis was read.

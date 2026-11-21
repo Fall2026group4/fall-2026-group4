@@ -1484,3 +1484,12 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Full run:** 19 triples (6 families × 3 seeds + random-decoder control). Every trained family is **MEDIATED** at D0, D1 and D2 on every seed by the pre-registered rule.
 * **Validity caveat:** the pre-registered **negative control (random-decoder TopK) is also MEDIATED**. So the rule does not separate trained SAEs from a random-decoder autoencoder, and MEDIATED is not evidence of SAE-specific mediation (D49).
 * **Descriptive (discriminating):** effect retained at D2 (SAEs at layers 1, 8, 11): TopK / BatchTopK / JumpReLU 0.82–0.92; both ReLU families ≈ 0.5, the same as the random-decoder control (0.51). The control's neutral-swap effect is 3–10× larger.
+
+## 59. XB: matched cross-model SAE splicing, primary 1024-token arm (2026-11-21). Status: COMPLETED (VALIDATION); decisive context caveat
+* **Runs:** Gemma (26 layers, Pile + OWT-XM shared span; own-1024 at triplets) and GPT-2 (12 layers, 159 SAEs, shared span). Frozen analysis v1. Gates: identity / repeat 0.0, V_M6 PASS.
+* **Finding that dominates the arm:** the GPT-2 SAEs (trained at 128 tokens) break down on the ~700-token shared span. res-jb EV −0.06 to −3,266 with L0 180–2,616 (vs 15–68 at 128 tokens); R2 EV 0.15–0.72 (vs 0.87–0.98). Gemma Scope (trained at 1024) stays in distribution (EV 0.74–0.88).
+* **Pre-registered outcomes as computed:**
+  * XB_H1 supported for Gemma 64/64 cells and GPT-2 0/318 (70 contradicted, an artefact of the inflated error norm);
+  * XB_H2: no matched stratum (0/54 pairs pass the frozen ±15 % rule), so all rows are descriptive;
+  * XB_H3: no Gemma depth trend.
+* **Reading (D50):** no primary-arm GPT-2 vs Gemma comparison is interpretable as an SAE comparison. The context-controlled comparison is A4 (128 tokens; frozen before this analysis was read).
