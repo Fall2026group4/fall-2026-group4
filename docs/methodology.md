@@ -131,8 +131,8 @@ Detailed record: `docs/archive/2026-11-04_methodology_review_corrections_report.
 
 * **OWT:** document-level split. The R2/R4 shards exclude our 1,000 documents by hash.
 * **GoT:** grouped by city or number pair; the M5 loader asserts that no group crosses splits.
-* **RepE-LM:** train/validation by statement. No test split exists yet.
-* **Test splits** are used only in a pre-registered final pass (M5); never for training, tuning or selection.
+* **RepE-LM:** train/validation/test by statement. The test split (`data/repe/repe_lm_test/`) was built after M5 and read once, by H1-TEST (2026-11-13).
+* **Test splits** are used only in a pre-registered final pass (M5; H1-TEST for RepE-LM); never for training, tuning or selection.
 
 ## 9. Statistical comparisons
 

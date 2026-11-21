@@ -1,0 +1,43 @@
+{
+  "identical_arms_exactly_zero": true,
+  "degraded_tsp_worse_and_H1_not_rejected": true,
+  "nmse_guard_flags_degraded_and_l0_passes": true,
+  "test_and_final_refuse_before_commit": true,
+  "tsp_minus_ctrl": {
+    "frozen_logistic_gap": {
+      "estimate": 0.1061455502974495,
+      "ci_low": 0.05147524619736584,
+      "ci_high": 0.16081585439753315,
+      "p": 0.014577388763787573
+    },
+    "frozen_massmean_gap": {
+      "estimate": 0.0522390654121378,
+      "ci_low": 0.03982178015132896,
+      "ci_high": 0.06465635067294664,
+      "p": 9.516398352691222e-08
+    },
+    "refit_logistic_gap": {
+      "estimate": 0.24395351299532966,
+      "ci_low": 0.21690272172999173,
+      "ci_high": 0.2710043042606676,
+      "p": 2.5458530284844093e-11
+    },
+    "refit_mlp10_gap": {
+      "estimate": 0.2854987111342371,
+      "ci_low": 0.2629995906401572,
+      "ci_high": 0.30799783162831695,
+      "p": 3.308277090618021e-103
+    },
+    "refit_mlp256_gap": {
+      "estimate": 0.29108326509374116,
+      "ci_low": 0.26731075889701855,
+      "ci_high": 0.31485577129046377,
+      "p": 2.2168432563191015e-30
+    }
+  },
+  "H1_label": "HARM",
+  "n_identical_comparisons": 35,
+  "script31_sha256": "1da498563a34c69b6149ffe16be54165bf2228a79b6aa1f84b0d53e8e5efae8a",
+  "stats_sha256": "e3eb4593887875a29d955264e7700961118f9d9083a2d9d8fa4dfdc40f634fd6",
+  "passed": true
+}

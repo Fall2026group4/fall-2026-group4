@@ -1,0 +1,1499 @@
+row_id,group_id,entity,split,excluded,p2_primary,mentions_project_city,project_cities_mentioned,max_cos_project,statement_sha256_16
+0,pair:Nanded|Wanzhou,Nanded|Wanzhou,TEST,entity_in_dev,False,True,Nanded;Wanzhou,0.5409,5f30ad30bd25d430
+1,pair:Casablanca|Huizhou,Casablanca|Huizhou,DEV,,False,True,Casablanca;Huizhou,0.7053,9e6fcfcf521a6167
+2,pair:Taguig|Theni,Taguig|Theni,DEV,exposed_test_city,False,True,Taguig;Theni,0.6605,ebe624a5f3aee07c
+3,pair:Bouake|Maturin,Maturin|Bouake,TEST,entity_in_dev,False,True,Bouake;Maturin,0.6339,a929af8c3f8c6ccb
+4,pair:Ilorin|Jilin,Jilin|Ilorin,TEST,entity_in_dev,False,True,Ilorin;Jilin,0.5894,32970625963f282d
+5,pair:Faridabad|Subang Jaya,Faridabad|Subang Jaya,DEV,,False,True,Faridabad;Subang Jaya,0.5919,509809a03bf10e02
+6,pair:Nizhniy Novgorod|Sao Jose dos Campos,Sao Jose dos Campos|Nizhniy Novgorod,TEST,exposed_test_city,False,True,Nizhniy Novgorod;Sao Jose dos Campos,0.6353,1b9f8a594c11b7da
+7,pair:Amman|Najran,Amman|Najran,DEV,exposed_test_city,False,True,Amman;Najran,0.6057,d85d52b91c0fd59c
+8,pair:Bahcelievler|Bauchi,Bauchi|Bahcelievler,TEST,exposed_test_city,False,True,Bahcelievler;Bauchi,0.6484,fe140486e1538018
+9,pair:Bamako|Hwaseong-si,Bamako|Hwaseong-si,TEST,exposed_test_city,False,True,Bamako;Hwaseong-si,0.6446,bce86a283337df5f
+10,pair:Anqing|Mudanjiang,Mudanjiang|Anqing,TEST,exposed_test_city,False,True,Anqing;Mudanjiang,0.6179,e1e84132f07291ea
+11,pair:Puning|Tianjin,Puning|Tianjin,TEST,,False,True,Puning;Tianjin,0.586,c2a19ed4bbb40a5e
+12,pair:Samarkand|Xuzhou,Samarkand|Xuzhou,TEST,exposed_test_city,False,True,Samarkand;Xuzhou,0.6829,c619541d5df1e3a2
+13,pair:Bikaner|Kozhikode,Kozhikode|Bikaner,TEST,entity_in_dev,False,True,Bikaner;Kozhikode,0.6259,fd8453edc214d600
+14,pair:Basrah|Dammam,Dammam|Basrah,TEST,exposed_test_city,False,True,Basrah;Dammam,0.6294,359b5af2a9278e04
+15,pair:Kyiv|Xinyang,Xinyang|Kyiv,DEV,,False,True,Kyiv;Xinyang,0.5509,e7f5936950bde45a
+16,pair:Binzhou|Lodz,Binzhou|Lodz,DEV,exposed_test_city,False,True,Binzhou;Lodz,0.5513,1b58d8ac87790228
+17,pair:Naucalpan de Juarez|Yunfu,Naucalpan de Juarez|Yunfu,DEV,exposed_test_city,False,True,Naucalpan de Juarez;Yunfu,0.6939,a21d45c1475e6e8e
+18,pair:Erbil|Torreon,Erbil|Torreon,TEST,entity_in_dev,False,True,Erbil;Torreon,0.5876,32894ccf7dc83699
+19,pair:Kandahar|Latakia,Kandahar|Latakia,DEV,,False,True,Kandahar;Latakia,0.6364,5f22393ae502a745
+20,pair:Quebec|Sanaa,Quebec|Sanaa,TEST,exposed_test_city,False,True,Quebec;Sanaa,0.5861,4f531481eed46396
+21,pair:Comilla|Volgograd,Volgograd|Comilla,TEST,entity_in_dev,False,True,Comilla;Volgograd,0.6047,f325b499c4df0a93
+22,pair:Kolhapur|Mexicali,Kolhapur|Mexicali,DEV,,False,True,Kolhapur;Mexicali,0.5702,fb908bb93ba5cffe
+23,pair:Baise|Kanpur,Kanpur|Baise,DEV,,False,True,Baise;Kanpur,0.5319,01cc81af7abae9aa
+24,pair:Borivli|Tabriz,Tabriz|Borivli,DEV,,False,True,Borivli;Tabriz,0.5549,636a5efcdcc46c5b
+25,pair:Maoming|Wanning,Maoming|Wanning,DEV,,False,True,Maoming;Wanning,0.5834,dff3f972d0313ead
+26,pair:Borivli|Pingliang,Borivli|Pingliang,TEST,entity_in_dev,False,True,Borivli;Pingliang,0.552,8e7ee7696f4c9740
+27,pair:Madurai|Zhaoqing,Madurai|Zhaoqing,TEST,,False,True,Madurai;Zhaoqing,0.5451,bfc9df1d98ce99fc
+28,pair:Kumasi|Munich,Kumasi|Munich,TEST,entity_in_dev,False,True,Kumasi;Munich,0.5701,f56b073c69b1fb7f
+29,pair:Cuttack|Suqian,Cuttack|Suqian,TEST,entity_in_dev,False,True,Cuttack;Suqian,0.5659,ca3d3d771b98e855
+30,pair:Amravati|Manaus,Amravati|Manaus,DEV,,False,True,Amravati;Manaus,0.5715,38089e95cad7fc94
+31,pair:Abu Ghurayb|Bengbu,Bengbu|Abu Ghurayb,TEST,exposed_test_city,False,True,Abu Ghurayb;Bengbu,0.6164,9d6e02ce2cbed619
+32,pair:Ashgabat|Leipzig,Ashgabat|Leipzig,TEST,exposed_test_city,False,True,Ashgabat;Leipzig,0.6669,2a6f216ac0ed12e6
+33,pair:Brasilia|Zhangjiakou,Brasilia|Zhangjiakou,TEST,entity_in_dev,False,True,Brasilia;Zhangjiakou,0.5787,81f118119a5952ca
+34,pair:Florianopolis|Tolyatti,Tolyatti|Florianopolis,TEST,entity_in_dev,False,True,Florianopolis;Tolyatti,0.6391,3203493cc47cb327
+35,pair:Beirut|Ta'if,Beirut|Ta'if,TEST,entity_in_dev,False,True,Beirut;Ta'if,0.5976,e3da042916ab40d4
+36,pair:Kirkuk|Ulhasnagar,Kirkuk|Ulhasnagar,DEV,,False,True,Kirkuk;Ulhasnagar,0.606,4f84b04000f9269c
+37,pair:Aracaju|Kinshasa,Kinshasa|Aracaju,DEV,exposed_test_city,False,True,Aracaju;Kinshasa,0.7352,42a294c9763567fb
+38,pair:Tianshui|Yerevan,Yerevan|Tianshui,TEST,entity_in_dev,False,True,Tianshui;Yerevan,0.6529,1e78fa3ac4b07dcf
+39,pair:Ankara|Jaipur,Ankara|Jaipur,TEST,entity_in_dev,False,True,Ankara;Jaipur,0.5626,cb30b572b4f5734e
+40,pair:Quezon City|Reynosa,Quezon City|Reynosa,DEV,,False,True,Quezon City;Reynosa,0.6127,42c8cfc64dea409c
+41,pair:Nashik|Zaozhuang,Nashik|Zaozhuang,DEV,exposed_test_city,False,True,Nashik;Zaozhuang,0.5665,324e6d90da4a3efa
+42,pair:Neijiang|Qingdao,Qingdao|Neijiang,TEST,exposed_test_city,False,True,Neijiang;Qingdao,0.5709,16759b38188a08aa
+43,pair:Ashgabat|Haiphong,Ashgabat|Haiphong,TEST,entity_in_dev,False,True,Ashgabat;Haiphong,0.6591,7659340701adab84
+44,pair:Basrah|Siping,Basrah|Siping,DEV,exposed_test_city,False,True,Basrah;Siping,0.5444,48118793b4131b51
+45,pair:Izmir|Kobe,Kobe|Izmir,TEST,entity_in_dev,False,True,Izmir;Kobe,0.5652,8367dd7e9f17e5f8
+46,pair:Muzaffarabad|Vilnius,Vilnius|Muzaffarabad,TEST,entity_in_dev,False,True,Muzaffarabad;Vilnius,0.6134,4610bd82d84fe19c
+47,pair:Oyo|Uberlandia,Oyo|Uberlandia,DEV,exposed_test_city,False,True,Oyo;Uberlandia,0.6167,8d89fffd9cbed751
+48,pair:Taicang|Zhangye,Taicang|Zhangye,TEST,exposed_test_city,False,True,Taicang;Zhangye,0.5659,6834c656154f4f8b
+49,pair:Mumbai|Shiraz,Mumbai|Shiraz,TEST,exposed_test_city,False,True,Mumbai;Shiraz,0.551,04982f63b706cd22
+50,pair:Abu Ghurayb|Kunming,Kunming|Abu Ghurayb,TEST,entity_in_dev,False,True,Abu Ghurayb;Kunming,0.6139,b17fe4a14d121d35
+51,pair:Erzurum|Zhengzhou,Erzurum|Zhengzhou,DEV,exposed_test_city,False,True,Erzurum;Zhengzhou,0.5902,5b24fd8cf92917aa
+52,pair:Qingdao|Subang Jaya,Subang Jaya|Qingdao,TEST,entity_in_dev,False,True,Qingdao;Subang Jaya,0.6159,eeaa70b52fe52e08
+53,pair:Huaibei|Niamey,Huaibei|Niamey,DEV,,False,True,Huaibei;Niamey,0.5499,7b5a7f62c24a6908
+54,pair:Lu'an|Quebec,Lu'an|Quebec,TEST,entity_in_dev,False,True,Lu'an;Quebec,0.6032,1e016dc387510bac
+55,pair:Aracaju|Frankfurt am Main,Aracaju|Frankfurt am Main,TEST,exposed_test_city,False,True,Aracaju;Frankfurt am Main,0.6687,6c5826577e663f99
+56,pair:Bandar Lampung|Leipzig,Leipzig|Bandar Lampung,TEST,exposed_test_city,False,True,Bandar Lampung;Leipzig,0.629,e3b05129eceff0d7
+57,pair:Ilorin|Nagoya,Ilorin|Nagoya,DEV,,False,True,Ilorin;Nagoya,0.568,8c85c24d9e4c81cc
+58,pair:Ahvaz|Ciudad Nezahualcoyotl,Ciudad Nezahualcoyotl|Ahvaz,TEST,entity_in_dev,False,True,Ahvaz;Ciudad Nezahualcoyotl,0.7391,e9c66dc470c0b57e
+59,pair:Jingmen|Oslo,Jingmen|Oslo,TEST,entity_in_dev,False,True,Jingmen;Oslo,0.5807,bb4eecfbec877a2c
+60,pair:Al Mawsil al Jadidah|Quzhou,Al Mawsil al Jadidah|Quzhou,TEST,exposed_test_city,False,True,Al Mawsil al Jadidah;Quzhou,0.7058,a3368bef0334a58f
+61,pair:Campos dos Goytacazes|Jiaxing,Campos dos Goytacazes|Jiaxing,DEV,exposed_test_city,False,True,Campos dos Goytacazes;Jiaxing,0.7116,01526baf160d94a1
+62,pair:Agadir|Saitama,Saitama|Agadir,TEST,entity_in_dev,False,True,Agadir;Saitama,0.5875,2b94a3804e4f78f6
+63,pair:Belo Horizonte|Kanpur,Belo Horizonte|Kanpur,DEV,,False,True,Belo Horizonte;Kanpur,0.6659,6f9e9622208a02b1
+64,pair:Al Mahallah al Kubra|Tianshui,Al Mahallah al Kubra|Tianshui,DEV,,False,True,Al Mahallah al Kubra;Tianshui,0.6893,230be051b5e4f22e
+65,pair:Enugu|Jiangmen,Jiangmen|Enugu,TEST,entity_in_dev,False,True,Enugu;Jiangmen,0.5596,b7e91a967ace379e
+66,pair:Puente Alto|Zhabei,Puente Alto|Zhabei,TEST,entity_in_dev,False,True,Puente Alto;Zhabei,0.6526,93f2c077b5b52014
+67,pair:Binzhou|Tabriz,Binzhou|Tabriz,DEV,,False,True,Binzhou;Tabriz,0.5585,c476f2b1912dcf31
+68,pair:Bokaro|Warangal,Warangal|Bokaro,TEST,entity_in_dev,False,True,Bokaro;Warangal,0.5928,a63920d646487822
+69,pair:Kermanshah|Salta,Kermanshah|Salta,TEST,entity_in_dev,False,True,Kermanshah;Salta,0.5832,6574d6b72f4d7084
+70,pair:Foshan|Niigata,Foshan|Niigata,DEV,,False,True,Foshan;Niigata,0.5972,1f55df63f45cfee1
+71,pair:Matola|Suqian,Matola|Suqian,TEST,,False,True,Matola;Suqian,0.641,b2f97b386066d9db
+72,pair:Mudanjiang|Victoria de Durango,Victoria de Durango|Mudanjiang,TEST,entity_in_dev,False,True,Mudanjiang;Victoria de Durango,0.6533,bcfbe8e154f6a13a
+73,pair:Changshu|Luohe,Luohe|Changshu,DEV,,False,True,Changshu;Luohe,0.5748,2ae536d8c978de2c
+74,pair:Al Mahallah al Kubra|Guntur,Al Mahallah al Kubra|Guntur,TEST,entity_in_dev,False,True,Al Mahallah al Kubra;Guntur,0.6946,493dd8e29f9c15b7
+75,pair:Gwalior|Shihezi,Shihezi|Gwalior,TEST,entity_in_dev,False,True,Gwalior;Shihezi,0.5589,bbaf763642873013
+76,pair:Kolhapur|Tolyatti,Tolyatti|Kolhapur,DEV,,False,True,Kolhapur;Tolyatti,0.5919,dab0a3da9c5efc4e
+77,pair:Bucheon-si|Chaozhou,Bucheon-si|Chaozhou,DEV,,False,True,Bucheon-si;Chaozhou,0.6375,4e0c425f8bbab5a7
+78,pair:Ashgabat|Bengbu,Ashgabat|Bengbu,TEST,exposed_test_city,False,True,Ashgabat;Bengbu,0.7059,0513271d946fd1d7
+79,pair:Cucuta|Sargodha,Cucuta|Sargodha,TEST,,False,True,Cucuta;Sargodha,0.5898,596c91eb3fcd9781
+80,pair:Bhubaneswar|Guarulhos,Guarulhos|Bhubaneswar,DEV,,False,True,Bhubaneswar;Guarulhos,0.6029,1a4caafe5c6ba4e5
+81,pair:Oyo|South Tangerang,South Tangerang|Oyo,DEV,exposed_test_city,False,True,Oyo;South Tangerang,0.6398,a13e3c0b009c1e21
+82,pair:Indianapolis|Nouakchott,Nouakchott|Indianapolis,TEST,entity_in_dev,False,True,Indianapolis;Nouakchott,0.6657,78c3ca86d0797ec1
+83,pair:Kanayannur|Sanmenxia,Kanayannur|Sanmenxia,TEST,exposed_test_city,False,True,Kanayannur;Sanmenxia,0.5897,b7aff9e4b81aeebd
+84,pair:Dhanbad|Oyo,Oyo|Dhanbad,TEST,exposed_test_city,False,True,Dhanbad;Oyo,0.5591,57e4c7e5740cdd00
+85,pair:Aracaju|Lusaka,Aracaju|Lusaka,TEST,exposed_test_city,False,True,Aracaju;Lusaka,0.5824,dcac71023c842dce
+86,pair:Ciudad Guayana|Theni,Theni|Ciudad Guayana,TEST,exposed_test_city,False,True,Ciudad Guayana;Theni,0.6988,a21337cdd49e747f
+87,pair:Chizhou|Vijayawada,Vijayawada|Chizhou,TEST,exposed_test_city,False,True,Chizhou;Vijayawada,0.6332,78eec126a54f4da5
+88,pair:Grosszschocher|Yibin,Yibin|Grosszschocher,TEST,exposed_test_city,False,True,Grosszschocher;Yibin,0.7235,f0aa91c53476405d
+89,pair:Kermanshah|Teresina,Teresina|Kermanshah,TEST,,False,True,Kermanshah;Teresina,0.5737,70b732452c6c9be5
+90,pair:Ahmedabad|Albuquerque,Ahmedabad|Albuquerque,TEST,entity_in_dev,False,True,Ahmedabad;Albuquerque,0.6633,4c859d1edfed523e
+91,pair:Joao Pessoa|Suwon,Joao Pessoa|Suwon,TEST,,False,True,Joao Pessoa;Suwon,0.6112,a0a402a93a04a1e9
+92,pair:Dar es Salaam|Subang Jaya,Subang Jaya|Dar es Salaam,TEST,entity_in_dev,False,True,Dar es Salaam;Subang Jaya,0.6293,0791084638bb9afa
+93,pair:Ryazan'|Yaounde,Ryazan'|Yaounde,TEST,entity_in_dev,False,True,Ryazan';Yaounde,0.6288,dbd005f343c45523
+94,pair:Isfahan|Lanzhou,Isfahan|Lanzhou,TEST,entity_in_dev,False,True,Isfahan;Lanzhou,0.5733,69dfc0afa830be79
+95,pair:Ebute Ikorodu|Guwahati,Ebute Ikorodu|Guwahati,DEV,,False,True,Ebute Ikorodu;Guwahati,0.6442,c0c7a66c8a52bf48
+96,pair:Fukuoka|Huainan,Huainan|Fukuoka,DEV,exposed_test_city,False,True,Fukuoka;Huainan,0.5773,f2d3646405eb1ba4
+97,pair:Goeteborg|Jabalpur,Jabalpur|Goeteborg,DEV,,False,True,Goeteborg;Jabalpur,0.6569,e88d93551b6c335b
+98,pair:Cancun|Shangqiu,Shangqiu|Cancun,DEV,,False,True,Cancun;Shangqiu,0.5564,46640333cba01765
+99,pair:Kyoto|Uberlandia,Uberlandia|Kyoto,DEV,,False,True,Kyoto;Uberlandia,0.6079,21d3b8e226bf2c58
+100,pair:Cochin|Pietermaritzburg,Cochin|Pietermaritzburg,TEST,entity_in_dev,False,True,Cochin;Pietermaritzburg,0.73,7257ff30763c8d4c
+101,pair:Meizhou|Volgograd,Meizhou|Volgograd,TEST,,False,True,Meizhou;Volgograd,0.6212,85d1e12e8721245e
+102,pair:Pietermaritzburg|Uberlandia,Pietermaritzburg|Uberlandia,TEST,entity_in_dev,False,True,Pietermaritzburg;Uberlandia,0.6945,f4e53c105af22c12
+103,pair:Aden|Fort Worth,Fort Worth|Aden,TEST,exposed_test_city,False,True,Aden;Fort Worth,0.6211,57edbfea5fe83699
+104,pair:Callao|Sao Bernardo do Campo,Sao Bernardo do Campo|Callao,TEST,entity_in_dev,False,True,Callao;Sao Bernardo do Campo,0.6846,10d68c07a481143a
+105,pair:Victoria de Durango|Yerevan,Yerevan|Victoria de Durango,TEST,entity_in_dev,False,True,Victoria de Durango;Yerevan,0.6121,b785eb822ff5cbce
+106,pair:Kumasi|Recife,Recife|Kumasi,DEV,,False,True,Kumasi;Recife,0.5627,7982005771962270
+107,pair:Omdurman|Zagreb,Omdurman|Zagreb,TEST,entity_in_dev,False,True,Omdurman;Zagreb,0.6093,3520e562df31c066
+108,pair:Hebi|Peshawar,Peshawar|Hebi,DEV,exposed_test_city,False,True,Hebi;Peshawar,0.6495,13a0b9e263d71c13
+109,pair:Gujranwala|Leon de los Aldama,Leon de los Aldama|Gujranwala,DEV,,False,True,Gujranwala;Leon de los Aldama,0.5993,007566b29cf4ec58
+110,pair:Bareilly|Hegang,Bareilly|Hegang,DEV,exposed_test_city,False,True,Bareilly;Hegang,0.5891,f400bb6b792ff3af
+111,pair:Bijie|Najafgarh,Najafgarh|Bijie,TEST,entity_in_dev,False,True,Bijie;Najafgarh,0.6114,fe6f975225a242c8
+112,pair:Nairobi|Zhoushan,Nairobi|Zhoushan,DEV,,False,True,Nairobi;Zhoushan,0.6127,ad71455e61d76aeb
+113,pair:Koeln|Matola,Koeln|Matola,TEST,,False,True,Koeln;Matola,0.6221,7165aeca358049c3
+114,pair:Brazzaville|Haiphong,Haiphong|Brazzaville,DEV,,False,True,Brazzaville;Haiphong,0.6608,5fe3fedb05e69a10
+115,pair:Handan|Sanaa,Handan|Sanaa,TEST,exposed_test_city,False,True,Handan;Sanaa,0.5559,fe28668ce93cad52
+116,pair:Busan|Guiyang,Guiyang|Busan,TEST,entity_in_dev,False,True,Busan;Guiyang,0.5956,8830f0d9465aece3
+117,pair:Indore|Shangluo,Shangluo|Indore,DEV,,False,True,Indore;Shangluo,0.5505,056d7b8452862a25
+118,pair:Al Fayyum|Buraydah,Al Fayyum|Buraydah,TEST,entity_in_dev,False,True,Al Fayyum;Buraydah,0.6241,321b0dfe15e9f52e
+119,pair:Kigali|South Tangerang,Kigali|South Tangerang,TEST,entity_in_dev,False,True,Kigali;South Tangerang,0.5979,4f7543ae5a0e807c
+120,pair:Caracas|Yinchuan,Yinchuan|Caracas,TEST,entity_in_dev,False,True,Caracas;Yinchuan,0.6145,e317f17fb31064cb
+121,pair:Mandalay|Santiago de Cuba,Santiago de Cuba|Mandalay,DEV,,False,True,Mandalay;Santiago de Cuba,0.6273,fecab156d7d05848
+122,pair:Bahawalpur|Krakow,Krakow|Bahawalpur,TEST,entity_in_dev,False,True,Bahawalpur;Krakow,0.6212,e3ca779d64ac2a36
+123,pair:Hengyang|Omdurman,Hengyang|Omdurman,TEST,entity_in_dev,False,True,Hengyang;Omdurman,0.613,d7350d35516562f5
+124,pair:Linfen|Yingkou,Linfen|Yingkou,DEV,,False,True,Linfen;Yingkou,0.5797,01787a815f1a76a3
+125,pair:Benxi|Maceio,Benxi|Maceio,TEST,exposed_test_city,False,True,Benxi;Maceio,0.5788,c0d2f270d5e59249
+126,pair:Ma'anshan|Zhengzhou,Zhengzhou|Ma'anshan,TEST,entity_in_dev,False,True,Ma'anshan;Zhengzhou,0.5772,8e3a2685faa1e50d
+127,pair:Feira de Santana|Yangquan,Feira de Santana|Yangquan,TEST,exposed_test_city,False,True,Feira de Santana;Yangquan,0.6191,6ba18fd39f8c4910
+128,pair:Bhiwandi|Okayama,Bhiwandi|Okayama,TEST,entity_in_dev,False,True,Bhiwandi;Okayama,0.5522,1b8cc4dc8966cf32
+129,pair:Pingdingshan|Zhabei,Zhabei|Pingdingshan,DEV,,False,True,Pingdingshan;Zhabei,0.5919,7b6f3adb49c568f2
+130,pair:Libreville|Shubra al Khaymah,Shubra al Khaymah|Libreville,DEV,exposed_test_city,False,True,Libreville;Shubra al Khaymah,0.6221,a60e5c4b1c007ce6
+131,pair:Recife|Sanya,Sanya|Recife,DEV,,False,True,Recife;Sanya,0.4271,63b18121026a3222
+132,pair:Omsk|Shaoxing,Omsk|Shaoxing,TEST,entity_in_dev,False,True,Omsk;Shaoxing,0.482,1d6bb9710c736730
+133,pair:Coyoacan|Feira de Santana,Coyoacan|Feira de Santana,TEST,exposed_test_city,False,True,Coyoacan;Feira de Santana,0.5794,a54f4c3f5098edfc
+134,pair:Changchun|Deyang,Deyang|Changchun,TEST,entity_in_dev,False,True,Changchun;Deyang,0.5759,a4f6c4c743416caa
+135,pair:Ordos|Ouagadougou,Ordos|Ouagadougou,DEV,,False,True,Ordos;Ouagadougou,0.6741,2c77ef0e441c67a4
+136,pair:Anyang|Neijiang,Neijiang|Anyang,TEST,exposed_test_city,False,True,Anyang;Neijiang,0.5141,612c4d633a02837a
+137,pair:Al Ain City|Kawaguchi,Kawaguchi|Al Ain City,TEST,exposed_test_city,False,True,Al Ain City;Kawaguchi,0.646,393e6bf59adaf54b
+138,pair:Porto Velho|Suizhou,Suizhou|Porto Velho,TEST,entity_in_dev,False,True,Porto Velho;Suizhou,0.4921,bde78ee023d8a5de
+139,pair:Makati City|Nuernberg,Makati City|Nuernberg,TEST,entity_in_dev,False,True,Makati City;Nuernberg,0.5853,7efda31a69e2d671
+140,pair:Albuquerque|Pimpri,Albuquerque|Pimpri,DEV,,False,True,Albuquerque;Pimpri,0.6855,26b701e92640e298
+141,pair:Dar es Salaam|Xianyang,Xianyang|Dar es Salaam,TEST,entity_in_dev,False,True,Dar es Salaam;Xianyang,0.486,23b2af857e44795f
+142,pair:Kagoshima|Yangon,Yangon|Kagoshima,DEV,exposed_test_city,False,True,Kagoshima;Yangon,0.5425,0e9e80cbf704af8f
+143,pair:Abeokuta|Saratov,Saratov|Abeokuta,TEST,entity_in_dev,False,True,Abeokuta;Saratov,0.5306,d4fd6eb4b05ce5ff
+144,pair:Korla|Maoming,Korla|Maoming,TEST,entity_in_dev,False,True,Korla;Maoming,0.5311,7793e947be790576
+145,pair:Johannesburg|Makhachkala,Johannesburg|Makhachkala,TEST,entity_in_dev,False,True,Johannesburg;Makhachkala,0.6359,9606219bc8532c9e
+146,pair:Multan|Sargodha,Multan|Sargodha,TEST,,False,True,Multan;Sargodha,0.6469,944e1e476cff4b68
+147,pair:Penza|Shaoxing,Penza|Shaoxing,TEST,entity_in_dev,False,True,Penza;Shaoxing,0.4962,c733d5166d5d1c22
+148,pair:Aktobe|Quzhou,Quzhou|Aktobe,TEST,exposed_test_city,False,True,Aktobe;Quzhou,0.4357,34b90b45db33a3e5
+149,pair:Ghaziabad|Xining,Ghaziabad|Xining,TEST,,False,True,Ghaziabad;Xining,0.5234,9bf037f2717cddf3
+150,pair:Brazzaville|Lviv,Brazzaville|Lviv,TEST,exposed_test_city,False,True,Brazzaville;Lviv,0.7059,dbdac97faecc6ce0
+151,pair:Bulawayo|Irbid,Bulawayo|Irbid,TEST,entity_in_dev,False,True,Bulawayo;Irbid,0.6348,063de6df4e099eac
+152,pair:Al Mahallah al Kubra|Serang,Al Mahallah al Kubra|Serang,TEST,entity_in_dev,False,True,Al Mahallah al Kubra;Serang,0.6004,a236f42578905494
+153,pair:Dombivli|Huaihua,Dombivli|Huaihua,DEV,exposed_test_city,False,True,Dombivli;Huaihua,0.5529,dd73096b4e8ae44c
+154,pair:Tijuana|Vladivostok,Tijuana|Vladivostok,TEST,entity_in_dev,False,True,Tijuana;Vladivostok,0.5562,4e35d60b13380017
+155,pair:Hannover|Kuala Lumpur,Kuala Lumpur|Hannover,TEST,entity_in_dev,False,True,Hannover;Kuala Lumpur,0.6382,4b31fa46b1374b46
+156,pair:Frankfurt am Main|Zhumadian,Zhumadian|Frankfurt am Main,TEST,entity_in_dev,False,True,Frankfurt am Main;Zhumadian,0.5447,87f0af3808722e5f
+157,pair:Suwon|Tucson,Tucson|Suwon,TEST,entity_in_dev,False,True,Suwon;Tucson,0.6312,f3608d0ccf083072
+158,pair:Linyi|Luzhou,Luzhou|Linyi,TEST,entity_in_dev,False,True,Linyi;Luzhou,0.451,025ac4c59a8cc520
+159,pair:Nyala|Zhaotong,Nyala|Zhaotong,TEST,entity_in_dev,False,True,Nyala;Zhaotong,0.5298,aa111b80f67909f2
+160,pair:Amravati|Maracay,Maracay|Amravati,TEST,entity_in_dev,False,True,Amravati;Maracay,0.594,2ead0845cd9caf6a
+161,pair:Huaihua|Ibague,Ibague|Huaihua,TEST,entity_in_dev,False,True,Huaihua;Ibague,0.6041,b49e13b0fee5362e
+162,pair:Agadir|Al Ahmadi,Al Ahmadi|Agadir,TEST,,False,True,Agadir;Al Ahmadi,0.6283,43b6652c0d2ef2cc
+163,pair:Dongying|Visakhapatnam,Visakhapatnam|Dongying,TEST,exposed_test_city,False,True,Dongying;Visakhapatnam,0.598,62c84ca71c3ea437
+164,pair:Fortaleza|Orumiyeh,Fortaleza|Orumiyeh,TEST,exposed_test_city,False,True,Fortaleza;Orumiyeh,0.5926,8183e19850b567c7
+165,pair:Bahcelievler|Bogor,Bahcelievler|Bogor,DEV,exposed_test_city,False,True,Bahcelievler;Bogor,0.6623,f2b0840f2eb1a342
+166,pair:Addis Ababa|Asuncion,Asuncion|Addis Ababa,TEST,exposed_test_city,False,True,Addis Ababa;Asuncion,0.6045,a4e737ff56de6e30
+167,pair:Nuernberg|Poznan,Poznan|Nuernberg,DEV,,False,True,Nuernberg;Poznan,0.532,0d2f16596253b49a
+168,pair:Casablanca|Dehra Dun,Casablanca|Dehra Dun,TEST,entity_in_dev,False,True,Casablanca;Dehra Dun,0.6885,a3cfe64a5716d662
+169,pair:Tianjin|Yichang,Yichang|Tianjin,TEST,entity_in_dev,False,True,Tianjin;Yichang,0.5443,849e438ea6749982
+170,pair:Torreon|Zaria,Zaria|Torreon,DEV,,False,True,Torreon;Zaria,0.5351,dbb645ac223f7f5e
+171,pair:Tabriz|Vilnius,Tabriz|Vilnius,TEST,entity_in_dev,False,True,Tabriz;Vilnius,0.5246,381818d824b7a598
+172,pair:Baku|Qom,Qom|Baku,TEST,entity_in_dev,False,True,Baku;Qom,0.4834,d7cfcf6fcd957949
+173,pair:Makati City|Shymkent,Makati City|Shymkent,TEST,entity_in_dev,False,True,Makati City;Shymkent,0.6127,0249f3d6eb8dbcf2
+174,pair:Kharkiv|Wuzhou,Kharkiv|Wuzhou,DEV,,False,True,Kharkiv;Wuzhou,0.6161,dbae4546a08c07ab
+175,pair:Wanzhou|Zahedan,Wanzhou|Zahedan,DEV,,False,True,Wanzhou;Zahedan,0.4606,89b7efc41deeaa2c
+176,pair:Caracas|Lahore,Lahore|Caracas,DEV,,False,True,Caracas;Lahore,0.5881,aef6060f75e12ef3
+177,pair:Aleppo|Tegucigalpa,Tegucigalpa|Aleppo,TEST,entity_in_dev,False,True,Aleppo;Tegucigalpa,0.6591,44e6b9de413e4a19
+178,pair:Fortaleza|Serang,Fortaleza|Serang,TEST,entity_in_dev,False,True,Fortaleza;Serang,0.5447,e48297aba9f21d37
+179,pair:Agadir|Weifang,Agadir|Weifang,TEST,,False,True,Agadir;Weifang,0.5723,05b4a6ae862058e9
+180,pair:Ciudad Guayana|Jiaozhou,Ciudad Guayana|Jiaozhou,TEST,entity_in_dev,False,True,Ciudad Guayana;Jiaozhou,0.6385,bedcca84c59e15b4
+181,pair:Poznan|Qinhuangdao,Qinhuangdao|Poznan,TEST,entity_in_dev,False,True,Poznan;Qinhuangdao,0.606,82c2184e0005b3e6
+182,pair:Jilin|Tucson,Jilin|Tucson,DEV,,False,True,Jilin;Tucson,0.4505,acdc78e489dcecc1
+183,pair:Lianyungang|Zahedan,Zahedan|Lianyungang,TEST,entity_in_dev,False,True,Lianyungang;Zahedan,0.5444,55887ef189133c69
+184,pair:Bhiwandi|Jiangmen,Jiangmen|Bhiwandi,DEV,,False,True,Bhiwandi;Jiangmen,0.5798,99c2e3ea070572d3
+185,pair:Nanning|Ryazan',Ryazan'|Nanning,DEV,,False,True,Nanning;Ryazan',0.556,c349b87348390212
+186,pair:Mumbai|Santo Domingo Este,Santo Domingo Este|Mumbai,DEV,exposed_test_city,False,True,Mumbai;Santo Domingo Este,0.7438,aa53773888ac7cc8
+187,pair:Ma'anshan|Sorocaba,Sorocaba|Ma'anshan,DEV,exposed_test_city,False,True,Ma'anshan;Sorocaba,0.5761,b4e77f6704c8cd7e
+188,pair:Kanayannur|Sangli,Kanayannur|Sangli,TEST,entity_in_dev,False,True,Kanayannur;Sangli,0.6025,f843f93966437d81
+189,pair:Almaty|Borivli,Almaty|Borivli,DEV,,False,True,Almaty;Borivli,0.6572,a1dd187ba8a27b3c
+190,pair:Santa Maria Chimalhuacan|Zunyi,Santa Maria Chimalhuacan|Zunyi,TEST,exposed_test_city,False,True,Santa Maria Chimalhuacan;Zunyi,0.7121,7a7e33e1abaa4b99
+191,pair:Koeln|Theni,Theni|Koeln,TEST,exposed_test_city,False,True,Koeln;Theni,0.4768,392351ad93b7c896
+192,pair:Bayannur|Nouakchott,Bayannur|Nouakchott,DEV,,False,True,Bayannur;Nouakchott,0.5795,5b54707891cbe86e
+193,pair:Penza|Quito,Penza|Quito,TEST,entity_in_dev,False,True,Penza;Quito,0.5419,5c4817248ab4b003
+194,pair:Al Basrah al Qadimah|Laibin,Laibin|Al Basrah al Qadimah,TEST,entity_in_dev,False,True,Al Basrah al Qadimah;Laibin,0.5985,98dca1b16a0dd2aa
+195,pair:Feira de Santana|Krasnoyarsk,Krasnoyarsk|Feira de Santana,TEST,exposed_test_city,False,True,Feira de Santana;Krasnoyarsk,0.6133,a2a91387f95d14a5
+196,pair:Ma'anshan|Ya'an,Ma'anshan|Ya'an,TEST,entity_in_dev,False,True,Ma'anshan;Ya'an,0.5883,03ede17833b393bc
+197,pair:Bayannur|Ulyanovsk,Ulyanovsk|Bayannur,DEV,,False,True,Bayannur;Ulyanovsk,0.5971,4b49604dc31cacce
+198,pair:Fushun|Karbala,Fushun|Karbala,TEST,entity_in_dev,False,True,Fushun;Karbala,0.5517,4156199938b3ddb8
+199,pair:Mysore|Xuanzhou,Mysore|Xuanzhou,TEST,entity_in_dev,False,True,Mysore;Xuanzhou,0.5745,0e37be07e39690c9
+200,pair:Warangal|Xingtai,Warangal|Xingtai,TEST,entity_in_dev,False,True,Warangal;Xingtai,0.5284,c788264b44fb71ad
+201,pair:Beijing|Pimpri,Pimpri|Beijing,DEV,,False,True,Beijing;Pimpri,0.4941,ce0a66cb69d42863
+202,pair:Al Ahmadi|Ciudad Juarez,Ciudad Juarez|Al Ahmadi,TEST,exposed_test_city,False,True,Al Ahmadi;Ciudad Juarez,0.6256,e7b4bdcfa79a7cbd
+203,pair:Cotonou|Muscat,Cotonou|Muscat,TEST,entity_in_dev,False,True,Cotonou;Muscat,0.5936,3fa437521302a3c8
+204,pair:Al Ahmadi|Dombivli,Dombivli|Al Ahmadi,TEST,exposed_test_city,False,True,Al Ahmadi;Dombivli,0.5676,4dc68a8c211cf2ba
+205,pair:Enugu|Karol Bagh,Karol Bagh|Enugu,TEST,entity_in_dev,False,True,Enugu;Karol Bagh,0.5732,78cef8fac1bb2d87
+206,pair:Lipetsk|Santiago de Queretaro,Santiago de Queretaro|Lipetsk,TEST,entity_in_dev,False,True,Lipetsk;Santiago de Queretaro,0.6906,25afa64f4736faae
+207,pair:Bangkok|Kahriz,Bangkok|Kahriz,DEV,,False,True,Bangkok;Kahriz,0.6418,de1c930c5dc1f5af
+208,pair:Fort Worth|Karbala,Fort Worth|Karbala,DEV,exposed_test_city,False,True,Fort Worth;Karbala,0.6141,92111956a0858df1
+209,pair:Caloocan City|Vladivostok,Caloocan City|Vladivostok,DEV,,False,True,Caloocan City;Vladivostok,0.6136,9e109971cdbd5e52
+210,pair:Bursa|Hiroshima,Bursa|Hiroshima,TEST,entity_in_dev,False,True,Bursa;Hiroshima,0.4728,f929bf3d768c0cc7
+211,pair:Herat|Malatya,Malatya|Herat,TEST,entity_in_dev,False,True,Herat;Malatya,0.5918,1836b2370b9069a3
+212,pair:Baoji|Fukuoka,Fukuoka|Baoji,DEV,,False,True,Baoji;Fukuoka,0.5801,d4335714b385c9ff
+213,pair:Istanbul|Mississauga,Istanbul|Mississauga,DEV,exposed_test_city,False,True,Istanbul;Mississauga,0.5529,a8cd41cc941142b6
+214,pair:Jaboatao dos Guararapes|Puning,Puning|Jaboatao dos Guararapes,TEST,entity_in_dev,False,True,Jaboatao dos Guararapes;Puning,0.6621,e4010107a8c2daaa
+215,pair:Amravati|Moradabad,Amravati|Moradabad,TEST,exposed_test_city,False,True,Amravati;Moradabad,0.5441,d35007c4cb358d0e
+216,pair:Cixi|Shizuoka,Cixi|Shizuoka,DEV,,False,True,Cixi;Shizuoka,0.566,f84181168a5c3c84
+217,pair:Maracaibo|Tegucigalpa,Tegucigalpa|Maracaibo,DEV,,False,True,Maracaibo;Tegucigalpa,0.6824,59bfe04533a8112d
+218,pair:Jingmen|Semarang,Jingmen|Semarang,TEST,entity_in_dev,False,True,Jingmen;Semarang,0.559,6081e2cbea293442
+219,pair:Busan|Quezon City,Quezon City|Busan,TEST,entity_in_dev,False,True,Busan;Quezon City,0.655,fbcebce96d5fe694
+220,pair:Aden|Salta,Salta|Aden,TEST,entity_in_dev,False,True,Aden;Salta,0.5899,9fee1857f33dcca6
+221,pair:Karol Bagh|Shizuoka,Shizuoka|Karol Bagh,TEST,entity_in_dev,False,True,Karol Bagh;Shizuoka,0.5441,ff1888de91c0305c
+222,pair:Kaifeng|Wanning,Wanning|Kaifeng,DEV,,False,True,Kaifeng;Wanning,0.5122,10db1294c3d9e15e
+223,pair:Goeteborg|Kumasi,Kumasi|Goeteborg,TEST,entity_in_dev,False,True,Goeteborg;Kumasi,0.5373,f3f83b0ce960806f
+224,pair:Santiago de los Caballeros|Warangal,Warangal|Santiago de los Caballeros,DEV,,False,True,Santiago de los Caballeros;Warangal,0.6702,2ad65db50cd1244f
+225,pair:Port-au-Prince|Soweto,Soweto|Port-au-Prince,TEST,entity_in_dev,False,True,Port-au-Prince;Soweto,0.5945,6078ad4feb8eee96
+226,pair:Ho Chi Minh City|Rio de Janeiro,Rio de Janeiro|Ho Chi Minh City,DEV,,False,True,Ho Chi Minh City;Rio de Janeiro,0.6238,e694e5d98d92d97a
+227,pair:Dortmund|Yinchuan,Dortmund|Yinchuan,DEV,,False,True,Dortmund;Yinchuan,0.5922,0302412a130a05e6
+228,pair:Jinan|Shivaji Nagar,Shivaji Nagar|Jinan,TEST,entity_in_dev,False,True,Jinan;Shivaji Nagar,0.6006,fe0177ee819e7c21
+229,pair:Al Mahallah al Kubra|Bobo-Dioulasso,Bobo-Dioulasso|Al Mahallah al Kubra,TEST,entity_in_dev,False,True,Al Mahallah al Kubra;Bobo-Dioulasso,0.6577,7bb27f26d8f212ea
+230,pair:Coyoacan|Maoming,Maoming|Coyoacan,TEST,exposed_test_city,False,True,Coyoacan;Maoming,0.502,de89e8af9b8f9ae4
+231,pair:Queens|Ta'if,Ta'if|Queens,DEV,,False,True,Queens;Ta'if,0.5868,a45d324b4e60cdd6
+232,pair:Anyang-si|Maturin,Anyang-si|Maturin,TEST,exposed_test_city,False,True,Anyang-si;Maturin,0.5414,3cbdd0eae0cbc320
+233,pair:Feira de Santana|Pingliang,Feira de Santana|Pingliang,TEST,,False,True,Feira de Santana;Pingliang,0.5923,a2a0ecdd0fa9dae9
+234,pair:Al Ain City|Qom,Qom|Al Ain City,TEST,exposed_test_city,False,True,Al Ain City;Qom,0.4956,01931045f141b857
+235,pair:Battagram|Novokuznetsk,Novokuznetsk|Battagram,DEV,exposed_test_city,False,True,Battagram;Novokuznetsk,0.6689,d53ba388c406868b
+236,pair:Muzaffarabad|Namangan,Muzaffarabad|Namangan,TEST,,False,True,Muzaffarabad;Namangan,0.6467,263407021750cd6d
+237,pair:Isfahan|Orumiyeh,Isfahan|Orumiyeh,TEST,exposed_test_city,False,True,Isfahan;Orumiyeh,0.6013,557e708f535183d5
+238,pair:Erzurum|Wanxian,Erzurum|Wanxian,DEV,exposed_test_city,False,True,Erzurum;Wanxian,0.5678,53ef040317b8124c
+239,pair:Jiaozuo|Nampula,Jiaozuo|Nampula,TEST,,False,True,Jiaozuo;Nampula,0.5063,a78115a58c7b7fec
+240,pair:Guarulhos|Osaka,Osaka|Guarulhos,TEST,exposed_test_city,False,True,Guarulhos;Osaka,0.55,a107a274daef9737
+241,pair:Naucalpan de Juarez|Tiruchirappalli,Naucalpan de Juarez|Tiruchirappalli,TEST,exposed_test_city,False,True,Naucalpan de Juarez;Tiruchirappalli,0.6079,a1749a4a9e2f1378
+242,pair:Qinzhou|Zaozhuang,Zaozhuang|Qinzhou,TEST,exposed_test_city,False,True,Qinzhou;Zaozhuang,0.4968,2de9cec43e886a58
+243,pair:Astrakhan|Chaozhou,Astrakhan|Chaozhou,TEST,entity_in_dev,False,True,Astrakhan;Chaozhou,0.5901,de29d3cef98d98bd
+244,pair:Johannesburg|Ulhasnagar,Ulhasnagar|Johannesburg,DEV,,False,True,Johannesburg;Ulhasnagar,0.5496,de9acfef646692b8
+245,pair:Ibadan|Wroclaw,Ibadan|Wroclaw,TEST,entity_in_dev,False,True,Ibadan;Wroclaw,0.5566,6780966215ec839f
+246,pair:Chiclayo|Shuangyashan,Shuangyashan|Chiclayo,DEV,,False,True,Chiclayo;Shuangyashan,0.5985,0bcd7037cbefdd88
+247,pair:Lyon|Ulhasnagar,Lyon|Ulhasnagar,TEST,entity_in_dev,False,True,Lyon;Ulhasnagar,0.5282,150dbd4735ce93e1
+248,pair:Libreville|Santo Domingo Este,Santo Domingo Este|Libreville,TEST,exposed_test_city,False,True,Libreville;Santo Domingo Este,0.7041,282bbadf0cf545be
+249,pair:Algiers|Saratov,Algiers|Saratov,TEST,entity_in_dev,False,True,Algiers;Saratov,0.6124,3314be17b483050c
+250,pair:Accra|Krasnodar,Accra|Krasnodar,DEV,,False,True,Accra;Krasnodar,0.5352,512e8bea2eee6b7d
+251,pair:Kumamoto|Mukalla,Kumamoto|Mukalla,TEST,entity_in_dev,False,True,Kumamoto;Mukalla,0.5861,8613857dfc4c0a82
+252,pair:Addis Ababa|Mombasa,Mombasa|Addis Ababa,TEST,exposed_test_city,False,True,Addis Ababa;Mombasa,0.5389,08a50bf68a40b947
+253,pair:Aguascalientes|Pasig City,Aguascalientes|Pasig City,DEV,,False,True,Aguascalientes;Pasig City,0.6881,716aa39752c5c4f3
+254,pair:Chattogram|Nanchang,Chattogram|Nanchang,TEST,exposed_test_city,False,True,Chattogram;Nanchang,0.6403,b93b48261c98bddf
+255,pair:Leipzig|Neijiang,Leipzig|Neijiang,TEST,exposed_test_city,False,True,Leipzig;Neijiang,0.5958,0d6ed1d3f12dcbe3
+256,pair:Barquisimeto|Sanming,Sanming|Barquisimeto,TEST,entity_in_dev,False,True,Barquisimeto;Sanming,0.5445,4184cd85f7f83002
+257,pair:Bhavnagar|Maceio,Bhavnagar|Maceio,TEST,entity_in_dev,False,True,Bhavnagar;Maceio,0.5652,5f2b95b869aeadc2
+258,pair:Comilla|Fortaleza,Comilla|Fortaleza,DEV,,False,True,Comilla;Fortaleza,0.6007,89215021a512cf43
+259,pair:Calgary|Kryvyy Rih,Kryvyy Rih|Calgary,DEV,exposed_test_city,False,True,Calgary;Kryvyy Rih,0.6134,c5472b165b093845
+260,pair:Bokaro|Hamadan,Hamadan|Bokaro,TEST,entity_in_dev,False,True,Bokaro;Hamadan,0.5572,498b02403fc1bb5d
+261,pair:Oslo|Zhangjiakou,Zhangjiakou|Oslo,TEST,entity_in_dev,False,True,Oslo;Zhangjiakou,0.6513,a9953d5b68d393e5
+262,pair:Bucheon-si|Maoming,Bucheon-si|Maoming,TEST,entity_in_dev,False,True,Bucheon-si;Maoming,0.6299,6d49a2fff0673ee7
+263,pair:Duesseldorf|Vilnius,Vilnius|Duesseldorf,TEST,entity_in_dev,False,True,Duesseldorf;Vilnius,0.6086,fb69e049084a3c39
+264,pair:Guangyuan|Oyo,Oyo|Guangyuan,TEST,exposed_test_city,False,True,Guangyuan;Oyo,0.4976,2483500a664c9c4d
+265,pair:Erbil|Ordos,Ordos|Erbil,TEST,entity_in_dev,False,True,Erbil;Ordos,0.4703,21599b94d8be612b
+266,pair:Bujumbura|Nuernberg,Bujumbura|Nuernberg,TEST,exposed_test_city,False,True,Bujumbura;Nuernberg,0.6292,c91311131a3467c1
+267,pair:Nairobi|Seattle,Nairobi|Seattle,TEST,entity_in_dev,False,True,Nairobi;Seattle,0.6005,8518a3be2633199a
+268,pair:Dar es Salaam|Shiraz,Dar es Salaam|Shiraz,TEST,entity_in_dev,False,True,Dar es Salaam;Shiraz,0.6201,3bf3c0a808df35af
+269,pair:Amravati|Huaibei,Amravati|Huaibei,TEST,entity_in_dev,False,True,Amravati;Huaibei,0.5299,902fcb9e283714a2
+270,pair:Guiyang|Naucalpan de Juarez,Naucalpan de Juarez|Guiyang,DEV,exposed_test_city,False,True,Guiyang;Naucalpan de Juarez,0.6492,adfa65ca2691e59c
+271,pair:Bogor|Cotonou,Cotonou|Bogor,TEST,entity_in_dev,False,True,Bogor;Cotonou,0.61,f87865fc9212d7b6
+272,pair:Ecatepec de Morelos|Rui'an,Ecatepec de Morelos|Rui'an,DEV,exposed_test_city,False,True,Ecatepec de Morelos;Rui'an,0.6869,f001a27cbbfa792b
+273,pair:Cixi|Laiwu,Laiwu|Cixi,TEST,entity_in_dev,False,True,Cixi;Laiwu,0.4848,1f12723bb607c540
+274,pair:Bhilai|Tegucigalpa,Tegucigalpa|Bhilai,TEST,entity_in_dev,False,True,Bhilai;Tegucigalpa,0.7002,d9cce4e2dc73e8ce
+275,pair:Tabriz|Tianshui,Tabriz|Tianshui,TEST,entity_in_dev,False,True,Tabriz;Tianshui,0.5507,96a938a00ab78757
+276,pair:Lodz|Nashik,Nashik|Lodz,DEV,exposed_test_city,False,True,Lodz;Nashik,0.5165,c7abe2a415df3be9
+277,pair:Guankou|Rajkot,Rajkot|Guankou,TEST,entity_in_dev,False,True,Guankou;Rajkot,0.4902,9f2a2051d3d64470
+278,pair:Naucalpan de Juarez|Tokyo,Naucalpan de Juarez|Tokyo,TEST,exposed_test_city,False,True,Naucalpan de Juarez;Tokyo,0.6945,0454ca4efce33f7a
+279,pair:Hubli|Kalininskiy,Kalininskiy|Hubli,TEST,exposed_test_city,False,True,Hubli;Kalininskiy,0.6212,922b58d9764674d9
+280,pair:Chengdu|South Tangerang,South Tangerang|Chengdu,TEST,entity_in_dev,False,True,Chengdu;South Tangerang,0.6325,b90646f78cf591cb
+281,pair:Narela|Voronezh,Narela|Voronezh,DEV,exposed_test_city,False,True,Narela;Voronezh,0.4896,2b52f0f828a14684
+282,pair:Comilla|Wenzhou,Comilla|Wenzhou,TEST,entity_in_dev,False,True,Comilla;Wenzhou,0.5739,1cef130368cbe527
+283,pair:Ankara|Curitiba,Ankara|Curitiba,TEST,entity_in_dev,False,True,Ankara;Curitiba,0.5408,c87c4e63f88b80f5
+284,pair:Aracaju|Ciudad Nezahualcoyotl,Aracaju|Ciudad Nezahualcoyotl,DEV,exposed_test_city,False,True,Aracaju;Ciudad Nezahualcoyotl,0.643,cb96fd2771408cc3
+285,pair:Huainan|Ulan Bator,Ulan Bator|Huainan,DEV,exposed_test_city,False,True,Huainan;Ulan Bator,0.6734,d41b6557218bf383
+286,pair:Al Fayyum|Beira,Beira|Al Fayyum,TEST,,False,True,Al Fayyum;Beira,0.604,07c11a32007e86e6
+287,pair:Lahore|Shizuoka,Shizuoka|Lahore,TEST,entity_in_dev,False,True,Lahore;Shizuoka,0.5716,28bf206e01922474
+288,pair:Aligarh|Sevastopol,Sevastopol|Aligarh,TEST,entity_in_dev,False,True,Aligarh;Sevastopol,0.6138,0cba0b0ab38897ca
+289,pair:Brasilia|Jeonju,Brasilia|Jeonju,DEV,,False,True,Brasilia;Jeonju,0.5521,16664c6a4fe97a97
+290,pair:Kirkuk|Lahore,Kirkuk|Lahore,TEST,entity_in_dev,False,True,Kirkuk;Lahore,0.5326,dae328173c072923
+291,pair:Maracay|Shaoguan,Shaoguan|Maracay,TEST,entity_in_dev,False,True,Maracay;Shaoguan,0.5554,b9667b4cb3c9df49
+292,pair:Accra|Helsinki,Accra|Helsinki,TEST,entity_in_dev,False,True,Accra;Helsinki,0.5056,ed5a664a5a32e487
+293,pair:Chiclayo|Soweto,Soweto|Chiclayo,DEV,,False,True,Chiclayo;Soweto,0.5951,8dee09728d31b04c
+294,pair:Contagem|Yingkou,Contagem|Yingkou,TEST,entity_in_dev,False,True,Contagem;Yingkou,0.6346,4b9c8712be108a37
+295,pair:Malacca|Quetta,Quetta|Malacca,TEST,exposed_test_city,False,True,Malacca;Quetta,0.5072,a1db84333e36b2f1
+296,pair:San Miguel de Tucuman|Sanya,San Miguel de Tucuman|Sanya,TEST,entity_in_dev,False,True,San Miguel de Tucuman;Sanya,0.7024,b13aa30a026f3fe5
+297,pair:Ahvaz|Yongzhou,Ahvaz|Yongzhou,TEST,entity_in_dev,False,True,Ahvaz;Yongzhou,0.5912,62188d2df0d79f25
+298,pair:Erbil|Kalininskiy,Kalininskiy|Erbil,TEST,entity_in_dev,False,True,Erbil;Kalininskiy,0.6184,dea12b9a9a7fa3e5
+299,pair:Daejeon|Ordos,Ordos|Daejeon,DEV,,False,True,Daejeon;Ordos,0.5692,c591fb54fcc86419
+300,pair:Bhiwandi|Xinyang,Xinyang|Bhiwandi,TEST,entity_in_dev,False,True,Bhiwandi;Xinyang,0.5489,abebef9dd332c72d
+301,pair:Lyon|Sao Bernardo do Campo,Sao Bernardo do Campo|Lyon,DEV,,False,True,Lyon;Sao Bernardo do Campo,0.6867,ceec155a15a47f6f
+302,pair:Benxi|Mersin,Mersin|Benxi,TEST,exposed_test_city,False,True,Benxi;Mersin,0.5521,d6f30a1eacaff7f2
+303,pair:Londrina|Sanming,Londrina|Sanming,TEST,entity_in_dev,False,True,Londrina;Sanming,0.5424,0993a0476eb3837b
+304,pair:Al Mawsil al Jadidah|Anshun,Anshun|Al Mawsil al Jadidah,DEV,,False,True,Al Mawsil al Jadidah;Anshun,0.6497,6239c0666a9af5d6
+305,pair:Shaoxing|Tabriz,Shaoxing|Tabriz,DEV,,False,True,Shaoxing;Tabriz,0.5382,d06e49de34231b6e
+306,pair:Kakamega|Shenzhen,Kakamega|Shenzhen,DEV,,False,True,Kakamega;Shenzhen,0.6004,91231e48ef3a24c1
+307,pair:Benxi|Zhangjiakou,Zhangjiakou|Benxi,TEST,exposed_test_city,False,True,Benxi;Zhangjiakou,0.5919,cff2c668755e0b10
+308,pair:Abobo|Kandahar,Kandahar|Abobo,TEST,entity_in_dev,False,True,Abobo;Kandahar,0.6794,edbd074299d2c1be
+309,pair:Qujing|Samarkand,Qujing|Samarkand,TEST,entity_in_dev,False,True,Qujing;Samarkand,0.5636,cab27a6f615559d8
+310,"pair:Mianzhu, Deyang, Sichuan|Shuangyashan","Shuangyashan|Mianzhu, Deyang, Sichuan",TEST,exposed_test_city,False,True,"Mianzhu, Deyang, Sichuan;Shuangyashan",0.6536,67514c7039866751
+311,pair:Goeteborg|Quebec,Goeteborg|Quebec,DEV,,False,True,Goeteborg;Quebec,0.6721,d7624cd9626a5aa6
+312,pair:Guang'an|Tembisa,Tembisa|Guang'an,TEST,exposed_test_city,False,True,Guang'an;Tembisa,0.5823,229f6605bbf5b875
+313,pair:Battagram|Tangshan,Tangshan|Battagram,TEST,exposed_test_city,False,True,Battagram;Tangshan,0.4766,aacefc3eb0f8f4b5
+314,pair:Goeteborg|Ningbo,Ningbo|Goeteborg,TEST,entity_in_dev,False,True,Goeteborg;Ningbo,0.5091,e58fe3e074ce9212
+315,pair:Baotou|Mandalay,Mandalay|Baotou,DEV,exposed_test_city,False,True,Baotou;Mandalay,0.6328,02a7b780710bb1d8
+316,pair:Douala|Kyoto,Douala|Kyoto,TEST,entity_in_dev,False,True,Douala;Kyoto,0.6462,d970c764b255f42f
+317,pair:Bahcelievler|Guwahati,Bahcelievler|Guwahati,TEST,exposed_test_city,False,True,Bahcelievler;Guwahati,0.6213,2b48b80acb823956
+318,pair:Durban|Istanbul,Istanbul|Durban,TEST,exposed_test_city,False,True,Durban;Istanbul,0.5958,20edbb4b13f39387
+319,pair:Makhachkala|Xiangtan,Xiangtan|Makhachkala,TEST,entity_in_dev,False,True,Makhachkala;Xiangtan,0.5416,536f7475cec0230b
+320,pair:Battagram|Saint Petersburg,Saint Petersburg|Battagram,TEST,exposed_test_city,False,True,Battagram;Saint Petersburg,0.679,00fb65e73fa9b4bb
+321,pair:Casablanca|Yichang,Yichang|Casablanca,DEV,,False,True,Casablanca;Yichang,0.5704,42a5959e48d4f876
+322,pair:Oklahoma City|South Tangerang,Oklahoma City|South Tangerang,DEV,exposed_test_city,False,True,Oklahoma City;South Tangerang,0.6284,1a134ad35b6476c5
+323,pair:Ouagadougou|Winnipeg,Winnipeg|Ouagadougou,TEST,entity_in_dev,False,True,Ouagadougou;Winnipeg,0.5959,cee0665d13c2233d
+324,pair:Petaling Jaya|Surat,Petaling Jaya|Surat,TEST,entity_in_dev,False,True,Petaling Jaya;Surat,0.6526,8ae3833a5a118d6e
+325,pair:Shubra al Khaymah|Ziyang,Shubra al Khaymah|Ziyang,TEST,entity_in_dev,False,True,Shubra al Khaymah;Ziyang,0.6653,e88164c3ae1cc88e
+326,pair:Al Mahallah al Kubra|Kaifeng,Al Mahallah al Kubra|Kaifeng,TEST,entity_in_dev,False,True,Al Mahallah al Kubra;Kaifeng,0.6422,ee99a03c8c7b2def
+327,pair:Dandong|Maoming,Dandong|Maoming,TEST,entity_in_dev,False,True,Dandong;Maoming,0.5228,3618c12e5fff08eb
+328,pair:Abu Dhabi|Zaporizhzhya,Abu Dhabi|Zaporizhzhya,TEST,entity_in_dev,False,True,Abu Dhabi;Zaporizhzhya,0.5514,5bc368f2369929eb
+329,pair:Busan|Tehran,Busan|Tehran,TEST,entity_in_dev,False,True,Busan;Tehran,0.5674,7df8a01636725f6f
+330,pair:Barranquilla|Pietermaritzburg,Barranquilla|Pietermaritzburg,DEV,,False,True,Barranquilla;Pietermaritzburg,0.6182,94e8a63b74f67fb6
+331,pair:Harare|Hengyang,Hengyang|Harare,TEST,entity_in_dev,False,True,Harare;Hengyang,0.5395,09c098d327b8a995
+332,pair:Fes|Semarang,Semarang|Fes,DEV,,False,True,Fes;Semarang,0.5809,beb5eed08fa12269
+333,pair:Kigali|New South Memphis,New South Memphis|Kigali,TEST,entity_in_dev,False,True,Kigali;New South Memphis,0.6608,f406a1f688a36e59
+334,pair:Kaduna|Shiraz,Shiraz|Kaduna,TEST,,False,True,Kaduna;Shiraz,0.5716,4ec43445bc19d07e
+335,pair:Anshun|Curitiba,Anshun|Curitiba,TEST,entity_in_dev,False,True,Anshun;Curitiba,0.5294,47739001f4a9c0ca
+336,pair:Kyiv|Zunyi,Zunyi|Kyiv,TEST,entity_in_dev,False,True,Kyiv;Zunyi,0.5094,af683be0c8246e91
+337,pair:Najafgarh|Oyo,Najafgarh|Oyo,TEST,exposed_test_city,False,True,Najafgarh;Oyo,0.6241,dbf270f5eb7209a8
+338,pair:Dalian|Izhevsk,Izhevsk|Dalian,DEV,,False,True,Dalian;Izhevsk,0.6043,e7be78c8ea1e794b
+339,pair:Homyel'|Ilorin,Ilorin|Homyel',TEST,entity_in_dev,False,True,Homyel';Ilorin,0.5197,03c40e2c5cdaf290
+340,pair:Hwaseong-si|Yingkou,Yingkou|Hwaseong-si,DEV,,False,True,Hwaseong-si;Yingkou,0.524,529859435329276d
+341,pair:Cucuta|Johannesburg,Cucuta|Johannesburg,TEST,entity_in_dev,False,True,Cucuta;Johannesburg,0.5514,e39e795826ae02af
+342,pair:Nanchang|Shanghai,Shanghai|Nanchang,TEST,entity_in_dev,False,True,Nanchang;Shanghai,0.5093,bdb9a215014f73b3
+343,pair:Barranquilla|Zhangjiagang,Barranquilla|Zhangjiagang,TEST,entity_in_dev,False,True,Barranquilla;Zhangjiagang,0.6486,7213e940cf566690
+344,pair:Feira de Santana|Haiphong,Haiphong|Feira de Santana,TEST,entity_in_dev,False,True,Feira de Santana;Haiphong,0.5964,16688623ecc620a7
+345,pair:Surakarta|Xianyang,Surakarta|Xianyang,TEST,entity_in_dev,False,True,Surakarta;Xianyang,0.6178,64cacc1740ca94d2
+346,pair:Kigali|Tangier,Kigali|Tangier,TEST,entity_in_dev,False,True,Kigali;Tangier,0.5902,01828e3e51b5fd56
+347,pair:Belo Horizonte|Guankou,Belo Horizonte|Guankou,TEST,entity_in_dev,False,True,Belo Horizonte;Guankou,0.6126,f5b5fcd1c6edcb09
+348,pair:Bijie|Xinyang,Bijie|Xinyang,TEST,entity_in_dev,False,True,Bijie;Xinyang,0.4706,3a2b0fd9c2e8ad9d
+349,pair:Baku|Solapur,Solapur|Baku,TEST,exposed_test_city,False,True,Baku;Solapur,0.5504,03af30c01cba8bee
+350,pair:Al Basrah al Qadimah|Samarkand,Samarkand|Al Basrah al Qadimah,TEST,entity_in_dev,False,True,Al Basrah al Qadimah;Samarkand,0.574,3165a977849178ff
+351,pair:Antalya|Shangyu,Shangyu|Antalya,TEST,entity_in_dev,False,True,Antalya;Shangyu,0.4692,4ffe9f152a7d0134
+352,pair:Brazzaville|Iztapalapa,Brazzaville|Iztapalapa,TEST,entity_in_dev,False,True,Brazzaville;Iztapalapa,0.6442,c9f7867c3df5f743
+353,pair:Nanning|Tiruchirappalli,Tiruchirappalli|Nanning,TEST,entity_in_dev,False,True,Nanning;Tiruchirappalli,0.661,73d180528ab4dcc5
+354,pair:Guatemala City|Ulhasnagar,Guatemala City|Ulhasnagar,DEV,,False,True,Guatemala City;Ulhasnagar,0.6809,6d142d9b568f6540
+355,pair:Antwerpen|Najafgarh,Antwerpen|Najafgarh,DEV,exposed_test_city,False,True,Antwerpen;Najafgarh,0.653,8b4a45cb80fc2b51
+356,pair:Cixi|Shanghai,Cixi|Shanghai,TEST,entity_in_dev,False,True,Cixi;Shanghai,0.5156,d9315f772ecbc2c4
+357,pair:Longyan|Paranaque City,Longyan|Paranaque City,DEV,exposed_test_city,False,True,Longyan;Paranaque City,0.5951,630b3e77455f0253
+358,pair:E'zhou|Zhoushan,E'zhou|Zhoushan,DEV,,False,True,E'zhou;Zhoushan,0.5304,4ff56ad36b5fe628
+359,pair:Bareilly|Shaoxing,Bareilly|Shaoxing,TEST,exposed_test_city,False,True,Bareilly;Shaoxing,0.5465,d6b9c1ce90369f80
+360,pair:Prayagraj|Xuzhou,Prayagraj|Xuzhou,TEST,exposed_test_city,False,True,Prayagraj;Xuzhou,0.6544,826a4238e98c18fa
+361,pair:Pyongyang|Tehran,Pyongyang|Tehran,TEST,entity_in_dev,False,True,Pyongyang;Tehran,0.6405,514352d390445365
+362,pair:Aleppo|Xianning,Aleppo|Xianning,TEST,entity_in_dev,False,True,Aleppo;Xianning,0.5696,381ce973ebb24832
+363,pair:Hefei|Tehran,Tehran|Hefei,TEST,entity_in_dev,False,True,Hefei;Tehran,0.5102,e046a20b848909b2
+364,pair:Jambi City|Warangal,Jambi City|Warangal,TEST,entity_in_dev,False,True,Jambi City;Warangal,0.5521,fb760165c12fbbaf
+365,pair:Ashgabat|Beirut,Ashgabat|Beirut,DEV,,False,True,Ashgabat;Beirut,0.6977,b259002dd315cb80
+366,pair:Heze|Tiruppur,Heze|Tiruppur,DEV,exposed_test_city,False,True,Heze;Tiruppur,0.521,4c45b5cc69151343
+367,pair:Luzhou|Sharjah,Sharjah|Luzhou,TEST,entity_in_dev,False,True,Luzhou;Sharjah,0.6951,f5eb5c4a9c84d3b3
+368,pair:Budapest|Chandigarh,Chandigarh|Budapest,DEV,exposed_test_city,False,True,Budapest;Chandigarh,0.5706,229bc1eddd637aad
+369,pair:Bien Hoa|Marrakesh,Marrakesh|Bien Hoa,DEV,,False,True,Bien Hoa;Marrakesh,0.6066,09d26e6e09db87ce
+370,pair:Guang'an|Jaboatao,Jaboatao|Guang'an,TEST,exposed_test_city,False,True,Guang'an;Jaboatao,0.5445,301b42e73c934956
+371,pair:Duesseldorf|Santo Domingo Oeste,Santo Domingo Oeste|Duesseldorf,TEST,entity_in_dev,False,True,Duesseldorf;Santo Domingo Oeste,0.7137,997e9febbf744566
+372,pair:Hiroshima|Tokyo,Hiroshima|Tokyo,TEST,exposed_test_city,False,True,Hiroshima;Tokyo,0.6242,14c18465a9e3d2f8
+373,pair:Dandong|Pyongyang,Pyongyang|Dandong,TEST,entity_in_dev,False,True,Dandong;Pyongyang,0.6321,d6def563556b9cd6
+374,pair:Copenhagen|Ulhasnagar,Ulhasnagar|Copenhagen,DEV,,False,True,Copenhagen;Ulhasnagar,0.5787,a0a33c2bbe39a1a2
+375,pair:Liaocheng|New York City,New York City|Liaocheng,TEST,exposed_test_city,False,True,Liaocheng;New York City,0.5798,7653c46d63d60afe
+376,pair:Suizhou|Xiaogan,Suizhou|Xiaogan,DEV,,False,True,Suizhou;Xiaogan,0.5091,ecd540447ba7ff4f
+377,pair:San Luis Potosi|Santiago de Queretaro,Santiago de Queretaro|San Luis Potosi,TEST,entity_in_dev,False,True,San Luis Potosi;Santiago de Queretaro,0.6289,4ed3eb4b5f8afe5a
+378,pair:Kagoshima|Kinshasa,Kagoshima|Kinshasa,DEV,,False,True,Kagoshima;Kinshasa,0.5289,a9818a0d6e48d9ad
+379,pair:Asyut|Bijie,Bijie|Asyut,TEST,entity_in_dev,False,True,Asyut;Bijie,0.5525,3471651902981196
+380,pair:Campos dos Goytacazes|Jos,Jos|Campos dos Goytacazes,TEST,exposed_test_city,False,True,Campos dos Goytacazes;Jos,0.6109,b9bd7a8fc8e33cea
+381,pair:Bhayandar|Yiwu,Yiwu|Bhayandar,TEST,exposed_test_city,False,True,Bhayandar;Yiwu,0.5475,867f8c90e311523c
+382,pair:Guatemala City|Navi Mumbai,Guatemala City|Navi Mumbai,DEV,,False,True,Guatemala City;Navi Mumbai,0.7107,6ff6255b30ac4095
+383,pair:Busan|Jilin,Jilin|Busan,DEV,,False,True,Busan;Jilin,0.5487,1a1a28a3fe2173a7
+384,pair:Cangzhou|Kanayannur,Kanayannur|Cangzhou,TEST,entity_in_dev,False,True,Cangzhou;Kanayannur,0.5973,1ed6cfbb7eef69b6
+385,pair:Jambi City|Sargodha,Jambi City|Sargodha,TEST,entity_in_dev,False,True,Jambi City;Sargodha,0.5859,9789d1baf22ff9f3
+386,pair:Bangkok|Qinhuangdao,Qinhuangdao|Bangkok,TEST,entity_in_dev,False,True,Bangkok;Qinhuangdao,0.5866,82bdd5b6b3a11051
+387,pair:Porto Alegre|Shizuoka,Porto Alegre|Shizuoka,DEV,,False,True,Porto Alegre;Shizuoka,0.5815,b463fb105199e318
+388,pair:Dongying|Hamhung,Hamhung|Dongying,DEV,exposed_test_city,False,True,Dongying;Hamhung,0.5624,73874532c26d07b4
+389,pair:Chandigarh|Kumamoto,Chandigarh|Kumamoto,TEST,entity_in_dev,False,True,Chandigarh;Kumamoto,0.5609,76b9cf5fe9e39b05
+390,pair:Mukalla|Pyongyang,Pyongyang|Mukalla,DEV,,False,True,Mukalla;Pyongyang,0.6262,4d3b6523b718e20c
+391,pair:Meizhou|Weifang,Meizhou|Weifang,TEST,,False,True,Meizhou;Weifang,0.5074,b60cd69f30f5cc3a
+392,pair:Malacca|Marrakesh,Malacca|Marrakesh,TEST,entity_in_dev,False,True,Malacca;Marrakesh,0.6418,cbda792d7b788306
+393,pair:Matsuyama|Pikine,Matsuyama|Pikine,TEST,entity_in_dev,False,True,Matsuyama;Pikine,0.6141,925bfb54983f3cff
+394,pair:Nay Pyi Taw|Wanning,Nay Pyi Taw|Wanning,DEV,,False,True,Nay Pyi Taw;Wanning,0.6404,dd4d0dd3124644c7
+395,pair:Weinan|Zarqa,Zarqa|Weinan,DEV,exposed_test_city,False,True,Weinan;Zarqa,0.5829,bea3e82a65f92956
+396,pair:Nizhniy Novgorod|Zhuzhou,Zhuzhou|Nizhniy Novgorod,TEST,exposed_test_city,False,True,Nizhniy Novgorod;Zhuzhou,0.6485,288813774dfdefa2
+397,pair:Haiphong|Rourkela,Rourkela|Haiphong,TEST,entity_in_dev,False,True,Haiphong;Rourkela,0.5271,26f73ebca29f951c
+398,pair:Antalya|Rohini,Rohini|Antalya,TEST,entity_in_dev,False,True,Antalya;Rohini,0.5064,ec4cb4c856f967b9
+399,pair:Albuquerque|Guarulhos,Guarulhos|Albuquerque,TEST,entity_in_dev,False,True,Albuquerque;Guarulhos,0.5597,b44e5ebbeb1a05c9
+400,pair:Macapa|Wenzhou,Macapa|Wenzhou,TEST,entity_in_dev,False,True,Macapa;Wenzhou,0.4873,fcabaf3451e6fbe8
+401,pair:Handan|Malang,Malang|Handan,TEST,entity_in_dev,False,True,Handan;Malang,0.5519,03d986fbff21e8d6
+402,pair:San Miguel de Tucuman|Yibin,Yibin|San Miguel de Tucuman,DEV,,False,True,San Miguel de Tucuman;Yibin,0.636,f8254319e2532678
+403,pair:Kryvyy Rih|Lilongwe,Kryvyy Rih|Lilongwe,TEST,exposed_test_city,False,True,Kryvyy Rih;Lilongwe,0.6111,31701065ad3d77af
+404,pair:Chelyabinsk|Ya'an,Chelyabinsk|Ya'an,TEST,entity_in_dev,False,True,Chelyabinsk;Ya'an,0.6399,c0e1934e33c58eb7
+405,pair:Tangerang|Zhaotong,Zhaotong|Tangerang,TEST,entity_in_dev,False,True,Tangerang;Zhaotong,0.5762,95e6dc1773eee3b3
+406,pair:Chaozhou|Ningbo,Chaozhou|Ningbo,DEV,,False,True,Chaozhou;Ningbo,0.5153,88b9fec14d6b7d10
+407,pair:Dar es Salaam|Vijayawada,Vijayawada|Dar es Salaam,TEST,exposed_test_city,False,True,Dar es Salaam;Vijayawada,0.5841,2518b31f56f52236
+408,pair:Omsk|Shah Alam,Shah Alam|Omsk,TEST,exposed_test_city,False,True,Omsk;Shah Alam,0.6299,f02df64509e322d8
+409,pair:Hangzhou|Kuantan,Hangzhou|Kuantan,TEST,,False,True,Hangzhou;Kuantan,0.5418,545f236f943e4a01
+410,pair:Chizhou|Tianshui,Tianshui|Chizhou,DEV,,False,True,Chizhou;Tianshui,0.5438,ca9594a8b24f9e4c
+411,pair:Barquisimeto|Cimahi,Barquisimeto|Cimahi,TEST,entity_in_dev,False,True,Barquisimeto;Cimahi,0.6952,fcef2196fed441b2
+412,pair:Kozhikode|Nizhniy Novgorod,Nizhniy Novgorod|Kozhikode,DEV,,False,True,Kozhikode;Nizhniy Novgorod,0.6489,c99b872592e8a7a5
+413,pair:Bhilai|Esenler,Esenler|Bhilai,TEST,entity_in_dev,False,True,Bhilai;Esenler,0.5747,16458ee32d854001
+414,pair:Longyan|Theni,Longyan|Theni,TEST,exposed_test_city,False,True,Longyan;Theni,0.5808,57f18ce59523f0ee
+415,pair:Changshu|Jalandhar,Jalandhar|Changshu,TEST,exposed_test_city,False,True,Changshu;Jalandhar,0.5604,00231b82020a7957
+416,pair:Erzurum|Xinyang,Xinyang|Erzurum,DEV,exposed_test_city,False,True,Erzurum;Xinyang,0.4932,57c62c8e33d6fe3e
+417,pair:Anshan|Tiruchirappalli,Anshan|Tiruchirappalli,TEST,entity_in_dev,False,True,Anshan;Tiruchirappalli,0.6683,334e191e93df76ce
+418,pair:Laibin|Rizhao,Rizhao|Laibin,DEV,,False,True,Laibin;Rizhao,0.483,dc24e008dae9183f
+419,pair:Khulna|Matola,Matola|Khulna,TEST,,False,True,Khulna;Matola,0.6343,1fca693b66b85679
+420,pair:Amman|Pontianak,Pontianak|Amman,DEV,exposed_test_city,False,True,Amman;Pontianak,0.5839,469ba2492accb4a2
+421,pair:Nampula|San Pedro Sula,Nampula|San Pedro Sula,TEST,,False,True,Nampula;San Pedro Sula,0.6431,c355e7630168f955
+422,pair:Erbil|Jeonju,Erbil|Jeonju,TEST,entity_in_dev,False,True,Erbil;Jeonju,0.4913,1988ac6be8c47c73
+423,pair:Ya'an|Yaroslavl,Ya'an|Yaroslavl,TEST,entity_in_dev,False,True,Ya'an;Yaroslavl,0.5456,8140646b54d5c2df
+424,pair:Vilnius|Yaroslavl,Yaroslavl|Vilnius,TEST,entity_in_dev,False,True,Vilnius;Yaroslavl,0.5976,7e68870ddd22dbe4
+425,pair:Chengdu|Makassar,Chengdu|Makassar,TEST,,False,True,Chengdu;Makassar,0.5966,423b3dbeff8370c9
+426,pair:Casablanca|Minsk,Casablanca|Minsk,TEST,entity_in_dev,False,True,Casablanca;Minsk,0.7156,c706af3dd69b9a90
+427,pair:N'Djamena|Port-au-Prince,Port-au-Prince|N'Djamena,TEST,exposed_test_city,False,True,N'Djamena;Port-au-Prince,0.6833,ffeebf38f8594f55
+428,pair:Anyang-si|Sanmenxia,Anyang-si|Sanmenxia,TEST,exposed_test_city,False,True,Anyang-si;Sanmenxia,0.5709,36d78f5698f1c746
+429,pair:Bishkek|Kampala,Bishkek|Kampala,DEV,,False,True,Bishkek;Kampala,0.6573,17b29f1a2a24e793
+430,pair:Cimahi|Karachi,Karachi|Cimahi,DEV,,False,True,Cimahi;Karachi,0.5798,dfd3af661e0560a2
+431,pair:Fuxin|Kahriz,Kahriz|Fuxin,DEV,exposed_test_city,False,True,Fuxin;Kahriz,0.5329,b2a171b160d418cc
+432,pair:Astrakhan|Chandigarh,Chandigarh|Astrakhan,TEST,entity_in_dev,False,True,Astrakhan;Chandigarh,0.5339,b44473093075ece3
+433,pair:Klang|Recife,Klang|Recife,TEST,entity_in_dev,False,True,Klang;Recife,0.5216,dc59022a4b0cef7f
+434,pair:Mogadishu|Thiruvananthapuram,Thiruvananthapuram|Mogadishu,TEST,,False,True,Mogadishu;Thiruvananthapuram,0.6757,470941e5844f6aac
+435,pair:Erode|Porto Velho,Porto Velho|Erode,TEST,entity_in_dev,False,True,Erode;Porto Velho,0.6125,7c92565e4f75c3a7
+436,pair:Goeteborg|Peshawar,Goeteborg|Peshawar,TEST,exposed_test_city,False,True,Goeteborg;Peshawar,0.6036,88434dec83b4e79e
+437,pair:Porto Alegre|Suwon,Porto Alegre|Suwon,TEST,entity_in_dev,False,True,Porto Alegre;Suwon,0.6348,e2575e35efe4fe70
+438,pair:Amman|Antwerpen,Amman|Antwerpen,TEST,exposed_test_city,False,True,Amman;Antwerpen,0.6325,37ceed3d39d4ef59
+439,pair:San Miguel de Tucuman|Vadodara,Vadodara|San Miguel de Tucuman,TEST,entity_in_dev,False,True,San Miguel de Tucuman;Vadodara,0.6878,b9c15394e2186eae
+440,pair:Thuan An|Tiruppur,Thuan An|Tiruppur,TEST,entity_in_dev,False,True,Thuan An;Tiruppur,0.5863,bc01f713d57c453a
+441,pair:Saitama|Zaria,Saitama|Zaria,DEV,,False,True,Saitama;Zaria,0.5361,6bac6b157233560d
+442,pair:Abidjan|Beijing,Beijing|Abidjan,TEST,entity_in_dev,False,True,Abidjan;Beijing,0.6417,d62af62f5234e239
+443,pair:Kobe|Lubumbashi,Lubumbashi|Kobe,TEST,entity_in_dev,False,True,Kobe;Lubumbashi,0.5337,b8051afd65271aa5
+444,pair:Dombivli|Jaboatao,Dombivli|Jaboatao,DEV,exposed_test_city,False,True,Dombivli;Jaboatao,0.5255,0db5bb497e9bec8b
+445,pair:Porto Alegre|Tanggu,Tanggu|Porto Alegre,TEST,entity_in_dev,False,True,Porto Alegre;Tanggu,0.6189,0b81a8dec6068ca7
+446,pair:Jiujiang|N'Djamena,N'Djamena|Jiujiang,TEST,exposed_test_city,False,True,Jiujiang;N'Djamena,0.6169,751a7fe87a333340
+447,pair:Bokaro|Dombivli,Bokaro|Dombivli,TEST,exposed_test_city,False,True,Bokaro;Dombivli,0.5751,a92cd9f7a01fa928
+448,pair:Harare|Krasnodar,Harare|Krasnodar,TEST,entity_in_dev,False,True,Harare;Krasnodar,0.6661,18999229472ee8dc
+449,pair:Lanzhou|Salta,Lanzhou|Salta,TEST,entity_in_dev,False,True,Lanzhou;Salta,0.6135,9dfccff0e03fb230
+450,pair:Mandalay|Mukalla,Mandalay|Mukalla,TEST,entity_in_dev,False,True,Mandalay;Mukalla,0.5774,5019b4f275515a71
+451,pair:Chiclayo|Yongzhou,Yongzhou|Chiclayo,DEV,,False,True,Chiclayo;Yongzhou,0.5889,62e24ce9f8f0cbbb
+452,pair:Boumerdes|Guigang,Boumerdes|Guigang,TEST,entity_in_dev,False,True,Boumerdes;Guigang,0.5314,2d42f48b6a332f4c
+453,pair:Kashgar|Weifang,Kashgar|Weifang,TEST,exposed_test_city,False,True,Kashgar;Weifang,0.522,1e2c5224c13c2568
+454,pair:Aligarh|Kaduna,Kaduna|Aligarh,TEST,entity_in_dev,False,True,Aligarh;Kaduna,0.5687,a2c3ff82f9b07a96
+455,pair:Izhevsk|Tianjin,Tianjin|Izhevsk,TEST,entity_in_dev,False,True,Izhevsk;Tianjin,0.5735,6c94ca506cbf4fcc
+456,"pair:Ahvaz|Mianzhu, Deyang, Sichuan","Ahvaz|Mianzhu, Deyang, Sichuan",TEST,exposed_test_city,False,True,"Ahvaz;Mianzhu, Deyang, Sichuan",0.686,a005e8ba204097b6
+457,pair:Binzhou|Port Said,Port Said|Binzhou,TEST,entity_in_dev,False,True,Binzhou;Port Said,0.4907,c5eece783991bdbb
+458,pair:Bengbu|Krasnodar,Krasnodar|Bengbu,TEST,exposed_test_city,False,True,Bengbu;Krasnodar,0.5078,02fb140fc2c1a3e8
+459,pair:Ahmedabad|San Luis Potosi,San Luis Potosi|Ahmedabad,TEST,entity_in_dev,False,True,Ahmedabad;San Luis Potosi,0.5078,c3d1c3700d938056
+460,pair:Laibin|Londrina,Londrina|Laibin,TEST,entity_in_dev,False,True,Laibin;Londrina,0.551,9653a8084fb32f48
+461,pair:Bogor|Kandahar,Kandahar|Bogor,TEST,entity_in_dev,False,True,Bogor;Kandahar,0.5627,318e5fb0ef7efc3c
+462,pair:Ryazan'|Wanning,Wanning|Ryazan',TEST,entity_in_dev,False,True,Ryazan';Wanning,0.5899,343a4df57db9c271
+463,pair:Bujumbura|Zhanjiang,Zhanjiang|Bujumbura,DEV,exposed_test_city,False,True,Bujumbura;Zhanjiang,0.6483,293ebecb796b2c92
+464,pair:Krasnodar|Onitsha,Onitsha|Krasnodar,DEV,,False,True,Krasnodar;Onitsha,0.5667,9c7959709c6fefb3
+465,pair:Comilla|Giza,Giza|Comilla,TEST,exposed_test_city,False,True,Comilla;Giza,0.6666,cc9161929980c3a9
+466,pair:Kakamega|Rangpur,Rangpur|Kakamega,TEST,entity_in_dev,False,True,Kakamega;Rangpur,0.6302,aec214872b289d84
+467,pair:Caloocan City|Esenler,Caloocan City|Esenler,DEV,,False,True,Caloocan City;Esenler,0.5608,93017138753598e3
+468,pair:Al Basrah al Qadimah|Hannover,Al Basrah al Qadimah|Hannover,DEV,,False,True,Al Basrah al Qadimah;Hannover,0.54,003ceece1ac3f01f
+469,pair:Al Mawsil al Jadidah|Shiraz,Al Mawsil al Jadidah|Shiraz,TEST,entity_in_dev,False,True,Al Mawsil al Jadidah;Shiraz,0.6352,c4364466e5dae0d2
+470,pair:Jeddah|Xinyang,Xinyang|Jeddah,TEST,entity_in_dev,False,True,Jeddah;Xinyang,0.5865,66dd5cf3132acafa
+471,pair:Erzurum|Suining,Suining|Erzurum,DEV,exposed_test_city,False,True,Erzurum;Suining,0.5483,bfc0c4ecfa75cc5c
+472,pair:Meizhou|Nanning,Meizhou|Nanning,TEST,entity_in_dev,False,True,Meizhou;Nanning,0.5009,ceb30df214aa318a
+473,pair:Zhaotong|Zhengzhou,Zhengzhou|Zhaotong,TEST,entity_in_dev,False,True,Zhaotong;Zhengzhou,0.5107,b4e86d82080ab5df
+474,pair:Harbin|Weinan,Harbin|Weinan,DEV,exposed_test_city,False,True,Harbin;Weinan,0.4785,166ebe1834372124
+475,pair:Anyang|Dar es Salaam,Anyang|Dar es Salaam,TEST,entity_in_dev,False,True,Anyang;Dar es Salaam,0.6251,2f4efe9b704cd4e6
+476,pair:Khabarovsk|Nanjing,Khabarovsk|Nanjing,TEST,entity_in_dev,False,True,Khabarovsk;Nanjing,0.5094,e8156291ed01323f
+477,pair:Da Nang|Linfen,Linfen|Da Nang,TEST,exposed_test_city,False,True,Da Nang;Linfen,0.5257,94de33dece29f052
+478,pair:Kaifeng|Samarinda,Kaifeng|Samarinda,DEV,,False,True,Kaifeng;Samarinda,0.5729,5696a77c59b45379
+479,pair:Recife|Shangluo,Recife|Shangluo,TEST,entity_in_dev,False,True,Recife;Shangluo,0.4987,4175c13ab11872d3
+480,pair:Erzurum|Hohhot,Hohhot|Erzurum,DEV,exposed_test_city,False,True,Erzurum;Hohhot,0.555,0ca08139a95333f5
+481,pair:Kandahar|Xuchang,Xuchang|Kandahar,TEST,entity_in_dev,False,True,Kandahar;Xuchang,0.6421,ece7fb063de0bcd0
+482,pair:Chizhou|Sendai,Sendai|Chizhou,TEST,entity_in_dev,False,True,Chizhou;Sendai,0.4826,f81c5748c93b8e6a
+483,pair:Addis Ababa|Suez,Addis Ababa|Suez,TEST,entity_in_dev,False,True,Addis Ababa;Suez,0.4694,9dec452831f97fcd
+484,pair:Faisalabad|Surat,Surat|Faisalabad,TEST,,False,True,Faisalabad;Surat,0.6447,ea5004be97e221e2
+485,pair:Shaoxing|Zarqa,Zarqa|Shaoxing,DEV,,False,True,Shaoxing;Zarqa,0.6623,62a9fdd0521208fa
+486,pair:San Miguel de Tucuman|Ziyang,San Miguel de Tucuman|Ziyang,TEST,entity_in_dev,False,True,San Miguel de Tucuman;Ziyang,0.6356,c7b7c39975c4ca30
+487,pair:Bayannur|Fes,Fes|Bayannur,DEV,,False,True,Bayannur;Fes,0.545,ef5393e5473c0349
+488,pair:E'zhou|Nanjing,E'zhou|Nanjing,DEV,,False,True,E'zhou;Nanjing,0.5828,378368023b30287b
+489,pair:Hiroshima|Ho Chi Minh City,Hiroshima|Ho Chi Minh City,TEST,entity_in_dev,False,True,Hiroshima;Ho Chi Minh City,0.5324,f0a98d336574443f
+490,pair:Dongying|Malatya,Malatya|Dongying,TEST,exposed_test_city,False,True,Dongying;Malatya,0.5575,bbde8e18e63c5d62
+491,pair:Ha'il|Jiaxing,Ha'il|Jiaxing,TEST,exposed_test_city,False,True,Ha'il;Jiaxing,0.4953,939f6c7021c5179a
+492,pair:Arequipa|Bursa,Arequipa|Bursa,TEST,entity_in_dev,False,True,Arequipa;Bursa,0.5704,4f9bc47e5074e54b
+493,pair:Coyoacan|Ludhiana,Coyoacan|Ludhiana,TEST,exposed_test_city,False,True,Coyoacan;Ludhiana,0.5537,b20209f3483ab720
+494,pair:Cotonou|Kryvyy Rih,Kryvyy Rih|Cotonou,TEST,exposed_test_city,False,True,Cotonou;Kryvyy Rih,0.5896,6af547fb14ced57e
+495,pair:Culiacan|Orumiyeh,Orumiyeh|Culiacan,DEV,exposed_test_city,False,True,Culiacan;Orumiyeh,0.578,21b4552ec5163bb8
+496,pair:Lianyungang|Sanaa,Lianyungang|Sanaa,TEST,exposed_test_city,False,True,Lianyungang;Sanaa,0.5567,d7d568f080809803
+497,pair:Kampala|Rui'an,Rui'an|Kampala,TEST,entity_in_dev,False,True,Kampala;Rui'an,0.621,ea8eb97c54615516
+498,pair:Chizhou|Ho Chi Minh City,Ho Chi Minh City|Chizhou,DEV,,False,True,Chizhou;Ho Chi Minh City,0.4985,33fd00684b0847e3
+499,pair:Aleppo|Shenzhen,Shenzhen|Aleppo,TEST,entity_in_dev,False,True,Aleppo;Shenzhen,0.5547,5f4d1f3f330fc661
+500,pair:Longyan|Wroclaw,Longyan|Wroclaw,DEV,,False,True,Longyan;Wroclaw,0.5707,dbf6251024351888
+501,pair:Bagcilar|Shivaji Nagar,Shivaji Nagar|Bagcilar,TEST,entity_in_dev,False,True,Bagcilar;Shivaji Nagar,0.583,30f0118e605e9be8
+502,pair:Esenler|Luohe,Luohe|Esenler,TEST,entity_in_dev,False,True,Esenler;Luohe,0.5321,61b4ccaf54f9dfec
+503,pair:Hannover|Xuchang,Hannover|Xuchang,DEV,,False,True,Hannover;Xuchang,0.5671,40a2011b8fc286e8
+504,pair:Basrah|Torreon,Basrah|Torreon,TEST,exposed_test_city,False,True,Basrah;Torreon,0.5919,d43244779095a682
+505,pair:Benxi|Xianning,Benxi|Xianning,DEV,exposed_test_city,False,True,Benxi;Xianning,0.5213,00558cbe3aacffcc
+506,pair:Addis Ababa|Muzaffarabad,Muzaffarabad|Addis Ababa,TEST,entity_in_dev,False,True,Addis Ababa;Muzaffarabad,0.6085,cef623b888e25695
+507,pair:Goiania|Pune,Goiania|Pune,TEST,entity_in_dev,False,True,Goiania;Pune,0.547,d2da5a3c6c6ab4e2
+508,pair:Hamhung|Mumbai,Mumbai|Hamhung,DEV,exposed_test_city,False,True,Hamhung;Mumbai,0.6113,426792fa5c5ce46e
+509,pair:Cuiaba|Siliguri,Siliguri|Cuiaba,TEST,exposed_test_city,False,True,Cuiaba;Siliguri,0.5124,72cbda43cdd09f9c
+510,pair:Madurai|Yunfu,Yunfu|Madurai,TEST,entity_in_dev,False,True,Madurai;Yunfu,0.5432,5ed5962ca270faa9
+511,pair:Cheongju-si|Vadodara,Vadodara|Cheongju-si,TEST,entity_in_dev,False,True,Cheongju-si;Vadodara,0.6243,1395a69944089233
+512,pair:Almaty|Malang,Malang|Almaty,TEST,entity_in_dev,False,True,Almaty;Malang,0.6351,cfe0cadd54e1f5a5
+513,pair:Handan|Malacca,Malacca|Handan,TEST,entity_in_dev,False,True,Handan;Malacca,0.5188,56ec15125d268aed
+514,pair:Calgary|Zhanjiang,Calgary|Zhanjiang,DEV,,False,True,Calgary;Zhanjiang,0.5264,abab2185ab9bfb06
+515,pair:Bogor|Ribeirao Preto,Ribeirao Preto|Bogor,TEST,exposed_test_city,False,True,Bogor;Ribeirao Preto,0.5591,43521e2bc21f5cf5
+516,pair:Niamey|Thuan An,Niamey|Thuan An,DEV,,False,True,Niamey;Thuan An,0.5658,2686f7bc102da28f
+517,pair:Changchun|Luancheng,Changchun|Luancheng,DEV,,False,True,Changchun;Luancheng,0.5873,ea1877950bf261b8
+518,pair:Herat|Sangli,Sangli|Herat,TEST,entity_in_dev,False,True,Herat;Sangli,0.6116,d197a974f3051ff4
+519,pair:Faridabad|Zhangye,Faridabad|Zhangye,TEST,exposed_test_city,False,True,Faridabad;Zhangye,0.5242,68e59f4a9180657a
+520,pair:Buraydah|Chandigarh,Buraydah|Chandigarh,DEV,,False,True,Buraydah;Chandigarh,0.5606,00d1fecd251a2cd1
+521,pair:Kaduna|Kumasi,Kumasi|Kaduna,TEST,entity_in_dev,False,True,Kaduna;Kumasi,0.5634,b15625ac581b26c4
+522,pair:Kalyan|Torreon,Torreon|Kalyan,TEST,entity_in_dev,False,True,Kalyan;Torreon,0.5648,7fdbc0065de6f1f1
+523,pair:Benoni|Krakow,Krakow|Benoni,TEST,entity_in_dev,False,True,Benoni;Krakow,0.5858,0a4b75c466a69e9b
+524,pair:Huainan|Lubumbashi,Lubumbashi|Huainan,DEV,exposed_test_city,False,True,Huainan;Lubumbashi,0.5239,c13a197bfb2c6384
+525,pair:Goyang-si|Torreon,Goyang-si|Torreon,DEV,,False,True,Goyang-si;Torreon,0.5616,4616bdf10634fa1a
+526,pair:Herat|Teresina,Herat|Teresina,TEST,,False,True,Herat;Teresina,0.5988,c7176a035e22aec8
+527,pair:Chenzhou|Fort Worth,Fort Worth|Chenzhou,TEST,exposed_test_city,False,True,Chenzhou;Fort Worth,0.4843,f0aada977915c06f
+528,pair:Homyel'|San Miguel de Tucuman,Homyel'|San Miguel de Tucuman,DEV,,False,True,Homyel';San Miguel de Tucuman,0.6628,01aed5c224b35586
+529,pair:Warri|Zibo,Warri|Zibo,TEST,entity_in_dev,False,True,Warri;Zibo,0.4652,9e104b8a5c135d18
+530,pair:Bilimora|Pontianak,Pontianak|Bilimora,TEST,entity_in_dev,False,True,Bilimora;Pontianak,0.544,13157d79adfbd888
+531,pair:Chelyabinsk|Poznan,Poznan|Chelyabinsk,DEV,,False,True,Chelyabinsk;Poznan,0.682,ab6da1c56663654a
+532,pair:Bucheon-si|Zibo,Bucheon-si|Zibo,DEV,,False,True,Bucheon-si;Zibo,0.4761,07e1ec08ebb84860
+533,pair:Abobo|New York City,Abobo|New York City,DEV,,False,True,Abobo;New York City,0.6238,809478e4ed76d605
+534,pair:Ecatepec de Morelos|Panshan,Ecatepec de Morelos|Panshan,TEST,exposed_test_city,False,True,Ecatepec de Morelos;Panshan,0.6336,84ea5076f36e1a84
+535,pair:Kallakurichi|Shivaji Nagar,Shivaji Nagar|Kallakurichi,TEST,,False,True,Kallakurichi;Shivaji Nagar,0.6095,130308b8bc639032
+536,pair:Minsk|Nanchong,Minsk|Nanchong,TEST,entity_in_dev,False,True,Minsk;Nanchong,0.5951,106c1a89857b1cd3
+537,pair:Homs|Nagpur,Nagpur|Homs,TEST,entity_in_dev,False,True,Homs;Nagpur,0.5069,dcccd7b75409f6ec
+538,pair:Aktobe|Karachi,Aktobe|Karachi,TEST,entity_in_dev,False,True,Aktobe;Karachi,0.5984,44d5feecce9bfeea
+539,pair:Abu Ghurayb|Yangon,Abu Ghurayb|Yangon,TEST,exposed_test_city,False,True,Abu Ghurayb;Yangon,0.5743,30f36dab3d0362f6
+540,pair:Najran|Xinyang,Najran|Xinyang,TEST,entity_in_dev,False,True,Najran;Xinyang,0.4741,079d1478c6f267c4
+541,pair:Addis Ababa|Ulan Bator,Ulan Bator|Addis Ababa,TEST,entity_in_dev,False,True,Addis Ababa;Ulan Bator,0.6839,a744e7c2c71d2682
+542,pair:Davao|Xianyang,Davao|Xianyang,TEST,entity_in_dev,False,True,Davao;Xianyang,0.51,c06a8b29908409fa
+543,pair:Bien Hoa|Manaus,Manaus|Bien Hoa,TEST,entity_in_dev,False,True,Bien Hoa;Manaus,0.6064,7cc557e5f3d40cf3
+544,pair:Muscat|Yerevan,Muscat|Yerevan,TEST,entity_in_dev,False,True,Muscat;Yerevan,0.6436,2e5c3b1732f77f96
+545,pair:Irkutsk|Maputo,Maputo|Irkutsk,TEST,exposed_test_city,False,True,Irkutsk;Maputo,0.5527,37b6c1ae996f66ce
+546,pair:Recife|Ta'if,Ta'if|Recife,TEST,entity_in_dev,False,True,Recife;Ta'if,0.5357,e2165c1fd96c9f7d
+547,pair:Coimbatore|San Pedro Sula,Coimbatore|San Pedro Sula,TEST,entity_in_dev,False,True,Coimbatore;San Pedro Sula,0.6026,b22689dbfee3e43e
+548,pair:Contagem|Laiwu,Contagem|Laiwu,DEV,,False,True,Contagem;Laiwu,0.4568,6756c6011b48a7af
+549,pair:Rui'an|Thane,Thane|Rui'an,DEV,,False,True,Rui'an;Thane,0.6271,376d71cf30cf93e2
+550,pair:Nagoya|Zhenjiang,Zhenjiang|Nagoya,DEV,,False,True,Nagoya;Zhenjiang,0.5135,730b37d87cb6e34f
+551,pair:Quzhou|Saratov,Saratov|Quzhou,DEV,exposed_test_city,False,True,Quzhou;Saratov,0.5158,826cd3018e450d07
+552,pair:Qom|Sanaa,Sanaa|Qom,TEST,exposed_test_city,False,True,Qom;Sanaa,0.4324,0c2a7d1cf43b0d4e
+553,pair:Barquisimeto|Yangquan,Barquisimeto|Yangquan,TEST,exposed_test_city,False,True,Barquisimeto;Yangquan,0.5309,172227c2efe80667
+554,pair:Baise|Mumbai,Baise|Mumbai,TEST,exposed_test_city,False,True,Baise;Mumbai,0.4964,cf9f21b9f68708ab
+555,pair:Panzhihua|Thiruvananthapuram,Thiruvananthapuram|Panzhihua,TEST,entity_in_dev,False,True,Panzhihua;Thiruvananthapuram,0.6227,c3524029281afa49
+556,pair:Nagpur|Shah Alam,Shah Alam|Nagpur,TEST,exposed_test_city,False,True,Nagpur;Shah Alam,0.4985,bec20d39e363637f
+557,pair:Changshu|Surat,Surat|Changshu,TEST,entity_in_dev,False,True,Changshu;Surat,0.5239,3d91ed0e8e1e66d3
+558,pair:Anshun|Xiaogan,Anshun|Xiaogan,DEV,,False,True,Anshun;Xiaogan,0.5098,637022783aec280a
+559,pair:Maiduguri|Xuzhou,Maiduguri|Xuzhou,TEST,exposed_test_city,False,True,Maiduguri;Xuzhou,0.5588,b0ed05f45400f1e2
+560,pair:Sulaymaniyah|Tlaquepaque,Tlaquepaque|Sulaymaniyah,TEST,entity_in_dev,False,True,Sulaymaniyah;Tlaquepaque,0.5461,90aac7d792e2ba74
+561,pair:Peshawar|Tianshui,Peshawar|Tianshui,TEST,exposed_test_city,False,True,Peshawar;Tianshui,0.4891,9769a498f0ca5eca
+562,pair:Irbid|Semarang,Irbid|Semarang,DEV,,False,True,Irbid;Semarang,0.5609,e5947a699535a19a
+563,pair:Klang|Shivaji Nagar,Shivaji Nagar|Klang,TEST,,False,True,Klang;Shivaji Nagar,0.6034,ca221a9d29b4dcba
+564,pair:Aden|Erzurum,Erzurum|Aden,DEV,exposed_test_city,False,True,Aden;Erzurum,0.4996,b91aec96fc4598ad
+565,pair:Duesseldorf|Ilorin,Ilorin|Duesseldorf,TEST,entity_in_dev,False,True,Duesseldorf;Ilorin,0.673,9fa1c16f1b818c0d
+566,pair:Bikaner|Comilla,Comilla|Bikaner,DEV,,False,True,Bikaner;Comilla,0.5662,f8eb6d56de6f92c2
+567,pair:Lubumbashi|Pyongyang,Lubumbashi|Pyongyang,DEV,,False,True,Lubumbashi;Pyongyang,0.5494,3975fadbdf018612
+568,pair:Ilorin|Jiaozuo,Jiaozuo|Ilorin,TEST,entity_in_dev,False,True,Ilorin;Jiaozuo,0.5666,d7c184975ec41ee5
+569,pair:Antananarivo|Mersin,Antananarivo|Mersin,DEV,,False,True,Antananarivo;Mersin,0.5067,14c6da025be84bff
+570,pair:Nairobi|San Luis Potosi,Nairobi|San Luis Potosi,TEST,entity_in_dev,False,True,Nairobi;San Luis Potosi,0.6327,004ea29ba41db50e
+571,pair:Bulawayo|Guarulhos,Guarulhos|Bulawayo,TEST,entity_in_dev,False,True,Bulawayo;Guarulhos,0.6466,18fc567f69453a6e
+572,pair:Luohe|Sargodha,Sargodha|Luohe,TEST,entity_in_dev,False,True,Luohe;Sargodha,0.5977,6320db7e639a32b6
+573,pair:Abuja|Maracay,Abuja|Maracay,TEST,entity_in_dev,False,True,Abuja;Maracay,0.6242,b0d16999731a6c26
+574,pair:Vilnius|Zapopan,Zapopan|Vilnius,DEV,,False,True,Vilnius;Zapopan,0.6614,01aa0fc42ddc94a9
+575,pair:Douala|Matola,Matola|Douala,TEST,,False,True,Douala;Matola,0.6097,829b945ea4bc2276
+576,pair:Bauchi|Latakia,Bauchi|Latakia,TEST,entity_in_dev,False,True,Bauchi;Latakia,0.5779,f5614132ab940197
+577,pair:Bursa|Wanning,Wanning|Bursa,TEST,entity_in_dev,False,True,Bursa;Wanning,0.5464,697c2a85059745e6
+578,pair:Baise|Khabarovsk Vtoroy,Baise|Khabarovsk Vtoroy,TEST,entity_in_dev,False,True,Baise;Khabarovsk Vtoroy,0.6676,e66013a799c15ba1
+579,pair:Thane|Warri,Warri|Thane,TEST,entity_in_dev,False,True,Thane;Warri,0.4089,88ed0450a8b2fc7d
+580,pair:Jambi City|Nasiriyah,Nasiriyah|Jambi City,TEST,entity_in_dev,False,True,Jambi City;Nasiriyah,0.5262,bc2512527a995259
+581,pair:Jiangyin|Suizhou,Jiangyin|Suizhou,DEV,,False,True,Jiangyin;Suizhou,0.5334,9bee32c06ef30703
+582,pair:Mandalay|Zapopan,Zapopan|Mandalay,TEST,entity_in_dev,False,True,Mandalay;Zapopan,0.6299,5f0b15008f5dd833
+583,pair:Incheon|Yibin,Yibin|Incheon,DEV,,False,True,Incheon;Yibin,0.5827,c7f93278a54d6082
+584,pair:Goyang-si|Makhachkala,Makhachkala|Goyang-si,DEV,,False,True,Goyang-si;Makhachkala,0.5633,3126529eb7e026ae
+585,pair:Krasnodar|Warri,Krasnodar|Warri,TEST,entity_in_dev,False,True,Krasnodar;Warri,0.5286,55073c9d9477786f
+586,pair:Kisangani|Tijuana,Kisangani|Tijuana,DEV,exposed_test_city,False,True,Kisangani;Tijuana,0.5635,394c43fdf85af5df
+587,pair:Qom|Santiago de los Caballeros,Qom|Santiago de los Caballeros,TEST,entity_in_dev,False,True,Qom;Santiago de los Caballeros,0.8009,0c33655059e3b0bc
+588,pair:Hengyang|Maiduguri,Maiduguri|Hengyang,TEST,entity_in_dev,False,True,Hengyang;Maiduguri,0.5434,4cfac390977f56d9
+589,pair:Anshan|Quetta,Anshan|Quetta,TEST,exposed_test_city,False,True,Anshan;Quetta,0.594,e1c5782f98f2b6a6
+590,pair:Basrah|Karol Bagh,Karol Bagh|Basrah,TEST,exposed_test_city,False,True,Basrah;Karol Bagh,0.4877,d153212e38aa527d
+591,pair:Kawaguchi|Wuzhou,Kawaguchi|Wuzhou,DEV,,False,True,Kawaguchi;Wuzhou,0.5236,9fe479335aadf6c6
+592,pair:Dakar|Konya,Konya|Dakar,DEV,,False,True,Dakar;Konya,0.5568,18f4fd5c95f31715
+593,pair:Detroit|Fortaleza,Detroit|Fortaleza,TEST,entity_in_dev,False,True,Detroit;Fortaleza,0.6504,deddc85149b7ea11
+594,pair:Chuzhou|Liupanshui,Chuzhou|Liupanshui,TEST,entity_in_dev,False,True,Chuzhou;Liupanshui,0.5948,267606b58b7ff306
+595,pair:Marseille|Zhaotong,Marseille|Zhaotong,TEST,exposed_test_city,False,True,Marseille;Zhaotong,0.5603,9b391b48e748d765
+596,pair:Erode|Saint Petersburg,Erode|Saint Petersburg,TEST,entity_in_dev,False,True,Erode;Saint Petersburg,0.6746,6f18d2551a932278
+597,pair:Antalya|Lusaka,Antalya|Lusaka,TEST,,False,True,Antalya;Lusaka,0.5583,70fd7afc375575d8
+598,pair:Lyon|Nouakchott,Lyon|Nouakchott,DEV,,False,True,Lyon;Nouakchott,0.7202,f60ca52b300000ae
+599,pair:Guwahati|Malacca,Malacca|Guwahati,TEST,entity_in_dev,False,True,Guwahati;Malacca,0.5034,15f06dd63418f01b
+600,pair:Lipetsk|Puente Alto,Lipetsk|Puente Alto,TEST,,False,True,Lipetsk;Puente Alto,0.6398,1444ee247a425b17
+601,pair:Homyel'|Wanning,Homyel'|Wanning,TEST,entity_in_dev,False,True,Homyel';Wanning,0.4614,846a86f05839b885
+602,pair:Kawaguchi|Suining,Kawaguchi|Suining,TEST,entity_in_dev,False,True,Kawaguchi;Suining,0.5113,6551c7c269947d3e
+603,pair:Al Ain City|Lanzhou,Al Ain City|Lanzhou,TEST,exposed_test_city,False,True,Al Ain City;Lanzhou,0.5277,f260a0a6c8bf8e90
+604,pair:Madurai|Mumbai,Madurai|Mumbai,TEST,exposed_test_city,False,True,Madurai;Mumbai,0.56,6c40d6f4d45b102b
+605,pair:Dandong|Durban,Dandong|Durban,DEV,,False,True,Dandong;Durban,0.6064,d93a06095216fb4a
+606,pair:Bishkek|Hiroshima,Hiroshima|Bishkek,TEST,entity_in_dev,False,True,Bishkek;Hiroshima,0.6253,9628756e90748a9d
+607,pair:Kolhapur|Makhachkala,Makhachkala|Kolhapur,DEV,,False,True,Kolhapur;Makhachkala,0.5324,b03483a86eaa4348
+608,pair:Gaziantep|Malang,Gaziantep|Malang,TEST,exposed_test_city,False,True,Gaziantep;Malang,0.5227,aa2925d8e9629f09
+609,pair:Al Ain City|Anshun,Anshun|Al Ain City,DEV,exposed_test_city,False,True,Al Ain City;Anshun,0.6067,e210645a7c0ec874
+610,pair:Namangan|Xingtai,Xingtai|Namangan,TEST,entity_in_dev,False,True,Namangan;Xingtai,0.6301,7ee29d15c0777c87
+611,pair:Rajshahi|Saitama,Saitama|Rajshahi,DEV,,False,True,Rajshahi;Saitama,0.658,ecbe3c0d57e556ca
+612,pair:Daegu|The Bronx,Daegu|The Bronx,TEST,exposed_test_city,False,True,Daegu;The Bronx,0.6049,fc47f0575cc4650d
+613,pair:Binzhou|Kozhikode,Kozhikode|Binzhou,DEV,,False,True,Binzhou;Kozhikode,0.545,5b8626b56c908d29
+614,pair:Makassar|Maracay,Maracay|Makassar,TEST,entity_in_dev,False,True,Makassar;Maracay,0.6278,be9e75b461d97c7a
+615,pair:Bhubaneswar|Tolyatti,Tolyatti|Bhubaneswar,DEV,,False,True,Bhubaneswar;Tolyatti,0.6181,03b107b2966ee178
+616,pair:Laiwu|Tangier,Laiwu|Tangier,TEST,entity_in_dev,False,True,Laiwu;Tangier,0.5965,731f4536ace09220
+617,pair:Binzhou|Chicago,Binzhou|Chicago,TEST,exposed_test_city,False,True,Binzhou;Chicago,0.5893,1ab55782abc36ac4
+618,pair:Ningbo|Suizhou,Ningbo|Suizhou,DEV,,False,True,Ningbo;Suizhou,0.4929,6d8ca3b714cd18e5
+619,pair:Izmir|Kleinzschocher,Kleinzschocher|Izmir,TEST,entity_in_dev,False,True,Izmir;Kleinzschocher,0.6158,d6f47fa051f817bb
+620,pair:Linyi|Xingtai,Linyi|Xingtai,DEV,,False,True,Linyi;Xingtai,0.4989,fcbf2c17eed82f61
+621,pair:Comilla|Cotonou,Cotonou|Comilla,TEST,entity_in_dev,False,True,Comilla;Cotonou,0.6325,838b1f456a9ea09d
+622,pair:Algiers|Incheon,Algiers|Incheon,DEV,,False,True,Algiers;Incheon,0.5803,f71dece81a44f55b
+623,pair:Makati City|Muscat,Muscat|Makati City,DEV,,False,True,Makati City;Muscat,0.6194,2312fd17423c935b
+624,pair:Chennai|Zagreb,Zagreb|Chennai,DEV,,False,True,Chennai;Zagreb,0.5478,7b79622fc8f1321f
+625,pair:Santiago de Cuba|Xuchang,Xuchang|Santiago de Cuba,TEST,entity_in_dev,False,True,Santiago de Cuba;Xuchang,0.649,38c13ff640538268
+626,pair:Pietermaritzburg|Tabriz,Pietermaritzburg|Tabriz,TEST,entity_in_dev,False,True,Pietermaritzburg;Tabriz,0.6819,e634e11ea45749a5
+627,pair:Krakow|Tianshui,Tianshui|Krakow,DEV,,False,True,Krakow;Tianshui,0.5689,f9dac3a66537c09c
+628,pair:Chizhou|Orumiyeh,Chizhou|Orumiyeh,TEST,exposed_test_city,False,True,Chizhou;Orumiyeh,0.5841,149938cfa603171a
+629,pair:Enugu|Nanded,Enugu|Nanded,DEV,,False,True,Enugu;Nanded,0.5268,4fe5870f88b09399
+630,pair:Gwalior|Kolhapur,Gwalior|Kolhapur,DEV,,False,True,Gwalior;Kolhapur,0.5328,f3db6d6eeec9405e
+631,pair:Aligarh|Lome,Aligarh|Lome,DEV,,False,True,Aligarh;Lome,0.5023,8b7ffce651686149
+632,pair:Hebi|Serang,Serang|Hebi,DEV,exposed_test_city,False,True,Hebi;Serang,0.592,7638e538d081ed29
+633,pair:Nizhniy Novgorod|Sofia,Sofia|Nizhniy Novgorod,TEST,entity_in_dev,False,True,Nizhniy Novgorod;Sofia,0.7024,2e1be0d367679826
+634,pair:Kirkuk|Malatya,Malatya|Kirkuk,DEV,,False,True,Kirkuk;Malatya,0.5499,a08de81503bdb2d0
+635,pair:Fortaleza|Thuan An,Thuan An|Fortaleza,TEST,entity_in_dev,False,True,Fortaleza;Thuan An,0.6306,c1a4d47c85292bd2
+636,pair:Jaipur|Khartoum,Khartoum|Jaipur,DEV,,False,True,Jaipur;Khartoum,0.576,e87112bf39e26fa8
+637,pair:Leon de los Aldama|Sharjah,Sharjah|Leon de los Aldama,TEST,entity_in_dev,False,True,Leon de los Aldama;Sharjah,0.6265,89c74f0fc163411e
+638,pair:Dammam|Zhenjiang,Dammam|Zhenjiang,DEV,,False,True,Dammam;Zhenjiang,0.6175,19137036c12797fd
+639,pair:Bucaramanga|Nanded,Nanded|Bucaramanga,TEST,entity_in_dev,False,True,Bucaramanga;Nanded,0.6363,43b3bc4bf395b7fe
+640,pair:Budapest|Contagem,Budapest|Contagem,TEST,exposed_test_city,False,True,Budapest;Contagem,0.5618,dcfe97c3fa43357c
+641,pair:Amritsar|Feira de Santana,Amritsar|Feira de Santana,TEST,exposed_test_city,False,True,Amritsar;Feira de Santana,0.6099,fef08c2516bed6a7
+642,pair:Gaziantep|Lahore,Gaziantep|Lahore,DEV,exposed_test_city,False,True,Gaziantep;Lahore,0.5538,c5fd3791655965fa
+643,pair:Baise|Khartoum,Khartoum|Baise,TEST,entity_in_dev,False,True,Baise;Khartoum,0.6125,6b10bd61c5601bcb
+644,pair:Kahriz|Rahim Yar Khan,Rahim Yar Khan|Kahriz,TEST,entity_in_dev,False,True,Kahriz;Rahim Yar Khan,0.5178,91050236b7bf276a
+645,pair:Cheonan|Zhaoqing,Zhaoqing|Cheonan,TEST,,False,True,Cheonan;Zhaoqing,0.5161,2f2005de343f38a2
+646,pair:Baotou|Novosibirsk,Baotou|Novosibirsk,TEST,exposed_test_city,False,True,Baotou;Novosibirsk,0.6505,a468522f5235846b
+647,pair:Caloocan City|Grosszschocher,Grosszschocher|Caloocan City,TEST,exposed_test_city,False,True,Caloocan City;Grosszschocher,0.6244,c75b97dc608ffe8a
+648,pair:Namangan|Teresina,Namangan|Teresina,TEST,,False,True,Namangan;Teresina,0.5535,4dd412647bce8633
+649,pair:Rangpur|Wuwei,Rangpur|Wuwei,TEST,,False,True,Rangpur;Wuwei,0.5437,5a7f2da7ca8a247d
+650,pair:Pontianak|Suqian,Suqian|Pontianak,TEST,entity_in_dev,False,True,Pontianak;Suqian,0.6169,dab8d822bc889e1d
+651,pair:Bogor|Yichang,Bogor|Yichang,TEST,entity_in_dev,False,True,Bogor;Yichang,0.5134,f9fea281656720f4
+652,pair:Manaus|Yinchuan,Yinchuan|Manaus,TEST,entity_in_dev,False,True,Manaus;Yinchuan,0.5213,246d2a4afdc31505
+653,pair:Daegu|Leipzig,Daegu|Leipzig,TEST,exposed_test_city,False,True,Daegu;Leipzig,0.6171,5cf16bb991bc175b
+654,pair:Kinshasa|Lilongwe,Lilongwe|Kinshasa,TEST,exposed_test_city,False,True,Kinshasa;Lilongwe,0.7289,3e81cd661c6b199d
+655,pair:Bauchi|Kyoto,Kyoto|Bauchi,TEST,entity_in_dev,False,True,Bauchi;Kyoto,0.5858,d0e779d60b0f7bcf
+656,pair:Asuncion|Bucheon-si,Bucheon-si|Asuncion,TEST,exposed_test_city,False,True,Asuncion;Bucheon-si,0.6124,bcc9ba8594b58da4
+657,pair:Dortmund|Xuzhou,Dortmund|Xuzhou,TEST,exposed_test_city,False,True,Dortmund;Xuzhou,0.5117,1da02262567adc6f
+658,pair:Ilorin|Seongnam-si,Seongnam-si|Ilorin,TEST,entity_in_dev,False,True,Ilorin;Seongnam-si,0.5454,f5a8bd9419c577db
+659,pair:Bijie|Zarqa,Bijie|Zarqa,TEST,entity_in_dev,False,True,Bijie;Zarqa,0.5568,b2a497aec292533d
+660,pair:Iztapalapa|Nanded,Iztapalapa|Nanded,DEV,,False,True,Iztapalapa;Nanded,0.5185,dcfa50ad33620645
+661,pair:Sanya|Tehran,Tehran|Sanya,TEST,entity_in_dev,False,True,Sanya;Tehran,0.5135,b07dc95b4480778d
+662,pair:Al Ahmadi|Joao Pessoa,Al Ahmadi|Joao Pessoa,TEST,,False,True,Al Ahmadi;Joao Pessoa,0.6215,3bd9b91da64261f1
+663,pair:Shubra al Khaymah|Yiwu,Shubra al Khaymah|Yiwu,TEST,entity_in_dev,False,True,Shubra al Khaymah;Yiwu,0.5806,f5b54cf7c1ef4083
+664,pair:Benxi|Paranaque City,Paranaque City|Benxi,DEV,exposed_test_city,False,True,Benxi;Paranaque City,0.6079,a69b8b928bda7f5f
+665,pair:Aparecida de Goiania|Macapa,Macapa|Aparecida de Goiania,DEV,,False,True,Aparecida de Goiania;Macapa,0.6828,64f30f222c968dc2
+666,pair:Ibague|Marrakesh,Ibague|Marrakesh,TEST,entity_in_dev,False,True,Ibague;Marrakesh,0.6109,59e40abd61488d01
+667,pair:Krasnodar|Shangqiu,Shangqiu|Krasnodar,TEST,entity_in_dev,False,True,Krasnodar;Shangqiu,0.5596,ec5d254c2faa8ca1
+668,pair:Hannover|Zhaotong,Hannover|Zhaotong,TEST,entity_in_dev,False,True,Hannover;Zhaotong,0.5513,06a4f582d632c795
+669,pair:Hamamatsu|Nizhniy Novgorod,Nizhniy Novgorod|Hamamatsu,TEST,entity_in_dev,False,True,Hamamatsu;Nizhniy Novgorod,0.5817,20deb440aa1be2ac
+670,pair:Bekasi|Saratov,Bekasi|Saratov,DEV,exposed_test_city,False,True,Bekasi;Saratov,0.5335,a5d96f8ef3beb406
+671,pair:Cheongju-si|Huaihua,Huaihua|Cheongju-si,TEST,entity_in_dev,False,True,Cheongju-si;Huaihua,0.6355,efc374dc9866869b
+672,pair:Tashkent|Ziyang,Ziyang|Tashkent,TEST,entity_in_dev,False,True,Tashkent;Ziyang,0.6452,224054611a6479f3
+673,pair:Khulna|Tabriz,Khulna|Tabriz,TEST,entity_in_dev,False,True,Khulna;Tabriz,0.5461,5d858859e63e0e42
+674,pair:Huizhou|Nyala,Huizhou|Nyala,DEV,,False,True,Huizhou;Nyala,0.4969,ea9dd7f50f53334c
+675,pair:Reynosa|Shangqiu,Shangqiu|Reynosa,TEST,entity_in_dev,False,True,Reynosa;Shangqiu,0.5496,498e06fab688ae19
+676,pair:Guatemala City|Lilongwe,Lilongwe|Guatemala City,DEV,exposed_test_city,False,True,Guatemala City;Lilongwe,0.7148,51402b90abd96494
+677,pair:Harbin|Puning,Puning|Harbin,TEST,entity_in_dev,False,True,Harbin;Puning,0.4953,31e3056f4d7333f7
+678,pair:Khulna|Tyumen,Khulna|Tyumen,TEST,,False,True,Khulna;Tyumen,0.5466,5087fe2e4010562b
+679,pair:Jos|Kandahar,Jos|Kandahar,TEST,entity_in_dev,False,True,Jos;Kandahar,0.6989,5cc1934d6480f4bc
+680,pair:Goiania|Meizhou,Goiania|Meizhou,TEST,,False,True,Goiania;Meizhou,0.5607,d4ab25aab4c31ec1
+681,pair:Siliguri|Warri,Siliguri|Warri,DEV,exposed_test_city,False,True,Siliguri;Warri,0.562,289ecb17368802e6
+682,pair:Al Mahallah al Kubra|Bangkok,Al Mahallah al Kubra|Bangkok,TEST,entity_in_dev,False,True,Al Mahallah al Kubra;Bangkok,0.552,6c6396a13d4aa4dc
+683,pair:Copenhagen|Jieyang,Copenhagen|Jieyang,TEST,entity_in_dev,False,True,Copenhagen;Jieyang,0.6388,f4941a6a0640465f
+684,pair:Nagpur|Xiangtan,Nagpur|Xiangtan,DEV,,False,True,Nagpur;Xiangtan,0.5256,298a73d382c5ea88
+685,pair:Haiphong|Qinhuangdao,Haiphong|Qinhuangdao,TEST,entity_in_dev,False,True,Haiphong;Qinhuangdao,0.5743,ed2d4fe7ea8f38cc
+686,pair:Al Basrah al Qadimah|Kathmandu,Al Basrah al Qadimah|Kathmandu,TEST,entity_in_dev,False,True,Al Basrah al Qadimah;Kathmandu,0.5415,d7e0a7e0c11af84e
+687,pair:Guayaquil|Jiujiang,Jiujiang|Guayaquil,DEV,exposed_test_city,False,True,Guayaquil;Jiujiang,0.6483,8a2c54344031d731
+688,pair:Khartoum|Qujing,Qujing|Khartoum,TEST,entity_in_dev,False,True,Khartoum;Qujing,0.5899,caad0d60dbc1a321
+689,pair:Cimahi|Ulhasnagar,Ulhasnagar|Cimahi,DEV,,False,True,Cimahi;Ulhasnagar,0.5335,ddc138a68601bf8a
+690,pair:Abobo|Lilongwe,Abobo|Lilongwe,TEST,exposed_test_city,False,True,Abobo;Lilongwe,0.6635,9b34ede0eb450832
+691,pair:Dushanbe|Zigong,Dushanbe|Zigong,DEV,,False,True,Dushanbe;Zigong,0.4581,b2caf1f47b53ad50
+692,pair:Ansan-si|Ningbo,Ansan-si|Ningbo,DEV,,False,True,Ansan-si;Ningbo,0.4564,51da36a97ad471cf
+693,pair:Amritsar|Barnaul,Barnaul|Amritsar,TEST,exposed_test_city,False,True,Amritsar;Barnaul,0.5749,0adf0be7b5cec511
+694,pair:Bagcilar|Kolhapur,Kolhapur|Bagcilar,DEV,,False,True,Bagcilar;Kolhapur,0.5689,a25522986d3d4281
+695,pair:Bhiwandi|Cheongju-si,Bhiwandi|Cheongju-si,TEST,entity_in_dev,False,True,Bhiwandi;Cheongju-si,0.6948,0529eb0c49fc9ab6
+696,pair:Guatemala City|Jeddah,Jeddah|Guatemala City,TEST,entity_in_dev,False,True,Guatemala City;Jeddah,0.7318,f4542ae38e23ec49
+697,pair:Asuncion|Maceio,Asuncion|Maceio,TEST,exposed_test_city,False,True,Asuncion;Maceio,0.603,8b8c74d1c348de86
+698,pair:Juiz de Fora|Yangquan,Yangquan|Juiz de Fora,DEV,exposed_test_city,False,True,Juiz de Fora;Yangquan,0.6291,f64b17b0ea16dc64
+699,pair:Hannover|Siping,Hannover|Siping,TEST,entity_in_dev,False,True,Hannover;Siping,0.568,81ad53ce4cf48711
+700,pair:Kampung Baru Subang|Las Pinas,Las Pinas|Kampung Baru Subang,TEST,entity_in_dev,False,True,Kampung Baru Subang;Las Pinas,0.6821,b2adce096d1b054c
+701,pair:Aden|Meizhou,Meizhou|Aden,TEST,entity_in_dev,False,True,Aden;Meizhou,0.498,7c58a135c53a73db
+702,pair:Bucheon-si|Navi Mumbai,Navi Mumbai|Bucheon-si,TEST,entity_in_dev,False,True,Bucheon-si;Navi Mumbai,0.614,a090f981f0a2f19c
+703,pair:Borivli|Chicago,Chicago|Borivli,DEV,exposed_test_city,False,True,Borivli;Chicago,0.5189,b20d03d3469c8301
+704,pair:Al Mawsil al Jadidah|Voronezh,Voronezh|Al Mawsil al Jadidah,DEV,exposed_test_city,False,True,Al Mawsil al Jadidah;Voronezh,0.645,267f713efeb0b764
+705,pair:Oyo|The Bronx,The Bronx|Oyo,TEST,exposed_test_city,False,True,Oyo;The Bronx,0.4909,af5926ef58bfe069
+706,pair:Londrina|Serang,Serang|Londrina,TEST,entity_in_dev,False,True,Londrina;Serang,0.5612,644218087d87593c
+707,pair:Izmir|Solapur,Izmir|Solapur,DEV,exposed_test_city,False,True,Izmir;Solapur,0.526,a343157f8d8fdb4d
+708,pair:Tehran|Vilnius,Tehran|Vilnius,DEV,,False,True,Tehran;Vilnius,0.6697,0f6c4db318b7b9eb
+709,pair:Chuzhou|Guangzhou,Guangzhou|Chuzhou,TEST,entity_in_dev,False,True,Chuzhou;Guangzhou,0.5788,2c058711a6985dec
+710,pair:Sao Paulo|Varanasi,Sao Paulo|Varanasi,TEST,exposed_test_city,False,True,Sao Paulo;Varanasi,0.5447,bb61dfe06f9c760d
+711,pair:Kunshan|Oslo,Oslo|Kunshan,DEV,,False,True,Kunshan;Oslo,0.5665,24f2d640e188b070
+712,pair:Cankaya|Karaj,Karaj|Cankaya,TEST,exposed_test_city,False,True,Cankaya;Karaj,0.5963,1902467b4093edef
+713,pair:Dandong|Luohe,Luohe|Dandong,TEST,entity_in_dev,False,True,Dandong;Luohe,0.4897,a3e6b616782010b3
+714,pair:Kagoshima|Qinhuangdao,Kagoshima|Qinhuangdao,TEST,entity_in_dev,False,True,Kagoshima;Qinhuangdao,0.5554,e24cf86566b392dd
+715,pair:Aguascalientes|Jieyang,Aguascalientes|Jieyang,TEST,entity_in_dev,False,True,Aguascalientes;Jieyang,0.6807,1aab30a57241d5a6
+716,pair:Kumasi|Xuzhou,Kumasi|Xuzhou,TEST,exposed_test_city,False,True,Kumasi;Xuzhou,0.4615,28aa74f685a77876
+717,pair:Laibin|Wanning,Laibin|Wanning,TEST,entity_in_dev,False,True,Laibin;Wanning,0.4791,ff64ac2fb29deb97
+718,pair:Irbid|Kirkuk,Irbid|Kirkuk,TEST,entity_in_dev,False,True,Irbid;Kirkuk,0.5123,a5e6a140e6660e3b
+719,pair:Bouake|Chelyabinsk,Chelyabinsk|Bouake,DEV,,False,True,Bouake;Chelyabinsk,0.5924,3a155efec29b5db9
+720,pair:Ahvaz|Ankara,Ahvaz|Ankara,TEST,entity_in_dev,False,True,Ahvaz;Ankara,0.5219,c8939a4d80f6151a
+721,pair:Chengdu|Uskudar,Chengdu|Uskudar,TEST,entity_in_dev,False,True,Chengdu;Uskudar,0.5889,dd32699298a419ca
+722,pair:Ganzhou|Guntur,Guntur|Ganzhou,TEST,,False,True,Ganzhou;Guntur,0.5041,da6dd0b4b7b2fec1
+723,pair:Antananarivo|Laiwu,Antananarivo|Laiwu,DEV,,False,True,Antananarivo;Laiwu,0.527,d238f882d79bc41c
+724,pair:Bamako|Sangli,Bamako|Sangli,DEV,exposed_test_city,False,True,Bamako;Sangli,0.5147,0c4fc4d7bc995679
+725,pair:Nyala|Yibin,Nyala|Yibin,DEV,,False,True,Nyala;Yibin,0.4806,b42b2c5f6de0c71b
+726,pair:Bangkok|Karachi,Karachi|Bangkok,DEV,,False,True,Bangkok;Karachi,0.619,c417533aa9bccb8f
+727,pair:Changshu|Rangpur,Changshu|Rangpur,TEST,entity_in_dev,False,True,Changshu;Rangpur,0.6025,17f53630271c121b
+728,pair:Aguascalientes|Quzhou,Quzhou|Aguascalientes,TEST,exposed_test_city,False,True,Aguascalientes;Quzhou,0.6853,cd4fdc224e7b0bfd
+729,pair:Namangan|Salta,Namangan|Salta,TEST,entity_in_dev,False,True,Namangan;Salta,0.5808,820ea0ea94d499b8
+730,pair:Bhubaneswar|Vadodara,Vadodara|Bhubaneswar,DEV,,False,True,Bhubaneswar;Vadodara,0.6111,7ec33635e8af2a00
+731,pair:Kumamoto|Sendai,Kumamoto|Sendai,TEST,entity_in_dev,False,True,Kumamoto;Sendai,0.5707,618524dbc5157ac2
+732,pair:Anyang-si|Barquisimeto,Barquisimeto|Anyang-si,TEST,exposed_test_city,False,True,Anyang-si;Barquisimeto,0.5323,dcd16e1b1fbf082c
+733,pair:Dnipro|Leipzig,Leipzig|Dnipro,TEST,exposed_test_city,False,True,Dnipro;Leipzig,0.5771,0ac4834f4d8454dc
+734,pair:Arak|Barnaul,Arak|Barnaul,TEST,entity_in_dev,False,True,Arak;Barnaul,0.608,ac1094107b857a19
+735,pair:Aligarh|Handan,Aligarh|Handan,TEST,entity_in_dev,False,True,Aligarh;Handan,0.53,4d54cb5f2c79d857
+736,pair:Rizhao|Taicang,Rizhao|Taicang,TEST,entity_in_dev,False,True,Rizhao;Taicang,0.5046,eda68852b233f462
+737,pair:Makhachkala|Qinhuangdao,Makhachkala|Qinhuangdao,DEV,,False,True,Makhachkala;Qinhuangdao,0.5601,0fcc8348baac7cea
+738,pair:Kota Kinabalu|Sharjah,Sharjah|Kota Kinabalu,TEST,exposed_test_city,False,True,Kota Kinabalu;Sharjah,0.6387,b10c36490b1f9cd2
+739,pair:Guatemala City|Orenburg,Guatemala City|Orenburg,TEST,entity_in_dev,False,True,Guatemala City;Orenburg,0.5453,9de876736bca3538
+740,pair:Mogadishu|Nanchang,Mogadishu|Nanchang,TEST,entity_in_dev,False,True,Mogadishu;Nanchang,0.5103,a7e1867f47ebdf2c
+741,pair:Nagpur|Saratov,Nagpur|Saratov,DEV,,False,True,Nagpur;Saratov,0.5579,42c164b8e7a548e7
+742,pair:Jiaozhou|Milwaukee,Jiaozhou|Milwaukee,DEV,,False,True,Jiaozhou;Milwaukee,0.6243,2e96ebd7fa42a74a
+743,pair:Indianapolis|Zhanjiang,Zhanjiang|Indianapolis,TEST,entity_in_dev,False,True,Indianapolis;Zhanjiang,0.6338,670576377ebc6852
+744,pair:Kanpur|Shangrao,Kanpur|Shangrao,TEST,entity_in_dev,False,True,Kanpur;Shangrao,0.583,626f9383495cbd09
+745,pair:Bareilly|Tehran,Tehran|Bareilly,TEST,exposed_test_city,False,True,Bareilly;Tehran,0.5854,d8c10426a859aea9
+746,pair:Abidjan|Yangon,Yangon|Abidjan,TEST,exposed_test_city,False,True,Abidjan;Yangon,0.698,3bbf63afa400e769
+747,pair:Tanggu|Zhenjiang,Zhenjiang|Tanggu,TEST,entity_in_dev,False,True,Tanggu;Zhenjiang,0.5405,02d692ee0a0ea876
+748,pair:Al Mahallah al Kubra|Neijiang,Al Mahallah al Kubra|Neijiang,TEST,exposed_test_city,False,True,Al Mahallah al Kubra;Neijiang,0.5618,9c60287d57e14fe1
+749,pair:Kawaguchi|Puducherry,Puducherry|Kawaguchi,TEST,entity_in_dev,False,True,Kawaguchi;Puducherry,0.5325,8aaddc73d853e1db
+750,pair:Bahawalpur|Zhangye,Zhangye|Bahawalpur,TEST,exposed_test_city,False,True,Bahawalpur;Zhangye,0.5346,5e994437028f3a2e
+751,pair:Albuquerque|Huangshi,Albuquerque|Huangshi,TEST,entity_in_dev,False,True,Albuquerque;Huangshi,0.5668,3ebe477b0139ad6d
+752,pair:Rourkela|Seongnam-si,Rourkela|Seongnam-si,TEST,entity_in_dev,False,True,Rourkela;Seongnam-si,0.4874,3b4d49a618e986bb
+753,pair:Comilla|Navi Mumbai,Navi Mumbai|Comilla,DEV,,False,True,Comilla;Navi Mumbai,0.6127,874d18311fa1c3da
+754,pair:Ansan-si|Kampala,Kampala|Ansan-si,DEV,,False,True,Ansan-si;Kampala,0.4043,8071d635069aee79
+755,pair:Luancheng|Quezon City,Luancheng|Quezon City,DEV,,False,True,Luancheng;Quezon City,0.5979,194efdd4b3bb385e
+756,pair:Guiyang|Leon de los Aldama,Leon de los Aldama|Guiyang,DEV,,False,True,Guiyang;Leon de los Aldama,0.5388,afa9e927aef590fa
+757,pair:Manaus|Vilnius,Vilnius|Manaus,DEV,,False,True,Manaus;Vilnius,0.4925,fccdb212306fe494
+758,pair:Brazzaville|Thane,Brazzaville|Thane,DEV,,False,True,Brazzaville;Thane,0.519,dbcd8b4abeb8cc4e
+759,pair:Arak|Korla,Korla|Arak,TEST,entity_in_dev,False,True,Arak;Korla,0.4551,56fa8ef183c80f9a
+760,pair:Juiz de Fora|Pontianak,Juiz de Fora|Pontianak,DEV,,False,True,Juiz de Fora;Pontianak,0.4651,debc954acad3af4f
+761,pair:Port Harcourt|Suizhou,Suizhou|Port Harcourt,DEV,,False,True,Port Harcourt;Suizhou,0.4788,7a339eda5ee57461
+762,pair:Maracaibo|Tirunelveli,Tirunelveli|Maracaibo,DEV,,False,True,Maracaibo;Tirunelveli,0.6012,1399c96130faf4c0
+763,pair:Amritsar|Kumasi,Kumasi|Amritsar,TEST,exposed_test_city,False,True,Amritsar;Kumasi,0.5009,27e6edfda3eecffe
+764,pair:Tegucigalpa|Weinan,Weinan|Tegucigalpa,TEST,exposed_test_city,False,True,Tegucigalpa;Weinan,0.5831,5194796fcbaf9b24
+765,pair:Cixi|Ipoh,Ipoh|Cixi,TEST,entity_in_dev,False,True,Cixi;Ipoh,0.369,b8092df843f1ba85
+766,pair:Banjarmasin|Jiangmen,Banjarmasin|Jiangmen,DEV,,False,True,Banjarmasin;Jiangmen,0.6019,c203ef8d2af262c8
+767,pair:Jilin|Pyongyang,Pyongyang|Jilin,TEST,entity_in_dev,False,True,Jilin;Pyongyang,0.4598,1f15dffcb424818d
+768,pair:Seongnam-si|Victoria de Durango,Seongnam-si|Victoria de Durango,TEST,entity_in_dev,False,True,Seongnam-si;Victoria de Durango,0.5086,08192101d5ed796b
+769,pair:Istanbul|Leon de los Aldama,Istanbul|Leon de los Aldama,TEST,exposed_test_city,False,True,Istanbul;Leon de los Aldama,0.5973,3060023e43b8bb42
+770,pair:Homyel'|Zhangjiagang,Zhangjiagang|Homyel',TEST,entity_in_dev,False,True,Homyel';Zhangjiagang,0.5043,c51f3cfbb4731c57
+771,pair:Shangrao|Zaozhuang,Zaozhuang|Shangrao,TEST,entity_in_dev,False,True,Shangrao;Zaozhuang,0.4312,05612143d098eb7f
+772,pair:Ashgabat|Karaj,Ashgabat|Karaj,DEV,exposed_test_city,False,True,Ashgabat;Karaj,0.4253,9133eedeee0a13c1
+773,pair:Naberezhnyye Chelny|Sendai,Sendai|Naberezhnyye Chelny,DEV,,False,True,Naberezhnyye Chelny;Sendai,0.7089,df7d3c4a9f87885a
+774,pair:Bilimora|Najafgarh,Bilimora|Najafgarh,DEV,,False,True,Bilimora;Najafgarh,0.4955,d9bad1507e95d5b6
+775,pair:Battagram|Putian,Battagram|Putian,TEST,exposed_test_city,False,True,Battagram;Putian,0.4291,5fc543c6b5087da1
+776,pair:Subang Jaya|Yichang,Yichang|Subang Jaya,TEST,entity_in_dev,False,True,Subang Jaya;Yichang,0.4285,a4b0fe28e984ea98
+777,pair:Kirkuk|Turin,Turin|Kirkuk,TEST,entity_in_dev,False,True,Kirkuk;Turin,0.4538,1efcdba35f7ad4fd
+778,pair:Agadir|Lilongwe,Lilongwe|Agadir,TEST,exposed_test_city,False,True,Agadir;Lilongwe,0.4775,bbcd4c8d85ed7439
+779,pair:Caloocan City|Semarang,Semarang|Caloocan City,TEST,entity_in_dev,False,True,Caloocan City;Semarang,0.5629,622de1086d94fe8c
+780,pair:Omsk|Phnom Penh,Phnom Penh|Omsk,DEV,,False,True,Omsk;Phnom Penh,0.4746,0d1955756a058095
+781,pair:Nanchong|Tanggu,Tanggu|Nanchong,TEST,entity_in_dev,False,True,Nanchong;Tanggu,0.4815,e1276924815afba6
+782,pair:Culiacan|Da Nang,Da Nang|Culiacan,TEST,exposed_test_city,False,True,Culiacan;Da Nang,0.4988,43e34c8fbb97da19
+783,pair:Anshun|Semarang,Semarang|Anshun,TEST,entity_in_dev,False,True,Anshun;Semarang,0.5024,8b12ca272510ffe5
+784,pair:Leon de los Aldama|Yaounde,Leon de los Aldama|Yaounde,TEST,entity_in_dev,False,True,Leon de los Aldama;Yaounde,0.5522,8239b3a34c732af2
+785,pair:Kampung Baru Subang|Novosibirsk,Kampung Baru Subang|Novosibirsk,TEST,entity_in_dev,False,True,Kampung Baru Subang;Novosibirsk,0.4993,fbd04bf6f1a570be
+786,pair:Huzhou|Zaria,Huzhou|Zaria,TEST,entity_in_dev,False,True,Huzhou;Zaria,0.4176,82b61542b1d4e05d
+787,pair:Asyut|Hamadan,Hamadan|Asyut,DEV,,False,True,Asyut;Hamadan,0.4484,c312dadabf848874
+788,pair:Bujumbura|Guatemala City,Guatemala City|Bujumbura,TEST,exposed_test_city,False,True,Bujumbura;Guatemala City,0.4808,24b8af5407080539
+789,pair:Bloemfontein|Sulaymaniyah,Bloemfontein|Sulaymaniyah,TEST,exposed_test_city,False,True,Bloemfontein;Sulaymaniyah,0.5385,a38ac987bd814feb
+790,pair:Cimahi|Seongnam-si,Seongnam-si|Cimahi,DEV,,False,True,Cimahi;Seongnam-si,0.6468,3893a379ad5cb122
+791,pair:Kaifeng|Sarajevo,Sarajevo|Kaifeng,DEV,,False,True,Kaifeng;Sarajevo,0.4933,701950c5074d0151
+792,pair:Baotou|Ulyanovsk,Ulyanovsk|Baotou,TEST,exposed_test_city,False,True,Baotou;Ulyanovsk,0.5435,c9725fea1b71e0a8
+793,pair:Battagram|Mersin,Battagram|Mersin,DEV,exposed_test_city,False,True,Battagram;Mersin,0.4706,2d2d9fff7a9a02c8
+794,pair:Guangzhou|Weihai,Weihai|Guangzhou,TEST,,False,True,Guangzhou;Weihai,0.5157,0bf82947146670c5
+795,pair:Beirut|Thuan An,Thuan An|Beirut,TEST,entity_in_dev,False,True,Beirut;Thuan An,0.3733,0b21ff789c63ac0d
+796,pair:Brasilia|Dushanbe,Brasilia|Dushanbe,DEV,,False,True,Brasilia;Dushanbe,0.4155,572519752e145e81
+797,pair:Anyang|Ya'an,Anyang|Ya'an,TEST,entity_in_dev,False,True,Anyang;Ya'an,0.3815,7fd599f64404f26b
+798,pair:Ahmedabad|Yangquan,Yangquan|Ahmedabad,TEST,exposed_test_city,False,True,Ahmedabad;Yangquan,0.5064,03dd233ab3c26dbe
+799,pair:Ha'il|Thuan An,Ha'il|Thuan An,DEV,,False,True,Ha'il;Thuan An,0.4747,06e644f9df8d7da6
+800,pair:Kota Bharu|Longyan,Longyan|Kota Bharu,TEST,entity_in_dev,False,True,Kota Bharu;Longyan,0.415,e4e358fcdc017e45
+801,pair:Aparecida de Goiania|Frankfurt am Main,Aparecida de Goiania|Frankfurt am Main,DEV,,False,True,Aparecida de Goiania;Frankfurt am Main,0.6219,dc5c8e11b061bad4
+802,pair:Asyut|Changchun,Asyut|Changchun,TEST,entity_in_dev,False,True,Asyut;Changchun,0.5681,6857c91b0b283c39
+803,pair:Casablanca|Xuzhou,Xuzhou|Casablanca,TEST,exposed_test_city,False,True,Casablanca;Xuzhou,0.5775,ad12827a6ed7368f
+804,pair:Lianyungang|Voronezh,Lianyungang|Voronezh,TEST,exposed_test_city,False,True,Lianyungang;Voronezh,0.5193,dedcee0ef2ada5a8
+805,pair:Liupanshui|Voronezh,Liupanshui|Voronezh,DEV,exposed_test_city,False,True,Liupanshui;Voronezh,0.505,995e01ae01eb6459
+806,pair:Tianjin|Yingkou,Tianjin|Yingkou,TEST,entity_in_dev,False,True,Tianjin;Yingkou,0.4755,68dfa4d6bde2d0f5
+807,pair:Aleppo|Phnom Penh,Phnom Penh|Aleppo,TEST,entity_in_dev,False,True,Aleppo;Phnom Penh,0.4166,41f44e2298e05574
+808,pair:Manaus|South Tangerang,Manaus|South Tangerang,TEST,entity_in_dev,False,True,Manaus;South Tangerang,0.5778,a874de8b6895e67b
+809,pair:Aden|Tucson,Tucson|Aden,DEV,,False,True,Aden;Tucson,0.3891,1c001742e7bc645f
+810,pair:Ho Chi Minh City|Reynosa,Reynosa|Ho Chi Minh City,TEST,entity_in_dev,False,True,Ho Chi Minh City;Reynosa,0.5429,175a50160bd1e596
+811,pair:Milwaukee|San Pedro Sula,Milwaukee|San Pedro Sula,TEST,entity_in_dev,False,True,Milwaukee;San Pedro Sula,0.5502,1d709ee908cd2f72
+812,pair:Oyo|Rawalpindi,Oyo|Rawalpindi,TEST,exposed_test_city,False,True,Oyo;Rawalpindi,0.5115,31ff7a964d498c6a
+813,pair:Barnaul|Bien Hoa,Bien Hoa|Barnaul,DEV,,False,True,Barnaul;Bien Hoa,0.4346,b8de274bb6df0f67
+814,pair:Da Nang|Xianyang,Da Nang|Xianyang,DEV,exposed_test_city,False,True,Da Nang;Xianyang,0.4556,b0a1d0bde0baacc1
+815,pair:Korla|Xianning,Korla|Xianning,TEST,entity_in_dev,False,True,Korla;Xianning,0.4375,2385d8552828a741
+816,pair:Harare|Koeln,Koeln|Harare,TEST,entity_in_dev,False,True,Harare;Koeln,0.3652,454ba8a4ecdc9fb1
+817,pair:Daqing|Ufa,Ufa|Daqing,TEST,entity_in_dev,False,True,Daqing;Ufa,0.4559,3556ca1dc908bdd9
+818,pair:Qinzhou|Rahim Yar Khan,Qinzhou|Rahim Yar Khan,TEST,exposed_test_city,False,True,Qinzhou;Rahim Yar Khan,0.4689,f8d6d4047d5db4d1
+819,pair:Aktobe|Oslo,Oslo|Aktobe,TEST,entity_in_dev,False,True,Aktobe;Oslo,0.3873,ae62cb90ff122b0e
+820,pair:Asmara|Zhangjiakou,Zhangjiakou|Asmara,TEST,exposed_test_city,False,True,Asmara;Zhangjiakou,0.4817,a3c97cc43c3d6d05
+821,pair:Almaty|Shantou,Almaty|Shantou,TEST,entity_in_dev,False,True,Almaty;Shantou,0.4582,07c9ad38af1bff03
+822,pair:Ha'il|Sevastopol,Sevastopol|Ha'il,TEST,entity_in_dev,False,True,Ha'il;Sevastopol,0.4718,7351e8cbb0bda4f9
+823,pair:Najran|Sanmenxia,Najran|Sanmenxia,DEV,exposed_test_city,False,True,Najran;Sanmenxia,0.482,86d82c5471c18a41
+824,pair:Pekanbaru|Weifang,Weifang|Pekanbaru,TEST,entity_in_dev,False,True,Pekanbaru;Weifang,0.5146,1bf82ce259f0d45f
+825,pair:Dubai|Panzhihua,Panzhihua|Dubai,TEST,entity_in_dev,False,True,Dubai;Panzhihua,0.6412,32975660c2e63be9
+826,pair:Cuttack|Voronezh,Cuttack|Voronezh,DEV,exposed_test_city,False,True,Cuttack;Voronezh,0.4719,3d443d34ee362d18
+827,pair:Nanchang|Shah Alam,Nanchang|Shah Alam,DEV,exposed_test_city,False,True,Nanchang;Shah Alam,0.4331,a1ced20838a104cb
+828,pair:Ipoh|Jamshedpur,Ipoh|Jamshedpur,TEST,entity_in_dev,False,True,Ipoh;Jamshedpur,0.5035,5333aa2319ed546b
+829,pair:Dar es Salaam|Ziyang,Dar es Salaam|Ziyang,TEST,entity_in_dev,False,True,Dar es Salaam;Ziyang,0.4479,4107a4de8bcbd9f1
+830,pair:Comilla|Zaria,Comilla|Zaria,TEST,entity_in_dev,False,True,Comilla;Zaria,0.5405,7111d0733555299b
+831,pair:Coyoacan|Karachi,Karachi|Coyoacan,TEST,exposed_test_city,False,True,Coyoacan;Karachi,0.444,cd546ee8e2d03ddc
+832,pair:Antananarivo|Wanning,Wanning|Antananarivo,DEV,,False,True,Antananarivo;Wanning,0.5193,088aa580adbc3873
+833,pair:Meknes|Rourkela,Rourkela|Meknes,TEST,exposed_test_city,False,True,Meknes;Rourkela,0.4977,c3e4ff924b05806d
+834,pair:Cankaya|Oslo,Cankaya|Oslo,TEST,entity_in_dev,False,True,Cankaya;Oslo,0.4412,5e35bf2e55431d1c
+835,pair:Copenhagen|Yerevan,Yerevan|Copenhagen,TEST,entity_in_dev,False,True,Copenhagen;Yerevan,0.5978,6bb6b71851c0cb12
+836,pair:Quetta|Sanmenxia,Quetta|Sanmenxia,DEV,exposed_test_city,False,True,Quetta;Sanmenxia,0.5166,37aeeeadc2841540
+837,pair:Calgary|Fes,Fes|Calgary,TEST,entity_in_dev,False,True,Calgary;Fes,0.4332,53bc7dfd84fcba7d
+838,pair:Shaoxing|Shijiazhuang,Shijiazhuang|Shaoxing,DEV,,False,True,Shaoxing;Shijiazhuang,0.5405,b86473e7778c4f79
+839,pair:Rohini|Uberlandia,Rohini|Uberlandia,TEST,entity_in_dev,False,True,Rohini;Uberlandia,0.4927,74d6998d07674cb8
+840,pair:Rajkot|Yibin,Rajkot|Yibin,TEST,entity_in_dev,False,True,Rajkot;Yibin,0.5568,5033b0e23444b66c
+841,pair:Banjarmasin|Najafgarh,Najafgarh|Banjarmasin,DEV,,False,True,Banjarmasin;Najafgarh,0.4601,25156abc2abfc943
+842,pair:Busan|Soweto,Soweto|Busan,TEST,entity_in_dev,False,True,Busan;Soweto,0.3815,6179d2d9e9b75f38
+843,pair:Indore|Zapopan,Zapopan|Indore,TEST,entity_in_dev,False,True,Indore;Zapopan,0.5901,e23e76a422fc4a50
+844,pair:Pretoria|Tangerang,Pretoria|Tangerang,TEST,entity_in_dev,False,True,Pretoria;Tangerang,0.5295,f76a96dce1f09787
+845,pair:Banjarmasin|Zhumadian,Zhumadian|Banjarmasin,TEST,entity_in_dev,False,True,Banjarmasin;Zhumadian,0.4703,548116a4853ee7c6
+846,pair:Penza|Siping,Siping|Penza,DEV,,False,True,Penza;Siping,0.4843,ab4ca2f2449de326
+847,pair:Chandigarh|Zhaotong,Chandigarh|Zhaotong,TEST,entity_in_dev,False,True,Chandigarh;Zhaotong,0.5034,a28f928226adc5e3
+848,pair:Comilla|Zhuzhou,Zhuzhou|Comilla,DEV,exposed_test_city,False,True,Comilla;Zhuzhou,0.5188,8e688b76b71b9f78
+849,pair:Bhayandar|Goiania,Goiania|Bhayandar,TEST,exposed_test_city,False,True,Bhayandar;Goiania,0.5317,8b4386105b65c964
+850,pair:Barnaul|Namangan,Namangan|Barnaul,TEST,entity_in_dev,False,True,Barnaul;Namangan,0.4672,572b981d810cbdf2
+851,pair:Kinshasa|Zagreb,Zagreb|Kinshasa,DEV,,False,True,Kinshasa;Zagreb,0.4221,15a56cd4db1e9ee0
+852,pair:Benoni|Tolyatti,Tolyatti|Benoni,TEST,entity_in_dev,False,True,Benoni;Tolyatti,0.5054,328e097194883935
+853,pair:Nowrangapur|Zarqa,Zarqa|Nowrangapur,TEST,exposed_test_city,False,True,Nowrangapur;Zarqa,0.5226,65b6e6f77b7afa9e
+854,pair:Johannesburg|Langfang,Langfang|Johannesburg,TEST,entity_in_dev,False,True,Johannesburg;Langfang,0.5343,853da8b560b33f87
+855,pair:Dongying|Jieyang,Dongying|Jieyang,TEST,exposed_test_city,False,True,Dongying;Jieyang,0.4032,139bdb30f3a0e106
+856,pair:Bishkek|Odesa,Odesa|Bishkek,DEV,,False,True,Bishkek;Odesa,0.43,c93d0d203669f136
+857,pair:Ulhasnagar|Yerevan,Yerevan|Ulhasnagar,TEST,entity_in_dev,False,True,Ulhasnagar;Yerevan,0.578,8a62a6e23be0f150
+858,pair:Maturin|Suining,Suining|Maturin,TEST,entity_in_dev,False,True,Maturin;Suining,0.3996,7931be9ef230a996
+859,pair:Cuiaba|Guilin,Cuiaba|Guilin,TEST,,False,True,Cuiaba;Guilin,0.493,b8f4986c2531dbe7
+860,pair:Adana|Pasig City,Adana|Pasig City,TEST,entity_in_dev,False,True,Adana;Pasig City,0.365,76b0d0fae259e967
+861,pair:Beirut|Hwaseong-si,Beirut|Hwaseong-si,DEV,,False,True,Beirut;Hwaseong-si,0.525,5cdef4353b094e45
+862,pair:New York City|Wanxian,New York City|Wanxian,TEST,entity_in_dev,False,True,New York City;Wanxian,0.4541,3c4d2d4b9d647a0e
+863,pair:Baku|Kashgar,Baku|Kashgar,DEV,exposed_test_city,False,True,Baku;Kashgar,0.5429,c9e28309737ce795
+864,pair:Peshawar|Shihezi,Shihezi|Peshawar,TEST,exposed_test_city,False,True,Peshawar;Shihezi,0.4316,ba83c4520caf5747
+865,pair:Jiaxing|Yangquan,Jiaxing|Yangquan,TEST,exposed_test_city,False,True,Jiaxing;Yangquan,0.4724,8d0d7809676d777a
+866,pair:Sao Paulo|Xuchang,Xuchang|Sao Paulo,DEV,exposed_test_city,False,True,Sao Paulo;Xuchang,0.464,1756efe9d1e2547c
+867,pair:Linfen|Nowrangapur,Nowrangapur|Linfen,DEV,exposed_test_city,False,True,Linfen;Nowrangapur,0.526,e6e7b99a19991913
+868,pair:Chengdu|Porto Alegre,Chengdu|Porto Alegre,TEST,entity_in_dev,False,True,Chengdu;Porto Alegre,0.5216,8a22cf27e8d444a8
+869,pair:Laibin|Mukalla,Laibin|Mukalla,TEST,entity_in_dev,False,True,Laibin;Mukalla,0.4255,b281faf08f04f0ba
+870,pair:Changde|Yiwu,Changde|Yiwu,TEST,entity_in_dev,False,True,Changde;Yiwu,0.4404,e609d283258b5f47
+871,pair:Sanaa|Shangyu,Sanaa|Shangyu,TEST,exposed_test_city,False,True,Sanaa;Shangyu,0.4003,a117d53f1657a2f5
+872,pair:Abu Dhabi|Wroclaw,Abu Dhabi|Wroclaw,DEV,,False,True,Abu Dhabi;Wroclaw,0.4531,03d02abc54c096cb
+873,pair:Seattle|Xianyang,Xianyang|Seattle,TEST,entity_in_dev,False,True,Seattle;Xianyang,0.4958,5eb80fa243880eab
+874,pair:Yerevan|Zhangzhou,Zhangzhou|Yerevan,TEST,exposed_test_city,False,True,Yerevan;Zhangzhou,0.4305,1f7622eec2a3a044
+875,pair:Guigang|Latakia,Guigang|Latakia,TEST,entity_in_dev,False,True,Guigang;Latakia,0.41,3a3fa86cdd35119c
+876,pair:Aleppo|Chisinau,Aleppo|Chisinau,TEST,,False,True,Aleppo;Chisinau,0.4283,bb16069cd3b94558
+877,pair:Sangli|Santiago de los Caballeros,Santiago de los Caballeros|Sangli,TEST,entity_in_dev,False,True,Sangli;Santiago de los Caballeros,0.6222,cec2e19672635e2a
+878,pair:Ranchi|Siping,Ranchi|Siping,DEV,,False,True,Ranchi;Siping,0.4836,29805fa8b11b8efa
+879,pair:Ibague|Jiangmen,Jiangmen|Ibague,TEST,entity_in_dev,False,True,Ibague;Jiangmen,0.4569,8d72fc2af424e84b
+880,pair:Faridabad|Kyoto,Kyoto|Faridabad,TEST,entity_in_dev,False,True,Faridabad;Kyoto,0.5308,99a64dfeee4d9638
+881,pair:Cochin|Lahore,Cochin|Lahore,DEV,,False,True,Cochin;Lahore,0.4233,13575562b9357fe5
+882,pair:E'zhou|Nagoya,Nagoya|E'zhou,DEV,,False,True,E'zhou;Nagoya,0.5796,3e6d91ca1c486fa0
+883,pair:Bhopal|San Pedro Sula,San Pedro Sula|Bhopal,TEST,,False,True,Bhopal;San Pedro Sula,0.5298,bdceb3776b772d5f
+884,pair:Nairobi|Zaozhuang,Nairobi|Zaozhuang,DEV,,False,True,Nairobi;Zaozhuang,0.4407,b13f004a4ab34bec
+885,pair:Phnom Penh|Qujing,Phnom Penh|Qujing,TEST,entity_in_dev,False,True,Phnom Penh;Qujing,0.4031,b5553c3f469c1c53
+886,pair:Huizhou|Muzaffarabad,Muzaffarabad|Huizhou,TEST,entity_in_dev,False,True,Huizhou;Muzaffarabad,0.5006,15ab02860bd66c48
+887,pair:Kanayannur|Urumqi,Kanayannur|Urumqi,TEST,,False,True,Kanayannur;Urumqi,0.5197,6be451d881c43f00
+888,pair:Tangshan|Yaroslavl,Tangshan|Yaroslavl,TEST,exposed_test_city,False,True,Tangshan;Yaroslavl,0.5019,6b55ddec4501efc7
+889,pair:Nuernberg|Rawalpindi,Rawalpindi|Nuernberg,TEST,entity_in_dev,False,True,Nuernberg;Rawalpindi,0.4911,54843ab21fb2d7d9
+890,pair:Irbid|Xuzhou,Irbid|Xuzhou,DEV,exposed_test_city,False,True,Irbid;Xuzhou,0.4784,8b5d6abb097d4539
+891,pair:Tyumen|Vadodara,Tyumen|Vadodara,TEST,entity_in_dev,False,True,Tyumen;Vadodara,0.532,251769e5e97f3856
+892,pair:Istanbul|Kampung Baru Subang,Kampung Baru Subang|Istanbul,TEST,exposed_test_city,False,True,Istanbul;Kampung Baru Subang,0.517,718af7443bab053f
+893,pair:Daegu|Suwon,Daegu|Suwon,TEST,exposed_test_city,False,True,Daegu;Suwon,0.3998,8d85349e6ba4a0df
+894,pair:Mosul|Xingtai,Mosul|Xingtai,DEV,,False,True,Mosul;Xingtai,0.5416,31ef43931415ad51
+895,pair:Ludhiana|Panshan,Panshan|Ludhiana,TEST,entity_in_dev,False,True,Ludhiana;Panshan,0.5947,867644f6a4bfbec9
+896,pair:Kashgar|Kotli,Kotli|Kashgar,TEST,exposed_test_city,False,True,Kashgar;Kotli,0.4682,d2a32a48dba5c3e4
+897,pair:Cangzhou|Ipoh,Cangzhou|Ipoh,DEV,,False,True,Cangzhou;Ipoh,0.4229,cef13f35715536ec
+898,pair:Kozhikode|Pikine,Pikine|Kozhikode,DEV,,False,True,Kozhikode;Pikine,0.546,6aa5b2c4a0348136
+899,pair:Astrakhan|Perm,Astrakhan|Perm,TEST,entity_in_dev,False,True,Astrakhan;Perm,0.5519,efe4132dc1c96f0c
+900,pair:Detroit|Guilin,Guilin|Detroit,TEST,,False,True,Detroit;Guilin,0.4746,702e4104b79f9efb
+901,pair:Istanbul|Qionghai,Qionghai|Istanbul,DEV,exposed_test_city,False,True,Istanbul;Qionghai,0.5463,7ddd81b153406070
+902,pair:Bucheon-si|Munich,Bucheon-si|Munich,DEV,,False,True,Bucheon-si;Munich,0.4501,2dc99cf2d00cc5d9
+903,pair:Salta|Sendai,Sendai|Salta,DEV,,False,True,Salta;Sendai,0.4134,9d5d2692d34ecd42
+904,pair:Amman|Tianshui,Tianshui|Amman,TEST,exposed_test_city,False,True,Amman;Tianshui,0.4533,5fb6d2e41326b9ab
+905,pair:Jos|Siliguri,Siliguri|Jos,TEST,exposed_test_city,False,True,Jos;Siliguri,0.5827,87a7f7c536f10af5
+906,pair:Hohhot|Ibadan,Ibadan|Hohhot,TEST,entity_in_dev,False,True,Hohhot;Ibadan,0.4964,835d1acbcf56c084
+907,pair:Banjarmasin|Malang,Malang|Banjarmasin,TEST,entity_in_dev,False,True,Banjarmasin;Malang,0.4573,10dcc4c8fad495a4
+908,pair:Florianopolis|South Tangerang,South Tangerang|Florianopolis,TEST,entity_in_dev,False,True,Florianopolis;South Tangerang,0.5399,24f5ddb1d66fa305
+909,pair:Eskisehir|Moradabad,Moradabad|Eskisehir,DEV,exposed_test_city,False,True,Eskisehir;Moradabad,0.5101,8cdfdecc2c2dbada
+910,pair:Johor Bahru|Tonghua,Tonghua|Johor Bahru,DEV,,False,True,Johor Bahru;Tonghua,0.4677,84b024f6e0201d3f
+911,pair:Al Basrah al Qadimah|Santiago de Queretaro,Al Basrah al Qadimah|Santiago de Queretaro,TEST,entity_in_dev,False,True,Al Basrah al Qadimah;Santiago de Queretaro,0.542,be3834ccd4180d26
+912,pair:Hangzhou|Paranaque City,Hangzhou|Paranaque City,TEST,exposed_test_city,False,True,Hangzhou;Paranaque City,0.5509,5ebfb1a78cab10dc
+913,pair:Niamey|Yangon,Yangon|Niamey,TEST,exposed_test_city,False,True,Niamey;Yangon,0.5291,3d275fb01d515073
+914,pair:Harare|Zhumadian,Harare|Zhumadian,TEST,entity_in_dev,False,True,Harare;Zhumadian,0.5024,fe023971adcfde26
+915,pair:Bien Hoa|Tirunelveli,Tirunelveli|Bien Hoa,TEST,entity_in_dev,False,True,Bien Hoa;Tirunelveli,0.5467,fda456b48eda0843
+916,pair:Amravati|Shymkent,Amravati|Shymkent,TEST,entity_in_dev,False,True,Amravati;Shymkent,0.4936,e7f4f6488b61548a
+917,pair:Kolkata|Ranchi,Kolkata|Ranchi,DEV,exposed_test_city,False,True,Kolkata;Ranchi,0.4682,718a90df8cdfc196
+918,pair:Benoni|Jiamusi,Jiamusi|Benoni,DEV,,False,True,Benoni;Jiamusi,0.5534,76def2cb78a80324
+919,pair:Fuxin|Phnom Penh,Fuxin|Phnom Penh,TEST,exposed_test_city,False,True,Fuxin;Phnom Penh,0.4117,2961c59cc53e451f
+920,pair:Jiangmen|Londrina,Jiangmen|Londrina,TEST,entity_in_dev,False,True,Jiangmen;Londrina,0.5129,ca3a36cb0f97bc05
+921,pair:Ilorin|Juiz de Fora,Juiz de Fora|Ilorin,TEST,entity_in_dev,False,True,Ilorin;Juiz de Fora,0.4661,ef5415aa58dd86f7
+922,pair:Bamako|Nouakchott,Bamako|Nouakchott,DEV,exposed_test_city,False,True,Bamako;Nouakchott,0.4849,08ab2b4a3fd5d516
+923,pair:Ebute Ikorodu|Kawaguchi,Ebute Ikorodu|Kawaguchi,TEST,entity_in_dev,False,True,Ebute Ikorodu;Kawaguchi,0.5567,5f6a1b2ce638b4fc
+924,pair:Benoni|Shangqiu,Benoni|Shangqiu,TEST,entity_in_dev,False,True,Benoni;Shangqiu,0.5004,6faca6bc87b59cad
+925,pair:Porto Alegre|Taiz,Porto Alegre|Taiz,TEST,entity_in_dev,False,True,Porto Alegre;Taiz,0.532,47e69dded4d49786
+926,pair:Semarang|Yekaterinburg,Yekaterinburg|Semarang,DEV,,False,True,Semarang;Yekaterinburg,0.574,4dcb17afdd65865a
+927,pair:Gold Coast|Kozhikode,Kozhikode|Gold Coast,DEV,exposed_test_city,False,True,Gold Coast;Kozhikode,0.5038,4ab993e8b4e14825
+928,pair:Changchun|Omsk,Changchun|Omsk,TEST,entity_in_dev,False,True,Changchun;Omsk,0.5298,568c34e4f8c77456
+929,pair:Bucaramanga|Madinat an Nasr,Bucaramanga|Madinat an Nasr,TEST,exposed_test_city,False,True,Bucaramanga;Madinat an Nasr,0.5343,969cc4ebf22c2a93
+930,pair:Solapur|Zaporizhzhya,Zaporizhzhya|Solapur,TEST,exposed_test_city,False,True,Solapur;Zaporizhzhya,0.5091,732b2411d4b66084
+931,pair:Bagcilar|Novosibirsk,Bagcilar|Novosibirsk,DEV,,False,True,Bagcilar;Novosibirsk,0.544,2a814fd87da48bd1
+932,pair:Bucharest|Maturin,Maturin|Bucharest,TEST,,False,True,Bucharest;Maturin,0.4009,7e717a7014844448
+933,pair:Asyut|South Tangerang,South Tangerang|Asyut,DEV,,False,True,Asyut;South Tangerang,0.5288,b01dcccd269844e9
+934,pair:Pune|Zhangzhou,Zhangzhou|Pune,TEST,exposed_test_city,False,True,Pune;Zhangzhou,0.4479,ce662079a053c7fb
+935,pair:Shangluo|Weifang,Shangluo|Weifang,TEST,entity_in_dev,False,True,Shangluo;Weifang,0.4264,3e982ea1d8ea51a5
+936,pair:Hefei|Qiqihar,Hefei|Qiqihar,TEST,entity_in_dev,False,True,Hefei;Qiqihar,0.4773,690dac0fe85c0a02
+937,pair:Hengyang|Queens,Hengyang|Queens,DEV,,False,True,Hengyang;Queens,0.4431,5606d71b9adc38bf
+938,pair:Abu Ghurayb|Porto Alegre,Porto Alegre|Abu Ghurayb,TEST,entity_in_dev,False,True,Abu Ghurayb;Porto Alegre,0.507,229f84a41d2ad9da
+939,pair:Onitsha|Zagreb,Zagreb|Onitsha,TEST,entity_in_dev,False,True,Onitsha;Zagreb,0.5297,5e6ff068f90ef89d
+940,pair:Hegang|Kalininskiy,Hegang|Kalininskiy,TEST,entity_in_dev,False,True,Hegang;Kalininskiy,0.5357,5714dcde7365bb65
+941,pair:Lome|Tonghua,Lome|Tonghua,DEV,,False,True,Lome;Tonghua,0.4591,d42bee11c34751eb
+942,pair:Luohe|South Tangerang,South Tangerang|Luohe,DEV,,False,True,Luohe;South Tangerang,0.4773,e3ad714b28293e08
+943,pair:Kolhapur|Lome,Lome|Kolhapur,TEST,entity_in_dev,False,True,Kolhapur;Lome,0.4658,5d72027dee2a28e5
+944,pair:Foshan|San Pedro Sula,Foshan|San Pedro Sula,TEST,entity_in_dev,False,True,Foshan;San Pedro Sula,0.5558,61eaf39c93d26838
+945,pair:Aden|Londrina,Londrina|Aden,TEST,entity_in_dev,False,True,Aden;Londrina,0.4776,c10b3d902136f48b
+946,pair:Puning|Yangon,Yangon|Puning,TEST,exposed_test_city,False,True,Puning;Yangon,0.4694,0b85877ec395d7a9
+947,pair:Acapulco de Juarez|Shaoxing,Acapulco de Juarez|Shaoxing,TEST,entity_in_dev,False,True,Acapulco de Juarez;Shaoxing,0.5411,c80e0c29e6617bbe
+948,pair:Bujumbura|San Miguel de Tucuman,San Miguel de Tucuman|Bujumbura,TEST,exposed_test_city,False,True,Bujumbura;San Miguel de Tucuman,0.5979,52977cd0e8e964b2
+949,pair:Jinan|Niamey,Jinan|Niamey,DEV,,False,True,Jinan;Niamey,0.4487,87da02b7461729d9
+950,pair:Tangier|Teresina,Teresina|Tangier,TEST,,False,True,Tangier;Teresina,0.5893,8f72f8b2f40f4499
+951,pair:Ar Raqqah|Jalandhar,Jalandhar|Ar Raqqah,DEV,exposed_test_city,False,True,Ar Raqqah;Jalandhar,0.5181,dd8389cf2e7dff2a
+952,pair:Ma'anshan|Sendai,Sendai|Ma'anshan,DEV,,False,True,Ma'anshan;Sendai,0.5248,52f7ed97e7149dd1
+953,pair:Barranquilla|Warri,Barranquilla|Warri,DEV,,False,True,Barranquilla;Warri,0.5107,5f5e2024589d43b7
+954,pair:Bursa|Sendai,Sendai|Bursa,TEST,entity_in_dev,False,True,Bursa;Sendai,0.4286,e7890cae59d1a56d
+955,pair:Boumerdes|Narela,Boumerdes|Narela,TEST,entity_in_dev,False,True,Boumerdes;Narela,0.5263,5bdbb1e921d8e7fd
+956,pair:Barquisimeto|Yingkou,Yingkou|Barquisimeto,TEST,entity_in_dev,False,True,Barquisimeto;Yingkou,0.525,8c6bfd5eb0553cb5
+957,pair:Ciudad Guayana|Puente Alto,Puente Alto|Ciudad Guayana,TEST,,False,True,Ciudad Guayana;Puente Alto,0.5587,3d402ee28573d4a3
+958,pair:Jieyang|Lianyungang,Jieyang|Lianyungang,TEST,,False,True,Jieyang;Lianyungang,0.5156,abfa81890582f8bb
+959,pair:Gaziantep|Theni,Theni|Gaziantep,DEV,exposed_test_city,False,True,Gaziantep;Theni,0.5341,4c42e2face3c01e5
+960,pair:Istanbul|Soweto,Soweto|Istanbul,TEST,exposed_test_city,False,True,Istanbul;Soweto,0.4381,ad2e2f38de043a0f
+961,pair:Beijing|Shijiazhuang,Shijiazhuang|Beijing,TEST,entity_in_dev,False,True,Beijing;Shijiazhuang,0.5258,59165add3ac60779
+962,pair:Haiphong|Pune,Pune|Haiphong,TEST,entity_in_dev,False,True,Haiphong;Pune,0.423,02afe3490dddbded
+963,pair:Kyoto|Shihezi,Shihezi|Kyoto,DEV,,False,True,Kyoto;Shihezi,0.5505,b923a945bedfba3b
+964,pair:Hannover|Nairobi,Nairobi|Hannover,TEST,entity_in_dev,False,True,Hannover;Nairobi,0.4871,a7d1861c4879a25d
+965,pair:Shangyu|Taicang,Shangyu|Taicang,TEST,entity_in_dev,False,True,Shangyu;Taicang,0.4368,3c56b6092b8b71f7
+966,pair:Astrakhan|Pune,Astrakhan|Pune,DEV,,False,True,Astrakhan;Pune,0.4749,e45ea93d8572ca84
+967,pair:Acapulco de Juarez|Kampung Baru Subang,Kampung Baru Subang|Acapulco de Juarez,DEV,,False,True,Acapulco de Juarez;Kampung Baru Subang,0.506,5066500f32f197ef
+968,pair:Cangzhou|Karaj,Cangzhou|Karaj,DEV,exposed_test_city,False,True,Cangzhou;Karaj,0.5052,b0cd2b652c2fb912
+969,pair:Cochin|Juiz de Fora,Cochin|Juiz de Fora,TEST,entity_in_dev,False,True,Cochin;Juiz de Fora,0.4334,22744969ed3c53b3
+970,pair:Namangan|Taguig,Namangan|Taguig,TEST,entity_in_dev,False,True,Namangan;Taguig,0.5403,23da700c8dc4f5c9
+971,pair:Kirkuk|Semarang,Kirkuk|Semarang,TEST,entity_in_dev,False,True,Kirkuk;Semarang,0.5112,43845040b2fceff8
+972,pair:Hezhou|Solapur,Hezhou|Solapur,TEST,exposed_test_city,False,True,Hezhou;Solapur,0.4532,b0698de8b2312d11
+973,pair:Paranaque City|Suining,Paranaque City|Suining,DEV,exposed_test_city,False,True,Paranaque City;Suining,0.5434,87494b753b882d18
+974,pair:Cheonan|Shiraz,Shiraz|Cheonan,TEST,,False,True,Cheonan;Shiraz,0.4133,f5a4c4f2bc9439f8
+975,pair:Shantou|Wenzhou,Shantou|Wenzhou,DEV,,False,True,Shantou;Wenzhou,0.3965,e6d6ee458ab00841
+976,pair:Nagpur|Yinchuan,Nagpur|Yinchuan,TEST,entity_in_dev,False,True,Nagpur;Yinchuan,0.4697,0c8fd71a3098f5f6
+977,pair:Antalya|Cangzhou,Antalya|Cangzhou,TEST,entity_in_dev,False,True,Antalya;Cangzhou,0.4207,a6a558d509551980
+978,pair:Beijing|Shiraz,Beijing|Shiraz,TEST,entity_in_dev,False,True,Beijing;Shiraz,0.4118,e367881a7c2c6dda
+979,pair:Kumamoto|Panzhihua,Panzhihua|Kumamoto,TEST,entity_in_dev,False,True,Kumamoto;Panzhihua,0.4552,0f9d03a74c3c48f1
+980,pair:Ghaziabad|Langfang,Ghaziabad|Langfang,TEST,entity_in_dev,False,True,Ghaziabad;Langfang,0.4923,f88bc347a179ba46
+981,pair:Ahmedabad|Orumiyeh,Orumiyeh|Ahmedabad,TEST,exposed_test_city,False,True,Ahmedabad;Orumiyeh,0.55,90337d19f25b4b75
+982,pair:Homs|Shah Alam,Homs|Shah Alam,TEST,exposed_test_city,False,True,Homs;Shah Alam,0.4778,a75ae67fa5a144f4
+983,pair:Aden|Yichang,Aden|Yichang,TEST,entity_in_dev,False,True,Aden;Yichang,0.4288,863825603227b87e
+984,pair:Matsuyama|Shubra al Khaymah,Matsuyama|Shubra al Khaymah,DEV,,False,True,Matsuyama;Shubra al Khaymah,0.542,406ec09dd5511d80
+985,pair:Port Said|Stockholm,Stockholm|Port Said,TEST,,False,True,Port Said;Stockholm,0.4895,b289cd996b9c6c24
+986,pair:Daejeon|Kunshan,Kunshan|Daejeon,DEV,,False,True,Daejeon;Kunshan,0.5559,2af204e2ecea1a0f
+987,pair:Abeokuta|Shaoguan,Shaoguan|Abeokuta,TEST,,False,True,Abeokuta;Shaoguan,0.4248,b44e4e36ab112c07
+988,pair:Shangyu|Shenyang,Shenyang|Shangyu,DEV,,False,True,Shangyu;Shenyang,0.4566,35e8376194026e28
+989,pair:Duesseldorf|Laibin,Duesseldorf|Laibin,TEST,entity_in_dev,False,True,Duesseldorf;Laibin,0.5094,ef67898de0d780a1
+990,pair:Quezon City|Urumqi,Quezon City|Urumqi,TEST,entity_in_dev,False,True,Quezon City;Urumqi,0.4581,5eb471c778804662
+991,pair:Bamako|Hezhou,Bamako|Hezhou,TEST,exposed_test_city,False,True,Bamako;Hezhou,0.4855,140c165d15ae0133
+992,pair:Rio de Janeiro|Tashkent,Tashkent|Rio de Janeiro,TEST,entity_in_dev,False,True,Rio de Janeiro;Tashkent,0.4605,7f0a5918ef27eaba
+993,pair:Nagpur|Sanming,Nagpur|Sanming,DEV,,False,True,Nagpur;Sanming,0.4018,1ea80c9d93512c13
+994,pair:Ebute Ikorodu|Vijayawada,Vijayawada|Ebute Ikorodu,TEST,exposed_test_city,False,True,Ebute Ikorodu;Vijayawada,0.5306,81c656d86089443c
+995,pair:Kallakurichi|Yongzhou,Kallakurichi|Yongzhou,TEST,entity_in_dev,False,True,Kallakurichi;Yongzhou,0.5639,2ed8c993f5c482dd
+996,pair:Antananarivo|Surakarta,Surakarta|Antananarivo,TEST,entity_in_dev,False,True,Antananarivo;Surakarta,0.4678,3cf646b95761239f
+997,pair:Beijing|Jiaozuo,Jiaozuo|Beijing,TEST,entity_in_dev,False,True,Beijing;Jiaozuo,0.446,7db44c1e68131205
+998,pair:Al Ahmadi|Mogadishu,Mogadishu|Al Ahmadi,TEST,,False,True,Al Ahmadi;Mogadishu,0.5038,4422882cc042769f
+999,pair:Ahmedabad|Narela,Narela|Ahmedabad,DEV,,False,True,Ahmedabad;Narela,0.5776,5429dd8159409d21
+1000,pair:Handan|Qiqihar,Handan|Qiqihar,DEV,,False,True,Handan;Qiqihar,0.4803,2d4e8860b5ff2e52
+1001,pair:Chongqing|Pietermaritzburg,Pietermaritzburg|Chongqing,TEST,entity_in_dev,False,True,Chongqing;Pietermaritzburg,0.6613,aca8bc1461c21e26
+1002,pair:Huaihua|Nampula,Nampula|Huaihua,TEST,entity_in_dev,False,True,Huaihua;Nampula,0.4381,e3ff3d21a3ff2874
+1003,pair:Kolkata|Saratov,Kolkata|Saratov,TEST,exposed_test_city,False,True,Kolkata;Saratov,0.454,1c600b11e6bcceb3
+1004,pair:Kigali|Quezon City,Quezon City|Kigali,DEV,,False,True,Kigali;Quezon City,0.4477,08cf7aa2bd444108
+1005,pair:Cangzhou|Coyoacan,Cangzhou|Coyoacan,TEST,exposed_test_city,False,True,Cangzhou;Coyoacan,0.4516,5ca89d0020ede603
+1006,pair:Hengyang|Huainan,Hengyang|Huainan,DEV,exposed_test_city,False,True,Hengyang;Huainan,0.4688,049fdfbf220ebd71
+1007,pair:Xuanzhou|Zhangjiakou,Zhangjiakou|Xuanzhou,TEST,entity_in_dev,False,True,Xuanzhou;Zhangjiakou,0.5604,74324aee0415559a
+1008,pair:Anqing|Reynosa,Anqing|Reynosa,DEV,exposed_test_city,False,True,Anqing;Reynosa,0.4651,de22c011e1ff4b68
+1009,pair:Acapulco de Juarez|Huainan,Acapulco de Juarez|Huainan,TEST,exposed_test_city,False,True,Acapulco de Juarez;Huainan,0.5634,fd585053558f5350
+1010,pair:Huizhou|Nairobi,Huizhou|Nairobi,DEV,,False,True,Huizhou;Nairobi,0.4506,54168ddbeb8fc3e3
+1011,pair:Kathmandu|Krakow,Kathmandu|Krakow,DEV,,False,True,Kathmandu;Krakow,0.5339,92ca95ab50f709b3
+1012,pair:Qionghai|Zhoushan,Qionghai|Zhoushan,DEV,,False,True,Qionghai;Zhoushan,0.4889,c00c8140a1faf015
+1013,pair:Jambi City|Xuanzhou,Xuanzhou|Jambi City,DEV,,False,True,Jambi City;Xuanzhou,0.4826,b5250d005275fbde
+1014,pair:Antalya|Ludhiana,Antalya|Ludhiana,TEST,entity_in_dev,False,True,Antalya;Ludhiana,0.4799,6f4ed7ec3ac9b6cf
+1015,pair:Novokuznetsk|Suining,Novokuznetsk|Suining,TEST,exposed_test_city,False,True,Novokuznetsk;Suining,0.5451,59c37cf86aebbf45
+1016,pair:Shenyang|Tolyatti,Tolyatti|Shenyang,TEST,entity_in_dev,False,True,Shenyang;Tolyatti,0.6066,acda2c51641a39d2
+1017,pair:Contagem|Mumbai,Mumbai|Contagem,DEV,exposed_test_city,False,True,Contagem;Mumbai,0.4366,898eaa2421bbda00
+1018,pair:Izhevsk|Kyoto,Izhevsk|Kyoto,TEST,entity_in_dev,False,True,Izhevsk;Kyoto,0.4769,1fcfc40efabee179
+1019,pair:Nizhniy Novgorod|Nowrangapur,Nowrangapur|Nizhniy Novgorod,TEST,exposed_test_city,False,True,Nizhniy Novgorod;Nowrangapur,0.5718,aef8bf132049c54d
+1020,pair:Dehra Dun|Zhenjiang,Dehra Dun|Zhenjiang,DEV,,False,True,Dehra Dun;Zhenjiang,0.5248,e903d0060a5cf193
+1021,pair:Hezhou|Luzhou,Luzhou|Hezhou,DEV,,False,True,Hezhou;Luzhou,0.4373,85ea8203d4339485
+1022,pair:Kawaguchi|Sapporo,Kawaguchi|Sapporo,TEST,entity_in_dev,False,True,Kawaguchi;Sapporo,0.5619,2538092e331f83e0
+1023,pair:Johor Bahru|Ulsan,Ulsan|Johor Bahru,TEST,entity_in_dev,False,True,Johor Bahru;Ulsan,0.4784,30e671bec215f763
+1024,pair:Mosul|Rangpur,Mosul|Rangpur,TEST,entity_in_dev,False,True,Mosul;Rangpur,0.536,c1e2a70316e37e54
+1025,pair:Riga|Sarajevo,Sarajevo|Riga,TEST,entity_in_dev,False,True,Riga;Sarajevo,0.4228,6129bc788c75929b
+1026,pair:Jinan|Wuhan,Jinan|Wuhan,DEV,,False,True,Jinan;Wuhan,0.3967,eeb6866356118ee9
+1027,pair:Comilla|Guigang,Guigang|Comilla,DEV,,False,True,Comilla;Guigang,0.5123,e9cdeeb3241b59c0
+1028,pair:General Santos|Madinat an Nasr,Madinat an Nasr|General Santos,TEST,exposed_test_city,False,True,General Santos;Madinat an Nasr,0.4628,4199cf5204fac7a4
+1029,pair:Bulawayo|Huaihua,Bulawayo|Huaihua,TEST,entity_in_dev,False,True,Bulawayo;Huaihua,0.5574,3bffe594e67fb77e
+1030,pair:Hohhot|Lianyungang,Hohhot|Lianyungang,TEST,entity_in_dev,False,True,Hohhot;Lianyungang,0.5231,92eaad34c3087f17
+1031,pair:Rostov-na-Donu|Tucson,Rostov-na-Donu|Tucson,TEST,entity_in_dev,False,True,Rostov-na-Donu;Tucson,0.5869,784bfbf411ab8542
+1032,pair:Barranquilla|Santiago de Cuba,Santiago de Cuba|Barranquilla,DEV,,False,True,Barranquilla;Santiago de Cuba,0.4883,6562079dc77625c6
+1033,pair:Bishkek|Langfang,Bishkek|Langfang,DEV,,False,True,Bishkek;Langfang,0.4455,da4745714c001311
+1034,pair:Onitsha|Varanasi,Onitsha|Varanasi,TEST,entity_in_dev,False,True,Onitsha;Varanasi,0.4467,c857e65675c5b346
+1035,pair:Jiamusi|Santo Domingo Este,Jiamusi|Santo Domingo Este,DEV,,False,True,Jiamusi;Santo Domingo Este,0.6111,f8ab58c9e8fb9650
+1036,pair:Aden|Mississauga,Mississauga|Aden,DEV,,False,True,Aden;Mississauga,0.5579,e83e33bbf9754b8b
+1037,pair:Maiduguri|Novokuznetsk,Maiduguri|Novokuznetsk,TEST,exposed_test_city,False,True,Maiduguri;Novokuznetsk,0.5243,c76206b68bbbea52
+1038,pair:Bikaner|Paranaque City,Paranaque City|Bikaner,TEST,exposed_test_city,False,True,Bikaner;Paranaque City,0.5257,e2a0e1e493095a1c
+1039,pair:Coimbatore|Fortaleza,Fortaleza|Coimbatore,DEV,,False,True,Coimbatore;Fortaleza,0.4796,e7b04b3f8f60b654
+1040,pair:Campos dos Goytacazes|Jos,Jos|Campos dos Goytacazes,TEST,exposed_test_city,False,True,Campos dos Goytacazes;Jos,0.626,b35811efe24f38de
+1041,pair:Cancun|Rajkot,Rajkot|Cancun,DEV,,False,True,Cancun;Rajkot,0.561,8f9ad5fd25678189
+1042,pair:Fuxin|Incheon,Incheon|Fuxin,TEST,exposed_test_city,False,True,Fuxin;Incheon,0.3979,4814b7dac863189e
+1043,pair:Harare|Queens,Queens|Harare,TEST,entity_in_dev,False,True,Harare;Queens,0.4212,8b8b685ba0cbe2f9
+1044,pair:Abu Ghurayb|Shizuoka,Abu Ghurayb|Shizuoka,TEST,entity_in_dev,False,True,Abu Ghurayb;Shizuoka,0.6244,8e26b6684f653910
+1045,pair:Culiacan|Santiago de Queretaro,Santiago de Queretaro|Culiacan,TEST,entity_in_dev,False,True,Culiacan;Santiago de Queretaro,0.5926,02bf19133372c1d8
+1046,pair:New Kingston|Yaroslavl,Yaroslavl|New Kingston,DEV,,False,True,New Kingston;Yaroslavl,0.4886,6c5dec219ae5cda7
+1047,pair:Hezhou|Indianapolis,Indianapolis|Hezhou,DEV,,False,True,Hezhou;Indianapolis,0.4166,48574d8fa4dc862a
+1048,pair:Karaj|Nasiriyah,Karaj|Nasiriyah,TEST,exposed_test_city,False,True,Karaj;Nasiriyah,0.5265,ebed45f6aabf1c78
+1049,pair:Esenler|Feira de Santana,Feira de Santana|Esenler,TEST,entity_in_dev,False,True,Esenler;Feira de Santana,0.597,e8beaf10544d0f5b
+1050,pair:Santiago de Queretaro|Shihezi,Shihezi|Santiago de Queretaro,TEST,entity_in_dev,False,True,Santiago de Queretaro;Shihezi,0.6892,1a5f009343c6133c
+1051,pair:Jaboatao dos Guararapes|Warangal,Warangal|Jaboatao dos Guararapes,TEST,entity_in_dev,False,True,Jaboatao dos Guararapes;Warangal,0.639,b37622787c0bf197
+1052,pair:Hiroshima|Sanming,Sanming|Hiroshima,TEST,entity_in_dev,False,True,Hiroshima;Sanming,0.4507,78c953559461dce8
+1053,pair:Fukuoka|Guwahati,Fukuoka|Guwahati,TEST,entity_in_dev,False,True,Fukuoka;Guwahati,0.4723,80b739c45b243501
+1054,pair:Huaibei|Qujing,Huaibei|Qujing,TEST,entity_in_dev,False,True,Huaibei;Qujing,0.4213,d33ff46189d0477e
+1055,pair:Arak|Erbil,Erbil|Arak,DEV,,False,True,Arak;Erbil,0.4018,1d295d60078b4f92
+1056,pair:Ciudad Guayana|Surakarta,Ciudad Guayana|Surakarta,TEST,entity_in_dev,False,True,Ciudad Guayana;Surakarta,0.5112,22b04cb6505fe955
+1057,pair:Quito|Rohini,Rohini|Quito,TEST,entity_in_dev,False,True,Quito;Rohini,0.4702,d6c6395e18cb5c47
+1058,pair:Nowrangapur|Qinzhou,Qinzhou|Nowrangapur,TEST,exposed_test_city,False,True,Nowrangapur;Qinzhou,0.4949,2a3ed6cfdba0edd3
+1059,pair:Anyang|Sendai,Sendai|Anyang,DEV,,False,True,Anyang;Sendai,0.3869,41996a86260efeb2
+1060,pair:Jiamusi|Pekanbaru,Pekanbaru|Jiamusi,TEST,entity_in_dev,False,True,Jiamusi;Pekanbaru,0.5938,76ebba8c3f055b53
+1061,pair:New Kingston|Soweto,Soweto|New Kingston,DEV,,False,True,New Kingston;Soweto,0.4419,869e44dc0387f59b
+1062,pair:Addis Ababa|Copenhagen,Addis Ababa|Copenhagen,TEST,entity_in_dev,False,True,Addis Ababa;Copenhagen,0.5478,70b0ad2ce819a529
+1063,pair:Semarang|Suez,Semarang|Suez,TEST,entity_in_dev,False,True,Semarang;Suez,0.6671,f452da5f84deb406
+1064,pair:Faridabad|Hefei,Hefei|Faridabad,TEST,entity_in_dev,False,True,Faridabad;Hefei,0.4944,8ed963e9165432b7
+1065,pair:Indore|Kermanshah,Indore|Kermanshah,TEST,entity_in_dev,False,True,Indore;Kermanshah,0.5869,80379a37f325e9d5
+1066,pair:Islamabad|Rawalpindi,Rawalpindi|Islamabad,TEST,entity_in_dev,False,True,Islamabad;Rawalpindi,0.4818,21a24df01184fffc
+1067,pair:Accra|Vadodara,Accra|Vadodara,TEST,entity_in_dev,False,True,Accra;Vadodara,0.5008,2bc3eec8f1683ad6
+1068,pair:Shaoguan|Siping,Siping|Shaoguan,TEST,entity_in_dev,False,True,Shaoguan;Siping,0.44,15ac992ddc1cea98
+1069,pair:Dubai|Tianshui,Dubai|Tianshui,TEST,entity_in_dev,False,True,Dubai;Tianshui,0.5607,005622570b4e5dfa
+1070,pair:Korla|Matsuyama,Korla|Matsuyama,DEV,,False,True,Korla;Matsuyama,0.4796,c43090e05505363c
+1071,pair:Guatemala City|Xinyang,Guatemala City|Xinyang,DEV,,False,True,Guatemala City;Xinyang,0.4682,5ec3c411520cd784
+1072,pair:Cimahi|Yaroslavl,Cimahi|Yaroslavl,TEST,entity_in_dev,False,True,Cimahi;Yaroslavl,0.6035,c2215ebdbb89cee5
+1073,pair:Bangkok|Saint Petersburg,Bangkok|Saint Petersburg,TEST,entity_in_dev,False,True,Bangkok;Saint Petersburg,0.5574,7c98f9a125476406
+1074,pair:Panzhihua|Qinzhou,Qinzhou|Panzhihua,TEST,exposed_test_city,False,True,Panzhihua;Qinzhou,0.4363,a056d23c9c844c4b
+1075,pair:Ludhiana|Vilnius,Vilnius|Ludhiana,TEST,entity_in_dev,False,True,Ludhiana;Vilnius,0.5275,dd14f2140cf21afb
+1076,pair:Bishkek|Yingkou,Bishkek|Yingkou,TEST,entity_in_dev,False,True,Bishkek;Yingkou,0.4643,b993cec09b1d7f8a
+1077,pair:Abu Dhabi|Tashkent,Abu Dhabi|Tashkent,DEV,,False,True,Abu Dhabi;Tashkent,0.4448,418988808ffc0266
+1078,pair:Bursa|E'zhou,Bursa|E'zhou,DEV,,False,True,Bursa;E'zhou,0.5911,4d66a2a18f49858d
+1079,pair:Bhiwandi|Oslo,Bhiwandi|Oslo,DEV,,False,True,Bhiwandi;Oslo,0.563,344f7ed9376c853d
+1080,pair:Ankara|Yerevan,Ankara|Yerevan,TEST,entity_in_dev,False,True,Ankara;Yerevan,0.3803,94d93cbe6b9faaad
+1081,pair:Coimbatore|Khulna,Coimbatore|Khulna,TEST,entity_in_dev,False,True,Coimbatore;Khulna,0.5609,4f31d0f1d19516ec
+1082,pair:Laibin|Multan,Laibin|Multan,TEST,entity_in_dev,False,True,Laibin;Multan,0.4132,13cad3930fc75c6f
+1083,pair:Nyala|Seongnam-si,Nyala|Seongnam-si,TEST,entity_in_dev,False,True,Nyala;Seongnam-si,0.5652,8b0781abcc74a595
+1084,pair:Bagcilar|Comilla,Comilla|Bagcilar,TEST,entity_in_dev,False,True,Bagcilar;Comilla,0.5094,0b9e59596f322cb3
+1085,pair:Sangli|Ulan Bator,Ulan Bator|Sangli,TEST,entity_in_dev,False,True,Sangli;Ulan Bator,0.4402,96bd0915c4f3d7da
+1086,pair:Jiaozhou|Tiruppur,Jiaozhou|Tiruppur,DEV,,False,True,Jiaozhou;Tiruppur,0.476,ae65a78c3ddee2e7
+1087,pair:Barnaul|Xuanzhou,Barnaul|Xuanzhou,TEST,entity_in_dev,False,True,Barnaul;Xuanzhou,0.523,bfb163d468d6ff8e
+1088,pair:Maceio|Weinan,Maceio|Weinan,TEST,exposed_test_city,False,True,Maceio;Weinan,0.442,a567feb21dac0008
+1089,pair:Batam|Krasnodar,Batam|Krasnodar,TEST,entity_in_dev,False,True,Batam;Krasnodar,0.4777,151bab027183bc60
+1090,pair:Borivli|Kolhapur,Kolhapur|Borivli,TEST,entity_in_dev,False,True,Borivli;Kolhapur,0.472,458590fc3d268022
+1091,pair:Guangyuan|Tyumen,Tyumen|Guangyuan,TEST,,False,True,Guangyuan;Tyumen,0.5735,766cf28e1b069883
+1092,pair:Al Ain City|Milwaukee,Milwaukee|Al Ain City,TEST,exposed_test_city,False,True,Al Ain City;Milwaukee,0.5621,157df6d57839ae55
+1093,pair:Nasiriyah|Tehran,Tehran|Nasiriyah,DEV,,False,True,Nasiriyah;Tehran,0.5151,dda8f04bf9716aa3
+1094,pair:Maceio|Solapur,Maceio|Solapur,TEST,exposed_test_city,False,True,Maceio;Solapur,0.5114,97c75b763877257b
+1095,pair:Minsk|Tanggu,Minsk|Tanggu,DEV,,False,True,Minsk;Tanggu,0.5203,bc309ef0bf62ec48
+1096,pair:Cimahi|Thane,Cimahi|Thane,DEV,,False,True,Cimahi;Thane,0.624,6431c926ce5c8960
+1097,pair:Samarkand|Shantou,Samarkand|Shantou,TEST,entity_in_dev,False,True,Samarkand;Shantou,0.5051,ea424a43f6b69c99
+1098,pair:Kobe|Turin,Turin|Kobe,TEST,,False,True,Kobe;Turin,0.3813,a000e5d8a562c48e
+1099,pair:Bilimora|Daqing,Daqing|Bilimora,DEV,,False,True,Bilimora;Daqing,0.5563,844662ce968de2dd
+1100,pair:Konya|Qom,Konya|Qom,TEST,entity_in_dev,False,True,Konya;Qom,0.3994,90a7ee7a7c2f97e2
+1101,pair:Jiaxing|Taiz,Taiz|Jiaxing,TEST,exposed_test_city,False,True,Jiaxing;Taiz,0.4605,cc202a0e85232f36
+1102,pair:Caloocan City|Fortaleza,Caloocan City|Fortaleza,TEST,entity_in_dev,False,True,Caloocan City;Fortaleza,0.4885,2303eff35c8e81fe
+1103,pair:Guilin|Karachi,Karachi|Guilin,TEST,entity_in_dev,False,True,Guilin;Karachi,0.4176,c58a58123526ae89
+1104,pair:Anshan|Zaria,Anshan|Zaria,DEV,,False,True,Anshan;Zaria,0.5516,0f5085a6e5f654b5
+1105,pair:Odesa|Taicang,Odesa|Taicang,TEST,entity_in_dev,False,True,Odesa;Taicang,0.4458,b7e02515d9a737b2
+1106,pair:Daqing|Weifang,Weifang|Daqing,TEST,entity_in_dev,False,True,Daqing;Weifang,0.4555,acb88fb916bfe90d
+1107,pair:Bloemfontein|Culiacan,Culiacan|Bloemfontein,TEST,exposed_test_city,False,True,Bloemfontein;Culiacan,0.568,e175e15c5a7659e3
+1108,pair:Aracaju|Can Tho,Can Tho|Aracaju,TEST,exposed_test_city,False,True,Aracaju;Can Tho,0.4392,9d772869df86608a
+1109,pair:Latakia|Londrina,Latakia|Londrina,TEST,entity_in_dev,False,True,Latakia;Londrina,0.4548,d815957e784b8894
+1110,pair:Baotou|Kleinzschocher,Baotou|Kleinzschocher,TEST,exposed_test_city,False,True,Baotou;Kleinzschocher,0.6152,6282f4d408e7b59a
+1111,pair:Cangzhou|Tangier,Tangier|Cangzhou,TEST,entity_in_dev,False,True,Cangzhou;Tangier,0.4182,cc5cb8f7747ab707
+1112,pair:Lanzhou|Pune,Lanzhou|Pune,TEST,entity_in_dev,False,True,Lanzhou;Pune,0.4242,bc708171905edb5c
+1113,pair:Handan|Incheon,Handan|Incheon,DEV,,False,True,Handan;Incheon,0.415,888e5c8090cbfeea
+1114,pair:Esenler|Iztapalapa,Iztapalapa|Esenler,DEV,,False,True,Esenler;Iztapalapa,0.5079,24867901117fa502
+1115,pair:Kota Kinabalu|Pekanbaru,Kota Kinabalu|Pekanbaru,DEV,exposed_test_city,False,True,Kota Kinabalu;Pekanbaru,0.5017,798ab9f2c2232c35
+1116,pair:Rawalpindi|Soweto,Soweto|Rawalpindi,DEV,,False,True,Rawalpindi;Soweto,0.5599,694b425723b759ab
+1117,pair:Puente Alto|Yangquan,Yangquan|Puente Alto,TEST,exposed_test_city,False,True,Puente Alto;Yangquan,0.5764,150d8100e2e4c3ec
+1118,"pair:Luancheng|Mianzhu, Deyang, Sichuan","Mianzhu, Deyang, Sichuan|Luancheng",TEST,exposed_test_city,False,True,"Luancheng;Mianzhu, Deyang, Sichuan",0.6201,18c8274102f9b785
+1119,pair:Chenzhou|Lodz,Lodz|Chenzhou,TEST,exposed_test_city,False,True,Chenzhou;Lodz,0.4208,2fdef64aea9053c3
+1120,pair:Beirut|Muzaffarabad,Beirut|Muzaffarabad,TEST,entity_in_dev,False,True,Beirut;Muzaffarabad,0.5801,7fc1c80685ae61f9
+1121,pair:Bhubaneswar|Lahore,Bhubaneswar|Lahore,TEST,entity_in_dev,False,True,Bhubaneswar;Lahore,0.6153,80596e5b5721c937
+1122,pair:Nanjing|Navi Mumbai,Navi Mumbai|Nanjing,TEST,entity_in_dev,False,True,Nanjing;Navi Mumbai,0.6015,6ad5b502e9a25cbb
+1123,pair:Liupanshui|Panzhihua,Panzhihua|Liupanshui,DEV,,False,True,Liupanshui;Panzhihua,0.468,7bd093679b2cd08e
+1124,pair:Astrakhan|Theni,Theni|Astrakhan,TEST,exposed_test_city,False,True,Astrakhan;Theni,0.4861,e6f802d00150499e
+1125,pair:Da Nang|Uskudar,Da Nang|Uskudar,DEV,exposed_test_city,False,True,Da Nang;Uskudar,0.4426,25b54a4a507b0b9d
+1126,pair:Goeteborg|Santiago de Cuba,Goeteborg|Santiago de Cuba,TEST,entity_in_dev,False,True,Goeteborg;Santiago de Cuba,0.4981,ab05d491d3351f72
+1127,pair:Harare|Maturin,Maturin|Harare,TEST,entity_in_dev,False,True,Harare;Maturin,0.4315,c8f995abd32bedc7
+1128,pair:Makhachkala|Zaporizhzhya,Zaporizhzhya|Makhachkala,TEST,entity_in_dev,False,True,Makhachkala;Zaporizhzhya,0.4759,77112e299e2c7ece
+1129,pair:Bouake|Sarajevo,Bouake|Sarajevo,TEST,entity_in_dev,False,True,Bouake;Sarajevo,0.4906,782c4c861d0b0467
+1130,pair:Jaboatao dos Guararapes|Tashkent,Jaboatao dos Guararapes|Tashkent,DEV,,False,True,Jaboatao dos Guararapes;Tashkent,0.6202,bc4b55d45c47e2f0
+1131,pair:Bobo-Dioulasso|Shubra al Khaymah,Bobo-Dioulasso|Shubra al Khaymah,DEV,,False,True,Bobo-Dioulasso;Shubra al Khaymah,0.5513,6b270fc745aa02ba
+1132,pair:Kunshan|Kyiv,Kyiv|Kunshan,TEST,entity_in_dev,False,True,Kunshan;Kyiv,0.4431,4dc06dbb739b64e2
+1133,pair:Al Ahmadi|Cimahi,Al Ahmadi|Cimahi,TEST,entity_in_dev,False,True,Al Ahmadi;Cimahi,0.4476,bde99e9fe207691f
+1134,pair:Malatya|Yaounde,Malatya|Yaounde,TEST,entity_in_dev,False,True,Malatya;Yaounde,0.4838,59a4556e783da76f
+1135,pair:Pyongyang|Xuanzhou,Pyongyang|Xuanzhou,TEST,entity_in_dev,False,True,Pyongyang;Xuanzhou,0.5196,546d24e66ef0d0e5
+1136,pair:Brazzaville|New York City,New York City|Brazzaville,TEST,entity_in_dev,False,True,Brazzaville;New York City,0.5083,8442fb0ecd3e7e49
+1137,pair:Meerut|New York City,New York City|Meerut,DEV,,False,True,Meerut;New York City,0.4601,626df176c8c785ee
+1138,pair:Chizhou|Daqing,Daqing|Chizhou,DEV,,False,True,Chizhou;Daqing,0.4399,a81e881799c87bc7
+1139,pair:Indore|Suizhou,Suizhou|Indore,TEST,entity_in_dev,False,True,Indore;Suizhou,0.4984,778779f74072edc4
+1140,pair:Niamey|Rawalpindi,Niamey|Rawalpindi,TEST,entity_in_dev,False,True,Niamey;Rawalpindi,0.4867,a442772b267b5cd8
+1141,pair:Cucuta|Hebi,Hebi|Cucuta,TEST,exposed_test_city,False,True,Cucuta;Hebi,0.4799,b397652056893beb
+1142,pair:Abobo|Wanning,Abobo|Wanning,DEV,,False,True,Abobo;Wanning,0.5259,1f0f4465673decb1
+1143,pair:Baku|Poznan,Poznan|Baku,TEST,entity_in_dev,False,True,Baku;Poznan,0.4273,08982863e1e72509
+1144,pair:Bayannur|Bien Hoa,Bayannur|Bien Hoa,TEST,entity_in_dev,False,True,Bayannur;Bien Hoa,0.479,b8913438b9c4a03f
+1145,pair:Brazzaville|Nyala,Nyala|Brazzaville,TEST,entity_in_dev,False,True,Brazzaville;Nyala,0.5034,160b59b2272fd1b2
+1146,pair:Bokaro|Naberezhnyye Chelny,Bokaro|Naberezhnyye Chelny,DEV,,False,True,Bokaro;Naberezhnyye Chelny,0.7263,cbc43f4f1b1ed0a1
+1147,pair:Contagem|Mbuji-Mayi,Contagem|Mbuji-Mayi,TEST,entity_in_dev,False,True,Contagem;Mbuji-Mayi,0.4726,c8bd5212a5cea2a5
+1148,pair:Asyut|Volgograd,Asyut|Volgograd,TEST,entity_in_dev,False,True,Asyut;Volgograd,0.5253,25ccb78caedc0c5c
+1149,pair:Narela|Santo Domingo Oeste,Santo Domingo Oeste|Narela,DEV,,False,True,Narela;Santo Domingo Oeste,0.5338,88baf28eda1e6a98
+1150,pair:Eskisehir|Meknes,Eskisehir|Meknes,TEST,exposed_test_city,False,True,Eskisehir;Meknes,0.5432,93623a2094eb7eb4
+1151,pair:Asansol|Guankou,Asansol|Guankou,DEV,,False,True,Asansol;Guankou,0.4587,55cd6c5e50cdf04b
+1152,pair:Munich|Yibin,Yibin|Munich,TEST,entity_in_dev,False,True,Munich;Yibin,0.519,2e3c2e2244c63782
+1153,pair:Chizhou|Vladivostok,Vladivostok|Chizhou,DEV,,False,True,Chizhou;Vladivostok,0.5586,dd522325cb8bee3f
+1154,pair:Lianyungang|Ulan Bator,Ulan Bator|Lianyungang,TEST,entity_in_dev,False,True,Lianyungang;Ulan Bator,0.5868,1c28e23d274b0ff6
+1155,pair:Khabarovsk Vtoroy|Sevastopol,Khabarovsk Vtoroy|Sevastopol,DEV,,False,True,Khabarovsk Vtoroy;Sevastopol,0.5764,c97a8428f49ec646
+1156,pair:Ahmedabad|Warangal,Warangal|Ahmedabad,TEST,entity_in_dev,False,True,Ahmedabad;Warangal,0.5125,4a967e1d93d44e74
+1157,pair:Nagpur|Quezon City,Quezon City|Nagpur,DEV,,False,True,Nagpur;Quezon City,0.4492,582c12ff82a105a1
+1158,pair:Arequipa|Vijayawada,Vijayawada|Arequipa,DEV,exposed_test_city,False,True,Arequipa;Vijayawada,0.5567,a53e31d1f1b72a4e
+1159,pair:Ha'il|Santo Domingo Este,Ha'il|Santo Domingo Este,TEST,entity_in_dev,False,True,Ha'il;Santo Domingo Este,0.5397,ba59d9375905a800
+1160,pair:Rourkela|Sao Paulo,Rourkela|Sao Paulo,TEST,exposed_test_city,False,True,Rourkela;Sao Paulo,0.421,d749dd8a3f220ae9
+1161,pair:Arequipa|Shymkent,Arequipa|Shymkent,TEST,entity_in_dev,False,True,Arequipa;Shymkent,0.5487,9fd078ca100aac05
+1162,pair:Ankara|Nyala,Nyala|Ankara,DEV,,False,True,Ankara;Nyala,0.3819,6ab152c889078dc1
+1163,pair:Kirkuk|Rahim Yar Khan,Rahim Yar Khan|Kirkuk,TEST,entity_in_dev,False,True,Kirkuk;Rahim Yar Khan,0.4624,34f5db0d650bf87b
+1164,pair:Helsinki|Multan,Multan|Helsinki,TEST,entity_in_dev,False,True,Helsinki;Multan,0.5779,6f58e346499c1869
+1165,pair:Guang'an|Porto Velho,Porto Velho|Guang'an,TEST,,False,True,Guang'an;Porto Velho,0.453,4ebd0fd71744eb18
+1166,pair:Khabarovsk|Mogadishu,Mogadishu|Khabarovsk,TEST,entity_in_dev,False,True,Khabarovsk;Mogadishu,0.4773,5c3b76ab91795f8e
+1167,pair:Abidjan|Tyumen,Tyumen|Abidjan,TEST,,False,True,Abidjan;Tyumen,0.5152,e8b447f6c969de27
+1168,pair:Astrakhan|Nanded,Astrakhan|Nanded,DEV,,False,True,Astrakhan;Nanded,0.4352,a4c1105a6eb66e20
+1169,pair:Huizhou|Lianyungang,Lianyungang|Huizhou,TEST,entity_in_dev,False,True,Huizhou;Lianyungang,0.4995,bfe089cb116aa12a
+1170,pair:Abu Dhabi|Calgary,Abu Dhabi|Calgary,TEST,entity_in_dev,False,True,Abu Dhabi;Calgary,0.4455,0976d6f0c8fd9836
+1171,pair:Calgary|Nyala,Calgary|Nyala,DEV,,False,True,Calgary;Nyala,0.4573,b04e6161f637d1a6
+1172,pair:Paranaque City|Pingliang,Paranaque City|Pingliang,TEST,exposed_test_city,False,True,Paranaque City;Pingliang,0.5541,5b444b4c58903016
+1173,pair:Hiroshima|Joao Pessoa,Hiroshima|Joao Pessoa,TEST,entity_in_dev,False,True,Hiroshima;Joao Pessoa,0.4581,65392106a239dd45
+1174,pair:Nairobi|Quito,Nairobi|Quito,DEV,,False,True,Nairobi;Quito,0.4821,41fe7812c960744a
+1175,pair:Jos|Shihezi,Jos|Shihezi,DEV,,False,True,Jos;Shihezi,0.5163,48f9f6f745b230c0
+1176,pair:Erbil|Irkutsk,Irkutsk|Erbil,TEST,entity_in_dev,False,True,Erbil;Irkutsk,0.4885,52ae7db239588b87
+1177,pair:Karachi|Krasnoyarsk,Karachi|Krasnoyarsk,TEST,exposed_test_city,False,True,Karachi;Krasnoyarsk,0.5537,20ef919b292649f0
+1178,pair:Aktobe|Arak,Arak|Aktobe,TEST,entity_in_dev,False,True,Aktobe;Arak,0.3909,10a42f4d75026968
+1179,pair:Madinat an Nasr|Ya'an,Madinat an Nasr|Ya'an,DEV,exposed_test_city,False,True,Madinat an Nasr;Ya'an,0.5148,6a22d98d847ac195
+1180,pair:Changchun|Hohhot,Changchun|Hohhot,TEST,entity_in_dev,False,True,Changchun;Hohhot,0.4748,8c4e953b254f6c76
+1181,pair:Foshan|Rourkela,Foshan|Rourkela,TEST,entity_in_dev,False,True,Foshan;Rourkela,0.4384,c170050e0468decd
+1182,pair:Jeddah|Wanxian,Jeddah|Wanxian,DEV,,False,True,Jeddah;Wanxian,0.4553,dabb99c1a0f46fc3
+1183,pair:Orumiyeh|Quzhou,Quzhou|Orumiyeh,TEST,exposed_test_city,False,True,Orumiyeh;Quzhou,0.5199,63d054a573eff7be
+1184,pair:Aparecida de Goiania|Hiroshima,Hiroshima|Aparecida de Goiania,DEV,,False,True,Aparecida de Goiania;Hiroshima,0.5757,7687c22715351a65
+1185,pair:Hanoi|Mogadishu,Mogadishu|Hanoi,TEST,,False,True,Hanoi;Mogadishu,0.5182,a14a32e648fcea80
+1186,"pair:Cuttack|Mianzhu, Deyang, Sichuan","Mianzhu, Deyang, Sichuan|Cuttack",TEST,exposed_test_city,False,True,"Cuttack;Mianzhu, Deyang, Sichuan",0.6282,d9c79e87df2a897b
+1187,pair:Cuttack|Taicang,Cuttack|Taicang,DEV,,False,True,Cuttack;Taicang,0.4661,2ec9a0d9e82f30c7
+1188,pair:Karbala|Kota Bharu,Karbala|Kota Bharu,DEV,,False,True,Karbala;Kota Bharu,0.4405,a9be8a970fc72f22
+1189,pair:Shymkent|Taicang,Shymkent|Taicang,TEST,entity_in_dev,False,True,Shymkent;Taicang,0.4911,7054af9da0985bee
+1190,pair:Malang|Zhuzhou,Malang|Zhuzhou,DEV,exposed_test_city,False,True,Malang;Zhuzhou,0.4091,1cadfd128999cddc
+1191,pair:Abu Dhabi|Tangerang,Tangerang|Abu Dhabi,DEV,,False,True,Abu Dhabi;Tangerang,0.5695,17ee05591b685e55
+1192,pair:Hohhot|San Pedro Sula,San Pedro Sula|Hohhot,TEST,entity_in_dev,False,True,Hohhot;San Pedro Sula,0.5126,fb814af396a6fd8d
+1193,pair:Hamhung|Jiaxing,Hamhung|Jiaxing,TEST,exposed_test_city,False,True,Hamhung;Jiaxing,0.4693,4e41b13db59c4630
+1194,pair:Bijie|Warangal,Bijie|Warangal,TEST,entity_in_dev,False,True,Bijie;Warangal,0.4384,8c9baf4b147b71bd
+1195,pair:Barquisimeto|Sanming,Barquisimeto|Sanming,TEST,entity_in_dev,False,True,Barquisimeto;Sanming,0.6865,aa6ee61a484224f0
+1196,pair:Florianopolis|Guarulhos,Guarulhos|Florianopolis,TEST,entity_in_dev,False,True,Florianopolis;Guarulhos,0.542,762efc5b3a2ce85b
+1197,pair:Hubli|Xuchang,Hubli|Xuchang,TEST,exposed_test_city,False,True,Hubli;Xuchang,0.4079,16dd79906e77878d
+1198,pair:Nuernberg|Shizuoka,Shizuoka|Nuernberg,TEST,entity_in_dev,False,True,Nuernberg;Shizuoka,0.5078,6f84405ad1f048ce
+1199,pair:Calgary|Linyi,Calgary|Linyi,DEV,,False,True,Calgary;Linyi,0.4128,5da22da4a9308f31
+1200,pair:Astrakhan|Shubra al Khaymah,Shubra al Khaymah|Astrakhan,TEST,entity_in_dev,False,True,Astrakhan;Shubra al Khaymah,0.5098,69b30772c7312fa1
+1201,pair:Mudanjiang|Tlaquepaque,Mudanjiang|Tlaquepaque,DEV,,False,True,Mudanjiang;Tlaquepaque,0.4911,a67ac721be3ac5c4
+1202,pair:Chengdu|Orumiyeh,Orumiyeh|Chengdu,TEST,exposed_test_city,False,True,Chengdu;Orumiyeh,0.5115,10e0c9a58d039d59
+1203,pair:Bucheon-si|Kemerovo,Bucheon-si|Kemerovo,DEV,exposed_test_city,False,True,Bucheon-si;Kemerovo,0.4592,420d6b511423b691
+1204,pair:Cochin|Narela,Cochin|Narela,TEST,entity_in_dev,False,True,Cochin;Narela,0.4702,c76c620b2c17e0f4
+1205,pair:Lianyungang|Lusaka,Lianyungang|Lusaka,TEST,,False,True,Lianyungang;Lusaka,0.6029,2a0140b4f56217c9
+1206,pair:Abu Dhabi|Bokaro,Abu Dhabi|Bokaro,TEST,entity_in_dev,False,True,Abu Dhabi;Bokaro,0.5512,b64ad57d3f14f23a
+1207,pair:Victoria de Durango|Zahedan,Victoria de Durango|Zahedan,DEV,,False,True,Victoria de Durango;Zahedan,0.5135,4e85cca2d7b674c3
+1208,pair:Ankara|Sulaymaniyah,Ankara|Sulaymaniyah,DEV,,False,True,Ankara;Sulaymaniyah,0.5453,204f3384c40de1c9
+1209,pair:Addis Ababa|Wuzhou,Wuzhou|Addis Ababa,DEV,,False,True,Addis Ababa;Wuzhou,0.4825,a2393bdec348f084
+1210,pair:Jamshedpur|Tonghua,Tonghua|Jamshedpur,DEV,,False,True,Jamshedpur;Tonghua,0.4911,24c4af3e348be158
+1211,pair:Bokaro|Santiago de Queretaro,Bokaro|Santiago de Queretaro,DEV,,False,True,Bokaro;Santiago de Queretaro,0.6323,4236fc1c28c1bddd
+1212,pair:Abeokuta|Zigong,Zigong|Abeokuta,TEST,entity_in_dev,False,True,Abeokuta;Zigong,0.4588,b3c11d17bfc79c41
+1213,pair:Al Mahallah al Kubra|Dammam,Al Mahallah al Kubra|Dammam,TEST,entity_in_dev,False,True,Al Mahallah al Kubra;Dammam,0.5592,17fb8c2a49f8c7d1
+1214,pair:Curitiba|Kermanshah,Kermanshah|Curitiba,TEST,,False,True,Curitiba;Kermanshah,0.549,186df828c787161a
+1215,pair:Minsk|Zhanjiang,Zhanjiang|Minsk,TEST,entity_in_dev,False,True,Minsk;Zhanjiang,0.5293,2a0a75d002f84139
+1216,pair:Bhilai|Contagem,Contagem|Bhilai,TEST,entity_in_dev,False,True,Bhilai;Contagem,0.4466,f7eb0fd7a375b354
+1217,pair:Shah Alam|Zhoushan,Shah Alam|Zhoushan,DEV,exposed_test_city,False,True,Shah Alam;Zhoushan,0.4528,336b3a9f6f63c149
+1218,pair:Ajmer|Peshawar,Ajmer|Peshawar,TEST,exposed_test_city,False,True,Ajmer;Peshawar,0.391,d83310c097c28d60
+1219,pair:Makati City|Qiqihar,Makati City|Qiqihar,TEST,entity_in_dev,False,True,Makati City;Qiqihar,0.5113,818f1c332ca34b6c
+1220,pair:Bauchi|Bekasi,Bekasi|Bauchi,TEST,exposed_test_city,False,True,Bauchi;Bekasi,0.4193,399d0997b2b88a19
+1221,pair:Feira de Santana|Khulna,Feira de Santana|Khulna,TEST,,False,True,Feira de Santana;Khulna,0.604,74988fb25f5465b5
+1222,pair:Jeddah|Nova Iguacu,Nova Iguacu|Jeddah,TEST,exposed_test_city,False,True,Jeddah;Nova Iguacu,0.579,568f2e325d6093ac
+1223,pair:Baoji|Cotonou,Cotonou|Baoji,TEST,entity_in_dev,False,True,Baoji;Cotonou,0.5584,6bf95468249d8ec1
+1224,pair:Erode|Naucalpan de Juarez,Naucalpan de Juarez|Erode,DEV,exposed_test_city,False,True,Erode;Naucalpan de Juarez,0.5852,871a75b696ea3022
+1225,pair:Chizhou|Ningbo,Chizhou|Ningbo,TEST,entity_in_dev,False,True,Chizhou;Ningbo,0.5115,d28bafa2bb2f2990
+1226,pair:Bekasi|Changde,Changde|Bekasi,TEST,exposed_test_city,False,True,Bekasi;Changde,0.4186,582df6c1714c64fd
+1227,pair:Ciudad Juarez|Hanoi,Hanoi|Ciudad Juarez,TEST,exposed_test_city,False,True,Ciudad Juarez;Hanoi,0.5517,539e4cb48439e78a
+1228,pair:Bekasi|Niigata,Niigata|Bekasi,TEST,exposed_test_city,False,True,Bekasi;Niigata,0.4299,811881f6d2bc3d6f
+1229,pair:Jiangmen|Winnipeg,Jiangmen|Winnipeg,TEST,entity_in_dev,False,True,Jiangmen;Winnipeg,0.4313,be191cce64b59ec0
+1230,"pair:Bloemfontein|Mianzhu, Deyang, Sichuan","Mianzhu, Deyang, Sichuan|Bloemfontein",DEV,exposed_test_city,False,True,"Bloemfontein;Mianzhu, Deyang, Sichuan",0.5939,cb8ca25ea8cc7ab4
+1231,pair:Amritsar|Wanning,Amritsar|Wanning,DEV,exposed_test_city,False,True,Amritsar;Wanning,0.5906,370750d7c651c95e
+1232,pair:Kayseri|Salta,Kayseri|Salta,DEV,,False,True,Kayseri;Salta,0.5834,d6d6a35d56e303fb
+1233,pair:Goyang-si|Jambi City,Jambi City|Goyang-si,TEST,entity_in_dev,False,True,Goyang-si;Jambi City,0.4919,7142e57568dff004
+1234,pair:Indianapolis|Uberlandia,Indianapolis|Uberlandia,DEV,,False,True,Indianapolis;Uberlandia,0.4959,4eaa872d638aaf90
+1235,pair:Theni|Yaroslavl,Yaroslavl|Theni,TEST,exposed_test_city,False,True,Theni;Yaroslavl,0.552,45bdb049490cbbd3
+1236,pair:Al Fayyum|Yiwu,Yiwu|Al Fayyum,TEST,entity_in_dev,False,True,Al Fayyum;Yiwu,0.4486,2a2e3abbd7cf3b5a
+1237,pair:Amritsar|Mysore,Amritsar|Mysore,DEV,exposed_test_city,False,True,Amritsar;Mysore,0.5115,f3a643036cbf24a3
+1238,pair:Hohhot|Niigata,Niigata|Hohhot,TEST,entity_in_dev,False,True,Hohhot;Niigata,0.4303,4c6f3366a2176bd1
+1239,pair:Khabarovsk Vtoroy|Zhanjiang,Zhanjiang|Khabarovsk Vtoroy,TEST,entity_in_dev,False,True,Khabarovsk Vtoroy;Zhanjiang,0.5778,92177251e54fc4be
+1240,pair:Bhavnagar|Mudanjiang,Mudanjiang|Bhavnagar,TEST,entity_in_dev,False,True,Bhavnagar;Mudanjiang,0.5479,504cb9bae654dbcd
+1241,pair:Solapur|Yichang,Solapur|Yichang,TEST,exposed_test_city,False,True,Solapur;Yichang,0.5097,39ae4113cc0e1e5e
+1242,pair:Kunming|Xiangtan,Kunming|Xiangtan,TEST,entity_in_dev,False,True,Kunming;Xiangtan,0.557,602b92a677fa3ee6
+1243,pair:Adana|Karbala,Karbala|Adana,TEST,entity_in_dev,False,True,Adana;Karbala,0.4635,7175b8d291bd3de6
+1244,pair:Madurai|Porto Velho,Madurai|Porto Velho,TEST,,False,True,Madurai;Porto Velho,0.4824,fd76947fbc04b4a9
+1245,pair:Al Ahmadi|Joao Pessoa,Al Ahmadi|Joao Pessoa,TEST,,False,True,Al Ahmadi;Joao Pessoa,0.5152,8ec16f217e0c4324
+1246,pair:Changchun|Sangli,Sangli|Changchun,TEST,entity_in_dev,False,True,Changchun;Sangli,0.4968,05c690eae0fa1aab
+1247,pair:Bijie|Kuala Lumpur,Kuala Lumpur|Bijie,TEST,,False,True,Bijie;Kuala Lumpur,0.4518,da463c840ecffd34
+1248,pair:Coyoacan|Qujing,Coyoacan|Qujing,DEV,exposed_test_city,False,True,Coyoacan;Qujing,0.434,91f07b352a6b9339
+1249,pair:E'zhou|Huainan,Huainan|E'zhou,TEST,exposed_test_city,False,True,E'zhou;Huainan,0.5723,a6c8b4fcc0580171
+1250,pair:Benxi|Maiduguri,Benxi|Maiduguri,TEST,exposed_test_city,False,True,Benxi;Maiduguri,0.4943,ea9c413f9d026f36
+1251,pair:Adana|Aktobe,Aktobe|Adana,DEV,,False,True,Adana;Aktobe,0.3846,dba9cccdce723388
+1252,pair:Boumerdes|Cochin,Cochin|Boumerdes,TEST,entity_in_dev,False,True,Boumerdes;Cochin,0.4894,c188324a208c74c9
+1253,pair:Ecatepec de Morelos|Tlaquepaque,Ecatepec de Morelos|Tlaquepaque,TEST,exposed_test_city,False,True,Ecatepec de Morelos;Tlaquepaque,0.5239,67dcb96ae7f506f6
+1254,pair:Barranquilla|Okayama,Okayama|Barranquilla,TEST,entity_in_dev,False,True,Barranquilla;Okayama,0.5241,92848ef9072449be
+1255,pair:Jaboatao dos Guararapes|Khabarovsk,Khabarovsk|Jaboatao dos Guararapes,DEV,,False,True,Jaboatao dos Guararapes;Khabarovsk,0.6175,ccee1d520cacad29
+1256,pair:Dar es Salaam|Winnipeg,Dar es Salaam|Winnipeg,DEV,,False,True,Dar es Salaam;Winnipeg,0.4262,a04c5a0066d35b8d
+1257,pair:Bien Hoa|Quebec,Quebec|Bien Hoa,DEV,,False,True,Bien Hoa;Quebec,0.3806,63d14789209328c9
+1258,pair:Callao|Liaocheng,Liaocheng|Callao,DEV,exposed_test_city,False,True,Callao;Liaocheng,0.5844,34890604be20160a
+1259,pair:Taguig|Tembisa,Tembisa|Taguig,DEV,exposed_test_city,False,True,Taguig;Tembisa,0.5705,758eae426ecc102d
+1260,pair:Rostov-na-Donu|Visakhapatnam,Rostov-na-Donu|Visakhapatnam,TEST,entity_in_dev,False,True,Rostov-na-Donu;Visakhapatnam,0.5721,ea704887d5bef9af
+1261,pair:Tianshui|Yangquan,Tianshui|Yangquan,TEST,exposed_test_city,False,True,Tianshui;Yangquan,0.478,91fc79bed77f1c6d
+1262,pair:Ahmedabad|Maracaibo,Maracaibo|Ahmedabad,DEV,,False,True,Ahmedabad;Maracaibo,0.5766,8162f6396e2fd51e
+1263,pair:Coyoacan|Oyo,Oyo|Coyoacan,DEV,exposed_test_city,False,True,Coyoacan;Oyo,0.4803,280dc7997746a51c
+1264,pair:Baghdad|Jeddah,Baghdad|Jeddah,TEST,entity_in_dev,False,True,Baghdad;Jeddah,0.4643,23a28fe0eef47e0c
+1265,pair:Jilin|Weihai,Jilin|Weihai,TEST,entity_in_dev,False,True,Jilin;Weihai,0.4342,64139c83939b015c
+1266,pair:Al Mawsil al Jadidah|Kinshasa,Al Mawsil al Jadidah|Kinshasa,TEST,entity_in_dev,False,True,Al Mawsil al Jadidah;Kinshasa,0.5626,0017d906434f92ea
+1267,pair:Himeji|Shihezi,Himeji|Shihezi,DEV,,False,True,Himeji;Shihezi,0.5615,65e29ac46c55ddce
+1268,pair:Fes|Kampung Baru Subang,Kampung Baru Subang|Fes,DEV,,False,True,Fes;Kampung Baru Subang,0.5136,6a5d086184782c6a
+1269,pair:Sapporo|Shiraz,Sapporo|Shiraz,TEST,entity_in_dev,False,True,Sapporo;Shiraz,0.434,8a54d48ec3ba29f1
+1270,pair:Battagram|Pikine,Battagram|Pikine,TEST,exposed_test_city,False,True,Battagram;Pikine,0.4766,17d2a70871dddfd7
+1271,pair:Hamhung|Lubumbashi,Lubumbashi|Hamhung,TEST,entity_in_dev,False,True,Hamhung;Lubumbashi,0.564,cc880d89030491f0
+1272,pair:Al Hudaydah|Mogadishu,Al Hudaydah|Mogadishu,TEST,,False,True,Al Hudaydah;Mogadishu,0.4739,b0f6e9c1bd8e6adc
+1273,pair:Bagcilar|Vilnius,Bagcilar|Vilnius,TEST,entity_in_dev,False,True,Bagcilar;Vilnius,0.4695,aa2169d7f35139b0
+1274,pair:Chenzhou|Macapa,Macapa|Chenzhou,TEST,entity_in_dev,False,True,Chenzhou;Macapa,0.4352,a93c96f6272c5d61
+1275,pair:Dongying|Kozhikode,Dongying|Kozhikode,DEV,exposed_test_city,False,True,Dongying;Kozhikode,0.4848,ab29565d55de9e43
+1276,pair:Aguascalientes|Puducherry,Aguascalientes|Puducherry,TEST,entity_in_dev,False,True,Aguascalientes;Puducherry,0.6385,8bc45c2dae4ba393
+1277,pair:Libreville|Omdurman,Omdurman|Libreville,TEST,exposed_test_city,False,True,Libreville;Omdurman,0.4384,f4d0ea5d7378bcf4
+1278,pair:Kakamega|Mumbai,Kakamega|Mumbai,TEST,exposed_test_city,False,True,Kakamega;Mumbai,0.4631,cebd5d0c976e5670
+1279,pair:Changshu|Kakamega,Changshu|Kakamega,DEV,,False,True,Changshu;Kakamega,0.4482,9a4a0dd923cb0cb4
+1280,pair:Kozhikode|Niigata,Niigata|Kozhikode,TEST,entity_in_dev,False,True,Kozhikode;Niigata,0.5208,9569200e80a3d770
+1281,pair:Maputo|Sao Paulo,Maputo|Sao Paulo,TEST,exposed_test_city,False,True,Maputo;Sao Paulo,0.463,4f89fe14f31d19da
+1282,pair:Lu'an|Sanming,Sanming|Lu'an,TEST,entity_in_dev,False,True,Lu'an;Sanming,0.3797,b95c12190a175af8
+1283,pair:Kryvyy Rih|Rohini,Kryvyy Rih|Rohini,DEV,exposed_test_city,False,True,Kryvyy Rih;Rohini,0.5583,d17713ab48720953
+1284,pair:Chiclayo|Sarajevo,Chiclayo|Sarajevo,TEST,entity_in_dev,False,True,Chiclayo;Sarajevo,0.4456,abbb6642430817fe
+1285,pair:Ganzhou|Oklahoma City,Oklahoma City|Ganzhou,TEST,exposed_test_city,False,True,Ganzhou;Oklahoma City,0.5768,5a0e309a22354479
+1286,pair:Addis Ababa|Jiaxing,Addis Ababa|Jiaxing,TEST,exposed_test_city,False,True,Addis Ababa;Jiaxing,0.4437,86191c9cae8b438d
+1287,pair:Dubai|Novosibirsk,Novosibirsk|Dubai,TEST,entity_in_dev,False,True,Dubai;Novosibirsk,0.5754,ffdafcdfd8dbf7af
+1288,pair:Cheongju-si|Krasnodar,Cheongju-si|Krasnodar,TEST,entity_in_dev,False,True,Cheongju-si;Krasnodar,0.5974,71999a482e3067c5
+1289,pair:Al Mahallah al Kubra|Ludhiana,Al Mahallah al Kubra|Ludhiana,DEV,,False,True,Al Mahallah al Kubra;Ludhiana,0.5636,8aa1b9ddc6268d07
+1290,pair:Ajmer|Indianapolis,Indianapolis|Ajmer,DEV,,False,True,Ajmer;Indianapolis,0.4121,97ba5dde12c0da1f
+1291,pair:Kumasi|Penza,Kumasi|Penza,TEST,entity_in_dev,False,True,Kumasi;Penza,0.4753,2d238e675908aad8
+1292,pair:Gaziantep|Zunyi,Gaziantep|Zunyi,TEST,exposed_test_city,False,True,Gaziantep;Zunyi,0.5145,ca9421a091eeeb4b
+1293,pair:Lome|Yongzhou,Yongzhou|Lome,TEST,entity_in_dev,False,True,Lome;Yongzhou,0.4541,59e52d81390ddc7b
+1294,pair:Johannesburg|Lu'an,Lu'an|Johannesburg,TEST,entity_in_dev,False,True,Johannesburg;Lu'an,0.5255,2ed7f0b319b373c7
+1295,pair:Anshun|Jiaozhou,Anshun|Jiaozhou,DEV,,False,True,Anshun;Jiaozhou,0.4719,ab8aa564db7e0944
+1296,pair:Fort Worth|Onitsha,Onitsha|Fort Worth,TEST,exposed_test_city,False,True,Fort Worth;Onitsha,0.4601,d9af32b789b78424
+1297,pair:Cape Town|Lanzhou,Cape Town|Lanzhou,DEV,,False,True,Cape Town;Lanzhou,0.4681,12fbc34db4a6a006
+1298,pair:Ahvaz|Izmir,Ahvaz|Izmir,TEST,entity_in_dev,False,True,Ahvaz;Izmir,0.4074,0b7530083ca61eac
+1299,pair:Beira|Rui'an,Beira|Rui'an,TEST,entity_in_dev,False,True,Beira;Rui'an,0.5368,fc70d644366d352e
+1300,pair:Cancun|Dushanbe,Cancun|Dushanbe,TEST,entity_in_dev,False,True,Cancun;Dushanbe,0.4144,1a841b835403ae19
+1301,pair:Al Mawsil al Jadidah|Fortaleza,Fortaleza|Al Mawsil al Jadidah,TEST,entity_in_dev,False,True,Al Mawsil al Jadidah;Fortaleza,0.6013,795746cad37bbf41
+1302,pair:Bahawalpur|Kashgar,Bahawalpur|Kashgar,TEST,exposed_test_city,False,True,Bahawalpur;Kashgar,0.5141,66427e1d09116a5b
+1303,pair:Hanzhong|Mudanjiang,Mudanjiang|Hanzhong,TEST,entity_in_dev,False,True,Hanzhong;Mudanjiang,0.5164,b9f88481ccff6f8a
+1304,pair:Helsinki|Kemerovo,Helsinki|Kemerovo,DEV,exposed_test_city,False,True,Helsinki;Kemerovo,0.4612,29faaf5704a3465f
+1305,pair:E'zhou|Rio de Janeiro,Rio de Janeiro|E'zhou,TEST,entity_in_dev,False,True,E'zhou;Rio de Janeiro,0.4719,ce8764bc7dd2e1fc
+1306,pair:Incheon|Saint Petersburg,Incheon|Saint Petersburg,TEST,entity_in_dev,False,True,Incheon;Saint Petersburg,0.5388,afb76df7719efe24
+1307,pair:Fort Worth|Kryvyy Rih,Kryvyy Rih|Fort Worth,TEST,exposed_test_city,False,True,Fort Worth;Kryvyy Rih,0.5579,24be54956627d970
+1308,pair:Ludhiana|Tijuana,Tijuana|Ludhiana,DEV,,False,True,Ludhiana;Tijuana,0.4883,ff6a18183b1da724
+1309,pair:Cochin|Rahim Yar Khan,Cochin|Rahim Yar Khan,DEV,,False,True,Cochin;Rahim Yar Khan,0.4428,6fc1484dbeadfb86
+1310,pair:Guigang|Nasiriyah,Guigang|Nasiriyah,TEST,entity_in_dev,False,True,Guigang;Nasiriyah,0.4902,7c18c7c6891c20cd
+1311,pair:Kota Kinabalu|Orumiyeh,Kota Kinabalu|Orumiyeh,TEST,exposed_test_city,False,True,Kota Kinabalu;Orumiyeh,0.4899,2ade3f7231330d75
+1312,pair:Orenburg|Ulhasnagar,Ulhasnagar|Orenburg,TEST,entity_in_dev,False,True,Orenburg;Ulhasnagar,0.5155,a67a5181b98eb85b
+1313,pair:Giza|Yangon,Yangon|Giza,TEST,exposed_test_city,False,True,Giza;Yangon,0.3891,532b2bf17b7691cc
+1314,pair:Dnipro|Ha'il,Ha'il|Dnipro,TEST,entity_in_dev,False,True,Dnipro;Ha'il,0.4624,dafd1003fb050a10
+1315,pair:Aligarh|Tomsk,Tomsk|Aligarh,TEST,entity_in_dev,False,True,Aligarh;Tomsk,0.4631,257d6f9aad521ddf
+1316,pair:Khabarovsk|Liupanshui,Khabarovsk|Liupanshui,TEST,entity_in_dev,False,True,Khabarovsk;Liupanshui,0.5089,4b450e852c5012ca
+1317,pair:Huainan|Kharkiv,Kharkiv|Huainan,DEV,exposed_test_city,False,True,Huainan;Kharkiv,0.5261,b7e8c12974b3de04
+1318,pair:Baise|Shizuoka,Baise|Shizuoka,TEST,entity_in_dev,False,True,Baise;Shizuoka,0.4815,2230bc1a5eaa7a6b
+1319,pair:Juiz de Fora|Mysore,Mysore|Juiz de Fora,DEV,,False,True,Juiz de Fora;Mysore,0.5487,c09238e0ebf78903
+1320,pair:Oklahoma City|Porto Alegre,Oklahoma City|Porto Alegre,TEST,exposed_test_city,False,True,Oklahoma City;Porto Alegre,0.5114,78e743c93963775a
+1321,pair:Tebessa|Xingtai,Xingtai|Tebessa,TEST,entity_in_dev,False,True,Tebessa;Xingtai,0.5433,1dcdb1cfbe84ad01
+1322,pair:Port Harcourt|Victoria de Durango,Port Harcourt|Victoria de Durango,DEV,,False,True,Port Harcourt;Victoria de Durango,0.4918,cf554637a7054544
+1323,pair:Cape Town|Nanded,Cape Town|Nanded,TEST,entity_in_dev,False,True,Cape Town;Nanded,0.4298,a198d3d9edf115b8
+1324,pair:Aleppo|Brasilia,Brasilia|Aleppo,TEST,entity_in_dev,False,True,Aleppo;Brasilia,0.4356,ae71e1660669b497
+1325,pair:Cape Town|Hannover,Cape Town|Hannover,TEST,entity_in_dev,False,True,Cape Town;Hannover,0.4788,f070d3853ead9acb
+1326,pair:Bangkok|Tangerang,Tangerang|Bangkok,DEV,,False,True,Bangkok;Tangerang,0.5172,e9633771bde67648
+1327,pair:Hachioji|Najafgarh,Najafgarh|Hachioji,TEST,entity_in_dev,False,True,Hachioji;Najafgarh,0.5194,9393a9edc1527278
+1328,pair:Chennai|Shangyu,Chennai|Shangyu,TEST,entity_in_dev,False,True,Chennai;Shangyu,0.5298,86f540ab7310c2ec
+1329,pair:Bhubaneswar|Coyoacan,Bhubaneswar|Coyoacan,TEST,exposed_test_city,False,True,Bhubaneswar;Coyoacan,0.6132,1de5fd44ebad524a
+1330,pair:Baotou|Changshu,Changshu|Baotou,DEV,exposed_test_city,False,True,Baotou;Changshu,0.4436,05ac035ab528241e
+1331,pair:Kathmandu|Maoming,Kathmandu|Maoming,TEST,entity_in_dev,False,True,Kathmandu;Maoming,0.5446,bb7be0d60e256ee6
+1332,pair:Dubai|Petaling Jaya,Dubai|Petaling Jaya,DEV,,False,True,Dubai;Petaling Jaya,0.5047,0bcc89abbce416ab
+1333,pair:Laiwu|Perm,Perm|Laiwu,TEST,entity_in_dev,False,True,Laiwu;Perm,0.4239,47d9b9ea4bd0abb3
+1334,pair:Bujumbura|Porto Alegre,Porto Alegre|Bujumbura,DEV,exposed_test_city,False,True,Bujumbura;Porto Alegre,0.5044,65babc368f9c3b09
+1335,pair:Cancun|Penza,Cancun|Penza,DEV,,False,True,Cancun;Penza,0.4986,a9cec524e0079b98
+1336,pair:Benin City|Bouake,Bouake|Benin City,TEST,exposed_test_city,False,True,Benin City;Bouake,0.4599,bb90aef0548c940a
+1337,pair:Ansan-si|Hiroshima,Hiroshima|Ansan-si,TEST,entity_in_dev,False,True,Ansan-si;Hiroshima,0.4483,077f366bb93c5de1
+1338,pair:Acapulco de Juarez|Shangyu,Shangyu|Acapulco de Juarez,TEST,entity_in_dev,False,True,Acapulco de Juarez;Shangyu,0.557,4e4686fdfc1d5096
+1339,pair:Novokuznetsk|Thuan An,Thuan An|Novokuznetsk,TEST,exposed_test_city,False,True,Novokuznetsk;Thuan An,0.6339,3a65f7135044baaa
+1340,pair:Najran|Zarqa,Najran|Zarqa,DEV,,False,True,Najran;Zarqa,0.5629,ca9fff407e0a32fc
+1341,pair:Marrakesh|Pikine,Pikine|Marrakesh,DEV,,False,True,Marrakesh;Pikine,0.4481,b5337f226d76b52c
+1342,pair:Dakar|San Luis Potosi,San Luis Potosi|Dakar,TEST,entity_in_dev,False,True,Dakar;San Luis Potosi,0.47,bf98f84c587f4185
+1343,pair:Chelyabinsk|Luancheng,Chelyabinsk|Luancheng,DEV,,False,True,Chelyabinsk;Luancheng,0.5215,fee25e5e04d15c97
+1344,pair:Izhevsk|Seongnam-si,Izhevsk|Seongnam-si,DEV,,False,True,Izhevsk;Seongnam-si,0.5424,8ab1dce13ee3ace8
+1345,pair:Benin City|Fukuoka,Fukuoka|Benin City,TEST,exposed_test_city,False,True,Benin City;Fukuoka,0.4494,094efeb86f1b87d0
+1346,pair:Ahvaz|Hohhot,Ahvaz|Hohhot,TEST,entity_in_dev,False,True,Ahvaz;Hohhot,0.4105,374f2b905430c303
+1347,pair:Hefei|Helsinki,Helsinki|Hefei,TEST,entity_in_dev,False,True,Hefei;Helsinki,0.4761,af91c2bc3eec06aa
+1348,pair:Bhayandar|Longyan,Bhayandar|Longyan,TEST,exposed_test_city,False,True,Bhayandar;Longyan,0.4562,b3934b6ca3522411
+1349,pair:Harare|Sao Bernardo do Campo,Harare|Sao Bernardo do Campo,DEV,,False,True,Harare;Sao Bernardo do Campo,0.6223,7b9df681f9879e2c
+1350,pair:Maracaibo|Peshawar,Maracaibo|Peshawar,TEST,exposed_test_city,False,True,Maracaibo;Peshawar,0.4387,94ce84b79f8869a3
+1351,pair:Arak|Vadodara,Arak|Vadodara,DEV,,False,True,Arak;Vadodara,0.533,dcbc38cfe15428f6
+1352,pair:Jinan|New Kingston,New Kingston|Jinan,DEV,,False,True,Jinan;New Kingston,0.6512,0d5c8e5d86abce76
+1353,pair:Herat|Jilin,Herat|Jilin,TEST,entity_in_dev,False,True,Herat;Jilin,0.419,4a6fcd45be4b6302
+1354,pair:Maracay|Santo Domingo Este,Santo Domingo Este|Maracay,TEST,entity_in_dev,False,True,Maracay;Santo Domingo Este,0.6217,61b7356df089e160
+1355,pair:Abu Ghurayb|Qinzhou,Abu Ghurayb|Qinzhou,DEV,exposed_test_city,False,True,Abu Ghurayb;Qinzhou,0.4752,20ec613f887f0f93
+1356,pair:Shaoxing|Zarqa,Shaoxing|Zarqa,DEV,,False,True,Shaoxing;Zarqa,0.6342,665f480d5f095024
+1357,pair:Maceio|Rahim Yar Khan,Maceio|Rahim Yar Khan,DEV,,False,True,Maceio;Rahim Yar Khan,0.4553,f55a146654c16adb
+1358,pair:Kanpur|Kryvyy Rih,Kryvyy Rih|Kanpur,TEST,exposed_test_city,False,True,Kanpur;Kryvyy Rih,0.6192,d042806bf539ac60
+1359,pair:Feira de Santana|Maoming,Feira de Santana|Maoming,TEST,entity_in_dev,False,True,Feira de Santana;Maoming,0.5998,605dc3cc98883e1b
+1360,pair:Lyon|N'Djamena,Lyon|N'Djamena,TEST,exposed_test_city,False,True,Lyon;N'Djamena,0.5951,0e4fef28e7f16629
+1361,pair:Dubai|Leon de los Aldama,Leon de los Aldama|Dubai,TEST,entity_in_dev,False,True,Dubai;Leon de los Aldama,0.6192,84570d2ea3954a04
+1362,pair:Brasilia|Muscat,Brasilia|Muscat,DEV,,False,True,Brasilia;Muscat,0.4549,f9d509310b4412a6
+1363,pair:Douala|Reynosa,Douala|Reynosa,TEST,entity_in_dev,False,True,Douala;Reynosa,0.5101,edcaae99a31ac42f
+1364,pair:Bekasi|Minsk,Bekasi|Minsk,DEV,exposed_test_city,False,True,Bekasi;Minsk,0.5013,c8a781b056cfcd71
+1365,pair:Abobo|San Miguel de Tucuman,Abobo|San Miguel de Tucuman,DEV,,False,True,Abobo;San Miguel de Tucuman,0.6356,08850c723f4875ef
+1366,pair:Bareilly|Qiqihar,Qiqihar|Bareilly,TEST,exposed_test_city,False,True,Bareilly;Qiqihar,0.4472,8bb32d6e0f328313
+1367,pair:Hangzhou|Hengyang,Hengyang|Hangzhou,TEST,entity_in_dev,False,True,Hangzhou;Hengyang,0.4384,d74ddc2cac2f85e9
+1368,pair:Kitakyushu|Nasiriyah,Kitakyushu|Nasiriyah,TEST,entity_in_dev,False,True,Kitakyushu;Nasiriyah,0.5079,4dce77be08a8917f
+1369,pair:Nashik|Surakarta,Surakarta|Nashik,DEV,exposed_test_city,False,True,Nashik;Surakarta,0.4783,6d1aa580e0fc3c27
+1370,pair:Prayagraj|Shangluo,Shangluo|Prayagraj,DEV,exposed_test_city,False,True,Prayagraj;Shangluo,0.5158,f33959861f5a24c3
+1371,pair:Guilin|Zhumadian,Guilin|Zhumadian,TEST,entity_in_dev,False,True,Guilin;Zhumadian,0.4919,9af6795a23bc0cc0
+1372,pair:Islamabad|Iztapalapa,Iztapalapa|Islamabad,TEST,entity_in_dev,False,True,Islamabad;Iztapalapa,0.4956,b13729d65568f519
+1373,pair:Aracaju|Kalininskiy,Kalininskiy|Aracaju,TEST,exposed_test_city,False,True,Aracaju;Kalininskiy,0.5233,e65119aa1beca510
+1374,pair:Ahvaz|Hanoi,Hanoi|Ahvaz,TEST,,False,True,Ahvaz;Hanoi,0.4701,63be6d51fdf3bb1a
+1375,pair:Bareilly|Tlalpan,Bareilly|Tlalpan,TEST,exposed_test_city,False,True,Bareilly;Tlalpan,0.4883,9ff234d59a6c570b
+1376,pair:Bamako|Tianjin,Bamako|Tianjin,TEST,exposed_test_city,False,True,Bamako;Tianjin,0.5038,7b365e1e8309f148
+1377,pair:Chizhou|Tehran,Tehran|Chizhou,TEST,entity_in_dev,False,True,Chizhou;Tehran,0.4725,e6611044075f328a
+1378,pair:Kunshan|Sapporo,Kunshan|Sapporo,DEV,,False,True,Kunshan;Sapporo,0.4738,dc3738b8f22c4b9e
+1379,pair:Hwaseong-si|Zhangye,Zhangye|Hwaseong-si,TEST,exposed_test_city,False,True,Hwaseong-si;Zhangye,0.5237,fdf3544c74522b20
+1380,pair:Dongying|Jiujiang,Dongying|Jiujiang,TEST,exposed_test_city,False,True,Dongying;Jiujiang,0.4974,8f3f8cba75cfc53f
+1381,pair:Kunshan|Stockholm,Stockholm|Kunshan,TEST,entity_in_dev,False,True,Kunshan;Stockholm,0.5329,3a876256e93a5b21
+1382,pair:Suizhou|Tyumen,Tyumen|Suizhou,TEST,entity_in_dev,False,True,Suizhou;Tyumen,0.539,9cc13acb0f686315
+1383,pair:Karol Bagh|Sao Paulo,Sao Paulo|Karol Bagh,TEST,exposed_test_city,False,True,Karol Bagh;Sao Paulo,0.4585,caf4eac6349f63d6
+1384,pair:Bilimora|Volgograd,Bilimora|Volgograd,TEST,entity_in_dev,False,True,Bilimora;Volgograd,0.4774,c4050377fa38a77b
+1385,pair:Kota Bharu|Las Pinas,Kota Bharu|Las Pinas,DEV,,False,True,Kota Bharu;Las Pinas,0.4337,72d8d4766106eb3d
+1386,pair:Bamako|Busan,Bamako|Busan,TEST,exposed_test_city,False,True,Bamako;Busan,0.5182,0e2c1af7619d82d3
+1387,pair:San Miguel de Tucuman|Yaounde,San Miguel de Tucuman|Yaounde,TEST,entity_in_dev,False,True,San Miguel de Tucuman;Yaounde,0.5758,a661d110b2d94ae5
+1388,pair:Campos dos Goytacazes|Goyang-si,Goyang-si|Campos dos Goytacazes,DEV,exposed_test_city,False,True,Campos dos Goytacazes;Goyang-si,0.6023,a3697b3fe34718d4
+1389,pair:Madinat an Nasr|Muzaffarabad,Muzaffarabad|Madinat an Nasr,TEST,exposed_test_city,False,True,Madinat an Nasr;Muzaffarabad,0.4842,09d73b9105f30cf6
+1390,pair:Asuncion|Xiangtan,Asuncion|Xiangtan,DEV,exposed_test_city,False,True,Asuncion;Xiangtan,0.599,e1185f8306c89833
+1391,pair:Hachioji|Nova Iguacu,Hachioji|Nova Iguacu,DEV,exposed_test_city,False,True,Hachioji;Nova Iguacu,0.506,8ded4c9d4d893b4a
+1392,pair:Marseille|Yiwu,Yiwu|Marseille,DEV,exposed_test_city,False,True,Marseille;Yiwu,0.5116,1b7107113478520d
+1393,pair:Ankara|Asmara,Ankara|Asmara,TEST,exposed_test_city,False,True,Ankara;Asmara,0.3921,45ad4bd58210383f
+1394,pair:Sangli|Siliguri,Siliguri|Sangli,TEST,exposed_test_city,False,True,Sangli;Siliguri,0.4916,a166f1e8086b0521
+1395,pair:Hamadan|Wuhan,Wuhan|Hamadan,TEST,entity_in_dev,False,True,Hamadan;Wuhan,0.468,84d97216dd279db4
+1396,pair:Davao|Shizuoka,Davao|Shizuoka,TEST,entity_in_dev,False,True,Davao;Shizuoka,0.4898,9b2a8cba9cad469f
+1397,pair:Bahcelievler|Dushanbe,Bahcelievler|Dushanbe,TEST,exposed_test_city,False,True,Bahcelievler;Dushanbe,0.5153,eca6770ed073ce1b
+1398,pair:Pikine|Vijayawada,Pikine|Vijayawada,TEST,exposed_test_city,False,True,Pikine;Vijayawada,0.5246,cb4ccf877bd11e1b
+1399,pair:Kalyan|Kota Kinabalu,Kalyan|Kota Kinabalu,TEST,exposed_test_city,False,True,Kalyan;Kota Kinabalu,0.5109,37d852019f48ad55
+1400,pair:Mbuji-Mayi|Shymkent,Shymkent|Mbuji-Mayi,TEST,,False,True,Mbuji-Mayi;Shymkent,0.4832,de28e139d731bf61
+1401,pair:Bulawayo|Visakhapatnam,Bulawayo|Visakhapatnam,DEV,,False,True,Bulawayo;Visakhapatnam,0.5911,3da2b73c86d1eaaf
+1402,pair:Mississauga|Orenburg,Orenburg|Mississauga,TEST,entity_in_dev,False,True,Mississauga;Orenburg,0.5548,7b38cbe587df769c
+1403,pair:Baku|Torreon,Torreon|Baku,TEST,entity_in_dev,False,True,Baku;Torreon,0.5036,6b043ffef4e632d1
+1404,pair:Multan|South Tangerang,Multan|South Tangerang,TEST,entity_in_dev,False,True,Multan;South Tangerang,0.5052,cfb0b8511fce15b5
+1405,pair:Guigang|Tashkent,Guigang|Tashkent,DEV,,False,True,Guigang;Tashkent,0.4316,4096622999df9b59
+1406,pair:Cebu City|Voronezh,Cebu City|Voronezh,TEST,exposed_test_city,False,True,Cebu City;Voronezh,0.4885,2ef06dcf7a6b2176
+1407,pair:Chengdu|Shymkent,Shymkent|Chengdu,TEST,,False,True,Chengdu;Shymkent,0.5091,892a62dbd82a4609
+1408,pair:Orumiyeh|Yongzhou,Orumiyeh|Yongzhou,TEST,exposed_test_city,False,True,Orumiyeh;Yongzhou,0.6027,fcdf218a75b9414e
+1409,pair:Ciudad Juarez|Suez,Suez|Ciudad Juarez,TEST,exposed_test_city,False,True,Ciudad Juarez;Suez,0.5129,e2f171bc63f109c8
+1410,pair:Shenyang|Shenzhen,Shenyang|Shenzhen,TEST,entity_in_dev,False,True,Shenyang;Shenzhen,0.555,62f8ec231805ffab
+1411,pair:Chaozhou|Mandalay,Mandalay|Chaozhou,DEV,,False,True,Chaozhou;Mandalay,0.522,7ec1cf0d34a2883d
+1412,pair:Hanzhong|Lome,Hanzhong|Lome,DEV,,False,True,Hanzhong;Lome,0.4696,2a993bd32246a5e8
+1413,pair:Madurai|Sofia,Sofia|Madurai,TEST,,False,True,Madurai;Sofia,0.4832,a05898f351777fcc
+1414,pair:Penza|Qujing,Penza|Qujing,TEST,entity_in_dev,False,True,Penza;Qujing,0.4762,2d6735738c5fb24f
+1415,pair:Chiclayo|Nanchong,Nanchong|Chiclayo,TEST,entity_in_dev,False,True,Chiclayo;Nanchong,0.4855,838f020bb625013c
+1416,pair:Busan|Karaj,Busan|Karaj,TEST,exposed_test_city,False,True,Busan;Karaj,0.4032,d982d1549ba993cd
+1417,pair:Bucheon-si|Lianyungang,Lianyungang|Bucheon-si,TEST,entity_in_dev,False,True,Bucheon-si;Lianyungang,0.5084,5fff313903f2f417
+1418,pair:Kagoshima|Nova Iguacu,Nova Iguacu|Kagoshima,DEV,exposed_test_city,False,True,Kagoshima;Nova Iguacu,0.4732,be1b63ef9989ef17
+1419,pair:Benoni|New York City,New York City|Benoni,TEST,entity_in_dev,False,True,Benoni;New York City,0.4296,56823ab23de7a6b6
+1420,pair:Florianopolis|Zagreb,Florianopolis|Zagreb,TEST,entity_in_dev,False,True,Florianopolis;Zagreb,0.5644,ed407756f6f5207a
+1421,pair:Amman|Sevastopol,Amman|Sevastopol,DEV,exposed_test_city,False,True,Amman;Sevastopol,0.4977,3c64f1bd29134db5
+1422,pair:Bahawalpur|Perm,Perm|Bahawalpur,TEST,,False,True,Bahawalpur;Perm,0.5621,7ee6ea882bec52f6
+1423,pair:Gaziantep|Ha'il,Ha'il|Gaziantep,TEST,exposed_test_city,False,True,Gaziantep;Ha'il,0.4848,9cf0bd320e5e6ab0
+1424,pair:Kleinzschocher|Nanchong,Kleinzschocher|Nanchong,DEV,,False,True,Kleinzschocher;Nanchong,0.6098,038bd38e19085297
+1425,pair:Battagram|Jiujiang,Battagram|Jiujiang,DEV,exposed_test_city,False,True,Battagram;Jiujiang,0.4621,c61abc9bf79a2cda
+1426,pair:Pontianak|Porto Velho,Porto Velho|Pontianak,TEST,entity_in_dev,False,True,Pontianak;Porto Velho,0.5959,ef23b8b7219e0963
+1427,pair:Bhubaneswar|Khabarovsk,Khabarovsk|Bhubaneswar,DEV,,False,True,Bhubaneswar;Khabarovsk,0.5964,17ee8ce21fa4a858
+1428,pair:Bengbu|Zaporizhzhya,Zaporizhzhya|Bengbu,DEV,exposed_test_city,False,True,Bengbu;Zaporizhzhya,0.5072,e547ee7c09723e80
+1429,pair:Maoming|Tabriz,Tabriz|Maoming,DEV,,False,True,Maoming;Tabriz,0.547,1aa716013047c228
+1430,pair:Can Tho|Maracaibo,Can Tho|Maracaibo,TEST,entity_in_dev,False,True,Can Tho;Maracaibo,0.5147,84c310cf9312d407
+1431,pair:Dandong|Isfahan,Isfahan|Dandong,TEST,entity_in_dev,False,True,Dandong;Isfahan,0.5344,67d9bdd350a3d14e
+1432,pair:Bouake|Can Tho,Bouake|Can Tho,DEV,,False,True,Bouake;Can Tho,0.4669,c7db6cac6293c6fe
+1433,pair:Maracay|Paranaque City,Paranaque City|Maracay,DEV,exposed_test_city,False,True,Maracay;Paranaque City,0.6256,72a3a03800b2be26
+1434,pair:Kakamega|Maiduguri,Maiduguri|Kakamega,TEST,entity_in_dev,False,True,Kakamega;Maiduguri,0.4595,dcb457e3295fd77c
+1435,pair:Kozhikode|Krasnoyarsk,Krasnoyarsk|Kozhikode,TEST,exposed_test_city,False,True,Kozhikode;Krasnoyarsk,0.5336,5d3797503646dcb8
+1436,pair:Changshu|Oslo,Changshu|Oslo,TEST,entity_in_dev,False,True,Changshu;Oslo,0.5155,55ef48250ed89006
+1437,pair:Chattogram|Kalininskiy,Chattogram|Kalininskiy,TEST,exposed_test_city,False,True,Chattogram;Kalininskiy,0.5444,843744eb77dd311a
+1438,pair:Lahore|Xuzhou,Xuzhou|Lahore,TEST,exposed_test_city,False,True,Lahore;Xuzhou,0.4528,2eb5c3aeeb9f579f
+1439,pair:Klang|Pretoria,Pretoria|Klang,TEST,,False,True,Klang;Pretoria,0.4923,32d9ee88415a4234
+1440,pair:Helsinki|Jaipur,Jaipur|Helsinki,TEST,entity_in_dev,False,True,Helsinki;Jaipur,0.4151,8683580c304ce9d7
+1441,pair:Longyan|Surakarta,Surakarta|Longyan,TEST,entity_in_dev,False,True,Longyan;Surakarta,0.4552,49b4beb7f306268d
+1442,pair:Bareilly|Shangyu,Bareilly|Shangyu,TEST,exposed_test_city,False,True,Bareilly;Shangyu,0.479,c05bf1657bbf364f
+1443,pair:Bagcilar|Dubai,Dubai|Bagcilar,TEST,entity_in_dev,False,True,Bagcilar;Dubai,0.4953,0ca86a2d109ab173
+1444,pair:Detroit|Nanded,Nanded|Detroit,TEST,entity_in_dev,False,True,Detroit;Nanded,0.4543,4da50ccd6b6f2500
+1445,pair:Matola|Xiangtan,Xiangtan|Matola,TEST,entity_in_dev,False,True,Matola;Xiangtan,0.5476,b1baba37ce863214
+1446,pair:Karbala|Uberlandia,Karbala|Uberlandia,TEST,entity_in_dev,False,True,Karbala;Uberlandia,0.5136,35d8104b5f2e95f6
+1447,pair:Erbil|Linyi,Erbil|Linyi,TEST,entity_in_dev,False,True,Erbil;Linyi,0.3647,ed7105c050b33db8
+1448,pair:Maracaibo|Shantou,Shantou|Maracaibo,DEV,,False,True,Maracaibo;Shantou,0.4932,007c2df295474f6e
+1449,pair:Maracay|Panshan,Panshan|Maracay,TEST,entity_in_dev,False,True,Maracay;Panshan,0.4674,917927ca91d79379
+1450,pair:General Santos|Mazar-e Sharif,General Santos|Mazar-e Sharif,TEST,exposed_test_city,False,True,General Santos;Mazar-e Sharif,0.5312,ef723dc52074a0dc
+1451,pair:Hanzhong|Joao Pessoa,Hanzhong|Joao Pessoa,TEST,entity_in_dev,False,True,Hanzhong;Joao Pessoa,0.5129,be28a8fc586c92ed
+1452,pair:Incheon|Rio de Janeiro,Rio de Janeiro|Incheon,DEV,,False,True,Incheon;Rio de Janeiro,0.4522,5f997ccff905e5ea
+1453,pair:Jalandhar|Pontianak,Pontianak|Jalandhar,TEST,exposed_test_city,False,True,Jalandhar;Pontianak,0.4908,554f39d5d170c04a
+1454,pair:Chiclayo|Joao Pessoa,Joao Pessoa|Chiclayo,TEST,entity_in_dev,False,True,Chiclayo;Joao Pessoa,0.5069,a58f5aab141a7219
+1455,pair:Hengyang|Nanchang,Hengyang|Nanchang,DEV,,False,True,Hengyang;Nanchang,0.4487,1d9e3161eb366a0b
+1456,pair:Gujranwala|Kalyan,Kalyan|Gujranwala,TEST,entity_in_dev,False,True,Gujranwala;Kalyan,0.6124,188a30c1d959e565
+1457,pair:Helsinki|Mysore,Helsinki|Mysore,TEST,entity_in_dev,False,True,Helsinki;Mysore,0.4174,9ddb5e55d11fc8cd
+1458,pair:Chizhou|Las Pinas,Las Pinas|Chizhou,TEST,entity_in_dev,False,True,Chizhou;Las Pinas,0.4609,f029df91cd35e0bd
+1459,pair:Hengyang|Qiqihar,Hengyang|Qiqihar,DEV,,False,True,Hengyang;Qiqihar,0.4684,bb03066126705b38
+1460,pair:Kanpur|Port Harcourt,Kanpur|Port Harcourt,TEST,entity_in_dev,False,True,Kanpur;Port Harcourt,0.5008,a91e530ead6bcedb
+1461,pair:Hohhot|Luohe,Hohhot|Luohe,TEST,entity_in_dev,False,True,Hohhot;Luohe,0.408,86c9bef5f79bf0be
+1462,pair:Bishkek|Hohhot,Hohhot|Bishkek,TEST,entity_in_dev,False,True,Bishkek;Hohhot,0.4239,69a87bb27954ec53
+1463,pair:Hohhot|Latakia,Latakia|Hohhot,TEST,entity_in_dev,False,True,Hohhot;Latakia,0.4049,d57e8d7e696c8e91
+1464,pair:Bangkok|Yangon,Bangkok|Yangon,TEST,exposed_test_city,False,True,Bangkok;Yangon,0.5163,0edfa1ca9f145d28
+1465,pair:Kunshan|Nasiriyah,Kunshan|Nasiriyah,DEV,,False,True,Kunshan;Nasiriyah,0.5372,a8a1dc006cfe6d11
+1466,pair:Brasilia|Linyi,Brasilia|Linyi,TEST,entity_in_dev,False,True,Brasilia;Linyi,0.4574,96b9169a52f08da7
+1467,pair:Daejeon|Mogadishu,Mogadishu|Daejeon,TEST,entity_in_dev,False,True,Daejeon;Mogadishu,0.5125,3612514795930e72
+1468,pair:Chenzhou|Dushanbe,Dushanbe|Chenzhou,TEST,entity_in_dev,False,True,Chenzhou;Dushanbe,0.4024,c5ff7f7fe22a1fe6
+1469,pair:Bengaluru|Esenler,Bengaluru|Esenler,TEST,entity_in_dev,False,True,Bengaluru;Esenler,0.5243,037ea96c0fd5f880
+1470,pair:Bobo-Dioulasso|Ordos,Ordos|Bobo-Dioulasso,DEV,,False,True,Bobo-Dioulasso;Ordos,0.607,2d28317b92d6d938
+1471,pair:Fukuoka|Kryvyy Rih,Fukuoka|Kryvyy Rih,DEV,exposed_test_city,False,True,Fukuoka;Kryvyy Rih,0.5413,78fca7c38f745a72
+1472,pair:Fuxin|Minsk,Fuxin|Minsk,TEST,exposed_test_city,False,True,Fuxin;Minsk,0.4899,c7e0eb4e8f2d4e02
+1473,pair:Al Basrah al Qadimah|Yongzhou,Yongzhou|Al Basrah al Qadimah,TEST,entity_in_dev,False,True,Al Basrah al Qadimah;Yongzhou,0.5598,23bf8297913c49bc
+1474,pair:Goeteborg|Shubra al Khaymah,Shubra al Khaymah|Goeteborg,TEST,entity_in_dev,False,True,Goeteborg;Shubra al Khaymah,0.5333,a634878e3aef40d5
+1475,pair:Chuzhou|Kumamoto,Chuzhou|Kumamoto,DEV,,False,True,Chuzhou;Kumamoto,0.4931,204b59591f101a02
+1476,pair:Davao|Kirkuk,Davao|Kirkuk,DEV,,False,True,Davao;Kirkuk,0.4513,6c4245daf44c8033
+1477,pair:Najafgarh|Sarajevo,Najafgarh|Sarajevo,TEST,entity_in_dev,False,True,Najafgarh;Sarajevo,0.5202,4ec23b3d25a7f8e6
+1478,pair:Kota Bharu|Linyi,Kota Bharu|Linyi,TEST,entity_in_dev,False,True,Kota Bharu;Linyi,0.3964,76d5739b11ec187e
+1479,pair:Bien Hoa|Gaziantep,Gaziantep|Bien Hoa,TEST,exposed_test_city,False,True,Bien Hoa;Gaziantep,0.481,1b11942df9f987ce
+1480,pair:Almaty|Weinan,Almaty|Weinan,DEV,exposed_test_city,False,True,Almaty;Weinan,0.4195,e87e789c395e3422
+1481,pair:Albuquerque|Ha'il,Ha'il|Albuquerque,TEST,entity_in_dev,False,True,Albuquerque;Ha'il,0.5625,5d90231942beae84
+1482,pair:Almaty|Kitakyushu,Almaty|Kitakyushu,TEST,entity_in_dev,False,True,Almaty;Kitakyushu,0.5203,6186fdaef9f30bab
+1483,pair:Petaling Jaya|Rohini,Petaling Jaya|Rohini,TEST,entity_in_dev,False,True,Petaling Jaya;Rohini,0.4713,4a287ba1c6612651
+1484,pair:Amravati|Uskudar,Amravati|Uskudar,TEST,entity_in_dev,False,True,Amravati;Uskudar,0.5551,cdb0c33c8c057a13
+1485,pair:Ajmer|Zhumadian,Ajmer|Zhumadian,DEV,,False,True,Ajmer;Zhumadian,0.4792,c78cb089e2e7b7b4
+1486,pair:Feira de Santana|Jeddah,Jeddah|Feira de Santana,TEST,entity_in_dev,False,True,Feira de Santana;Jeddah,0.6072,d050d0146b6778ba
+1487,pair:Jaboatao|Muzaffarabad,Muzaffarabad|Jaboatao,TEST,exposed_test_city,False,True,Jaboatao;Muzaffarabad,0.5339,97c2fbedd98ae1d2
+1488,pair:Chengdu|South Tangerang,South Tangerang|Chengdu,TEST,entity_in_dev,False,True,Chengdu;South Tangerang,0.5745,85145bc233b87733
+1489,pair:Chiclayo|Sharjah,Sharjah|Chiclayo,DEV,,False,True,Chiclayo;Sharjah,0.4695,2844566ef2600b6e
+1490,pair:Albuquerque|Barranquilla,Albuquerque|Barranquilla,TEST,entity_in_dev,False,True,Albuquerque;Barranquilla,0.5508,6b7e598ebfffb262
+1491,pair:Chisinau|Eskisehir,Chisinau|Eskisehir,TEST,entity_in_dev,False,True,Chisinau;Eskisehir,0.5254,f6a8b32b093405fb
+1492,pair:Cochin|Wuzhou,Cochin|Wuzhou,TEST,entity_in_dev,False,True,Cochin;Wuzhou,0.4829,70e87fd6afe6a5c5
+1493,pair:Laibin|Mudanjiang,Laibin|Mudanjiang,TEST,entity_in_dev,False,True,Laibin;Mudanjiang,0.4849,3a7ed0eebaec28ae
+1494,pair:Enugu|Victoria de Durango,Enugu|Victoria de Durango,DEV,,False,True,Enugu;Victoria de Durango,0.5394,116a3e3b680befd8
+1495,pair:Chenzhou|Lu'an,Chenzhou|Lu'an,TEST,,False,True,Chenzhou;Lu'an,0.3907,b61a3e9451258649
+1496,pair:Bucaramanga|Qinzhou,Qinzhou|Bucaramanga,DEV,exposed_test_city,False,True,Bucaramanga;Qinzhou,0.4898,10222271ef05d51b
+1497,pair:Kumasi|Saint Petersburg,Saint Petersburg|Kumasi,TEST,entity_in_dev,False,True,Kumasi;Saint Petersburg,0.5626,d4ea1decb67cfd82

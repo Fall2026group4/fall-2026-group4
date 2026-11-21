@@ -1,0 +1,85 @@
+{
+  "experiment": "gemma_scope_splicing_pile",
+  "status": "full pre-registered run",
+  "created_utc": "2026-11-12T22:29:15+00:00",
+  "n_eval_docs": 512,
+  "n_reference_docs": 64,
+  "layers": [
+    5,
+    12,
+    19
+  ],
+  "model": {
+    "hf_id": "google/gemma-2-2b",
+    "revision": "c5ebcd40d208330abc697524c919956e692655cf",
+    "dtype": "bfloat16",
+    "attn_implementation": "eager",
+    "loaded_commit_check": {
+      "tokenizer": "unverifiable",
+      "model": "unverifiable"
+    },
+    "logits_dtype": "torch.bfloat16"
+  },
+  "sae": {
+    "hf_repo": "google/gemma-scope-2b-pt-res",
+    "hf_revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+    "params_npz_sha256": {
+      "layer_5/width_16k/average_l0_68": "b856c6094e1e059c114befda0233442d8f229252968aa9042bb94b949257ebbf",
+      "layer_12/width_16k/average_l0_82": "afae57c7fdfe6faace4b97d9fe9a184deb08bda8852a4c40b308cf6c72ed8384",
+      "layer_19/width_16k/average_l0_73": "7a9fe27c2d8c1e570c926f2ef7ba3aad46ba836e50c1965333890d7e0be45978"
+    }
+  },
+  "code_provenance": {
+    "available": true,
+    "commit": "13eaecabcf09ae4ee23f3fd169aa46d792261ca2",
+    "dirty_paths": []
+  },
+  "implementation_constants": {
+    "sae_lens_crosscheck_rtol": 0.0001,
+    "v4_l0_factor": 2.0,
+    "batch_size": 1,
+    "tf32": false,
+    "use_cache": false,
+    "deterministic_algorithms": "strict (no warn_only)",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "logit_precision_limitation_H4a": null,
+  "hardware": {
+    "gpu": "Tesla T4",
+    "compute_capability": "7.5",
+    "bf16_native": false,
+    "bf16_supported_incl_emulation": true,
+    "model_param_dtype": "torch.bfloat16"
+  },
+  "input_sha256": {
+    "preregistration.json": "9817740a2a184e6b7a88d12a4eeece4519fd638761625839b38e16117ba007cc",
+    "README.md": "5d0913f1275a99695e7b972ae0f6d66f373ca3e873d90f4dc4dac5282a6466d8",
+    "scripts/gemma/03_pile_gemma_scope_splicing.py": "a59adaae2d72ea9174d0c92f57945fa610b411e9385f26d5a00f0310c9b17c03",
+    "src/evaluation/pile_splicing.py": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+    "results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv": "637b6404302120ad3fbc6282df32fb9df193c78f9092d35bd9a96b99e3da1aa3",
+    "results/gemma2_pile/gemma_scope_splicing/sample_info.json": "6502c60845f8e8a97f7c64918d49248f9e6ec4e8ed2a5a212f5f528efbc2ed00"
+  },
+  "output_sha256": {
+    "results/gemma2_pile/gemma_scope_splicing/per_doc_metrics.csv": "e39d28265431d14642ce0b31ef16ee70e193e38b2071cc8ab31bb5fb247bd704",
+    "results/gemma2_pile/gemma_scope_splicing/per_doc_sum_x.npz": "3b2becfbe17db243897a6df981a5e2f671da2d705850f4ad12abd916ab22dc93",
+    "results/gemma2_pile/gemma_scope_splicing/summary_by_layer.csv": "72a48baedef3eef8974deef2e3774877bd2d744b8be46216334f01f189c32fb1",
+    "results/gemma2_pile/gemma_scope_splicing/summary_by_layer_source.csv": "07085e961afee720984170f5dbb2374cdcbcdc2f53e9f3743aacd49de25b8c36",
+    "results/gemma2_pile/gemma_scope_splicing/controls.csv": "a1ee86051f4d1c735939ca65d7c27abf6fd1526a7544a87e16cb982600b13d65",
+    "results/gemma2_pile/gemma_scope_splicing/h_g1.csv": "96af8acbdb240cf0619ec26b9e6d4227d94460e5fb3c5446743deeaf15491b1c",
+    "results/gemma2_pile/gemma_scope_splicing/gates.json": "06bc9bd85f87f14ad6dfab017e0d7e382261040a8423e8cca361b67c48c0e466"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "torch": "2.7.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.21.0",
+    "sae_lens": "6.54.12",
+    "numpy": "2.4.4",
+    "pandas": "2.3.3"
+  },
+  "runtime_s": 8067.5,
+  "seconds_per_eval_document": 15.55,
+  "seconds_per_reference_document": 0.98,
+  "projected_full_run_hours": 2.23,
+  "peak_gpu_memory_gb": 8.58
+}

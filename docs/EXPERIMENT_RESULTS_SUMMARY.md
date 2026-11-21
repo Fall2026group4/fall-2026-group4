@@ -715,6 +715,110 @@ Selected rows (SAE gap mean ± sd over 3 seeds; PCA gap; the class follows the p
 | k = 128 | 3 | 1 (R2 ReLU L11) | 0 / 58 |
 | task-L0-matched | 8 | 4 (old ReLU L8; R2 ReLU L8, L11; res-jb L8) | 0 / 58 |
 
+## H1-TEST: RepE-LM held-out TEST pass (2026-11-13; single run; 81 SAEs; 2,408 TEST rows)
+
+Source: `results/repe/repe_lm_test_evaluation/confirmatory_cells.csv`. Holm over 13 cells.
+
+| Hyp. | Metric | Cell | VAL diff | TEST diff [95 % CI] | Pairs | Holm p | Confirmed |
+|---|---|---|---|---|---|---|---|
+| HT1 | M4 T_rec/T_full (↑) | C1 L8 | +0.101 | +0.127 [+0.079, +0.175] | 9/9 | 0.021 | yes |
+| HT1 | | C3 L8 | +0.090 | +0.072 [+0.015, +0.130] | 9/9 | 0.058 | no |
+| HT2 | pair-dir cosine (↑) | C1 L1/L8/L11 | +0.135/+0.094/+0.080 | +0.136/+0.090/+0.069 | 9/9 each | ≤ 5.6e-4 | yes ×3 |
+| HT2 | | C2 L1/L8/L11 | +0.084/+0.050/+0.066 | +0.077/+0.051/+0.058 | 9/9 each | ≤ 0.0151 | yes ×3 |
+| HT2 | | C3 L1/L8/L11 | +0.142/+0.068/+0.039 | +0.141/+0.064/+0.035 | 9/9 each | ≤ 3.0e-3 | yes ×3 |
+| HT3 | persona refit gap (↓) | C1 L8 | −0.048 | −0.048 [−0.079, −0.016] | 9/9 | 0.046 | yes |
+| HT3 | | C3 L8 | −0.037 | −0.022 [−0.055, +0.011] | 8/9 | 0.128 | no |
+
+* **Verdicts:** HT2 CONFIRMED; HT1 NOT CONFIRMED; HT3 NOT CONFIRMED.
+* **HT4 (descriptive),** T7/T8 test-only persona-probe AUROC: 0.564 (L1), 0.833 (L8), 0.825 (L11).
+* **N3/N4 neutral floor:** 0.501 / 0.561 / 0.551. It fails at L8 and L11.
+* **Secondary comparisons:** 55 improvement / 35 no change / 0 regression.
+
+## AUDIT-SENS: sensitivity analyses (2026-11-13; VALIDATION-based; not confirmatory)
+
+Source: `results/shared/audit_sensitivity/`.
+
+| Analysis | Key numbers | Effect on conclusions |
+|---|---|---|
+| S1 statement / document uncertainty | Cluster share of variance 33–99 %. HT1-C1 adjusted CI [+0.014, +0.240]; HT3-C1 [−0.093, −0.002]; both Holm p = 0.156. HT2 9/9 hold. M5 16/18 hold | TopK HT1/HT3 cells fragile; L1 ΔCE gains for C2/C3 not robust |
+| S2 headroom-normalised persona vs neutral | ΔNL (old) −0.12 to −0.00; CI < 0 at L5 and L7–11 | Persona-specific loss withdrawn |
+| S3 matched task L0 (k\* persona 128; GoT 60.3 / 88.8) | 54/57 R2 classes unchanged; 13/19 old orderings change | R2 gains robust; architecture rankings not |
+| S4 GoT probe anomaly | Bag-of-words ≤ 0.55; per-polarity logistic L1–2 0.75–0.77 vs pooled 0.52–0.59 | Pooling hides early-layer truth (post hoc) |
+| S5 noise references | GoT logistic L6–11: SAE 0.26–0.32, isotropic 0.23–0.30, shuffled SAE error 0.15–0.20; 92/99 label-aligned | "Largely perturbation sensitivity" withdrawn |
+| S6 C grid 1e-4…10 | 0/15 class changes; no edge selections | Robust |
+
+## TSP pilot (2026-11-14; VALIDATION; R2 TopK L8; GoT readers fitted on group B; mean of 3 seeds)
+
+| Metric (↓) | R2 base | ctrl (GoT-A replay) | tsp (truth subspace) | rand | pca |
+|---|---|---|---|---|---|
+| Frozen logistic gap | 0.210 | 0.051 | 0.012 | 0.090 | 0.059 |
+| Re-fit logistic gap | 0.063 | 0.019 | −0.001 | 0.024 | 0.026 |
+| Re-fit MLP gap | 0.031 | 0.037 | 0.027 | 0.028 | 0.026 |
+| Error-only truth AUROC | 0.708 | 0.708 | 0.609 | 0.743 | 0.716 |
+| OWT NMSE | 0.0959 | 0.0974 | 0.0974 | 0.0971 | 0.0974 |
+| OWT ΔCE (nats) | 0.0603 | 0.0614 | 0.0618 | 0.0617 | 0.0614 |
+| M4 T_rec/T_full (↑) | 0.726 | 0.706 | 0.711 | 0.719 | 0.712 |
+
+**tsp vs ctrl:**
+
+| Metric | Mean difference [95 % CI] | Holm p |
+|---|---|---|
+| Frozen logistic gap | −0.039 [−0.084, +0.007] | 0.135 |
+| Re-fit logistic gap | −0.020 [−0.058, +0.017] | 0.147 |
+
+3/3 seeds favour tsp on both metrics. Pre-registered verdict: **NOT SUPPORTED**. Source:
+`results/geometry_of_truth/truth_subspace_preservation/`.
+
+## TSP-VERIFY (2026-11-14; VALIDATION; independent re-computation of the TSP pilot; post-hoc checks exploratory)
+
+| Check | Result |
+|---|---|
+| Agreement with pilot outputs | AUROC gaps ≤ 0.0003; MLP ≤ 0.0046; NMSE / L0 / ΔCE / KL ≤ 1e-5 |
+| Frozen rule, tsp − ctrl | frozen −0.039 [−0.085, +0.008], Holm 0.140; re-fit −0.020 [−0.058, +0.018], Holm 0.151 → NOT SUPPORTED |
+| Share of variance from statement sampling | re-fit 95 %, frozen 65 % |
+| Frozen-probe direction inside S | 58 % of norm² (chance 1 %) |
+| Re-fit MLP, tsp − ctrl | 3 nets −0.010; 10 nets −0.013; 5 × 256 units −0.016 (all 3/3 seeds) |
+| tsp − rand / pca, re-fit logistic | −0.025 (p 0.24) / −0.027 (p 0.12) |
+| GoT numerical transfer, tsp − ctrl | frozen +0.014, re-fit +0.004 (n.s.) |
+| Error-only AUROC, tsp − ctrl, with statement sampling | −0.099 [−0.189, −0.009], p 0.042 (pilot without statement sampling: p 0.016) |
+| ctrl − R2 base cost | OWT NMSE +1.6 %, KL +1.6 % (p 0.030), ΔCE +1.9 % (p 0.063) |
+| P(pass) at the observed effect, 3 seeds / 112 cities | frozen 0.02; re-fit < 0.001 |
+
+Source: `results/geometry_of_truth/truth_subspace_preservation/verification/`.
+
+
+## TSP-R Phase 0: fresh GoT families, DEV only (2026-11-14/15; VALIDATION)
+
+| Family | DEV L8 AUROC [95 % CI] | Eligible (≥ 0.70) | R2 base re-fit gap (3 seeds) | TEST units | Conservative MDE |
+|---|---|---|---|---|---|
+| companies_true_false | 0.791 [0.755, 0.825] | yes | +0.023 (−0.014 / +0.053 / +0.028) | 204 companies | ≈ 0.033 |
+| common_claim_true_false | 0.708 [0.680, 0.734] | yes (marginal) | +0.001 (no headroom) | 3,070 | ≈ 0.014 |
+| counterfact_true_false (held-out relations) | 0.625 [0.618, 0.632]; within-relation 0.786 | no | +0.009 | 10,001 subjects | ≈ 0.008 |
+| sp_en_trans / neg_sp_en_trans | 0.513 / 0.512 | no | noise | 229 words | — |
+| cities_cities_conj / disj (secondary) | 0.613 / 0.620 | n/a | +0.015 to +0.066 | 65 / 70 | — |
+
+* The drafted random-effects P2 is infeasible with k = 2.
+* P1, cities cross-fitting (635 groups): power ≈ 0.97–0.99 at −0.020 with 8 seeds.
+
+Source: `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`.
+
+
+## TSP-R Phase 1 (2026-11-15; VALIDATION, confirmatory, pre-registered)
+
+| Quantity | tsp − ctrl [95 % CI] | Decision |
+|---|---|---|
+| **H1** cities re-fit logistic gap (8 seeds, 635 groups) | **−0.0207 [−0.0261, −0.0153]**, p 7e-10, 8/8 | SUPPORTED (meaningful) |
+| H2 vs shuf / H3 vs rand | −0.0202 [−0.0267, −0.0137] / −0.0220 [−0.0274, −0.0166] | both rejected → truth-specific |
+| Cities re-fit MLP 10 × 64 / 5 × 256 | −0.0032 [−0.0054, −0.0011] / −0.0069 [−0.0125, −0.0012] | linear and nonlinear |
+| Cities frozen logistic (readout) | −0.0348 [−0.0409, −0.0287] | — |
+| Absolute re-fit gap, base / ctrl / tsp | 0.0675 / 0.0324 / 0.0117 | no distortion |
+| OWT NMSE / ΔCE / KL relative | +0.02 % / −0.25 % / +0.06 % (bounds ≤ +0.54 %) | non-inferior |
+| Persona gap / M4 | −0.0020 (bound +0.033) / +0.0037 (bound −0.061) | not demonstrated (imprecise) → TRADE-OFF |
+| companies TEST (secondary) | −0.0036 [−0.0129, +0.0057] | no detectable transfer |
+| common_claim TEST (distortion check) | −0.0012 [−0.0034, +0.0010] | no distortion |
+| counterfact TEST (exploratory) | +0.0008 [−0.0026, +0.0043] | no transfer |
+
+Source: `results/geometry_of_truth/truth_subspace_preservation/replication/`.
 ## 25. Gemma-2-2B: Gemma Scope SAE reconstruction and splicing on The Pile (M6; VALIDATION; cross-model evidence for reconstruction and behaviour only)
 Numbered §10 on PR #28 before the merge with #27. **Scope:** generalisation evidence for reconstruction (§1) and behavioural splicing (§4) only; Gemma information faithfulness and causal faithfulness were **not tested** in M6.
 Source: `results/gemma2_pile/gemma_scope_splicing/` (`summary_by_layer.csv`, `h_g1.csv`, `summary_by_layer_source.csv`; README §2). **Not numerically comparable with §§1–24 or PCA-CM:** different model, SAE family (pretrained Gemma Scope JumpReLU, width 16,384), L0, hook (`resid_post`), data (The Pile) and context (1,024 tokens). Layers are described side by side, not ranked; each layer has its own SAE.

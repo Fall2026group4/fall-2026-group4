@@ -1,0 +1,11 @@
+metric,pilot_column,max_abs_diff,mean_abs_diff
+geo__frozen_logistic_gap,frozen_logistic_gap,0.0002989477040816757,9.632759353743624e-05
+geo__refit_logistic_gap,refit_logistic_gap,0.00023915816326536277,0.00010075644841266934
+geo__refit_mlp3_gap,refit_mlp_gap,0.004603794642857317,0.00037202380952384214
+geo__error_term_auroc,error_term_auroc,0.0002989477040815647,9.300595238096208e-05
+geo__task_nmse,task_nmse,3.725290298461914e-09,4.13921144273546e-10
+geo__task_l0,task_l0,0.0,0.0
+owt_nmse,owt_nmse,9.65598077884433e-09,4.247991825585057e-09
+owt_l0,owt_l0,0.0,0.0
+splice_delta_ce,splice_delta_ce,9.106832837300904e-06,1.7761553406088327e-06
+splice_kl,splice_kl_mean,1.2785290914862912e-06,3.570812299365696e-07

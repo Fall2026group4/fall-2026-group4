@@ -1,0 +1,8 @@
+family,dev_usable_rows,dev_frac_true,dev_label_conflicting_duplicates
+sp_en_trans,117,0.5043,0
+neg_sp_en_trans,117,0.4957,0
+companies_true_false,353,0.4986,6
+common_claim_true_false,1347,0.5019,0
+counterfact_true_false,9356,0.5,0
+cities_cities_conj,331,0.5166,0
+cities_cities_disj,341,0.4868,0

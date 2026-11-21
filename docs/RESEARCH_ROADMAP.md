@@ -42,9 +42,9 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | R1 RepE honesty-preservation fine-tuning, layer 6 (27 runs, validation): ReLU INCONCLUSIVE (primary met, RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED | `results/repe/r1_honesty_preservation_layer6/` | `d17bb00`, `211218f` (pre-registration), `d283a49` |
 | R2 SAE-in-the-loop honesty-feature clamp, layer 6 (9 base SAEs with all controls, 18 R1 SAEs exploratory; validation): NOT SUPPORTED (descriptive) for all architectures and k; test stage deferred | `results/repe/r2_sae_in_the_loop_steering_layer6/` | `d17bb00`, `b232ce4` (pre-registration), this commit |
 
-| **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), `28a7d85`, `167fadb` (documentation); docs merged with #27 on 2026-11-15 (D36 at the time; D44 since 2026-11-17) |
+| **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), `28a7d85`, `167fadb` (documentation); docs merged with #27 on 2026-11-15 (D44; originally D36) |
 ## 2. In progress
-* **Gemma M6 integration (2026-11-15):** PR #28 documentation reconciled with the merged #27 ledgers (M6 = D36, progress §43, results summary §25; since 2026-11-17 D44 and §51). M6 itself is COMPLETED, VALIDATION (§1, §6). Merge needs the owner's approval and review.
+* **Gemma M6 integration (2026-11-15):** PR #28 documentation reconciled with the merged #27 ledgers (M6 = D44, progress §51 (team numbering plan, 2026-11-21; originally D36 / §43), results summary §25). M6 itself is COMPLETED, VALIDATION (§1, §6). Merge needs the owner's approval and review.
 * **R3 (Gemma Scope width × L0 ladder):** PR #30 (`dhruv-gemma-r3`, owner Dhruv Rai). PRE-REGISTERED ONLY; code implemented and CPU-tested; **NOT RUN**. Separate from M6; no R3 result exists.
 * **M0–M5 measurement programme (D23, approved 2026-11-08).** P0.
   * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. **DONE 2026-11-08** (validation): splice damage tracks reconstruction within layer; truth-readout gap does not (formal pass fragile).
@@ -276,9 +276,13 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 ## 2026-11-13 additions (audit remediation; register in `docs/remediation/issue_register.md`)
 
 * DONE: PCA-CM, the capacity-matched PCA reference (S1), VALIDATION only; `results/shared/pca_capacity_matched/`.
-* IN PROGRESS (user-authorised 2026-11-13; implementation frozen, TEST pass running): H1 RepE-LM TEST split. Data and protocol are frozen (`data/repe/repe_lm_test/`,
-  `results/repe/repe_lm_test_protocol/`); the evaluation is NOT RUN and awaits user approval (about 1–2 GPU hours).
-  Next: write script 29, smoke-test it on validation, hash it into the pre-registration, run once.
+* DONE 2026-11-13: H1 RepE-LM TEST pass (`results/repe/repe_lm_test_evaluation/`).
+  * HT2 confirmed.
+  * HT1 and HT3 are not confirmed; only their C1 cells are.
+* DONE 2026-11-13 (D36, user-approved): paper and curated docs revised with the H1-TEST verdicts. The L8 causal gain
+  is "confirmed for TopK; not confirmed for BatchTopK vs JumpReLU".
+* OPEN (P2): the N3/N4 neutral frames leak slightly at L8/L11 (0.56). A future test-only template set should check
+  neutral-floor calibration on TRAIN first.
 * PRE-REGISTERED 2026-11-13 (SIL, `results/repe/sae_in_the_loop_mediation/`; pilot gate first): a mediated SAE-in-the-loop test. Earlier proposal text: An edit at layer ℓ with SAEs spliced at
   ℓ+1…ℓ+k, so that the effect must pass through SAE nonlinearities (D33).
 * DONE (VALIDATION): PCA-CM. Paper and curated docs revised with the user-approved wording (D34, 2026-11-13).
@@ -288,6 +292,52 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   confirmation of PCA-CM (GoT test rows were previously exposed, D31, so it would be labelled accordingly).
 * OPEN: off-machine backup (needs a destination); linking the commit email; posting the drafted replies
   (`docs/remediation/review8_response_draft.md`); the team merge order.
+
+## 2026-11-13 audit follow-up (AUDIT-SENS, §44–45 of the journal)
+
+* DONE: verified same-volume checkpoint backup (656 files, 21.7 GB).
+* OPEN (P0, BLOCKED): off-machine backup. No destination or credentials on the host; needs a destination from the user
+  (S3 bucket, external drive or institutional storage). D37.
+* DONE: S1–S6 sensitivity analyses (`results/shared/audit_sensitivity/`); conclusions revised (D38).
+* NEW (P1, needs a pre-registration): per-polarity GoT re-analysis of the SAE gaps (S4 shows pooling hides early-layer
+  truth).
+* NEW (P1, needs a pre-registration): any future confirmatory test must include statement and document sampling in its
+  interval (S1); 3 seeds alone cannot support cell-level confirmation of small effects.
+* NEW (P2): report architecture rankings on task prompts only at matched task L0 (S3).
+* NOT PLANNED without approval (training): R2-recipe SAEs at more layers; a valid JumpReLU (X3); Gemma Scope baselines.
+
+## 2026-11-14 (TSP)
+* IN PROGRESS: TSP truth-subspace diagnostics (done) and pilot (R2 TopK L8, validation only; §46 of the journal).
+* NEW (P1): corrected JumpReLU pilot (fixed λ with warm-up, ε and θ₀ rescaled to the E‖x‖² = 768 input scale,
+  threshold lr / parameterisation per the paper). The R2 failure is traceable to recipe differences, not the
+  architecture.
+* NEW (P2): R4 "compensation" follow-up: constrain the persona-contrast error (T_err) during KL fine-tuning.
+* DONE 2026-11-14: TSP pilot (validation): NOT SUPPORTED by the frozen rule; consistent 3/3 direction, specific,
+  cost-free (D39).
+* NEW (P1, needs a pre-registration): TSP replication with ≥ 5 seeds and a held-out-template truth set (e.g. GoT
+  `sp_en_trans`/`companies`-style sets, or new city templates), plus L11 and BatchTopK; include the ctrl
+  (task-replay) arm and an OWT-only cost check.
+* DONE 2026-11-14: TSP-VERIFY. Pilot numbers reproduced independently; verdict confirmed; concerns recorded (D40).
+* SUPERSEDES the "≥ 5 seeds" replication item above. PROPOSED (P1, awaiting approval): TSP-R (design in
+  `docs/2026-11-14_tsp_verification_and_replication_design.md`).
+  * DONE 2026-11-15 — Phase 0 (DEV only; `replication_phase0/`).
+    * Eligible: companies and common_claim. Ineligible: counterfact (across relations), sp_en, conj/disj.
+    * common_claim has no headroom. The random-effects P2 is infeasible.
+    * Amendment proposed (D41): P1 becomes the sole primary; companies a secondary; common_claim an enhancement
+      check.
+  * DONE 2026-11-15: TSP-R Phase 1 pre-registration frozen (D42; `replication/`).
+  * DONE 2026-11-15: TSP-R Phase 1 (D43). Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear;
+    TRADE-OFF qualifier (imprecise persona/M4 guards); no transfer to companies / common_claim / counterfact.
+  * NEW (P1, needs a pre-registration; no training): paired per-item persona/M4 guard re-evaluation of the existing
+    TSP-R fold-0 checkpoints.
+  * NEW (P2, needs a pre-registration): multi-family truth subspace for transfer (Q2), evaluated on the locked
+    fresh-family TEST splits only after a new DEV-based design.
+  * DONE: checkpoint-registry families for `replication/checkpoints/` and `r2_tspr_base_seeds/`.
+  * Phase 1 (≈ 10–13 h): 8 base seeds (5 new R2 TopK L8) × 5 arms (ctrl / tsp / rand / pca / label-permuted S) ×
+    3 folds.
+* NEW (P2, after TSP-R): multi-family "universal" truth subspace (general + polarity directions), separately
+  pre-registered.
+* NEW (P2): minimal-pair difference-preservation loss (no fitted direction) as an exploratory nonlinear alternative.
 
 ## 2026-11-15 additions (dead-latent audit)
 
@@ -309,3 +359,54 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * Merge order: #31 → #30 → #35. Until #35 merges, the paper cites three result folders that are only on
   `sae-research` (marked in Table `tab:evidence`).
 * OPEN: M6 figures in vector format (Review #9 F7), not part of this pass.
+
+## 2026-11-21 (X2 fairness audit: GPT-2 vs Gemma-2-2B; analysis only, no experiment run)
+Audit of which GPT-2 and Gemma results can be shown side by side. Gemma evidence on teammates' branches, read with
+`git show` only: M6 Gemma Scope splicing (`origin/main`, `results/gemma2_pile/gemma_scope_splicing/`) and the R3
+width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
+* **Comparable now (descriptive side by side only, no ranking):** the within-model ratio ΔCE_SAE / ΔCE_random and the
+  H-G1 direction (Gemma 36/36 SAEs; GPT-2 "most runs", ratio 0.76–2.89 per run); the L0 → ΔCE trend within each model.
+* **Not comparable (must not be ranked):** raw ΔCE/KL in nats (different vocabularies, base CE, context 128 vs 1024);
+  EV across models (OWT vs Pile, different depths); architectures (Gemma Scope is JumpReLU only, and our JumpReLU is
+  the weakest-validated arm); seed sd (GPT-2) vs document bootstrap (Gemma); Gemma L11 GoT-cities steering (no SAE,
+  20 controls) vs GPT-2 L6 RepE honesty causal test (200 controls).
+* NEW (P0): **X2a, sync Gemma evidence into `sae-research` docs.** `RESEARCH_DECISIONS.md` D1, `results/gemma/README.md`
+  and `docs/final_defense/*` still say "no Gemma SAEs" although M6 is on `main`; R3 needs a team review/merge decision.
+* NEW (P0, needs a pre-registration; inference only, ≈ 1 h GPU): **X2b, GPT-2 splicing under the M6 protocol.**
+  Same 512 + 64 Pile validation documents (`sample_manifest.csv`), 1024-token windows, document bootstrap, same
+  controls; GPT-2 at depth-matched sites (Gemma `resid_post` 5/12/19 = `resid_pre` 6/13/20 of 26 → relative depth
+  0.23/0.50/0.77 → GPT-2 `resid_pre` 3/6/9), with both the public res-jb SAEs (public-vs-public pairing with
+  Gemma Scope) and the in-house R2 SAEs where they exist.
+* NEW (P1): **X2c, sparsity normalisation for cross-model tables.** Report L0, L0/d_model and width/d_model per cell
+  (Gemma 16k/2304 ≈ 7.1×, L0 ≈ 70–85; GPT-2 baseline 3072/768 = 4×, L0 128; R2 16×; res-jb 32×).
+* NEW (P1): **X2d, Gemma representation preservation (M1/M2 + GoT cities frozen probes on Gemma Scope splices).**
+  Without it the representation cell of the cross-model table stays EMPTY.
+* NEW (P1): **X2e, steering parity.** Either run the Gemma steering protocol (`scripts/gemma/01_steering_sweep.py`:
+  GoT cities, grouped splits, bare + context directions, norm-matched random controls) on GPT-2, or re-run Gemma at
+  200 controls (C7/M4) *and* GPT-2 at the same count; otherwise steering stays model-specific (appendix).
+* Causal (C1-style patching) and architecture comparisons stay **missing for Gemma** and must be shown as missing cells.
+* **Superseded the same day** by the full audit `docs/2026-11-21_final_week_technical_audit.md` (task IDs XB, XT-G0,
+  XT-G, DX, XC-1…XC-4, TI-1…TI-4, TI-G, XG-IH, XJ, XF). All PLANNED, awaiting the user's approval. Teammate evidence
+  found: M6 (`main`), R3 (PR #30), `dhruv-causal` (unmerged, no PR: GPT-2 GoT causal test, SAE-in-the-loop on old
+  prompts, frozen-probe decomposition).
+
+## 2026-11-21 (final-week execution; plan approved)
+* DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§55, D47).
+* IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched), TI-1 (L11 TopK,
+  L8 BatchTopK, L8 ReLU; L1 not eligible).
+* PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
+  XC-4/SIL, TI-G, X0, E1, PCA-CM-T, XG-IH / XJ (feasibility), XF.
+* BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or
+  measured free space allows; disk guard active.
+* NEW (P1): cross-model truth claims must avoid ceiling tasks (Gemma GoT cities AUROC 1.000 at L12).
+
+## 2026-11-21 additions (PR #31 merged with `origin/main` after PR #35 and PR #36)
+
+* DONE (merge only; no experiment run): `origin/main` merged into `simba-paper-manuscript`. The restructured
+  manuscript is kept; the nine legacy section files that PR #35 edited stay deleted, because their H1-TEST,
+  AUDIT-SENS and TSP content is already in the new sections (checked claim by claim). `main.pdf` rebuilt.
+* SUPERSEDES the 2026-11-17 merge-order line: #35 merged first, so the H1-TEST, AUDIT-SENS and TSP result folders
+  the paper cites are now on `main`.
+* DONE: Table `tab:evidence` no longer marks those three folders with the "not yet on `main`" dagger; R3 stays
+  on PR #30 and keeps its dagger until #30 merges.
+* OPEN: final R3 integration into the manuscript after PR #30 merges (D46 / §54 / results summary §27 reserved).

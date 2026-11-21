@@ -1,0 +1,83 @@
+{
+  "primary_label": "SUPPORTED (meaningful)",
+  "H1": {
+    "p_adj": 6.753703691215502e-10,
+    "rejected": true
+  },
+  "H2": {
+    "p_adj": 1.010270341334596e-06,
+    "rejected": true
+  },
+  "H3": {
+    "p_adj": 6.753703691215502e-10,
+    "rejected": true
+  },
+  "specificity": "truth-specific",
+  "information": "linear and nonlinear",
+  "readout_only": false,
+  "trade_off": true,
+  "distortion_cities": false,
+  "distortion_common_claim": false,
+  "distortion": false,
+  "companies_secondary": {
+    "estimate": -0.0036338100607283446,
+    "per_seed": [
+      0.00497,
+      -0.02106,
+      -0.01552,
+      0.00969,
+      -2e-05,
+      0.00289,
+      -0.0113,
+      0.00128
+    ],
+    "se_seed": 0.0038606968333820373,
+    "se_stmt": 0.0013587033893630474,
+    "se": 0.00409280526528599,
+    "stmt_share": 0.11020648591556263,
+    "df": 8.841370059048518,
+    "ci_low": -0.012917762645020897,
+    "ci_high": 0.005650142523564209,
+    "ci90_low": -0.0111517388964262,
+    "ci90_high": 0.003884118774969511,
+    "upper95_one_sided": 0.003884118774969511,
+    "lower95_one_sided": -0.0111517388964262,
+    "p": 0.39812917782282253,
+    "p_pilot_rule_t": 0.404093087942022,
+    "ci_low_pilot_rule": -0.013311756648070234,
+    "ci_high_pilot_rule": 0.006044136526613546,
+    "seeds_negative": 4,
+    "n_seeds": 8
+  },
+  "counterfact_exploratory": {
+    "estimate": 0.0008440206219344584,
+    "per_seed": [
+      0.00221,
+      0.00256,
+      -0.00324,
+      -0.00432,
+      0.00601,
+      0.00452,
+      -0.00425,
+      0.00326
+    ],
+    "se_seed": 0.0014649760926382933,
+    "se_stmt": 0.00037125720540282436,
+    "se": 0.0015112864932120833,
+    "stmt_share": 0.060347068847854,
+    "df": 7.927990012149528,
+    "ci_low": -0.002646529881155725,
+    "ci_high": 0.004334571125024642,
+    "ci90_low": -0.0019696019657709893,
+    "ci90_high": 0.003657643209639906,
+    "upper95_one_sided": 0.003657643209639906,
+    "lower95_one_sided": -0.0019696019657709893,
+    "p": 0.5919366788258266,
+    "p_pilot_rule_t": 0.5939233539607489,
+    "ci_low_pilot_rule": -0.0027296040710194473,
+    "ci_high_pilot_rule": 0.004417645314888364,
+    "seeds_negative": 3,
+    "n_seeds": 8
+  },
+  "note": "Labels follow preregistration.json; distortion replaces preservation wording if true."
+}

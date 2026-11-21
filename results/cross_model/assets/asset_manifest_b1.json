@@ -1,0 +1,451 @@
+{
+ "batch": "b1",
+ "created": "2026-11-21 08:43:21",
+ "files": [
+  {
+   "repo_id": "monology/pile-uncopyrighted",
+   "repo_type": "dataset",
+   "filename": "val.jsonl.zst",
+   "revision": "3be90335b66f24456a5d6659d9c8d208c0357119",
+   "local_path": "~/.cache/huggingface/hub/datasets--monology--pile-uncopyrighted/snapshots/3be90335b66f24456a5d6659d9c8d208c0357119/val.jsonl.zst",
+   "bytes": 338045152,
+   "sha256": "db5e5d1532bf8dc33a6589b50ecba1a8c96f7b4b9cb343d168e603c393007c26",
+   "seconds": 2.9
+  },
+  {
+   "repo_id": "Skylion007/openwebtext",
+   "repo_type": "dataset",
+   "filename": "plain_text/train-00077-of-00080.parquet",
+   "local_path": "~/.cache/huggingface/hub/datasets--Skylion007--openwebtext/snapshots/79d93d786212f7344586290adb811d4ae6a1762c/plain_text/train-00077-of-00080.parquet",
+   "bytes": 303181602,
+   "sha256": "a5def3ac614d54e3635405f00e69b2f102fcd834ffeda5aa1075fef2b606f937",
+   "seconds": 3.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.0.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.0.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "e19f1315083b38ce0b31ed0004e3dc64fb3029b8999e6610f7ecfceccd489f7f",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.0.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.0.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "0f59f9b8baa40b8ae042b731f801b41115e3aea38bb12d9ec304fd323e32c0a5",
+   "seconds": 1.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.1.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.1.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "a1210a9004af5a03dc37bf404e2b3642daf94f9554d0682810def8c15c1ee169",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.1.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.1.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "f28edd189f39a566af489bf86b340e799d8297adb57bb78220ca664b60aa1830",
+   "seconds": 0.9
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.2.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.2.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "5162408a2c4a3230befb9aeb455cf2e614d6e9d4742efbe7f633f86b6d21c2c7",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.2.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.2.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "57aae3d13394d8ecfc6950fb4d40e45cabf6ebc871f3cc52845742e5d6ffb979",
+   "seconds": 1.2
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.3.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.3.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "b5c12ef2bf0e4ff4b4c4be28d1221deac94165b672683d14991b9dba46e0e2ee",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.3.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.3.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "dd8148397ada4fd6fd189668a83c3719edfc869fc6064196c8fa85c6bafd6b65",
+   "seconds": 1.3
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.4.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.4.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "212082867cf85ab5cac8e6ab72db0af0c217a850c48073f341948c3bb168a5ed",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.4.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.4.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "7f27352d2d3b4d7a619c33a02fab455101623d1a6b4925e642dfbe32e47f1e2c",
+   "seconds": 1.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.5.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.5.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "36a3f406af216257f53b99e7f58e5f12e283adef0762defd8974d9b4657d1960",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.5.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.5.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "e884d76a089658fbd5ce2cd25f5579c4fa0b09a361fb3ee9b2641e54aed8d126",
+   "seconds": 1.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.6.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.6.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "ac362df90ad640a8e78def8d4f595cbc7c67c049f06698ca3b5cc5a9f5adb873",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.6.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.6.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "3ff899406a9fb3c33aebca365d6a8065a2f48eba9cef699543fb8602abe207be",
+   "seconds": 1.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.7.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.7.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "93d39f5eefeb5c254bf45c871fddc9527619d3626eeb0bd015e5f7330945f88e",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.7.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.7.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "47bfb75008fdd7ebf068044c0c3a212606aaa3f5dc05f1d1a7cffe502002c0b6",
+   "seconds": 1.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.8.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.8.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "f8c690c02ea3e1a29713748dd3922404fe59310cafaab6e376b4526b5f69c12c",
+   "seconds": 0.0
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.8.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.8.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "d46a41aa7a9e0475c135e41dde0cb3d8510528ce3140568a18a0e29d3a624d8b",
+   "seconds": 1.0
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.9.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.9.hook_resid_pre/cfg.json",
+   "bytes": 1274,
+   "sha256": "c6d4f121d8237a8fb4525d27d91b365dc5d83c9d97c727aca0bf4b975b38cce5",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.9.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.9.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "beee562c3fee612b76c0e79994d45b82780c2055cfa1305d2644b598d49efec7",
+   "seconds": 1.2
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.10.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.10.hook_resid_pre/cfg.json",
+   "bytes": 1277,
+   "sha256": "3432e32c397847fdd2605642d857e6e316efb7874ada708f27d36ea21819521d",
+   "seconds": 0.1
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.10.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.10.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "8039df054735de8291683f77557913ad67cae327ea7a0f0e6a10e9bbe3ec1d0f",
+   "seconds": 1.0
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.11.hook_resid_pre/cfg.json",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.11.hook_resid_pre/cfg.json",
+   "bytes": 1277,
+   "sha256": "56d449043307ff43f58dd1bb999e8dda53935a767a2dcbaaa4b61974b42ffe3b",
+   "seconds": 0.0
+  },
+  {
+   "repo_id": "jbloom/GPT2-Small-SAEs-Reformatted",
+   "filename": "blocks.11.hook_resid_pre/sae_weights.safetensors",
+   "local_path": "~/.cache/huggingface/hub/models--jbloom--GPT2-Small-SAEs-Reformatted/snapshots/57d08a4fd333fbf18caf3fbea63ceeb88e2f50d9/blocks.11.hook_resid_pre/sae_weights.safetensors",
+   "bytes": 151096640,
+   "sha256": "1cb4a926a342336734e12452c9eba94663b9b4855494a9ebebaba7ea104f89e6",
+   "seconds": 1.1
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_0/width_16k/average_l0_105/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_0/width_16k/average_l0_105/params.npz",
+   "bytes": 302131416,
+   "sha256": "6e7e19856691fad86473ebd188a9f0b0d12183a7f1c9cd77f88313e0eae0ac9a",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_1/width_16k/average_l0_102/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_1/width_16k/average_l0_102/params.npz",
+   "bytes": 302131416,
+   "sha256": "5aff0ddabb716bfe78f6befa16953636bff90cac3e25c96327cc3c254f89e3c1",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_2/width_16k/average_l0_141/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_2/width_16k/average_l0_141/params.npz",
+   "bytes": 302131416,
+   "sha256": "ee8a03e62cd157b7e620c3ba86fc62a515d8f18af4119079bca610e9c568b03c",
+   "seconds": 2.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_3/width_16k/average_l0_59/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_3/width_16k/average_l0_59/params.npz",
+   "bytes": 302131416,
+   "sha256": "4a8331750020658057c5a91eaa16ad9e5081149e5192df8b47b61e96c9ba76bc",
+   "seconds": 3.0
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_4/width_16k/average_l0_124/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_4/width_16k/average_l0_124/params.npz",
+   "bytes": 302131416,
+   "sha256": "8fc8c0a3963baff40b363c61e1b7937195b8872fa3cd7589c00a70190ed25198",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_5/width_16k/average_l0_68/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_5/width_16k/average_l0_68/params.npz",
+   "bytes": 302131416,
+   "sha256": "b856c6094e1e059c114befda0233442d8f229252968aa9042bb94b949257ebbf",
+   "seconds": 2.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_6/width_16k/average_l0_70/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_6/width_16k/average_l0_70/params.npz",
+   "bytes": 302131416,
+   "sha256": "310eed5af08670c2bb4cf1ab5a9edb3167988a3d4bcc9f8efe448181e39f1d38",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_7/width_16k/average_l0_69/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_7/width_16k/average_l0_69/params.npz",
+   "bytes": 302131416,
+   "sha256": "0053efa141eb259a0c2f48d52c5260d6821c6f94e4bfe72cfb277750318cd1aa",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_8/width_16k/average_l0_71/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_8/width_16k/average_l0_71/params.npz",
+   "bytes": 302131416,
+   "sha256": "43a3c3ad66d97890a1965780ea4d73f844b8b7ac9ea4562a0f5bc98c4a06c264",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_9/width_16k/average_l0_73/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_9/width_16k/average_l0_73/params.npz",
+   "bytes": 302131416,
+   "sha256": "207109d15eab69ba4b08366b837f902b526f2c176747f596940f66536cd56f25",
+   "seconds": 2.5
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_10/width_16k/average_l0_77/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_10/width_16k/average_l0_77/params.npz",
+   "bytes": 302131416,
+   "sha256": "4d50e4dd8d9dee0835b6e45591b5c040621a6bd7c65f5668bce0248d796a4f79",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_11/width_16k/average_l0_80/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_11/width_16k/average_l0_80/params.npz",
+   "bytes": 302131416,
+   "sha256": "5144ae3065f25becac375c308309f55b894ab0396b23a6ece51800be687a79e0",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_16k/average_l0_82/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_16k/average_l0_82/params.npz",
+   "bytes": 302131416,
+   "sha256": "afae57c7fdfe6faace4b97d9fe9a184deb08bda8852a4c40b308cf6c72ed8384",
+   "seconds": 2.4
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_13/width_16k/average_l0_84/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_13/width_16k/average_l0_84/params.npz",
+   "bytes": 302131416,
+   "sha256": "418f00824512e648eaebb30ea6adec54e4dc0747e06b079c62574d184385e1f9",
+   "seconds": 2.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_14/width_16k/average_l0_84/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_14/width_16k/average_l0_84/params.npz",
+   "bytes": 302131416,
+   "sha256": "7c34b2f9482458ba1b205e03b8ec9277778ae718b2fae42274c519755d7d3843",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_15/width_16k/average_l0_78/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_15/width_16k/average_l0_78/params.npz",
+   "bytes": 302131416,
+   "sha256": "c1eeb452bd1daec0a3e88163d7119df8d33f833163e691780cd15eee2bc8e1e2",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_16/width_16k/average_l0_78/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_16/width_16k/average_l0_78/params.npz",
+   "bytes": 302131416,
+   "sha256": "3e1558c7f0ecb6f954f63c287bb342cca38961a8fa249d5a3d60dcd5bcb54865",
+   "seconds": 3.3
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_17/width_16k/average_l0_77/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_17/width_16k/average_l0_77/params.npz",
+   "bytes": 302131416,
+   "sha256": "ca23a5f3720ebff62c3e42cc268275342e2f015e55ae6b695bb6d96bc0286097",
+   "seconds": 6.5
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_18/width_16k/average_l0_74/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_18/width_16k/average_l0_74/params.npz",
+   "bytes": 302131416,
+   "sha256": "6779e94af81ea79f631c2a0c27cb0e78c08bfdda5037ea3381112e9d714991d6",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_19/width_16k/average_l0_73/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_19/width_16k/average_l0_73/params.npz",
+   "bytes": 302131416,
+   "sha256": "7a9fe27c2d8c1e570c926f2ef7ba3aad46ba836e50c1965333890d7e0be45978",
+   "seconds": 2.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_20/width_16k/average_l0_71/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_20/width_16k/average_l0_71/params.npz",
+   "bytes": 302131416,
+   "sha256": "f3cee0d393bc046706c1812c5e921c92774d8641cf11f767d4716fc1b9e48b1c",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_21/width_16k/average_l0_70/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_21/width_16k/average_l0_70/params.npz",
+   "bytes": 302131416,
+   "sha256": "1f584a214a5283bb433f14127ea6b5df29b246f8ce2495efc4d6b3746d8202e2",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_22/width_16k/average_l0_72/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_22/width_16k/average_l0_72/params.npz",
+   "bytes": 302131416,
+   "sha256": "d6abfcd90b091e93ff452479f45035ccaed21bb67c6de05b40b30da3c302df10",
+   "seconds": 2.8
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_23/width_16k/average_l0_75/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_23/width_16k/average_l0_75/params.npz",
+   "bytes": 302131416,
+   "sha256": "9801925158b20f911a898bb40dc7d921395c058af55030153f1a4f156bc8afb7",
+   "seconds": 2.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_24/width_16k/average_l0_73/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_24/width_16k/average_l0_73/params.npz",
+   "bytes": 302131416,
+   "sha256": "88d10aa5f38ca46b0bb30a16e76dd47a6ad55e54e0cb572f843c177c65c5263c",
+   "seconds": 2.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_25/width_16k/average_l0_116/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "local_path": "~/.cache/huggingface/hub/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_25/width_16k/average_l0_116/params.npz",
+   "bytes": 302131416,
+   "sha256": "a982cac052cf5c64bf9c77b5f0da9b680ddf04449f3c5d898b41ac0dc56f63f3",
+   "seconds": 3.4
+  }
+ ]
+}

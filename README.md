@@ -127,8 +127,9 @@ Verified against `results/shared/m5_confirmatory_test/m5_rows.csv`; details in
 | Spliced ΔCE (nats), same (L8 / L11) | 0.133 / 0.204 | 0.062 / 0.096 | **TEST**, improvement |
 | ΔCE, R4 KL fine-tune vs MSE control (L0 fixed at 128) | 0.062 | 0.051 | **TEST**, improvement (NMSE +2 %) |
 | GoT cities re-fit truth gap | 0.061 | 0.056 | **TEST**, no clear change (0/34 cells) |
-| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement (test split built and frozen, not yet evaluated) |
-| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement (borderline: per-SAE MDE at L8 is 0.054–0.107) |
+| RepE-LM persona re-fit gap | 0.156 | 0.108 | VALIDATION, improvement; on TEST (H1-TEST) confirmed for TopK under the seed-level rule (0.137 → 0.090, Holm p = 0.046; fragile, AUDIT-SENS S1), hypothesis NOT CONFIRMED (BatchTopK vs JumpReLU inconclusive) |
+| Causal preservation T_rec/T_full | 0.625 | 0.726 | VALIDATION, improvement; TEST-confirmed for TopK under the seed-level rule (0.602 → 0.729, Holm p = 0.021), fragile to statement sampling (AUDIT-SENS S1); not confirmed for BatchTopK vs JumpReLU (Holm p = 0.058) |
+| RepE-LM persona pair-direction cosine (9 cells) | — | — | **TEST-CONFIRMED** 9/9 (+0.035 to +0.141); robust to statement sampling (AUDIT-SENS S1) |
 | T_rec/T_full, R4 KL vs MSE control (L11) | 0.694 | 0.671 | VALIDATION, **regression** |
 
 * R2 changed data (100M fresh tokens vs 101,600), width (12,288 vs 3,072) and recipe together. The gain is not
@@ -340,8 +341,8 @@ and its error part. Each part is patched separately.
   It is **not untouched.** Any further use will be labelled "previously exposed".
 * **Original RepE test:** touched in a smoke run and in the historical causal test. It is retired with the confounded
   task.
-* **RepE-LM test:** never built or accessed. M5 ran without it, so every persona and causal result is VALIDATION
-  (proposal H1 builds it).
+* **RepE-LM test:** built after M5 and read once, by H1-TEST on 2026-11-13 (`results/repe/repe_lm_test_evaluation/`). Only its 13 pre-registered
+  cells are confirmatory; the rest of that pass is exploratory.
 * **M0–M4** used train and validation only (`test_rows_used: 0` in each checks file).
 * **M5 (2026-11-10):** one pass over the OWT test (100 documents) and GoT test (452 statements) for 81 SAEs. These rows
   had been scored earlier for the old reference SAEs only; the R2/R4 SAEs had never been scored on test (D31).
@@ -463,7 +464,8 @@ and checkpoint hashes. `docs/experiment_manifest.csv` has one row per experiment
 - [x] E2 (2026-11-10); [ ] E1 (draft pre-registration only)
 - [x] M5 final test, run once (2026-11-10)
 - [x] R2-scaled, R4, R5 (2026-11-10)
-- [ ] RepE-LM test split (H1) and the other 2026-11-12 proposals (`docs/limitations_and_future_work.md`), only after approval
+- [x] RepE-LM test split and single test pass (H1-TEST, 2026-11-13)
+- [ ] The other 2026-11-12 proposals (`docs/limitations_and_future_work.md`), only after approval
 - [ ] Choose a journal and use its template. **Due 11-17**
 - [ ] SVG/PDF figures; diagram source + `.svg`
 - [ ] Revised presentation and the 10-20 deck in `presentation/`; progress reports for weeks 5–15
