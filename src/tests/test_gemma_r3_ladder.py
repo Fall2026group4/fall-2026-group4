@@ -143,7 +143,8 @@ def test_chunked_sae_equals_unchunked(s05):
     for chunk in (1, 7, 128, 301, 1000):
         x_hat, l0 = s05.chunked_sae(sae, x, chunk)
         assert torch.equal(l0, l0_ref), chunk
-        assert torch.allclose(x_hat, x_ref, rtol=1e-6, atol=1e-6), chunk
+        # chunking changes the float32 accumulation order (max |diff| 1.43e-6 measured by Simba), so atol is 1e-5
+        assert torch.allclose(x_hat, x_ref, rtol=0, atol=1e-5), chunk
 
 
 def test_active_latent_agreement(s05):

@@ -1069,16 +1069,16 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * Natural source mixture; 10 of 16 sources LOW-N.
 * **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
-* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; ONGOING, NO RESULT CLAIMED, code implemented. Not part of M6.
+* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; COMPLETED, VALIDATION (Tier A), code implemented. Not part of M6.
 
-## 44. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16). Status: COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2)
+## 54. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16 and §54 on 2026-11-21 to avoid collisions with #31 and #35). Status: COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2)
 
 * **Why:** M6 measured one width-16k SAE per layer. For Gemma, the only lever on reconstruction that needs no
   training is to move along the published width × L0 ladder. R3 measures that trade-off with M6's data, metrics and
   controls. It addresses the main question's "improve reconstruction while preserving behaviour" for Gemma.
   Roadmap R3 (named on `sae-research`); the RepE-LM / K1–K2 part is split off as R3b.
 * **Design** (full pre-registration: `results/gemma2_pile/r3_gemma_scope_ladder/README.md` and `preregistration.json`;
-  decision D37):
+  decision D46):
   * Same 512 + 64 Pile documents as M6, read from M6's committed manifest.
   * Gemma-2-2B bf16, `resid_post` at layers 5, 12, 19.
   * 54 pinned Gemma Scope SAEs: Tier A, 36 SAEs (16k/65k at layers 5 and 19; 16k/32k/65k at layer 12); Tier B, 18
@@ -1127,7 +1127,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   each run stays under Kaggle's 10 h limit. This uses the existing `--widths` option; no code changed.
 * **Deviation 2 (2026-11-16, before any Tier A result was looked at):** Tier B (131k/262k/524k, runs K4–K6) is
   cancelled because of the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota. H1–H3 are tested on
-  Tier A only (layers 5/12/19, widths 16k/32k/65k, 36 SAEs). Decision D37; README "Deviations".
+  Tier A only (layers 5/12/19, widths 16k/32k/65k, 36 SAEs). Decision D46; README "Deviations".
 * **Runs (2026-11-16):** K2 (layer 19) finished in 8.01 h (`K2_20261116T044900Z`) and K3a (layer 12, 16k and
   32k) in 8.85 h (`K3_20261116T141625Z`); V10 PASS for both. K3b (layer 12, 65k) has started. The outputs are
   still on Kaggle and no metric has been read.

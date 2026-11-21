@@ -751,7 +751,8 @@ Source: `results/gemma2_pile/gemma_scope_splicing/` (`summary_by_layer.csv`, `h_
 * No representation-preservation, causal-intervention or GPT-2 vs Gemma superiority claim.
 * **Limitation (H4a, measurement floor only, results not adjusted):** bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.0008297822, mean |CE difference| 0.0264414540, top-1 disagreement 0.0226209048 and max |logit difference| 0.1562862396. Hardened smoke outputs: `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`.
 
-## 26. R3: Gemma Scope width × L0 ladder on The Pile (VALIDATION; Tier A, 36 SAEs; Tier B not run, Deviation 2)
+## 27. R3: Gemma Scope width × L0 ladder on The Pile (VALIDATION; Tier A, 36 SAEs; Tier B not run, Deviation 2)
+Numbered §26 on PR #30 until 2026-11-21; renumbered §27 to avoid a collision with #31.
 Source: `results/gemma2_pile/r3_gemma_scope_ladder/` (README Section 2; `ladder/*.csv`; `precision_t4_vs_fp32/`).
 Same 512 Pile validation documents, metrics and controls as M6 (§25); V6: M6 reproduced within margin at all three
 layers. One SAE per configuration: intervals are 95 % document-bootstrap CIs (1,000 resamples, seed 0), not seed

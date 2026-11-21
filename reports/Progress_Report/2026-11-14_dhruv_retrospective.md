@@ -126,7 +126,7 @@ Only mappings that hold literally are listed. Limits are stated where my work co
 ## Week of 2026-11-15 (up to 2026-11-16)
 
 - **2026-11-16, `d11c93e`:** merged `origin/main` into `dhruv-gemma-r3` after #28 was merged. My doc entries were
-  renumbered to D37 and §44. The M6 files are unchanged.
+  renumbered to D37 and §44 (renumbered again on 2026-11-21 to D46 and §54). The M6 files are unchanged.
 - **2026-11-16, `10286e7`:** recorded R3 Deviations 1 and 2 (K3 split into K3a and K3b; Tier B cancelled) before any
   Tier A result was looked at.
 - **2026-11-16, PR #30:** base changed from `simba-gemma-m6-results` to `main` (Instructor Review #9); review requested
