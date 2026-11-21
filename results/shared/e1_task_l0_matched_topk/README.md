@@ -1,4 +1,4 @@
-# E1: TopK trained at task-level matched sparsity (layers 1, 8, 11). Status: DRAFT PRE-REGISTRATION, awaiting user approval
+# E1: TopK trained at task-level matched sparsity (layers 1, 8, 11). Status: PRE-REGISTERED (frozen 2026-11-21; approved by the user)
 
 Evidence level, once run: **VALIDATION**. No test row is read: OWT test evaluation is deliberately **not** run for
 these SAEs. Nothing in this folder has been run.
@@ -100,3 +100,76 @@ an artefact of matching sparsity on OWT rather than on the task prompts?
 * **Total about 1.2 h GPU.** Peak memory is as in the baseline training (single A10G). Disk: 36 × about 19 MB
   checkpoints, gitignored.
 * **No download.** OWT activations for layers 1, 8 and 11 are cached.
+
+## 1.7 Additions for review (2026-11-21; nothing above is changed)
+
+**Matched-sparsity requirement:**
+* TopK@k* fires exactly k* latents per token, so its task L0 equals k* by construction.
+* A k* is valid only if |k* − L0_task(X)| / L0_task(X) ≤ 10 % (the CLAUDE.md baseline rule), where L0_task(X) is
+  measured on TRAIN prompts. Rounding makes this hold automatically.
+* L0 is also reported on OWT VAL and on the other task. TopK@k* is deliberately not OWT-matched.
+
+**Evaluation splits:**
+* GoT cities: readers fitted on TRAIN and scored on VALIDATION (M2 protocol).
+* RepE-LM persona and neutral: TRAIN / VALIDATION.
+* OWT VAL for reconstruction and splicing.
+* **No TEST split is loaded** (`test_rows_used = 0` is asserted).
+
+**Success criteria (pre-registered, unchanged in substance):**
+* E1-H1 classes per cell (PERSISTS / ATTENUATED / REVERSED / NO DIFFERENCE).
+* The headline is the count of ATTENUATED + REVERSED among cells where the k = 128 difference was significant.
+* "The M2/M4 architecture differences are robust to task-level matching" is claimed **only if** ≥ 75 % of those
+  cells PERSIST after BH.
+* E1-H2 uses the IMP-L paired rule (all 3 seeds the same sign and |mean d| > 2 sd).
+
+**Behavioural cost limits (reported, not a guard, because TopK@k* is not OWT-matched by design):**
+* OWT spliced ΔCE and KL of TopK@k* vs TopK@128.
+* Any cell where TopK@k* has OWT EV < 0.5 is flagged as "degenerate sparsity" and reported separately. This mainly
+  matters at L1 GoT, where k* ≈ 23–32.
+
+**Failure conditions (stop and report, no re-tuning):**
+1. The training reproduction gate fails (TopK@128 L8 seed 42 differs from the committed checkpoint beyond 1e-6).
+2. The evaluation reproduction gate fails (M2 / M4 committed values not reproduced).
+3. Any k* violates the ±10 % rule.
+4. Any run diverges (NaN, or OWT EV < 0). It is flagged and excluded from classes, never re-run with new
+   hyperparameters.
+
+**Scope caveat (added):**
+* E1 retrains the **old 3072-width recipe** (101,600 tokens), because its question concerns the M2/M4 comparisons,
+  which used those SAEs.
+* These SAEs are under-trained (audit §3.3). E1's conclusions therefore apply to the old-SAE architecture comparisons
+  only, not to R2 or to cross-model claims.
+* An R2-recipe E1 (36 × 100M tokens) is out of scope.
+
+**Storage:**
+* 36 × about 19 MB checkpoints, about 0.7 GB, written to `/mnt/scratch/checkpoints/e1/` during training.
+* Keepers (all 36, because they are small) are copied to the gitignored EBS path listed in §1.2 and
+  SHA-256-verified.
+
+## 1.8 Freeze notes (2026-11-21, before any E1 training or outcome; approved by the user as Option B item 3)
+
+* **k\* (TRAIN prompts; `k_star.json`):**
+
+  | Layer | GoT ReLU / JumpReLU | RepE ReLU / JumpReLU |
+  |---|---|---|
+  | L1 | 32 / 23 | 216 / 214 |
+  | L8 | 76 / 63 | 161 / 170 |
+  | L11 | 111 / 92 | 162 / 141 |
+
+  All 12 are distinct, so 36 SAEs are trained, and all are within ±10 % of task L0. Split checks are in
+  `pretraining_checks.json`: test_rows_used 0, group overlap 0 for all three tasks.
+* **Primary BH family (clarified):**
+  * GoT cities: refit logistic gap;
+  * RepE persona: refit logistic gap and M4 `preservation_rec` (M4 exists for RepE only);
+  * per (layer, X): 3 × 2 × 3 = **18 tests**.
+* **Classes:** E1-H1 classes are computed uncorrected (`cls`) and with BH on the k\* contrast (`cls_bh`). The §1.7
+  headline uses `cls_bh`.
+* **Gates (`gate` stage; E1 stops if any fails):**
+  * G1: training reproduction ≤ 1e-6;
+  * G2: M2 evaluation reproduction ≤ 1e-6 (M2's exact job-seed index and bootstrap);
+  * G3: M4 `preservation_rec` reproduction ≤ 1e-6.
+* **Seeds for new evaluation calls:** M2 seed SEED + 1000·L + 500 + 10·j + task index, and +900 for the PCA reference.
+  They are fixed here.
+* **Script:** `scripts/shared/e1_task_l0_matched_topk.py`; tests in `src/tests/test_e1_task_l0_matched.py`.
+* **Checkpoints:** written to `/mnt/scratch/checkpoints/e1/` (ephemeral), and copied with hash verification to the
+  gitignored `results/openwebtext/e1_task_matched_topk/` as keepers.
