@@ -136,8 +136,9 @@ encoder → sparse codes (L0 ≈ 128 of 3,072 or 12,288) → SAE decoder → x̂
 > effect than the whole SAE does.
 >
 > So better reconstruction is necessary for behaviour, but it is not evidence of faithful truth or causal structure.
-> Each level has to be measured separately. Our limits: GPT-2 Small only, three seeds, and causal results on
-> validation only."
+> Each level has to be measured separately. On held-out persona data, the representation gain replicated everywhere,
+> and the layer-8 causal gain replicated for TopK but not for BatchTopK against JumpReLU. Our limits: GPT-2 Small
+> only, three seeds, and one neutral control that failed at layers 8 and 11."
 
 ## 11. Where the evidence is
 

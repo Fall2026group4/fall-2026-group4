@@ -73,3 +73,13 @@ data/*/activations/
 *.bak
 data/openwebtext/stream_shards/
 data/openwebtext/stream_tokens/
+
+# Fresh GoT downloads (no upstream licence; kept local, not redistributed)
+data/got/fresh/raw_*/
+
+# TSP-R smoke / integration folders (checkpoint copies, npz caches)
+results/geometry_of_truth/truth_subspace_preservation/replication/smoke_eval*/
+results/geometry_of_truth/truth_subspace_preservation/replication/smoke_repro/
+results/geometry_of_truth/truth_subspace_preservation/replication/eval/cities/
+results/geometry_of_truth/truth_subspace_preservation/replication/eval/owt/
+results/geometry_of_truth/truth_subspace_preservation/replication/eval/test/

@@ -15,7 +15,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **OWT** is GPT-2's training distribution, and the standard SAE training and evaluation corpus.
 * **GoT** provides paired true/false statements whose structure isolates truth. Used: cities + neg_cities (geographic), larger_than + smaller_than (numerical).
 * **RepE** persona prompts give a contrastive honesty signal.
-* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments. *(Updated 2026-11-12: used as the Gemma reconstruction and splicing dataset, D36.)*
+* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments. *(Updated 2026-11-12: used as the Gemma reconstruction and splicing dataset, D44.)*
 
 ## D3. Train SAEs in house instead of using public SAEs (2026-10-30, `8dc0b6e`)
 * **Reason:** public SAEs (`gpt2-small-res-jb`, the v5-32k TopK) differ in width, data, sparsity and training. An architecture comparison needs one protocol.
@@ -251,7 +251,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
-* **H6:** Results transfer to Gemma-2-2B SAEs. *(2026-11-12, M6, D36, VALIDATION: the behavioural-splicing finding replicates in direction with Gemma Scope SAEs at layers 5/12/19 (H-G1 supported at all three); reconstruction measured descriptively. Gemma information (truth/persona) and causal preservation remain untested.)*
+* **H6:** Results transfer to Gemma-2-2B SAEs. *(2026-11-12, M6, D44, VALIDATION: the behavioural-splicing finding replicates in direction with Gemma Scope SAEs at layers 5/12/19 (H-G1 supported at all three); reconstruction measured descriptively. Gemma information (truth/persona) and causal preservation remain untested.)*
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
 * **H9:** Fine-tuning improves causal preservation. **Tested at L8 final (E3, D28):** Method A no; output-KL not creditably (gains only with L0 drift; TopK unchanged).
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**
@@ -360,8 +360,148 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
   protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.
 
-## D36. Gemma/Pile experiment design (M6): Gemma Scope SAEs at layers 5/12/19, Pile validation, 1024-token truncation (2026-11-12)
-* **Numbering:** recorded as D21 on PR #28 before PR #27 was merged; renumbered D36 on 2026-11-15 because #27 already uses D21–D35. Content unchanged.
+## D36. How the H1-TEST outcome is reported (2026-11-13). Status: ADOPTED; paper revision APPROVED by the user and DONE (2026-11-13)
+* **Source:** `results/repe/repe_lm_test_evaluation/` (single TEST pass, Holm over 13 cells, rule frozen in the addendum).
+* **Adopted now (follows the pre-registered rule; no discretion):**
+  * HT2 is reported as a CONFIRMED TEST RESULT.
+  * HT1 and HT3 are reported as NOT CONFIRMED.
+  * Their C1 cells are reported as confirmed cells.
+  * HT1-C3 is reported as "improved in 9/9 pairs on TEST, not significant after Holm (p = 0.058)". It is never
+    rounded up to confirmed.
+* **Proposed (needs the user's approval before the paper or curated docs change):** D35's "borderline, pending the
+  test" becomes:
+  * "confirmed on held-out TEST for TopK (C1: 0.602 → 0.729)";
+  * "not confirmed for BatchTopK vs JumpReLU (C3)".
+* **Not changed:** no threshold, cell count or rule is altered after seeing TEST; the N3/N4 floor failure is
+  disclosed, not explained away.
+* **Approval and execution (2026-11-13):** the user wrote "Yes, proceed with D36". Done:
+  * The paper (abstract, setup, causal results, R2, the new H1-TEST subsection and Table `t_h1test`, statistics,
+    discussion, limitations, conclusion, appendix) and the curated docs are revised.
+  * The failed N3/N4 control is a separate limitation.
+  * The 90 secondary comparisons are labelled exploratory everywhere they appear.
+  * `src/tests/test_h1_test_paper_claims.py` checks every quoted number against the artifacts.
+  * No experiment was re-run and no metric changed.
+
+## D37. Checkpoint backup scope (2026-11-13)
+* **Done:** a verified same-volume backup of all 656 checkpoints (21.7 GB) in `../backups/2026-11-13_checkpoints/`.
+  The manifest and verification are copied to `docs/backups/`.
+* **Blocked:** no off-machine destination or credentials exist on the host (no AWS CLI or keys). The second NVMe is
+  instance-store, which is ephemeral. Uploading 21.7 GB through a chat connector is not feasible.
+* **Decision:** the off-machine copy waits for the user to name a destination. It remains P0.
+
+## D38. How the AUDIT-SENS results change the reported conclusions (2026-11-13). Status: ADOPTED (user instruction: "update conclusions to reflect the actual evidence")
+* **Frozen results are not altered.**
+  * H1-TEST and M5 keep their pre-registered verdicts and tables.
+  * Every place that cites them now adds the AUDIT-SENS qualifier.
+* **Wording rules:**
+  * HT1-C1 and HT3-C1 are "confirmed under the pre-registered seed-only rule; not robust to statement-sampling
+    uncertainty (sensitivity analysis)". They are never cited without the qualifier.
+  * HT2 is "confirmed, and robust to statement-sampling uncertainty".
+  * The persona loss is "generic one-word instruction information". The earlier "persona-specific" sentence is
+    withdrawn.
+  * The frozen-probe GoT collapse is "partly generic reader sensitivity and partly label-aligned SAE error". The earlier
+    "largely perturbation sensitivity" is withdrawn.
+  * The pooled GoT task at L0–4 is not evidence that truth is absent there.
+  * Architecture rankings on task metrics are reported only with a statement that they are not robust to task-level L0.
+* **Not done** (training or new data; needs approval):
+  * R2-recipe SAEs at more layers;
+  * a valid JumpReLU;
+  * Gemma Scope baselines;
+  * a behavioural honesty task;
+  * per-polarity GoT re-analysis with SAEs (a new pre-registration is needed; S4 used original activations only).
+
+## D39. TSP pilot reading and next step (2026-11-14)
+* **Reported verdict:** the frozen rule gives NOT SUPPORTED, and that is how it is reported. Effect sizes are given
+  with CIs, and the direction is described as consistent across seeds and specific to the truth subspace.
+* **No claim:** we do not claim "truth preservation improved". The gain from GoT-A replay alone (ctrl vs base) is
+  reported as distribution-matched training, not as a truth-specific method.
+* **Interruption handling:** a separate recovery wrapper trained only the missing runs, after bit-identical
+  reproduction of a completed run. The frozen scripts were not edited. The 9 completed checkpoints were kept.
+* **Next:** any follow-up (more seeds, held-out templates, other layers or architectures) needs a new
+  pre-registration. The pilot's λ, rank and steps are not tuned on these validation results.
+
+## D40. TSP verification: what changes and what does not (2026-11-14)
+* **Verdict unchanged:** NOT SUPPORTED stands. The post-hoc Satterthwaite p values (0.023 / 0.0025) are **not**
+  grounds to revise it. They are reported only as the reason the next pre-registration changes its interval method.
+* **Corrected claims:**
+  * "Specific to the truth subspace" applies to the frozen readout only.
+  * "No cost" applies against ctrl. GoT replay costs ≈ 1.6–2 % (NMSE, KL, ΔCE) against R2 base.
+  * The frozen gap and error-only AUROC are readout metrics for TSP: S contains 58 % of the evaluator's direction.
+* **Next design principle:** statement groups, not seeds, are the bottleneck.
+  * Replicate with cross-fitted cities (≈ 635 groups) and fresh held-out GoT families (DEV/TEST split before any
+    activation is computed).
+  * Add a label-permuted S control.
+  * Pre-register Satterthwaite df and CI-based non-inferiority.
+  * No loss or architecture change before the replication. A multi-family "universal" S is a later, separately
+    pre-registered follow-up.
+* **Approval required** for Phase 0 (public data download) and Phase 1 (training).
+
+
+## D41. TSP-R Phase 0 outcome: Q2 is not decisively testable with public GoT at GPT-2 L8 (2026-11-15). Status: PROPOSED, awaiting the user's decision
+
+* **Facts** (DEV only):
+  * Of the five independent fresh families, only companies (0.791) and common_claim (0.708) pass the frozen
+    eligibility rule.
+  * common_claim has no reconstruction headroom (R2 base gap ≈ 0.001).
+  * companies' conservative MDE (≈ 0.033) exceeds the pilot's in-distribution effect (0.020).
+  * Random-effects pooling with k = 2 is infeasible.
+* **Decided now:**
+  * The frozen eligibility rule stands. counterfact is ineligible (0.625 across relations), even though it would
+    pass under entity-level CV (0.786). Switching units post hoc would be a deviation.
+  * sp_en is ineligible: GPT-2 Small has no truth signal for it.
+  * conj/disj are dropped: they are not independent and too small.
+* **Proposed amendment to the TSP-R pre-registration** (before Phase 1, for the user):
+  1. P1 (cross-fitted cities, re-fit logistic gap, tsp vs ctrl, plus shuf/rand specificity) is the **sole
+     confirmatory primary**.
+  2. companies TEST is a pre-registered secondary: an estimate with its CI and a stated MDE of ≈ 0.03. It does not
+     count as confirmatory.
+  3. common_claim is a pre-registered no-headroom / enhancement check: TSP should not move its gap; a negative gap
+     beyond −0.01 counts as distortion.
+  4. counterfact held-out-relation TEST is optional, labelled EXPLORATORY. It adds ≈ 9 CPU-hours of readers.
+  5. The random-effects P2 is withdrawn.
+* **Rejected options:**
+  * Re-splitting counterfact by entity: TEST is locked by relation.
+  * Lowering the 0.70 threshold: it is frozen.
+
+
+## D42. TSP-R Phase 1 frozen design (2026-11-15). Status: DECIDED (pre-registration frozen; launch awaits approval)
+
+* D41 was approved in principle by the user; 8 seeds and 120 runs.
+* Cities (cross-fitted) are the sole confirmatory dataset. The random-effects P2 is withdrawn.
+* **Hypothesis family:** H1 tsp < ctrl as the gate, then Holm over H2 tsp < shuf and H3 tsp < rand. pca is outside
+  the family.
+* **Uncertainty and threshold:** Satterthwaite df with a seed + city-bootstrap se; SESOI 0.010 with TOST
+  equivalence.
+* **Labels:** information-vs-readout and distortion qualifiers.
+* **Guards:** non-inferiority vs ctrl with one-sided 95 % bounds.
+* **New base seeds** reuse script 17's `train()` with SEEDS patched and write to a new folder. They are exchangeable
+  with the originals: same recipe and tokens, a different random batch order. Old-vs-new seeds is a pre-registered
+  sensitivity check.
+* **The evaluation code is frozen separately,** before any Phase 1 SAE is evaluated. The metric definitions are
+  already fixed here.
+
+
+## D43. TSP-R verdict and what may be claimed (2026-11-15). Status: DECIDED (by the frozen rules)
+
+* **Claimable (validation, confirmatory, in-distribution):**
+  * On GPT-2 Small L8 R2 TopK SAEs, the truth-subspace penalty reduces the loss of re-fittable linear truth
+    information on held-out city–country statements by 0.021 AUROC versus the identical fine-tune without the penalty.
+  * The effect is truth-specific (vs label-shuffled and random subspaces) and also visible in MLP readers (smaller).
+  * It costs nothing measurable in OWT reconstruction, ΔCE or KL.
+* **Must be qualified:** TRADE-OFF by the frozen rule. Persona and M4 non-inferiority was not demonstrated because
+  the bounds are imprecise (estimates ≈ 0).
+* **Not claimable:**
+  * transfer to other truth families: companies, common_claim and counterfact relations are all null;
+  * "general truth preservation";
+  * any frozen-gap result as information preservation (readout metric).
+* **Lesson for future guards:** behavioural guards need per-item outputs to support a paired statement bootstrap.
+  Ladder-CI approximations are too conservative to establish non-inferiority.
+* **Next candidates** (not started; each needs its own pre-registration):
+  * a multi-family "universal" truth subspace aimed at transfer (Q2);
+  * a precision rerun of the persona/M4 guards with per-item paired bootstraps on the existing checkpoints.
+
+## D44. Gemma/Pile experiment design (M6): Gemma Scope SAEs at layers 5/12/19, Pile validation, 1024-token truncation (2026-11-12)
+* **Numbering:** recorded as D21 on PR #28 before PR #27 was merged; renumbered D36 on 2026-11-15 because #27 already uses D21–D35; D44 from 2026-11-21, following the team numbering plan (#35 D36–D43, #31 D44–D45, #30 D46); same number as on #31. Content unchanged.
 * **Decision** (made by the user, Simbanegavi Simbarashe, after the completed Pile EDA): the next Gemma contribution is Pile → Gemma-2-2B activations → Gemma Scope SAE reconstruction → splicing evaluation (roadmap M6). No other new scientific objective. The Gemma GoT frozen-probe experiment is a stretch goal, started only after M6 is complete and only if the 2026-11-22 technical freeze is not at risk.
 * **Role of The Pile:** Gemma's natural-text evaluation corpus for reconstruction and behaviour, analogous in role (not in content) to OWT for GPT-2.
 * **Data:** `monology/pile-uncopyrighted/val.jsonl.zst` (revision and SHA-256 pinned). The EDA's parquet mirror has no validation split. The test file is never used.
@@ -374,3 +514,22 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
 * **Outcome (2026-11-12):** M6 COMPLETED, VALIDATION (`results/gemma2_pile/gemma_scope_splicing/`, README §2). Gates V1–V5 pass; H-G1 supported at layers 5, 12 and 19. SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; the experiment does not identify the mechanism responsible. No numerical ranking against GPT-2 (model, hook, SAE family, width, L0, corpus and context differ).
 * **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, PRE-REGISTERED, not run; its own decision record lives on that branch and is not part of M6.
+
+## D47. Final-week cross-model protocol and execution rules (2026-11-21). Status: DECIDED (user approved the plan)
+* **Numbering:** recorded as D44 in PR #36; renumbered D47 on 2026-11-21 to follow the team numbering plan (#35 D36–D43, #31 D44–D45, #30 D46). Content unchanged.
+* **Fair comparison.** GPT-2 vs Gemma claims use only within-model-normalised metrics, at depth-matched sites, on the
+  same text, with the same controls and the same paired document bootstrap. Raw nats are never ranked.
+* **Separate tracks:** public-vs-public, in-house-vs-public, matched strata (L0/d and d_sae/d within ±15 %) and
+  within-model. **No architecture-matched claim is made:** no public GPT-2 JumpReLU exists, and the in-house JumpReLU
+  is not valid.
+* **Hook conventions:** each SAE family keeps its own training convention (GPT-2 centred TL residual, Gemma raw HF
+  residual). G-HOOK shows behaviour is identical.
+* **Ceiling rule (XT-G A2):** a task with original AUROC ≥ 0.99 is flagged and is not used for cross-model truth
+  claims. Harder fresh families (DEV) and d′ are added for both models.
+* **TI-1 eligibility:** the TSP-R Phase 0 rule (original AUROC ≥ 0.70) excludes GPT-2 L1.
+* **Execution:**
+  * at most two Gemma-sized GPU jobs at once, with layer-major SAE loading;
+  * a non-destructive disk guard (pause, never delete);
+  * one focused PR per completed and validated phase, based on `sae-research` (stacked), never merged without the
+    user's approval.
+

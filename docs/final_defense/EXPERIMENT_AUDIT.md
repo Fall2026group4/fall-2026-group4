@@ -102,8 +102,8 @@ This is an independent audit of branch `sae-research` at `af52b0b`, with a clean
 | "Width helps in general" | **PARTIAL.** Only 3,072 vs 12,288 (A2), and only for TopK. The G5 width sweep was not run. On TEST, width improves OWT but regresses GoT at L8. |
 | "Modern JumpReLU is better / worse" | **NOT VERIFIED.** Abandoned in the R2 pilot (L0 would not settle); no comparison exists. |
 | "Truth preservation improved" | **NOT SUPPORTED** on TEST: 0/34 GoT cells. |
-| "Causal preservation improved with R2" | VALIDATION only (L8 TopK T_rec/T_full 0.625 → 0.726, CI +0.019 to +0.182). **Not tested on held-out data.** |
-| "Persona/honesty preservation on test" | **NOT AVAILABLE.** RepE-LM has no test split. |
+| "Causal preservation improved with R2" | VALIDATION only (L8 TopK T_rec/T_full 0.625 → 0.726, CI +0.019 to +0.182). **Not tested on held-out data.** *Update 2026-11-13: H1-TEST confirms it for TopK (0.602 → 0.729, Holm p = 0.021); not for BatchTopK vs JumpReLU (p = 0.058).* |
+| "Persona/honesty preservation on test" | **NOT AVAILABLE.** RepE-LM has no test split. *Update 2026-11-13: H1-TEST: pair-direction cosine confirmed 9/9; persona re-fit gap confirmed for TopK only; N3/N4 neutral control failed at L8/L11.* |
 | "Results generalise to Gemma-2-2B" | **NOT VERIFIED.** No Gemma SAE was evaluated (R3 / Gemma M3 planned). The Gemma work is steering only. |
 | "Converged EV-vs-L0 frontier / L0 other than 128" | **NOT DONE** (G1). The 1000-step sweep measures convergence speed only. |
 | "Feature activation frequency distribution" | **NOT REPORTED** beyond the dead fraction. No frequency histogram is in the final results. |

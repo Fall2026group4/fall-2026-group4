@@ -1,0 +1,23 @@
+{
+  "test_rows_used": 0,
+  "grid": [
+    0.0001,
+    0.0003,
+    0.001,
+    0.003,
+    0.01,
+    0.03,
+    0.1,
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "n_grid_sensitive": 0,
+  "refit_at_edge": {
+    "repe_persona__refit_at_grid_edge": 0,
+    "got_cities__refit_at_grid_edge": 0
+  },
+  "original_at_edge": 0,
+  "runtime_s": 369.7902202606201
+}

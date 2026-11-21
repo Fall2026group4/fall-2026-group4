@@ -1,0 +1,67 @@
+{
+  "n_val_geo": 448,
+  "n_B_geo": 1048,
+  "n_A_geo": 1044,
+  "n_val_groups_geo": 112,
+  "n_val_num": 592,
+  "n_B_num": 1388,
+  "n_val_groups_num": 148,
+  "test_rows_used": 0,
+  "orig_auroc_geo": {
+    "logistic": 0.8189971301020408,
+    "mlp3": 0.8460020727040817,
+    "mlp10": 0.8513831313775511,
+    "mlp256": 0.8526785714285714,
+    "logistic_C0.01": 0.7916135204081632,
+    "logistic_C0.1": 0.8189971301020408,
+    "logistic_C1.0": 0.8143534757653061
+  },
+  "orig_auroc_num": {
+    "logistic": 0.9940307706355004
+  },
+  "orig_C_geo": 0.1,
+  "geometry": {
+    "geo_B_logistic_share_in_tsp": 0.5839324731715066,
+    "geo_B_logistic_share_in_rand": 0.010215846038787243,
+    "geo_B_logistic_share_in_pca": 0.00013359939770374817,
+    "num_B_logistic_share_in_tsp": 0.012770741391748028,
+    "num_B_logistic_share_in_rand": 0.014546678022686863,
+    "num_B_logistic_share_in_pca": 0.01082791126747212,
+    "chance_share_rank8": 0.010416666666666666,
+    "subspace_names": [
+      "tsp",
+      "rand",
+      "pca"
+    ]
+  },
+  "runtime_s": 1965.831732749939,
+  "script_sha256": "68db4c33ae827d6e1a79557487bdbb4c50ea30555a569870d0462f911768793a",
+  "primary": [
+    {
+      "metric": "geo__frozen_logistic_gap",
+      "mean_diff": -0.03867054634353747,
+      "ci_low": -0.08516156250065317,
+      "ci_high": 0.007820469813578229,
+      "p": 0.06997764213660439,
+      "p_holm": 0.13995528427320877,
+      "seeds_better": 3,
+      "pass": false,
+      "stmt_share_of_var": 0.6454399462415512,
+      "p_satterthwaite": 0.0025281645395916087,
+      "p_seed_only": 0.026582980486304232
+    },
+    {
+      "metric": "geo__refit_logistic_gap",
+      "mean_diff": -0.02014907525510205,
+      "ci_low": -0.058298753786097265,
+      "ci_high": 0.01800060327589317,
+      "p": 0.15098102182031384,
+      "p_holm": 0.15098102182031384,
+      "seeds_better": 3,
+      "pass": false,
+      "stmt_share_of_var": 0.948672547223179,
+      "p_satterthwaite": 0.023336193152984786,
+      "p_seed_only": 0.00979336940209985
+    }
+  ]
+}

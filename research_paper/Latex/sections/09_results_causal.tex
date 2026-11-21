@@ -1,7 +1,7 @@
 \section{Causal Faithfulness}\label{sec:causal}
 
 All results in this section are \evlabel{validation} findings (M3 sites selected on training prompts and
-replicated on validation prompts; M4 on validation prompts).
+replicated on validation prompts; M4 on validation prompts); the held-out test of the M4 layer-8 comparison is reported in Section~\ref{sec:h1test}.
 
 \paragraph{Where GPT-2 carries the persona effect (M3).} For each RepE-LM pair we run GPT-2 on the honest (H) and the
 dishonest (U) prompt and measure $\mathrm{KL}(p_H\|p_U)$ on the next token (mean 0.033 nats). Copying the honest
@@ -72,5 +72,7 @@ Whether fine-tuning changes this decomposition is tested in E3 (\S\ref{sec:e3}).
 
 \paragraph{Sensitivity.} With $T_{\text{full}}=0.022$ nats at the layer-8 final token, one SAE's preservation share
 can only be resolved to 0.054--0.107 there (0.013--0.017 at L1 and 0.036--0.069 at L11; Section~\ref{sec:stats}).
-Differences between SAEs at L8 smaller than this are not interpretable. M5 could not confirm any causal result,
-because RepE-LM had no test split; one now exists, with a frozen protocol, but it has not been run.
+Differences between SAEs at L8 smaller than this are not interpretable. M5 could not test any causal result,
+because RepE-LM then had no test split. The later held-out H1-TEST pass (Section~\ref{sec:h1test}) confirms the R2
+gain at L8 for TopK (0.602$\to$0.729, Holm-adjusted $p=0.021$) but not for BatchTopK against JumpReLU (Holm-adjusted
+$p=0.058$).

@@ -1,0 +1,37 @@
+{
+  "id": "AUDIT-SENS",
+  "date_frozen": "2026-11-13 18:38:51",
+  "evidence_status": "SENSITIVITY / DIAGNOSTIC (exploratory); not confirmatory; no TEST row read",
+  "analyses": {
+    "S1": "statement/document cluster uncertainty added to the R2 rule; se=sqrt(se_seed^2+v_stmt); df=min(Satterthwaite, Welch); 13 H1 cells (Holm 13) and 18 M5 C1-C3 NMSE/dCE cells (Holm 18); TEST values use v_stmt scaled n_val/n_test; supported iff 9/9 pairs better, adjusted CI excludes 0, Holm p<0.05",
+    "S2": "NL=(AUROC_orig-AUROC_refit)/(AUROC_orig-0.5); dNL=NL_persona-NL_neutral; paired statement bootstrap B=1000; persona-specific iff CI>0 and BH q<0.05 over layers 1-11 (per family); reverse reported; neutral AUROC<0.60 flagged low precision",
+    "S3": "k*=min natural TRAIN L0 over six arm types per (layer, task); global threshold calibrated on TRAIN; VAL L0 within 5%; R2 rule re-applied to C1-C3; class change = L0-sensitive; old-architecture ordering recomputed",
+    "S4": "per layer: pooled, per-polarity, permutation null, cross-polarity transfer, bag-of-words and country-prior baselines; pooling artefact / lexical shortcut / pipeline leak rules; POST-HOC flag pooled-linear suppression (added after the L1 smoke)",
+    "S5": "frozen logistic and mass-mean gaps under isotropic, row-shuffled SAE error and error-covariance Gaussian references; label-aligned iff CI of gap(SAE)-gap(shuffled)>0 and BH q<0.05",
+    "S6": "extended C grid 1e-4..10 for original and re-fit logistic probes; C1-C3 re-fit-gap classes re-checked; class change = grid-sensitive"
+  },
+  "disclosure": "Smoke runs on VALIDATION seen before freezing: S1/S2/S3/S5/S6 layer 8 seed 42, S4 layer 1 (see README section 3). S1 df rule set to the conservative min after a unit test, before any full run.",
+  "hashes": {
+    "scripts/shared/audit_s1_statement_uncertainty.py": "15c4766befbd1b979cbe82a84a2f8cad81c3a65b00dd3e551a600b7b93912e71",
+    "scripts/shared/audit_s2_persona_headroom.py": "a3a8f79eb152b0fb9109760a3c5e2742e1d5f1c3141dced152766515cb12c627",
+    "scripts/shared/audit_s3_task_l0_matched.py": "1f418d489e8dad3e39db224af386d560e8e2ff20e10c941d794fd5c299b6daf8",
+    "scripts/shared/audit_s4_got_probe_anomaly.py": "2f8d21154877b6821ad0e6ee76ac2c587cfe41d0e55107ca5abd43f556158e32",
+    "scripts/shared/audit_s5_noise_references.py": "47b306f02b766add8d425cc9ea9b94efa935088b0c9fd975195bc60d9ae9c124",
+    "scripts/shared/audit_s6_probe_grid.py": "f958faeb03406f9ed486d03ebeafa6baf5efadecf1251a907a9fd95aff389553",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+    "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+    "scripts/shared/r2_comparisons.py": "38b2fcd1eb29a270b6700b3240504ab0d787e44edd969751d5631183a8083b6e",
+    "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+    "scripts/repe/26_repe_lm_representation_preservation.py": "23cc6259d9de2978bd045cac61ddd67ca0a652d73553b5aa8159f81282c672c3",
+    "scripts/shared/spliced_reconstruction_evaluation.py": "2d5f3aff55b5d391bb6dc6b2db6c5c94bac5b07f626b3bafa303acd54f9e42bf",
+    "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+    "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "src/sae/modern_sae.py": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+    "scripts/geometry_of_truth/03_original_truth_probes.py": "a725bed094957034f8ade2a5458eca690e935aa5df87d2166ba08f008d6484b2",
+    "results/shared/audit_sensitivity/README.md": "faed6e7ba53710cf827b3557e0ea03440ca6787560d5a1734245bdf2425714e0",
+    "results/repe/repe_lm_test_evaluation/confirmatory_cells.csv": "511594a08cfdc65d6931902c4604e72299c5001fa68235d6687ed71e07dc308f",
+    "results/repe/repe_lm_test_evaluation/comparisons.csv": "66aa59f9ac6e86885d2572c18520a6ff0e63110bdf25514b4735fd6f93a81a0d",
+    "results/shared/m5_confirmatory_test/comparisons.csv": "60308806906e13f2abb47dc4082b7d8947f09119fb20dae5716090ac5b1314c9"
+  }
+}

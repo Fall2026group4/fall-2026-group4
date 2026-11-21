@@ -1,0 +1,20 @@
+{
+ "experiment": "TI-1 TSP generalisation across layers and architectures (GPT-2 Small, R2 bases)",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED (frozen before any TI-1 training)",
+ "evidence_level_on_completion": "VALIDATION (cities train+val rows only, cross-fitted; cities TEST and fresh-family TEST never loaded)",
+ "question": "Does the TSP-R effect (cities re-fit logistic gap, tsp - ctrl = -0.0207 at L8 TopK) hold at other layers (L1, L11) and for other architectures at L8 (BatchTopK, ReLU) under the identical recipe?",
+ "why": "TSP-R supported one cell only. A truth-preservation method is only useful if it generalises across layers and architectures (main research question: preserve truth information while improving/keeping reconstruction).",
+ "cells": {"L1_topk": "R2 topk layer 1", "L11_topk": "R2 topk layer 11", "L8_batchtopk": "R2 batchtopk layer 8", "L8_relu": "R2 relu layer 8"},
+ "eligibility_gate": "a layer is eligible only if the ORIGINAL activations give refit-logistic cities AUROC >= 0.70 on V in all 3 folds (TSP-R Phase 0 rule); ineligible cells are reported as not run",
+ "seeds": [42, 1042, 2042],
+ "arms": {"base": "pretrained R2 SAE, no fine-tune", "ctrl": "reconstruction-only: L = NMSE_OWT + NMSE_GoT-A (same compute as tsp)", "tsp": "ctrl + rank-8 truth-subspace error term from A rows", "rand": "ctrl + Haar-random rank-8 subspace (geometry control)"},
+ "omitted_arms": "pca and label-shuffled arms of TSP-R are not re-run (compute); truth specificity at these cells is tested only against rand",
+ "folds": "data/got/fresh/splits/cities_crossfit_folds.csv; fold f: V = f (evaluate), B = f+1 (readers), A = f+2 (training rows + subspace)",
+ "recipe": "scripts/geometry_of_truth/25 run_one unchanged for TopK (5M OWT tokens from shard 79 chunks >= 10,000, Adam 2e-5, clip 1, mu 1, lam 1, rank 8); BatchTopK/ReLU via run_one_general = the same code + the R2 trainer's sparsity control (BatchTopK: batch top-k in training, EMA inference threshold started at the base threshold; ReLU: decoder-norm-weighted L1 on the NMSE scale, lambda started at the base lambda_final, multiplicative controller to L0 128). Gate R0: run_one_general == run_one bit-for-bit for TopK (30 steps).",
+ "primary_outcome": "cities refit-logistic gap (original AUROC - reconstruction AUROC; lower = better), contrast tsp - ctrl, fold-weighted per seed, hierarchical seed + city-cluster uncertainty (src/evaluation/tspr_stats.hierarchical); per cell label by tspr_stats.h1_label (SESOI 0.010); Holm across eligible cells",
+ "secondary": ["tsp - rand (geometry control)", "ctrl - base and tsp - base", "frozen logistic, frozen mass-mean, refit MLP 10x64 and 5x256 gaps", "OWT-VAL relative NMSE, dCE, KL vs base", "L0 within +-5% of base on OWT (else the run is flagged and excluded from rankings)"],
+ "success_criteria": {"cell_supported": "h1_label starts with 'SUPPORTED' and p_holm < 0.05", "generalises": "SUPPORTED in >= 2 of the eligible new cells, with no cell where tsp - ctrl CI is wholly > 0", "cost_guard": "relative OWT NMSE of tsp vs base <= +3 % and L0 within +-5 %"},
+ "power_note": "3 seeds (vs 8 in TSP-R): with TSP-R's seed sd the expected CI half-width is roughly 1.6x larger; a null here is therefore weaker evidence than TSP-R's positive result",
+ "test_data_used": false
+}

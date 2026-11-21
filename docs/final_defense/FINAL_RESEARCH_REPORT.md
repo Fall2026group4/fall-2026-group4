@@ -58,7 +58,8 @@ information, behaviour and causal effects of a frozen language model?
 **Established vs future work.**
 * *Established (TEST):* R2 and R4 improve OWT reconstruction and behaviour, and there is no confirmed GoT change.
 * *Established (VALIDATION):* M0–M4, R5, E2 and E3 dissociations.
-* *Future:* RepE-LM test split, Gemma SAEs, task-L0 matching (E1), width/L0 frontiers, isolating token count from
+* *Established (TEST, H1-TEST 2026-11-13):* persona pair-direction gain (9/9); L8 causal gain for TopK only. Not confirmed: L8 causal gain for BatchTopK vs JumpReLU; persona re-fit gap as a hypothesis.
+* *Future:* Gemma SAEs, task-L0 matching (E1), width/L0 frontiers, isolating token count from
   recipe.
 
 ---
@@ -326,7 +327,7 @@ Full tables: `RESULTS_VERIFICATION_TABLE.md` §1–§2.
 * **R5 skyline (VALIDATION):**
   * at k = 4, DAS carries 1.02 / 0.91 / 0.62, PCA 1.00 / 0.52 / 0.59, SAE features 0.08–0.16 and random 0.004–0.008;
   * **at L8, a rank-4 subspace carries more than the whole old SAE reconstruction.**
-* **M5:** not covered, because RepE-LM has no test split. **All persona/causal results are VALIDATION.**
+* **M5:** not covered, because RepE-LM had no test split then. **Update 2026-11-13 (H1-TEST, `results/repe/repe_lm_test_evaluation/`):** HT2 confirmed 9/9; HT1 and HT3 not confirmed (TopK cells pass; BatchTopK vs JumpReLU cells do not); N3/N4 neutral control failed at L8/L11.
 
 ---
 
@@ -351,6 +352,8 @@ separate controlled comparisons, not one chain.
 | 11 | TopK | — | 0.2041 | 0.0962 | ΔCE | −52.9 % | better | TEST |
 | 11 | TopK | — | 0.101 | 0.078 | GoT re-fit gap | −0.023 [−0.060, +0.013] | no clear change | TEST |
 | 8 | TopK | — | 0.625 | 0.726 | T_rec/T_full | +0.101 [+0.019, +0.182] | better | VALIDATION |
+| 8 | TopK | — | 0.602 | 0.729 | T_rec/T_full | +0.127 [+0.079, +0.175], Holm p = 0.021 | better (confirmed) | TEST (H1-TEST) |
+| 8 | BatchTopK vs old JumpReLU | — | 0.679 | 0.752 | T_rec/T_full | +0.072 [+0.015, +0.130], Holm p = 0.058 | not confirmed | TEST (H1-TEST) |
 | 11 | TopK | — | 0.620 | 0.692 | T_rec/T_full | +0.073 [+0.064, +0.082] | better | VALIDATION |
 | 8 | TopK, R4 KL vs MSE | — | (R2 MSE control) 0.0623 | 0.0514 | ΔCE | −17.4 %, 3/3 seeds | better | TEST |
 | 11 | TopK, R4 KL vs MSE | — | 0.694 | 0.671 | T_rec/T_full | −0.024 ± 0.002 | **worse** | VALIDATION |
@@ -452,7 +455,7 @@ separate controlled comparisons, not one chain.
     * A random frozen decoder is as good as trained SAEs on the GoT SAE − PCA metric. That metric therefore cannot
       separate trained from random SAEs at these layers.
 16. **Unresolved:**
-    * held-out confirmation of the persona/causal results (needs a RepE-LM test split);
+    * held-out confirmation of the L8 causal gain for BatchTopK vs JumpReLU and of the persona re-fit gap (H1-TEST, 2026-11-13, did not confirm them; TopK cells and HT2 were confirmed);
     * task-level L0 matching (E1);
     * tokens vs recipe;
     * whether Gemma Scope SAEs show the same dissociation (R3);

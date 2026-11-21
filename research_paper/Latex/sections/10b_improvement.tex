@@ -51,9 +51,11 @@ reconstructer (JumpReLU) against R2 BatchTopK. Table~\ref{tab:r2_counts} summari
 \item \textbf{Causal preservation.} It improves for the first time under a pre-registered rule.
   \begin{itemize}
   \item TopK $T_{\text{rec}}/T_{\text{full}}$: 0.62$\to$0.73 (L8) and 0.62$\to$0.69 (L11).
-  \item The L8 gain (+0.10) passes the seed-level rule but is borderline at the statement level: one SAE's
-    preservation at L8 can only be resolved to 0.054--0.107 (minimum detectable effect, Section~\ref{sec:stats}), so
-    it is a \evlabel{validation} finding that needs the RepE-LM test split before it is claimed.
+  \item The L8 gain (+0.10 on validation) passes the seed-level rule, although one SAE's preservation at L8 can
+    only be resolved to 0.054--0.107 (minimum detectable effect, Section~\ref{sec:stats}). On the held-out RepE-LM
+    test split (Section~\ref{sec:h1test}) it is \evlabel{confirmed} for TopK (0.602$\to$0.729, Holm-adjusted
+    $p=0.021$) and \emph{not} confirmed for BatchTopK against JumpReLU (+0.072, all 9 seed pairs better,
+    Holm-adjusted $p=0.058$).
   \item BatchTopK reaches 0.75 at L8.
   \end{itemize}
 \item \textbf{Persona representation.} Pair-direction cosine improves everywhere (L8: 0.39$\to$0.49).
@@ -172,7 +174,8 @@ basis is far from the best basis at matched rank, although well above random.
 \item the rules (C1--C3, A1, A2: the R2 rule; K1, K4: the IMP-L rule).
 \end{itemize}
 It reads OWT test (12,700 tokens per layer) and GoT cities+neg\_cities test (452 rows): 552 test rows in total.
-RepE-LM has no test split, so the persona, representation and causal results stay \evlabel{validation}. A smoke run
+RepE-LM had no test split at the time, so the persona, representation and causal results were tested later, in a
+separate pass (H1-TEST, Section~\ref{sec:h1test}). A smoke run
 on validation rows reproduced the ladder exactly for the OWT metrics and to within $10^{-4}$ for GoT.
 
 \paragraph{Results} (\evlabel{test}; Tables~\ref{tab:m5} and~\ref{tab:m5_counts}).
@@ -201,6 +204,96 @@ been detected (Section~\ref{sec:stats}); the observed differences are at most 0.
 
 \input{tables/t_m5}
 \input{tables/t_m5_counts}
+
+\subsection{H1-TEST: held-out confirmation of the persona and causal results}\label{sec:h1test}
+
+\paragraph{Protocol.} After M5 we built a RepE-LM test split: the 86 held-out statements that survive a
+near-duplicate check, in 2,408 equal-length prompts. It uses M1's templates plus test-only wording (T7, T8) and test-only
+neutral swaps (N3, N4), all written before any evaluation. As for M5, the protocol, the evaluation script (smoke-tested
+on validation rows only) and the 81 checkpoint hashes were frozen before a test row was read, and the pass was run
+once. Every probe, direction and site was fitted on RepE-LM training prompts. Four hypotheses replicate validation
+findings: HT1 (M4 causal preservation $T_{\text{rec}}/T_{\text{full}}$ at L8, C1 and C3), HT2 (persona
+pair-direction cosine, C1--C3 at L1, L8 and L11), HT3 (persona re-fit gap at L8, C1 and C3) and HT4 (descriptive
+probe transfer). A cell of HT1--HT3 is confirmed only if all 9 cross-seed pairs are better, the Welch 95\,\% CI
+excludes 0 and the Welch $p$, Holm-adjusted over the 13 cells, is below 0.05. A hypothesis is confirmed only if
+every one of its cells is.
+
+\paragraph{Controls.} The positive controls pass: the original model's $T_{\text{full}}$ is above 0 with a 95\,\%
+CI above 0 at every site (0.038, 0.020 and 0.038 nats at L1, L8 and L11); the persona KL (0.039) exceeds the synonym
+KL (0.017); and every SAE's $T_{\text{rec}}$ is above the 95th percentile of its matched-norm isotropic and permuted
+controls. The neutral N1/N2 swaps stay below the 0.55 probe floor (0.47--0.50). \textbf{One negative control fails:}
+the test-only neutral swaps N3/N4 give the persona probe an AUROC of 0.561 at L8 and 0.551 at L11, above the
+pre-registered floor of 0.55 (0.501 at L1).
+
+\paragraph{Confirmatory results} (\evlabel{test}; Table~\ref{tab:h1test}).
+\begin{itemize}
+\item \textbf{HT1, causal preservation at L8: not confirmed as a hypothesis.}
+  \begin{itemize}
+  \item TopK (C1) is \evlabel{confirmed}: 0.602$\to$0.729 ($+0.127$, 95\,\% CI $[+0.079, +0.175]$, Holm-adjusted
+    $p=0.021$).
+  \item BatchTopK against JumpReLU (C3) is not statistically confirmed. The gain is $+0.072$ (95\,\% CI
+    $[+0.015, +0.130]$) and all 9 seed pairs are better, but the Holm-adjusted $p$ is 0.058.
+  \end{itemize}
+\item \textbf{HT2, persona pair-direction cosine: confirmed in all 9 cells.} The gains are $+0.035$ to $+0.141$
+  (all Holm-adjusted $p<0.02$), each within 0.011 of its validation value.
+\item \textbf{HT3, persona re-fit gap at L8: not confirmed as a hypothesis.}
+  \begin{itemize}
+  \item TopK (C1) passes: $-0.048$ ($[-0.079, -0.016]$, Holm-adjusted $p=0.046$).
+  \item BatchTopK against JumpReLU (C3) is inconclusive: $-0.022$ ($[-0.055, +0.011]$), with 8 of 9 pairs better.
+  \end{itemize}
+\item \textbf{HT4 (descriptive).} A persona probe fitted on training templates transfers to the test-only wording
+  with AUROC 0.833 at L8 and 0.825 at L11, but only 0.564 at L1.
+\end{itemize}
+
+\paragraph{Exploratory secondary comparisons.} The same pass also scored C1--C3, A1 and A2 on every
+persona, representation and causal metric: 90 cells, of which 55 are classed as improvement, 35 as no clear change
+and none as regression. These cells were not pre-registered as hypotheses and are not corrected for multiplicity. They
+are \emph{exploratory} and are not used as confirmatory evidence anywhere in this paper.
+
+\paragraph{Inference.} Held-out data confirm the R2 gain in persona representation fidelity, robustly and with almost
+the validation effect size. They confirm the layer-8 causal gain only for TopK; for BatchTopK against JumpReLU the
+direction replicates but the evidence does not meet the pre-registered bar. The persona re-fit gap is confirmed only
+for TopK. HT1 is a causal-decomposition result (the reconstructed activation difference is patched with the error
+term kept; Section~\ref{sec:causal}), not an SAE-mediated intervention, and none of these results bears on truth
+information (GoT), which M5 already tested. The failed N3/N4 control shows that the persona probe is not perfectly
+specific on new frames at L8 and L11. Its margin is small next to the T7/T8 transfer (at least 0.26 AUROC), but the
+floor was pre-registered and was not met.
+
+\paragraph{Sensitivity to statement sampling (post hoc; not confirmatory).} The pre-registered rule tests the three
+seeds only; every SAE is scored on the same 86 statements. Section~\ref{sec:audit} adds the statement-sampling
+variance (estimated on validation, where it is 33--99\,\% of the total) to the committed TEST seed statistics. HT2
+survives in all 9 cells. HT1-C1 (adjusted 95\,\% CI $[+0.014, +0.240]$) and HT3-C1 ($[-0.093, -0.002]$) do not
+survive Holm over the 13 cells (adjusted $p=0.156$ for both) under the conservative degrees of freedom. The TopK
+confirmations of HT1 and HT3 are therefore fragile: they hold for these test statements, not demonstrably for new
+statements. The frozen verdicts above are unchanged.
+
+\input{tables/t_h1test}
+
+\subsection{Audit sensitivity analyses}\label{sec:audit}
+
+After an independent audit of the code and results we ran six pre-registered sensitivity analyses (validation rows
+only; no test row read; \texttt{results/\allowbreak{}shared/\allowbreak{}audit\_sensitivity/}). None is a new confirmatory
+test.
+\begin{itemize}
+\item \textbf{S1, statement and document uncertainty.} The seed-only Welch intervals of M5 and H1-TEST omit the
+  sampling of statements or documents, which accounts for 33--99\,\% of each comparison's variance on validation.
+  Adding it (paired cluster bootstrap; conservative degrees of freedom): HT2 holds (9/9); HT1-C1 and HT3-C1 do not
+  (above); 16 of 18 M5 reconstruction and behaviour cells hold, the exceptions being the small layer-1 $\Delta$CE gains
+  of ReLU and of BatchTopK against JumpReLU.
+\item \textbf{S2, persona versus neutral.} Normalised by decodable headroom, no layer shows persona-specific loss; the
+  neutral one-word contrast loses a significantly larger share at layers 5 and 7--11.
+\item \textbf{S3, matched task-level L0.} Truncating every SAE to the smallest natural task L0 among the compared arms
+  leaves 54 of 57 R2 comparison classes unchanged (including the C3 layer-8 causal gain), but reverses the
+  old-architecture ordering in 13 of 19 metric--layer cells.
+\item \textbf{S4, GoT probe anomaly.} Text-only baselines are at chance (at most 0.55). Pooling \texttt{cities} with
+  \texttt{neg\_cities} makes the label truth XOR negation: within one polarity a linear probe reads city--country
+  truth from layer 1 (0.75--0.77) and transfers across polarity, while the pooled linear probe stays at 0.52--0.59 at
+  layers 1--2. Low pooled AUROC at early layers is therefore not evidence that truth is absent (this reading was added
+  after a smoke run and is labelled post hoc).
+\item \textbf{S5, noise references.} Against the SAE's own shuffled error, 33--50\,\% of the GoT frozen-logistic drop at
+  layers 6--11 is label-aligned (Section~\ref{sec:info}).
+\item \textbf{S6, probe regularisation.} An 11-value grid changes no comparison class; no probe selects a grid edge.
+\end{itemize}
 
 \subsection{PCA-CM: does the SAE--PCA verdict depend on how PCA is matched?}\label{sec:pcacm}
 

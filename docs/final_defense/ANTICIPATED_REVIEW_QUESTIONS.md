@@ -116,8 +116,9 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
     perturbation.
   * So we add a norm-matched noise reference: if noise of the same size causes the same drop, the drop is probe
     fragility, not information loss.
-* **Evidence:** M2, GoT: frozen gap 0.28, same-norm noise 0.25, re-trained gap 0.07–0.12. The frozen "collapse" is
-  mostly fragility; a smaller real loss remains.
+* **Evidence:** M2, GoT: frozen gap 0.28, same-norm noise 0.25, re-trained gap 0.07–0.12. Isotropic noise
+  reproduces most of the frozen "collapse", but the SAE's own shuffled error reproduces only 50–67 % at L6–11
+  (AUDIT-SENS S5), so part of it is label-aligned SAE error; a smaller re-trained loss remains.
 * **Source:** `results/shared/m2_four_level_faithfulness/`
 
 ### 10. How do you know your truth probe is independent of the training signal?
@@ -212,10 +213,11 @@ All numbers were verified on 2026-11-10. TEST means M5; everything else is VALID
 * **Short:**
   * To held-out OWT and GoT: yes, for the tested comparisons (M5).
   * To an external SAE: yes, descriptively (E2).
-  * To Gemma, or to RepE-LM test: not tested.
+  * To RepE-LM test (H1-TEST): partly. Pair-direction fidelity yes (9/9); the L8 causal gain for TopK only.
+  * To Gemma: not tested.
 * **Technical:**
   * Every validation conclusion on M5's metrics replicated on test, including the null result for GoT.
-  * Persona and causal results are VALIDATION only, because there is no RepE-LM test split.
+  * H1-TEST (one pass, Holm over 13 cells): HT2 confirmed; HT1 and HT3 not confirmed (C1 cells pass, C3 cells do not); a neutral control (N3/N4) failed at L8/L11.
 * **Evidence:** C1–C3 and A1 gave 17 improved / 7 no change / 0 regressed each on TEST, as on validation.
 * **Source:** M5 README §2
 

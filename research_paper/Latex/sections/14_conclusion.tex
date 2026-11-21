@@ -2,7 +2,7 @@
 
 Across all layers of GPT-2 Small, three SAE architectures reconstruct activations well by conventional measures, but
 reconstruction quality predicts behavioural damage rather than information preservation, frozen-probe ``truth loss''
-is largely perturbation sensitivity, PCA at equal reconstruction error preserves at least as much task information
+is partly generic reader sensitivity and partly label-aligned SAE error, PCA at equal reconstruction error preserves at least as much task information
 as the SAEs (while using more dimensions than the SAEs activate per token), and at mid and late
 layers the SAE reconstruction carries only about two-thirds of a causal effect located in the original model.
 Short fine-tuning improves the faithfulness level it optimises (task reconstruction, or output agreement with an
@@ -16,8 +16,16 @@ Section~\ref{sec:improve}) changes several of these conclusions and leaves other
 \begin{itemize}
 \item \textbf{Confirmed on held-out data:} reconstruction error falls by 31--74\,\% and splice damage by
   35--79\,\%.
-\item \textbf{Validation:} the persona effect carried by the reconstruction at layer 8 rises from 62\,\% to
-  73--75\,\%, and representation fidelity improves.
+\item \textbf{Confirmed on held-out RepE-LM data (H1-TEST) and robust to statement sampling:} persona
+  pair-direction fidelity improves in all 9 layer--comparison cells (+0.035 to +0.141 cosine).
+\item \textbf{Confirmed under the pre-registered seed-level rule only (fragile):} for TopK the persona effect carried
+  at layer 8 rises from 0.602 to 0.729 (Holm-adjusted $p=0.021$), but this does not survive adding
+  statement-sampling uncertainty (adjusted Holm $p=0.156$).
+\item \textbf{Not confirmed on held-out data:} the layer-8 causal gain for BatchTopK against JumpReLU (+0.072, all 9
+  seed pairs better, Holm-adjusted $p=0.058$), and the persona re-fit-gap reduction as a hypothesis (TopK passes the seed-level rule,
+  $-0.048$, Holm-adjusted $p=0.046$, but not the statement-sampling sensitivity analysis; BatchTopK against JumpReLU
+  is inconclusive). A test-only neutral control
+  exceeded its floor at layers 8 and 11 (0.561, 0.551 against 0.55).
 \item \textbf{Unchanged:}
   \begin{itemize}
   \item SAEs still do not beat PCA at equal error on task information;
@@ -32,8 +40,6 @@ Section~\ref{sec:improve}) changes several of these conclusions and leaves other
   budget, trained SAEs are better than PCA under the study's comparison criterion in 3 of 20 GoT comparisons and not
   classified worse in the remaining 17; with PCA matched to task-specific SAE activity, better in 8 of 20 and not
   classified worse in 12 (no equivalence or non-inferiority is claimed).
-\item \textbf{The layer-8 causal gain} (62\,\% to 73\,\%) is at the edge of what the per-SAE intervals can detect and
-  awaits the RepE-LM test split.
 \end{itemize}
 Except where marked \evlabel{test}, results are \evlabel{validation} findings.
 
@@ -41,7 +47,8 @@ Except where marked \evlabel{test}, results are \evlabel{validation} findings.
 \begin{itemize}
 \item Gemma-2-2B, using Gemma Scope SAEs as the external anchor and, where feasible, our own data-scaled TopK SAEs at
   one middle layer. The ladder transfers directly, with the KL fine-tune only as a behaviour-only add-on.
-\item Evaluating the frozen RepE-LM test protocol, so that the persona and causal results can be confirmed.
+\item Calibrating neutral frames on training data before any future test-only template set, and more seeds for the
+  BatchTopK-against-JumpReLU causal comparison (in a new, separately pre-registered test set).
 \item Capacity-matched PCA for the persona task, and a pre-registered test-split confirmation of PCA-CM.
 \item Task-level sparsity matching.
 \item Supervised-subspace (DAS) skylines as a standard reference for causal SAE evaluations.

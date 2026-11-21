@@ -1,0 +1,13 @@
+{
+  "test_rows_used": 0,
+  "n_cells": 225,
+  "max_abs_diff_vs_m2_logistic": 0.0012157206632652517,
+  "max_abs_diff_vs_m2_massmean": 1.992984693877098e-05,
+  "label_aligned_counts": {
+    "repe_persona/logistic": 126,
+    "repe_persona/massmean": 126,
+    "got_cities/logistic": 92,
+    "got_cities/massmean": 72
+  },
+  "runtime_s": 1393.5329575538635
+}

@@ -1,0 +1,8 @@
+family,role,rows,null_statement,null_label,label_values_binary,empty_statement,exact_duplicate_statements,normalised_duplicate_statements,non_ascii_rows,ends_with_period,groups,entities,tokens_mean,tokens_max
+sp_en_trans,independent,354,0,0,True,0,3,3,0,1.0,344,344,12.666666666666666,15
+neg_sp_en_trans,independent,354,0,0,True,0,3,3,0,1.0,344,344,14.666666666666666,17
+companies_true_false,independent,1200,0,0,True,0,0,14,0,1.0,292,292,14.625,50
+common_claim_true_false,independent,4450,0,0,True,0,0,3,79,1.0,4447,1,14.384269662921348,93
+counterfact_true_false,independent,31964,0,0,True,0,26,26,120,1.0,26,14959,10.810286572393943,29
+cities_cities_conj,secondary,1498,0,0,True,0,0,0,11,1.0,1493,1495,28.640854472630174,40
+cities_cities_disj,secondary,1498,0,0,True,0,0,0,9,1.0,1493,1495,28.55807743658211,39

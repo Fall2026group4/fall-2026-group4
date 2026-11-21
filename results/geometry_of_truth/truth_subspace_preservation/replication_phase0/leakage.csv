@@ -1,0 +1,8 @@
+family,rows,exact_overlap_project,near_overlap_project_cos>=0.9,max_cos_project_p99,max_cos_project_max,near_overlap_sources,mentions_project_city,mentions_exposed_test_city,dev_test_group_overlap,dev_test_entity_overlap_after_exclusion
+sp_en_trans,354,0,0,0.3759,0.5216,,0,0,0,0
+neg_sp_en_trans,354,0,0,0.3425,0.4952,,0,0,0,0
+companies_true_false,1200,0,0,0.4879,0.6182,,12,0,0,0
+common_claim_true_false,4450,3,13,0.7668,1.0,repe_facts,17,5,0,1
+counterfact_true_false,31964,0,2,0.6862,0.9876,got_cities,2205,620,0,0
+cities_cities_conj,1498,0,0,0.7465,0.7849,,1498,395,0,0
+cities_cities_disj,1498,0,0,0.7107,0.8009,,1498,410,0,0

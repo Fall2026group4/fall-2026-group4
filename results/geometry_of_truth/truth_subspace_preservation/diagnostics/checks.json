@@ -1,0 +1,12 @@
+{
+  "test_rows_used": 0,
+  "rank": 8,
+  "seed": 20261114,
+  "layers": [
+    6,
+    8,
+    11
+  ],
+  "n_sources": 60,
+  "runtime_s": 166.62518954277039
+}

@@ -1,0 +1,636 @@
+group_id,fold,previous_split,previous_pilot_half
+Diyarbakir,0,train,B
+Saint Petersburg,1,train,A
+Maoming,2,train,A
+Dushanbe,0,train,A
+Ta'if,1,train,B
+Ufa,2,train,B
+Almaty,0,val,V
+Novosibirsk,1,train,B
+Zahedan,2,train,A
+Ilorin,0,train,B
+Erode,1,train,B
+Ya'an,2,train,A
+Weifang,0,train,A
+Visakhapatnam,1,train,B
+Mar del Plata,2,train,B
+Douala,0,train,A
+Muzaffarabad,1,train,B
+Mbuji-Mayi,2,train,A
+Cucuta,0,train,A
+Fushun,1,train,A
+Salta,2,train,B
+Maiduguri,0,train,B
+Tonghua,1,train,A
+Warangal,2,train,A
+Beijing,0,train,A
+Kinshasa,1,val,V
+Arak,2,train,B
+Dandong,0,train,B
+Abobo,1,val,V
+Sanya,2,train,A
+Mexico City,0,train,A
+Ahmedabad,1,train,A
+Nairobi,2,train,A
+Bhiwandi,0,train,B
+Bucharest,1,train,B
+Pontianak,2,train,A
+Ho Chi Minh City,0,train,B
+Wanxian,1,train,A
+Kaifeng,2,train,A
+Kunshan,0,val,V
+Dar es Salaam,1,train,B
+Naberezhnyye Chelny,2,val,V
+Porto Velho,0,train,A
+Chaozhou,1,val,V
+Bogor,2,train,A
+Minsk,0,train,B
+Mukalla,1,val,V
+Winnipeg,2,train,A
+Qujing,0,train,B
+Xingtai,1,train,A
+Lyon,2,train,B
+Rawalpindi,0,train,B
+Siping,1,train,B
+Lahore,2,train,A
+Aleppo,0,train,A
+Bobo-Dioulasso,1,train,B
+Brasilia,2,train,B
+Vadodara,0,train,A
+Johor Bahru,1,train,B
+Belo Horizonte,2,val,V
+Taguig,0,train,A
+Hiroshima,1,train,B
+Indianapolis,2,train,A
+Fes,0,train,A
+Zhumadian,1,train,A
+Hamadan,2,train,B
+Cochin,0,train,B
+Aligarh,1,train,A
+Yibin,2,train,A
+Kitakyushu,0,train,A
+Goeteborg,1,train,B
+Jilin,2,val,V
+Quezon City,0,train,A
+Nagoya,1,train,B
+Wuhan,2,train,B
+Iztapalapa,0,train,B
+Irkutsk,1,train,B
+Shuangyashan,2,val,V
+Ajmer,0,train,B
+Goiania,1,train,A
+Joao Pessoa,2,val,V
+Subang Jaya,0,train,B
+Ciudad Guayana,1,train,A
+Ipoh,2,train,B
+Shangyu,0,train,A
+Wroclaw,1,val,V
+Zaria,2,train,B
+Putian,0,val,V
+Lanzhou,1,train,B
+Cuiaba,2,train,A
+Homyel',0,train,A
+Xining,1,train,B
+Ryazan',2,train,B
+Ulan Bator,0,train,A
+Chongqing,1,train,A
+Milwaukee,2,train,B
+Ha'il,0,train,A
+Porto Alegre,1,train,B
+Kumasi,2,train,A
+Eskisehir,0,val,V
+Soweto,1,val,V
+Dammam,2,train,A
+Chizhou,0,train,B
+Adana,1,train,A
+Odesa,2,train,B
+Chennai,0,val,V
+Oslo,1,train,A
+Tianjin,2,val,V
+Klang,0,val,V
+Abu Ghurayb,1,train,A
+Onitsha,2,train,A
+Zhengzhou,0,train,A
+Huzhou,1,train,B
+Bhubaneswar,2,val,V
+Maceio,0,train,A
+Bangkok,1,train,B
+Leon de los Aldama,2,train,B
+Panzhihua,0,train,A
+Taicang,1,train,A
+Wuzhou,2,train,A
+Tashkent,0,train,A
+Namangan,1,val,V
+Conakry,2,train,B
+Zibo,0,val,V
+Cangzhou,1,train,A
+Liuzhou,2,train,A
+Seongnam-si,0,val,V
+Huaihua,1,train,A
+Pekanbaru,2,train,B
+Amravati,0,val,V
+Kumamoto,1,train,B
+Samarinda,2,train,A
+Hamhung,0,train,A
+Rangpur,1,train,B
+Al Mahallah al Kubra,2,train,A
+Kakamega,0,train,B
+Seoul,1,train,B
+Hachioji,2,train,A
+Hegang,0,val,V
+Bengaluru,1,train,A
+Mysore,2,train,A
+Kuala Lumpur,0,train,B
+Sao Bernardo do Campo,1,train,A
+Karachi,2,train,A
+Narela,0,train,A
+Makati City,1,train,A
+Kuantan,2,val,V
+Cimahi,0,train,A
+Chuzhou,1,val,V
+Ganzhou,2,val,V
+Xuchang,0,train,A
+Coimbatore,1,train,B
+Anshun,2,train,B
+Karol Bagh,0,val,V
+Xiangtan,1,train,B
+Baku,2,train,A
+Seattle,0,val,V
+Navi Mumbai,1,train,A
+Jaipur,2,train,A
+Huangshi,0,val,V
+Makassar,1,train,B
+Meerut,2,train,A
+Sharjah,0,val,V
+Sanming,1,train,B
+Bucheon-si,2,val,V
+Daejeon,0,train,A
+Phnom Penh,1,train,B
+Recife,2,train,B
+Tanggu,0,train,B
+Jambi City,1,train,B
+Quebec,2,train,B
+Rostov-na-Donu,0,train,B
+Zaozhuang,1,train,B
+Aparecida de Goiania,2,train,A
+Kandahar,0,train,A
+Thuan An,1,train,B
+Thiruvananthapuram,2,train,B
+Zhenjiang,0,train,B
+Sangli,1,train,A
+Tiruchirappalli,2,train,B
+Puning,0,train,A
+Asyut,1,train,B
+Esenler,2,train,A
+San Miguel de Tucuman,0,train,A
+Tomsk,1,train,B
+Poznan,2,train,A
+Kirkuk,0,train,A
+Baoji,1,train,A
+Nasiriyah,2,train,A
+Cape Town,0,train,B
+Binzhou,1,train,A
+Malatya,2,train,A
+Varanasi,0,train,A
+Guwahati,1,train,B
+Xuanzhou,2,train,B
+Ranchi,0,val,V
+New South Memphis,1,train,B
+Jamshedpur,2,val,V
+Xiamen,0,val,V
+Zhanjiang,1,train,B
+Jiangmen,2,train,B
+Bucaramanga,0,train,A
+Pyongyang,1,train,B
+Barnaul,2,train,A
+Yunfu,0,train,B
+Wuwei,1,val,V
+Zhaoqing,2,train,B
+Detroit,0,train,B
+Zarqa,1,train,B
+Dortmund,2,train,B
+Cuttack,0,train,A
+Ahvaz,1,train,B
+Lubumbashi,2,train,B
+Tucson,0,train,A
+Marrakesh,1,train,B
+Tegucigalpa,2,val,V
+New York City,0,train,A
+Tlalpan,1,train,B
+Frankfurt am Main,2,train,B
+Barranquilla,0,val,V
+Nagpur,1,train,B
+Caracas,2,train,B
+Semarang,0,train,B
+Penza,1,train,A
+Lu'an,2,train,A
+Hezhou,0,train,A
+Aden,1,val,V
+Hannover,2,train,A
+Ordos,0,train,A
+Bouake,1,train,A
+Santo Domingo Este,2,val,V
+Thane,0,train,A
+Duesseldorf,1,train,A
+Accra,2,val,V
+Kahriz,0,train,B
+Sofia,1,train,B
+Florianopolis,2,train,A
+Rahim Yar Khan,0,train,B
+Longyan,1,train,A
+Qiqihar,2,train,B
+Zhangjiagang,0,train,B
+Santiago de Cuba,1,train,B
+Homs,2,val,V
+Warri,0,train,B
+Sarajevo,1,train,A
+Rizhao,2,train,B
+Pimpri,0,val,V
+Jeonju,1,train,A
+Ansan-si,2,train,B
+Antananarivo,0,train,A
+Pingliang,1,train,B
+Mudanjiang,2,train,A
+Khulna,0,train,B
+Tolyatti,1,train,B
+Sevastopol,2,train,A
+Reynosa,0,train,A
+Guiyang,1,train,B
+Yaounde,2,train,A
+Jiaozuo,0,val,V
+Volgograd,1,train,B
+Buraydah,2,train,B
+Johannesburg,0,train,A
+Latakia,1,train,B
+Bursa,2,train,B
+Harbin,0,val,V
+Yiwu,1,train,B
+Teresina,2,train,B
+Zhaotong,0,val,V
+Herat,1,train,A
+Kawaguchi,2,train,A
+Zaporizhzhya,0,val,V
+Malang,1,val,V
+Bokaro,2,train,B
+Abu Dhabi,0,train,B
+Surakarta,1,train,A
+Yerevan,2,train,B
+Cheonan,0,train,A
+Al Ahmadi,1,train,B
+Anshan,2,train,A
+Nanning,0,train,A
+Suining,1,train,A
+Manaus,2,train,A
+Dakar,0,train,A
+New Kingston,1,train,B
+Suqian,2,val,V
+Changchun,0,train,A
+Kotli,1,val,V
+Bandar Lampung,2,val,V
+San Luis Potosi,0,train,A
+Guankou,1,train,A
+Lusaka,2,train,A
+Copenhagen,0,train,B
+Jiaozhou,1,train,A
+Zagreb,2,train,B
+Niigata,0,train,A
+Cixi,1,train,A
+Nay Pyi Taw,2,train,A
+Managua,0,train,A
+Faridabad,1,train,B
+Najafgarh,2,train,B
+Karbala,0,train,A
+Londrina,1,val,V
+Balikpapan,2,train,B
+Macapa,0,train,A
+Hanoi,1,train,A
+Dnipro,2,train,B
+Chandigarh,0,train,B
+Madurai,1,train,A
+Xianning,2,train,B
+Port Harcourt,0,train,A
+Suwon,1,train,A
+Guilin,2,train,B
+Santiago de Queretaro,0,train,B
+Bikaner,1,train,A
+Dehra Dun,2,val,V
+Aktobe,0,train,B
+Luzhou,1,train,B
+Munich,2,train,A
+Astrakhan,0,train,B
+Kunming,1,train,A
+Surat,2,train,B
+Pingdingshan,0,val,V
+Boumerdes,1,train,A
+Jos,2,train,B
+Guarulhos,0,train,A
+Sambhaji Nagar,1,train,B
+Shenzhen,2,train,B
+Addis Ababa,0,train,B
+Shiraz,1,train,B
+Maturin,2,val,V
+Zigong,0,train,B
+Suizhou,1,train,B
+Jiujiang,2,train,A
+Ebute Ikorodu,0,train,B
+Maracay,1,train,A
+Guntur,2,train,A
+Nyala,0,train,A
+Tlaquepaque,1,train,A
+Helsinki,2,train,A
+Himeji,0,train,A
+Cotonou,1,train,B
+Queens,2,train,B
+Xinyang,0,val,V
+Samarkand,1,train,B
+Kagoshima,2,train,B
+Shijiazhuang,0,train,B
+Qinhuangdao,1,val,V
+Mexicali,2,train,A
+Kigali,0,train,A
+Kaduna,1,train,B
+Ghaziabad,2,train,A
+Kharkiv,0,train,A
+Koeln,1,val,V
+Bijie,2,train,A
+Duque de Caxias,0,train,A
+Rourkela,1,train,B
+Laibin,2,val,V
+Panshan,0,train,B
+Riga,1,train,A
+Shivaji Nagar,2,train,A
+Qionghai,0,train,B
+Guatemala City,1,train,A
+Nizhniy Novgorod,2,train,A
+Kyoto,0,train,A
+Ouagadougou,1,train,A
+Erbil,2,train,B
+Pasig City,0,train,A
+Krakow,1,train,B
+Baghdad,2,val,V
+Asansol,0,train,A
+Cebu City,1,train,B
+Arequipa,2,train,B
+Ulhasnagar,0,val,V
+Petaling Jaya,1,train,A
+Jakarta,2,train,B
+Konya,0,val,V
+Jingmen,1,train,A
+Jaboatao dos Guararapes,2,train,B
+Wenzhou,0,train,B
+Mersin,1,val,V
+Deyang,2,train,B
+Busan,0,train,A
+Turin,1,val,V
+Yingkou,2,train,A
+Enugu,0,train,A
+Jeddah,1,train,A
+Nanchong,2,train,A
+Ulsan,0,val,V
+Bhilai,1,train,A
+Indore,2,train,A
+Ulyanovsk,0,train,B
+San Pedro Sula,1,val,V
+Chiclayo,2,train,A
+Kayseri,0,val,V
+Kampala,1,val,V
+Kathmandu,2,train,B
+Matsuyama,0,train,B
+Yongzhou,1,train,B
+Hamamatsu,2,val,V
+Shymkent,0,train,B
+Jiangyin,1,train,A
+Tangier,2,train,A
+Jieyang,0,train,A
+Banjarmasin,1,val,V
+Bagcilar,2,train,A
+Denpasar,0,train,A
+Uberlandia,1,train,B
+Beirut,2,val,V
+Xiaogan,0,train,B
+Ashgabat,1,train,A
+Las Pinas,2,train,B
+Orenburg,0,train,B
+Abidjan,1,train,A
+Curitiba,2,train,B
+Izhevsk,0,train,B
+The Bronx,1,train,A
+Xianyang,2,train,B
+Kampung Baru Subang,0,train,A
+Port-au-Prince,1,val,V
+Shangrao,2,val,V
+Maracaibo,0,train,B
+Abeokuta,1,train,B
+Ibadan,2,train,B
+Foshan,0,train,B
+Yekaterinburg,1,train,A
+Abuja,2,train,B
+Saratov,0,train,A
+Khabarovsk Vtoroy,1,val,V
+Al Fayyum,2,train,A
+Najran,0,val,V
+E'zhou,1,train,B
+Hwaseong-si,2,train,B
+Ziyang,0,val,V
+Barquisimeto,1,train,A
+Jiamusi,2,train,B
+Laiwu,0,train,A
+Hefei,1,train,A
+Durban,2,train,A
+Taiz,0,train,A
+Ma'anshan,1,train,A
+Shangluo,2,val,V
+Can Tho,0,train,B
+Irbid,1,train,B
+Shizuoka,2,train,A
+Tyumen,0,val,V
+Tehran,1,train,A
+Kozhikode,2,train,A
+Rajshahi,0,train,A
+Dubai,1,train,A
+Lianyungang,2,train,B
+Dalian,0,train,A
+Nanjing,1,train,A
+Pune,2,train,B
+Albuquerque,0,val,V
+Kermanshah,1,train,A
+Huaibei,2,train,B
+Port Said,0,train,A
+Kobe,1,train,B
+Algiers,2,train,A
+Changde,0,train,B
+Suez,1,train,A
+Wanning,2,train,B
+Al Hudaydah,0,train,B
+Sapporo,1,train,A
+Nanchang,2,train,B
+Al Basrah al Qadimah,0,train,A
+Kimhae,1,train,A
+Tianshui,2,train,B
+Rajkot,0,train,B
+Aguascalientes,1,train,B
+Changwon,2,val,V
+Hanzhong,0,train,B
+Shenyang,1,train,B
+Baise,2,train,A
+Gujranwala,0,val,V
+Faisalabad,1,val,V
+Mississauga,2,train,B
+Guangyuan,0,train,A
+Bauchi,1,val,V
+Stockholm,2,val,V
+Zhabei,0,train,B
+Hangzhou,1,train,A
+Luohe,2,train,A
+Contagem,0,val,V
+Yichang,1,train,A
+Tijuana,2,val,V
+Sendai,0,train,B
+Beira,1,val,V
+Callao,2,train,B
+Goyang-si,0,train,A
+Kalyan,1,train,B
+Rohini,2,val,V
+Linyi,0,train,B
+Bahawalpur,1,val,V
+Shangqiu,2,train,B
+Incheon,0,train,A
+Juiz de Fora,1,train,B
+Vladivostok,2,train,B
+Multan,0,train,B
+Sulaymaniyah,1,train,A
+Nampula,2,train,A
+Santo Domingo Oeste,0,train,B
+Mazar-e Sharif,1,val,V
+Guangzhou,2,val,V
+Kyiv,0,val,V
+Sokoto,1,val,V
+Al Mawsil al Jadidah,2,val,V
+Yaroslavl,0,val,V
+Bishkek,1,train,A
+Qom,2,train,A
+Changshu,0,train,A
+Tebessa,1,val,V
+Caloocan City,2,train,A
+Nuernberg,0,train,B
+Kalininskiy,1,train,B
+Cancun,2,val,V
+Culiacan,0,train,B
+Fukuoka,1,val,V
+Kanpur,2,val,V
+Yinchuan,0,train,A
+Haiphong,1,train,A
+Linfen,2,train,A
+Santiago de los Caballeros,0,train,A
+Ludhiana,1,train,B
+Nanded,2,train,A
+Pietermaritzburg,0,train,B
+Anyang,1,train,B
+Quito,2,train,A
+Casablanca,0,train,B
+Tangerang,1,train,B
+South Tangerang,2,train,B
+Chenzhou,0,train,B
+Bien Hoa,1,train,B
+Guigang,2,train,B
+Korla,0,train,B
+Niamey,1,train,B
+Borivli,2,val,V
+Batam,0,train,B
+Mosul,1,train,A
+Palembang,2,train,A
+Tiruppur,0,train,B
+Lipetsk,1,train,B
+Zhangjiakou,2,train,B
+Mogadishu,0,train,A
+Mandalay,1,train,B
+Tirunelveli,2,train,B
+Hohhot,0,val,V
+Cheongju-si,1,val,V
+Ibague,2,train,B
+Ciudad Nezahualcoyotl,0,train,A
+Bilimora,1,train,A
+Shantou,2,val,V
+Kota Bharu,0,train,A
+Daqing,1,train,B
+Omdurman,2,train,B
+Antalya,0,train,A
+Shaoxing,1,train,A
+Kanayannur,2,train,B
+Serang,0,train,B
+Zhoushan,1,train,B
+Shaoguan,2,train,B
+Muscat,0,train,A
+Comilla,1,train,A
+Zapopan,2,train,A
+Torreon,0,train,A
+Izmir,1,train,A
+Sargodha,2,train,A
+Puente Alto,0,train,A
+Bulawayo,1,train,B
+Pikine,2,train,B
+Langfang,0,train,B
+Bayannur,1,train,B
+Chengdu,2,val,V
+Hengyang,0,train,B
+Weihai,1,train,A
+Shubra al Khaymah,2,train,A
+Perm,0,train,B
+Nouakchott,1,train,B
+Kleinzschocher,2,train,B
+Okayama,0,train,A
+Qingdao,1,train,B
+Islamabad,2,train,B
+Davao,0,train,B
+Malacca,1,train,A
+Uskudar,2,train,A
+Shihezi,0,train,B
+Cankaya,1,train,B
+Rio de Janeiro,2,val,V
+Huizhou,0,train,B
+Isfahan,1,train,B
+Jinan,2,train,A
+Ningbo,0,train,A
+Fortaleza,1,train,B
+Ar Raqqah,2,train,A
+Luancheng,0,val,V
+Dhanbad,1,train,B
+Khabarovsk,2,val,V
+Brazzaville,0,train,A
+Bhavnagar,1,train,B
+Ankara,2,train,A
+Gwalior,0,val,V
+Jabalpur,1,train,A
+Harare,2,train,B
+Yangjiang,0,val,V
+Victoria de Durango,1,train,A
+Meizhou,2,train,B
+Feira de Santana,0,train,A
+Liupanshui,1,train,B
+Shanghai,2,train,B
+Krasnodar,0,train,B
+Saitama,1,train,A
+Bhopal,2,train,B
+Chisinau,0,train,A
+Zunyi,1,train,B
+Agadir,2,train,A
+Acapulco de Juarez,0,val,V
+Omsk,1,train,B
+Handan,2,train,B
+Khartoum,0,train,A
+Lome,1,train,A
+Matola,2,train,B
+Benoni,0,val,V
+Tabriz,1,train,B
+Makhachkala,2,train,B
+Vilnius,0,train,B
+Rui'an,1,val,V
+Calgary,2,train,B
+Wanzhou,0,train,A
+Urumqi,1,train,B
+Puducherry,2,train,A
+Pretoria,0,train,A
+Chelyabinsk,1,train,B
+Guang'an,2,train,A
+Kallakurichi,0,train,A
+Kolhapur,1,train,A

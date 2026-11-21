@@ -5,8 +5,12 @@ All results in this section are \evlabel{validation} findings (M2; 108 SAEs, 36 
 \paragraph{Frozen probes overstate the loss.} A logistic truth probe fitted on original activations and applied
 unchanged to SAE reconstructions loses 0.28--0.29 AUROC on GoT (Table~\ref{tab:m2}, Figure~\ref{fig:m2}). Earlier
 versions of this project read this as truth information being lost. Adding isotropic noise with the same norm as the
-SAE error causes almost the same drop (0.25--0.26), and a simpler mass-mean reader loses only 0.02--0.03. Most of the
-frozen-probe collapse is therefore sensitivity of that reader to any perturbation of this size, not SAE-specific loss.
+SAE error causes almost the same drop (0.25--0.26), and a simpler mass-mean reader loses only 0.02--0.03. Isotropic
+noise is, however, an unusually damaging reference for a standardised logistic reader. In a sensitivity analysis
+(\evlabel{validation}; Section~\ref{sec:audit}) the SAE's \emph{own} errors, reassigned at random to other rows, reproduce
+only 50--67\,\% of the drop at layers 6--11; the remaining 33--50\,\% is aligned with the input and its label (92 of 99
+cells at layers 3--11), and for the mass-mean reader the SAE loses 2--5 times more than the strongest noise reference. Part of
+the frozen-probe collapse is therefore generic reader sensitivity, and a substantial part is SAE-specific.
 
 \paragraph{A smaller, real loss remains.} Readers re-trained on the reconstructions are 0.07--0.12 AUROC worse than
 readers trained on the original activations for GoT, and 0.14--0.18 worse for the persona task. Re-training never
@@ -21,12 +25,17 @@ gives PCA far more dimensions than the SAE uses per token (for the improved SAEs
 latents). Section~\ref{sec:pcacm} repeats the GoT comparison at an equal per-token budget, where the verdict reverses
 in some cells; the persona and neutral comparisons have been run at equal error only.
 
-\paragraph{Persona versus generic change.} Part of the persona loss is generic one-word-change information: the
-re-trained gap is 0.07--0.13 larger for persona than for neutral swaps at layers 3--8, and about equal at layers 10--11.
+\paragraph{Persona versus generic change.} The raw re-trained gap is 0.07--0.13 larger for persona than for neutral
+swaps at layers 3--8, but the persona contrast is also far more decodable (original AUROC 0.78--0.86 against
+0.60--0.64 at those layers). Normalised by that headroom, the SAEs lose an equal or larger share of the \emph{neutral} contrast at every
+layer, significantly larger at layers 5 and 7--11 (Section~\ref{sec:audit}). The loss is therefore generic one-word
+instruction information, not persona-specific.
 
 \paragraph{Architecture differences are confounded.} On truth, ReLU loses least and JumpReLU most, the reverse of
 the reconstruction ranking; on persona, ReLU loses most. Because task-level L0 is not matched, we do not interpret
-these differences as architecture effects until E1 is run.
+these differences as architecture effects. Truncating every SAE at inference to a common task-level L0
+(Section~\ref{sec:audit}) reverses the old-architecture ordering in 13 of 19 metric--layer cells, so these rankings are not
+robust.
 
 \input{tables/t_m2}
 
@@ -48,8 +57,9 @@ base-SAE values exactly (maximum difference 0.0) and IMP-L's re-trained persona 
 gap (0.10--0.24; Table~\ref{tab:rlm_layers}, Figure~\ref{fig:rlm}) is 1.9--3.4 times the gap caused by same-norm
 noise. A logistic reader re-trained on the reconstructions recovers almost none of it: the re-trained gap is
 0.08--0.22, and its statement-bootstrap interval excludes zero for all 99 base SAEs at layers 1--11. At layers 2--8
-the re-trained persona gap exceeds the neutral-word control by 0.06--0.12, so part of the mid-layer loss is
-persona-specific. At layers 10--11 it does not exceed the neutral gap, so the late loss is generic.
+the raw re-trained persona gap exceeds the neutral-word control by 0.06--0.12, but relative to each contrast's
+decodable signal the neutral loss is as large or larger at every layer (Section~\ref{sec:audit}), so the loss is not
+persona-specific.
 
 \paragraph{The honest-minus-dishonest difference is distorted.} For each pair, the reconstructed difference
 $\hat\Delta=\hat x_H-\hat x_U$ has a cosine of only 0.52--0.58 (ReLU), 0.35--0.43 (TopK) and 0.38--0.48 (JumpReLU)
