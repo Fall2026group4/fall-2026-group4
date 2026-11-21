@@ -1,0 +1,71 @@
+{
+ "experiment": "TI-2: multi-family truth-subspace-preserving fine-tune (TSP-MF), GPT-2 R2 TopK L8",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED (frozen before any gate, training or outcome)",
+ "approved_by": "user, 2026-11-21 (Option B item 4)",
+ "evidence_level_on_completion": "VALIDATION (DEV / TRAIN rows only; all fresh-family TEST splits locked; GoT TEST dropped at load)",
+ "primary": "MF-H1: companies DEV refit-logistic gap, tsp_mf - ctrl; SUPPORTED iff h1_label starts SUPPORTED (SESOI 0.010) and p < 0.05",
+ "secondary": {
+  "MF-H2": "tsp_mf - tsp_cities < 0 (gatekept on MF-H1; Holm over H2,H3)",
+  "MF-H3": "tsp_mf - rand < 0 (gatekept; Holm)",
+  "MF-H4": "cities V fold 0: tsp_mf - ctrl CI high < 0",
+  "MF-H5": "common_claim guard: 90 % CI of tsp_mf - ctrl within +-0.010"
+ },
+ "cost_limits": {
+  "owt_nmse_rel_vs_base": "<= +3 %",
+  "owt_dce_rel_vs_base": "<= +5 %",
+  "l0": "== 128 (TopK)"
+ },
+ "verdicts": [
+  "TRANSFERS",
+  "TRANSFERS (NOT SPECIFIC)",
+  "TRADE-OFF",
+  "NO TRANSFER DETECTED (MDE about 0.03)"
+ ],
+ "gates": {
+  "R0": "S25.run_one reproduces TSP-R f0_tsp_s42 (full run), max |param diff| <= 1e-6",
+  "family_vectors": "reproduces estimate_truth_subspace (< 1e-8)",
+  "eligibility": "companies CV AUROC >= 0.70; >= 2 non-cities families eligible for S"
+ },
+ "failure_conditions": [
+  "any gate fails -> stop TI-2 (no counted run)",
+  "divergence -> exclude and report; no re-run with new hyperparameters"
+ ],
+ "seeds": [
+  42,
+  1042,
+  2042,
+  3042,
+  4042,
+  5042,
+  6042,
+  7042
+ ],
+ "arms": [
+  "ctrl",
+  "tsp_cities",
+  "tsp_mf",
+  "rand"
+ ],
+ "runs": 32,
+ "replay_cap_per_family": 1000,
+ "test_data_used": false,
+ "hashes": {
+  "scripts/geometry_of_truth/34_tsp_multifamily.py": "de853c63f653b07498cd559ff333b318242ef3efc147d25c56d9d204e4710590",
+  "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+  "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
+  "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "8e93527a8a3a55d79bc753bba8ea97688c24e88e3e8933616471e8d8cf40f7ed",
+  "scripts/geometry_of_truth/29_tsp_r_phase0_fresh_families.py": "8d4eb535a8a0f2041811a06c02247eaee44fcce23dd1ef96ca231ee540e86f89",
+  "scripts/geometry_of_truth/24_truth_subspace_diagnostics.py": "484658d78e98a56488ad84971776bbf3f6e7dd062cebe6773aa24c655b023320",
+  "src/sae/truth_subspace.py": "8299b2782e02fcbf490d5d5de218ab9e44238c5b68cb71f9bc842ee434bfca32",
+  "src/evaluation/tspr_stats.py": "e3eb4593887875a29d955264e7700961118f9d9083a2d9d8fa4dfdc40f634fd6",
+  "data/got/fresh/splits/cities_crossfit_folds.csv": "fdfb0f6e3fabc57761dbd5846c9a6fa457eb1814192f06826ce20ede5c90dba7",
+  "data/got/fresh/splits/companies_true_false_splits.csv": "2b65934710d71d7b98c60c4f5ad15205cf2539d653c95a8b2a2a52e3abcd0cb6",
+  "data/got/fresh/splits/common_claim_true_false_splits.csv": "63ea6313a52086e72c8230d8afab5cdc82e0e698d4064d4d57471e67d7b50ec5",
+  "data/got/fresh/splits/counterfact_true_false_splits.csv": "bd42f47765965a53754500770035467bf815d42fe3c78b0a7fb9f7ebcdc2888a",
+  "data/got/splits/larger_than_splits.csv": "82117c655ade21730809ee69a1b9530a92518444c5bee70d410153680f162bfc",
+  "data/got/splits/smaller_than_splits.csv": "5f3547752c5a96b2f8b7e2a20e23e2973404477c97c4b86a23a0a041cabc569b",
+  "results/geometry_of_truth/tsp_multifamily/README.md": "e24b20982900b305defbdb6205f9d10cbc0bf5799b003604d505d47204edb80e",
+  "src/tests/test_tsp_multifamily.py": "1171cf2389586f2fb01746dfa30869e62d040ed52822e45ad0f24524480b3717"
+ }
+}
