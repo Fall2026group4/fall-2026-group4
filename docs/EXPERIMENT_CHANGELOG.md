@@ -392,3 +392,20 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   conclusion, `docs/plain_summary.md`). This branch passes.
 * M `src/tests/README.md` (entry for the new test).
 * No results, frozen records, checkpoints or scripts changed.
+
+## 2026-11-21: final-week Phase 1 (cross-model infrastructure, gates, Gemma task baselines; PR "final-week P1")
+
+| File(s) | Change | Reason |
+|---|---|---|
+| `docs/2026-11-21_final_week_technical_audit.md` | added | approved technical audit and plan |
+| `src/models/backends.py` | added | one residual-hook interface for GPT-2 (TL) and Gemma (HF) |
+| `src/evaluation/pile_splicing.py` | added, byte-identical to `origin/main` (blob `f4a52c4`) | reuse M6's validated helpers; merges cleanly |
+| `scripts/cross_model/00_fetch_assets.py` … `03_matched_splicing_analysis.py` | added | XB pipeline (assets, samples, runner, analysis) |
+| `scripts/cross_model/10_truth_preservation.py` | added | XT-G / DX runner (reuses M2 and RLM-RP code unchanged) |
+| `scripts/gemma/10_extract_task_activations.py` | added | XT-G0 Gemma task activations + K1 / K7 gates |
+| `scripts/geometry_of_truth/32_tsp_generalisation.py`, `33_extract_fresh_dev_all_layers.py` | added | TI-1 driver; GPT-2 fresh-DEV caches for XT-G A2 |
+| `src/tests/test_cross_model.py` | added | 9 offline unit tests |
+| `results/cross_model/{FINAL_WEEK_TRACKER.md, assets/, xb_matched_splicing/, xtg_truth_preservation/}` | added | pre-registrations, amendments, hashes, samples, M6 inputs, smoke / gate outputs (full runs not included) |
+| `results/gemma/xtg_task_baselines/` | added | XT-G0 README + gates |
+| `results/geometry_of_truth/tsp_generalisation/` | added | TI-1 pre-registration, gate outputs |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv` | appended | documentation rule (CLAUDE.md §1) |

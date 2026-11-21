@@ -327,3 +327,43 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * NEW (P2, after TSP-R): multi-family "universal" truth subspace (general + polarity directions), separately
   pre-registered.
 * NEW (P2): minimal-pair difference-preservation loss (no fitted direction) as an exploratory nonlinear alternative.
+
+## 2026-11-21 (X2 fairness audit: GPT-2 vs Gemma-2-2B; analysis only, no experiment run)
+Audit of which GPT-2 and Gemma results can be shown side by side. Gemma evidence on teammates' branches, read with
+`git show` only: M6 Gemma Scope splicing (`origin/main`, `results/gemma2_pile/gemma_scope_splicing/`) and the R3
+width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
+* **Comparable now (descriptive side by side only, no ranking):** the within-model ratio ΔCE_SAE / ΔCE_random and the
+  H-G1 direction (Gemma 36/36 SAEs; GPT-2 "most runs", ratio 0.76–2.89 per run); the L0 → ΔCE trend within each model.
+* **Not comparable (must not be ranked):** raw ΔCE/KL in nats (different vocabularies, base CE, context 128 vs 1024);
+  EV across models (OWT vs Pile, different depths); architectures (Gemma Scope is JumpReLU only, and our JumpReLU is
+  the weakest-validated arm); seed sd (GPT-2) vs document bootstrap (Gemma); Gemma L11 GoT-cities steering (no SAE,
+  20 controls) vs GPT-2 L6 RepE honesty causal test (200 controls).
+* NEW (P0): **X2a, sync Gemma evidence into `sae-research` docs.** `RESEARCH_DECISIONS.md` D1, `results/gemma/README.md`
+  and `docs/final_defense/*` still say "no Gemma SAEs" although M6 is on `main`; R3 needs a team review/merge decision.
+* NEW (P0, needs a pre-registration; inference only, ≈ 1 h GPU): **X2b, GPT-2 splicing under the M6 protocol.**
+  Same 512 + 64 Pile validation documents (`sample_manifest.csv`), 1024-token windows, document bootstrap, same
+  controls; GPT-2 at depth-matched sites (Gemma `resid_post` 5/12/19 = `resid_pre` 6/13/20 of 26 → relative depth
+  0.23/0.50/0.77 → GPT-2 `resid_pre` 3/6/9), with both the public res-jb SAEs (public-vs-public pairing with
+  Gemma Scope) and the in-house R2 SAEs where they exist.
+* NEW (P1): **X2c, sparsity normalisation for cross-model tables.** Report L0, L0/d_model and width/d_model per cell
+  (Gemma 16k/2304 ≈ 7.1×, L0 ≈ 70–85; GPT-2 baseline 3072/768 = 4×, L0 128; R2 16×; res-jb 32×).
+* NEW (P1): **X2d, Gemma representation preservation (M1/M2 + GoT cities frozen probes on Gemma Scope splices).**
+  Without it the representation cell of the cross-model table stays EMPTY.
+* NEW (P1): **X2e, steering parity.** Either run the Gemma steering protocol (`scripts/gemma/01_steering_sweep.py`:
+  GoT cities, grouped splits, bare + context directions, norm-matched random controls) on GPT-2, or re-run Gemma at
+  200 controls (C7/M4) *and* GPT-2 at the same count; otherwise steering stays model-specific (appendix).
+* Causal (C1-style patching) and architecture comparisons stay **missing for Gemma** and must be shown as missing cells.
+* **Superseded the same day** by the full audit `docs/2026-11-21_final_week_technical_audit.md` (task IDs XB, XT-G0,
+  XT-G, DX, XC-1…XC-4, TI-1…TI-4, TI-G, XG-IH, XJ, XF). All PLANNED, awaiting the user's approval. Teammate evidence
+  found: M6 (`main`), R3 (PR #30), `dhruv-causal` (unmerged, no PR: GPT-2 GoT causal test, SAE-in-the-loop on old
+  prompts, frozen-probe decomposition).
+
+## 2026-11-21 (final-week execution; plan approved)
+* DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§51).
+* IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched), TI-1 (L11 TopK,
+  L8 BatchTopK, L8 ReLU; L1 not eligible).
+* PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
+  XC-4/SIL, TI-G, X0, E1, PCA-CM-T, XG-IH / XJ (feasibility), XF.
+* BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or
+  measured free space allows; disk guard active.
+* NEW (P1): cross-model truth claims must avoid ceiling tasks (Gemma GoT cities AUROC 1.000 at L12).

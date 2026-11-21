@@ -1,0 +1,43 @@
+{
+ "experiment": "XT-G / DX: truth and honesty representation preservation under one protocol for GPT-2 Small and Gemma-2-2B, with rotation-vs-information-loss diagnostics",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED (frozen before any XT-G output exists)",
+ "evidence_level_on_completion": "VALIDATION (GoT train/val rows, RepE-LM train/validation rows only; no TEST row is loaded)",
+ "research_question": "Do Gemma Scope SAEs preserve GoT truth and RepE-LM persona information in Gemma-2-2B as GPT-2 SAEs do in GPT-2, under identical probe protocols; and is any frozen-probe degradation (in either model) a readout shift (rotation/affine displacement) or actual information loss?",
+ "models_sites": "gpt2: blocks.L.hook_resid_pre (TransformerLens), L 0-11 (existing caches); gemma: resid_post (HF bf16, float16 cache), L 0-25 (scripts/gemma/10_extract_task_activations.py). Final token for GoT and RepE-LM; RepE-LM slot cache stored but not used in the primary analysis.",
+ "data": {
+  "got_cities": "geographic = cities + neg_cities pooled; existing grouped-by-city splits data/got/splits/{cities,neg_cities}_splits.csv; train fits, val evaluates; test rows dropped at load",
+  "repe_persona": "RepE-LM T1-T4 H vs U; statement-grouped train/validation (data/repe/repe_lm/prompts.csv)",
+  "repe_neutral": "RepE-LM N1-N2 (control)",
+  "repe_extras": "via scripts/repe/26 evaluate(): synonym (Hp vs U), held-out wording T5/T6 (never fitted), neutral, pair-direction geometry",
+  "not_in_primary": "GoT numerical (surface shortcut, AUROC 0.84 from surface features; reported only as exploratory), fresh families companies/common_claim (DEV-only exploratory diagnostics)"
+ },
+ "saes": {
+  "gemma": "Gemma Scope 16k canonical at every layer (primary); 16k/65k ladder at triplet layers (sparsity-mechanism analysis, batch 2)",
+  "gpt2": "res-jb at every layer; R2 topk/batchtopk/relu (+ topk_w3072, frozen-decoder control) at 1/8/11; old in-house at triplet layers 1/3/6/8/9/11 (labelled under-trained)"
+ },
+ "references": {
+  "pca_error_matched": "PCA on the model's own OWT TRAIN windows (same 800 documents for both models, BOS + first 127 tokens), k chosen so OWT-VAL NMSE matches the SAE's OWT-VAL NMSE (il.pca_k_for_val_nmse)",
+  "pca_l0_matched": "PCA with k = round(SAE mean L0 on OWT-VAL)",
+  "noise": "norm-matched isotropic noise (M2: 200 draws)"
+ },
+ "probe_protocol": "Unchanged M2 evaluate_source (frozen logistic and mass-mean fitted on ORIGINAL train rows; refit logistic / MLP / kNN / sparse-z on reconstructions; error-term AUROC; grouped bootstrap 1000) and RLM-RP evaluate. Evaluation probes are never a training teacher here (no training).",
+ "dx_diagnostics (new code, pre-registered)": {
+  "affine_aligned_frozen_gap": "fit x ~ A x_hat + b by ridge (lambda = 1e-3 x mean eigenvalue) on the model's unlabeled OWT-VAL windows (SAE inputs and outputs), apply to task reconstructions, then the frozen original logistic probe; gap vs original AUROC with grouped-bootstrap CI",
+  "procrustes_aligned_frozen_gap": "same with an orthogonal Procrustes map fitted on centred OWT-VAL windows",
+  "cka_linear": "linear CKA between X and X_hat on task validation rows",
+  "truth_projection": "w = original mass-mean direction (unit): corr(w.x, w.x_hat) and var(w.x_hat)/var(w.x) on validation rows",
+  "error_truth_enrichment": "mean (e.w)^2 / (mean ||e||^2 / d): 1 = isotropic error, > 1 = error concentrated along the truth direction (suppression), < 1 = truth direction protected"
+ },
+ "dx_rules (per SAE x task cell)": {
+  "READOUT_SHIFT": "raw frozen logistic gap >= 0.05 AND affine-aligned frozen gap <= 0.5 x raw frozen gap AND affine-aligned gap <= refit logistic gap + 0.02",
+  "INFORMATION_LOSS": "refit logistic gap CI low > 0 AND refit MLP gap CI low > 0",
+  "LOSS_BEYOND_PCA": "SAE refit logistic gap minus error-matched-PCA refit logistic gap: paired bootstrap CI low > 0",
+  "SUPPRESSION": "error_truth_enrichment > 1 with bootstrap CI low > 1 (statement-grouped)",
+  "note": "labels are not exclusive; READOUT_SHIFT with INFORMATION_LOSS means both mechanisms are present"
+ },
+ "sparsity_mechanism (batch 2, ladder)": "within (model, layer, width): Spearman of refit gap and error_truth_enrichment vs measured L0 across the published L0 ladder (Gemma 16k: 5 L0s; 65k: 5 L0s); descriptive, with per-SAE CIs; this tests whether truth loss depends on sparsity at fixed width and recipe",
+ "cross_model_comparison": "descriptive only: refit gaps relative to the original AUROC headroom (gap / (orig AUROC - 0.5)) and SAE-minus-PCA gaps, at depth-matched triplets; no ranking claim from raw gaps (different d_model, SAE family, training history)",
+ "multiplicity": "BH within each (model, task, rule) family across layers; reported alongside raw CIs",
+ "test_data_used": false
+}
