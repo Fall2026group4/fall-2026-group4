@@ -855,6 +855,39 @@ Source: `results/gemma2_pile/gemma_scope_splicing/` (`summary_by_layer.csv`, `h_
 * No representation-preservation, causal-intervention or GPT-2 vs Gemma superiority claim.
 * **Limitation (H4a, measurement floor only, results not adjusted):** bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.0008297822, mean |CE difference| 0.0264414540, top-1 disagreement 0.0226209048 and max |logit difference| 0.1562862396. Hardened smoke outputs: `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`.
 
+## 26. Dead-latent audit, GPT-2 base and R2 SAEs (2026-11-15; VALIDATION; descriptive diagnostic)
+
+Sources: `results/shared/dead_latent_audit/{dead_latents_by_sae.csv,summary_by_family_layer.csv}`;
+`docs/DEAD_LATENT_AUDIT.md`.
+
+* **Definition:** dead = never fires (z > 0) on the layer's OWT validation cache (12,700 non-BOS tokens).
+  This is the existing `faithfulness_metrics.dead_fraction` rule, the same for base and R2.
+* **Coverage:**
+  * 108/108 base SAEs;
+  * 36/36 trained R2 SAEs;
+  * 3 frozen-random-decoder baselines, reported separately.
+* **Direction:** dead fraction ↓, but it is a diagnostic only. A lower dead fraction does not by itself imply better
+  information, behavioural or causal faithfulness.
+
+**% dead (mean over 3 seeds):**
+
+| SAE | Layer 1 | Layer 8 | Layer 11 | All audited layers (range per run) |
+|---|---|---|---|---|
+| Old ReLU-3072 | 4.64 | 0.30 | 4.96 | 1.95 (0.20–5.37) |
+| Old TopK-3072 | 44.30 | 8.39 | 31.37 | 23.19 (6.7–44.7) |
+| Old JumpReLU-3072 | 67.99 | 7.34 | 15.92 | 34.56 (4.2–95.7) |
+| R2 TopK-12288 | 0.024 | 0.103 | 0.130 | 0.09 |
+| R2 BatchTopK-12288 | 0.011 | 0.174 | 0.331 | 0.17 |
+| R2 ReLU-12288 | 0.100 | 0.014 | 0.019 | 0.04 |
+| R2 TopK-3072 | 0 | 0 | 0 | 0 |
+| R2 frozen-random-decoder (not trained; seed 42) | 0.008 | 0 | 0 | 0.003 |
+
+* The old SAEs cover all 12 layers; layer-0 JumpReLU is 88.4 % dead (84.7 % over the L0-matched seeds).
+* Every trained R2 SAE is at most 0.36 % dead.
+* The same-width R2 TopK-3072 arm also has zero dead latents, so increased width alone does not explain the reduction.
+  Data, training duration and recipe changed together; no single factor is isolated.
+* **Transcription correction:** the appendix JumpReLU alive-latent range is 469–2,941 (it previously read 2,947).
+
 ## TI-1: TSP generalisation (2026-11-21; VALIDATION; pre-registered; 3 seeds × 3 folds per cell)
 | Cell | tsp − ctrl refit gap [95 % CI] | p_holm | tsp − rand | OWT NMSE vs base | L0 change | Label |
 |---|---|---|---|---|---|---|

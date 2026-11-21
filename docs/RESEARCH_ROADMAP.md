@@ -224,6 +224,12 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
   * `architecture_summary.csv`;
   * warm-start/resume cross-layer runs;
   * Gemma row-split baseline.
+* **Method A layers 5/6/9 extension** (`simba-method-a-multilayer`, `28ad5cf`/`b64e6ed`/`7f2557b`): EXCLUDED from the
+  final scope before the 2026-11-22 technical freeze (`RESEARCH_DECISIONS.md` D45, 2026-11-16).
+  * Status: unmerged exploratory validation work, branch-only and not cited.
+  * Reasons: the criterion was met in 1/9 cells; layer 6 duplicates existing evidence; the layer-9 disagreement with
+    IMP-L is unresolved; there is no re-trained-reader analysis.
+  * Reconciling the two pipelines is out of scope.
 
 ## 11. Housekeeping awaiting approval (not to be done without explicit approval)
 * ~~Deleting `results/professor_review_corrections/`, `scripts/professor_review/`, `src/tests/test_professor_review.py`~~ **DONE 2026-11-07** (approved by the user): retired to `../backups/2026-11-07_retired_professor_review_folders/` after hash verification; Git history keeps the tracked files. The two `.bak` files remain on disk, now gitignored; deleting them still needs approval.
@@ -333,6 +339,27 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   pre-registered.
 * NEW (P2): minimal-pair difference-preservation loss (no fitted direction) as an exploratory nonlinear alternative.
 
+## 2026-11-15 additions (dead-latent audit)
+
+* DONE (descriptive audit; instructor request of 2026-11-10): dead-latent fraction for every base and R2 GPT-2 SAE.
+  * Covered: 108/108 base SAEs, 36/36 trained R2 SAEs, and 3 frozen-random-decoder baselines (separately).
+  * Outputs: `results/shared/dead_latent_audit/`, `docs/DEAD_LATENT_AUDIT.md`.
+  * Not a headline result. It quantifies the "dead latents" motivation of G3/G11, which stay PLANNED.
+* DONE: appendix transcription correction, JumpReLU alive latents 469–2,947 → 469–2,941.
+* OPEN (optional, not requested): whether the paper should cite the audit, for example one sentence in the appendix.
+  Needs the user's decision.
+
+## 2026-11-17 additions (PR #31 reviewer integration)
+
+* DONE in #31 (manuscript only; results stay on PR #35): H1-TEST (§7.3, Table `t_h1test`), AUDIT-SENS (Appendix
+  "Audit Sensitivity Analyses", `sec:audit`), TSP (§7.5, validation, confirmatory, TRADE-OFF qualifier), the S2
+  persona wording and the S3 task-level-L0 caveat; `docs/plain_summary.md` S5 sentence corrected.
+* DECIDED (numbering, agreed on PR #31): #35 keeps D36–D43 and progress §43–§50; M6 = D44 / §51; this PR = D45 /
+  §52–§53; R3 (PR #30) reserved as D46 / §54 / results summary §27.
+* Merge order: #31 → #30 → #35. Until #35 merges, the paper cites three result folders that are only on
+  `sae-research` (marked in Table `tab:evidence`).
+* OPEN: M6 figures in vector format (Review #9 F7), not part of this pass.
+
 ## 2026-11-21 (X2 fairness audit: GPT-2 vs Gemma-2-2B; analysis only, no experiment run)
 Audit of which GPT-2 and Gemma results can be shown side by side. Gemma evidence on teammates' branches, read with
 `git show` only: M6 Gemma Scope splicing (`origin/main`, `results/gemma2_pile/gemma_scope_splicing/`) and the R3
@@ -373,3 +400,14 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or
   measured free space allows; disk guard active.
 * NEW (P1): cross-model truth claims must avoid ceiling tasks (Gemma GoT cities AUROC 1.000 at L12).
+
+## 2026-11-21 additions (PR #31 merged with `origin/main` after PR #35 and PR #36)
+
+* DONE (merge only; no experiment run): `origin/main` merged into `simba-paper-manuscript`. The restructured
+  manuscript is kept; the nine legacy section files that PR #35 edited stay deleted, because their H1-TEST,
+  AUDIT-SENS and TSP content is already in the new sections (checked claim by claim). `main.pdf` rebuilt.
+* SUPERSEDES the 2026-11-17 merge-order line: #35 merged first, so the H1-TEST, AUDIT-SENS and TSP result folders
+  the paper cites are now on `main`.
+* DONE: Table `tab:evidence` no longer marks those three folders with the "not yet on `main`" dagger; R3 stays
+  on PR #30 and keeps its dagger until #30 merges.
+* OPEN: final R3 integration into the manuscript after PR #30 merges (D46 / §54 / results summary §27 reserved).
