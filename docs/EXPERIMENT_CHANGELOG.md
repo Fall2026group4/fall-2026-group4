@@ -430,8 +430,8 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 No experiment, code or result changes. Both sides kept in full in the four doc ledgers that conflicted; one withdrawn sentence corrected (below).
 | File | Change | Reason |
 |---|---|---|
-| `docs/RESEARCH_DECISIONS.md` | M6 decision renumbered **D36 → D45**; its references in DECISIONS, ROADMAP and `results_registry.md` updated | `sae-research` already used D36–D44, and those are cited in the paper and the D36/D38 regression test |
-| `docs/RESEARCH_PROGRESS.md` | M6 journal entry renumbered **§43 → §52** | `sae-research` already used §43–§51 |
+| `docs/RESEARCH_DECISIONS.md` | M6 decision renumbered **D36 → D44** (same as on #31); final-week decision **D44 → D47**; references in DECISIONS, ROADMAP and `results_registry.md` updated | team numbering plan: #35 D36–D43 (cited in the paper and the D36/D38 regression test, so unchanged), #31 D44–D45, #30 D46. A first pass of this merge (`2bee3db`) used D45 for M6; corrected in the follow-up commit |
+| `docs/RESEARCH_PROGRESS.md` | M6 journal entry renumbered **§43 → §51** (same as on #31); final-week entry **§51 → §55** | team numbering plan: #35 §43–§50, #31 §51–§53, #30 §54 |
 | `docs/EXPERIMENT_RESULTS_SUMMARY.md` | both sides kept; the M6 section keeps §25 | no clash |
 | `docs/experiment_manifest.csv` | both sides' rows kept (M6 row appended after XT-G0) | append-only ledger |
 | `docs/plain_summary.md` (from PR #33) | one sentence reworded: "same-sized random noise caused almost the same drop, so the probe was reacting to any disturbance" → noise explains part of the drop; a third to a half at the middle and later GoT layers is label-aligned SAE error | that sentence is the claim withdrawn in D38 / AUDIT-S5; `test_withdrawn_claims_regression.py` failed on it after the merge (user approved the fix 2026-11-21) |

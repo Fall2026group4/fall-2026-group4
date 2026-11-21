@@ -42,9 +42,9 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | R1 RepE honesty-preservation fine-tuning, layer 6 (27 runs, validation): ReLU INCONCLUSIVE (primary met, RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED | `results/repe/r1_honesty_preservation_layer6/` | `d17bb00`, `211218f` (pre-registration), `d283a49` |
 | R2 SAE-in-the-loop honesty-feature clamp, layer 6 (9 base SAEs with all controls, 18 R1 SAEs exploratory; validation): NOT SUPPORTED (descriptive) for all architectures and k; test stage deferred | `results/repe/r2_sae_in_the_loop_steering_layer6/` | `d17bb00`, `b232ce4` (pre-registration), this commit |
 
-| **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), `28a7d85`, `167fadb` (documentation); docs merged with #27 on 2026-11-15 (D45; was D36) |
+| **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), `28a7d85`, `167fadb` (documentation); docs merged with #27 on 2026-11-15 (D44; originally D36) |
 ## 2. In progress
-* **Gemma M6 integration (2026-11-15):** PR #28 documentation reconciled with the merged #27 ledgers (M6 = D45, progress §52 (renumbered 2026-11-21 in the PR #35 merge; originally D36 / §43), results summary §25). M6 itself is COMPLETED, VALIDATION (§1, §6). Merge needs the owner's approval and review.
+* **Gemma M6 integration (2026-11-15):** PR #28 documentation reconciled with the merged #27 ledgers (M6 = D44, progress §51 (team numbering plan, 2026-11-21; originally D36 / §43), results summary §25). M6 itself is COMPLETED, VALIDATION (§1, §6). Merge needs the owner's approval and review.
 * **R3 (Gemma Scope width × L0 ladder):** PR #30 (`dhruv-gemma-r3`, owner Dhruv Rai). PRE-REGISTERED ONLY; code implemented and CPU-tested; **NOT RUN**. Separate from M6; no R3 result exists.
 * **M0–M5 measurement programme (D23, approved 2026-11-08).** P0.
   * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. **DONE 2026-11-08** (validation): splice damage tracks reconstruction within layer; truth-readout gap does not (formal pass fragile).
@@ -175,10 +175,10 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 |---|---|---|---|
 | M1 | Activation extraction pipeline (HF bf16 backend, since TransformerLens is OOM-killed on the 15 GB-RAM host); GoT/RepE final-token caches; grouped splits | PLANNED | P1 |
 | M2 | Original-activation truth/honesty probes per layer (frozen-probe protocol). The `aditi` layer table used a leaky row split, so it must be redone with grouped splits | PLANNED | P1 |
-| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | Reconstruction + splicing part delivered by M6 (DONE 2026-11-12, VALIDATION, D45). Remaining (frozen-probe gaps, RepE-LM) PLANNED (D30): load Gemma with HF bf16 (7.3 GB VRAM, 7.7k tok/s); port the ladder to HF hooks; re-tokenise RepE-LM and re-run its gates; disk has 97 GB free | P0 (next) |
+| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | Reconstruction + splicing part delivered by M6 (DONE 2026-11-12, VALIDATION, D44). Remaining (frozen-probe gaps, RepE-LM) PLANNED (D30): load Gemma with HF bf16 (7.3 GB VRAM, 7.7k tok/s); port the ladder to HF hooks; re-tokenise RepE-LM and re-run its gates; disk has 97 GB free | P0 (next) |
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
 | M5 | Gemma version of the best GPT-2 improvement. Per D30: R2-recipe TopK/BatchTopK at one middle layer (100M tokens; about 3.6 h activation generation per pass), the full ladder, R5 skyline, optional R4 KL as a behaviour-only add-on. Not Method A. | PLANNED | P1 |
-| M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D45) | DONE (2026-11-12; COMPLETED, VALIDATION; results `0dbfc80`; H-G1 supported at 5/12/19). Follow-ups in §2 | P0 (team plan: technical contribution before the freeze) |
+| M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D44) | DONE (2026-11-12; COMPLETED, VALIDATION; results `0dbfc80`; H-G1 supported at 5/12/19). Follow-ups in §2 | P0 (team plan: technical contribution before the freeze) |
 | R3 | **Gemma Scope width × L0 ladder on The Pile** (54 published SAEs at layers 5/12/19; same sample and controls as M6). PR #30, branch `dhruv-gemma-r3` | PRE-REGISTERED ONLY; code implemented and CPU-tested; NOT RUN. Not part of M6 | set by the owner (Dhruv Rai) |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)
@@ -364,7 +364,7 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
   prompts, frozen-probe decomposition).
 
 ## 2026-11-21 (final-week execution; plan approved)
-* DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§51).
+* DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§55, D47).
 * IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched), TI-1 (L11 TopK,
   L8 BatchTopK, L8 ReLU; L1 not eligible).
 * PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
