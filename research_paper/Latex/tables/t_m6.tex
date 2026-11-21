@@ -1,0 +1,24 @@
+% written by a one-off script from results/gemma2_pile/gemma_scope_splicing/summary_by_layer.csv and h_g1.csv
+% (values read from the CSVs, not typed by hand); do not edit numbers by hand.
+\begin{table}[t]
+\centering
+\small
+\caption{M6 (\evlabel{validation}): Gemma Scope width-16k JumpReLU SAEs spliced into Gemma-2-2B at \texttt{resid\_post}
+on 512 Pile validation documents (254{,}144 non-BOS tokens per layer). L0: the release's own \texttt{average\_l0} (published
+with the SAE) / our measurement on this sample. $\Delta$CE in nats per prediction (original CE 1.938); brackets are 95\,\%
+document-bootstrap intervals (1{,}000 resamples), not seed variability. $\bar d$: mean over documents of
+$\Delta$CE$_{\text{SAE}}-\Delta$CE$_{\text{random}}$ (H-G1). Layers are described side by side, not ranked; each layer has its
+own SAE. Source: \texttt{results/\allowbreak{}gemma2\_pile/\allowbreak{}gemma\_scope\_splicing/}.}
+\label{tab:m6}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{rcccccccl}
+\toprule
+Layer & L0 (release / measured) & EV $\uparrow$ & $\Delta$CE$_{\text{SAE}}$ $\downarrow$ & $\Delta$CE$_{\text{random}}$ & KL $\downarrow$ & Top-1 agr.\ $\uparrow$ & $\bar d$ [95\,\% CI] & H-G1 \\
+\midrule
+5 & 68 / 69.5 & 0.813 & 0.071 [0.064, 0.079] & 0.029 [0.026, 0.032] & 0.082 & 0.887 & 0.0410 [0.0356, 0.0463] & supported \\
+12 & 82 / 84.8 & 0.770 & 0.115 [0.107, 0.124] & 0.039 [0.034, 0.044] & 0.120 & 0.857 & 0.0773 [0.0727, 0.0822] & supported \\
+19 & 73 / 75.1 & 0.789 & 0.177 [0.165, 0.192] & 0.080 [0.069, 0.094] & 0.179 & 0.838 & 0.0993 [0.0938, 0.1051] & supported \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

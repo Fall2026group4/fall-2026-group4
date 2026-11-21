@@ -1,0 +1,49 @@
+\section{Generalisation}\label{sec:general}
+
+\subsection{A public GPT-2 SAE family}\label{sec:e2}
+
+To check that our conclusions are not an artefact of small, in-house SAEs, we applied the same evaluation to the public
+\texttt{gpt2-small-res-jb} SAEs (24{,}576 latents, 300M training tokens) at layers 8 and 10, with layers 1 and 11 as a
+labelled extension (\evlabel{validation}; Appendix Table~\ref{tab:e2}). The pattern holds: the frozen truth reader
+again exaggerates the loss (the label-aligned share of the frozen gap was not measured for this family), the persona
+loss is real and survives re-training, the SAE does not beat PCA at equal
+reconstruction error, and the reconstruction carries only part of the persona effect at layers 8 and 11 (0.56 and 0.61).
+The one exception is the re-trained truth gap at layer 8, which is small with an interval touching zero, as for our own
+SAEs. This is a single public family, so it shows that the conclusions do not depend on our training recipe, not that
+they hold for every SAE.
+
+\subsection{Gemma-2-2B: behavioural support}\label{sec:gemma}
+
+The second model tests whether the behavioural finding depends on GPT-2 and on our own SAEs. The experiment was
+pre-registered with model, tokenizer, SAE and data revisions pinned and evaluated on the Pile validation file
+(\evlabel{validation}). At each of layers 5, 12 and 19, the Gemma Scope SAE reconstructs the activations of 512
+documents (254{,}144 non-BOS tokens per layer), and the reconstruction is spliced back at that layer only. The
+pre-registered hypothesis H-G1, carried over from GPT-2, states that SAE splicing raises next-token cross-entropy more
+than a norm-matched random-error control; it is supported at a layer if the lower bound of the 95\,\% document-bootstrap
+interval of the mean paired difference is above zero. All five pre-registered validity gates passed, including an
+identity splice and a repeated pass that changed the output distribution by exactly zero (Appendix~\ref{app:m6}).
+
+At their released sparsity the SAEs explain 0.813, 0.770 and 0.789 of the variance, and our measured L0 is within
+4\,\% of the \texttt{average\_l0} values published with the release (Table~\ref{tab:m6}). Splicing raises
+cross-entropy by 0.071, 0.115 and 0.177 nats per prediction, from an original 1.938, whereas the random-error control
+raises it by 0.029, 0.039 and 0.080 nats. The mean paired difference is 0.041, 0.077 and 0.099 nats, with 95\,\%
+intervals [0.036, 0.046], [0.073, 0.082] and [0.094, 0.105] (Figure~\ref{fig:m6-hg1}). H-G1 is supported at all three
+layers, also under a Bonferroni interval: SAE reconstruction error produced greater next-token damage than the
+norm-matched random-error control at all three pre-registered layers. The experiment does not identify the mechanism.
+
+This result supports the behavioural finding only. Gemma was not evaluated at the information or causal levels, so
+nothing here bears on information or causal preservation in Gemma, and because the two settings differ in model, SAE
+family, width, sparsity, hook, data and context length, no comparison of the models is made. Each Gemma layer has its
+own SAE, so the layers are not ranked.
+
+\input{tables/t_m6}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig3_h_g1_paired_difference}
+  \caption{H-G1 in Gemma-2-2B (\evlabel{validation}). Left: per-document paired difference
+  $d=\Delta\mathrm{CE}_{\text{SAE}}-\Delta\mathrm{CE}_{\text{random}}$ for 512 Pile validation documents (boxes show
+  quartiles). Right: mean $d$ with 95\,\% (thick) and Bonferroni 98.33\,\% (thin) document-bootstrap intervals. Each
+  layer has a different SAE, so values are not compared between layers.}
+  \label{fig:m6-hg1}
+\end{figure}

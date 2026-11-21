@@ -1,0 +1,27 @@
+\section{Reconstruction}\label{sec:recon}
+
+Table~\ref{tab:recon} and Figure~\ref{fig:recon} (left) report explained variance for the 108 base SAEs on the
+held-out OWT test split (\evlabel{test}). Reconstruction degrades with depth for every architecture: EV is 0.88--0.95 at
+layers 0--2 for the matched runs and falls to 0.757 (ReLU) and 0.815 (TopK and JumpReLU) at layer 11. Seed standard
+deviations are at most 0.002 apart from the unmatched layer-0 JumpReLU run.
+
+The best architecture depends on the layer. Compared pairwise by seed, ReLU reconstructs best at layer 1, ReLU and
+JumpReLU tie at layer 2, JumpReLU is best at layers 3--9, and JumpReLU and TopK are approximately equal at layers
+10--11. No architecture wins at every layer, and at layers 1--11 the spread between architectures (at most about 0.06
+EV) is smaller than the loss each architecture suffers between layer 1 and layer 11 (0.11--0.18 EV).
+
+One qualification matters for everything that follows. Sparsity is matched on OWT, but not on task prompts: on
+Geometry of Truth final tokens TopK always uses 128 latents, whereas ReLU uses 32--110 and JumpReLU 23--92 at layers
+1--11. Architecture differences in information preservation are therefore confounded with task-level sparsity, and we
+do not rank architectures on them.
+
+\input{tables/t_reconstruction}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{fig_reconstruction_behaviour}
+  \caption{GPT-2 Small reconstruction and behaviour by layer for the 108 base SAEs. Left: OWT test explained
+  variance (\evlabel{test}; error bars are seed standard deviations). Right: increase in next-token cross-entropy when
+  the reconstruction is spliced into the model (\evlabel{validation}).}
+  \label{fig:recon}
+\end{figure}
