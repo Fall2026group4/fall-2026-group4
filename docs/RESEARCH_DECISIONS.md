@@ -604,3 +604,13 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Report:** M2 / M4 ReLU / JumpReLU vs TopK differences on task prompts are "largely attributable to task-level sparsity mismatch (E1)", except L11 persona JumpReLU `preservation_rec`, which persists.
 * **Do not report:** any architecture ranking on task prompts from old SAEs at OWT-matched L0 as an architecture effect.
 * E1-A1 (single-threaded BLAS) is a reproduction fix, not a scientific change.
+
+## D54. How XT-G is reported (2026-11-22). Status: DECIDED (by the frozen rules + A4)
+* **May say (VALIDATION):**
+  * frozen-probe degradation is not a linear readout shift in either model (0/410 cells);
+  * SAE reconstructions lose persona information in both models, and more than error-matched PCA in most cells, but the neutral control shows that this is not honesty-specific;
+  * SAE error is concentrated along the truth direction.
+* **May not say:**
+  * any cross-model ranking (different SAE families and training);
+  * any Gemma cities claim at ceiling layers (use d′ retention).
+* **Caveat:** BH and LOSS_BEYOND_PCA use the A4 approximations (no stored bootstrap arrays).

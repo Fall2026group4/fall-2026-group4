@@ -1518,3 +1518,11 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Design (pre-registered 2026-11-21; amendment E1-A1 single-threaded probe BLAS, user-approved after the first gate failed at 2.8e-4):** 36 old-recipe TopK SAEs (3,072 latents) at k\* = the task-prompt L0 of ReLU / JumpReLU (23–216; TRAIN prompts), layers 1 / 8 / 11, 3 seeds. M2 / M4 metrics compared with the committed M2 / M4 baselines. Gate after E1-A1: G1 0.0, G2 0.0, G3 1.2e-7.
 * **Result:** of the 4 architecture differences significant at OWT-matched k = 128, **1 persists** at task-matched k\* after BH (L11 persona, JumpReLU `preservation_rec`, +0.045); 3 are ATTENUATED. So 25 % < 75 %: **NOT robust**. GoT cities shows no difference at either k. TopK@k\* vs TopK@128: no clear change in 15/18 cells.
 * **Reading:** the M2 / M4 architecture differences on task prompts were largely confounded with the up-to-5× task-level L0 mismatch. Old SAEs only; no R2 or cross-model claim.
+
+## 63. XT-G / DX: truth and honesty preservation in both models, with rotation-vs-loss diagnostics (2026-11-22). Status: COMPLETED (VALIDATION)
+* **Coverage:** Gemma Scope 16k at 26 layers; GPT-2 res-jb at 11 layers, plus R2 / old at the matched layers (410 SAE × task cells). GPT-2 L0 is not evaluable (statement-independent final-token embedding). Frozen analysis with deviations A4 (CI-derived BH p; conservative z-test).
+* **No READOUT_SHIFT in any cell:** frozen-probe drops are not a linear readout shift.
+* **Persona information is lost in both models:** INFORMATION_LOSS in Gemma 26/26 and GPT-2 56/56 cells; beyond error-matched PCA in 21/26 and 34/56. The neutral control loses as much in Gemma, so the loss is not honesty-specific.
+* **SUPPRESSION** (SAE error concentrated along the truth direction): Gemma 130/130, GPT-2 258/280 cells.
+* **GoT cities:** Gemma is mostly at ceiling (20/26); GPT-2 loses information in 35/56, 22 beyond PCA.
+* **Cross-model (descriptive):** Gemma Scope keeps relatively more persona information than res-jb at matched depth (headroom-normalised gap 0.33–0.52 vs 0.60–0.85). No ranking claim.

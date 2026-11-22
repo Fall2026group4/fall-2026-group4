@@ -535,3 +535,11 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `docs/checkpoint_registry.csv` | appended | 36 E1 keeper checkpoints (EBS copy, gitignored) |
 | `docs/*` ledgers | appended | §62, D53, summary, roadmap, registry, manifest |
 | `scripts/shared/e1_g2_blas_threads_diagnostic.py` | path sanitised for commit | its hard-coded absolute repo path is replaced by `Path(__file__).resolve().parents[2]` (the same directory; behaviour unchanged). SHA-256 (16 characters) cc0b31ef9089ba30 → a2a0cd4f5586a68c; the E1 pre-registration records the original. Not used by any E1 stage |
+
+## 2026-11-22: XT-G / DX results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/11_xtg_analysis.py`, `src/tests/test_xtg_analysis.py`, XT-G `AMENDMENTS.md` (A4), `frozen_hashes_analysis.txt` | added | analysis frozen in `cdefced` before any output value was read |
+| `results/cross_model/xtg_truth_preservation/runs/{gemma_main, gpt2_main}/` | added | per-cell, DX, RepE-extras outputs (GPT-2 L0 not evaluable) |
+| `results/cross_model/xtg_truth_preservation/analysis_v1/`, `README.md` | added / updated | rule counts, cross-model descriptive table |
+| `docs/*` ledgers | appended | §63, D54, summary, roadmap, registry, manifest, tracker |

@@ -948,3 +948,11 @@ Context change 1024 → 128: 269/324 differences SHRINK by uncorrected CI (Holm 
 | PERSIST at k\* after BH | **1** (L11 persona JumpReLU `preservation_rec`: +0.058 → +0.045, q 0.028) |
 | ATTENUATED | 3 (L1 persona JumpReLU `preservation_rec`; L8 persona ReLU refit gap; L11 persona ReLU `preservation_rec`) |
 | Headline (≥ 75 % persist) | **NOT robust** (25 %) |
+
+## XT-G / DX (2026-11-22; VALIDATION; 410 SAE × task cells)
+| Model | Task | INFORMATION_LOSS | LOSS_BEYOND_PCA | READOUT_SHIFT | SUPPRESSION |
+|---|---|---|---|---|---|
+| Gemma 16k | RepE persona | 26/26 | 21/26 | 0 | 26/26 |
+| Gemma 16k | GoT cities (20 at ceiling) | 5/26 | 6/26 | 0 | 26/26 |
+| GPT-2 (res-jb / R2 / old) | RepE persona | 56/56 | 34/56 | 0 | 54/56 |
+| GPT-2 | GoT cities | 35/56 | 22/56 | 0 | 49/56 |
