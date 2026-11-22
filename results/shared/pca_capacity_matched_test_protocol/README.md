@@ -1,4 +1,4 @@
-# PCA-CM-T: test-split confirmation of capacity-matched PCA (2026-11-13). Status: RULES FROZEN, NOT EXECUTED (needs the user's approval)
+# PCA-CM-T: test-split confirmation of capacity-matched PCA (2026-11-13). Status: COMPLETED (2026-11-22; TEST, rows previously exposed in M5; PCA arms unseen)
 
 ## Is PCA-CM confirmatory or post hoc?
 
@@ -45,3 +45,30 @@
 
 * Not executed. The user's instruction was "Do not automatically run PCA-CM on test data", so this needs explicit
   approval.
+
+## Results (single TEST pass, 2026-11-22; `test/`)
+
+**Execution:**
+* `scripts/shared/pca_cm_test_confirmation.py`, approved by the user.
+* **Implementation rule met:** on VALIDATION it reproduced the committed PCA-CM `got_paired.csv` exactly (116/116
+  rows, max |diff| 0.0; `validation_reproduction/`).
+* The pre-TEST addendum (`addendum_pre_test.json`, hashes) was committed and pushed (`0046569`) before any TEST row
+  was read.
+* **Run history:** attempt 1 was stopped by the RAM guard before it wrote any output, so no TEST result was produced
+  or seen (`run_log.txt`). It was relaunched unchanged.
+* 452 TEST rows (cities + neg_cities); 116 paired cells; readers fitted on TRAIN.
+
+| Family | Result | Cells |
+|---|---|---|
+| **P1**: no trained SAE worse than PCA at k = 128 | **CONFIRMED**: 0 of 20 cells "SAE WORSE" | all 20 |
+| **P2**: SAE better than PCA at k = 128 (3 validation-better cells; Holm over 3) | **1 / 3 confirmed** | L11 R2 ReLU −0.056 (p 9e-4) ✓; L8 res-jb −0.030 (every-seed CI high < 0, but p 0.048 fails Holm) ✗; L8 R2 ReLU −0.043 (CI high +0.007) ✗ |
+| **P3**: SAE better than PCA at the SAE's task L0 (8 cells; Holm over 8) | **4 / 8 confirmed** | L8 old ReLU −0.094 ✓, L8 res-jb −0.110 ✓, L11 R2 ReLU −0.067 ✓, L11 res-jb −0.075 ✓; not confirmed: L8 R2 ReLU, L11 old JumpReLU, L11 old ReLU, L11 R2 BatchTopK |
+
+Differences are SAE − PCA refit logistic gaps; lower favours the SAE.
+
+**Reading (D34 wording rule):**
+* On held-out cities TEST, no SAE loses more truth information than a PCA with the same per-token active budget
+  (k = 128).
+* An SAE advantage over capacity-matched PCA is confirmed only in the listed cells.
+* It is never described as "significantly better" in general.
+* The TEST rows were previously exposed in M5, which is disclosed with every use.

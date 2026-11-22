@@ -1,0 +1,12 @@
+{
+  "eval_split": "test",
+  "n_got_eval_rows": 452,
+  "n_pca_train_tokens": 101600,
+  "L8_original_auroc": 0.8385151538883233,
+  "L11_original_auroc": 0.7917025608896546,
+  "runtime_s": 10040.33602309227,
+  "mode": "test",
+  "script_sha256": "7ee4d069c9e3e8256eefae694de776d8af742f4753e15aa2ca761205d0d4a42c",
+  "n_paired": 116,
+  "test_label": "TEST (GoT rows previously exposed in M5; PCA arms unseen)"
+}
