@@ -173,3 +173,32 @@ an artefact of matching sparsity on OWT rather than on the task prompts?
 * **Script:** `scripts/shared/e1_task_l0_matched_topk.py`; tests in `src/tests/test_e1_task_l0_matched.py`.
 * **Checkpoints:** written to `/mnt/scratch/checkpoints/e1/` (ephemeral), and copied with hash verification to the
   gitignored `results/openwebtext/e1_task_matched_topk/` as keepers.
+
+## 1.9 Amendment E1-A1 (2026-11-22 ~03:45 UTC; approved by the user; before any counted E1 run)
+
+**Trigger:** the frozen `gate` stage failed on G2 (M2 evaluation reproduction).
+* G1 (training reproduction, max param diff **0.0**) and G3 (M4 `preservation_rec`, **0.0**) passed.
+* G2 differed from M2's committed values by up to **2.8e-4** (refit and MLP gaps; one frozen gap), against the
+  frozen tolerance of 1e-6.
+* `task_nmse` was identical, so the reconstructions were identical.
+* The record is kept as `gate_attempt1_failed_G2_blas_threads.json`.
+* As required, E1 stopped: no SAE was trained and no outcome exists.
+
+**Diagnosis:**
+* Library versions are unchanged since before M2 (all installed 2026-10-27).
+* M2 fitted its probes inside 4 loky worker processes, which cap BLAS at one thread. The E1 gate fitted them in the
+  main process with multi-threaded BLAS.
+* Multi-threaded BLAS changes floating-point summation order, so a few validation pairs re-order and the AUROC gap
+  moves by about 1e-4.
+* **Test** (`scripts/shared/e1_g2_blas_threads_diagnostic.py`, which uses E1's frozen helpers unchanged): with BLAS
+  limited to one thread, G2 reproduces M2 **exactly (0.0 on every metric and task)**.
+
+**Change:**
+* probe fitting in the gate's G2 / G3 and in the whole `eval` stage runs under `threadpool_limits(1)`, matching M2;
+* this also makes E1's new values numerically comparable with M2's committed baseline values, which E1 contrasts
+  them against.
+
+**Unchanged:** every gate and its **1e-6 tolerance**, which must pass exactly as frozen; k\*; the classes; the BH
+family; the success criteria.
+
+**Schedule (user-approved Option A):** TI-2 → TI-4 → E1 → TI-3. TI-3 is dropped if it cannot start by 14:30 UTC.

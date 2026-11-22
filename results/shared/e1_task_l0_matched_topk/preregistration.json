@@ -178,7 +178,7 @@
  "degenerate_flag": "OWT EV < 0.5 reported separately",
  "test_data_used": false,
  "hashes": {
-  "scripts/shared/e1_task_l0_matched_topk.py": "6b6f0cd36ac37b4f9e0cad2da2f8e210dec0606f88342edc03851efd27fb5f6f",
+  "scripts/shared/e1_task_l0_matched_topk.py": "0a3bf91dddf91b72fab93282befc71280b749cfbe5b21cce0b2ffe72710ce828",
   "scripts/openwebtext/03_training_sae.py": "6587a1bfeba82244faa5478b278938ff8e884eb9c9f8b662b6eb1ddf5f0b1fe6",
   "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
   "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
@@ -190,9 +190,21 @@
   "src/sae/checkpoint_registry.py": "09280f510e9fd6416172bd54d2ac5a5183226992a387f2e8fe207af92591b559",
   "results/shared/e1_task_l0_matched_topk/k_star.json": "e3235aa14e0358a05696fd22c0c4090f6193ff5ffa9c7cff815e4234acce26b8",
   "results/shared/e1_task_l0_matched_topk/pretraining_checks.json": "fc3a42a9e3e63aec3733b76a9099a67cad7d01eb642d42861ce154f8b0441534",
-  "results/shared/e1_task_l0_matched_topk/README.md": "562792dda9b250001d0d8a2891c6d8a9bd2a9ff91198b59ef40e2a572c265f19",
+  "results/shared/e1_task_l0_matched_topk/README.md": "476a8a6ee8adbdc057d4ddc798fdfbf79e88725fb8fa2df2294d12a3559d344c",
   "src/tests/test_e1_task_l0_matched.py": "44c2ee6f63a5f359b74e98b9c83990a24e117356e29417017aefad9d1b371d21",
   "results/shared/m2_four_level_faithfulness/per_cell.csv": "2080b2b391ad0b57915bc92293b54f97839e0481dbd581ea3ae6be6b56ed2ad6",
-  "results/repe/sae_patch_decomposition/decomposition_summary.csv": "a7e1a93a5f0797f148caba29f336c08bf75b38206a993216d1e30d408c282dc7"
- }
+  "results/repe/sae_patch_decomposition/decomposition_summary.csv": "a7e1a93a5f0797f148caba29f336c08bf75b38206a993216d1e30d408c282dc7",
+  "scripts/shared/e1_g2_blas_threads_diagnostic.py": "cc0b31ef9089ba30150a719cdb89b928ce6d36208eb178cc4e0cb0977f1a574f"
+ },
+ "amendments": [
+  {
+   "id": "E1-A1",
+   "date": "2026-11-22",
+   "approved_by": "user",
+   "change": "probe fitting (G2/G3, eval) under threadpool_limits(1) as in M2 loky workers",
+   "reason": "G2 failed at 2.8e-4 vs tol 1e-6 under multi-threaded BLAS; single-threaded reproduces M2 exactly (0.0)",
+   "unchanged": "all gates and the 1e-6 tolerance, k*, classes, BH family, criteria",
+   "before_any_counted_run": true
+  }
+ ]
 }
