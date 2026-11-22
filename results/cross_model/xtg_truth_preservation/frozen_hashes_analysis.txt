@@ -1,0 +1,4 @@
+9369d46dc77bf27011cdf2c2459a39ac748afe093f032af3c9849f8060b74868  scripts/cross_model/11_xtg_analysis.py
+6844e95da76d171fd3c1fbcda58800cf469c89290b4db60226cc3a9c38ae6d21  src/tests/test_xtg_analysis.py
+2b199c4184b4f927c1112a23a8dfe3d251f5d665b427e43b6a6869ce4a9e1f15  scripts/cross_model/10_truth_preservation.py
+# frozen 2026-11-22T00:25:30Z before any XT-G output value was inspected
