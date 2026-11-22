@@ -1349,7 +1349,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * Natural source mixture; 10 of 16 sources LOW-N.
 * **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.
 * **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
-* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; PRE-REGISTERED, code implemented, NOT RUN. Not part of M6.
+* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; COMPLETED, VALIDATION (Tier A), code implemented. Not part of M6.
 
 ## 52. Dead-latent audit of the GPT-2 base and R2 SAEs (2026-11-15). Status: COMPLETED (descriptive audit; no model trained or run). Evidence: VALIDATION [VERIFIED]
 
@@ -1423,6 +1423,95 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * The 36 checkpoints are not in `checkpoint_registry.csv`.
   * There is no re-trained-reader analysis.
 * **Final scope decision:** EXCLUDED (D45). Not merged and not cited; the branch is kept unchanged as the record.
+
+## 54. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16 and §54 on 2026-11-21 to avoid collisions with #31 and #35). Status: COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2)
+
+* **Why:** M6 measured one width-16k SAE per layer. For Gemma, the only lever on reconstruction that needs no
+  training is to move along the published width × L0 ladder. R3 measures that trade-off with M6's data, metrics and
+  controls. It addresses the main question's "improve reconstruction while preserving behaviour" for Gemma.
+  Roadmap R3 (named on `sae-research`); the RepE-LM / K1–K2 part is split off as R3b.
+* **Design** (full pre-registration: `results/gemma2_pile/r3_gemma_scope_ladder/README.md` and `preregistration.json`;
+  decision D46):
+  * Same 512 + 64 Pile documents as M6, read from M6's committed manifest.
+  * Gemma-2-2B bf16, `resid_post` at layers 5, 12, 19.
+  * 54 pinned Gemma Scope SAEs: Tier A, 36 SAEs (16k/65k at layers 5 and 19; 16k/32k/65k at layer 12); Tier B, 18
+    SAEs (131k/262k/524k at layer 12). The 1M width is excluded (memory).
+  * Per SAE: reconstruction and splicing (ΔCE, KL, top-1, loss recovered) plus a norm-matched random-error control
+    with the same random directions for every SAE of a layer.
+  * Questions: Q1–Q3 (descriptive); H1 (higher L0 within a width lowers ΔCE_SAE); H2 (wider at matched L0 ±10 % lowers
+    ΔCE_SAE); H3 (H-G1 for every SAE, Holm-corrected); Q0b (T4 bf16 vs fp32 on layer 12, 16k, 64 documents).
+  * Gates V0–V10.
+* **Amendment 1 (2026-11-13, before any code or run):** the hardware changed from an AWS A10G to Kaggle T4 x2,
+  because the AWS free plan has no GPU instances.
+  * Q0 (T4 vs A10G) and the A10G rerun of M6 are dropped.
+  * Q0b becomes "T4 bf16 vs fp32", with fp32 Gemma split across both T4s.
+  * Memory placement: 524k SAEs on GPU 1; 1M excluded.
+  * Kaggle run plan K0–K6 (each ≤ 10 h; ≤ 30 GPU-h per week). Tier B runs only after Tier A, and only before the
+    2026-11-22 freeze.
+  * Per-SAE output folders with `DONE.json` and resume. Gate V9: a resumed run must equal a fresh one within
+    relative difference 1e-6; bit-identity is recorded separately.
+  * `HF_TOKEN` comes from Kaggle Secrets; gate V10 is a secret scan.
+  * Gate V6 compares the ladder with M6's committed rows (EXACTLY / WITHIN MARGIN / FAILED).
+* **Clarification 1 (2026-11-13, before any run):** V6's active-latent agreement compares the 128-token-chunked SAE
+  with the unchunked SAE on the same activations, because M6 did not save its active-latent sets.
+* **Implementation (2026-11-14):**
+  * scripts `05_pile_gemma_scope_ladder.py`, `06_r3_precision_comparison.py`, `07_r3_figures.py`;
+  * tests `src/tests/test_gemma_r3_ladder.py`;
+  * `notebooks/r3_kaggle_runner.ipynb`;
+  * M6's `pile_splicing.py`, `summarize()` and figure style are reused unchanged;
+  * implementation choices are listed in the README, Section 2.
+* **Tests (local Windows CPU, before any run):**
+  * R3 tests: **51 passed**. They cover chunked SAE equality, identical random directions across SAEs, L0 bands
+    reproducing the README table, the H1/H2/H3 rules, placement and run plan, V9 within 1e-6, and an interrupted
+    then resumed toy run being byte-identical to an uninterrupted one.
+  * Full suite: 128 passed; the 2 failures and 5 errors were already present before R3 and are environment-specific.
+* **Dry runs on fake data (not results):** the aggregate step, Q0b and the figures ran end to end on folders built
+  from M6's rows. With M6's rows unchanged, V6 reported M6 REPRODUCED EXACTLY.
+* **Literature context:** `results/gemma2_pile/r3_gemma_scope_ladder/literature_comparison.md` compares M6 with
+  published Gemma Scope, JumpReLU, SAEBench, TopK and end-to-end SAE numbers. Context only; not evidence for R3.
+* **Not run (as of 2026-11-14):** no GPU step had executed. V0, V1, model loading, SAE download and the fp32 split
+  are first exercised by run K0.
+* **Clarification 2 (2026-11-15, `e2b7b3a`, before any result was read):** the first K0 attempt crashed at the end of
+  the fp32 step ("CUDA error: unspecified launch failure"). The fp32 reference became its own step, K0F, with
+  `CUDA_LAUNCH_BLOCKING=1`. Run records are now written even when a step stops or crashes. R3 tests: 58 passed.
+* **Runs so far (2026-11-16):** K1 (layer 5, Tier A) finished on Kaggle in 7.64 h, against 3.11 h projected. K2
+  (layer 19) is running. The outputs are on Kaggle, not in the repository, and no metric has been read.
+* **Deviation 1 (2026-11-16):** K3 is split into K3a (layer 12, widths 16k and 32k) and K3b (width 65k), so that
+  each run stays under Kaggle's 10 h limit. This uses the existing `--widths` option; no code changed.
+* **Deviation 2 (2026-11-16, before any Tier A result was looked at):** Tier B (131k/262k/524k, runs K4–K6) is
+  cancelled because of the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota. H1–H3 are tested on
+  Tier A only (layers 5/12/19, widths 16k/32k/65k, 36 SAEs). Decision D46; README "Deviations".
+* **Runs (2026-11-16):** K2 (layer 19) finished in 8.01 h (`K2_20261116T044900Z`) and K3a (layer 12, 16k and
+  32k) in 8.85 h (`K3_20261116T141625Z`); V10 PASS for both. K3b (layer 12, 65k) has started. The outputs are
+  still on Kaggle and no metric has been read.
+* **Amendment 2 (2026-11-16, before any result was read):** the Kaggle weekly quota is now 45 h (Colab Pro
+  linked), so the pre-registered 30 h weekly cap is raised to 45 h. No SAE, metric or gate changes; Tier B stays
+  cancelled because of the freeze.
+* **Runs completed (2026-11-17):** K3b (layer 12, 65k) in 3.61 h (`K3_20261117T003032Z`) and K0F (fp32 reference)
+  in 0.21 h (`K0F_20261117T083512Z`). All six runs (K0, K1, K2, K3a, K3b, K0F) finished with V10 PASS; all 36
+  Tier A SAEs have complete outputs.
+* **Gates:** V0–V5, V7–V10 PASS; V6 **M6 REPRODUCED WITHIN MARGIN** at layers 5, 12 and 19 (not exactly: largest
+  relative difference of the per-document sums 0.021–0.036), so M6 and R3 can be shown side by side.
+* **Results (VALIDATION; README Section 2):**
+  * **H1** (higher L0 within a width lowers ΔCE_SAE): SUPPORTED in 7/7 Tier A cells; all 29 adjacent pairs have CI
+    lower bound > 0 (smallest d 0.0132 [0.0114, 0.0152], layer 5 65k). EV secondary: SUPPORTED in 7/7.
+  * **H2** (wider at matched L0 lowers ΔCE_SAE): SUPPORTED in all 4 bands formed from measured L0 (layer 12 at
+    L0 ≈ 23, 43, 85; layer 19 at ≈ 41). No band formed at layer 5 or at layer 19 L0 ≈ 23 (measured L0s 10.3 % and
+    11.7 % apart). Smallest d 0.0081 [0.0059, 0.0104] (layer 12, 32k → 65k at L0 ≈ 80). The wider SAE always had
+    the lower measured L0 (1.9–9.3 %).
+  * **H3** (H-G1 per SAE, Holm over 36): HOLDS ACROSS THE LADDER, 36/36, no reversal. Smallest d 0.0053
+    [0.0023, 0.0087] (layer 5 65k/211). At M6's three SAEs, d matches M6 to three decimals.
+  * **Q0b** (T4 bf16 vs fp32, layer 12 16k/82, 64 documents): headline ΔCE_SAE WITHIN MARGIN, mean error
+    0.00267 [0.00218, 0.00319] < 0.005. Top-1 agreement BEYOND MARGIN (0.00886 [0.00712, 0.01077] > 0.005);
+    the other secondary metrics WITHIN MARGIN.
+  * Q1–Q3 descriptive: EV 0.66–0.91, ΔCE_SAE 0.019–0.374, loss recovered 0.957–0.998 across the 36 SAEs.
+* **Limitations:** Tier A only (16k–65k); H2 has four bands, none at layer 5; one SAE per configuration (CIs over
+  documents, not seeds); the 512 documents were already read by M6; Q0b covers one cell.
+* **Analysis code:** `--aggregate` and script 06 unchanged. Figures: new `scripts/gemma/08_r3_vector_figures.py`
+  runs script 07 unchanged and writes SVG instead of PNG (Instructor Review #9); PDF could not be written on the
+  Windows machine (fontTools DLL blocked by Application Control).
+* **Status:** COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2).
+* **Next:** Simba reviews the aggregate tables and gate checks on PR #30 before merge.
 
 ## 55. Final-week programme: audit, cross-model infrastructure, Gemma task baselines (2026-11-21). Status: Phase 1 COMPLETED (infrastructure, gates, XT-G0); XB, XT-G/DX and TI-1 IN PROGRESS
 * **Numbering:** recorded as §51 in PR #36; renumbered §55 on 2026-11-21 to follow the team numbering plan (#35 §43–§50, #31 §51–§53, #30 §54).
