@@ -45,7 +45,7 @@
   "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
   "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "8e93527a8a3a55d79bc753bba8ea97688c24e88e3e8933616471e8d8cf40f7ed",
   "scripts/openwebtext/18_kl_finetune_fixed_l0.py": "292dd1fc69d9e2481a65c89b1e82fa81c754f549cbb7252161990b691ddd17dd",
-  "scripts/shared/e1_task_l0_matched_topk.py": "6b6f0cd36ac37b4f9e0cad2da2f8e210dec0606f88342edc03851efd27fb5f6f",
+  "scripts/shared/e1_task_l0_matched_topk.py": "0a3bf91dddf91b72fab93282befc71280b749cfbe5b21cce0b2ffe72710ce828",
   "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
   "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
   "src/sae/truth_subspace.py": "8299b2782e02fcbf490d5d5de218ab9e44238c5b68cb71f9bc842ee434bfca32",
@@ -55,5 +55,17 @@
   "results/geometry_of_truth/truth_subspace_preservation/replication/run_ledger.csv": "589d8d986d908b71cec2a4d2957255651e8478c623f4620154d1c9ff8ae708d6",
   "results/geometry_of_truth/tsp_kl_factorial/README.md": "684dd4f4105af5893c8475d9619cb04ff5819efa473d4b87bd2ad1763fe76e9e",
   "src/tests/test_tsp_kl_factorial.py": "795d957c5e6d73d7d24ea14f5df1b3cf680adeeaabd6977c6d42ff069672c217"
- }
+ },
+ "amendments": [
+  {
+   "id": "TI4-A1",
+   "date": "2026-11-22",
+   "type": "dependency hash refresh (no protocol change)",
+   "file": "scripts/shared/e1_task_l0_matched_topk.py",
+   "old_sha256": "6b6f0cd36ac37b4f9e0cad2da2f8e210dec0606f88342edc03851efd27fb5f6f",
+   "new_sha256": "0a3bf91dddf91b72fab93282befc71280b749cfbe5b21cce0b2ffe72710ce828",
+   "reason": "E1 amendment E1-A1 (user-approved) added threadpool_limits only inside E1's own gate/eval stage functions; the helpers used here (m2_layer_context, m2_eval, M4Ctx) are byte-identical, so this experiment's computation is unchanged",
+   "before_any_counted_run": true
+  }
+ ]
 }

@@ -28,6 +28,7 @@ import numpy as np
 import pandas as pd
 import torch
 from scipy import stats
+from threadpoolctl import threadpool_limits
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
@@ -42,6 +43,9 @@ DATA = REPO / 'data/activations/gpt2_small'
 LAYERS, X_ARCHS, MATCH_TASKS, SEEDS = (1, 8, 11), ('relu', 'jumprelu'), ('got_cities', 'repe_persona'), (42, 1042, 2042)
 M4_SITE = {1: 'slot', 8: 'final', 11: 'final'}
 TOL = 1e-6
+# Amendment E1-A1 (2026-11-22): probe fitting (M2 evaluate_source, M4 decompose, PCA references) runs with BLAS limited to
+# one thread, as inside M2's loky workers; multi-threaded BLAS changes summation order and moved AUROC gaps by ~1e-4.
+BLAS_THREADS = 1
 PRIMARY = {'got_cities': ['refit_logistic_gap'], 'repe_persona': ['refit_logistic_gap', 'preservation_rec']}
 
 
@@ -194,7 +198,8 @@ def stage_gate():
     diff = max(float((new[k].float() - ref[k].float()).abs().max()) for k in ref)
     res['G1_training_reproduction'] = dict(max_abs_param_diff=diff, passed=diff <= TOL, seconds=round(time.time() - t0))
     del model, train, val
-    # G2 M2 evaluation reproduction (committed L8 TopK seed 42, all three tasks)
+    # G2 M2 evaluation reproduction (committed L8 TopK seed 42, all three tasks); E1-A1: single-threaded BLAS
+    blas = threadpool_limits(limits=BLAS_THREADS)
     tasks = M2.load_tasks()
     origs, bidx = m2_layer_context(M2, tasks, L)
     sae, _ = fm.load_sae(uninterrupted_checkpoint(L, 'topk', s), device)
@@ -220,6 +225,8 @@ def stage_gate():
     assert len(c) == 1
     d3 = float(abs(p['preservation_rec'] - c.iloc[0].preservation_rec))
     res['G3_m4_reproduction'] = dict(abs_diff_preservation_rec=d3, passed=d3 <= TOL)
+    blas.unregister()
+    res['blas_threads_for_probes'] = BLAS_THREADS
     res['all_passed'] = all(v['passed'] for v in res.values() if isinstance(v, dict))
     (OUT / 'gate.json').write_text(json.dumps(res, indent=1, default=float))
     print(json.dumps(res, indent=1, default=float))
@@ -272,6 +279,11 @@ def stage_train():
 
 # --------------------------------------------------------------------------------------------------- eval
 def stage_eval():
+    with threadpool_limits(limits=BLAS_THREADS):          # E1-A1
+        _stage_eval()
+
+
+def _stage_eval():
     check_freeze()
     refuse(OUT / 'eval_m2.csv', OUT / 'eval_m4.csv', OUT / 'eval_owt.csv')
     device = 'cuda'
