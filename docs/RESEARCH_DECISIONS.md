@@ -575,6 +575,6 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * the GPT-2 SAEs' training context (128 tokens) is far shorter than the scored spans;
   * their reconstructions fail there (EV negative for res-jb);
   * so the primary arm compares an in-distribution Gemma SAE with out-of-distribution GPT-2 SAEs.
-* **Not citable:** any primary-arm GPT-2 vs Gemma difference, and the GPT-2 "SAE less harmful than random" verdicts.
+* **Not citable:** any primary-arm GPT-2 vs Gemma difference; the GPT-2 "SAE less harmful than random" verdicts; and the GPT-2 Holm count (0/318). That count is infeasible by design: the 1,000-resample bootstrap p floor of about 0.002 is multiplied by 159 tests (correction 2026-11-22).
 * **Citable:** the Gemma results, the gates, and the GPT-2 long-context breakdown itself (a finding about 128-token SAEs).
 * **The cross-model comparison of record is A4** (`xb_matched_splicing/a4_ctx128/`), pre-registered before this analysis was read.

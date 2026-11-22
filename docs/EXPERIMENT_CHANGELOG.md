@@ -506,3 +506,8 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/cross_model/xb_matched_splicing/analysis_v1/` | added | frozen analysis |
 | `results/cross_model/xb_matched_splicing/README.md`, `AMENDMENTS.md` | updated | results with the context caveat; operational note (expandable_segments restart) |
 | `docs/*` ledgers | appended | §59, D50, results summary, roadmap, registry, manifest |
+
+## 2026-11-22: correction to the XB primary results
+| File | Change | Reason |
+|---|---|---|
+| XB `README.md` §3.2, §59, D50, results summary | corrected | the GPT-2 XB_H1 "0/318" under Holm is mechanically impossible to pass with a 1,000-resample bootstrap over 159 tests. It was wrongly attributed to the out-of-distribution artefact; the uncorrected CI verdicts are now reported as descriptive. No result or rule changed |
