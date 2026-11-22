@@ -42,6 +42,10 @@ LAYER, NAME = 8, 'topk'
 SEEDS, FOLDS = (42, 1042, 2042), (0, 1, 2)
 ARMS, NEW_ARMS = ('ctrl', 'tsp', 'kl', 'tsp_kl'), ('kl', 'tsp_kl')
 TOL, SESOI = 1e-6, 0.010
+# Amendment A-TF32 (user-approved 2026-11-22): match TSP-R's numerical configuration exactly. TSP-R trained with
+# torch.backends.cuda.matmul.allow_tf32 = True (30_tsp_r_phase1_training.py:216, 25:126) and evaluated with it False
+# (31:250). Training paths (gate R0/R1, train) set it True; the eval stage sets it False. Nothing else changes.
+TRAIN_TF32, EVAL_TF32 = True, False
 
 
 def mod(rel, name):
@@ -186,6 +190,7 @@ def tspr_reuse():
 def stage_gate():
     check_freeze()
     refuse(OUT / 'gate.json')
+    torch.backends.cuda.matmul.allow_tf32 = TRAIN_TF32
     model, ch = gpt2(), chunks()
     t = S30.fold_rows()
     P, XA, _ = S30.subspaces_for_fold(t, 0)
@@ -217,6 +222,7 @@ def stage_gate():
 
 def stage_train():
     check_freeze()
+    torch.backends.cuda.matmul.allow_tf32 = TRAIN_TF32
     if not json.loads((OUT / 'gate.json').read_text())['all_passed']:
         raise SystemExit('gate not passed')
     model, ch, t = gpt2(), chunks(), S30.fold_rows()
@@ -272,6 +278,7 @@ class SAEnp:
 
 def stage_eval():
     check_freeze()
+    torch.backends.cuda.matmul.allow_tf32 = EVAL_TF32
     E = OUT / 'eval'
     E.mkdir(exist_ok=True)
     t = S30.fold_rows()

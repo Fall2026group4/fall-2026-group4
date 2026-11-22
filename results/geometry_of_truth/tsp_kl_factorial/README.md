@@ -121,3 +121,34 @@ These fix implementation details of §2–§5. No criterion is changed.
   checkpoints are on EBS.
 * **Script:** `scripts/geometry_of_truth/35_tsp_kl_factorial.py`; tests in `src/tests/test_tsp_kl_factorial.py`.
   It reuses `scripts/shared/e1_task_l0_matched_topk.py` (frozen in E1; included byte-identical).
+
+## Amendment A-TF32 (2026-11-22 ~04:10 UTC; approved by the user; before any counted run)
+
+**Cause of the reproduction failure (exact):**
+* Gate R0 reproduces a TSP-R L8 TopK checkpoint. It failed with a max |param diff| of **0.168**: TI-2 and TI-4
+  `f0_tsp_s42`; TI-3 would have hit the same with `f0_ctrl_s42`.
+* TSP-R trained with **TF32 matrix multiplication enabled**:
+  * `torch.backends.cuda.matmul.allow_tf32 = True` in `30_tsp_r_phase1_training.py:216`, and in `25:126`;
+  * TSP-R evaluated with it **disabled** (`31:250`).
+* The frozen TI-2 / TI-4 / TI-3 trainers ran in full FP32. TF32 rounding changes TopK selections, so over about 1,230
+  steps the runs diverge.
+* **Diagnostic** (scratch script; nothing written to the repo): `S25.run_one` with TF32 on and the frozen TSP-R
+  subspace reproduces `f0_tsp_s42` with **max |param diff| 0.0**. The run-time recomputed subspace equals the frozen
+  `subspaces.npz` (projector difference 0.0).
+* Other gate parts passed:
+  * TI-2: eligibility, leakage, and family_vectors (1e-15);
+  * TI-4: R1 (KL term == R4) at 0.0, and the TSP-R checkpoint hashes.
+* The failed gate records are preserved as `gate_attempt1_failed_R0_tf32.json`.
+
+**Change:**
+* training paths (gate R0/R1 and train) set `allow_tf32 = True`;
+* the eval stage sets it `False`;
+* this matches TSP-R exactly.
+
+**Other numerical settings verified identical to the TSP-R controls:** FP32 weights, `S25.run_one` unchanged (same
+`torch.manual_seed`, optimiser, clipping, token stream, steps), and no deterministic-algorithms flag.
+
+**Unchanged:** every gate and its tolerance (R0 ≤ 1e-6 must pass as frozen), all criteria, arms, seeds and cost
+limits.
+
+**Schedule:** E1 → TI-2 → TI-4 → TI-3. TI-3 is withdrawn automatically if it cannot start by 14:30 UTC.
