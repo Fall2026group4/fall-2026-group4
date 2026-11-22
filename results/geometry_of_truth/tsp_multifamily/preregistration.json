@@ -51,7 +51,7 @@
  "replay_cap_per_family": 1000,
  "test_data_used": false,
  "hashes": {
-  "scripts/geometry_of_truth/34_tsp_multifamily.py": "de853c63f653b07498cd559ff333b318242ef3efc147d25c56d9d204e4710590",
+  "scripts/geometry_of_truth/34_tsp_multifamily.py": "fb7247d58a1060b3fd36f68e277271737440919c22769f8e1802d3feafd47bac",
   "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
   "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
   "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "8e93527a8a3a55d79bc753bba8ea97688c24e88e3e8933616471e8d8cf40f7ed",
@@ -65,7 +65,23 @@
   "data/got/fresh/splits/counterfact_true_false_splits.csv": "bd42f47765965a53754500770035467bf815d42fe3c78b0a7fb9f7ebcdc2888a",
   "data/got/splits/larger_than_splits.csv": "82117c655ade21730809ee69a1b9530a92518444c5bee70d410153680f162bfc",
   "data/got/splits/smaller_than_splits.csv": "5f3547752c5a96b2f8b7e2a20e23e2973404477c97c4b86a23a0a041cabc569b",
-  "results/geometry_of_truth/tsp_multifamily/README.md": "e24b20982900b305defbdb6205f9d10cbc0bf5799b003604d505d47204edb80e",
+  "results/geometry_of_truth/tsp_multifamily/README.md": "afdc22272f866b1416bd114908170d2562601c04b06a76a3403dd7b2b5fda783",
   "src/tests/test_tsp_multifamily.py": "1171cf2389586f2fb01746dfa30869e62d040ed52822e45ad0f24524480b3717"
- }
+ },
+ "amendments": [
+  {
+   "id": "TI2-A-TF32",
+   "date": "2026-11-22",
+   "approved_by": "user",
+   "change": "training paths set torch.backends.cuda.matmul.allow_tf32 = True; eval stage sets it False (TSP-R configuration: 30:216, 25:126 train True; 31:250 eval False)",
+   "reason": "R0 failed at 0.168 max |param diff| because TSP-R trained with TF32; diagnostic with TF32 on reproduces f0_tsp_s42 exactly (0.0)",
+   "unchanged": "all gates and tolerances (R0 <= 1e-6), criteria, arms, seeds, cost limits",
+   "files_rehashed": [
+    "results/geometry_of_truth/tsp_multifamily/README.md",
+    "scripts/geometry_of_truth/34_tsp_multifamily.py"
+   ],
+   "failed_gate_record": "gate_attempt1_failed_R0_tf32.json",
+   "before_any_counted_run": true
+  }
+ ]
 }
