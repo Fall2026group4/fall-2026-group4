@@ -39,6 +39,10 @@ LAYER, NAME = 8, 'topk'
 SEEDS, FOLDS = (42, 1042, 2042), (0, 1, 2)
 NEW_ARMS = ('mp', 'mp_shuf')
 TOL, SHUF_SEED = 1e-6, 20261126
+# Amendment A-TF32 (user-approved 2026-11-22): match TSP-R's numerical configuration exactly. TSP-R trained with
+# torch.backends.cuda.matmul.allow_tf32 = True (30_tsp_r_phase1_training.py:216, 25:126) and evaluated with it False
+# (31:250). Training paths (gate R0/R1, train) set it True; the eval stage sets it False. Nothing else changes.
+TRAIN_TF32, EVAL_TF32 = True, False
 
 
 def mod(rel, name):
@@ -189,6 +193,7 @@ def tspr_ctrl():
 def stage_gate():
     check_freeze()
     refuse(OUT / 'gate.json')
+    torch.backends.cuda.matmul.allow_tf32 = TRAIN_TF32
     model, ch, t = gpt2(), chunks(), S30.fold_rows()
     _, XA, gA, pA, yA = fold_A(t, 0)
     a, _, _ = run_mp(model, 42, XA, None, ch, steps_full())
@@ -218,6 +223,7 @@ def stage_gate():
 
 def stage_train():
     check_freeze()
+    torch.backends.cuda.matmul.allow_tf32 = TRAIN_TF32
     if not json.loads((OUT / 'gate.json').read_text())['all_passed']:
         raise SystemExit('gate not passed')
     model, ch, t = gpt2(), chunks(), S30.fold_rows()
@@ -260,6 +266,7 @@ def sources():
 
 def stage_eval():
     check_freeze()
+    torch.backends.cuda.matmul.allow_tf32 = EVAL_TF32
     E = OUT / 'eval'
     E.mkdir(exist_ok=True)
     TI4 = mod('scripts/geometry_of_truth/35_tsp_kl_factorial.py', 'ti4')

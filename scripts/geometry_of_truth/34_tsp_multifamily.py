@@ -43,6 +43,10 @@ ARMS = ('ctrl', 'tsp_cities', 'tsp_mf', 'rand')
 RANK, CAP, SPLIT_SEED, MF_SEED, GATE_AUROC = 8, 1000, 20261122, 20261123, 0.70
 R0_TOL = 1e-6          # cross-process reproduction of a TSP-R checkpoint (fixed at freeze; exact value reported)
 NFOLD = 5
+# Amendment A-TF32 (user-approved 2026-11-22): match TSP-R's numerical configuration exactly. TSP-R trained with
+# torch.backends.cuda.matmul.allow_tf32 = True (30_tsp_r_phase1_training.py:216, 25:126) and evaluated with it False
+# (31:250). Training paths (gate R0/R1, train) set it True; the eval stage sets it False. Nothing else changes.
+TRAIN_TF32, EVAL_TF32 = True, False
 
 
 def mod(rel, name):
@@ -282,6 +286,7 @@ def set_base(seed):
 def stage_gate():
     check_freeze()
     refuse(OUT / 'gate.json')
+    torch.backends.cuda.matmul.allow_tf32 = TRAIN_TF32
     D = assemble()
     elig = eligibility(D)
     S = s_families(D, elig)
@@ -333,6 +338,7 @@ def subspaces(D):
 
 def stage_train():
     check_freeze()
+    torch.backends.cuda.matmul.allow_tf32 = TRAIN_TF32
     if not json.loads((OUT / 'gate.json').read_text())['all_passed']:
         raise SystemExit('gate not passed')
     D = assemble()
@@ -378,6 +384,7 @@ def srcs():
 
 def stage_eval():
     check_freeze()
+    torch.backends.cuda.matmul.allow_tf32 = EVAL_TF32
     E = OUT / 'eval'
     E.mkdir(exist_ok=True)
     D = assemble()
