@@ -413,3 +413,4 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * DONE: Table `tab:evidence` no longer marks those three folders with the "not yet on `main`" dagger; R3 stays
   on PR #30 and keeps its dagger until #30 merges.
 * OPEN: final R3 integration into the manuscript after PR #30 merges (D46 / §54 / results summary §27 reserved).
+* DONE 2026-11-22: E1 task-level matched TopK: NOT robust, 1/4 differences persist (§62, D53).

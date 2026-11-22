@@ -526,3 +526,12 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/cross_model/xb_matched_splicing/samples/*ctx128*` | added | 128-token re-cut manifests |
 | `results/cross_model/xb_matched_splicing/a4_ctx128/` | added | protocol, runs (`per_doc.csv`; `sum_x.npz` hashed, not committed), analysis, comparison, README |
 | `docs/*` ledgers | appended | §61, D52, summary, roadmap, registry, manifest, tracker |
+
+## 2026-11-22: E1 results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/e1_task_l0_matched_topk.py` (+ E1-A1), `scripts/shared/e1_g2_blas_threads_diagnostic.py`, `src/tests/test_e1_task_l0_matched.py` | added | E1 implementation; single-threaded probe BLAS (E1-A1) and its diagnostic |
+| `results/shared/e1_task_l0_matched_topk/{gate.json, gate_attempt1_failed_G2_blas_threads.json, ledger.csv, eval_*.csv, analysis/, README.md}` | added / updated | gates, 36 SAEs, evaluation, pre-registered analysis |
+| `docs/checkpoint_registry.csv` | appended | 36 E1 keeper checkpoints (EBS copy, gitignored) |
+| `docs/*` ledgers | appended | §62, D53, summary, roadmap, registry, manifest |
+| `scripts/shared/e1_g2_blas_threads_diagnostic.py` | path sanitised for commit | its hard-coded absolute repo path is replaced by `Path(__file__).resolve().parents[2]` (the same directory; behaviour unchanged). SHA-256 (16 characters) cc0b31ef9089ba30 → a2a0cd4f5586a68c; the E1 pre-registration records the original. Not used by any E1 stage |

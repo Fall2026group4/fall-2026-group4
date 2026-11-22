@@ -1,0 +1,210 @@
+{
+ "experiment": "E1: TopK at task-level matched L0 (layers 1, 8, 11)",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED (frozen before any training)",
+ "approved_by": "user, 2026-11-21 (Option B item 3)",
+ "evidence_level_on_completion": "VALIDATION (TRAIN/VALIDATION only; no TEST)",
+ "k_star": [
+  {
+   "layer": 1,
+   "task": "got_cities",
+   "X": "relu",
+   "task_l0_train_per_seed": [
+    33.90535372848949,
+    31.18546845124283,
+    31.876673040152962
+   ],
+   "task_l0_train": 32.322498406628426,
+   "k_star": 32,
+   "within_10pct": true
+  },
+  {
+   "layer": 1,
+   "task": "got_cities",
+   "X": "jumprelu",
+   "task_l0_train_per_seed": [
+    19.625239005736137,
+    24.4282982791587,
+    24.192160611854685
+   ],
+   "task_l0_train": 22.748565965583172,
+   "k_star": 23,
+   "within_10pct": true
+  },
+  {
+   "layer": 1,
+   "task": "repe_persona",
+   "X": "relu",
+   "task_l0_train_per_seed": [
+    215.61900479616307,
+    219.36360911270984,
+    212.26708633093526
+   ],
+   "task_l0_train": 215.74990007993605,
+   "k_star": 216,
+   "within_10pct": true
+  },
+  {
+   "layer": 1,
+   "task": "repe_persona",
+   "X": "jumprelu",
+   "task_l0_train_per_seed": [
+    214.3312350119904,
+    212.29406474820144,
+    214.47541966426857
+   ],
+   "task_l0_train": 213.70023980815347,
+   "k_star": 214,
+   "within_10pct": true
+  },
+  {
+   "layer": 8,
+   "task": "got_cities",
+   "X": "relu",
+   "task_l0_train_per_seed": [
+    78.11281070745697,
+    73.26099426386233,
+    77.66300191204589
+   ],
+   "task_l0_train": 76.34560229445508,
+   "k_star": 76,
+   "within_10pct": true
+  },
+  {
+   "layer": 8,
+   "task": "got_cities",
+   "X": "jumprelu",
+   "task_l0_train_per_seed": [
+    65.17543021032505,
+    60.33269598470363,
+    62.23087954110898
+   ],
+   "task_l0_train": 62.57966857871256,
+   "k_star": 63,
+   "within_10pct": true
+  },
+  {
+   "layer": 8,
+   "task": "repe_persona",
+   "X": "relu",
+   "task_l0_train_per_seed": [
+    162.7571942446043,
+    160.72841726618705,
+    159.19034772182255
+   ],
+   "task_l0_train": 160.8919864108713,
+   "k_star": 161,
+   "within_10pct": true
+  },
+  {
+   "layer": 8,
+   "task": "repe_persona",
+   "X": "jumprelu",
+   "task_l0_train_per_seed": [
+    171.11600719424462,
+    169.72452038369303,
+    169.9079736211031
+   ],
+   "task_l0_train": 170.24950039968027,
+   "k_star": 170,
+   "within_10pct": true
+  },
+  {
+   "layer": 11,
+   "task": "got_cities",
+   "X": "relu",
+   "task_l0_train_per_seed": [
+    112.77342256214149,
+    113.69024856596559,
+    105.70889101338432
+   ],
+   "task_l0_train": 110.72418738049714,
+   "k_star": 111,
+   "within_10pct": true
+  },
+  {
+   "layer": 11,
+   "task": "got_cities",
+   "X": "jumprelu",
+   "task_l0_train_per_seed": [
+    88.77963671128107,
+    94.61185468451242,
+    92.07409177820267
+   ],
+   "task_l0_train": 91.82186105799872,
+   "k_star": 92,
+   "within_10pct": true
+  },
+  {
+   "layer": 11,
+   "task": "repe_persona",
+   "X": "relu",
+   "task_l0_train_per_seed": [
+    163.4664268585132,
+    163.98860911270984,
+    159.1984412470024
+   ],
+   "task_l0_train": 162.21782573940848,
+   "k_star": 162,
+   "within_10pct": true
+  },
+  {
+   "layer": 11,
+   "task": "repe_persona",
+   "X": "jumprelu",
+   "task_l0_train_per_seed": [
+    142.86121103117506,
+    140.33842925659474,
+    139.88309352517985
+   ],
+   "task_l0_train": 141.02757793764988,
+   "k_star": 141,
+   "within_10pct": true
+  }
+ ],
+ "primary_family": "18 tests: GoT refit_logistic_gap; RepE refit_logistic_gap and M4 preservation_rec; per layer x X",
+ "classes": "PERSISTS / ATTENUATED / REVERSED / NO DIFFERENCE (README 1.1), uncorrected and BH (q<0.05) on the k* contrast",
+ "headline": "robust iff >= 75 % of cells significant at k=128 PERSIST after BH",
+ "gates": {
+  "G1": "training reproduction <= 1e-6",
+  "G2": "M2 evaluation reproduction <= 1e-6",
+  "G3": "M4 preservation_rec reproduction <= 1e-6"
+ },
+ "failure_conditions": [
+  "any gate fails -> stop",
+  "k* outside +-10 % -> stop",
+  "divergence (NaN or OWT EV < 0) -> flag, exclude, no re-run"
+ ],
+ "degenerate_flag": "OWT EV < 0.5 reported separately",
+ "test_data_used": false,
+ "hashes": {
+  "scripts/shared/e1_task_l0_matched_topk.py": "0a3bf91dddf91b72fab93282befc71280b749cfbe5b21cce0b2ffe72710ce828",
+  "scripts/openwebtext/03_training_sae.py": "6587a1bfeba82244faa5478b278938ff8e884eb9c9f8b662b6eb1ddf5f0b1fe6",
+  "scripts/shared/m2_four_level_faithfulness.py": "84c4a603c26101e19c92706e94b8c504122e8ea299f9ad7766afa624d1390b3c",
+  "scripts/repe/24_sae_patch_decomposition.py": "7e6e6dde504322229bdb8211b509abd6826acf1e616d8fa710a87a5431ec4a97",
+  "scripts/shared/m5_confirmatory_test.py": "ec8e264a7818b6553ec0558381e9cc5809d9098a57cb0adfc814107f7f6a4616",
+  "scripts/shared/spliced_reconstruction_evaluation.py": "2d5f3aff55b5d391bb6dc6b2db6c5c94bac5b07f626b3bafa303acd54f9e42bf",
+  "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70",
+  "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+  "src/evaluation/patching.py": "a96a80b18d72a7ede6cbfaccd700d611522f672747cb8b42c255cc59b018f076",
+  "src/sae/checkpoint_registry.py": "09280f510e9fd6416172bd54d2ac5a5183226992a387f2e8fe207af92591b559",
+  "results/shared/e1_task_l0_matched_topk/k_star.json": "e3235aa14e0358a05696fd22c0c4090f6193ff5ffa9c7cff815e4234acce26b8",
+  "results/shared/e1_task_l0_matched_topk/pretraining_checks.json": "fc3a42a9e3e63aec3733b76a9099a67cad7d01eb642d42861ce154f8b0441534",
+  "results/shared/e1_task_l0_matched_topk/README.md": "476a8a6ee8adbdc057d4ddc798fdfbf79e88725fb8fa2df2294d12a3559d344c",
+  "src/tests/test_e1_task_l0_matched.py": "44c2ee6f63a5f359b74e98b9c83990a24e117356e29417017aefad9d1b371d21",
+  "results/shared/m2_four_level_faithfulness/per_cell.csv": "2080b2b391ad0b57915bc92293b54f97839e0481dbd581ea3ae6be6b56ed2ad6",
+  "results/repe/sae_patch_decomposition/decomposition_summary.csv": "a7e1a93a5f0797f148caba29f336c08bf75b38206a993216d1e30d408c282dc7",
+  "scripts/shared/e1_g2_blas_threads_diagnostic.py": "cc0b31ef9089ba30150a719cdb89b928ce6d36208eb178cc4e0cb0977f1a574f"
+ },
+ "amendments": [
+  {
+   "id": "E1-A1",
+   "date": "2026-11-22",
+   "approved_by": "user",
+   "change": "probe fitting (G2/G3, eval) under threadpool_limits(1) as in M2 loky workers",
+   "reason": "G2 failed at 2.8e-4 vs tol 1e-6 under multi-threaded BLAS; single-threaded reproduces M2 exactly (0.0)",
+   "unchanged": "all gates and the 1e-6 tolerance, k*, classes, BH family, criteria",
+   "before_any_counted_run": true
+  }
+ ]
+}
