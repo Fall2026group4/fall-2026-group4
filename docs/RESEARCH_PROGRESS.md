@@ -1489,7 +1489,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Runs:** Gemma (26 layers, Pile + OWT-XM shared span; own-1024 at triplets) and GPT-2 (12 layers, 159 SAEs, shared span). Frozen analysis v1. Gates: identity / repeat 0.0, V_M6 PASS.
 * **Finding that dominates the arm:** the GPT-2 SAEs (trained at 128 tokens) break down on the ~700-token shared span. res-jb EV −0.06 to −3,266 with L0 180–2,616 (vs 15–68 at 128 tokens); R2 EV 0.15–0.72 (vs 0.87–0.98). Gemma Scope (trained at 1024) stays in distribution (EV 0.74–0.88).
 * **Pre-registered outcomes as computed:**
-  * XB_H1 supported for Gemma 64/64 cells and GPT-2 0/318 (70 contradicted, an artefact of the inflated error norm);
+  * XB_H1 supported for Gemma 64/64 cells. GPT-2: 0/318 under Holm, but that is **infeasible by design** (bootstrap p floor 0.002 × 159 tests; correction 2026-11-22). 243/318 are supported by their own CI (descriptive); 70 are contradicted (the inflated-error-norm artefact);
   * XB_H2: no matched stratum (0/54 pairs pass the frozen ±15 % rule), so all rows are descriptive;
   * XB_H3: no Gemma depth trend.
 * **Reading (D50):** no primary-arm GPT-2 vs Gemma comparison is interpretable as an SAE comparison. The context-controlled comparison is A4 (128 tokens; frozen before this analysis was read).

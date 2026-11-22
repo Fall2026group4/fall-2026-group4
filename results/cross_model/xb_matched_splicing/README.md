@@ -96,9 +96,16 @@ Gemma Scope (trained at 1024 tokens) stays in distribution: EV 0.74–0.88 and L
   | Model | Cells supported | Contradicted (SAE less harmful than random) |
   |---|---|---|
   | **Gemma** | **64/64** (26 + 26 shared, 6 + 6 own) | 0 |
-  | **GPT-2** | **0/318** | 70 (46 OWT-XM, 24 Pile) |
+  | **GPT-2** | **0/318** under Holm; 243/318 by their own 95 % CI (descriptive) | 70 (46 OWT-XM, 24 Pile) |
 
-  The GPT-2 result follows from §3.1 and is not evidence about SAE quality.
+  **Correction (2026-11-22): the GPT-2 "0/318 under Holm" is a test-design artefact, not a finding.**
+  * The frozen analysis uses a 1,000-resample bootstrap, so the smallest attainable p is about 0.002.
+  * Holm over the 159 GPT-2 cells per family therefore cannot reach 0.05 (smallest adjusted p 0.159), whatever the
+    effect size.
+  * Gemma's families have 6 or 26 cells, so they are feasible.
+  * The uncorrected CI verdicts (243 supported, 70 contradicted, 5 inconclusive) are reported as descriptive.
+  * The 70 contradicted cells are the §3.1 artefact (inflated error norm). An earlier version of this README wrongly
+    attributed the 0/318 to §3.1 as well.
 * **XB_H2** (cross-model differences):
   * **no matched stratum exists**: 0 of 54 slot × family pairs pass the frozen ±15 % L0/d_model and d_sae/d_model
     rule;

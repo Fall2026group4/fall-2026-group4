@@ -513,3 +513,8 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `scripts/shared/pca_cm_test_confirmation.py`, `src/tests/test_pca_cm_test_confirmation.py` | added | TEST runner implementing the frozen 2026-11-13 rules; validation-reproduction mode |
 | `results/shared/pca_capacity_matched_test_protocol/{validation_reproduction/, addendum_pre_test.json, test/, run_log.txt, README.md}` | added / updated | exact validation reproduction; pre-TEST freeze; single TEST pass; abort log |
 | `docs/*` ledgers | appended | §60, D51, summary, roadmap, registry, manifest |
+
+## 2026-11-22: correction to the XB primary results
+| File | Change | Reason |
+|---|---|---|
+| XB `README.md` §3.2, §59, D50, results summary | corrected | the GPT-2 XB_H1 "0/318" under Holm is mechanically impossible to pass with a 1,000-resample bootstrap over 159 tests. It was wrongly attributed to the out-of-distribution artefact; the uncorrected CI verdicts are now reported as descriptive. No result or rule changed |
