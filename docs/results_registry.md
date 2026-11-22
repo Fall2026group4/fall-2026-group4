@@ -152,3 +152,5 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | SIL SAE-in-the-loop persona mediation (GPT-2) | **VALIDATION**: MEDIATED by rule for all families, **but the negative control also passes**; cite only as "specificity inconclusive" plus D2 retention (0.82–0.92 TopK/BatchTopK/JumpReLU vs ≈ 0.5 ReLU and control) | `results/repe/sae_in_the_loop_mediation/` (§58, D49) |
 
 | PCA-CM-T capacity-matched PCA, TEST | **TEST (rows previously exposed in M5; PCA arms unseen)**: P1 confirmed (0/20 SAEs worse than PCA-128); advantage only in the confirmed cells (D51) | `results/shared/pca_capacity_matched_test_protocol/` (§60) |
+
+| XB A4, 128-token shared span (GPT-2 vs Gemma) | **VALIDATION, sensitivity (descriptive)**: both models' SAEs worse than norm-matched random by CI; 269/324 cross-model differences shrink vs 1024 tokens; Holm labels uninformative (p floor, D52); no matched pair | `results/cross_model/xb_matched_splicing/a4_ctx128/` (§61) |

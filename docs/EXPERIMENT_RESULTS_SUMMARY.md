@@ -929,3 +929,13 @@ Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of recor
 | P1: no SAE worse than PCA-128 (20 cells) | **CONFIRMED** (0/20 worse) |
 | P2: SAE better than PCA-128 (3 cells, Holm) | 1/3: L11 R2 ReLU (−0.056) |
 | P3: SAE better than task-L0 PCA (8 cells, Holm) | 4/8: L8 old ReLU (−0.094), L8 res-jb (−0.110), L11 R2 ReLU (−0.067), L11 res-jb (−0.075) |
+
+## XB A4: 128-token shared span (2026-11-22; VALIDATION, sensitivity; D52)
+| | GPT-2 (159 SAEs) | Gemma (16k canonical) |
+|---|---|---|
+| EV at triplet layers | res-jb 0.77–0.95; R2 0.83–0.95 (back in distribution) | 0.74–0.88 |
+| XB_H1 by CI (Holm infeasible / feasible) | 297/318 supported (Holm 0/318, p floor) | 49/52 (Holm 49/52) |
+| SAE / random ΔCE (triplets) | 1.5–4.8 | 0.7–3.0 |
+| Loss recovered (triplets) | 0.91–1.00 | 0.97–1.00 |
+
+Context change 1024 → 128: 269/324 differences SHRINK by uncorrected CI (Holm 0/324, uninformative). Matched pairs 0/54.

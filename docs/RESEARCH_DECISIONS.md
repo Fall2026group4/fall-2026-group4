@@ -583,3 +583,18 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **May say (TEST, rows previously exposed):** "On held-out cities TEST, no trained SAE retains less truth information than PCA with the same per-token active budget (k = 128; 0/20 cells worse)."
 * **May say, cell-specific:** an SAE advantage over capacity-matched PCA is confirmed at k = 128 for L11 R2 ReLU, and at task-matched k for L8 old ReLU, L8 res-jb, L11 R2 ReLU and L11 res-jb.
 * **May not say:** "SAEs are significantly better than PCA" in general (D34 wording rule). Not confirmed: P2 L8 res-jb (p = 0.048 fails Holm) and L8 R2 ReLU; four P3 cells.
+
+## D52. How A4 and the Holm p-floor are reported (2026-11-22). Status: DECIDED (no criterion changed)
+* **Finding:**
+  * XB's frozen analysis (and the A4 comparison that copies it) uses a 1,000-resample bootstrap p with floor ≈ 0.002;
+  * Holm over large families (159 GPT-2 cells; 324 context rows) therefore cannot reject at 0.05, whatever the effect;
+  * Gemma's 6- and 26-cell families are unaffected.
+* **Reporting:**
+  * the pre-registered Holm outcomes are shown as computed and explicitly labelled **"uninformative (p floor)"**;
+  * the uncorrected 95 % CI verdicts are the descriptive results;
+  * neither is called a confirmed finding.
+* **May say (VALIDATION, descriptive):**
+  * "At matched 128-token context both models' SAEs degrade next-token prediction more than norm-matched random error";
+  * "most cross-model differences seen at 1024 tokens shrink when context is matched (269/324 rows)".
+* **May not say:** any Holm-significant cross-model difference; any architecture-matched comparison (0/54 matched pairs).
+* **Open option (needs the user's approval):** a post-hoc re-analysis with ≥ 100,000 resamples, labelled exploratory. Not run.

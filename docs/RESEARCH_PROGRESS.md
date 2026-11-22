@@ -1502,3 +1502,14 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * **P3:** 4/8 confirmed (L8 old ReLU, L8 res-jb, L11 R2 ReLU, L11 res-jb).
   * The counts match the validation multiplicity check.
 * **Reading (D51):** "no SAE is worse than capacity-matched PCA" is now TEST-confirmed. "SAEs beat capacity-matched PCA" holds only for the confirmed cells.
+
+## 61. XB A4: 128-token shared-span arm (2026-11-22). Status: COMPLETED (VALIDATION, sensitivity); Holm outcomes infeasible by design
+* **Design:** frozen and pushed (`0c15597`) before the primary analysis was read. The same documents, SAEs, controls and frozen runner / analysis were used, redirected to `a4_ctx128/`. Gates: identity / repeat exactly 0.
+* **Context fixes the GPT-2 breakdown:** res-jb EV 0.95 / 0.86 / 0.81 and L0 15 / 67 / 61 at L1 / L8 / L11, matching its 128-token values; R2 EV 0.83–0.95.
+* **Outcomes:**
+  * XB_H1 GPT-2: 297/318 supported by CI (Holm 0/318 is infeasible);
+  * XB_H1 Gemma: 49/52;
+  * matched pairs: 0/54;
+  * context change: 269/324 cross-model differences SHRINK by uncorrected CI (loss recovered 54/54, KL 53/54); Holm 0/324 is infeasible.
+* **Design flaw disclosed (D52):** with a 1,000-resample bootstrap the p floor is about 0.002, so Holm over 159 or 324 tests cannot reach 0.05. This affects the frozen XB analysis and the A4 comparison alike. The Holm labels carry no evidential weight. No criterion changed. A higher-resolution re-analysis would be post hoc and needs approval.
+* **Reading:** at matched context both models' SAEs are more harmful than norm-matched random error (SAE / random ΔCE GPT-2 1.5–4.8, Gemma 0.7–3.0). The primary-arm cross-model gap is largely the GPT-2 context mismatch.

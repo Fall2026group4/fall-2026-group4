@@ -518,3 +518,11 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | File | Change | Reason |
 |---|---|---|
 | XB `README.md` §3.2, §59, D50, results summary | corrected | the GPT-2 XB_H1 "0/318" under Holm is mechanically impossible to pass with a 1,000-resample bootstrap over 159 tests. It was wrongly attributed to the out-of-distribution artefact; the uncorrected CI verdicts are now reported as descriptive. No result or rule changed |
+
+## 2026-11-22: XB A4 results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/0{4,5,7}_*.py`, `src/tests/test_xb_a4.py` | added | A4 manifest builder, wrapper (frozen 02/03 unchanged), paired context comparison; frozen in `0c15597` |
+| `results/cross_model/xb_matched_splicing/samples/*ctx128*` | added | 128-token re-cut manifests |
+| `results/cross_model/xb_matched_splicing/a4_ctx128/` | added | protocol, runs (`per_doc.csv`; `sum_x.npz` hashed, not committed), analysis, comparison, README |
+| `docs/*` ledgers | appended | §61, D52, summary, roadmap, registry, manifest, tracker |
