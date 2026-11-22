@@ -99,13 +99,13 @@ Evidence labels as in `docs/RESEARCH_PROGRESS.md`. For merge and upload commits,
 
 | Commit | Files (A = added, M = modified) | Change, reason, effects |
 |---|---|---|
-| `b39dcc2` | A `results/gemma2_pile/gemma_scope_splicing/README.md`, `preregistration.json`; M `docs/RESEARCH_ROADMAP.md` (M6 added, M3 status, §2 in progress), `docs/RESEARCH_PROGRESS.md` (§19; now §43), `docs/RESEARCH_DECISIONS.md` (D21; renumbered D36 when merged with #27; pointers in D2 and H6), `docs/EXPERIMENT_CHANGELOG.md` | **Documentation only: pre-registration of M6** (Gemma Scope SAE reconstruction and splicing on The Pile) before any code or run. Branch created from `b64e6ed` (`simba-method-a-multilayer`, left unchanged). No script, result or checkpoint added or modified. Data deviation (approved): the EDA used the train-side parquet mirror; M6 uses the pinned original validation file, held out from the EDA. **Tests not run:** documentation/configuration only (no executable code changed) and no local venv on this machine |
-| `fa6f2ce` | M `results/gemma2_pile/gemma_scope_splicing/preregistration.json` (`tokenization.revision` added; `model.revision` pinned; `amendments` list), `README.md` (Amendment 1 section; two rows annotated), `docs/RESEARCH_PROGRESS.md` (§19; now §43), `docs/RESEARCH_DECISIONS.md` (D21; now D36), `docs/EXPERIMENT_CHANGELOG.md` | **Pre-registration Amendment 1, before any run:** Gemma-2-2B tokenizer and model pinned to HF commit `c5ebcd40…` (was "recorded at run time"). Documentation/configuration only; tests not run (no executable code changed; no local venv). Earlier commit `b39dcc2` not rewritten (row's "(this commit)" replaced by `fa6f2ce` on 2026-11-12) |
+| `b39dcc2` | A `results/gemma2_pile/gemma_scope_splicing/README.md`, `preregistration.json`; M `docs/RESEARCH_ROADMAP.md` (M6 added, M3 status, §2 in progress), `docs/RESEARCH_PROGRESS.md` (§19; later §43; now §51), `docs/RESEARCH_DECISIONS.md` (D21; renumbered D36 when merged with #27, D44 on 2026-11-17; pointers in D2 and H6), `docs/EXPERIMENT_CHANGELOG.md` | **Documentation only: pre-registration of M6** (Gemma Scope SAE reconstruction and splicing on The Pile) before any code or run. Branch created from `b64e6ed` (`simba-method-a-multilayer`, left unchanged). No script, result or checkpoint added or modified. Data deviation (approved): the EDA used the train-side parquet mirror; M6 uses the pinned original validation file, held out from the EDA. **Tests not run:** documentation/configuration only (no executable code changed) and no local venv on this machine |
+| `fa6f2ce` | M `results/gemma2_pile/gemma_scope_splicing/preregistration.json` (`tokenization.revision` added; `model.revision` pinned; `amendments` list), `README.md` (Amendment 1 section; two rows annotated), `docs/RESEARCH_PROGRESS.md` (§19; later §43; now §51), `docs/RESEARCH_DECISIONS.md` (D21; later D36; now D44), `docs/EXPERIMENT_CHANGELOG.md` | **Pre-registration Amendment 1, before any run:** Gemma-2-2B tokenizer and model pinned to HF commit `c5ebcd40…` (was "recorded at run time"). Documentation/configuration only; tests not run (no executable code changed; no local venv). Earlier commit `b39dcc2` not rewritten (row's "(this commit)" replaced by `fa6f2ce` on 2026-11-12) |
 | `39ed943` | A `scripts/gemma/02_pile_sample_manifest.py`, `src/evaluation/pile_splicing.py` (sampling part), `src/tests/test_pile_sampling.py`; M `requirements.txt` (`zstandard==0.23.0`) | Deterministic Pile sampling pipeline (seed-42 permutation, ≥ 32 text tokens, 512 + 64 disjoint documents, BOS + first 1023 text tokens). 40 tests passed on Ronin (user report) |
 | `a34d975` | A `results/gemma2_pile/gemma_scope_splicing/sample_manifest.csv`, `sample_info.json` | Pre-registered evaluation sample (hashes only, no document text); gate V1 inputs |
 | `4708213`, `606a43d`, `13eaeca` (TEMP) | A `scripts/gemma/03_pile_gemma_scope_splicing.py`, `src/tests/test_gemma_pile_splicing.py`; M `src/evaluation/pile_splicing.py`, `src/tests/test_pile_sampling.py`, experiment `README.md` (§2 implementation details, safeguards A1–A11, H4a limitation) | Splicing script and tests; engineering safeguards A1–A11 (numerics, git provenance, determinism, atomic outputs, hardware record); A3 strict deterministic algorithms. Engineering only: no change to layers, SAEs, thresholds, controls, data, metrics or criteria. Made as TEMP commits for the Ronin tests; the full run used `13eaeca` |
 | `0dbfc80` | A `results/gemma2_pile/gemma_scope_splicing/{per_doc_metrics,summary_by_layer,summary_by_layer_source,controls,h_g1}.csv`, `gates.json`, `run_info.json` | **Full pre-registered M6 run** (Ronin, Tesla T4, 2.24 h). Gates V1–V5 pass; H-G1 supported at layers 5, 12, 19. Output SHA-256 recorded in `run_info.json` |
-| `28a7d85` | A `scripts/gemma/04_pile_gemma_scope_figures.py`, `results/gemma2_pile/gemma_scope_splicing/figures/` (4 PNG + `figure_info.json`); M experiment `README.md` (status line; §2 Results), `docs/RESEARCH_PROGRESS.md` (§19; now §43), `docs/RESEARCH_ROADMAP.md` (M6 DONE, M3), `docs/EXPERIMENT_RESULTS_SUMMARY.md` (§10; now §25), `docs/results_registry.md`, `docs/experiment_manifest.csv` (M6 row), `docs/EXPERIMENT_CHANGELOG.md` | **M6 results documented; status COMPLETED, VALIDATION.** Figures are read from the saved tables only: no model, SAE or GPU. The script checks input hashes against `run_info.json`, the gates and the H-G1 recomputation, and refuses to overwrite. Figures 1–2 use zero-based axes; figure 4 axes are zoomed and labelled as such. `preregistration.json` unchanged (its PLANNED status is historical). No result value changed. Post-run verification on Ronin (after the full run, M6 code/results branch): `python -m pytest -q -rs src/tests` 85 passed, 0 failed, 0 skipped |
+| `28a7d85` | A `scripts/gemma/04_pile_gemma_scope_figures.py`, `results/gemma2_pile/gemma_scope_splicing/figures/` (4 PNG + `figure_info.json`); M experiment `README.md` (status line; §2 Results), `docs/RESEARCH_PROGRESS.md` (§19; later §43; now §51), `docs/RESEARCH_ROADMAP.md` (M6 DONE, M3), `docs/EXPERIMENT_RESULTS_SUMMARY.md` (§10; now §25), `docs/results_registry.md`, `docs/experiment_manifest.csv` (M6 row), `docs/EXPERIMENT_CHANGELOG.md` | **M6 results documented; status COMPLETED, VALIDATION.** Figures are read from the saved tables only: no model, SAE or GPU. The script checks input hashes against `run_info.json`, the gates and the H-G1 recomputation, and refuses to overwrite. Figures 1–2 use zero-based axes; figure 4 axes are zoomed and labelled as such. `preregistration.json` unchanged (its PLANNED status is historical). No result value changed. Post-run verification on Ronin (after the full run, M6 code/results branch): `python -m pytest -q -rs src/tests` 85 passed, 0 failed, 0 skipped |
 | `cde778e` (M6 evidence bundle, from Ronin) | A `results/gemma2_pile/gemma_scope_splicing/per_doc_sum_x.npz` (must match SHA-256 `3b2becfb…` in `run_info.json`), `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/` (hardened smoke run: H4a logit-precision values, sae-lens diagnostic, binding V4 check; labelled SMOKE) | Final M6 evidence artifacts, committed separately from the documentation commit. The older `smoke/` folder is not committed |
 | `167fadb` | M experiment `README.md` (post-run deviation note), `docs/EXPERIMENT_CHANGELOG.md` (commit ids filled in for `28a7d85` and `cde778e`) | **PR preparation, documentation only.** (1) The README now records that `smoke_hardened/` holds its own small smoke `per_doc_sum_x.npz` (8 smoke documents). It is not used for any result; the full-run file stays authoritative. (2) **Decision: keep the inherited GPT-2 Method A multi-layer scripts** (`scripts/geometry_of_truth/22_method_a_multilayer_finetune.py`, `23_method_a_multilayer_evaluation.py`; from the parent branch `simba-method-a-multilayer`, commits `28ad5cf` and `b64e6ed`) in this branch. A trial deletion showed why: if M6 is merged first, a later merge of `simba-method-a-multilayer` would give a visible conflict for script 23 but would **silently drop script 22**, because `7f2557b` modifies only script 23. They are disclosed as unrelated to M6 in the PR. No M6 code, result, dependency or provenance changed (`run_info.json` still points to `13eaeca`); `preregistration.json` unchanged; no history rewritten |
 | (merge of `origin/main` @ `17476c2` into #28; uncommitted at the time of writing) | M `docs/{EXPERIMENT_CHANGELOG,EXPERIMENT_RESULTS_SUMMARY,RESEARCH_DECISIONS,RESEARCH_PROGRESS,RESEARCH_ROADMAP}.md`, `docs/experiment_manifest.csv`, `docs/results_registry.md` (conflict resolution only) | **Integration of M6 with the merged #27 documentation; no result value changed.** #27 content kept in full. M6 renumbered to avoid collisions with #27: decision D21 → **D36**, progress §19 → **§43**, results-summary §10 → **§25** (roadmap Gemma task ID M6 kept; the GPT-2 "M6 test pass" item of the 2026-11-12 audit plan is a different, planned item and is labelled as such). Exactly one M6 manifest row and one registry row. The R3 rows were removed from #28 in `2bab391`; R3 lives in PR #30 (`dhruv-gemma-r3`) and is listed only as PRE-REGISTERED, not run. The inherited GPT-2 Method A scripts 22/23 (layers 5/6/9) are kept (see `167fadb`); they are distinct from #27's IMP-L scripts `22_multilayer_finetune.py` / `23_multilayer_evaluation.py` and write to a different results folder |
@@ -325,3 +325,175 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | this commit | M paper `00_abstract`, `10b_improvement`, `12_discussion`, `14_conclusion`; `README.md`, `docs/{research_overview,results_summary}.md` | "not worse" → "not classified worse"; explicit non-equivalence note (0/40 cells met the ±0.02 equivalence class) |
 | this commit | Added `scripts/shared/registry_consistency_check.py`, `docs/remediation/checks/2026-11-13_registry_check.json`; M `.github/workflows/gpt2-validation.yml` (new step) | Phase 6: manifest scripts exist (36 rows; 3 rows have stale "current" hashes from documented 11-07 changes `9446e56`, `83bd9a9`, left unmodified because the manifest is append-only); 0 broken links in 101 Markdown files; 638/638 registered checkpoints match their SHA-256 |
 | this commit | M `docs/remediation/merge_plan.md` | Re-checked PR #20/#21/#24/#26/#28 file lists against this branch: exact runtime readers of deleted files; #26's SAE-in-the-loop Part B is error-kept (equivalent to M4); RepE numbers 28–30 now taken |
+| this commit | Added `results/repe/repe_lm_test_evaluation/{README.md,checks.json,comparisons.csv,confirmatory_cells.csv,ht4_probe_transfer.json,per_sae.csv}` | H1-TEST single TEST pass (user-authorised), produced by the frozen script 29 (hash verified) |
+| this commit | M `results/repe/repe_lm_test_protocol/README.md` (status line), `docs/{RESEARCH_PROGRESS,RESEARCH_ROADMAP,RESEARCH_DECISIONS,EXPERIMENT_RESULTS_SUMMARY,results_registry,EXPERIMENT_CHANGELOG}.md`, `docs/experiment_manifest.csv` (+1 row via `append_experiment`) | Documentation rule; D36 (paper revision awaits the user) |
+| this commit | Added `scripts/shared/h1_test_paper_table.py`, `research_paper/Latex/tables/t_h1test.tex`, `src/tests/test_h1_test_paper_claims.py` (suite 71 → 75); M `src/tests/README.md` | D36: H1-TEST table generated from committed artifacts; tests that every quoted H1-TEST number matches them |
+| this commit | M `research_paper/Latex/sections/{00_abstract,05_setup,09_results_causal,10b_improvement,11_statistics,12_discussion,13_limitations,14_conclusion,15_appendix}.tex`, `research_paper/Latex/main.pdf` (rebuilt, 43 pp) | D36 (user-approved): replace "borderline, pending the test"; add the H1-TEST subsection; failed N3/N4 control as a limitation; secondary comparisons labelled exploratory |
+| this commit | M `README.md`, `docs/{results_summary,research_overview,limitations_and_future_work,methodology}.md`, `docs/final_defense/{ANTICIPATED_REVIEW_QUESTIONS,DEFENSE_CHEATSHEET,RESULTS_VERIFICATION_TABLE,FINAL_RESEARCH_REPORT,EXPERIMENT_AUDIT}.md`, `reports/Latex_report/main.tex`, `presentation/gpt2_results_slides.md` | D36: curated docs updated with the H1-TEST verdicts |
+| this commit | M `results/repe/repe_lm_test_evaluation/README.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md` (two rounding slips: C1 L11 TEST +0.069; C3 L1 VAL +0.142; HT2 C2 Holm bound 0.0151), `docs/{RESEARCH_PROGRESS,RESEARCH_DECISIONS,RESEARCH_ROADMAP,EXPERIMENT_CHANGELOG}.md` | Documentation rule; corrections found by the new test |
+| this commit | Added `scripts/shared/backup_checkpoints.py`, `docs/backups/2026-11-13_checkpoint_{manifest.csv,verify.json}` | Audit P0: verified same-volume backup of 656 checkpoints (21.7 GB) in `../backups/2026-11-13_checkpoints/`; off-machine copy blocked (D37) |
+| this commit | Added `scripts/shared/audit_s{1..6}_*.py`, `results/shared/audit_sensitivity/{README.md,preregistration.json}`, `src/tests/test_audit_sensitivity.py` (5 tests; suite 75 → 80) | AUDIT-SENS plan frozen before the full runs (sensitivity only) |
+| this commit | M `docs/RESEARCH_PROGRESS.md` (§44 audit, §45 in progress), `docs/RESEARCH_ROADMAP.md` | Documentation rule |
+| this commit | Added `results/shared/audit_sensitivity/s{1..6}_*/` (outputs of the frozen S1–S6 scripts); M its README (§4 results, §5 summary) | AUDIT-SENS full runs on the pre-registered hashes |
+| this commit | M paper `sections/{00_abstract,07_results_information,10b_improvement,11_statistics,12_discussion,13_limitations,14_conclusion}.tex` (new §audit), `main.pdf` (44 pp); M `README.md`, `docs/{results_summary,research_overview,limitations_and_future_work}.md`, `docs/final_defense/{ANTICIPATED_REVIEW_QUESTIONS,RESULTS_VERIFICATION_TABLE}.md`, `reports/Latex_report/main.tex`, `presentation/gpt2_results_slides.md` | D38: conclusions revised to the AUDIT-SENS evidence |
+| this commit | M `src/tests/test_audit_sensitivity.py` (+3 paper-claim tests; suite 80 → 83); M `docs/{RESEARCH_PROGRESS,RESEARCH_DECISIONS,RESEARCH_ROADMAP,EXPERIMENT_RESULTS_SUMMARY,results_registry,EXPERIMENT_CHANGELOG}.md`, `docs/experiment_manifest.csv` (+6 rows) | Documentation rule; D37, D38 |
+
+## 2026-11-14 — TSP plan freeze
+* Added `src/sae/truth_subspace.py` (subspace estimation from group A, controls, losses) and
+  `src/tests/test_truth_subspace.py` (7 tests): new method code.
+* Added `scripts/geometry_of_truth/24_truth_subspace_diagnostics.py` (root-cause diagnostics, validation),
+  `25_truth_subspace_finetune.py`, `26_truth_subspace_evaluation.py`, `27_truth_subspace_analysis.py` (pilot).
+* Added `results/geometry_of_truth/truth_subspace_preservation/{README.md,preregistration.json,diagnostics/}`.
+
+## 2026-11-14 — TSP pilot completed (recovery after interruption)
+* Added `scripts/geometry_of_truth/25b_truth_subspace_finetune_resume.py`: recovery wrapper. It completes the 3 runs
+  missing after the session ended, without modifying frozen script 25.
+* Added `results/geometry_of_truth/truth_subspace_preservation/pilot/{finetune_info.json,finetune_monitor_recovery.csv,
+  subspaces.npz,recovery_check/,eval/,analysis/}`: pilot outputs. Checkpoints and logs stay local (gitignored).
+* Modified `src/sae/checkpoint_registry.py`: added the `got_tsp_pilot` family. `docs/checkpoint_registry.csv` was
+  rebuilt.
+* Modified the TSP README with the results and the interruption record. The journal (§46), results summary, D39,
+  roadmap, registry and manifest were updated.
+
+## 2026-11-14 — TSP-VERIFY (independent verification; analysis only)
+* Added `scripts/geometry_of_truth/28_tsp_independent_verification.py`: independent re-implementation of the pilot's
+  metrics and statistics, plus robustness, geometry, wording, numerical-transfer and power checks. Validation only.
+* Added `results/geometry_of_truth/truth_subspace_preservation/verification/` (README, per-SAE metrics, agreement,
+  comparisons, power, bootstrap, info). The log in `verification_logs/` stays local (gitignored).
+* Added `docs/2026-11-14_tsp_verification_and_replication_design.md`: the verification report and the TSP-R design
+  (draft, not frozen).
+* The journal (§47), D40, results summary, roadmap, results registry and manifest were updated. The pilot folder and
+  its pre-registration were not modified. No checkpoints were created.
+
+## 2026-11-14/15 — TSP-R Phase 0 (fresh GoT families; DEV only; no training)
+* Added `scripts/geometry_of_truth/29_tsp_r_phase0_fresh_families.py` (`prepare` text-only stage; `eligibility`
+  DEV-only stage). The fix 1 loader change (`keep_default_na=False`) came after eligibility attempt 1 found an empty
+  DEV set; no output had been written.
+* Added `data/got/fresh/splits/` (locked DEV/TEST split files, no labels, no text; cities 3-fold cross-fitting
+  folds).
+* Added `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/`: preregistration, integrity,
+  leakage, split counts, DEV label balance, conj/disj fold counts, eligibility, headroom, feasibility, README.
+  `prepare_v1_superseded/` keeps the pre-freeze v1 outputs (superseded by the v2 duplicate rule).
+* `.gitignore`: raw fresh downloads (`data/got/fresh/raw_*/`; no upstream licence). The DEV activations under
+  `data/got/activations/gpt2_small/fresh_phase0/` and the logs stay local.
+* The journal (§48), D41, results summary, roadmap, registry and manifest were updated. No checkpoints were created.
+
+## 2026-11-15 — TSP-R Phase 1 pre-registration (no training)
+* Added `scripts/geometry_of_truth/30_tsp_r_phase1_training.py`: stages plan / repro / base / base_qc / finetune. It
+  reuses `run_one` from script 25 and `train` from script 17 unchanged (constants patched only); atomic saves; a
+  resumable run ledger.
+* Added `results/geometry_of_truth/truth_subspace_preservation/replication/`: README, preregistration.json,
+  plan_matrix.csv, plan_info.json, subspaces.npz (dry-run outputs).
+* The journal (§49), D42, roadmap and registry were updated. No checkpoints were created; the pilot and all
+  historical results are unchanged.
+
+## 2026-11-15 — TSP-R Phase 1 evaluation code frozen (second freeze; before any training)
+* Added `scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py` (stages cities / owt / ladder / analyze / test /
+  final) and `src/evaluation/tspr_stats.py` (weighted bootstrap AUROC, hierarchical seed + statement se with
+  Satterthwaite df, gatekeeping with Holm, labels, non-inferiority).
+* Added unit tests `src/tests/test_tspr_stats.py` (7) and the integration test
+  `scripts/geometry_of_truth/31b_tsp_r_eval_integration_test.py`.
+  * The integration test used identical arms plus a null-decoder arm on existing checkpoints; no training, no TEST.
+  * It passed on attempt 2. Attempt 1 found a zero-se division bug, now fixed.
+* Added `replication/eval_freeze.json` (hashes) and `replication/eval_integration_test.json`. `.gitignore`: the smoke
+  and eval caches.
+
+## 2026-11-15 — TSP-R Phase 1 executed (training + evaluation)
+* Created checkpoints (gitignored):
+  * `results/openwebtext/r2_tspr_base_seeds/` (5 bases; `training_info.json` and `training_monitor.csv` committed);
+  * `replication/checkpoints/` (120 fine-tunes).
+* Committed:
+  * `replication/run_ledger.csv`, `base_qc.json`, `smoke_repro/repro.json`;
+  * `eval/ladder_fold0.{csv,json}`;
+  * `eval/analysis/*` (cities analysis committed first, then TEST families and the final verdict);
+  * README.
+* `scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py`: fix 1 (`allow_pickle=True` for the final stage's own
+  npz; no metric change).
+* `src/sae/checkpoint_registry.py`: added families `got_tspr_replication`, `owt_r2_tspr_base`, `got_tspr_smoke`. The
+  registry was rebuilt (780 checkpoints).
+* The journal (§50), results summary, D43, roadmap, results registry and manifest were updated.
+
+## 2026-11-15: dead-latent audit (instructor request of 2026-11-10)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | Added `results/shared/dead_latent_audit/{build_dead_latent_audit.py,dead_latents_by_sae.csv,summary_by_family_layer.csv,checks.txt}` | Dead-latent fraction for every base (108) and R2 (36 trained + 3 frozen-random-decoder) GPT-2 SAE, from stored evaluation CSVs only. The script refuses to overwrite its outputs. A rerun after the typo fix gave byte-identical CSVs |
+| this commit | Added `docs/DEAD_LATENT_AUDIT.md` | Audit report: definition, coverage, results, checks, provenance |
+| this commit | M `research_paper/Latex/sections/12_appendix.tex`, `results/shared/m0_within_layer_reanalysis/README.md`, `README.md` | Transcription correction: JumpReLU alive-latent range 469–2,947 → 469–2,941 (`architecture_by_layer.csv` holds 2,941.0, unchanged). No result changed |
+| this commit | M `research_paper/Latex/main.pdf` (rebuilt) | Appendix correction |
+| this commit | M `docs/{RESEARCH_PROGRESS,EXPERIMENT_CHANGELOG,EXPERIMENT_RESULTS_SUMMARY,RESEARCH_ROADMAP,results_registry}.md`, `docs/experiment_manifest.csv` (+1 row via `append_experiment`) | Documentation rule |
+
+## 2026-11-16: Method A multi-layer extension scope decision (documentation only)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | M `docs/{RESEARCH_DECISIONS,RESEARCH_PROGRESS,RESEARCH_ROADMAP,results_registry,EXPERIMENT_CHANGELOG}.md` | D45 (numbered D37 until 2026-11-17): the `simba-method-a-multilayer` extension (layers 5/6/9; `28ad5cf`, `b64e6ed`, `7f2557b`) was audited and excluded from the final scope. No result, paper, manifest or checkpoint-registry file changed; branch results not merged |
+
+## 2026-11-17: PR #31 reviewer-driven manuscript corrections (Aditi Shukla, Dhruv Rai; wording only)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | M `research_paper/Latex/sections/{02_setup,04_information,07_improvement,08_generalisation,09_discussion,12_appendix}.tex`, `research_paper/Latex/tables/{t_evidence,t_overview}.tex`, `research_paper/Latex/main.pdf` (rebuilt, 36 pp) | **Changes:** (1) Frozen-probe interpretation revised per S5/D38 (`results/shared/audit_sensitivity/`, on `sae-research`): frozen readers exaggerate the loss, but about a third to a half of the frozen gap at layers 6–11 is label-aligned SAE error. (2) RepE-LM held-out TEST results added (`results/repe/repe_lm_test_evaluation/`, on `sae-research`): HT2 confirmed in 9/9 cells; HT1/HT3 not confirmed, only their TopK L8 cells passed (0.602 → 0.729, Holm p = 0.021; −0.048, Holm p = 0.046), both fragile under statement sampling (S1, Holm p = 0.156); the "evaluate the test protocol" next step was removed. (3) R3 status set to completed at validation, PR #30 under review; not used as evidence. (4) Causal patching (error term kept, no routing through the SAE) is distinguished from splicing. (5) "Significantly worse" changed to "worse under the per-cell criterion" (no family-wise correction, D34). No result file changed. TSP not added (team scope decision); D37/§44/§26 not renumbered |
+
+## 2026-11-17: PR #31 integration of H1-TEST, AUDIT-SENS and TSP; numbering (documentation and manuscript only)
+
+| Commit | Files | Reason |
+|---|---|---|
+| this commit | M `research_paper/Latex/sections/{04_information,06_causal,07_improvement,09_discussion,11_conclusion,12_appendix}.tex`, `research_paper/Latex/tables/t_evidence.tex`, `research_paper/Latex/main.pdf` (rebuilt); A `research_paper/Latex/tables/t_h1test.tex` (byte-identical copy from `origin/sae-research` `20b7c98`, generated there by `scripts/shared/h1_test_paper_table.py`) | Aditi's PR #31 follow-up: H1-TEST subsection (HT2 9/9; HT1/HT3 not confirmed, TopK L8 cells fragile, Holm p = 0.156; BatchTopK cells not confirmed; failed N3/N4 control), Audit Sensitivity Analyses appendix (S1–S6), TSP subsection (validation, confirmatory; TRADE-OFF; in-distribution only), S2 persona wording (D38), S3 task-level-L0 caveat on architecture orderings. Sources: `results/repe/repe_lm_test_evaluation/`, `results/shared/audit_sensitivity/`, `results/geometry_of_truth/truth_subspace_preservation/replication/` (all on `sae-research`); every number checked against them. No result file changed |
+| this commit | A `docs/plain_summary.md` (from `origin/main` `6403ec9`, one sentence changed) | Withdrawn S5 wording ("so the probe was reacting to any disturbance") replaced; required by `test_withdrawn_claims_regression.py` |
+| this commit | M `docs/{RESEARCH_DECISIONS,RESEARCH_PROGRESS,RESEARCH_ROADMAP,results_registry,EXPERIMENT_CHANGELOG}.md` | Numbering agreed on PR #31: M6 D36 → D44 and §43 → §51 (M6: D21 → D36 → D44); Method A exclusion D37 → D45; dead-latent audit §44 → §52; Method A §45 → §53; D36–D43 and §43–§50 reserved for #35; D46/§54/summary §27 reserved for R3. Live pointers updated; historical changelog rows that describe what earlier commits did are unchanged |
+
+## 2026-11-17 — Regression guard for withdrawn claims (no experiment run)
+* Added `src/tests/test_withdrawn_claims_regression.py` (14 tests). It protects the D36 (H1-TEST) and D38 (AUDIT-SENS
+  S2, S5) corrections when the restructured manuscript (#31) and `main` are integrated with this branch: the older
+  exact-string checks in `test_audit_sensitivity.py` and `test_h1_test_paper_claims.py` miss re-worded or re-wrapped
+  copies. Those files are unchanged.
+* Checked on copies of other branches (not modified): #31 at `66c114f` fails 4 checks (`04_information.tex`,
+  `08_generalisation.tex`, `09_discussion.tex`); `main` at `bf25b40` fails 5 (abstract, information section,
+  conclusion, `docs/plain_summary.md`). This branch passes.
+* M `src/tests/README.md` (entry for the new test).
+* No results, frozen records, checkpoints or scripts changed.
+
+## 2026-11-21: final-week Phase 1 (cross-model infrastructure, gates, Gemma task baselines; PR "final-week P1")
+
+| File(s) | Change | Reason |
+|---|---|---|
+| `docs/2026-11-21_final_week_technical_audit.md` | added | approved technical audit and plan |
+| `src/models/backends.py` | added | one residual-hook interface for GPT-2 (TL) and Gemma (HF) |
+| `src/evaluation/pile_splicing.py` | added, byte-identical to `origin/main` (blob `f4a52c4`) | reuse M6's validated helpers; merges cleanly |
+| `scripts/cross_model/00_fetch_assets.py` … `03_matched_splicing_analysis.py` | added | XB pipeline (assets, samples, runner, analysis) |
+| `scripts/cross_model/10_truth_preservation.py` | added | XT-G / DX runner (reuses M2 and RLM-RP code unchanged) |
+| `scripts/gemma/10_extract_task_activations.py` | added | XT-G0 Gemma task activations + K1 / K7 gates |
+| `scripts/geometry_of_truth/32_tsp_generalisation.py`, `33_extract_fresh_dev_all_layers.py` | added | TI-1 driver; GPT-2 fresh-DEV caches for XT-G A2 |
+| `src/tests/test_cross_model.py` | added | 9 offline unit tests |
+| `results/cross_model/{FINAL_WEEK_TRACKER.md, assets/, xb_matched_splicing/, xtg_truth_preservation/}` | added | pre-registrations, amendments, hashes, samples, M6 inputs, smoke / gate outputs (full runs not included) |
+| `results/gemma/xtg_task_baselines/` | added | XT-G0 README + gates |
+| `results/geometry_of_truth/tsp_generalisation/` | added | TI-1 pre-registration, gate outputs |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv` | appended | documentation rule (CLAUDE.md §1) |
+
+## 2026-11-21: merge of `origin/main` into `sae-research` (resolves PR #35 conflicts)
+No experiment, code or result changes. Both sides kept in full in the four doc ledgers that conflicted; one withdrawn sentence corrected (below).
+| File | Change | Reason |
+|---|---|---|
+| `docs/RESEARCH_DECISIONS.md` | M6 decision renumbered **D36 → D44** (same as on #31); final-week decision **D44 → D47**; references in DECISIONS, ROADMAP and `results_registry.md` updated | team numbering plan: #35 D36–D43 (cited in the paper and the D36/D38 regression test, so unchanged), #31 D44–D45, #30 D46. A first pass of this merge (`2bee3db`) used D45 for M6; corrected in the follow-up commit |
+| `docs/RESEARCH_PROGRESS.md` | M6 journal entry renumbered **§43 → §51** (same as on #31); final-week entry **§51 → §55** | team numbering plan: #35 §43–§50, #31 §51–§53, #30 §54 |
+| `docs/EXPERIMENT_RESULTS_SUMMARY.md` | both sides kept; the M6 section keeps §25 | no clash |
+| `docs/experiment_manifest.csv` | both sides' rows kept (M6 row appended after XT-G0) | append-only ledger |
+| `docs/plain_summary.md` (from PR #33) | one sentence reworded: "same-sized random noise caused almost the same drop, so the probe was reacting to any disturbance" → noise explains part of the drop; a third to a half at the middle and later GoT layers is label-aligned SAE error | that sentence is the claim withdrawn in D38 / AUDIT-S5; `test_withdrawn_claims_regression.py` failed on it after the merge (user approved the fix 2026-11-21) |
+Historical changelog rows above that say "D36" for M6 describe those commits as made, and are left unchanged.
+
+## 2026-11-21: merge of `origin/main` into `simba-paper-manuscript` (resolves PR #31 conflicts after PR #35 and PR #36)
+
+| File | Resolution | Reason |
+|---|---|---|
+| `research_paper/Latex/sections/{05_setup,07_results_information,09_results_causal,10b_improvement,11_statistics,12_discussion,13_limitations,14_conclusion,15_appendix}.tex` | kept DELETED (modify/delete; #35 had edited them) | Legacy pre-restructure files, not `\input` by `main.tex`. Every #35 edit (H1-TEST, AUDIT-SENS S1–S6, persona wording, frozen-probe wording, test-split status) was checked to be present in the #31 sections (`07_improvement`, `12_appendix`, `04_information`, `06_causal`, `09_discussion`, `11_conclusion`, `tables/t_h1test.tex`) |
+| `research_paper/Latex/sections/00_abstract.tex` | #31 version kept | Restructured abstract already reviewed (Aditi, `5f1b51e`); the `origin/main` side is the legacy long abstract |
+| `research_paper/Latex/tables/t_h1test.tex` | auto-merged, identical on both sides | #31 copied it byte-identically from `20b7c98` |
+| `research_paper/Latex/tables/t_evidence.tex` | dagger ("Not yet on the `main` branch") removed from the H1-TEST, AUDIT-SENS and TSP rows; kept on R3 | those three folders are on `main` since PR #35; R3 is still PR #30 only. No number or label changed |
+| `research_paper/Latex/main.pdf` | rebuilt from the merged sources | binary; neither side taken |
+| `docs/RESEARCH_DECISIONS.md` | both sides: #31 numbering note, #35 D36–D43, D44 (M6; keeps D21 → D36 → D44), D45, D47 | team numbering plan; no frozen #35 record renumbered |
+| `docs/RESEARCH_PROGRESS.md` | both sides: #31 numbering note, #35 §43–§50, §51 (M6), §52–§53 (#31), §55 (final week) | team numbering plan; §54 reserved for R3 |
+| `docs/RESEARCH_ROADMAP.md` | both sides, chronological; M6 rows from `origin/main`; new 2026-11-21 merge entry | the 2026-11-17 merge-order line is superseded (#35 merged first) |
+| `docs/results_registry.md` | both sides, chronological (#35 R2-row update, AUDIT-SENS, TSP; #31 2026-11-15/16; final week) | — |
+| `docs/plain_summary.md` | #31 sentence kept | the version Aditi accepted; it does not restore the withdrawn S5 wording |
+| `docs/EXPERIMENT_CHANGELOG.md` | both sides, chronological; this entry added | — |

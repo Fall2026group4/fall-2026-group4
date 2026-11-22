@@ -1,0 +1,12 @@
+{
+  "n_files": 656,
+  "total_bytes": 21727355136,
+  "tar_sha256": "6162d843a1f71559c2b40597889034d3d3bec8ccffc9a83aaaf624be3fd29e46",
+  "members_verified": 656,
+  "mismatched": [],
+  "missing": [],
+  "ok": true,
+  "runtime_s": 821.8,
+  "scope": "*.pt outside data/ and .git/ (activation caches excluded: regenerable from the extraction scripts)",
+  "same_volume_only": true
+}

@@ -1,0 +1,1201 @@
+row_id,group_id,entity,split,excluded,p2_primary,mentions_project_city,project_cities_mentioned,max_cos_project,statement_sha256_16
+0,company:Thermo Fisher Scientific,Thermo Fisher Scientific,DEV,,True,False,,0.2486,8967c9262e5d3d65
+1,company:Anheuser-Busch InBev,Anheuser-Busch InBev,TEST,,True,False,,0.2887,c2fc3e3091f13a7d
+2,company:Meta Platforms,Meta Platforms,TEST,,True,False,,0.3846,637c6ba9167ccaa9
+3,company:Japan Post Holdings,Japan Post Holdings,TEST,,True,False,,0.1733,38465c44861f10d3
+4,company:Merck & Co.,Merck & Co.,DEV,,True,False,,0.2229,000a232f4055b024
+5,company:SK Hynix is an investment company that,SK Hynix is an investment company that,TEST,,True,False,,0.151,efb3d276133a2bff
+6,company:Enel,Enel,DEV,,True,False,,0.17,b429a92b4753ebcf
+7,company:Bank of Montreal,Bank of Montreal,DEV,,True,False,,0.2967,d0278aedffecdd44
+8,company:Morgan Stanley,Morgan Stanley,TEST,,True,False,,0.3903,731e51370879d29e
+9,company:Cathay Financial,Cathay Financial,DEV,,True,False,,0.2065,6a08e560f041d255
+10,company:Generali Group,Generali Group,DEV,,True,False,,0.2881,d1f4cbc6ba47ab24
+11,company:AT&T,AT&T,TEST,,True,False,,0.1484,d9ef063594a5e7fc
+12,company:Poly Developments & Holdings Group,Poly Developments & Holdings Group,TEST,,True,False,,0.2291,22089513af1a53d3
+13,company:Ping An Insurance (Group) Company of China,Ping An Insurance (Group) Company of China,TEST,,True,False,,0.1995,3f1688215636346f
+14,company:Sumitomo Mitsui Financial,Sumitomo Mitsui Financial,TEST,,True,False,,0.1648,7b9981aa73c98a0d
+15,company:Manulife,Manulife,TEST,,True,False,,0.2025,7b5234a50d9d3988
+16,company:China Petroleum & Chemical,China Petroleum & Chemical,DEV,,True,False,,0.2712,3656b725a50db098
+17,company:National Australia Bank,National Australia Bank,DEV,,True,False,,0.395,af7b76876310bb2f
+18,company:PepsiCo,PepsiCo,TEST,,True,False,,0.4328,9d817b36a8183dd0
+19,company:Lloyds Banking Group,Lloyds Banking Group,TEST,,True,False,,0.2293,9f9dda7016fddd7d
+20,company:Bayerische Motoren Werke (BMW),Bayerische Motoren Werke (BMW),TEST,,True,False,,0.1491,770975934b7982d1
+21,company:Telefonica,Telefonica,TEST,,True,False,,0.2813,25188c716464d481
+22,company:BASF,BASF,TEST,,True,False,,0.2405,fc76b0339d7cafc4
+23,company:KDDI,KDDI,DEV,,True,False,,0.2831,d4880204306ed9d6
+24,company:Lowe's,Lowe's,TEST,,True,False,,0.1893,44615e9b5a713b21
+25,company:KDDI,KDDI,DEV,,True,False,,0.1949,f262a433f02267b5
+26,company:Capital One,Capital One,TEST,,True,False,,0.1602,f8757b774dc1347e
+27,company:BHP Group,BHP Group,TEST,,True,False,,0.2633,d2220a2de4f0642e
+28,company:Charter Communications,Charter Communications,DEV,,True,False,,0.1555,cc94ca82bc3206b2
+29,company:Novartis,Novartis,TEST,,True,False,,0.1836,72d37c06af71bb8f
+30,company:Manulife,Manulife,TEST,,True,False,,0.3577,871441454e1bd6a9
+31,company:Citigroup,Citigroup,TEST,,True,False,,0.3963,9033794fa5ec7234
+32,company:Dow,Dow,TEST,,True,False,,0.2308,a5587ddfc133001d
+33,company:Telefonica,Telefonica,TEST,,True,False,,0.1555,8d9ba1e6d0f07ea2
+34,company:BHP Group,BHP Group,TEST,,True,False,,0.3369,a3313773ea169c02
+35,company:JPMorgan Chase,JPMorgan Chase,TEST,,True,False,,0.18,d6657388ee5b390c
+36,company:Sberbank,Sberbank,TEST,,True,False,,0.2473,9b5a5c9f6afb1261
+37,company:Honda Motor,Honda Motor,DEV,,True,False,,0.1508,a60b9d4837b77b50
+38,company:ConocoPhillips,ConocoPhillips,TEST,,True,False,,0.3904,ebdc02586629f5fb
+39,company:CITIC,CITIC,DEV,,True,False,,0.1762,847b30b957b5a651
+40,company:RBC,RBC,TEST,,True,False,,0.1778,b4f9b2a33daf0385
+41,company:China Citic Bank,China Citic Bank,DEV,,True,False,,0.1985,cd798a83eaf08ae2
+42,company:Itau Unibanco Holding,Itau Unibanco Holding,TEST,,True,False,,0.2406,d558e54fd09b20bf
+43,company:VINCI,VINCI,TEST,,True,False,,0.1783,c5ae20c6a5fc299c
+44,company:Petrobras,Petrobras,TEST,,True,False,,0.3039,22ff738eba268c42
+45,company:Morgan Stanley,Morgan Stanley,TEST,,True,False,,0.3418,c28d666d6b9c43ff
+46,company:Caterpillar,Caterpillar,TEST,,True,False,,0.1469,e16dc2e4360b82a5
+47,"company:Anglo American is a mining company, which","Anglo American is a mining company, which",DEV,,True,False,,0.2037,78b8a53efa69f7a9
+48,company:Equinor is an investment holding company that,Equinor is an investment holding company that,TEST,,True,False,,0.2598,d373efff2a0c6d2b
+49,company:ENGIE,ENGIE,TEST,,True,False,,0.1634,43cdd60f45ed6879
+50,company:Deutsche Post,Deutsche Post,TEST,,True,False,,0.1689,9062b93198c05e09
+51,company:Brookfield Asset Management,Brookfield Asset Management,DEV,,True,False,,0.3719,0fd4580a58c65e0f
+52,company:Mercedes-Benz Group,Mercedes-Benz Group,TEST,,True,False,,0.4057,2b63b6a9b32ab745
+53,company:Enel,Enel,DEV,,True,False,,0.3673,322b810ef60f66eb
+54,company:Wells Fargo,Wells Fargo,TEST,,True,False,,0.1561,f85482bc6c633028
+55,company:Munich Reinsurance,Munich Reinsurance,TEST,,False,True,Munich,0.39,b568c7ae9eea119d
+56,company:Capital One,Capital One,TEST,,True,False,,0.3215,d675c84d481c4452
+57,company:Telefonica,Telefonica,TEST,,True,False,,0.3538,923ec2446a546f6a
+58,company:Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,TEST,,False,True,Shanghai,0.4459,9ce10134def8108a
+59,company:Hon Hai Precision,Hon Hai Precision,TEST,,True,False,,0.1644,b8800b3341507383
+60,"company:Morgan Stanley is a holding company, which","Morgan Stanley is a holding company, which",DEV,,True,False,,0.228,b7e74382e7ba1213
+61,company:Bank of China,Bank of China,TEST,,True,False,,0.1692,46d46b4d875eaf6b
+62,company:America Movil,America Movil,DEV,,True,False,,0.2185,3d0ec9936bb7c805
+63,company:Alibaba Group,Alibaba Group,TEST,,True,False,,0.2263,c0078653e5a99041
+64,company:Bank of Communications,Bank of Communications,TEST,,True,False,,0.1737,93e514fa425f2762
+65,company:Mitsubishi,Mitsubishi,TEST,,True,False,,0.1588,7a815fa7fbc21909
+66,company:China Life Insurance,China Life Insurance,TEST,,True,False,,0.1933,9ae3e169083cd50c
+67,company:Sberbank,Sberbank,TEST,,True,False,,0.3657,f4403763cdb7fecf
+68,company:Walmart,Walmart,TEST,,True,False,,0.1481,94171bb350daa0e2
+69,company:Walgreens,Walgreens,TEST,,True,False,,0.2235,174ee42a98adacef
+70,company:PepsiCo,PepsiCo,TEST,,True,False,,0.146,28230ba898a80dac
+71,company:Agricultural Bank of China,Agricultural Bank of China,TEST,,True,False,,0.3323,e08019292223dbcb
+72,company:Walmart,Walmart,TEST,,True,False,,0.1668,9cc85137c4c7cd87
+73,company:HDFC Bank,HDFC Bank,DEV,,True,False,,0.1623,0482685b5c15e2f6
+74,company:Johnson & Johnson,Johnson & Johnson,DEV,,True,False,,0.1821,45dcaef151925df3
+75,company:State Bank of India,State Bank of India,DEV,,True,False,,0.1651,5c0e8995b4b3cfb6
+76,"company:Novartis is a holding company, which","Novartis is a holding company, which",DEV,,True,False,,0.1695,aae16f4a07385974
+77,company:Lowe's,Lowe's,TEST,,True,False,,0.4039,bf116f46e7702771
+78,company:UnitedHealth Group,UnitedHealth Group,TEST,,True,False,,0.4431,37881e20beb2b8d6
+79,company:British American Tobacco,British American Tobacco,TEST,,True,False,,0.3312,528d4515fb1dbd6d
+80,company:Nestle,Nestle,DEV,,True,False,,0.1729,1e15b4f5a7114c95
+81,company:Shell,Shell,TEST,,True,False,,0.1439,af91471511b22242
+82,company:China Vanke,China Vanke,TEST,,True,False,,0.3495,8a9e7695164ca67c
+83,company:Sberbank,Sberbank,TEST,,True,False,,0.1571,bd977e45ed65d4a3
+84,company:Sumitomo Mitsui Financial,Sumitomo Mitsui Financial,TEST,,True,False,,0.1447,320c59a093239a03
+85,company:Deutsche Post,Deutsche Post,TEST,,True,False,,0.2394,e84ef02c6ccfb1c4
+86,company:PetroChina,PetroChina,TEST,,True,False,,0.184,e196b75f84b61452
+87,company:Costco Wholesale,Costco Wholesale,TEST,,True,False,,0.2497,285a07c9d52024d9
+88,company:Apple,Apple,TEST,,True,False,,0.3844,3c9456636e3ee6ca
+89,company:BNP Paribas,BNP Paribas,DEV,,True,False,,0.1852,72081f55fba8f766
+90,company:Accenture,Accenture,TEST,,True,False,,0.1634,a9e5f92e1f1fefe4
+91,company:Raytheon Technologies,Raytheon Technologies,DEV,,True,False,,0.16,efc10ebb444c8a23
+92,company:Goldman Sachs Group is a holding company that,Goldman Sachs Group is a holding company that,DEV,,True,False,,0.2262,5e9417251a2275c1
+93,company:Volkswagen Group,Volkswagen Group,TEST,,True,False,,0.2453,cf1de8f1957a32f7
+94,company:HCA Healthcare,HCA Healthcare,TEST,,True,False,,0.2079,08ac79aba18df7d1
+95,company:Intesa Sanpaolo,Intesa Sanpaolo,DEV,,True,False,,0.3666,23f71168ac63aa27
+96,company:Tokio Marine Holdings,Tokio Marine Holdings,TEST,,True,False,,0.1423,6f7ffb2fa83eaabe
+97,company:Bank of Nova Scotia,Bank of Nova Scotia,DEV,,True,False,,0.3252,db31a45bd8795974
+98,"company:Santander is a banking services company, which","Santander is a banking services company, which",TEST,,True,False,,0.1676,2f494051bbc64089
+99,company:Deutsche Post,Deutsche Post,TEST,,True,False,,0.1593,09e95fa0240dbcdf
+100,company:General Motors,General Motors,TEST,,True,False,,0.2903,93c4724cc751359b
+101,company:Amazon.com,Amazon.com,TEST,,True,False,,0.2446,ab8dd5105ac21e66
+102,company:GlaxoSmithKline is a holding company that,GlaxoSmithKline is a holding company that,TEST,,True,False,,0.1986,f1be2b06993c38f1
+103,company:Costco Wholesale,Costco Wholesale,TEST,,True,False,,0.1659,319b4fde0e5b4249
+104,company:Deere & Company,Deere & Company,TEST,,True,False,,0.2453,70623335dc9ca098
+105,company:Mitsubishi,Mitsubishi,TEST,,True,False,,0.2948,ff1179113ad094ea
+106,"company:Westpac Banking is an investment holding company, which","Westpac Banking is an investment holding company, which",TEST,,True,False,,0.1784,26297f1865a6b901
+107,company:Alibaba Group,Alibaba Group,TEST,,True,False,,0.1743,b80d4956f90336fd
+108,company:Eni,Eni,TEST,,True,False,,0.4079,014262bc05feebe9
+109,company:Dow,Dow,TEST,,True,False,,0.4033,3418d1fc85847069
+110,company:Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,TEST,,True,False,,0.2052,1da0e00b620692c9
+111,company:Cathay Financial,Cathay Financial,DEV,,True,False,,0.1203,d3c4c52a7f287908
+112,company:China Construction Bank,China Construction Bank,TEST,,True,False,,0.2085,cfad9ce3932a198c
+113,company:Prudential Financial,Prudential Financial,TEST,,True,False,,0.1635,fd83caa46adf8b90
+114,company:Linde,Linde,TEST,,True,False,,0.2864,cae5ec8272f07629
+115,company:United Parcel Service,United Parcel Service,TEST,,True,False,,0.1726,edbf3f2db152a2e0
+116,company:Broadcom,Broadcom,TEST,,True,False,,0.2288,72a70bdf77c0c314
+117,company:American Express,American Express,TEST,,True,False,,0.1918,ca555f344d89884c
+118,company:Postal Savings Bank of China,Postal Savings Bank of China,TEST,,True,False,,0.1519,1af771dfb8b35a41
+119,company:Sberbank,Sberbank,TEST,,True,False,,0.1618,031c23905c28cce6
+120,company:Mitsubishi,Mitsubishi,TEST,,True,False,,0.2211,98ba6271de9fb2f0
+121,company:Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,DEV,,True,False,,0.2276,86e0c66080668abc
+122,company:Bank of Nova Scotia,Bank of Nova Scotia,DEV,,True,False,,0.2343,a2e89eb93efd358d
+123,company:Mercedes-Benz Group,Mercedes-Benz Group,TEST,,True,False,,0.3086,751f3df98f773d5c
+124,company:U.S. Bancorp,U.S. Bancorp,TEST,,True,False,,0.4031,d51d1342688d1cee
+125,company:Roche Holding,Roche Holding,TEST,,True,False,,0.149,5bea7086b4f6f51a
+126,company:Rio Tinto,Rio Tinto,DEV,,True,False,,0.2551,4a8985821aecac35
+127,company:Taiwan Semiconductor Manufacturing Company,Taiwan Semiconductor Manufacturing Company,TEST,,True,False,,0.2221,8acce9d6a9223329
+128,company:Tencent Holdings,Tencent Holdings,TEST,,True,False,,0.2356,00150a05b5d3f6e3
+129,company:Capital One,Capital One,TEST,,True,False,,0.338,63119b8e286d29e8
+130,company:MetLife,MetLife,TEST,,True,False,,0.2874,189d9b3d3468a8b2
+131,company:Siemens,Siemens,TEST,,True,False,,0.1424,b2821ee83a555bec
+132,company:Hon Hai Precision,Hon Hai Precision,TEST,,True,False,,0.1191,fa81e84f921f09a5
+133,company:Mitsubishi,Mitsubishi,TEST,,True,False,,0.1368,65b01d4a2cd8d7b9
+134,company:China Shenhua Energy,China Shenhua Energy,TEST,,True,False,,0.2616,ce831a5dae5fc783
+135,company:Procter & Gamble,Procter & Gamble,DEV,,True,False,,0.2356,7c732419c63a786b
+136,company:SoftBank,SoftBank,DEV,,True,False,,0.1846,f80861a46e4a143d
+137,company:Postal Savings Bank of China,Postal Savings Bank of China,TEST,,True,False,,0.1801,58449218beaf476c
+138,company:Moller - Maersk,Moller - Maersk,TEST,,True,False,,0.1813,cbf1b636002b6c18
+139,company:Wells Fargo,Wells Fargo,TEST,,True,False,,0.4386,f6378f3669688727
+140,company:Charter Communications,Charter Communications,DEV,,True,False,,0.1848,38d5e14fb1711511
+141,company:UBS Group is a holding company that,UBS Group is a holding company that,TEST,,True,False,,0.2424,38295e6cde351b20
+142,company:Exxon Mobil,Exxon Mobil,TEST,,True,False,,0.2291,6f09fb764bf51ee4
+143,company:China Shenhua Energy,China Shenhua Energy,TEST,,True,False,,0.2378,55cf06196e61817c
+144,company:Apple,Apple,TEST,,True,False,,0.1562,a001cbbe91fd2495
+145,company:Anheuser-Busch InBev,Anheuser-Busch InBev,TEST,,True,False,,0.1483,7898351d1d7c61cd
+146,company:The Home Depot,The Home Depot,TEST,,True,False,,0.3241,dd3bfb4c516f4858
+147,company:Alibaba Group,Alibaba Group,TEST,,True,False,,0.1637,821d88036735741e
+148,company:Chevron,Chevron,DEV,,True,False,,0.3573,5a5473644fd5ee1a
+149,company:Banco Bradesco,Banco Bradesco,DEV,,True,False,,0.1573,62f13cd2b4786f75
+150,company:UnitedHealth Group,UnitedHealth Group,TEST,,True,False,,0.2192,3bff82644250e690
+151,company:Caterpillar,Caterpillar,TEST,,True,False,,0.1922,f9f799008289a1ff
+152,company:Agricultural Bank of China,Agricultural Bank of China,TEST,,True,False,,0.3393,537c99a0e41f897a
+153,company:CVS Health,CVS Health,TEST,,True,False,,0.1791,a2cb0bacea32c828
+154,company:UnitedHealth Group,UnitedHealth Group,TEST,,True,False,,0.239,e18a637e23d220d7
+155,company:Ping An Insurance (Group) Company of China,Ping An Insurance (Group) Company of China,TEST,,True,False,,0.3776,ecc1e18d5984f5ad
+156,company:Ford Motor,Ford Motor,TEST,,True,False,,0.173,65d482ede99466e6
+157,company:PNC Financial Services,PNC Financial Services,TEST,,True,False,,0.1471,b463932699f70efb
+158,company:BNP Paribas,BNP Paribas,DEV,,True,False,,0.1602,2dbd4841577f465a
+159,company:Volkswagen Group,Volkswagen Group,TEST,,True,False,,0.1845,abfdada9930ae7bf
+160,company:AbbVie (ABBV),AbbVie (ABBV),DEV,,True,False,,0.4409,b08e857ae5d1c7c0
+161,company:Generali Group,Generali Group,DEV,,True,False,,0.2285,9bbee746b74ce707
+162,company:Taiwan Semiconductor Manufacturing Company,Taiwan Semiconductor Manufacturing Company,TEST,,True,False,,0.1768,73c22ca8485d4386
+163,company:Sony,Sony,DEV,,True,False,,0.1778,f67665fd55697c49
+164,company:Abbott Laboratories,Abbott Laboratories,TEST,,True,False,,0.3431,85d249dd739c2e87
+165,company:Wells Fargo,Wells Fargo,TEST,,True,False,,0.3983,14d0944e7e1294cd
+166,company:Stellantis,Stellantis,TEST,,True,False,,0.3857,9a4bebe870f6448a
+167,company:Oracle,Oracle,DEV,,True,False,,0.1949,c06d68a7363c7ae8
+168,company:Industrial Bank,Industrial Bank,TEST,,True,False,,0.1499,f305d73490a3a14d
+169,company:CVS Health,CVS Health,TEST,,True,False,,0.3693,07d9e2981964ee43
+170,company:Exxon Mobil,Exxon Mobil,TEST,,True,False,,0.1995,5a089c3ea5ec102b
+171,company:Enbridge,Enbridge,TEST,,True,False,,0.2034,da970b707619f342
+172,company:Pfizer,Pfizer,DEV,,True,False,,0.1654,2adf8a4ad38ed07c
+173,company:Thermo Fisher Scientific,Thermo Fisher Scientific,DEV,,True,False,,0.3252,80afdb8bc5c0905a
+174,company:AT&T,AT&T,TEST,,True,False,,0.2006,0f78c3097c3041e5
+175,company:Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,TEST,,True,False,,0.2673,56ead1f4a7d1f30e
+176,company:Volkswagen Group,Volkswagen Group,TEST,,True,False,,0.1938,20d09febfb393da1
+177,company:Reliance Industries,Reliance Industries,TEST,,True,False,,0.2349,5018d943689a34aa
+178,company:JPMorgan Chase operates as a holding company that,JPMorgan Chase operates as a holding company that,DEV,,True,False,,0.1919,0316621448b2e8d0
+179,company:Fubon Financial,Fubon Financial,DEV,,True,False,,0.1506,d32ba7485a455ab1
+180,company:Generali Group,Generali Group,DEV,,True,False,,0.3108,efe441c8af813e65
+181,company:ArcelorMittal,ArcelorMittal,TEST,,True,False,,0.3578,3a1f0012be469766
+182,company:Barclays operates as a bank holding company that,Barclays operates as a bank holding company that,TEST,,True,False,,0.1345,2092eeb64ef4324d
+183,company:Postal Savings Bank of China,Postal Savings Bank of China,TEST,,True,False,,0.3619,cf7d83f1992f7cfa
+184,company:MetLife,MetLife,TEST,,True,False,,0.4034,b219c732f3e3d8cf
+185,company:Capital One operates as a financial holding company that,Capital One operates as a financial holding company that,DEV,,True,False,,0.1985,2ff6955ee5fc9711
+186,company:Itochu,Itochu,TEST,,True,False,,0.1935,71e05af65f680a2b
+187,company:Deere & Company,Deere & Company,TEST,,True,False,,0.3833,5501cb5852103183
+188,company:Goldman Sachs Group,Goldman Sachs Group,TEST,,True,False,,0.1723,480e78a840d4652f
+189,company:Toyota Motor,Toyota Motor,TEST,,True,False,,0.1449,d1c4c6e72489e883
+190,company:Anthem,Anthem,TEST,,True,False,,0.244,082440691e47d104
+191,company:Sumitomo Mitsui Financial,Sumitomo Mitsui Financial,TEST,,True,False,,0.1273,64da368f6219889a
+192,company:LVMH Moet Hennessy Louis Vuitton,LVMH Moet Hennessy Louis Vuitton,TEST,,True,False,,0.1797,bc6b21d27b2d6ca5
+193,company:Munich Reinsurance,Munich Reinsurance,TEST,,False,True,Munich,0.286,111265727b3e2647
+194,company:Broadcom,Broadcom,TEST,,True,False,,0.1567,06a54a31c692259b
+195,company:Public Joint Stock Company Gazprom,Public Joint Stock Company Gazprom,TEST,,True,False,,0.1668,687904acdb20fb29
+196,company:Nestle,Nestle,DEV,,True,False,,0.2577,48604a12926689e3
+197,company:IBM,IBM,TEST,,True,False,,0.2838,d251680dbd1d0cef
+198,company:MetLife,MetLife,TEST,,True,False,,0.4598,941c494564014cfa
+199,company:Target,Target,TEST,,True,False,,0.4394,a34d13c6120124d0
+200,company:Iberdrola,Iberdrola,DEV,,True,False,,0.1654,2d4d4394616da6c3
+201,company:KDDI,KDDI,DEV,,True,False,,0.2656,0bc5150b59033b09
+202,company:SAP,SAP,TEST,,True,False,,0.3655,52ace7ff0e23d348
+203,company:Postal Savings Bank of China,Postal Savings Bank of China,TEST,,True,False,,0.2391,b2aa8bf7037ac22c
+204,company:China State Construction Engineering,China State Construction Engineering,TEST,,True,False,,0.1693,ca8c436169bcc210
+205,company:Univlever,Univlever,TEST,,True,False,,0.2042,4132889dca5fe887
+206,company:Lloyds Banking Group,Lloyds Banking Group,TEST,,True,False,,0.1955,d37798408c2d4c2c
+207,company:Shell,Shell,TEST,,True,False,,0.1551,0ed0259b8063d035
+208,company:Prudential Financial,Prudential Financial,TEST,,True,False,,0.3207,283a035805a98ba9
+209,company:General Motors,General Motors,TEST,,True,False,,0.2346,3ac2a89c164406c2
+210,company:Pfizer,Pfizer,DEV,,True,False,,0.4409,c81f2883b754425b
+211,company:Nippon Telegraph & Telephone is a holding company that,Nippon Telegraph & Telephone is a holding company that,TEST,,True,False,,0.1867,5c0c3585b538d995
+212,company:Meta Platforms,Meta Platforms,TEST,,True,False,,0.1317,d8972a9eece6ac86
+213,company:China Telecom,China Telecom,TEST,,True,False,,0.2223,eb993c74b0d70f95
+214,company:Walt Disney,Walt Disney,TEST,,True,False,,0.2264,aafc80330ff9c46a
+215,company:BHP Group,BHP Group,TEST,,True,False,,0.4383,8fc909d2d89d7eb1
+216,company:Nestle,Nestle,DEV,,True,False,,0.4408,a7f871334633b3ee
+217,company:Intel,Intel,DEV,,True,False,,0.2695,34cc538d55a31efc
+218,company:Nippon Telegraph & Telephone,Nippon Telegraph & Telephone,TEST,,True,False,,0.1863,04daf3d3ab6b8e6d
+219,company:Goldman Sachs Group,Goldman Sachs Group,TEST,,True,False,,0.1778,ef703242b9a1d747
+220,company:ENGIE,ENGIE,TEST,,True,False,,0.1525,13067e7ec905a98a
+221,company:ConocoPhillips,ConocoPhillips,TEST,,True,False,,0.2376,e3dad633c9caf2db
+222,company:Barclays,Barclays,TEST,,True,False,,0.1658,bd32aedb5058f8a3
+223,company:Bristol Myers Squibb,Bristol Myers Squibb,DEV,,True,False,,0.1585,da8b6bdbf8d122db
+224,company:Amazon.com,Amazon.com,TEST,,True,False,,0.257,5f13c2906d3d2356
+225,"company:Target is a holding company, which","Target is a holding company, which",TEST,,True,False,,0.181,e73939e89d8017f7
+226,company:Nestle,Nestle,DEV,,True,False,,0.2823,9640e930400688d5
+227,company:Ford Motor,Ford Motor,TEST,,True,False,,0.2342,673a3e204ded42ab
+228,company:Bank of China,Bank of China,TEST,,True,False,,0.2357,e7e14ccbab2b5b63
+229,company:Stellantis,Stellantis,TEST,,True,False,,0.2266,9231015746858edb
+230,company:Sony,Sony,DEV,,True,False,,0.1483,02406d6c6fae0bc0
+231,company:Anthem,Anthem,TEST,,True,False,,0.3986,f419efc0f55fa3d1
+232,company:IBM,IBM,TEST,,True,False,,0.4409,f03e811d690676a3
+233,company:Eni,Eni,TEST,,True,False,,0.2566,53a3e8f1e2c07238
+234,company:Japan Post Holdings,Japan Post Holdings,TEST,,True,False,,0.3475,b6a8e0164c740a22
+235,"company:HCA Healthcare is a health care services company, which","HCA Healthcare is a health care services company, which",DEV,,True,False,,0.169,7a821f0b4269eec0
+236,company:Citigroup is a holding company that,Citigroup is a holding company that,DEV,,True,False,,0.2053,7303d5c048ad8b8a
+237,company:Mitsui,Mitsui,TEST,,True,False,,0.1513,f0450f8c6d9d39f1
+238,company:GlaxoSmithKline,GlaxoSmithKline,TEST,,True,False,,0.3275,87d06c5f9c910eb5
+239,company:VINCI,VINCI,TEST,,True,False,,0.1914,65cbc2935e3fabbb
+240,company:UnitedHealth Group,UnitedHealth Group,TEST,,True,False,,0.1687,4c1f1d8f0035e4dd
+241,company:Airbus Group,Airbus Group,DEV,,True,False,,0.187,6791bc4f2fc8705f
+242,company:Walt Disney,Walt Disney,TEST,,True,False,,0.3938,4d922deaaa67b079
+243,company:Verizon Communications,Verizon Communications,TEST,,True,False,,0.3173,c068c5449e0f8fae
+244,company:Dow,Dow,TEST,,True,False,,0.3884,e8ac44da80892b9c
+245,"company:Alphabet is a holding company, which","Alphabet is a holding company, which",DEV,,True,False,,0.2597,5642b0a8d71a334f
+246,company:Verizon Communications,Verizon Communications,TEST,,True,False,,0.1977,b320f2519b486924
+247,company:Sberbank,Sberbank,TEST,,True,False,,0.1602,5d87964659e91d16
+248,company:Dell Technologies,Dell Technologies,TEST,,True,False,,0.3372,5c767df5ab0b058f
+249,company:Pfizer,Pfizer,DEV,,True,False,,0.2362,1f19d68598694154
+250,company:Lockheed Martin,Lockheed Martin,TEST,,True,False,,0.3681,d2a7547b5ee979af
+251,company:Medtronic,Medtronic,TEST,,True,False,,0.1278,d667900adacdade0
+252,company:Bank of China,Bank of China,TEST,,True,False,,0.2635,719cfc1c8fab6741
+253,company:Verizon Communications,Verizon Communications,TEST,,True,False,,0.2557,235fbaf169ec7cb3
+254,company:Visa,Visa,TEST,,True,False,,0.4186,f77190a69d938453
+255,company:The Home Depot,The Home Depot,TEST,,True,False,,0.1658,d92861b167cd0654
+256,company:Oracle,Oracle,DEV,,True,False,,0.1389,ee1bf7fbc2893e5c
+257,company:Itau Unibanco Holding,Itau Unibanco Holding,TEST,,True,False,,0.1631,879048bf1676da93
+258,"company:Lloyds Banking Group is a financial services company, which","Lloyds Banking Group is a financial services company, which",TEST,,True,False,,0.214,e8aabba6203d87ee
+259,company:Rio Tinto,Rio Tinto,DEV,,True,False,,0.3626,260083cc73794991
+260,company:AT&T,AT&T,TEST,,True,False,,0.1935,81ebd5c05ca83d15
+261,company:CITIC,CITIC,DEV,,True,False,,0.1874,17d68a715739760a
+262,company:Electricite de France,Electricite de France,DEV,,True,False,,0.2235,58723261eabbdf91
+263,company:Brookfield Asset Management,Brookfield Asset Management,DEV,,True,False,,0.1812,dcd63c9e975c5d6c
+264,company:Merck & Co.,Merck & Co.,DEV,,True,False,,0.2305,4f952eb115f9d5e0
+265,company:Credit Agricole,Credit Agricole,TEST,,True,False,,0.3171,336225d553249fe2
+266,company:Cathay Financial,Cathay Financial,DEV,,True,False,,0.1814,45cbeed647662c23
+267,company:Hitachi,Hitachi,DEV,,True,False,,0.2694,368220d7dbb448f5
+268,company:PNC Financial Services,PNC Financial Services,TEST,,True,False,,0.1486,ceb44f61163b1a21
+269,company:Samsung Group,Samsung Group,DEV,,True,False,,0.3349,b30115eb208d7ea8
+270,company:Bayerische Motoren Werke (BMW),Bayerische Motoren Werke (BMW),TEST,,True,False,,0.2667,fc30e304ecd70d00
+271,company:BHP Group,BHP Group,TEST,,True,False,,0.2227,968b12df86ea5080
+272,company:BBVA,BBVA,TEST,,True,False,,0.1778,cacdc83e7e7a84d0
+273,company:The Home Depot,The Home Depot,TEST,,True,False,,0.2942,a2c77af598d468a6
+274,company:Toyota Motor,Toyota Motor,TEST,,True,False,,0.3577,a97403cbcf468c51
+275,company:Iberdrola is a holding company that,Iberdrola is a holding company that,DEV,,True,False,,0.2642,e6062fdad92a522b
+276,company:American Express,American Express,TEST,,True,False,,0.2031,520aaa09c8817daa
+277,company:Moller - Maersk,Moller - Maersk,TEST,,True,False,,0.4646,999e7d373757d6e3
+278,company:Fubon Financial,Fubon Financial,DEV,,True,False,,0.1829,338e4e8d9a1c68dc
+279,company:AXA,AXA,TEST,,True,False,,0.2174,8d01ce3e7eb4fd9a
+280,company:Alphabet,Alphabet,TEST,,True,False,,0.3448,34d55a20adfaed04
+281,company:LVMH Moet Hennessy Louis Vuitton,LVMH Moet Hennessy Louis Vuitton,TEST,,True,False,,0.1133,ffdf6eb0d2d310c5
+282,company:Intel,Intel,DEV,,True,False,,0.191,cf895602bf3c9d3f
+283,company:JPMorgan Chase,JPMorgan Chase,TEST,,True,False,,0.1912,8fc75c61abde5da5
+284,company:China Merchants Bank,China Merchants Bank,TEST,,True,False,,0.3901,b825ccc2bf03c7b9
+285,company:Public Joint Stock Company Gazprom,Public Joint Stock Company Gazprom,TEST,,True,False,,0.3088,ae99c6a9dbc71f85
+286,company:Univlever,Univlever,TEST,,True,False,,0.2416,83cf8c977ff5f4b1
+287,company:Honeywell,Honeywell,DEV,,True,False,,0.1919,eb6e0d33417af3ec
+288,company:Visa,Visa,TEST,,True,False,,0.3943,c93949fdc785e790
+289,company:ENGIE,ENGIE,TEST,,True,False,,0.3998,ad1123b30603cb18
+290,company:Industrial Bank,Industrial Bank,TEST,,True,False,,0.143,bbcd2ef0a81630b1
+291,company:Broadcom,Broadcom,TEST,,True,False,,0.2505,0f2c20feac2a276f
+292,company:Hyundai Motor,Hyundai Motor,TEST,,True,False,,0.319,fa73b739e13db547
+293,company:Rosneft,Rosneft,TEST,,True,False,,0.1468,a00d5b70225715c9
+294,company:BP,BP,TEST,,True,False,,0.173,7014233f8a3dc50e
+295,company:Shell,Shell,TEST,,True,False,,0.3627,3bf4c155131362bd
+296,company:Raytheon Technologies,Raytheon Technologies,DEV,,True,False,,0.3434,11ee3d4f80787804
+297,company:Walgreens,Walgreens,TEST,,True,False,,0.5067,7f1bc25164635359
+298,company:Roche Holding,Roche Holding,TEST,,True,False,,0.2227,ff1df5099ef4febb
+299,company:Ford Motor,Ford Motor,TEST,,True,False,,0.2479,3546f82db3507e67
+300,company:GlaxoSmithKline,GlaxoSmithKline,TEST,,True,False,,0.1964,97b01214af9a22ff
+301,company:Vale,Vale,DEV,,True,False,,0.1584,b77f86ce33bf1dce
+302,company:Iberdrola,Iberdrola,DEV,,True,False,,0.3636,f6a96daaca824af1
+303,company:Novartis,Novartis,TEST,,True,False,,0.2127,dcf3e81f605b81eb
+304,company:Saudi Arabian Oil Company (Saudi Aramco),Saudi Arabian Oil Company (Saudi Aramco),TEST,,True,False,,0.3988,e2fb3edd84983e57
+305,company:CNOOC,CNOOC,DEV,,True,False,,0.1503,6dae45a5a5e4c5a7
+306,company:BHP Group,BHP Group,TEST,,True,False,,0.2327,d8ee36184453a4e1
+307,company:Ping An Insurance (Group) Company of China,Ping An Insurance (Group) Company of China,TEST,,True,False,,0.2002,66d69391825742fa
+308,company:Banco Bradesco,Banco Bradesco,DEV,,True,False,,0.1662,107b28296c4ea614
+309,company:Chevron,Chevron,DEV,,True,False,,0.2786,6128855afab3c71c
+310,company:Raytheon Technologies,Raytheon Technologies,DEV,,True,False,,0.1764,5a304f14fbb6666d
+311,company:America Movil,America Movil,DEV,,True,False,,0.282,ef93825f66c618e1
+312,company:China Mobile,China Mobile,DEV,,True,False,,0.2668,1f4139d3de936343
+313,company:Anglo American,Anglo American,DEV,,True,False,,0.2347,a7b42a50d6f5b88c
+314,company:U.S. Bancorp,U.S. Bancorp,TEST,,True,False,,0.1701,b964550e22f006b9
+315,company:Accenture,Accenture,TEST,,True,False,,0.167,87bb26378b2c947e
+316,company:UBS Group,UBS Group,DEV,,True,False,,0.2106,6bcc8dcafa7f7a41
+317,company:Chubb,Chubb,TEST,,True,False,,0.241,ccd00ade5fefda09
+318,company:Brookfield Asset Management,Brookfield Asset Management,DEV,,True,False,,0.1677,c41926e5d00c93a3
+319,company:Apple,Apple,TEST,,True,False,,0.1514,3336ecf8101107cd
+320,company:Procter & Gamble,Procter & Gamble,DEV,,True,False,,0.3381,00fa9f3281ad3401
+321,company:Wells Fargo,Wells Fargo,TEST,,True,False,,0.1827,3ea56c27948ebf60
+322,company:Charter Communications,Charter Communications,DEV,,True,False,,0.186,629265aaab409069
+323,company:Hon Hai Precision,Hon Hai Precision,TEST,,True,False,,0.3496,b24c6828c30a90d5
+324,company:SK Hynix,SK Hynix,TEST,,True,False,,0.2557,e314805ff318a9ed
+325,company:Prudential Financial,Prudential Financial,TEST,,True,False,,0.1756,9a4ebbd96b6d00b9
+326,company:Honeywell,Honeywell,DEV,,True,False,,0.1981,8d27c1fb8caf72fb
+327,company:China Construction Bank,China Construction Bank,TEST,,True,False,,0.3194,b2e9a0f493a2fbbd
+328,company:Lockheed Martin,Lockheed Martin,TEST,,True,False,,0.128,344c8e85e7c09ac5
+329,company:Saudi Arabian Oil Company (Saudi Aramco),Saudi Arabian Oil Company (Saudi Aramco),TEST,,True,False,,0.6079,01e8ce75d130774a
+330,company:Anthem,Anthem,TEST,,True,False,,0.1349,001a2590d98683a8
+331,company:Visa,Visa,TEST,,True,False,,0.1584,41545f64dc0e8544
+332,company:China Telecom,China Telecom,TEST,,True,False,,0.3184,84680758c8b0f8fd
+333,company:Moller - Maersk,Moller - Maersk,TEST,,True,False,,0.2338,cb866ee8ad8ee066
+334,company:Rosneft,Rosneft,TEST,,True,False,,0.4225,5dbc6028f463beb4
+335,company:General Motors,General Motors,TEST,,True,False,,0.326,8b67f06d2dd85934
+336,company:ANZ,ANZ,DEV,,True,False,,0.4954,9590c8421cd7eec3
+337,company:Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,TEST,,False,True,Shanghai,0.3886,c0f680524632ffde
+338,company:Caterpillar,Caterpillar,TEST,,True,False,,0.2247,d9e73fcafe242fc8
+339,company:Cisco Systems,Cisco Systems,TEST,,True,False,,0.2703,fabc18a373972d71
+340,company:Total,Total,DEV,,True,False,,0.287,21b4ecff4173ad77
+341,company:PNC Financial Services,PNC Financial Services,TEST,,True,False,,0.3397,946a6027b9cc820e
+342,company:Alibaba Group,Alibaba Group,TEST,,True,False,,0.2035,dd9700ef450514a4
+343,company:Siemens,Siemens,TEST,,True,False,,0.1963,885baea65eb776a9
+344,company:Eni,Eni,TEST,,True,False,,0.2283,f8e08efd037e3088
+345,company:Chevron,Chevron,DEV,,True,False,,0.1677,9a5c1a21b780d9e5
+346,company:Micron Technology,Micron Technology,TEST,,True,False,,0.3433,fcecd784d8b861db
+347,company:ENGIE,ENGIE,TEST,,True,False,,0.4225,8b4b1bd77f9aac0a
+348,company:Equinor,Equinor,DEV,,True,False,,0.1398,24f3fb1485e331d0
+349,company:CNOOC,CNOOC,DEV,,True,False,,0.256,c716b253b67f2446
+350,"company:Truist Financial operates as a financial holding company, which","Truist Financial operates as a financial holding company, which",TEST,,True,False,,0.2055,86c3b726d3768e2a
+351,company:Microsoft,Microsoft,DEV,,True,False,,0.2251,6164a2a404a2bfe8
+352,company:AIA Group,AIA Group,TEST,,True,False,,0.3815,7bd2ebda2153b352
+353,company:Costco Wholesale,Costco Wholesale,TEST,,True,False,,0.2584,fabfb6a0ff20f5c2
+354,company:BASF,BASF,TEST,,True,False,,0.1982,71a7e1ee5c828912
+355,company:Siemens,Siemens,TEST,,True,False,,0.1939,9af6c76e54c033f5
+356,company:Santander,Santander,TEST,,True,False,,0.2147,4caa0ce509bb9fe3
+357,company:Deutsche Telekom operates as a financial holding company that,Deutsche Telekom operates as a financial holding company that,TEST,,True,False,,0.1996,2bcc14165aefa1a0
+358,company:Visa,Visa,TEST,,True,False,,0.1415,00ed0b1c586dcd6e
+359,company:America Movil,America Movil,DEV,,True,False,,0.2152,b74230e2d792c502
+360,company:Apple,Apple,TEST,,True,False,,0.1729,3e2c88caff1c4715
+361,company:PNC Financial Services,PNC Financial Services,TEST,,True,False,,0.1377,e4031a0f24057089
+362,company:BlackRock,BlackRock,DEV,,True,False,,0.3643,ec2b6c78b8c2a532
+363,company:Cathay Financial,Cathay Financial,DEV,,True,False,,0.1497,eaa3f789221cbc83
+364,company:CNOOC,CNOOC,DEV,,True,False,,0.2202,393e7ca05b9681fb
+365,company:Exxon Mobil,Exxon Mobil,TEST,,True,False,,0.4225,2678836acf7c6b7c
+366,company:China Citic Bank,China Citic Bank,DEV,,True,False,,0.2774,5de8158bb95acb9a
+367,company:Costco Wholesale,Costco Wholesale,TEST,,True,False,,0.1407,ff6f66939e24387d
+368,company:British American Tobacco,British American Tobacco,TEST,,True,False,,0.1894,53acb16dc8f8d143
+369,company:Deutsche Telekom,Deutsche Telekom,DEV,,True,False,,0.324,43bd3fd6d6dfe41d
+370,company:Bank of America,Bank of America,TEST,,True,False,,0.2303,de4353b5b44b7338
+371,company:Saudi Arabian Oil Company (Saudi Aramco),Saudi Arabian Oil Company (Saudi Aramco),TEST,,True,False,,0.4107,ee1bd4206eefca9a
+372,"company:BNP Paribas is a financial services company, which","BNP Paribas is a financial services company, which",TEST,,True,False,,0.1537,0070ea21c9cd12cf
+373,company:Sony,Sony,DEV,,True,False,,0.2556,bb7cfd8e7d17a00d
+374,company:IBM,IBM,TEST,,True,False,,0.2174,8da3cda5b5fbae68
+375,company:Cathay Financial,Cathay Financial,DEV,,True,False,,0.2204,b12acfab15a88a7e
+376,company:Abbott Laboratories is a holding company that,Abbott Laboratories is a holding company that,TEST,,True,False,,0.183,ec7d15674cd6055b
+377,"company:HSBC Holdings is a health care services company, which","HSBC Holdings is a health care services company, which",TEST,,True,False,,0.1651,398df7bd477c6743
+378,company:Cisco Systems,Cisco Systems,TEST,,True,False,,0.2126,0ba1423524344432
+379,company:China Vanke,China Vanke,TEST,,True,False,,0.4837,1cc1c8d5e3c6aa91
+380,company:Microsoft,Microsoft,DEV,,True,False,,0.3845,b41c4906306ec44b
+381,company:MetLife,MetLife,TEST,,True,False,,0.2026,cb186b0cb4862424
+382,company:Coca-Cola,Coca-Cola,TEST,,True,False,,0.4062,ef2a49579678a5d7
+383,company:Oracle,Oracle,DEV,,True,False,,0.2481,5e8e01e771b68ea5
+384,company:FedEx,FedEx,TEST,,True,False,,0.4409,d08c2d75feb4e12d
+385,company:China Construction Bank,China Construction Bank,TEST,,True,False,,0.1776,535015960b09ccf0
+386,company:LukOil,LukOil,TEST,,True,False,,0.2058,6013847696190cb1
+387,company:PepsiCo,PepsiCo,TEST,,True,False,,0.4879,8baf49e78c32d0f5
+388,company:Deutsche Post,Deutsche Post,TEST,,True,False,,0.366,324d1949e19206e3
+389,company:AXA,AXA,TEST,,True,False,,0.1779,2b850bb550ba4be3
+390,company:Linde,Linde,TEST,,True,False,,0.1755,d88f549c64981be9
+391,company:Tesla,Tesla,TEST,,True,False,,0.3744,b6daf7da698f1f32
+392,company:Westpac Banking,Westpac Banking,TEST,,True,False,,0.1704,e9bb2b166273e9d2
+393,company:SK Hynix,SK Hynix,TEST,,True,False,,0.2102,fc4121a11719fffd
+394,company:BlackRock,BlackRock,DEV,,True,False,,0.1958,f5851a47a4aa7abb
+395,company:Thermo Fisher Scientific,Thermo Fisher Scientific,DEV,,True,False,,0.2855,cb6e2bd63112a265
+396,company:ENGIE,ENGIE,TEST,,True,False,,0.1468,eb1d66d856398618
+397,company:Electricite de France,Electricite de France,DEV,,True,False,,0.4579,658e31dbee9d3c25
+398,company:American International Group,American International Group,TEST,,True,False,,0.1761,64d9eca3e8e3b837
+399,company:Vale,Vale,DEV,,True,False,,0.2255,468d2b90450c4122
+400,company:Raytheon Technologies,Raytheon Technologies,DEV,,True,False,,0.1853,009f98d37754a448
+401,company:American International Group,American International Group,TEST,,True,False,,0.1923,a14c7bbaa6f0b138
+402,company:LVMH Moet Hennessy Louis Vuitton,LVMH Moet Hennessy Louis Vuitton,TEST,,True,False,,0.1895,7d854b04992bb9b3
+403,"company:AbbVie (ABBV) is a research-based biopharmaceutical company, which","AbbVie (ABBV) is a research-based biopharmaceutical company, which",DEV,,True,False,,0.1658,381c3363aaf87794
+404,company:Hitachi,Hitachi,DEV,,True,False,,0.2226,08088fcfc1ea00ac
+405,company:Shell,Shell,TEST,,True,False,,0.3104,cc0e4e02688ce8b8
+406,company:Apple,Apple,TEST,,True,False,,0.1908,5dc5706481ae3237
+407,company:Exxon Mobil,Exxon Mobil,TEST,,True,False,,0.2566,c08dad44f3182ba0
+408,company:Citigroup,Citigroup,TEST,,True,False,,0.2121,22f6c6ff79812bf8
+409,company:Electricite de France,Electricite de France,DEV,,True,False,,0.2386,9773281fcab5532f
+410,company:Raytheon Technologies,Raytheon Technologies,DEV,,True,False,,0.1507,eea306b77ae75e7f
+411,company:Barclays,Barclays,TEST,,True,False,,0.1582,5828a8cba3ff666c
+412,company:Truist Financial,Truist Financial,TEST,,True,False,,0.1422,cbfce6883cf99a32
+413,company:Fubon Financial,Fubon Financial,DEV,,True,False,,0.1217,d4a24c1f07d2f41c
+414,"company:Mizuho Financial is a banking services company, which","Mizuho Financial is a banking services company, which",TEST,,True,False,,0.1682,f222be6c801a8509
+415,company:Linde,Linde,TEST,,True,False,,0.2257,b23859f1354d885f
+416,company:Credit Agricole,Credit Agricole,TEST,,True,False,,0.3953,74b1f9772562da75
+417,company:E.ON,E.ON,DEV,,True,False,,0.2471,10598d708edcbd18
+418,company:Toronto-Dominion Bank,Toronto-Dominion Bank,TEST,,True,False,,0.2731,79c6f97458181a1d
+419,company:Poly Developments & Holdings Group,Poly Developments & Holdings Group,TEST,,True,False,,0.2042,201e2a76ed8b9a91
+420,company:Agricultural Bank of China,Agricultural Bank of China,TEST,,True,False,,0.337,2312fd2c869bc689
+421,company:China Life Insurance,China Life Insurance,TEST,,True,False,,0.2626,c3e4bb871962fdc1
+422,company:ConocoPhillips,ConocoPhillips,TEST,,True,False,,0.1995,557456e26f12dc9f
+423,company:State Bank of India,State Bank of India,DEV,,True,False,,0.2062,83273750bb220e1e
+424,company:ANZ,ANZ,DEV,,True,False,,0.2177,98490e7e9c121667
+425,company:SAP,SAP,TEST,,True,False,,0.1335,df45095c07b1a759
+426,company:Sanofi,Sanofi,DEV,,True,False,,0.2133,49620574764b1c26
+427,company:Lockheed Martin,Lockheed Martin,TEST,,True,False,,0.1557,cc5640b4a6521b13
+428,company:United Parcel Service,United Parcel Service,TEST,,True,False,,0.2931,23513f82b86a593e
+429,company:Hyundai Motor,Hyundai Motor,TEST,,True,False,,0.1898,46c73805651f408e
+430,company:Linde,Linde,TEST,,True,False,,0.3924,78c1167c6374c1c8
+431,company:The Home Depot,The Home Depot,TEST,,True,False,,0.3827,2a32357da45863c9
+432,company:Lockheed Martin,Lockheed Martin,TEST,,True,False,,0.1508,eeec3cd5ca040f02
+433,company:American International Group,American International Group,TEST,,True,False,,0.2713,61e464d3cad00264
+434,company:Honeywell,Honeywell,DEV,,True,False,,0.3757,0eaa9c0b8b4a3de6
+435,company:CVS Health,CVS Health,TEST,,True,False,,0.2441,8f967c00889a448b
+436,company:National Australia Bank,National Australia Bank,DEV,,True,False,,0.536,ee0ab9819f4319c0
+437,company:Goldman Sachs Group,Goldman Sachs Group,TEST,,True,False,,0.3572,db062a92f06718aa
+438,company:PetroChina,PetroChina,TEST,,True,False,,0.1961,1b1c55b8bc3ae564
+439,company:Glencore,Glencore,DEV,,True,False,,0.182,954d9bfc98d726b2
+440,company:Oracle,Oracle,DEV,,True,False,,0.426,5af38b60132876aa
+441,company:HSBC Holdings,HSBC Holdings,TEST,,True,False,,0.2155,0f249096adc8d8f8
+442,company:Alphabet,Alphabet,TEST,,True,False,,0.3872,c01d8a7867921df9
+443,company:CNOOC,CNOOC,DEV,,True,False,,0.1258,e50efd94389264ac
+444,company:National Australia Bank,National Australia Bank,DEV,,True,False,,0.396,a940d21b885716f5
+445,company:Chubb,Chubb,TEST,,True,False,,0.1601,ac4d1c2601fb8209
+446,company:China Mobile,China Mobile,DEV,,True,False,,0.1533,b278d5bd68c9530c
+447,company:Johnson & Johnson is a holding company that,Johnson & Johnson is a holding company that,DEV,,True,False,,0.1876,543cdcb8908c7641
+448,company:Dell Technologies,Dell Technologies,TEST,,True,False,,0.1259,8835b5967ddc0773
+449,company:Sberbank,Sberbank,TEST,,True,False,,0.2382,5bfdc4955f73106a
+450,company:Pfizer,Pfizer,DEV,,True,False,,0.2058,060ff01b059f1321
+451,company:Brookfield Asset Management,Brookfield Asset Management,DEV,,True,False,,0.1443,58039836ce8c93ab
+452,company:Bank of Communications,Bank of Communications,TEST,,True,False,,0.281,4e7f9d734747c783
+453,company:Toronto-Dominion Bank,Toronto-Dominion Bank,TEST,,True,False,,0.1652,e17496ace115751e
+454,company:Toronto-Dominion Bank,Toronto-Dominion Bank,TEST,,True,False,,0.3437,3ecd0fa02615d7d2
+455,company:ANZ,ANZ,DEV,,True,False,,0.2557,23ad04867d901422
+456,company:Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,DEV,,True,False,,0.2423,66eaba0947b58b7c
+457,company:Bank of America,Bank of America,TEST,,True,False,,0.3589,8c4d5c0df2fa6299
+458,company:SK Hynix,SK Hynix,TEST,,True,False,,0.2058,25e9c55ee3f094f4
+459,company:Alibaba Group,Alibaba Group,TEST,,True,False,,0.2604,10404d0b7f8bcf7f
+460,company:Bank of America is a holding company that,Bank of America is a holding company that,DEV,,True,False,,0.2531,738ab3f08ea27a32
+461,company:ENGIE,ENGIE,TEST,,True,False,,0.2574,d589274cfa246ae0
+462,company:Poly Developments & Holdings Group operates as a holding company that,Poly Developments & Holdings Group operates as a holding company that,TEST,,True,False,,0.1647,dc6d284486b8dc0a
+463,company:Deutsche Telekom,Deutsche Telekom,DEV,,True,False,,0.3308,ed548447b81b5e82
+464,company:Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,TEST,,True,False,,0.2164,88a90990eb40c2c6
+465,company:National Australia Bank,National Australia Bank,DEV,,True,False,,0.323,52fc540239a24521
+466,company:Sony,Sony,DEV,,True,False,,0.4409,080876f046bf7935
+467,company:American International Group,American International Group,TEST,,True,False,,0.1875,96ce4228ebc87509
+468,company:Citigroup,Citigroup,TEST,,True,False,,0.1529,af602a376d187316
+469,company:China Life Insurance,China Life Insurance,TEST,,True,False,,0.2873,9f725d5912792836
+470,company:General Motors,General Motors,TEST,,True,False,,0.3371,4cf5896169d9f786
+471,company:Bayerische Motoren Werke (BMW),Bayerische Motoren Werke (BMW),TEST,,True,False,,0.1653,a66e3d3339b59aad
+472,company:AXA,AXA,TEST,,True,False,,0.4185,c433acbc0333f8eb
+473,company:Morgan Stanley,Morgan Stanley,TEST,,True,False,,0.2151,0aa636a3f4fd5961
+474,company:China Shenhua Energy,China Shenhua Energy,TEST,,True,False,,0.2996,57b8dfd0379d04b4
+475,company:BP,BP,TEST,,True,False,,0.2386,0a94cea8c7f77b60
+476,"company:Nestle is a nutrition, health and wellness company that","Nestle is a nutrition, health and wellness company that",DEV,,True,False,,0.2434,27bae684a3dc07b4
+477,company:Mizuho Financial operates as a holding company which,Mizuho Financial operates as a holding company which,DEV,,True,False,,0.1313,8641f79dd9cdad7f
+478,company:Tencent Holdings,Tencent Holdings,TEST,,True,False,,0.1488,ba633b9d39c05d2c
+479,company:Caterpillar,Caterpillar,TEST,,True,False,,0.3067,8c124cc01b465fa2
+480,company:Cathay Financial,Cathay Financial,DEV,,True,False,,0.236,71fa936364e5cceb
+481,company:Intesa Sanpaolo operates as a financial holding company that,Intesa Sanpaolo operates as a financial holding company that,TEST,,True,False,,0.1988,171017b81d373141
+482,company:Enbridge,Enbridge,TEST,,True,False,,0.4054,e0af2f92fe56d6f4
+483,company:Accenture,Accenture,TEST,,True,False,,0.3584,d92625dae5d84227
+484,company:BBVA,BBVA,TEST,,True,False,,0.1516,d7f551a94086d429
+485,company:Moller - Maersk,Moller - Maersk,TEST,,True,False,,0.1296,23ac0d8f74465fe1
+486,company:Fubon Financial,Fubon Financial,DEV,,True,False,,0.313,8781078f45e91675
+487,company:Target,Target,TEST,,True,False,,0.1839,b73e398180057dc6
+488,company:American Express,American Express,TEST,,True,False,,0.319,9ea9b106c6f58386
+489,company:Itochu,Itochu,TEST,,True,False,,0.4024,5f5601da59b3678a
+490,company:Intesa Sanpaolo,Intesa Sanpaolo,DEV,,True,False,,0.1448,d6416fda857bfd06
+491,company:Munich Reinsurance,Munich Reinsurance,TEST,,False,True,Munich,0.6182,7c4befc31691219a
+492,company:Truist Financial,Truist Financial,TEST,,True,False,,0.1813,6eee29f021cd8549
+493,company:Manulife,Manulife,TEST,,True,False,,0.1937,29873dc4e7d3a19a
+494,company:Chevron,Chevron,DEV,,True,False,,0.1664,94b4584359f7dfa0
+495,company:Tencent Holdings is an investment company that,Tencent Holdings is an investment company that,TEST,,True,False,,0.1378,74f0ca305a44a584
+496,company:Prudential Financial,Prudential Financial,TEST,,True,False,,0.2171,be3c3391ce95d7bb
+497,company:Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,TEST,,False,True,Shanghai,0.4459,e2b6de2a4f4ac41f
+498,company:Stellantis,Stellantis,TEST,,True,False,,0.132,0c6129765cbf2727
+499,company:Honda Motor,Honda Motor,DEV,,True,False,,0.2811,32217bd23c6947dd
+500,company:Tencent Holdings,Tencent Holdings,TEST,,True,False,,0.1235,4a02cd9de3acf888
+501,company:Ford Motor,Ford Motor,TEST,,True,False,,0.3899,25de8885b8781ee5
+502,company:CVS Health,CVS Health,TEST,,True,False,,0.1722,aca2dbb054d7a197
+503,company:Petrobras,Petrobras,TEST,,True,False,,0.3615,a75850e183a03082
+504,company:Bank of America,Bank of America,TEST,,True,False,,0.2682,780c8a53c957852b
+505,company:Meta Platforms,Meta Platforms,TEST,,True,False,,0.1221,eac5ff7c55227efa
+506,company:Medtronic,Medtronic,TEST,,True,False,,0.1556,fac47a1353eb23c9
+507,company:HSBC Holdings,HSBC Holdings,TEST,,True,False,,0.3741,865d61ce58da5528
+508,company:Lloyds Banking Group,Lloyds Banking Group,TEST,,True,False,,0.3746,122f2e6454437310
+509,company:State Bank of India,State Bank of India,DEV,,True,False,,0.2142,b199d5195f478e2e
+510,company:Rosneft,Rosneft,TEST,,True,False,,0.266,7f703fe80567ea72
+511,company:China Vanke,China Vanke,TEST,,True,False,,0.2523,95584ba774b04d52
+512,"company:BlackRock is a mining company, which","BlackRock is a mining company, which",DEV,,True,False,,0.2069,8ca3b2ae4b5e4e23
+513,company:SK Hynix,SK Hynix,TEST,,True,False,,0.4145,6286a2aee9d3ef09
+514,company:Total,Total,DEV,,True,False,,0.3649,4eda6a5c8eb1f613
+515,company:Exxon Mobil,Exxon Mobil,TEST,,True,False,,0.1468,9ea1d00749e9f206
+516,company:IBM,IBM,TEST,,True,False,,0.3818,4a72e933ad316caa
+517,company:Coca-Cola is a nonalcoholic beverage company that,Coca-Cola is a nonalcoholic beverage company that,TEST,,True,False,,0.148,7d62958fa02fe3b7
+518,company:Anglo American,Anglo American,DEV,,True,False,,0.2496,faebae370e547310
+519,company:Microsoft,Microsoft,DEV,,True,False,,0.2472,56cc0896a90c9e90
+520,company:Iberdrola,Iberdrola,DEV,,True,False,,0.1609,45ba07541f73d7c4
+521,company:Anheuser-Busch InBev,Anheuser-Busch InBev,TEST,,True,False,,0.4863,5a47b3489bba0c60
+522,company:HSBC Holdings,HSBC Holdings,TEST,,True,False,,0.1366,e05060ee60faea43
+523,company:China Telecom,China Telecom,TEST,,True,False,,0.2181,1fc46867b80318e4
+524,company:Barclays,Barclays,TEST,,True,False,,0.1237,025ff563b262dd9f
+525,company:Japan Post Holdings,Japan Post Holdings,TEST,,True,False,,0.1761,74319d37f676b362
+526,company:SoftBank operates as a holding company that,SoftBank operates as a holding company that,TEST,,True,False,,0.1959,a9eb5c52a8e669cf
+527,company:Novartis,Novartis,TEST,,True,False,,0.1644,d408c9dfefa0af69
+528,company:Ford Motor,Ford Motor,TEST,,True,False,,0.1562,b988227fab5b6ebc
+529,company:E.ON,E.ON,DEV,,True,False,,0.2174,599c75b121a8d13b
+530,company:Itau Unibanco Holding,Itau Unibanco Holding,TEST,,True,False,,0.2269,0c273ec9802a181c
+531,company:Roche Holding,Roche Holding,TEST,,True,False,,0.1875,af050a3567f3f49a
+532,company:Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,DEV,,True,False,,0.1398,350ab007a23bbe4a
+533,company:China State Construction Engineering,China State Construction Engineering,TEST,,True,False,,0.1757,4c99e24c5150e18b
+534,company:Chevron,Chevron,DEV,,True,False,,0.1626,e07b25e032398619
+535,company:Cigna Corporation,Cigna Corporation,TEST,,True,False,,0.1825,89444f6d6c35bb19
+536,company:Truist Financial,Truist Financial,TEST,,True,False,,0.1422,af9804cfa59ea388
+537,company:Reliance Industries,Reliance Industries,TEST,,True,False,,0.1816,34eec8588367439c
+538,company:Electricite de France,Electricite de France,DEV,,True,False,,0.2973,64771b8634125260
+539,company:Johnson & Johnson,Johnson & Johnson,DEV,,True,False,,0.1728,54222d0050eb2936
+540,company:BlackRock,BlackRock,DEV,,True,False,,0.1526,4ece9552c6fca7d1
+541,company:Vale,Vale,DEV,,True,False,,0.2584,58b1fdc4b284c09f
+542,company:Procter & Gamble,Procter & Gamble,DEV,,True,False,,0.1552,51ae943eaedb84ca
+543,"company:AIA Group is an investment holding company, which","AIA Group is an investment holding company, which",TEST,,True,False,,0.18,dc643f8e5d0e9439
+544,company:Dow,Dow,TEST,,True,False,,0.163,fe74bfc1beed45a1
+545,company:LukOil,LukOil,TEST,,True,False,,0.2898,c6941e15d6ec3434
+546,company:RBC,RBC,TEST,,True,False,,0.2575,7cffbb11f27e4f9a
+547,company:Micron Technology,Micron Technology,TEST,,True,False,,0.2181,9954a917cf0a8cd8
+548,company:Reliance Industries,Reliance Industries,TEST,,True,False,,0.2306,9a057dc0f475c84e
+549,company:Bristol Myers Squibb,Bristol Myers Squibb,DEV,,True,False,,0.2186,d9369996103f2b26
+550,company:Enel,Enel,DEV,,True,False,,0.2498,e5d33facd5fb5e4f
+551,company:Tesla,Tesla,TEST,,True,False,,0.1243,59de1097520ed591
+552,company:VINCI,VINCI,TEST,,True,False,,0.3497,42ab50e7dfcae830
+553,company:Glencore,Glencore,DEV,,True,False,,0.2602,c88a86b7026df7f8
+554,company:JPMorgan Chase,JPMorgan Chase,TEST,,True,False,,0.3821,635853d69de6950d
+555,company:United Parcel Service,United Parcel Service,TEST,,True,False,,0.1835,66b8cee5ee237b0e
+556,company:Enbridge,Enbridge,TEST,,True,False,,0.3598,50f547aa35cfbd56
+557,company:Honeywell,Honeywell,DEV,,True,False,,0.1865,a0971f84409dff5e
+558,company:Equinor,Equinor,DEV,,True,False,,0.2254,608d1adbdf871d02
+559,company:Glencore,Glencore,DEV,,True,False,,0.2603,f0f0301ce858f076
+560,company:Berkshire Hathaway,Berkshire Hathaway,TEST,,True,False,,0.3633,78568865fac886be
+561,company:JPMorgan Chase,JPMorgan Chase,TEST,,True,False,,0.1623,f4f5d49cd49a1fc1
+562,company:HDFC Bank,HDFC Bank,DEV,,True,False,,0.4655,f51c040e054c83ec
+563,company:American Express,American Express,TEST,,True,False,,0.1874,09baeb1848506e70
+564,"company:FedEx is a holding company, which","FedEx is a holding company, which",TEST,,True,False,,0.1903,a9bf366baae65012
+565,company:Sumitomo Mitsui Financial,Sumitomo Mitsui Financial,TEST,,True,False,,0.1697,b43af8deda92d884
+566,company:Linde,Linde,TEST,,True,False,,0.2005,8c7c3c2adc886a63
+567,company:Tesla,Tesla,TEST,,True,False,,0.2464,470a3f3730863f98
+568,company:Toyota Motor,Toyota Motor,TEST,,True,False,,0.2355,8d3a5ea0e78baef9
+569,company:China Vanke,China Vanke,TEST,,True,False,,0.1863,2709a8134e9d2ca5
+570,company:Total,Total,DEV,,True,False,,0.1469,31c44ac4dba03550
+571,company:AbbVie (ABBV),AbbVie (ABBV),DEV,,True,False,,0.275,097ed17183161935
+572,company:VINCI,VINCI,TEST,,True,False,,0.3438,0f95ab7b719dee1a
+573,company:Enel,Enel,DEV,,True,False,,0.1534,4bc66c84ddd32603
+574,company:Sumitomo Mitsui Financial,Sumitomo Mitsui Financial,TEST,,True,False,,0.1121,5822c56f830c41a5
+575,company:Lowe's,Lowe's,TEST,,True,False,,0.4603,b0aad63aa642745a
+576,company:Honda Motor,Honda Motor,DEV,,True,False,,0.1588,75fe27cc1f4b963a
+577,company:HDFC Bank,HDFC Bank,DEV,,True,False,,0.1623,263ac9b6529a3086
+578,company:Rio Tinto,Rio Tinto,DEV,,True,False,,0.2103,c2553e1a4649846c
+579,company:Truist Financial,Truist Financial,TEST,,True,False,,0.1167,832ba5034d1b8074
+580,company:Hitachi,Hitachi,DEV,,True,False,,0.2009,23e3ac598b55e153
+581,company:Bank of Communications,Bank of Communications,TEST,,True,False,,0.3284,1a1a87c3199363f4
+582,company:Sony,Sony,DEV,,True,False,,0.256,68bb372feb451c8e
+583,company:Vale,Vale,DEV,,True,False,,0.2353,0a35d57cecc70a72
+584,company:Coca-Cola,Coca-Cola,TEST,,True,False,,0.1435,5b09ec551d37f356
+585,company:BNP Paribas,BNP Paribas,DEV,,True,False,,0.1654,1526e1383aba70a6
+586,company:China Merchants Bank,China Merchants Bank,TEST,,True,False,,0.1517,0fa813bfe77bc362
+587,"company:Medtronic is a medical technology company, which","Medtronic is a medical technology company, which",TEST,,True,False,,0.2081,1537c62db6e49f52
+588,company:HCA Healthcare,HCA Healthcare,TEST,,True,False,,0.1919,883f8e9bf7b3563e
+589,company:Bayerische Motoren Werke (BMW),Bayerische Motoren Werke (BMW),TEST,,True,False,,0.1448,5f4009f035211611
+590,company:CITIC,CITIC,DEV,,True,False,,0.289,6302b6247691f6e6
+591,company:LVMH Moet Hennessy Louis Vuitton,LVMH Moet Hennessy Louis Vuitton,TEST,,True,False,,0.219,048343e7b9f7376d
+592,company:Poly Developments & Holdings Group,Poly Developments & Holdings Group,TEST,,True,False,,0.3159,0a7fea5225312fa3
+593,company:Tesla,Tesla,TEST,,True,False,,0.1679,fd73776a4bf0dd2b
+594,company:Siemens,Siemens,TEST,,True,False,,0.2169,893e944867cf84f0
+595,company:Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,DEV,,True,False,,0.1595,2ce3f4cb5fe6beab
+596,company:FedEx is a holding company that,FedEx is a holding company that,DEV,,True,False,,0.1581,ff6258a0a725e4a9
+597,company:China Mobile,China Mobile,DEV,,True,False,,0.1514,e94e9fe760ff24eb
+598,company:Hyundai Motor,Hyundai Motor,TEST,,True,False,,0.2095,8dd80fda9380b54a
+599,company:China Petroleum & Chemical,China Petroleum & Chemical,DEV,,True,False,,0.2037,2ddd4fc72b6c494c
+600,company:Bank of Montreal,Bank of Montreal,DEV,,True,False,,0.1358,3779e1d224c67220
+601,company:Reliance Industries,Reliance Industries,TEST,,True,False,,0.1754,3d6458e71925ed56
+602,company:ING Group,ING Group,TEST,,True,False,,0.2743,36f631e82e2772fe
+603,company:Commonwealth Bank of Australia is a nonalcoholic beverage company that,Commonwealth Bank of Australia is a nonalcoholic beverage company that,TEST,,True,False,,0.2047,ebfe4b585829cdf3
+604,company:PepsiCo,PepsiCo,TEST,,True,False,,0.1556,ebdf088c67a36af2
+605,company:AIA Group,AIA Group,TEST,,True,False,,0.3399,3e324f05c5445297
+606,company:China Petroleum & Chemical,China Petroleum & Chemical,DEV,,True,False,,0.1666,1a9fa5af137e3b4e
+607,company:Anheuser-Busch InBev,Anheuser-Busch InBev,TEST,,True,False,,0.2174,d380eef38ac49fa6
+608,company:Capital One,Capital One,TEST,,True,False,,0.4953,2541f95637b4db4d
+609,company:Abbott Laboratories,Abbott Laboratories,TEST,,True,False,,0.1735,3a3855a6bafafcc7
+610,company:Bank of Communications,Bank of Communications,TEST,,True,False,,0.1958,6aa826019f874438
+611,company:Target,Target,TEST,,True,False,,0.2983,b42d8c2df7178ea8
+612,company:Cigna Corporation,Cigna Corporation,TEST,,True,False,,0.2136,e3da951900d78a38
+613,"company:LVMH Moet Hennessy Louis Vuitton is a holding company, which","LVMH Moet Hennessy Louis Vuitton is a holding company, which",TEST,,True,False,,0.1624,e1f9373760f32ffd
+614,company:China State Construction Engineering,China State Construction Engineering,TEST,,True,False,,0.2582,4af001f4d6e222a6
+615,company:Hitachi,Hitachi,DEV,,True,False,,0.302,18c02b6f0a1fbb21
+616,company:Taiwan Semiconductor Manufacturing Company,Taiwan Semiconductor Manufacturing Company,TEST,,True,False,,0.158,4e3dd458f561d2a2
+617,company:Hyundai Motor,Hyundai Motor,TEST,,True,False,,0.1748,bfb57e9a274ecbed
+618,"company:Rosneft is a banking services company, which","Rosneft is a banking services company, which",TEST,,True,False,,0.1755,0d139da940fdcd16
+619,company:Chubb,Chubb,TEST,,True,False,,0.2454,aa5e208879a01170
+620,"company:Comcast is a media, entertainment and communications company that","Comcast is a media, entertainment and communications company that",TEST,,True,False,,0.1718,396bbf38e214d12e
+621,company:SoftBank,SoftBank,DEV,,True,False,,0.1601,f7abf0a6196482c0
+622,company:Honeywell,Honeywell,DEV,,True,False,,0.2381,d6b3ca1e3c9613ba
+623,company:Electricite de France,Electricite de France,DEV,,True,False,,0.3265,1e083a8b5a62c198
+624,company:United Parcel Service,United Parcel Service,TEST,,True,False,,0.2326,5bd9cdbdb070418c
+625,company:Comcast,Comcast,DEV,,True,False,,0.144,f6de1b2bed64cb82
+626,company:China Shenhua Energy,China Shenhua Energy,TEST,,True,False,,0.2493,8036da583b300b2a
+627,company:Agricultural Bank of China,Agricultural Bank of China,TEST,,True,False,,0.3596,071ec70e2b57f03d
+628,company:Zurich Insurance,Zurich Insurance,TEST,,True,False,,0.1401,bd4d848254ed0164
+629,company:Westpac Banking,Westpac Banking,TEST,,True,False,,0.1685,b98a8c9ca8b3f835
+630,company:AIA Group,AIA Group,TEST,,True,False,,0.2327,104445854e6da7c5
+631,company:Tesla,Tesla,TEST,,True,False,,0.4203,43c2df9c2ff9af56
+632,company:Munich Reinsurance,Munich Reinsurance,TEST,,False,True,Munich,0.3332,333e4b27a23b3099
+633,company:Ping An Insurance (Group) Company of China,Ping An Insurance (Group) Company of China,TEST,,True,False,,0.2418,4a693fab06cba4e8
+634,company:Telefonica,Telefonica,TEST,,True,False,,0.219,5ca5adb8d5a77f92
+635,company:Procter & Gamble,Procter & Gamble,DEV,,True,False,,0.198,5dc3c78b55f6a782
+636,"company:Lockheed Martin operates as a global security and aerospace company, which","Lockheed Martin operates as a global security and aerospace company, which",TEST,,True,False,,0.164,d23b8edc00b0b719
+637,company:Comcast,Comcast,DEV,,True,False,,0.2628,e7312d7531e0d7dd
+638,company:Bayerische Motoren Werke (BMW),Bayerische Motoren Werke (BMW),TEST,,True,False,,0.1399,e0fb98ea618acece
+639,company:SoftBank,SoftBank,DEV,,True,False,,0.228,1a14d8074b7a1a76
+640,company:ArcelorMittal,ArcelorMittal,TEST,,True,False,,0.1429,0722158826b804d1
+641,company:Micron Technology,Micron Technology,TEST,,True,False,,0.1707,24a37332a8562a17
+642,company:Nippon Telegraph & Telephone,Nippon Telegraph & Telephone,TEST,,True,False,,0.1556,ab4b8195942e1ff0
+643,company:Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,DEV,,True,False,,0.1568,e7f909093d0d3c00
+644,company:Charter Communications,Charter Communications,DEV,,True,False,,0.2902,87c3c70528c54298
+645,company:Zurich Insurance,Zurich Insurance,TEST,,True,False,,0.2643,b6271473acbf91a8
+646,company:Micron Technology,Micron Technology,TEST,,True,False,,0.3212,6aa7fb1cca78b357
+647,company:Mizuho Financial,Mizuho Financial,TEST,,True,False,,0.1473,c5d8e3918bdce727
+648,company:Stellantis,Stellantis,TEST,,True,False,,0.1832,2f80e0ed185593b3
+649,company:Capital One,Capital One,TEST,,True,False,,0.3122,29e6c75b6237910d
+650,company:Reliance Industries,Reliance Industries,TEST,,True,False,,0.2888,5c85cb0093e719ab
+651,company:Public Joint Stock Company Gazprom is a global energy company that,Public Joint Stock Company Gazprom is a global energy company that,TEST,,True,False,,0.318,c04093fe47ae9975
+652,company:Lowe's,Lowe's,TEST,,True,False,,0.2131,e6ee49953534eb39
+653,company:Westpac Banking,Westpac Banking,TEST,,True,False,,0.2449,22faf4a49a19212a
+654,company:PepsiCo,PepsiCo,TEST,,True,False,,0.2143,e44a83dc094c1269
+655,company:Credit Agricole,Credit Agricole,TEST,,True,False,,0.153,cfba4596c38a5dce
+656,company:Barclays,Barclays,TEST,,True,False,,0.2501,3d5a36de728fc996
+657,company:Zurich Insurance,Zurich Insurance,TEST,,True,False,,0.199,a3a810af5085ab05
+658,company:Nippon Telegraph & Telephone,Nippon Telegraph & Telephone,TEST,,True,False,,0.2622,5a83d3d8759c15d5
+659,company:Ping An Insurance (Group) Company of China,Ping An Insurance (Group) Company of China,TEST,,True,False,,0.2274,93045043eea505c1
+660,company:Bank of America,Bank of America,TEST,,True,False,,0.3866,03a57b9b8bc639df
+661,company:Volkswagen Group,Volkswagen Group,TEST,,True,False,,0.2393,aefafbf64005a988
+662,company:HSBC Holdings,HSBC Holdings,TEST,,True,False,,0.1514,392e4f4fc3f18897
+663,company:BBVA,BBVA,TEST,,True,False,,0.2034,36c4caca71c63dcc
+664,company:British American Tobacco,British American Tobacco,TEST,,True,False,,0.2136,30ed6278213a06f7
+665,company:Bristol Myers Squibb,Bristol Myers Squibb,DEV,,True,False,,0.1618,8c76bee54ea8294a
+666,company:Walt Disney,Walt Disney,TEST,,True,False,,0.1971,83d39dd96254be06
+667,company:Costco Wholesale,Costco Wholesale,TEST,,True,False,,0.3917,587efe56c1134ed4
+668,company:HSBC Holdings,HSBC Holdings,TEST,,True,False,,0.1512,70b94db301b90b5b
+669,company:Linde,Linde,TEST,,True,False,,0.2837,7eebec8e4b4ebd91
+670,company:Iberdrola,Iberdrola,DEV,,True,False,,0.1391,2d60673dd340338b
+671,company:China Merchants Bank,China Merchants Bank,TEST,,True,False,,0.2251,feae89c00596ceea
+672,"company:Allianz is a media, entertainment and communications company that","Allianz is a media, entertainment and communications company that",TEST,,True,False,,0.1687,26cdfdb4638b14fb
+673,company:Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,DEV,,True,False,,0.1363,392bb6371e5d0c41
+674,company:Total,Total,DEV,,True,False,,0.2468,1c836c8d7a616b9b
+675,company:Deutsche Post,Deutsche Post,TEST,,True,False,,0.2176,9027b17823020a2f
+676,company:Meta Platforms,Meta Platforms,TEST,,True,False,,0.1922,8399b8ca033fa570
+677,company:AXA,AXA,TEST,,True,False,,0.2557,f7707605982ee924
+678,company:ArcelorMittal,ArcelorMittal,TEST,,True,False,,0.2644,0b531a5b1bbb1f26
+679,company:Intel,Intel,DEV,,True,False,,0.4165,49b0f956e764c4fd
+680,company:CITIC,CITIC,DEV,,True,False,,0.2207,49363908c56f91bc
+681,company:Samsung Group,Samsung Group,DEV,,True,False,,0.3633,adc511d05e80ac3a
+682,company:Bayerische Motoren Werke (BMW),Bayerische Motoren Werke (BMW),TEST,,True,False,,0.3718,bc519c18824da46c
+683,company:Itochu,Itochu,TEST,,True,False,,0.1392,c6d2844d9e245487
+684,company:Duke Energy,Duke Energy,TEST,,True,False,,0.2693,69987cc7f3bb4c50
+685,company:Abbott Laboratories,Abbott Laboratories,TEST,,True,False,,0.1462,916176e12d68662b
+686,company:Novartis,Novartis,TEST,,True,False,,0.1603,f2b18bc76dbaa67a
+687,company:UBS Group,UBS Group,DEV,,True,False,,0.3815,eb80297f9c202982
+688,company:Credit Agricole,Credit Agricole,TEST,,True,False,,0.153,27e4340b7b583198
+689,company:Ford Motor,Ford Motor,TEST,,True,False,,0.2166,91d0eba8f482a25c
+690,company:Petrobras,Petrobras,TEST,,True,False,,0.1634,3a4161562d6f2848
+691,company:Rosneft,Rosneft,TEST,,True,False,,0.2744,49eb5b2ee2442a25
+692,company:Mitsui,Mitsui,TEST,,True,False,,0.1439,cced30aebedc74d7
+693,company:Petrobras,Petrobras,TEST,,True,False,,0.2918,06f07c55872dc8f8
+694,company:Apple,Apple,TEST,,True,False,,0.3396,fda614b837a48b17
+695,company:Glencore,Glencore,DEV,,True,False,,0.1808,40e02f6861c46fc6
+696,company:Verizon Communications is a holding company that,Verizon Communications is a holding company that,TEST,,True,False,,0.1909,7bd15e194e27db6d
+697,"company:Dell Technologies is a holding company, which","Dell Technologies is a holding company, which",DEV,,True,False,,0.2471,e14f58c07c373a0e
+698,company:Manulife,Manulife,TEST,,True,False,,0.2588,809fadd2a24b8ab9
+699,company:Dell Technologies,Dell Technologies,TEST,,True,False,,0.3596,33eef46f091e11af
+700,company:Samsung Group,Samsung Group,DEV,,True,False,,0.2298,9841ff281264fc4b
+701,company:Bank of Montreal,Bank of Montreal,DEV,,True,False,,0.2309,ba58bf8abd2e9471
+702,company:Saudi Arabian Oil Company (Saudi Aramco),Saudi Arabian Oil Company (Saudi Aramco),TEST,,True,False,,0.3665,8a85ebb39bd86ad6
+703,company:FedEx,FedEx,TEST,,True,False,,0.2174,98560166641a167d
+704,company:American Express,American Express,TEST,,True,False,,0.341,5503225c972d8f77
+705,company:Hitachi,Hitachi,DEV,,True,False,,0.1951,ca38ff1a372cf18e
+706,company:Univlever,Univlever,TEST,,True,False,,0.2176,f6efa57d088b6995
+707,company:Toyota Motor,Toyota Motor,TEST,,True,False,,0.1874,f336d3701e0c41cf
+708,company:Roche Holding,Roche Holding,TEST,,True,False,,0.3824,bd1f3988cabef4c2
+709,company:BNP Paribas,BNP Paribas,DEV,,True,False,,0.1654,cf0fa0aed6762172
+710,company:AT&T,AT&T,TEST,,True,False,,0.2678,0c17af01ee291ab2
+711,company:ING Group,ING Group,TEST,,True,False,,0.1831,795c807c025f0bb1
+712,company:Danaher,Danaher,TEST,,True,False,,0.1946,d343514fcb2cb6e1
+713,company:BP,BP,TEST,,True,False,,0.1726,b44f022c6c8b30e9
+714,company:ANZ,ANZ,DEV,,True,False,,0.1778,e30244a49f398c0f
+715,company:Abbott Laboratories,Abbott Laboratories,TEST,,True,False,,0.1954,765053c61a3cb879
+716,company:China Life Insurance,China Life Insurance,TEST,,True,False,,0.2443,15da801f93a6d329
+717,company:Eni,Eni,TEST,,True,False,,0.1944,5d98e558af14a946
+718,company:Brookfield Asset Management,Brookfield Asset Management,DEV,,True,False,,0.1885,45083c6c5f491182
+719,"company:Banco Bradesco is a holding company, which","Banco Bradesco is a holding company, which",TEST,,True,False,,0.1723,bd120fc30a7a20d2
+720,company:Procter & Gamble,Procter & Gamble,DEV,,True,False,,0.3761,57acf4a9da198b0b
+721,company:Honda Motor,Honda Motor,DEV,,True,False,,0.3535,652f9c0dcaa1a088
+722,company:Enel,Enel,DEV,,True,False,,0.1454,cf2ee8220420c140
+723,company:Sanofi,Sanofi,DEV,,True,False,,0.1873,e2b78dd5d62f41ff
+724,"company:Cigna Corporation is a medical technology company, which","Cigna Corporation is a medical technology company, which",TEST,,True,False,,0.204,c03490effbeccf08
+725,company:America Movil,America Movil,DEV,,True,False,,0.3703,811f8378e922f57b
+726,company:BP,BP,TEST,,True,False,,0.4185,a3567f834d56d235
+727,company:Walt Disney,Walt Disney,TEST,,True,False,,0.1373,5ff704ca5c2ebd12
+728,company:Shell,Shell,TEST,,True,False,,0.2391,84059c148869917d
+729,company:Total,Total,DEV,,True,False,,0.4006,bb3105f99a28f63b
+730,company:RBC,RBC,TEST,,True,False,,0.3947,f86cf428914b1df5
+731,"company:Costco Wholesale is a medical technology company, which","Costco Wholesale is a medical technology company, which",TEST,,True,False,,0.2088,c0753f6f0c3980a3
+732,company:Bank of China,Bank of China,TEST,,True,False,,0.3811,6bdcd5e55e755ceb
+733,company:LukOil,LukOil,TEST,,True,False,,0.1503,90b167cc4f072c56
+734,company:Micron Technology,Micron Technology,TEST,,True,False,,0.204,611fc23e7dced56e
+735,"company:Intel is a holding company, which","Intel is a holding company, which",TEST,,True,False,,0.2049,2ccb05195b3abc3e
+736,company:Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,TEST,,False,True,Shanghai,0.4412,7acdb68141f511c1
+737,company:State Bank of India,State Bank of India,DEV,,True,False,,0.2546,b28d80c49800cb42
+738,company:Duke Energy,Duke Energy,TEST,,True,False,,0.3528,463e0cce029183e4
+739,company:Anglo American,Anglo American,DEV,,True,False,,0.2056,017af0c4c67266b7
+740,company:Nestle,Nestle,DEV,,True,False,,0.1627,cae7b17c5557ea74
+741,company:Rio Tinto,Rio Tinto,DEV,,True,False,,0.1742,d23aa28f90a8778b
+742,company:China Life Insurance,China Life Insurance,TEST,,True,False,,0.1904,fe1312e3a62c74f9
+743,company:Mitsui,Mitsui,TEST,,True,False,,0.2416,beb4878c58a54cb9
+744,company:Dell Technologies,Dell Technologies,TEST,,True,False,,0.1626,dac1f215bf585f50
+745,company:Generali Group,Generali Group,DEV,,True,False,,0.2767,1dccf319ce143e80
+746,company:Toronto-Dominion Bank,Toronto-Dominion Bank,TEST,,True,False,,0.2324,4d5e7d4fd718c74a
+747,company:Commonwealth Bank of Australia,Commonwealth Bank of Australia,TEST,,True,False,,0.381,2ba2ddb28def2539
+748,company:Morgan Stanley,Morgan Stanley,TEST,,True,False,,0.154,ffdcafdec1cd34f5
+749,company:Caterpillar,Caterpillar,TEST,,True,False,,0.2444,bab2a76a2feaec4f
+750,company:Airbus Group,Airbus Group,DEV,,True,False,,0.2461,de2eeddd72e6ecfc
+751,company:UnitedHealth Group,UnitedHealth Group,TEST,,True,False,,0.234,d2b024458611669d
+752,company:Mizuho Financial,Mizuho Financial,TEST,,True,False,,0.1861,1628d171251bae86
+753,company:Chubb,Chubb,TEST,,True,False,,0.1634,fb3d0945d384f444
+754,"company:Anheuser-Busch InBev operates as a holding company, which","Anheuser-Busch InBev operates as a holding company, which",TEST,,True,False,,0.172,6dff19c761788e28
+755,company:Meta Platforms,Meta Platforms,TEST,,True,False,,0.1236,a4856fa289b9f464
+756,company:Eni,Eni,TEST,,True,False,,0.2624,87b2e60b9370b50a
+757,company:Merck & Co.,Merck & Co.,DEV,,True,False,,0.4745,ffb6a13b08dd6ba4
+758,company:Industrial Bank,Industrial Bank,TEST,,True,False,,0.1332,1b9c7f6f5c51eed4
+759,company:E.ON,E.ON,DEV,,True,False,,0.1578,be728823407505c4
+760,company:Honeywell,Honeywell,DEV,,True,False,,0.2217,f8be6208d11d59cd
+761,company:Industrial Bank,Industrial Bank,TEST,,True,False,,0.1645,eb2dcd7a2515317c
+762,company:Telefonica,Telefonica,TEST,,True,False,,0.1703,40527e8194c4dfc1
+763,"company:Zurich Insurance is a holding company, which","Zurich Insurance is a holding company, which",TEST,,True,False,,0.1957,61436cdcd6ae16a3
+764,company:Public Joint Stock Company Gazprom,Public Joint Stock Company Gazprom,TEST,,True,False,,0.1919,df3eb8f7128375dd
+765,company:Tokio Marine Holdings,Tokio Marine Holdings,TEST,,True,False,,0.1743,c6c25da8c9853f6e
+766,company:Generali Group,Generali Group,DEV,,True,False,,0.2293,cbce9a76e24eb43e
+767,company:Cigna Corporation,Cigna Corporation,TEST,,True,False,,0.2156,1c9ff2e29c61276d
+768,company:Johnson & Johnson,Johnson & Johnson,DEV,,True,False,,0.47,b1b943dc44c0a3a3
+769,company:Charles Schwab Corporation,Charles Schwab Corporation,TEST,,True,False,,0.2451,8f5f1dd3b2318092
+770,company:Equinor,Equinor,DEV,,True,False,,0.3259,b548689ab43fd800
+771,company:Banco Bradesco,Banco Bradesco,DEV,,True,False,,0.3959,535b528c28073e2e
+772,company:Alphabet,Alphabet,TEST,,True,False,,0.4899,1607a5dc69d2fac8
+773,company:Itau Unibanco Holding,Itau Unibanco Holding,TEST,,True,False,,0.1651,d8b1cddd5a879feb
+774,company:General Motors,General Motors,TEST,,True,False,,0.3326,076cafbc72dd2b54
+775,company:Vale,Vale,DEV,,True,False,,0.1651,b2deff5a27911540
+776,company:Total,Total,DEV,,True,False,,0.1779,abf4b1f01d367e5c
+777,company:Danaher,Danaher,TEST,,True,False,,0.3966,3e0c3d7255a8532e
+778,company:Airbus Group,Airbus Group,DEV,,True,False,,0.3723,3d5815d43a0e631c
+779,company:VINCI,VINCI,TEST,,True,False,,0.1998,70a34d9d20fcbeb9
+780,company:Nippon Telegraph & Telephone,Nippon Telegraph & Telephone,TEST,,True,False,,0.1209,4b4b826752163821
+781,company:ANZ,ANZ,DEV,,True,False,,0.4409,c63603712f2b325c
+782,company:SAP,SAP,TEST,,True,False,,0.1658,338bfc414b68d7f3
+783,company:BBVA,BBVA,TEST,,True,False,,0.1492,3b3d2039fa3510a8
+784,company:AbbVie (ABBV),AbbVie (ABBV),DEV,,True,False,,0.207,d6f80d4d7d4f91b7
+785,company:Danaher,Danaher,TEST,,True,False,,0.2276,29eebff5a5365811
+786,company:Thermo Fisher Scientific,Thermo Fisher Scientific,DEV,,True,False,,0.2729,f13bd96c13b56f6e
+787,company:Ping An Insurance (Group) Company of China,Ping An Insurance (Group) Company of China,TEST,,True,False,,0.2026,31aefee690e94570
+788,company:Cigna Corporation,Cigna Corporation,TEST,,True,False,,0.1856,39b464bd7d8e3cbe
+789,company:Dell Technologies,Dell Technologies,TEST,,True,False,,0.1704,f51167fc9c1107b0
+790,company:Berkshire Hathaway,Berkshire Hathaway,TEST,,True,False,,0.1524,3d233438d2061098
+791,company:KDDI,KDDI,DEV,,True,False,,0.1935,e61f5ef2ac218d07
+792,company:AIA Group,AIA Group,TEST,,True,False,,0.2524,5bb2007a4202a7b2
+793,company:Deere & Company is a nonalcoholic beverage company that,Deere & Company is a nonalcoholic beverage company that,TEST,,True,False,,0.1443,b3f4ad37ffeda65c
+794,company:Chevron,Chevron,DEV,,True,False,,0.4153,ccba59170770a33a
+795,company:Duke Energy,Duke Energy,TEST,,True,False,,0.3868,e1ec0b4c242309e0
+796,"company:American International Group is a holding company, which","American International Group is a holding company, which",DEV,,True,False,,0.1929,f4ab42754872cd10
+797,company:China State Construction Engineering,China State Construction Engineering,TEST,,True,False,,0.1942,a5808a5990aa089c
+798,company:AbbVie (ABBV),AbbVie (ABBV),DEV,,True,False,,0.1574,a84915988b9dfc6c
+799,"company:Generali Group is a holding company, which","Generali Group is a holding company, which",TEST,,True,False,,0.2098,55bc7e64e1bb125d
+800,company:Alphabet,Alphabet,TEST,,True,False,,0.2665,0aedde4fa5bc237d
+801,company:Tokio Marine Holdings is an investment company that,Tokio Marine Holdings is an investment company that,TEST,,True,False,,0.1354,92b4fa77414d3221
+802,company:China Citic Bank,China Citic Bank,DEV,,True,False,,0.2302,68b6166d3154243b
+803,company:State Bank of India,State Bank of India,DEV,,True,False,,0.2533,7c7ed5fdb6d8beeb
+804,company:Brookfield Asset Management,Brookfield Asset Management,DEV,,True,False,,0.2768,fac1c67d5d7fec07
+805,company:Amazon.com,Amazon.com,TEST,,True,False,,0.3674,e164d57093e4f4bf
+806,company:Intel,Intel,DEV,,True,False,,0.1818,d202649b4e6d1457
+807,company:Westpac Banking,Westpac Banking,TEST,,True,False,,0.4347,92f84ba5cc2c56e8
+808,company:Bank of Nova Scotia,Bank of Nova Scotia,DEV,,True,False,,0.2226,cbfc7d814c41f1a4
+809,company:Univlever,Univlever,TEST,,True,False,,0.1923,83f0012a56dcab37
+810,company:RBC,RBC,TEST,,True,False,,0.4409,0c4c09c42263a7d3
+811,company:Comcast,Comcast,DEV,,True,False,,0.4139,47dfcf08aa44f445
+812,company:Target,Target,TEST,,True,False,,0.3804,f63d41bfb97f3878
+813,company:KDDI,KDDI,DEV,,True,False,,0.2168,010c64ed9e1a252e
+814,company:Telefonica,Telefonica,TEST,,True,False,,0.1523,d5c7de35b75b8879
+815,company:Chubb,Chubb,TEST,,True,False,,0.2029,b067a3b2e971ec64
+816,company:Barclays,Barclays,TEST,,True,False,,0.1999,db848471d49d01fb
+817,"company:America Movil is a holding company, which","America Movil is a holding company, which",DEV,,True,False,,0.1803,28b4dea7a6880275
+818,company:UBS Group,UBS Group,DEV,,True,False,,0.254,c3e7e07fa7daef74
+819,company:GlaxoSmithKline,GlaxoSmithKline,TEST,,True,False,,0.1552,6e628a9a09d5cb00
+820,company:China Shenhua Energy,China Shenhua Energy,TEST,,True,False,,0.2308,dff34887c7a596a7
+821,company:FedEx,FedEx,TEST,,True,False,,0.2448,640ac2b1adbef0b4
+822,company:Petrobras,Petrobras,TEST,,True,False,,0.1388,8ea1bd6fa5c9174d
+823,company:Berkshire Hathaway,Berkshire Hathaway,TEST,,True,False,,0.194,8f4f70d06b251c1d
+824,company:Volkswagen Group,Volkswagen Group,TEST,,True,False,,0.3549,36d2567f0fe50350
+825,company:Medtronic,Medtronic,TEST,,True,False,,0.1858,fdf5380f66375e78
+826,company:Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,TEST,,True,False,,0.1698,32d62876b0b5e6b9
+827,company:Credit Agricole operates as a holding company that,Credit Agricole operates as a holding company that,TEST,,True,False,,0.1824,59ca0f873784c767
+828,company:Micron Technology,Micron Technology,TEST,,True,False,,0.1758,34f98cb73f418a9e
+829,company:British American Tobacco,British American Tobacco,TEST,,True,False,,0.2515,debb2c23a50be574
+830,"company:Hon Hai Precision is a holding company, which","Hon Hai Precision is a holding company, which",TEST,,True,False,,0.1634,139e4d753cad1a53
+831,company:China Mobile,China Mobile,DEV,,True,False,,0.1663,fec908e2c15c107b
+832,company:Siemens,Siemens,TEST,,True,False,,0.4549,47497b6b637786b7
+833,company:Raytheon Technologies,Raytheon Technologies,DEV,,True,False,,0.1571,568fb08400d498f9
+834,company:HCA Healthcare,HCA Healthcare,TEST,,True,False,,0.4089,a5513366d363b936
+835,company:Japan Post Holdings,Japan Post Holdings,TEST,,True,False,,0.1791,b368a86f809398c4
+836,company:CNOOC,CNOOC,DEV,,True,False,,0.2174,38c4675b6a1c4cec
+837,company:The Home Depot,The Home Depot,TEST,,True,False,,0.1324,41ef44bf08011afe
+838,company:Walmart is a holding company that,Walmart is a holding company that,TEST,,True,False,,0.1523,664d2f9875aee83c
+839,company:Samsung Group,Samsung Group,DEV,,True,False,,0.2497,7baec7dcea5dfda8
+840,company:Procter & Gamble,Procter & Gamble,DEV,,True,False,,0.1385,40ae58f11489da5d
+841,company:Microsoft,Microsoft,DEV,,True,False,,0.258,e13096390a30750c
+842,company:ANZ,ANZ,DEV,,True,False,,0.1553,dc7c05da7fb1e687
+843,company:Visa,Visa,TEST,,True,False,,0.252,30a7cbc593124d57
+844,company:Mercedes-Benz Group,Mercedes-Benz Group,TEST,,True,False,,0.2036,97a34ba4ae0f9a10
+845,company:Bank of Montreal,Bank of Montreal,DEV,,True,False,,0.1879,f1f5009d9b5b48b8
+846,company:UBS Group,UBS Group,DEV,,True,False,,0.2909,f60867fd983eb39b
+847,company:Toronto-Dominion Bank,Toronto-Dominion Bank,TEST,,True,False,,0.3012,be8c84d58cacea13
+848,company:Dow,Dow,TEST,,True,False,,0.1819,edbc4f47389ca8a8
+849,company:GlaxoSmithKline is a healthcare company that,GlaxoSmithKline is a healthcare company that,TEST,,True,False,,0.206,8dfa7f7846ceaed7
+850,company:Sanofi,Sanofi,DEV,,True,False,,0.4318,a8c9e758cf6dffd9
+851,company:Honda Motor,Honda Motor,DEV,,True,False,,0.2322,ea67e297705171e1
+852,company:Itochu,Itochu,TEST,,True,False,,0.2317,c5600b5e20b78814
+853,company:China State Construction Engineering,China State Construction Engineering,TEST,,True,False,,0.1987,604f1ada0a9ffd9c
+854,company:PNC Financial Services,PNC Financial Services,TEST,,True,False,,0.1859,07e42e73cdfcae02
+855,company:Bristol Myers Squibb,Bristol Myers Squibb,DEV,,True,False,,0.1431,470c4703f0d05c6b
+856,company:Verizon Communications,Verizon Communications,TEST,,True,False,,0.1796,b18dd59917819b40
+857,company:Accenture,Accenture,TEST,,True,False,,0.1796,cbef67d73e603b70
+858,company:Anthem,Anthem,TEST,,True,False,,0.1458,d34da40cd5f0c931
+859,company:Allianz,Allianz,TEST,,True,False,,0.1947,f7f5ab6f6fee5379
+860,"company:Charles Schwab Corporation is a savings and loan holding company, which","Charles Schwab Corporation is a savings and loan holding company, which",DEV,,True,False,,0.1824,460e95730f5e4f71
+861,company:Sanofi,Sanofi,DEV,,True,False,,0.4093,f3ce1fbedf82ab8d
+862,company:Santander,Santander,TEST,,True,False,,0.3601,b907dac46b95b32d
+863,company:Anthem,Anthem,TEST,,True,False,,0.291,072bbc6b6a227290
+864,company:Airbus Group,Airbus Group,DEV,,True,False,,0.2404,d43f35e664ecdf91
+865,company:Berkshire Hathaway,Berkshire Hathaway,TEST,,True,False,,0.2017,56c475ec3d0ca2cf
+866,company:Johnson & Johnson,Johnson & Johnson,DEV,,True,False,,0.2188,087ac2a7ad1e187b
+867,company:Verizon Communications,Verizon Communications,TEST,,True,False,,0.2405,15de882627191534
+868,"company:Medtronic is a holding company, which","Medtronic is a holding company, which",TEST,,True,False,,0.1743,1cd85747cc28a994
+869,company:Tesla,Tesla,TEST,,True,False,,0.238,a05a36224d342692
+870,"company:Chubb operates as a holding company, which","Chubb operates as a holding company, which",TEST,,True,False,,0.1636,dae64a794a69076e
+871,company:Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,DEV,,True,False,,0.1787,f6499a74d317a745
+872,company:Mitsubishi UFJ Financial Group,Mitsubishi UFJ Financial Group,TEST,,True,False,,0.2052,4be8be74956c6b53
+873,company:China Vanke,China Vanke,TEST,,True,False,,0.1698,94f4ae6307c7c7c9
+874,company:China Citic Bank,China Citic Bank,DEV,,True,False,,0.1985,b89cf127788fbb41
+875,company:KDDI,KDDI,DEV,,True,False,,0.256,23d74f06d129adf8
+876,company:Zurich Insurance,Zurich Insurance,TEST,,True,False,,0.2078,7b28e734334a4854
+877,company:E.ON,E.ON,DEV,,True,False,,0.4185,0bb49d8c7981af4d
+878,company:Glencore,Glencore,DEV,,True,False,,0.238,c5542be1905e8bbe
+879,company:ING Group,ING Group,TEST,,True,False,,0.2111,e6a102d0c8612e17
+880,company:British American Tobacco,British American Tobacco,TEST,,True,False,,0.2248,be07b6f0fa427e2f
+881,company:Electricite de France,Electricite de France,DEV,,True,False,,0.3125,47f5f850465e80b5
+882,company:Coca-Cola,Coca-Cola,TEST,,True,False,,0.2277,8f61d5fcbfd9bc4d
+883,company:Citigroup,Citigroup,TEST,,True,False,,0.1584,c2f9eb207d44eee9
+884,company:Toyota Motor,Toyota Motor,TEST,,True,False,,0.143,b5a3a804a16d3a2f
+885,company:Target,Target,TEST,,True,False,,0.1479,92e0e49bebd8b1a8
+886,company:Broadcom,Broadcom,TEST,,True,False,,0.3474,e3b7fc6629207b4c
+887,company:China State Construction Engineering,China State Construction Engineering,TEST,,True,False,,0.1546,809ad16331dd9440
+888,company:United Parcel Service,United Parcel Service,TEST,,True,False,,0.461,042aab95d2355185
+889,company:MetLife,MetLife,TEST,,True,False,,0.1639,362670478cd961b9
+890,"company:China Telecom is a health care services company, which","China Telecom is a health care services company, which",TEST,,True,False,,0.166,265ca43a29769abe
+891,company:PetroChina,PetroChina,TEST,,True,False,,0.1836,f392aa1d78301551
+892,company:Siemens,Siemens,TEST,,True,False,,0.3439,80be98d2f80772d9
+893,company:Sanofi,Sanofi,DEV,,True,False,,0.155,d18918f46b8b00d3
+894,company:Novartis,Novartis,TEST,,True,False,,0.2309,9a318cb029c58433
+895,company:Nippon Telegraph & Telephone,Nippon Telegraph & Telephone,TEST,,True,False,,0.1683,bd9811e9b550cf8c
+896,company:Bank of China,Bank of China,TEST,,True,False,,0.2313,a793abde67b03636
+897,company:Mitsubishi,Mitsubishi,TEST,,True,False,,0.2603,f4ec15185aae3a9c
+898,company:Walt Disney,Walt Disney,TEST,,True,False,,0.337,3cf4de3560920c73
+899,company:Charles Schwab Corporation,Charles Schwab Corporation,TEST,,True,False,,0.2929,2f1f17b7e68ed179
+900,company:Hon Hai Precision,Hon Hai Precision,TEST,,True,False,,0.1497,877341678478b72e
+901,company:Vale,Vale,DEV,,True,False,,0.1744,8595322d35c27cd9
+902,company:General Motors,General Motors,TEST,,True,False,,0.3381,9396a460c560daff
+903,company:China Mobile,China Mobile,DEV,,True,False,,0.2805,2ad6cf51facef54b
+904,company:Hyundai Motor,Hyundai Motor,TEST,,True,False,,0.1642,5eba1c5d27d8003f
+905,company:Bank of Nova Scotia,Bank of Nova Scotia,DEV,,True,False,,0.1612,8a168839a2709cbd
+906,company:ConocoPhillips,ConocoPhillips,TEST,,True,False,,0.1555,29639547b0edc22b
+907,company:ArcelorMittal,ArcelorMittal,TEST,,True,False,,0.2485,c1ae8fe122114e81
+908,company:RBC,RBC,TEST,,True,False,,0.2174,f187c860bbf786a4
+909,company:ConocoPhillips,ConocoPhillips,TEST,,True,False,,0.2601,bcbbcc44ef60e848
+910,company:Charles Schwab Corporation,Charles Schwab Corporation,TEST,,True,False,,0.1825,9c2cb718b1e2c311
+911,company:Manulife,Manulife,TEST,,True,False,,0.1608,845e1bc3baa3d6b7
+912,company:Rio Tinto,Rio Tinto,DEV,,True,False,,0.2867,6c4375065c649d06
+913,company:Itau Unibanco Holding,Itau Unibanco Holding,TEST,,True,False,,0.1962,853bf80b1c5691be
+914,company:Walgreens,Walgreens,TEST,,True,False,,0.2182,afda8b9433948fc9
+915,company:Wells Fargo,Wells Fargo,TEST,,True,False,,0.1524,c383c584fbf9a7e2
+916,company:Taiwan Semiconductor Manufacturing Company,Taiwan Semiconductor Manufacturing Company,TEST,,True,False,,0.1518,e6622684fb0f3bf2
+917,company:Deere & Company,Deere & Company,TEST,,True,False,,0.1551,3508b07c79a83864
+918,company:Itochu,Itochu,TEST,,True,False,,0.3072,530157a2e5fea5e3
+919,company:Intel,Intel,DEV,,True,False,,0.2473,057bc095888d0fc8
+920,company:Tokio Marine Holdings,Tokio Marine Holdings,TEST,,True,False,,0.2593,1f13cadc1e2ef6e1
+921,"company:PNC Financial Services is a holding company, which","PNC Financial Services is a holding company, which",TEST,,True,False,,0.1447,decac1b932897654
+922,company:Industrial Bank,Industrial Bank,TEST,,True,False,,0.2671,c5ff762cec52fe8c
+923,company:National Australia Bank,National Australia Bank,DEV,,True,False,,0.3652,3c3b582a3e344a3e
+924,company:China Merchants Bank,China Merchants Bank,TEST,,True,False,,0.1926,37ba90b7c1589486
+925,company:Bank of Nova Scotia,Bank of Nova Scotia,DEV,,True,False,,0.1845,b5c7ada595d33bb3
+926,company:Anglo American,Anglo American,DEV,,True,False,,0.3479,58f273bce9ef491c
+927,company:Danaher,Danaher,TEST,,True,False,,0.1589,1b42d8f9f89e0842
+928,company:HCA Healthcare,HCA Healthcare,TEST,,True,False,,0.2378,d627115f1a00b741
+929,company:Equinor,Equinor,DEV,,True,False,,0.3888,178ff56e78c3a489
+930,company:Saudi Arabian Oil Company (Saudi Aramco),Saudi Arabian Oil Company (Saudi Aramco),TEST,,True,False,,0.4593,034a6cd240c7012a
+931,company:Sony,Sony,DEV,,True,False,,0.1726,c51e89166334bcba
+932,company:Prudential Financial,Prudential Financial,TEST,,True,False,,0.2437,eb6e28af619e9c5d
+933,company:Truist Financial,Truist Financial,TEST,,True,False,,0.351,dc9a535d3e6d6995
+934,company:Deutsche Post,Deutsche Post,TEST,,True,False,,0.2577,2fe5a83e22fb8819
+935,company:FedEx,FedEx,TEST,,True,False,,0.1575,cad43450257cba21
+936,company:Taiwan Semiconductor Manufacturing Company,Taiwan Semiconductor Manufacturing Company,TEST,,True,False,,0.2226,860c791c4e03df31
+937,company:Broadcom,Broadcom,TEST,,True,False,,0.4988,79fb59cf9066ce06
+938,company:Roche Holding,Roche Holding,TEST,,True,False,,0.1304,b7ba638c3831e5d9
+939,company:Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,DEV,,True,False,,0.3391,40d6554ff9339b6b
+940,company:Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,TEST,,False,True,Shanghai,0.2918,121f3b56a0e5ea31
+941,company:Intesa Sanpaolo,Intesa Sanpaolo,DEV,,True,False,,0.2225,7c62c390956b8ce2
+942,company:China Construction Bank,China Construction Bank,TEST,,True,False,,0.3528,3fe88189038432bb
+943,company:Mitsui,Mitsui,TEST,,True,False,,0.1772,b7cbadcfda59a5a6
+944,company:Canadian Imperial Bank of Commerce,Canadian Imperial Bank of Commerce,DEV,,True,False,,0.292,d385675529b45f51
+945,company:SAP is an investment holding company that,SAP is an investment holding company that,DEV,,True,False,,0.264,d0cee2a00f6efde1
+946,company:HDFC Bank,HDFC Bank,DEV,,True,False,,0.1759,016e9171913e3a0a
+947,company:Merck & Co.,Merck & Co.,DEV,,True,False,,0.1871,eb18d89e87fd5beb
+948,company:Walgreens,Walgreens,TEST,,True,False,,0.2385,1c200e5e9cdfa10c
+949,company:MetLife,MetLife,TEST,,True,False,,0.2271,266967fa52390813
+950,company:Lloyds Banking Group,Lloyds Banking Group,TEST,,True,False,,0.2225,229434d8b015aa5c
+951,company:CNOOC is an investment holding company that,CNOOC is an investment holding company that,TEST,,True,False,,0.2658,a6d4b2248ddf4747
+952,company:LukOil,LukOil,TEST,,True,False,,0.2887,e126d8b19a128908
+953,company:Coca-Cola,Coca-Cola,TEST,,True,False,,0.156,67b8bee6c8b00ec9
+954,company:Intesa Sanpaolo,Intesa Sanpaolo,DEV,,True,False,,0.1669,e790a8d199095a4a
+955,"company:Duke Energy is a financial services company, which","Duke Energy is a financial services company, which",DEV,,True,False,,0.191,af4ddc3633602579
+956,company:CITIC,CITIC,DEV,,True,False,,0.1576,cf84115de39cc218
+957,"company:Roche Holding is a media, entertainment and communications company that","Roche Holding is a media, entertainment and communications company that",DEV,,True,False,,0.1742,a8666551685f98e6
+958,company:Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,DEV,,True,False,,0.1398,6bed0442dd94dc55
+959,company:China Telecom,China Telecom,TEST,,True,False,,0.2488,053e87c80464de04
+960,company:AT&T is a holding company that,AT&T is a holding company that,TEST,,True,False,,0.1581,ad9c9b4758cc42fa
+961,company:Coca-Cola,Coca-Cola,TEST,,True,False,,0.3783,49d0d050d7fec4b4
+962,company:Deutsche Telekom,Deutsche Telekom,DEV,,True,False,,0.3643,b334aab6444bc863
+963,company:Allianz,Allianz,TEST,,True,False,,0.2298,fe4708a9b31064ea
+964,company:AbbVie (ABBV),AbbVie (ABBV),DEV,,True,False,,0.3818,2d6df65c41fe28b8
+965,company:BlackRock,BlackRock,DEV,,True,False,,0.2438,3d3dd89621e0deb5
+966,company:Anheuser-Busch InBev,Anheuser-Busch InBev,TEST,,True,False,,0.5135,1d86b802a9a4df2e
+967,company:Agricultural Bank of China,Agricultural Bank of China,TEST,,True,False,,0.2986,82b326ed63886167
+968,company:Pfizer,Pfizer,DEV,,True,False,,0.1574,2676e320e5124519
+969,company:UnitedHealth Group,UnitedHealth Group,TEST,,True,False,,0.212,8ed4851bb53c588e
+970,company:SoftBank,SoftBank,DEV,,True,False,,0.3799,6d3fd2dcef7472f3
+971,company:Merck & Co.,Merck & Co.,DEV,,True,False,,0.1611,c4ecdbec5c6f1eac
+972,company:Morgan Stanley,Morgan Stanley,TEST,,True,False,,0.1605,dea9f2c022df4fc8
+973,company:Moller - Maersk,Moller - Maersk,TEST,,True,False,,0.1691,0d079f4e58ec555c
+974,company:American International Group,American International Group,TEST,,True,False,,0.1761,a98cbaf652b31536
+975,company:Munich Reinsurance,Munich Reinsurance,TEST,,False,True,Munich,0.4431,f543be7c7c115eba
+976,company:Allianz,Allianz,TEST,,True,False,,0.1417,b853c1ce74840ead
+977,company:Lowe's,Lowe's,TEST,,True,False,,0.1407,435769bcb0b8cce2
+978,company:PepsiCo,PepsiCo,TEST,,True,False,,0.1356,96d81a8544119009
+979,company:HDFC Bank,HDFC Bank,DEV,,True,False,,0.1402,49641b3eb96d0033
+980,company:PetroChina,PetroChina,TEST,,True,False,,0.19,8f139fcb345a0af0
+981,company:Thermo Fisher Scientific,Thermo Fisher Scientific,DEV,,True,False,,0.2188,42902dab065abce7
+982,company:BP,BP,TEST,,True,False,,0.1503,cdaf77456751dd0d
+983,company:Charles Schwab Corporation,Charles Schwab Corporation,TEST,,True,False,,0.1638,71a242cae67ddfd6
+984,company:E.ON,E.ON,DEV,,True,False,,0.3818,6756f0fb09bef59f
+985,company:Deere & Company,Deere & Company,TEST,,True,False,,0.3225,58fb18d304c5be64
+986,company:China Citic Bank,China Citic Bank,DEV,,True,False,,0.3955,3deb82b6491ac04a
+987,company:Itau Unibanco Holding,Itau Unibanco Holding,TEST,,True,False,,0.1594,8589159b2a04c366
+988,company:AIA Group,AIA Group,TEST,,True,False,,0.1834,93b86a380b7199fb
+989,company:Fubon Financial,Fubon Financial,DEV,,True,False,,0.1776,8ec42717a3fc43c4
+990,company:Postal Savings Bank of China,Postal Savings Bank of China,TEST,,True,False,,0.1461,03ea8cffea5d45de
+991,company:Stellantis,Stellantis,TEST,,True,False,,0.2578,e9b3cab8c838b63c
+992,company:China Construction Bank,China Construction Bank,TEST,,True,False,,0.1589,f8d5cff7c4264670
+993,company:Glencore,Glencore,DEV,,True,False,,0.2586,e64fd6d536ecda9e
+994,company:Broadcom,Broadcom,TEST,,True,False,,0.2727,516177a7d414dd1c
+995,company:CVS Health,CVS Health,TEST,,True,False,,0.1742,f8fa7c8a54b8ae4b
+996,company:Univlever,Univlever,TEST,,True,False,,0.2205,93ad5c2a3ceb81ff
+997,company:Public Joint Stock Company Gazprom,Public Joint Stock Company Gazprom,TEST,,True,False,,0.1844,43b1719f2bc4cf20
+998,company:Abbott Laboratories,Abbott Laboratories,TEST,,True,False,,0.2904,218031aea9cbbe06
+999,company:Lowe's,Lowe's,TEST,,True,False,,0.1706,e36e189a89d64376
+1000,company:Santander,Santander,TEST,,True,False,,0.2136,b0b5b1469ba36f79
+1001,company:Agricultural Bank of China,Agricultural Bank of China,TEST,,True,False,,0.241,0f4f49cb8b2579ed
+1002,company:Bank of China,Bank of China,TEST,,True,False,,0.1996,8318e5f0ec048f00
+1003,company:America Movil,America Movil,DEV,,True,False,,0.2258,55fd5f695bf3beb8
+1004,company:China Mobile,China Mobile,DEV,,True,False,,0.2439,eb509f462c318a77
+1005,company:Itochu,Itochu,TEST,,True,False,,0.2278,ba6668659b002248
+1006,company:Mercedes-Benz Group,Mercedes-Benz Group,TEST,,True,False,,0.2606,2012c502bf13c082
+1007,company:China Petroleum & Chemical,China Petroleum & Chemical,DEV,,True,False,,0.2553,46cbe0672c69fac6
+1008,company:SoftBank,SoftBank,DEV,,True,False,,0.1607,64d7a872684eccc6
+1009,company:Walt Disney,Walt Disney,TEST,,True,False,,0.1245,afc12cd9724a328c
+1010,company:Tokio Marine Holdings,Tokio Marine Holdings,TEST,,True,False,,0.331,f93ffa41cb9c40c9
+1011,company:China Vanke,China Vanke,TEST,,True,False,,0.1625,dd4042c2ea96b79b
+1012,company:Shell,Shell,TEST,,True,False,,0.1651,7a31c1c8c0d6979a
+1013,company:Alibaba Group,Alibaba Group,TEST,,True,False,,0.2974,c2d365479d42eda4
+1014,company:Santander,Santander,TEST,,True,False,,0.174,f8baf16119c99146
+1015,company:Commonwealth Bank of Australia,Commonwealth Bank of Australia,TEST,,True,False,,0.4246,5f71e7e01cdf7247
+1016,"company:E.ON is a holding company, which","E.ON is a holding company, which",DEV,,True,False,,0.1793,e43f0a106279b4c9
+1017,company:Charter Communications,Charter Communications,DEV,,True,False,,0.237,84a81680e46bd579
+1018,company:Saudi Arabian Oil Company (Saudi Aramco),Saudi Arabian Oil Company (Saudi Aramco),TEST,,True,False,,0.3096,6be54a18b780236c
+1019,company:Citigroup,Citigroup,TEST,,True,False,,0.3406,193f4423bc9544d0
+1020,company:Mitsui,Mitsui,TEST,,True,False,,0.3911,b8a001c049fda126
+1021,company:China Life Insurance,China Life Insurance,TEST,,True,False,,0.1734,c8cf8ece20459b99
+1022,company:Charter Communications,Charter Communications,DEV,,True,False,,0.252,2576070b09df0960
+1023,company:China Construction Bank,China Construction Bank,TEST,,True,False,,0.1755,63bd4d91b3b8cfb1
+1024,company:BASF,BASF,TEST,,True,False,,0.1725,f999dd302b8b9986
+1025,company:Alphabet,Alphabet,TEST,,True,False,,0.5065,e89aa7ad2d54675d
+1026,company:Berkshire Hathaway,Berkshire Hathaway,TEST,,True,False,,0.2169,f17d046ee07caf62
+1027,company:Public Joint Stock Company Gazprom,Public Joint Stock Company Gazprom,TEST,,True,False,,0.2019,f08c74468e4fcbe8
+1028,company:Lockheed Martin,Lockheed Martin,TEST,,True,False,,0.149,36695fbe9a934340
+1029,company:Stellantis,Stellantis,TEST,,True,False,,0.226,c904d8dfa39f2182
+1030,company:Deutsche Telekom,Deutsche Telekom,DEV,,True,False,,0.1746,1a3031920e124093
+1031,company:AT&T,AT&T,TEST,,True,False,,0.4409,03136620523c267a
+1032,company:Accenture,Accenture,TEST,,True,False,,0.16,90686a2485bc2791
+1033,company:Moller - Maersk,Moller - Maersk,TEST,,True,False,,0.4531,39e89e9d6ca30d0e
+1034,company:Mitsui,Mitsui,TEST,,True,False,,0.1929,27adb6e1ae829ee4
+1035,company:Goldman Sachs Group,Goldman Sachs Group,TEST,,True,False,,0.2203,751f0b9214d493a0
+1036,company:China Telecom,China Telecom,TEST,,True,False,,0.2118,845846d94940ae25
+1037,company:Japan Post Holdings,Japan Post Holdings,TEST,,True,False,,0.3058,27023dd12cc9fa62
+1038,company:Lloyds Banking Group is a holding company that,Lloyds Banking Group is a holding company that,TEST,,True,False,,0.197,70fcdbddf8600ff0
+1039,company:United Parcel Service,United Parcel Service,TEST,,True,False,,0.2003,5cc084161a020665
+1040,company:IBM,IBM,TEST,,True,False,,0.1376,acd1b8fadfe80a6f
+1041,company:Toronto-Dominion Bank,Toronto-Dominion Bank,TEST,,True,False,,0.2324,cdcc30c366498aaa
+1042,company:Banco Bradesco,Banco Bradesco,DEV,,True,False,,0.2662,3ae95229750c107e
+1043,company:Allianz,Allianz,TEST,,True,False,,0.1562,88d858b2d0f8430b
+1044,company:Industrial Bank,Industrial Bank,TEST,,True,False,,0.3483,e1a2778659b8fe0d
+1045,company:Commonwealth Bank of Australia,Commonwealth Bank of Australia,TEST,,True,False,,0.5684,8aafe9a04e1d0803
+1046,company:Intesa Sanpaolo,Intesa Sanpaolo,DEV,,True,False,,0.2281,ff7749ffd3834c15
+1047,"company:BBVA is a banking services company, which","BBVA is a banking services company, which",DEV,,True,False,,0.1774,67a7b73d4b661651
+1048,company:Amazon.com,Amazon.com,TEST,,True,False,,0.2345,7edc5961bd08f9f3
+1049,company:SK Hynix,SK Hynix,TEST,,True,False,,0.2152,932d4286bf87b9af
+1050,company:Oracle,Oracle,DEV,,True,False,,0.162,cc9b80cfeb9b21c2
+1051,company:UBS Group,UBS Group,DEV,,True,False,,0.2542,cf9bbe5264a4bde1
+1052,company:Tokio Marine Holdings,Tokio Marine Holdings,TEST,,True,False,,0.168,7be0b5ea08a2c9fa
+1053,company:Santander,Santander,TEST,,True,False,,0.1778,f0ffd0a207d662f8
+1054,"company:Bank of America is a bank and financial holding company, which","Bank of America is a bank and financial holding company, which",TEST,,True,False,,0.1591,c0c761a7e8f6a1ca
+1055,company:ConocoPhillips,ConocoPhillips,TEST,,True,False,,0.1402,efbfadb09503e87a
+1056,company:Deutsche Telekom,Deutsche Telekom,DEV,,True,False,,0.1746,3568e5ece8b6a182
+1057,company:Reliance Industries,Reliance Industries,TEST,,True,False,,0.1534,76f9bbaa882dd85f
+1058,company:Samsung Group,Samsung Group,DEV,,True,False,,0.2423,ccd1e0a1a08469a4
+1059,company:Microsoft,Microsoft,DEV,,True,False,,0.2504,96696768b754ed8e
+1060,company:Meta Platforms,Meta Platforms,TEST,,True,False,,0.1539,547bb01216a31013
+1061,company:SAP,SAP,TEST,,True,False,,0.147,b1a4aa8f038564e6
+1062,company:LukOil operates as a holding company that,LukOil operates as a holding company that,TEST,,True,False,,0.1635,705ffa76125626eb
+1063,company:Taiwan Semiconductor Manufacturing Company,Taiwan Semiconductor Manufacturing Company,TEST,,True,False,,0.2337,ecf6ed3f43631d9c
+1064,company:LVMH Moet Hennessy Louis Vuitton,LVMH Moet Hennessy Louis Vuitton,TEST,,True,False,,0.3231,b7284b0d88447dde
+1065,company:Mercedes-Benz Group,Mercedes-Benz Group,TEST,,True,False,,0.2095,82111def12f6dc6d
+1066,company:Johnson & Johnson,Johnson & Johnson,DEV,,True,False,,0.1923,05c14b806564df01
+1067,company:U.S. Bancorp,U.S. Bancorp,TEST,,True,False,,0.1519,38b503573657f73b
+1068,company:Hitachi,Hitachi,DEV,,True,False,,0.4139,bfa8a1f7e6cd4afb
+1069,company:Bank of Montreal,Bank of Montreal,DEV,,True,False,,0.171,c9dd603d1ae75bac
+1070,company:Medtronic,Medtronic,TEST,,True,False,,0.1923,810c7906283270e9
+1071,company:BNP Paribas,BNP Paribas,DEV,,True,False,,0.3866,0f5fc1e5816bf7d3
+1072,company:China Petroleum & Chemical,China Petroleum & Chemical,DEV,,True,False,,0.2553,74f1e865d769ecb2
+1073,company:IBM,IBM,TEST,,True,False,,0.3013,b9a044df39089717
+1074,company:China Petroleum & Chemical,China Petroleum & Chemical,DEV,,True,False,,0.3062,2c92518c5a75f018
+1075,company:Mizuho Financial,Mizuho Financial,TEST,,True,False,,0.2016,19b14a60179c9ce9
+1076,company:AXA operates as a holding company that,AXA operates as a holding company that,TEST,,True,False,,0.1635,25f62c10722c8e05
+1077,company:Cisco Systems,Cisco Systems,TEST,,True,False,,0.1733,e7f1416a7e1a0728
+1078,company:Bank of Communications,Bank of Communications,TEST,,True,False,,0.202,dd91b36a70355313
+1079,company:Honda Motor,Honda Motor,DEV,,True,False,,0.2068,d29c92fd0104c0b6
+1080,company:Allianz,Allianz,TEST,,True,False,,0.328,422535c37a18664c
+1081,company:Duke Energy,Duke Energy,TEST,,True,False,,0.2315,1e5fb5d775ef0898
+1082,company:HDFC Bank,HDFC Bank,DEV,,True,False,,0.1069,9400af167683677c
+1083,company:Munich Reinsurance,Munich Reinsurance,TEST,,False,True,Munich,0.4328,99b1c1c164ec025c
+1084,company:PetroChina,PetroChina,TEST,,True,False,,0.3593,978dc6b7d639ad71
+1085,company:U.S. Bancorp,U.S. Bancorp,TEST,,True,False,,0.1701,144085e256f3f2ab
+1086,company:Danaher,Danaher,TEST,,True,False,,0.2147,dc7ecacaba6fa0b6
+1087,company:Mizuho Financial,Mizuho Financial,TEST,,True,False,,0.3094,dbff295b7b3c69c1
+1088,company:Equinor,Equinor,DEV,,True,False,,0.4186,82624249166d1bf2
+1089,company:Toyota Motor,Toyota Motor,TEST,,True,False,,0.152,78a5d5095a691005
+1090,company:Walmart,Walmart,TEST,,True,False,,0.3939,45de0f564586ad8c
+1091,company:Univlever,Univlever,TEST,,True,False,,0.1902,7284cae7a39594e1
+1092,company:Charles Schwab Corporation,Charles Schwab Corporation,TEST,,True,False,,0.3086,08390ed703ea88ce
+1093,company:Sumitomo Mitsui Financial is a holding company that,Sumitomo Mitsui Financial is a holding company that,DEV,,True,False,,0.1588,ea4f510c2f0d8c36
+1094,company:Caterpillar,Caterpillar,TEST,,True,False,,0.3583,eaaca75bd24fcbdc
+1095,company:Enbridge,Enbridge,TEST,,True,False,,0.1741,55cb1d7f407c2e76
+1096,company:Anthem,Anthem,TEST,,True,False,,0.1903,187504c231c150f9
+1097,company:Cisco Systems,Cisco Systems,TEST,,True,False,,0.1857,a1ff97e4ea1b0d84
+1098,company:Walgreens,Walgreens,TEST,,True,False,,0.2295,6dcfa7ad558beb67
+1099,company:China Merchants Bank,China Merchants Bank,TEST,,True,False,,0.1724,0506e823f14e38bc
+1100,company:Duke Energy,Duke Energy,TEST,,True,False,,0.266,bedd0a5ce453ad45
+1101,company:ING Group,ING Group,TEST,,True,False,,0.1567,a344b27223cda0dc
+1102,company:Oracle,Oracle,DEV,,True,False,,0.1928,1fd81a8b51fb4865
+1103,company:Banco Bradesco,Banco Bradesco,DEV,,True,False,,0.2397,1cc5dd0dc3930e78
+1104,company:Bank of Nova Scotia,Bank of Nova Scotia,DEV,,True,False,,0.2393,dfcb2cf4751d348c
+1105,company:Mitsubishi,Mitsubishi,TEST,,True,False,,0.3737,b9c56c8313c72290
+1106,"company:Berkshire Hathaway operates as a financial holding company, which","Berkshire Hathaway operates as a financial holding company, which",TEST,,True,False,,0.2159,81db4e4f8c321a2f
+1107,company:National Australia Bank,National Australia Bank,DEV,,True,False,,0.2511,b56b3eb2b2d3e7c1
+1108,company:Westpac Banking,Westpac Banking,TEST,,True,False,,0.2023,7948c13922d6d187
+1109,company:Japan Post Holdings,Japan Post Holdings,TEST,,True,False,,0.1728,4f696b5a7cc2f9eb
+1110,company:ING Group,ING Group,TEST,,True,False,,0.267,a653efa35c712ca0
+1111,company:Goldman Sachs Group,Goldman Sachs Group,TEST,,True,False,,0.2664,c4646d1eff5100c6
+1112,company:Volkswagen Group,Volkswagen Group,TEST,,True,False,,0.3011,ed479aef0002c383
+1113,company:Poly Developments & Holdings Group,Poly Developments & Holdings Group,TEST,,True,False,,0.2111,c96cfaa931084a48
+1114,company:Enel,Enel,DEV,,True,False,,0.3112,4ef864a4ace254fa
+1115,company:Visa,Visa,TEST,,True,False,,0.2393,86d2a18aa2adaac4
+1116,company:Petrobras,Petrobras,TEST,,True,False,,0.1777,167fe3a1e9b01af3
+1117,company:Commonwealth Bank of Australia,Commonwealth Bank of Australia,TEST,,True,False,,0.4038,3e6a6f0695a7cff5
+1118,company:Danaher,Danaher,TEST,,True,False,,0.1618,1856a10aacbebd8c
+1119,company:Bristol Myers Squibb,Bristol Myers Squibb,DEV,,True,False,,0.3708,e18202e068f82e3a
+1120,"company:China Citic Bank is a commercial bank, which","China Citic Bank is a commercial bank, which",TEST,,True,False,,0.191,75d52c85d3698c93
+1121,company:Amazon.com,Amazon.com,TEST,,True,False,,0.3826,479973dcacb135c5
+1122,company:Mercedes-Benz Group,Mercedes-Benz Group,TEST,,True,False,,0.1967,9926e6b1bfce6107
+1123,company:CVS Health,CVS Health,TEST,,True,False,,0.4152,608203f3925b0725
+1124,company:Accenture,Accenture,TEST,,True,False,,0.2653,c0449c3654554e5a
+1125,company:Cisco Systems,Cisco Systems,TEST,,True,False,,0.1995,63b32ce69b1d0951
+1126,company:Industrial and Commercial Bank of China,Industrial and Commercial Bank of China,DEV,,True,False,,0.1359,bf014b9c450c786c
+1127,company:BBVA,BBVA,TEST,,True,False,,0.4409,a8e62f6c73b4a506
+1128,"company:Mitsubishi UFJ Financial Group is a commercial bank, which","Mitsubishi UFJ Financial Group is a commercial bank, which",TEST,,True,False,,0.1702,8991df16486b7817
+1129,company:JPMorgan Chase,JPMorgan Chase,TEST,,True,False,,0.1565,bb1199d509f6905e
+1130,company:Fubon Financial,Fubon Financial,DEV,,True,False,,0.3054,277490ca863477bf
+1131,company:British American Tobacco,British American Tobacco,TEST,,True,False,,0.2454,dc107bd8b6792c1b
+1132,company:Walmart,Walmart,TEST,,True,False,,0.1133,5f8482e59b986053
+1133,company:Bristol Myers Squibb,Bristol Myers Squibb,DEV,,True,False,,0.1297,0a8bbdc113258717
+1134,company:Amazon.com,Amazon.com,TEST,,True,False,,0.2644,16c9e17f08a0e024
+1135,company:LukOil,LukOil,TEST,,True,False,,0.1503,ce4b6c719bfdc7f1
+1136,company:Microsoft,Microsoft,DEV,,True,False,,0.3284,d4c9a6d46b282147
+1137,company:Wells Fargo,Wells Fargo,TEST,,True,False,,0.1573,fd6beb81f21960d4
+1138,company:Merck & Co.,Merck & Co.,DEV,,True,False,,0.3552,30b1e4ef1b583725
+1139,company:Walmart,Walmart,TEST,,True,False,,0.1668,9f8f1ca6fe5d5c4c
+1140,company:ArcelorMittal,ArcelorMittal,TEST,,True,False,,0.1492,7cc4d11765bc89b1
+1141,company:Exxon Mobil,Exxon Mobil,TEST,,True,False,,0.1634,2ec2ef918be1f167
+1142,company:Airbus Group,Airbus Group,DEV,,True,False,,0.2072,691f443333498e83
+1143,company:SAP,SAP,TEST,,True,False,,0.4239,75387b362be0ec4f
+1144,company:Commonwealth Bank of Australia,Commonwealth Bank of Australia,TEST,,True,False,,0.3423,d19ca8c285b2af68
+1145,company:BlackRock,BlackRock,DEV,,True,False,,0.2289,37641012e39b6203
+1146,company:Shanghai Pudong Development Bank,Shanghai Pudong Development Bank,TEST,,False,True,Shanghai,0.5473,e453f333041fad90
+1147,"company:Canadian Imperial Bank of Commerce is a financial institution, which","Canadian Imperial Bank of Commerce is a financial institution, which",TEST,,True,False,,0.1408,c4b5730a2b3fd736
+1148,company:Cisco Systems,Cisco Systems,TEST,,True,False,,0.3802,defc7650059766f6
+1149,company:PetroChina,PetroChina,TEST,,True,False,,0.2916,b963b73babb7edce
+1150,company:Deere & Company,Deere & Company,TEST,,True,False,,0.4359,9226a03c1675df6e
+1151,company:State Bank of India,State Bank of India,DEV,,True,False,,0.2976,a7f5d763d46d4347
+1152,company:The Home Depot,The Home Depot,TEST,,True,False,,0.2319,cf2b53c1b6c1f0d1
+1153,company:AXA,AXA,TEST,,True,False,,0.4409,2a8c307d504b039e
+1154,company:Airbus Group,Airbus Group,DEV,,True,False,,0.2501,9f8fefefc283b0fd
+1155,company:Cigna Corporation,Cigna Corporation,TEST,,True,False,,0.3554,d7ca04b1844e69d2
+1156,company:RBC,RBC,TEST,,True,False,,0.1595,fdbe624a9daac5b5
+1157,company:Bank of Montreal,Bank of Montreal,DEV,,True,False,,0.1279,ef0d649d2130d9b1
+1158,company:BASF,BASF,TEST,,True,False,,0.2458,06d342a65ec0b013
+1159,company:Poly Developments & Holdings Group,Poly Developments & Holdings Group,TEST,,True,False,,0.1879,33276819c48e5de1
+1160,company:Zurich Insurance,Zurich Insurance,TEST,,True,False,,0.1902,be10c53b5e3d230d
+1161,company:Enbridge,Enbridge,TEST,,True,False,,0.1433,bb86ab4f794f57ed
+1162,company:Tencent Holdings,Tencent Holdings,TEST,,True,False,,0.2093,affa0ae98ee3eb87
+1163,company:Bank of Communications,Bank of Communications,TEST,,True,False,,0.232,debdd50b772a1f56
+1164,company:Hyundai Motor,Hyundai Motor,TEST,,True,False,,0.2668,cd2b82d7e0604c7a
+1165,company:BP,BP,TEST,,True,False,,0.2221,700061693fe1d753
+1166,company:Rosneft,Rosneft,TEST,,True,False,,0.1468,425677b442182f09
+1167,company:HCA Healthcare,HCA Healthcare,TEST,,True,False,,0.1529,2cfd82401f063e91
+1168,company:Anglo American,Anglo American,DEV,,True,False,,0.2306,fcf6a3fbfbbeede1
+1169,company:Postal Savings Bank of China,Postal Savings Bank of China,TEST,,True,False,,0.1966,e3ce65119a46af88
+1170,"company:Iberdrola is a holding company, which","Iberdrola is a holding company, which",TEST,,True,False,,0.1885,d3eb661947741184
+1171,company:Enbridge,Enbridge,TEST,,True,False,,0.1596,36b322f6470c0e1b
+1172,company:Manulife is a financial services company that,Manulife is a financial services company that,TEST,,True,False,,0.2564,a670b9bf1e5be13d
+1173,company:BASF,BASF,TEST,,True,False,,0.3687,5b3a7bbb255598b0
+1174,company:BASF,BASF,TEST,,True,False,,0.2417,db1147bebd27233d
+1175,"company:ArcelorMittal is a holding company, which","ArcelorMittal is a holding company, which",TEST,,True,False,,0.2015,91ff994bc5df055d
+1176,company:GlaxoSmithKline,GlaxoSmithKline,TEST,,True,False,,0.1416,a97ac18af519cbb6
+1177,company:U.S. Bancorp,U.S. Bancorp,TEST,,True,False,,0.1899,4df9084dc640cda4
+1178,company:Pfizer,Pfizer,DEV,,True,False,,0.2174,ba86706dc3756caf
+1179,company:Walgreens,Walgreens,TEST,,True,False,,0.1664,280b4e4bb3d328da
+1180,company:Dow is a holding company that,Dow is a holding company that,TEST,,True,False,,0.183,927b057682b41a1f
+1181,company:Credit Agricole,Credit Agricole,TEST,,True,False,,0.1413,dc6137f4f7ddc50c
+1182,company:Thermo Fisher Scientific,Thermo Fisher Scientific,DEV,,True,False,,0.3165,cf66a9681e3ed88d
+1183,company:American Express operates as a bank holding company that,American Express operates as a bank holding company that,DEV,,True,False,,0.1358,b461b96cc98edb01
+1184,company:Rio Tinto,Rio Tinto,DEV,,True,False,,0.4422,6e9d572dc4cfefd6
+1185,company:ING Group,ING Group,TEST,,True,False,,0.2433,ceda99a2d65d8b0c
+1186,company:Sanofi,Sanofi,DEV,,True,False,,0.3568,a901092b61dc35ba
+1187,company:VINCI,VINCI,TEST,,True,False,,0.2279,e56a254bc6ec2dbc
+1188,company:Tencent Holdings,Tencent Holdings,TEST,,True,False,,0.2016,796965a5b72eb019
+1189,company:U.S. Bancorp,U.S. Bancorp,TEST,,True,False,,0.4301,d98266c781dadb55
+1190,company:China Merchants Bank,China Merchants Bank,TEST,,True,False,,0.2763,679eb55494fcd012
+1191,company:Samsung Group,Samsung Group,DEV,,True,False,,0.1628,ba7db6270d66c2a9
+1192,company:BHP Group,BHP Group,TEST,,True,False,,0.253,5af094f7bf14a92a
+1193,company:Comcast,Comcast,DEV,,True,False,,0.1672,73a511026be4ad91
+1194,company:Comcast,Comcast,DEV,,True,False,,0.1455,a462fc045769cc2f
+1195,company:Prudential Financial,Prudential Financial,TEST,,True,False,,0.2506,94ae3aa06ebc0536
+1196,company:Hon Hai Precision,Hon Hai Precision,TEST,,True,False,,0.245,2dd86457c66d6a90
+1197,company:Eni,Eni,TEST,,True,False,,0.1475,f1af6786290d3eb4
+1198,"company:CITIC is an investment holding company, which","CITIC is an investment holding company, which",TEST,,True,False,,0.1361,1b1439b13fafc44e
+1199,company:China Shenhua Energy,China Shenhua Energy,TEST,,True,False,,0.2661,b72047f4530a69b5

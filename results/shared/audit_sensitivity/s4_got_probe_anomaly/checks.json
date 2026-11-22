@@ -1,0 +1,19 @@
+{
+  "test_rows_used": 0,
+  "bag_of_words_max_auroc": 0.5486288265306123,
+  "lexical_shortcut": false,
+  "pooling_artefact_layers": [],
+  "pipeline_leak_layers": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    11
+  ],
+  "pooled_linear_suppression_layers_posthoc": [
+    1,
+    2
+  ],
+  "runtime_s": 233.99206614494324
+}

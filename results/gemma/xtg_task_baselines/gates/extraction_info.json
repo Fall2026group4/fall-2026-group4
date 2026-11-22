@@ -1,0 +1,42 @@
+{
+ "got": {
+  "cities": {
+   "n": 1496,
+   "source_sha256": "f2560a0c1758c69935b50125111b574b71896bb75930dd87b1d8c973c1fa086e"
+  },
+  "neg_cities": {
+   "n": 1496,
+   "source_sha256": "66c5c84de98ca15570138c205ab0e3907b57750083fac72a4eacafc3d9ebcea7"
+  },
+  "larger_than": {
+   "n": 1980,
+   "source_sha256": "406d6872e97910f3af5a031600d4932b5a567b8666e7545c8b446057471ad723"
+  },
+  "smaller_than": {
+   "n": 1980,
+   "source_sha256": "ee6b7cf668d7e0fb3f49a84ca8d510cb7e484ae029ef86ed238362e26ef61a44"
+  },
+  "companies_true_false": {
+   "n_dev": 341,
+   "split_sha256": "2b65934710d71d7b98c60c4f5ad15205cf2539d653c95a8b2a2a52e3abcd0cb6"
+  },
+  "common_claim_true_false": {
+   "n_dev": 1347,
+   "split_sha256": "63ea6313a52086e72c8230d8afab5cdc82e0e698d4064d4d57471e67d7b50ec5"
+  }
+ },
+ "repe_lm": {
+  "n_rows": 10120,
+  "prompts_sha256": "48659223fc79b96787992baa4dc6909d3eed4ef90e688e44be93eac5d9ed4306",
+  "n_rows_filled": 10120
+ },
+ "owt": {
+  "n_train_tokens": 101600,
+  "n_val_tokens": 12700
+ },
+ "minutes": 26.92,
+ "script_sha256": "88ccc4cd444f3bf57ce3bd20ccebbcd0c12880b0121ebd2e47b8b3949f2b25bc",
+ "backends_sha256": "9f60bbbbbf9a073ddb4e366f271040ff984e41db831d2fb4df7843cf280cc1a4",
+ "dtype_stored": "float16",
+ "site": "resid_post"
+}

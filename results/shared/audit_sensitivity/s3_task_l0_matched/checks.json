@@ -1,0 +1,8 @@
+{
+  "test_rows_used": 0,
+  "n_saes": 54,
+  "n_comparisons": 57,
+  "n_l0_sensitive": 3,
+  "n_unmatched": 6,
+  "runtime_s": 2008.0437579154968
+}

@@ -1,0 +1,16 @@
+{
+  "script": "scripts/shared/audit_s1_statement_uncertainty.py",
+  "B": 2000,
+  "boot_seed": 20261113,
+  "test_rows_used": 0,
+  "max_reproduction_abs_diff": {
+    "m4__preservation_rec": 1.8937868041524197e-06,
+    "owt_nmse": 9.616694879310828e-08,
+    "repe_persona__refit_logistic_gap": 0.0,
+    "rlm__pair_dir_cosine": 0.0,
+    "splice_delta_ce": 1.1504642546955601e-07
+  },
+  "n_h1_supported": 9,
+  "n_m5_supported": 16,
+  "runtime_s": 392.08689045906067
+}

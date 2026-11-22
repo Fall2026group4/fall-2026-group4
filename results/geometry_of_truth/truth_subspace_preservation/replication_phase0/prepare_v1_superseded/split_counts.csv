@@ -1,0 +1,15 @@
+family,role,split,rows,groups,entities,usable_rows,usable_entities,p2_primary_rows,p2_primary_entities,excl_entity_in_dev,excl_exposed_test_city,excl_near_duplicate_of_project_text,excl_exact_duplicate_of_project_text,mentions_project_city
+sp_en_trans,independent,DEV,117,113,113,117,113,117,113,0,0,0,0,0
+sp_en_trans,independent,TEST,237,231,231,237,231,237,231,0,0,0,0,0
+neg_sp_en_trans,independent,DEV,117,113,113,117,113,117,113,0,0,0,0,0
+neg_sp_en_trans,independent,TEST,237,231,231,237,231,237,231,0,0,0,0,0
+companies_true_false,independent,DEV,353,86,86,353,86,353,86,0,0,0,0,0
+companies_true_false,independent,TEST,847,206,206,847,206,835,204,0,0,0,0,12
+common_claim_true_false,independent,DEV,1352,1352,1,1347,1,1344,1,0,3,2,0,6
+common_claim_true_false,independent,TEST,3098,3095,1,3085,1,3076,1,0,2,8,3,11
+counterfact_true_false,independent,DEV,9598,7,4731,9356,4714,8756,4625,0,242,0,0,842
+counterfact_true_false,independent,TEST,22366,19,10441,21540,10195,20573,10001,446,378,2,0,1363
+cities_cities_conj,secondary,DEV,441,440,440,331,330,0,0,0,110,0,0,441
+cities_cities_conj,secondary,TEST,1057,1053,1055,65,65,0,0,707,285,0,0,1057
+cities_cities_disj,secondary,DEV,470,469,470,341,341,0,0,0,129,0,0,470
+cities_cities_disj,secondary,TEST,1028,1024,1025,70,69,0,0,677,281,0,0,1028

@@ -1,0 +1,101 @@
+{
+  "assumptions": {
+    "power": 0.8,
+    "alpha_two_sided_holm_worst": 0.025,
+    "sd_seed_paired": 0.0035,
+    "stmt_se_proxy": "bootstrap sd on DEV of the paired difference in re-fit gap between two R2 base seeds, scaled by sqrt(DEV entities / TEST entities); conservative (different base seeds differ more than tsp vs ctrl fine-tunes of one base)"
+  },
+  "families": {
+    "companies_true_false": {
+      "eligible": true,
+      "dev_auroc_L8": 0.7911,
+      "test_units": 204,
+      "r2_refit_gap_mean": 0.0225,
+      "r2_refit_gap_per_seed": [
+        -0.0137,
+        0.053,
+        0.0281
+      ],
+      "r2_frozen_gap_mean": 0.0734,
+      "r2_frozen_gap_per_seed": [
+        0.0487,
+        0.0918,
+        0.0797
+      ],
+      "test_stmt_se_proxy": 0.0106,
+      "mde_5seeds": 0.033,
+      "mde_5seeds_optimistic_half_se": 0.0165,
+      "mde_8seeds": 0.0329,
+      "mde_8seeds_optimistic_half_se": 0.0164
+    },
+    "common_claim_true_false": {
+      "eligible": true,
+      "dev_auroc_L8": 0.7075,
+      "test_units": 3070,
+      "r2_refit_gap_mean": 0.001,
+      "r2_refit_gap_per_seed": [
+        -0.0014,
+        -0.0026,
+        0.0069
+      ],
+      "r2_frozen_gap_mean": 0.0016,
+      "r2_frozen_gap_per_seed": [
+        0.0053,
+        0.0001,
+        -0.0007
+      ],
+      "test_stmt_se_proxy": 0.0044,
+      "mde_5seeds": 0.0145,
+      "mde_5seeds_optimistic_half_se": 0.0072,
+      "mde_8seeds": 0.0142,
+      "mde_8seeds_optimistic_half_se": 0.0071
+    },
+    "counterfact_true_false": {
+      "eligible": false,
+      "dev_auroc_L8": 0.625,
+      "test_units": 10001,
+      "r2_refit_gap_mean": 0.0095,
+      "r2_refit_gap_per_seed": [
+        -0.0088,
+        0.012,
+        0.0253
+      ],
+      "r2_frozen_gap_mean": 0.0327,
+      "r2_frozen_gap_per_seed": [
+        0.0246,
+        0.0357,
+        0.0377
+      ],
+      "test_stmt_se_proxy": 0.0022,
+      "mde_5seeds": 0.0084,
+      "mde_5seeds_optimistic_half_se": 0.0042,
+      "mde_8seeds": 0.0079,
+      "mde_8seeds_optimistic_half_se": 0.004
+    }
+  },
+  "pooled_fixed_effect_5seeds": {
+    "se": 0.0043,
+    "mde": 0.0133,
+    "weight_companies": 0.162
+  },
+  "pooled_fixed_effect_8seeds": {
+    "se": 0.0042,
+    "mde": 0.013,
+    "weight_companies": 0.157
+  },
+  "pooled_random_effects_k2": "Hartung-Knapp df = 1 (t crit 12.7): MDE > 0.1; tau^2 not estimable with 2 families. The pre-drafted random-effects P2 is not feasible.",
+  "P1_cities_crossfit": {
+    "groups": 635,
+    "statements": 2540,
+    "power_at_observed_-0.020_frozen_rule": {
+      "5seeds_500groups": 0.863,
+      "8seeds_500groups": 0.969,
+      "8seeds_1000groups": 0.9998
+    },
+    "power_at_SESOI_-0.010": {
+      "8seeds_500groups": 0.317,
+      "8seeds_1000groups": 0.639
+    },
+    "source": "verification/power.csv (pilot frozen rule, conservative); 635 groups lies between the 500 and 1000 rows"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "status": "FROZEN before any Phase 1 SAE is trained or evaluated (second freeze, D42)",
+  "date": "2026-11-15",
+  "hashes": {
+    "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "1da498563a34c69b6149ffe16be54165bf2228a79b6aa1f84b0d53e8e5efae8a",
+    "scripts/geometry_of_truth/31b_tsp_r_eval_integration_test.py": "8cc93481202053809107de01b6cae060851901ff5c1db0a95d2881d007865792",
+    "src/evaluation/tspr_stats.py": "e3eb4593887875a29d955264e7700961118f9d9083a2d9d8fa4dfdc40f634fd6",
+    "src/tests/test_tspr_stats.py": "2984290268d8158e2a3bda8870b9eb16bc5c11c906b66cd85e4dbe66beb0beb8",
+    "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8"
+  },
+  "preregistration_sha256": "4fff8f1a9f4259a75f19dffb45bc9690dbbecdec00df73b8cf609545d7553ff3",
+  "unit_tests": "src/tests/test_tspr_stats.py: 7 passed (AUROC with weights/ties vs sklearn, cluster bootstrap, Satterthwaite, gatekeeping/Holm, labels, non-inferiority, zero variance)",
+  "integration_test": {
+    "file": "eval_integration_test.json",
+    "passed": true,
+    "attempts": [
+      "1: crashed (division by zero when se = 0 for identical arms) -> fixed in tspr_stats._p, unit test added",
+      "1 (resume): decoder-noise arm raised NMSE 0.096 -> 0.225 but improved re-fit gaps slightly; test assumption wrong, not the code -> replaced by a null decoder",
+      "2: all checks correct except an arbitrary 0.1 threshold in the assertion (mass-mean gap +0.052, CI > 0) -> assertion set to CI lower > 0",
+      "2 (resume from cache): passed"
+    ]
+  },
+  "untested_paths": "stage_test / stage_final computations (only the refusal before commit is tested; running them reads TEST). stage_ladder is the unchanged shared harness used by the pilot.",
+  "implementation_notes": {
+    "ladder guard uncertainty": "ladder exposes per-SAE CIs, not per-item values: statement variance of the paired difference = mean over seeds of se_tsp^2 + se_ctrl^2 (conservative: perfect correlation across seeds, independence between arms)",
+    "two-way bootstrap": "4,000 draws: seeds resampled with replacement x one of the 2,000 shared city resamples",
+    "relative guards": "per seed mean over folds of (tsp/ctrl - 1); sequence bootstrap (2,000) on the OWT validation cache"
+  }
+}

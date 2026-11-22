@@ -78,10 +78,14 @@ Model: outcome ~ β·predictor + layer FE + architecture FE + log L0. β is per 
   * Break-even elasticities are 2.0–15, far above the observed values.
 * **After the L0 adjustment no ranking changes** except two near-ties: TopK vs JumpReLU at layers 9 and 10
   (|difference| ≤ 1.2 % before and after).
-* **Effective width differs a lot** (live latents of 3072):
+* **Effective width differs a lot** (live latents of 3072; ranges of per-layer seed means over L0-matched runs,
+  `architecture_by_layer.csv`, `live_latents_mean`):
   * ReLU 2920–3063;
   * TopK 1711–2851;
-  * JumpReLU 469 (layer 0) to 2947.
+  * JumpReLU 469 (layer 0) to 2941 (layer 10).
+  * *Correction 2026-11-15:* the JumpReLU upper bound previously read 2947, a transcription error. The value in
+    `architecture_by_layer.csv` is 2941.0, unchanged. No result changed. Found by the dead-latent audit
+    (`docs/DEAD_LATENT_AUDIT.md`).
 * **Task-prompt L0 is not matched** (GoT final tokens):
   * TopK 128;
   * ReLU 8–110;

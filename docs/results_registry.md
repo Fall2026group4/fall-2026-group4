@@ -30,7 +30,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | GPT-2 improved SAEs (R2), reconstruction and behaviour, **CONFIRMED TEST** (M5, 2026-11-10) | Old vs R2 SAEs at L1/L8/L11: NMSE −31 to −74 %, spliced ΔCE −35 to −79 %; R4 KL fine-tune ΔCE −16 to −17 %; GoT information unchanged; single pre-registered run. Test rows previously scored for the old reference SAEs only (D31); independently re-verified in `docs/final_defense/EXPERIMENT_AUDIT.md` | `results/shared/m5_confirmatory_test/` |
 | GPT-2 improved SAEs (R2), all ladder levels, VALIDATION | 39 in-house SAEs (100M tokens, width 12,288/3,072) vs old base SAEs; causal T_rec/T_full 0.62 → 0.73 at L8 (validation only) | `results/openwebtext/r2_scaled_saes/` |
 | Gemma-2-2B truth steering (appendix only, D23) | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
-| Gemma-2-2B SAE reconstruction and behavioural splicing (M6, D36; **VALIDATION**) | Pre-registered: Gemma Scope width-16k JumpReLU SAEs at `resid_post` layers 5/12/19 on 512 Pile validation documents; gates V1–V5 pass; **H-G1 supported at all three layers** (SAE-splice ΔCE > norm-matched random-error ΔCE; 95 % and Bonferroni 98.33 % CIs exclude 0). Cite as behavioural splicing and reconstruction only: no layer ranking, no representation-preservation, causal or GPT-2 vs Gemma superiority claim; bf16 logit-precision limitation (H4a). Gemma information and causal faithfulness not tested | `results/gemma2_pile/gemma_scope_splicing/` (README §2, `h_g1.csv`, `summary_by_layer*.csv`, `figures/`) |
+| Gemma-2-2B SAE reconstruction and behavioural splicing (M6, D44; **VALIDATION**) | Pre-registered: Gemma Scope width-16k JumpReLU SAEs at `resid_post` layers 5/12/19 on 512 Pile validation documents; gates V1–V5 pass; **H-G1 supported at all three layers** (SAE-splice ΔCE > norm-matched random-error ΔCE; 95 % and Bonferroni 98.33 % CIs exclude 0). Cite as behavioural splicing and reconstruction only: no layer ranking, no representation-preservation, causal or GPT-2 vs Gemma superiority claim; bf16 logit-precision limitation (H4a). Gemma information and causal faithfulness not tested | `results/gemma2_pile/gemma_scope_splicing/` (README §2, `h_g1.csv`, `summary_by_layer*.csv`, `figures/`) |
 | Gemma-2-2B Gemma Scope width × L0 ladder (R3, D46; **VALIDATION**, Tier A only) | Pre-registered: 36 Gemma Scope JumpReLU SAEs (widths 16k/32k/65k) at `resid_post` layers 5/12/19 on M6's 512 Pile validation documents; all gates pass; V6: M6 reproduced within margin. **H1** (higher L0 lowers ΔCE_SAE) supported in 7/7 cells; **H2** (wider at ±10 % matched L0 lowers ΔCE_SAE) supported in 4/4 bands formed (none at layer 5); **H3** (SAE-splice ΔCE > norm-matched random) holds for 36/36; Q0b: T4 bf16 within margin of fp32 for ΔCE_SAE, beyond margin for top-1 agreement (one cell). Cite as reconstruction and behavioural splicing only: no layer ranking, no "best SAE", nothing for widths above 65k (Tier B not run, Deviation 2) | `results/gemma2_pile/r3_gemma_scope_ladder/` (README Section 2, `ladder/`, `precision_t4_vs_fp32/`, `figures/`) |
 
 ## Pilots (validation only, not for final claims)
@@ -97,11 +97,55 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 
 | Item | Status | Notes |
 |---|---|---|
-| `data/repe/repe_lm_test/` | DATA ONLY: FROZEN, NOT EVALUATED | No result may be cited from it until the protocol in `results/repe/repe_lm_test_protocol/` has run once |
+| `data/repe/repe_lm_test/` | EVALUATED ONCE (2026-11-13) | TEST rows are now spent: never use them for selection or tuning |
+| `results/repe/repe_lm_test_evaluation/` (H1-TEST) | CONFIRMED TEST RESULT: HT2 (9/9 cells), HT1-C1 L8, HT3-C1 L8. NOT CONFIRMED: HT1, HT3 as hypotheses (C3 cells fail) | Cite HT1/HT3 per cell, never as "confirmed hypotheses"; HT4 and secondary comparisons are descriptive |
 | M4 "SAE-in-the-loop feature patches" | VALID WITHIN SCOPE (VALIDATION) | Cite as "SAE-selected directions, error term kept"; not as SAE-mediated (D33) |
 | `results/shared/pca_capacity_matched/` | VALIDATION FINDING (descriptive), citable with the matching criterion stated | Qualifies every "SAE vs PCA" claim (D34); error-matched claims replicate |
 | `results/shared/power_sensitivity/` | DESCRIPTIVE (design sensitivity) | Cite as an MDE, not as power for the observed effects |
 | "No trained SAE beats PCA" (M2, M5, paper) | VALID ONLY AS AN ERROR-MATCHED STATEMENT | Must state "at equal OWT reconstruction error (k = 298–519)"; false at k = 128 for some ReLU-family cells (D34). Paper and curated docs revised 2026-11-13 |
 | `results/shared/pca_capacity_matched/posthoc_multiplicity/` | DESCRIPTIVE (post-hoc, approximate) | Cite only to qualify PCA-CM "better" cells as per-cell, not family-wise (D34) |
 | "SAE better than PCA" (PCA-CM) | VALIDATION, per-cell criterion | Never write "significantly better"; write "better under the study's comparison criterion" |
-| R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE | Cite with the per-SAE MDE (0.054–0.107) caveat (D35) |
+| R2 vs old TopK T_rec/T_full at L8 (0.625 → 0.726) | VALIDATION IMPROVEMENT, BORDERLINE; **TEST-CONFIRMED for C1** (0.602 → 0.729, Holm p = 0.021) on 2026-11-13; C3 not confirmed | See H1-TEST row and D36 |
+
+## 2026-11-13 AUDIT-SENS (D38)
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/audit_sensitivity/` | SENSITIVITY / DIAGNOSTIC (VALIDATION-based) | Qualifies M5 and H1-TEST; never cite as a confirmatory test |
+| H1-TEST HT1-C1 and HT3-C1 | CONFIRMED (frozen seed-level rule); FRAGILE (AUDIT-SENS S1) | Always cite with the qualifier |
+| H1-TEST HT2 | CONFIRMED; robust to statement sampling | — |
+| "Part of the persona loss is persona-specific" (M2/RLM-RP) | WITHDRAWN | S2: the neutral control loses an equal or larger share |
+| "Frozen GoT collapse is largely perturbation sensitivity" (M2) | WITHDRAWN as worded | S5: 33–50 % is label-aligned SAE error at L6–11 |
+| M2 GoT labels at L0–4 ("uninformative") | VALID FOR THE POOLED TASK ONLY | S4: per polarity, truth is linearly decodable from L1 |
+| Old-architecture rankings on persona/GoT metrics | NOT ROBUST | S3: 13/19 change at matched task L0 |
+
+## 2026-11-14 TSP
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/geometry_of_truth/truth_subspace_preservation/diagnostics/` | VALIDATION, descriptive | Root-cause diagnostics; group-A subspace, group-B readers |
+| `results/geometry_of_truth/truth_subspace_preservation/pilot/` | VALIDATION PILOT, NOT SUPPORTED (frozen rule) | Cite effect sizes only with their CIs and the verdict; never as an improvement |
+| `results/geometry_of_truth/truth_subspace_preservation/verification/` | VALIDATION verification (post-hoc checks exploratory) | Confirms the pilot numbers and the NOT SUPPORTED verdict. Supersedes the pilot's secondary CIs for error-only AUROC / MLP / sparse-z / kNN, which omitted statement sampling. Specificity holds for the frozen gap only |
+| `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/` | VALIDATION (DEV only; feasibility) | Fresh-family eligibility and headroom; no TSP result. The TEST splits in `data/got/fresh/splits/` are LOCKED (never read) |
+| `results/geometry_of_truth/truth_subspace_preservation/replication/` | VALIDATION, confirmatory (pre-registered) | Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear, with the TRADE-OFF qualifier (persona/M4 non-inferiority not demonstrated). Fresh-family TEST results are secondary or exploratory and null. Cite the cities effect only as in-distribution |
+
+## 2026-11-15 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/dead_latent_audit/` (`docs/DEAD_LATENT_AUDIT.md`) | VALIDATION FINDING (descriptive diagnostic) | Dead fraction of 108 base and 36 trained R2 SAEs, plus 3 frozen-random-decoder baselines, on OWT validation (12,700 tokens). Cite as a diagnostic, not as evidence of faithfulness; it makes no attribution to data, recipe, duration or width |
+| Appendix / M0 JumpReLU alive-latent range "469–2,947" | SUPERSEDED by "469–2,941" (transcription correction) | Source value `architecture_by_layer.csv` is 2,941.0, unchanged |
+
+## 2026-11-16 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/geometry_of_truth/method_a_multilayer/` on branch `simba-method-a-multilayer` (`7f2557b`; Method A layers 5/6/9) | BRANCH-ONLY; EXPLORATORY / VALIDATION; UNMERGED; NOT CITED in the final manuscript | Do not use for final claims (D45). Criterion met in 1/9 cells; layer-9 disagreement with IMP-L unresolved; provenance caveats in `RESEARCH_PROGRESS.md` §53. Cite IMP-L (`multilayer_finetune/`) and `method_a_layer6/` instead |
+
+## 2026-11-21 additions (final week)
+| Result | Status | Location |
+|---|---|---|
+| XT-G0 Gemma task activations, K1 / K7 gates | VALIDATION (completed; gates passed) | `results/gemma/xtg_task_baselines/` |
+| XB matched splicing (GPT-2 vs Gemma) | PRE-REGISTERED, in progress; gate outputs only | `results/cross_model/xb_matched_splicing/` |
+| XT-G / DX truth preservation (both models) | PRE-REGISTERED, in progress; smoke outputs are EXPLORATORY, not citable | `results/cross_model/xtg_truth_preservation/` |
+| TI-1 TSP generalisation | PRE-REGISTERED, gates passed, in progress | `results/geometry_of_truth/tsp_generalisation/` |

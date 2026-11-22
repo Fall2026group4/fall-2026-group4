@@ -1,0 +1,170 @@
+{
+  "experiment": "TSP-R Phase 1: replication of the truth-subspace-preserving fine-tune (TSP) with cross-fitted cities, 8 base seeds, label-shuffled and random controls",
+  "date": "2026-11-15",
+  "status": "FROZEN before any Phase 1 training (approved in principle by the user; launch needs explicit approval)",
+  "decision_refs": [
+    "D39",
+    "D40",
+    "D41"
+  ],
+  "research_question": "Does penalising reconstruction error inside a truth subspace S (rank 8, estimated on GoT A rows) reduce the loss of linearly and nonlinearly decodable truth information in GPT-2 Small L8 TopK SAE reconstructions, relative to the identical fine-tune without the penalty, specifically because S is truth-aligned, at no meaningful reconstruction or behavioural cost?",
+  "design": {
+    "model": "GPT-2 Small (frozen), blocks.8.hook_resid_pre, final token; BOS excluded",
+    "base_saes": {
+      "architecture": "R2 TopK, width 12288, k=128, modern_v1, 99,999,744 OWT tokens (shard 78)",
+      "seeds_existing": [
+        42,
+        1042,
+        2042
+      ],
+      "seeds_new": [
+        3042,
+        4042,
+        5042,
+        6042,
+        7042
+      ],
+      "new_base_recipe": "scripts/openwebtext/17_streaming_sae_training.py train(), layer 8, topk only, SEEDS patched, written to results/openwebtext/r2_tspr_base_seeds/ (staging, then renamed)",
+      "base_qc": "final monitor EV within +-0.005 of the original 3 seeds range [0.90525, 0.90531], L0 = 128, dead <= 0.01, GPT-2 unchanged; failure stops the experiment"
+    },
+    "arms": {
+      "ctrl": "NMSE_OWT + 1.0 * NMSE_GoT-A (no subspace term)",
+      "tsp": "ctrl + 1.0 * subspace loss in S_f (truth subspace of fold A rows; pilot estimator)",
+      "rand": "same term, Haar-random rank-8 subspace (seed per fold)",
+      "pca": "same term, top-8 PCA subspace of fold A rows (label-free; secondary)",
+      "shuf": "same term, S from the identical estimator on fold A rows with truth labels permuted within each (city, polarity) cell"
+    },
+    "fine_tune_recipe": "scripts/geometry_of_truth/25_truth_subspace_finetune.py run_one, unchanged: Adam 2e-5, clip 1, decoder renormalised, 1,230 steps x 32 x 127 OWT tokens (shard 79 chunks >= 10,000; identical tokens for every run), torch seed = base seed, mu = lambda = 1, rank 8",
+    "folds": {
+      "source": "data/got/fresh/splits/cities_crossfit_folds.csv (frozen in Phase 0)",
+      "groups": 635,
+      "statements": 2540,
+      "roles": "fold f: V = f (evaluation), B = f+1 (probe fitting), A = f+2 (S, GoT replay)",
+      "excluded": "the 113 exposed cities TEST groups are never loaded"
+    },
+    "matrix": "8 seeds x 5 arms x 3 folds = 120 fine-tunes (plan_matrix.csv); references: 8 base SAEs evaluated in each fold (24 evaluations)",
+    "checkpoint_naming": "results/geometry_of_truth/truth_subspace_preservation/replication/checkpoints/layer_8/fold{f}/{arm}_topk_seed{s}/checkpoint.pt; new bases results/openwebtext/r2_tspr_base_seeds/checkpoints/layer_8/topk_seed{s}/checkpoint_final.pt",
+    "subspace_diagnostics_at_freeze": {
+      "cross_fold_overlap_tsp": {
+        "fold0~fold1": 0.3071,
+        "fold0~fold2": 0.2834,
+        "fold1~fold2": 0.2607
+      },
+      "note": "mean squared principal-angle cosine; chance 0.0104. Only the leading truth direction is stable across folds; an independent B-fold probe direction has 50-55 % of its norm^2 in S_tsp, 8 % in S_shuf, 1.5 % in S_rand, ~0 in S_pca"
+    }
+  },
+  "primary": {
+    "dataset": "cities + neg_cities, cross-fitted (sole confirmatory dataset; D41)",
+    "metric": "re-fit logistic gap = AUROC_V(probe fitted on original B_f activations) - AUROC_V(probe fitted on x_hat(B_f)), each probe StandardScaler + logistic, C chosen by GroupKFold(3) over cities on B_f from {0.01, 0.1, 1}; scored on V_f. Lower is better (0 = no information loss).",
+    "estimand": "Delta(tsp - ctrl) = mean over 8 seeds of the fold-weighted (by V groups) mean over 3 folds of the paired per-(seed, fold) gap difference",
+    "hypothesis_family_and_multiplicity": {
+      "H1 (gate)": "Delta(tsp - ctrl) < 0; two-sided test at alpha 0.05, rejection counted only if the estimate is negative",
+      "H2": "Delta(tsp - shuf) < 0 (label specificity)",
+      "H3": "Delta(tsp - rand) < 0 (geometry specificity)",
+      "procedure": "fixed-sequence gatekeeping: H2 and H3 are tested only if H1 is rejected, then Holm over {H2, H3} at alpha 0.05. Family-wise error <= 0.05 over {H1, H2, H3}. pca is secondary and outside the family."
+    },
+    "uncertainty": {
+      "seed": "se_seed = sd over 8 seeds of the per-seed fold-pooled difference / sqrt(8)",
+      "statement": "v_stmt = variance over 2,000 city-group bootstrap resamples (stratified by fold, identical indices for every SAE, arm and seed) of the seed-averaged difference",
+      "combined": "se = sqrt(se_seed^2 + v_stmt); df = Satterthwaite se^4 / (se_seed^4 / 7) (statement component treated as known); 95 % CI = estimate +- t(df, 0.975) se",
+      "sensitivity (reported, not decisive)": [
+        "two-way bootstrap over seeds and city groups (4,000, percentile CI)",
+        "pilot rule: t(7) on the combined se",
+        "523 previously train-only cities (excludes the 112 pilot validation cities)",
+        "existing 3 seeds vs new 5 seeds",
+        "per-fold estimates"
+      ]
+    },
+    "sesoi": 0.01,
+    "verdict_labels": {
+      "SUPPORTED (meaningful)": "CI upper < 0 and estimate <= -0.010",
+      "SUPPORTED, below SESOI": "CI upper < 0 and estimate > -0.010",
+      "NO MEANINGFUL EFFECT": "90 % CI within (-0.010, +0.010) (TOST)",
+      "HARM": "CI lower > 0",
+      "INCONCLUSIVE": "otherwise"
+    },
+    "qualifiers": {
+      "truth-specific": "H2 and H3 rejected",
+      "geometry-specific only": "H3 rejected, H2 not",
+      "not truth-specific": "H1 rejected, H2 and H3 not",
+      "linear and nonlinear": "10 x 64 MLP re-fit gap Delta(tsp - ctrl) 95 % CI upper < 0 (same uncertainty model)",
+      "linear readout only": "otherwise",
+      "READOUT-ONLY": "H1 not rejected but the frozen logistic gap Delta(tsp - ctrl) CI upper < 0",
+      "DISTORTION": "enhancement guard: tsp absolute re-fit gap 95 % CI entirely below -0.010 (x_hat more separable than x); replaces preservation wording"
+    }
+  },
+  "cost_guards_non_inferiority_vs_ctrl": {
+    "rule": "one-sided 95 % upper confidence bound of (tsp - ctrl), same seed + resample uncertainty model (OWT: sequence bootstrap of the validation cache)",
+    "OWT NMSE (all 120 + bases)": "<= +2 % relative",
+    "spliced delta-CE (fold 0)": "<= +5 % relative",
+    "spliced KL (fold 0)": "<= +5 % relative",
+    "RepE persona re-fit gap (fold 0)": "<= +0.02 absolute",
+    "M4 T_rec/T_full (fold 0)": "decrease <= 0.02",
+    "L0": "= 128 exactly on OWT, GoT and RepE",
+    "failure": "qualifier TRADE-OFF; absolute costs vs R2 base reported for every arm"
+  },
+  "secondary": {
+    "companies_true_false (TEST, locked)": "re-fit logistic gap: probes fitted on DEV (original or x_hat; C by GroupKFold(3) over companies), scored on TEST. Delta(tsp - ctrl) with seed + company-bootstrap uncertainty. Estimate with 95 % CI; conservative MDE ~0.033 stated; never confirmatory.",
+    "common_claim_true_false (TEST, locked)": "distortion check: DISTORTION flag if tsp - ctrl re-fit gap CI upper < -0.010 or tsp absolute gap CI upper < -0.010; base headroom ~0.001",
+    "MLP readers": "10 x 64 and 5 x 256 MLP re-fit gaps (cities); frozen logistic and mass-mean gaps labelled readout metrics; pca comparisons",
+    "exploratory": "counterfact_true_false held-out relations (TEST), fixed C = 0.1 to bound runtime; label EXPLORATORY"
+  },
+  "data_access": {
+    "cities": "train+val groups only (cities TEST never loaded)",
+    "fresh TEST": "activations computed once, in the final evaluation stage, after the P1 analysis is complete and committed; never used for tuning, selection or stopping",
+    "tuning": "none after freeze; all hyperparameters are the pilot values"
+  },
+  "stopping_rules": [
+    "repro check: any non-zero weight difference vs pilot ctrl seed 42 stops everything",
+    "base QC failure",
+    "non-finite loss",
+    "L0 != 128",
+    "GPT-2 parameter hash change",
+    "frozen-hash mismatch",
+    "disk < 20 GB free"
+  ],
+  "execution_order": [
+    "repro (smoke; ~3 min)",
+    "base (5 new seeds jointly; ~0.75-1.25 h) then base_qc",
+    "finetune 120 runs, seed-major (~3.9-5.0 h)",
+    "freeze evaluation code (second commit with its hash) before any Phase 1 SAE is evaluated",
+    "P1 cities evaluation + ladder fold 0 + OWT NMSE all",
+    "analysis + commit",
+    "fresh-family TEST evaluation once"
+  ],
+  "recovery": {
+    "session": "tmux tspr-phase1; logs in replication_logs/ (gitignored, line-buffered)",
+    "finetune": "atomic saves (.pt.tmp then rename); run_ledger.csv with SHA-256 per run; rerunning the same command skips verified runs; a checkpoint without ledger entry or a hash mismatch stops for manual review; nothing is overwritten",
+    "base": "staging folder renamed only on success; after an interruption the staging folder is moved aside (not deleted) and the stage rerun from scratch (deterministic seeds)"
+  },
+  "resources": {
+    "disk_free_gb_at_freeze": 74.4,
+    "new_checkpoints_gb": 8.8,
+    "eval_caches_gb": "< 1",
+    "gpu_hours": "~5-6.5 (repro + base + 120 fine-tunes)",
+    "cpu_eval_hours": "~5-8",
+    "total_wall_clock_h": "~11-14"
+  },
+  "hashes": {
+    "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+    "scripts/openwebtext/17_streaming_sae_training.py": "017b6133426bc1ba5ec551b720877e9172eea9d02de5f777531513e3bde78e88",
+    "src/sae/truth_subspace.py": "8299b2782e02fcbf490d5d5de218ab9e44238c5b68cb71f9bc842ee434bfca32",
+    "src/sae/modern_sae.py": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "scripts/geometry_of_truth/24_truth_subspace_diagnostics.py": "484658d78e98a56488ad84971776bbf3f6e7dd062cebe6773aa24c655b023320",
+    "scripts/geometry_of_truth/03_original_truth_probes.py": "a725bed094957034f8ade2a5458eca690e935aa5df87d2166ba08f008d6484b2",
+    "data/got/fresh/splits/cities_crossfit_folds.csv": "fdfb0f6e3fabc57761dbd5846c9a6fa457eb1814192f06826ce20ede5c90dba7",
+    "data/got/splits/cities_splits.csv": "e4951ef2f8c57c8c9e1f59bfdc0c98eb502e31fa342e1a334a2e958093d53e9f",
+    "data/got/splits/neg_cities_splits.csv": "67b7d66a445229470c341976f2df4cc5950b6bbbce32ce5d146a38a9b85969dd",
+    "data/openwebtext/stream_tokens/shard79_chunks.npy": "b2845c070990a00028ff2287fb6e49cc41591a8f89bfee14a731b2fb47ddae25",
+    "data/openwebtext/stream_tokens/shard78_chunks.npy": "51a90ff3cd952bfbc801014bcdcc8255e939eb18f33926c518914af8bb0e754d",
+    "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
+    "results/geometry_of_truth/truth_subspace_preservation/replication/plan_matrix.csv": "95b9abc4cd043cb6736ac0e66a658bf0c0404a064eb2cb5a635b060737c7b07f",
+    "results/geometry_of_truth/truth_subspace_preservation/replication/subspaces.npz": "ab81630752b2e6fd5c2cacbb664f1fff417e2b5777c018bf10ed218a54714b75",
+    "results/geometry_of_truth/truth_subspace_preservation/replication_phase0/preregistration.json": "8e44786f9bd41bc2525c691d2d45cc5ac73a2a2ab2dfd7c341c87eb82f21ac57",
+    "data/got/fresh/splits/companies_true_false_splits.csv": "2b65934710d71d7b98c60c4f5ad15205cf2539d653c95a8b2a2a52e3abcd0cb6",
+    "data/got/fresh/splits/common_claim_true_false_splits.csv": "63ea6313a52086e72c8230d8afab5cdc82e0e698d4064d4d57471e67d7b50ec5",
+    "data/got/fresh/splits/counterfact_true_false_splits.csv": "bd42f47765965a53754500770035467bf815d42fe3c78b0a7fb9f7ebcdc2888a"
+  },
+  "subspaces_sha256": "ab81630752b2e6fd5c2cacbb664f1fff417e2b5777c018bf10ed218a54714b75"
+}

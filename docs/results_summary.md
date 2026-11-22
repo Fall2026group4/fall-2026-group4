@@ -19,7 +19,13 @@ against `results/shared/m5_confirmatory_test/m5_rows.csv` on 2026-11-12. The exh
 **Headline.** The improvements are real but level-specific:
 * **reconstruction and behaviour improved and were confirmed on TEST;**
 * truth information (GoT) did **not** measurably change;
-* persona/honesty representation and causal preservation improved **on validation only** (a RepE-LM test split and frozen protocol now exist but have not been evaluated);
+* persona/honesty representation and causal preservation, on the single held-out RepE-LM pass (H1-TEST, 2026-11-13):
+  * **CONFIRMED:** pair-direction fidelity, 9/9 cells (+0.035 to +0.141 cosine);
+  * **CONFIRMED for TopK only, under the seed-level rule:** the L8 causal gain (C1 0.602 → 0.729, Holm p = 0.021); AUDIT-SENS: fragile, not supported once statement sampling is added (adjusted Holm p = 0.156);
+  * **NOT CONFIRMED:** the L8 causal gain for BatchTopK vs JumpReLU (C3; +0.072, 9/9 pairs, Holm p = 0.058) and the
+    persona re-fit gap as a hypothesis (C1 passes, −0.048, Holm p = 0.046; C3 inconclusive);
+  * a test-only neutral control (N3/N4) exceeded its 0.55 floor at L8 (0.561) and L11 (0.551);
+  * the 90 secondary H1-TEST comparisons are exploratory;
 * the one behaviour-targeted fine-tune (R4) cost causal preservation at L11.
 
 ---
@@ -91,7 +97,7 @@ Original-activation logistic AUROC (TEST) is 0.839 at L8 and 0.792 at L11. GoT i
 
 | Reader | What it measures | Typical gap ↓ | Status |
 |---|---|---|---|
-| Frozen original logistic probe on x̂ | whether the model's original readout survives | 0.19–0.32 (L4–11, old SAEs, TEST) | mostly generic fragility: same-norm noise gives 0.25 vs the SAE's 0.28 (M2, VAL) |
+| Frozen original logistic probe on x̂ | whether the model's original readout survives | 0.19–0.32 (L4–11, old SAEs, TEST) | isotropic noise gives 0.25 vs the SAE's 0.28, but the SAE's own shuffled error gives only 50–67 % of the SAE drop at L6–11 (AUDIT-SENS S5): partly generic fragility, partly label-aligned SAE error |
 | Re-fit logistic probe on x̂ | whether the information is still linearly present | 0.07–0.12 (M2, VAL); 0.028–0.107 (M5, TEST) | a real but small loss |
 | PCA at matched OWT NMSE (k = 298–519) | reference | — | **no trained SAE beats error-matched PCA** (M2, M5) |
 | PCA at k = 128 / at the SAE's GoT task L0 (PCA-CM, VAL) | reference | — | SAE better in 3/20 / 8/20 trained cells under the study's criterion, never classified worse; not equivalence (see B2b) |
@@ -203,14 +209,15 @@ architectures fire more latents on RepE-LM prompts (up to 208–216 at L1) and f
 | Old SAEs, L1 slot | 1 | T_rec/T_full 0.93–0.97 | MEASUREMENT |
 | Old SAEs, final token | 8 / 11 | 0.62–0.68 | MEASUREMENT |
 | Method A / output-KL (E3) | 8 | ≈ base | NO CLEAR CHANGE / not creditable |
-| R2 TopK vs old TopK | 8 / 11 | 0.625 → 0.726 / 0.620 → 0.692 | VALIDATION IMPROVEMENT (L8 borderline, see below) |
+| R2 TopK vs old TopK | 8 / 11 | 0.625 → 0.726 / 0.620 → 0.692 | VALIDATION IMPROVEMENT; L8 TEST-confirmed under the seed-level rule (0.602 → 0.729, Holm p = 0.021); AUDIT-SENS: fragile, not supported once statement sampling is added (adjusted Holm p = 0.156) |
+| R2 BatchTopK vs old JumpReLU | 8 | 0.665 → 0.754 (VAL) | VALIDATION IMPROVEMENT; **NOT CONFIRMED** on TEST (+0.072, 9/9 pairs, Holm p = 0.058) |
 | R4 KL vs MSE control | 11 | 0.694 → 0.671 (−0.024, all seeds) | REGRESSION |
 
 * T_full (the whole persona effect) is small: 0.022 nats at L8 and 0.043 at L11.
 * **Sensitivity:** one SAE's T_rec/T_full can be resolved only to 0.013–0.017 at L1, 0.036–0.069 at L11 and
   **0.054–0.107 at L8** (MDE). The L8 gain (+0.101) passes the seed-level R2 rule (Welch CI [+0.019, +0.182]) but sits
-  at the edge of statement-level detectability. Treat it as a borderline validation finding until the RepE-LM test
-  protocol is run.
+  at the edge of statement-level detectability. **H1-TEST (2026-11-13, `results/repe/repe_lm_test_evaluation/`)** confirms it on held-out data
+  for TopK (+0.127 [+0.079, +0.175]); the C3 (BatchTopK vs JumpReLU) gain is not confirmed (Holm p = 0.058).
 
 ### C4. R5 skyline (VAL; T_k/T_full at L8 final; old SAEs)
 

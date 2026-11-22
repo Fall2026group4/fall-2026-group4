@@ -1,0 +1,244 @@
+{
+  "stage": "plan (dry run; no SAE trained)",
+  "runs": 120,
+  "seeds": [
+    42,
+    1042,
+    2042,
+    3042,
+    4042,
+    5042,
+    6042,
+    7042
+  ],
+  "new_seeds": [
+    3042,
+    4042,
+    5042,
+    6042,
+    7042
+  ],
+  "arms": [
+    "ctrl",
+    "tsp",
+    "rand",
+    "pca",
+    "shuf"
+  ],
+  "folds": [
+    0,
+    1,
+    2
+  ],
+  "fold_info": [
+    {
+      "fold": 0,
+      "roles": {
+        "V": 0,
+        "B": 1,
+        "A": 2
+      },
+      "A_rows": 844,
+      "A_groups": 211,
+      "subspace_seed": 20262122,
+      "shuf_perm_seed": 20262123,
+      "rand_seed": 20262124,
+      "tsp_info": {
+        "n_vectors": 27,
+        "singular_values": [
+          4.394032820440927,
+          1.3731878907175787,
+          0.9607654627596912,
+          0.6985430982592115,
+          0.6460745917481446,
+          0.6282264077306043,
+          0.5921645537684266,
+          0.5620520647278302
+        ],
+        "rank": 8
+      },
+      "shuf_info": {
+        "n_vectors": 27,
+        "singular_values": [
+          3.5872044168973622,
+          1.2675173310859478,
+          1.0881092711597207,
+          1.037739270461873,
+          0.9830535051098909,
+          0.8913934315250651,
+          0.8425149864734405,
+          0.8188989136841569
+        ],
+        "rank": 8
+      },
+      "shuf_label_agreement": 0.495260663507109,
+      "V_groups": 212,
+      "V_rows": 848,
+      "B_groups": 212,
+      "B_rows": 848,
+      "subspace_overlaps": {
+        "tsp~rand": 0.0073,
+        "tsp~pca": 0.1277,
+        "tsp~shuf": 0.0439,
+        "rand~pca": 0.008,
+        "rand~shuf": 0.0114,
+        "pca~shuf": 0.1107
+      }
+    },
+    {
+      "fold": 1,
+      "roles": {
+        "V": 1,
+        "B": 2,
+        "A": 0
+      },
+      "A_rows": 848,
+      "A_groups": 212,
+      "subspace_seed": 20263122,
+      "shuf_perm_seed": 20263123,
+      "rand_seed": 20263124,
+      "tsp_info": {
+        "n_vectors": 27,
+        "singular_values": [
+          4.419710933532425,
+          1.3936090762282634,
+          0.9232037713562873,
+          0.6989650977356296,
+          0.6139814676857505,
+          0.596923406664326,
+          0.5804603748158214,
+          0.5538455725244469
+        ],
+        "rank": 8
+      },
+      "shuf_info": {
+        "n_vectors": 27,
+        "singular_values": [
+          3.4276789336671096,
+          1.294847837379937,
+          1.0983388331950645,
+          1.0763125526420263,
+          0.9934002937156939,
+          0.9399335838938735,
+          0.9045661228934165,
+          0.8535517476303811
+        ],
+        "rank": 8
+      },
+      "shuf_label_agreement": 0.5448113207547169,
+      "V_groups": 212,
+      "V_rows": 848,
+      "B_groups": 211,
+      "B_rows": 844,
+      "subspace_overlaps": {
+        "tsp~rand": 0.0084,
+        "tsp~pca": 0.1195,
+        "tsp~shuf": 0.071,
+        "rand~pca": 0.0094,
+        "rand~shuf": 0.0105,
+        "pca~shuf": 0.1591
+      }
+    },
+    {
+      "fold": 2,
+      "roles": {
+        "V": 2,
+        "B": 0,
+        "A": 1
+      },
+      "A_rows": 848,
+      "A_groups": 212,
+      "subspace_seed": 20264122,
+      "shuf_perm_seed": 20264123,
+      "rand_seed": 20264124,
+      "tsp_info": {
+        "n_vectors": 27,
+        "singular_values": [
+          4.462899355109365,
+          1.3917091624223288,
+          0.9008784573700258,
+          0.6657981720476834,
+          0.6060152827831253,
+          0.5728716885081366,
+          0.5584589320228822,
+          0.5283307914921356
+        ],
+        "rank": 8
+      },
+      "shuf_info": {
+        "n_vectors": 27,
+        "singular_values": [
+          3.516711796094226,
+          1.3341727009016395,
+          1.124353211835749,
+          1.0270573595089842,
+          0.9539958637819517,
+          0.8944680812371836,
+          0.8675626060748907,
+          0.8586395591660251
+        ],
+        "rank": 8
+      },
+      "shuf_label_agreement": 0.5165094339622641,
+      "V_groups": 211,
+      "V_rows": 844,
+      "B_groups": 212,
+      "B_rows": 848,
+      "subspace_overlaps": {
+        "tsp~rand": 0.0111,
+        "tsp~pca": 0.1042,
+        "tsp~shuf": 0.0612,
+        "rand~pca": 0.0112,
+        "rand~shuf": 0.0117,
+        "pca~shuf": 0.1243
+      }
+    }
+  ],
+  "cross_fold_subspace_overlap": {
+    "tsp": {
+      "fold0~fold1": 0.3071,
+      "fold0~fold2": 0.2834,
+      "fold1~fold2": 0.2607
+    },
+    "shuf": {
+      "fold0~fold1": 0.0679,
+      "fold0~fold2": 0.1023,
+      "fold1~fold2": 0.0567
+    },
+    "pca": {
+      "fold0~fold1": 0.8976,
+      "fold0~fold2": 0.8974,
+      "fold1~fold2": 0.8749
+    },
+    "tsp_vs_pilot": {
+      "fold0": 0.3317,
+      "fold1": 0.3853,
+      "fold2": 0.333
+    }
+  },
+  "existing_base_sha256": {
+    "42": "cbcf2b7039151925746d9b2071fa0dd1df39e2f632964bd27ec36cad838c3124",
+    "1042": "9d7ee269cc388e07ae835fedb2fac0e2af539337b409e2bbdd2afdb5f0a96018",
+    "2042": "e4130fca86fea912ed94b2ff3e4001d30ff657df0c610514df973074168336ff"
+  },
+  "disk_free_gb": 74.4,
+  "checkpoint_mb": 72.1,
+  "expected_new_storage_gb": 8.8,
+  "frozen_hashes": {
+    "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+    "scripts/openwebtext/17_streaming_sae_training.py": "017b6133426bc1ba5ec551b720877e9172eea9d02de5f777531513e3bde78e88",
+    "src/sae/truth_subspace.py": "8299b2782e02fcbf490d5d5de218ab9e44238c5b68cb71f9bc842ee434bfca32",
+    "src/sae/modern_sae.py": "2dde0ae676a3cc64cbb73e79b60343888c5dd0f352c63f3b8dc9fd7de03b1ed6",
+    "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+    "scripts/geometry_of_truth/24_truth_subspace_diagnostics.py": "484658d78e98a56488ad84971776bbf3f6e7dd062cebe6773aa24c655b023320",
+    "scripts/geometry_of_truth/03_original_truth_probes.py": "a725bed094957034f8ade2a5458eca690e935aa5df87d2166ba08f008d6484b2",
+    "data/got/fresh/splits/cities_crossfit_folds.csv": "fdfb0f6e3fabc57761dbd5846c9a6fa457eb1814192f06826ce20ede5c90dba7",
+    "data/got/splits/cities_splits.csv": "e4951ef2f8c57c8c9e1f59bfdc0c98eb502e31fa342e1a334a2e958093d53e9f",
+    "data/got/splits/neg_cities_splits.csv": "67b7d66a445229470c341976f2df4cc5950b6bbbce32ce5d146a38a9b85969dd",
+    "data/openwebtext/stream_tokens/shard79_chunks.npy": "b2845c070990a00028ff2287fb6e49cc41591a8f89bfee14a731b2fb47ddae25",
+    "data/openwebtext/stream_tokens/shard78_chunks.npy": "51a90ff3cd952bfbc801014bcdcc8255e939eb18f33926c518914af8bb0e754d"
+  },
+  "script_sha256": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
+  "subspaces_sha256": "ab81630752b2e6fd5c2cacbb664f1fff417e2b5777c018bf10ed218a54714b75",
+  "test_rows_loaded": 0
+}
