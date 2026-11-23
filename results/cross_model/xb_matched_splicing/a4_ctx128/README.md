@@ -115,3 +115,9 @@ Context change by metric (uncorrected SHRINKS / GROWS / no clear change):
 * Most cross-model differences seen at 1024 tokens **shrink** at 128 tokens: 269/324 by uncorrected CI, including
   loss recovered in 54/54 rows. So the primary-arm gap is largely the GPT-2 context mismatch.
 * No pair is sparsity-matched, so no architecture-matched claim is made.
+
+## Storage note (2026-11-23)
+`runs/gpt2_owt_xm_shared_main/` and `runs/gpt2_pile_shared_main/` store `per_doc.csv.gz` (lossless, `gzip -n -9`) with
+`per_doc.csv.sha256` (hash of the uncompressed file): the uncompressed files are 27.2 MB, above the 25 MB
+repository-hygiene limit. Before re-running the frozen A4 analysis, run `gunzip -k runs/*/per_doc.csv.gz` and
+`sha256sum -c per_doc.csv.sha256` in each folder. The same applies to the two primary-arm runs (#53). No number changed.
