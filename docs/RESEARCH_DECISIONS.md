@@ -612,3 +612,8 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **May be claimed (VALIDATION):** "Truth-subspace-preserving fine-tuning reduces the cities refit-probe gap by 0.015–0.042 AUROC vs a reconstruction-only control at matched L0, in every tested layer/architecture, at ≤ +2.5 % OWT NMSE; the gain is truth-specific (beats a random subspace)."
 * **May not be claimed:** transfer to other truth families (not tested here; TSP-R found none); any Gemma result; frozen-probe gains as evidence (circular).
 * **Consequence:** TI-1 positive, so TI-2 (multi-family) and TI-G (Gemma transfer) stay first in the improvement queue; both wait for disk.
+
+## D49. How SIL is reported (2026-11-21). Status: DECIDED (follows the pre-registered rule; no discretion on the label)
+* **Label:** the pre-registered rule gives MEDIATED for every family. Because the pre-registered random-decoder negative control is also MEDIATED, SIL is reported as "MEDIATED by the pre-registered rule; the rule is not specific (negative control passes); SAE-specific mediation is INCONCLUSIVE".
+* **Reported descriptively:** D2 retention (0.82–0.92 for TopK/BatchTopK/JumpReLU vs ≈ 0.5 for ReLU and the control).
+* **Not done:** no post-hoc specificity rule is applied. A retention-minus-control test would need a new pre-registration.

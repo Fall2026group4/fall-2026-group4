@@ -1,0 +1,9 @@
+{
+  "script_sha256": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+  "layer": 8,
+  "sources": "r2scaling",
+  "n": 36,
+  "light": true,
+  "runtime_s": 269.52760219573975,
+  "test_rows_used": 0
+}

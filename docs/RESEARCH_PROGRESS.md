@@ -1561,3 +1561,15 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Limitations:** cities only (no fresh-family transfer tested; TI-2); 3 seeds; GPT-2 only (TI-G blocked on disk). Frozen-probe gains are partly circular and not used.
 * **Deviations:** OOM batch-size fix in `stage_eval`; a dict-access bug in `stage_analyze` (crashed before writing; re-run once). Neither changes any computation.
 * **Artifacts:** `results/geometry_of_truth/tsp_generalisation/` (README, ledgers, eval/, analysis/); 81 fine-tune checkpoints, not committed, listed in `docs/checkpoint_registry.csv`.
+
+## 57. X0: token exposure within the R2 runs (run 2026-11-21; pre-registered 2026-11-13). Status: COMPLETED (VALIDATION, descriptive)
+* **Run:** the frozen ladder commands at layers 1/8/11 on 108 mid-run checkpoints (10M/25M/50M; hashes verified first), plus the committed final-checkpoint rows; analysis `scripts/shared/r2_scaling_analysis.py`. No cell outside the L0 band.
+* **Result:** 25M → 50M (exposure only, constant LR) IMPROVES on OWT NMSE in 12/12 cells (median −8.8 %) and spliced ΔCE in 11/12 (−12.9 %); 10M → 25M: 12/12 (−17.1 %) and 11/12 (−26.7 %). No cell WORSENS. Pre-registered reading: **R2 had not saturated in exposure at 50M**, with diminishing returns.
+* **Secondary:** the SAE/noise ΔCE ratio stops improving after 25M (2/12), i.e. extra exposure shrinks the error rather than making it less harmful per unit norm.
+* **Limits:** mid-run checkpoints are not budget-matched runs; not a scaling law; does not attribute old → R2 to data.
+
+## 58. SIL: SAE-in-the-loop mediated persona intervention (run 2026-11-21; pre-registered 2026-11-13). Status: COMPLETED (VALIDATION); specificity INCONCLUSIVE
+* **Gate:** PASSED (pilot R2/old TopK s42: spliced persona KL CI low 0.035 / 0.036; ~2 min per triple).
+* **Full run:** 19 triples (6 families × 3 seeds + random-decoder control). Every trained family is **MEDIATED** at D0, D1 and D2 on every seed by the pre-registered rule.
+* **Validity caveat:** the pre-registered **negative control (random-decoder TopK) is also MEDIATED**. So the rule does not separate trained SAEs from a random-decoder autoencoder, and MEDIATED is not evidence of SAE-specific mediation (D49).
+* **Descriptive (discriminating):** effect retained at D2 (SAEs at layers 1, 8, 11): TopK / BatchTopK / JumpReLU 0.82–0.92; both ReLU families ≈ 0.5, the same as the random-decoder control (0.51). The control's neutral-swap effect is 3–10× larger.

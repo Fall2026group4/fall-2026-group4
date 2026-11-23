@@ -505,3 +505,11 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/geometry_of_truth/tsp_generalisation/{ledger_*.csv, eval/, analysis/}` | added | 81 fine-tunes evaluated; pre-registered analysis |
 | `results/geometry_of_truth/tsp_generalisation/README.md` | updated | results, criteria, deviations |
 | `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | appended | documentation rule (CLAUDE.md §1); §56, D48; 81 checkpoint rows (checkpoints not committed) |
+
+## 2026-11-21: X0 and SIL results (pre-registered 2026-11-13)
+| File | Change | Reason |
+|---|---|---|
+| `results/openwebtext/r2_scaled_saes/scaling/{ladder_layer*_r2scaling.*, per_checkpoint.csv, comparisons.csv, summary.json, figures/}` | added | X0 frozen commands and analysis (checkpoint hashes verified first) |
+| `results/repe/sae_in_the_loop_mediation/{pilot/, validation/}` | added | SIL pilot gate (passed) and full run |
+| both `README.md` | updated | results, criteria, the SIL negative-control caveat |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv` | appended | documentation rule; §57, §58, D49. No code changed; no checkpoints created |

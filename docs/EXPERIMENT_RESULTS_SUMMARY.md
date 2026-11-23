@@ -923,3 +923,20 @@ variability.
 | L8 ReLU | −0.0258 [−0.0316, −0.0201] | 2.9e-10 | −0.0258 | +0.3 % | +0.2 % | SUPPORTED (meaningful) |
 
 Lower is better. Source: `results/geometry_of_truth/tsp_generalisation/analysis/`. L1 not eligible.
+
+## X0: token exposure within R2 runs (2026-11-21; VALIDATION, descriptive; 12 cells × 3 seeds)
+| Step | OWT NMSE IMPROVES /12 (median) | Spliced ΔCE IMPROVES /12 (median) | SAE/noise ratio IMPROVES /12 |
+|---|---|---|---|
+| 10M → 25M | 12 (−17.1 %) | 11 (−26.7 %) | 9 |
+| 25M → 50M | 12 (−8.8 %) | 11 (−12.9 %) | 2 |
+| 50M → final (+ LR decay) | 12 (−6.7 %) | 8 (−8.9 %) | 2 |
+
+## SIL: SAE-in-the-loop persona mediation (2026-11-21; VALIDATION; 3 seeds)
+| Family | Retained at D0 | D1 {8} | D2 {8, 11} | Rule (D2) |
+|---|---|---|---|---|
+| R2 TopK / BatchTopK | 1.02 / 1.00 | 0.88 / 0.95 | 0.90 / 0.92 | MEDIATED 3/3 |
+| old TopK / JumpReLU-3072 | 1.04 / 1.03 | 0.93 / 0.99 | 0.82 / 0.91 | MEDIATED 3/3 |
+| R2 ReLU / old ReLU | 1.01 / 0.97 | 0.68 / 0.72 | 0.47 / 0.53 | MEDIATED 3/3 |
+| random-decoder control | 0.83 | 0.59 | 0.51 | MEDIATED (control fails) |
+
+Retained = T_S / T_full (T_full = 0.0435). Specificity INCONCLUSIVE (D49).

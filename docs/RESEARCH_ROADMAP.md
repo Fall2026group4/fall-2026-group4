@@ -126,7 +126,7 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
     and it uses layer 5 instead of layer 3. Agree on one experiment, and renumber, before either merges. Open PRs #20, #21
     and #24 delete files this branch cites.
   * **Paper** in `research_paper/Latex/` with the verified M0–M4, IMP-L, RLM-RP and E3 tables and figures (all generated). IN PROGRESS: compiles (29 pp, 0 overfull boxes, 0 undefined references); figures deterministic. Improvement section 10b, with M5, E2, R2, R4 and R5, added 2026-11-10 (37 pp, clean). 2026-11-13: PCA-CM section, MDE statements and the L8 caveat added (40 pp, 0 undefined references); the pipeline diagram exists in `architecture/diagrams/`. Remaining placeholders: E1; the per-experiment command list for the older experiments.
-  * X0 (S8, token exposure within R2 runs): PRE-REGISTERED 2026-11-13; `results/openwebtext/r2_scaled_saes/scaling/`.
+  * X0 (S8, token exposure within R2 runs): DONE 2026-11-21 (VALIDATION; not saturated at 50M; §57); `results/openwebtext/r2_scaled_saes/scaling/`.
   * **Repository items from Review #8:** SVG/PDF figures (F7), `.drawio` source + `.svg` (F8), CI on `main`, logging in
     new code (G12; pre-registered scripts are not edited, so their recorded hashes stay valid), AxBench/SAEBench/Paulo et
     al. in the bibliography, progress reports since 09-29, presentation decks, PR merge plan (#16, #17, #20, #21, #22,
@@ -296,7 +296,7 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   is "confirmed for TopK; not confirmed for BatchTopK vs JumpReLU".
 * OPEN (P2): the N3/N4 neutral frames leak slightly at L8/L11 (0.56). A future test-only template set should check
   neutral-floor calibration on TRAIN first.
-* PRE-REGISTERED 2026-11-13 (SIL, `results/repe/sae_in_the_loop_mediation/`; pilot gate first): a mediated SAE-in-the-loop test. Earlier proposal text: An edit at layer ℓ with SAEs spliced at
+* DONE 2026-11-21 (SIL, `results/repe/sae_in_the_loop_mediation/`; gate passed; MEDIATED by rule but negative control also passes → specificity INCONCLUSIVE; §58, D49). Originally PRE-REGISTERED 2026-11-13: a mediated SAE-in-the-loop test. Earlier proposal text: An edit at layer ℓ with SAEs spliced at
   ℓ+1…ℓ+k, so that the effect must pass through SAE nonlinearities (D33).
 * DONE (VALIDATION): PCA-CM. Paper and curated docs revised with the user-approved wording (D34, 2026-11-13).
 * DONE: sensitivity/MDE analysis, now in the paper (§statistics, §causal, §discussion, §limitations) (D35).
@@ -406,6 +406,7 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 ## 2026-11-21 (final-week execution; plan approved)
 * DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§55, D47).
 * DONE: TI-1 TSP generalisation: GENERALISES, 3/3 cells SUPPORTED, cost guard met (§56, D48).
+* DONE: X0 (§57) and SIL / XC-4 GPT-2 part (§58, D49). Gemma SIL not started (needs XC-1 site sweep first).
 * IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched).
 * PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
   XC-4/SIL, TI-G, X0, E1, PCA-CM-T, XG-IH / XJ (feasibility), XF.
