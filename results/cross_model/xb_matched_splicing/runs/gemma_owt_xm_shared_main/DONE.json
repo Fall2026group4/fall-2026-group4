@@ -1,0 +1,129 @@
+{
+ "run": "gemma_owt_xm_shared_main",
+ "args": {
+  "model": "gemma",
+  "corpus": "owt_xm",
+  "context": "shared",
+  "saes": "canonical",
+  "layers": "all",
+  "tag": "main",
+  "smoke": false,
+  "resume": true
+ },
+ "layers": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25
+ ],
+ "n_sae": 26,
+ "minutes": 304.25,
+ "torch": "2.14.1+cu130",
+ "gpu": "NVIDIA A10G",
+ "sae_ids": {
+  "0": [
+   "layer_0/width_16k/average_l0_105"
+  ],
+  "1": [
+   "layer_1/width_16k/average_l0_102"
+  ],
+  "2": [
+   "layer_2/width_16k/average_l0_141"
+  ],
+  "3": [
+   "layer_3/width_16k/average_l0_59"
+  ],
+  "4": [
+   "layer_4/width_16k/average_l0_124"
+  ],
+  "5": [
+   "layer_5/width_16k/average_l0_68"
+  ],
+  "6": [
+   "layer_6/width_16k/average_l0_70"
+  ],
+  "7": [
+   "layer_7/width_16k/average_l0_69"
+  ],
+  "8": [
+   "layer_8/width_16k/average_l0_71"
+  ],
+  "9": [
+   "layer_9/width_16k/average_l0_73"
+  ],
+  "10": [
+   "layer_10/width_16k/average_l0_77"
+  ],
+  "11": [
+   "layer_11/width_16k/average_l0_80"
+  ],
+  "12": [
+   "layer_12/width_16k/average_l0_82"
+  ],
+  "13": [
+   "layer_13/width_16k/average_l0_84"
+  ],
+  "14": [
+   "layer_14/width_16k/average_l0_84"
+  ],
+  "15": [
+   "layer_15/width_16k/average_l0_78"
+  ],
+  "16": [
+   "layer_16/width_16k/average_l0_78"
+  ],
+  "17": [
+   "layer_17/width_16k/average_l0_77"
+  ],
+  "18": [
+   "layer_18/width_16k/average_l0_74"
+  ],
+  "19": [
+   "layer_19/width_16k/average_l0_73"
+  ],
+  "20": [
+   "layer_20/width_16k/average_l0_71"
+  ],
+  "21": [
+   "layer_21/width_16k/average_l0_70"
+  ],
+  "22": [
+   "layer_22/width_16k/average_l0_72"
+  ],
+  "23": [
+   "layer_23/width_16k/average_l0_75"
+  ],
+  "24": [
+   "layer_24/width_16k/average_l0_73"
+  ],
+  "25": [
+   "layer_25/width_16k/average_l0_116"
+  ]
+ },
+ "script_sha256": "8536a86aa7e810c7461df82b5d0e61c522248301a5e1dbcfe8edc69d1cbbf0b3",
+ "backends_sha256": "9f60bbbbbf9a073ddb4e366f271040ff984e41db831d2fb4df7843cf280cc1a4",
+ "pile_splicing_sha256": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+ "prereg_sha256": "a462525f245f61f8230d31e0f431414c2112f233cc96b275c6d155106d3b3f25"
+}

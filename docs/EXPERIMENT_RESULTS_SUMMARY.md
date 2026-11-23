@@ -940,3 +940,11 @@ Lower is better. Source: `results/geometry_of_truth/tsp_generalisation/analysis/
 | random-decoder control | 0.83 | 0.59 | 0.51 | MEDIATED (control fails) |
 
 Retained = T_S / T_full (T_full = 0.0435). Specificity INCONCLUSIVE (D49).
+
+## XB primary: matched splicing, 1024-token shared span (2026-11-21; VALIDATION; see §59 / D50 caveat)
+| Model / SAE | XB_H1 (SAE > random) | EV at triplet layers (shared span) | Note |
+|---|---|---|---|
+| Gemma Scope 16k canonical | supported 64/64 cells | 0.74–0.88 | in distribution; SAE / random 1.3–3.3; loss recovered 0.97–1.00 |
+| GPT-2 (res-jb, R2, old; 159 SAEs) | Holm 0/318 (infeasible: p floor × 159 tests); by CI 243 supported, 70 contradicted | OWT-XM: res-jb −0.06 to −3,266; R2 0.15–0.72 (vs OWT VAL 0.87–0.98 at 128 tokens) | 128-token SAEs out of distribution |
+
+Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of record: A4 (128 tokens).

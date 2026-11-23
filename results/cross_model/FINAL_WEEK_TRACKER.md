@@ -16,6 +16,7 @@ TEST = confirmed test, EXPL = exploratory. GPU: A10G 23 GB; at most 2 GPU jobs a
 | **TI-1 result** | R2 L11 TopK, L8 BatchTopK, L8 ReLU | 8, 11 | cities, 3 seeds × 3 folds, 81 fine-tunes | **GENERALISES**: tsp − ctrl refit gap −0.042 / −0.015 / −0.026, all p_holm < 1e-3, 3/3 seeds; cost guard met (NMSE ≤ +2.5 %, L0 ±0.2 %) | `results/geometry_of_truth/tsp_generalisation/analysis/` (§56, D48) |
 | **X0 result** | R2 mid-run checkpoints | 1, 8, 11 | OWT VAL | not saturated at 50M: 25M→50M NMSE 12/12, ΔCE 11/12 IMPROVES | `results/openwebtext/r2_scaled_saes/scaling/` (§57) |
 | **SIL result** | GPT-2, 6 families + random-decoder control | 1 → 8, 11 | RepE-LM VAL | MEDIATED by rule for all, **negative control also MEDIATED** → specificity inconclusive; D2 retention 0.82–0.92 (TopK/BatchTopK/JumpReLU) vs ≈ 0.5 (ReLU, control) | `results/repe/sae_in_the_loop_mediation/` (§58, D49) |
+| **XB primary result** | GPT-2 159 SAEs; Gemma 16k canonical | all | Pile + OWT-XM, 1024 shared span | Gemma H1 64/64; **GPT-2 128-token SAEs out of distribution** (res-jb EV < 0, R2 0.15–0.72); 0/54 matched pairs; comparison of record = A4 | `xb_matched_splicing/analysis_v1/` (§59, D50) |
 | XB A2 check | Gemma | 5, 12 | 8 docs | layer-major == document-major bit-for-bit | `xb_matched_splicing/smoke/` |
 | XT-G smoke | GPT-2 res-jb | 8 | GoT, RepE-LM | pipeline works (EXPL; full-run numbers supersede) | `xtg_truth_preservation/smoke/` |
 

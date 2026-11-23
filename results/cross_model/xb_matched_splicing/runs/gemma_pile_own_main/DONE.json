@@ -1,0 +1,49 @@
+{
+ "run": "gemma_pile_own_main",
+ "args": {
+  "model": "gemma",
+  "corpus": "pile",
+  "context": "own",
+  "saes": "canonical",
+  "layers": "triplets",
+  "tag": "main",
+  "smoke": false,
+  "resume": true
+ },
+ "layers": [
+  1,
+  5,
+  12,
+  16,
+  19,
+  23
+ ],
+ "n_sae": 6,
+ "minutes": 61.9,
+ "torch": "2.14.1+cu130",
+ "gpu": "NVIDIA A10G",
+ "sae_ids": {
+  "1": [
+   "layer_1/width_16k/average_l0_102"
+  ],
+  "5": [
+   "layer_5/width_16k/average_l0_68"
+  ],
+  "12": [
+   "layer_12/width_16k/average_l0_82"
+  ],
+  "16": [
+   "layer_16/width_16k/average_l0_78"
+  ],
+  "19": [
+   "layer_19/width_16k/average_l0_73"
+  ],
+  "23": [
+   "layer_23/width_16k/average_l0_75"
+  ]
+ },
+ "script_sha256": "8536a86aa7e810c7461df82b5d0e61c522248301a5e1dbcfe8edc69d1cbbf0b3",
+ "backends_sha256": "9f60bbbbbf9a073ddb4e366f271040ff984e41db831d2fb4df7843cf280cc1a4",
+ "pile_splicing_sha256": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+ "prereg_sha256": "a462525f245f61f8230d31e0f431414c2112f233cc96b275c6d155106d3b3f25"
+}
