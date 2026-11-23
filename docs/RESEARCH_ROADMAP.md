@@ -405,8 +405,8 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 
 ## 2026-11-21 (final-week execution; plan approved)
 * DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§55, D47).
-* IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched), TI-1 (L11 TopK,
-  L8 BatchTopK, L8 ReLU; L1 not eligible).
+* DONE: TI-1 TSP generalisation: GENERALISES, 3/3 cells SUPPORTED, cost guard met (§56, D48).
+* IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched).
 * PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
   XC-4/SIL, TI-G, X0, E1, PCA-CM-T, XG-IH / XJ (feasibility), XF.
 * BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or

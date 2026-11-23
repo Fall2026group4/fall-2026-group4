@@ -497,3 +497,11 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `docs/results_registry.md` | both sides, chronological (#35 R2-row update, AUDIT-SENS, TSP; #31 2026-11-15/16; final week) | — |
 | `docs/plain_summary.md` | #31 sentence kept | the version Aditi accepted; it does not restore the withdrawn S5 wording |
 | `docs/EXPERIMENT_CHANGELOG.md` | both sides, chronological; this entry added | — |
+
+## 2026-11-21: TI-1 results (TSP generalisation)
+| File | Change | Reason |
+|---|---|---|
+| `scripts/geometry_of_truth/32_tsp_generalisation.py` | modified | OOM fix in `stage_eval` (batch 16 → 4, same for original log-probs); `stage_analyze` dict-access fix (`r.seed` → `r['seed']`). Neither changes any computation |
+| `results/geometry_of_truth/tsp_generalisation/{ledger_*.csv, eval/, analysis/}` | added | 81 fine-tunes evaluated; pre-registered analysis |
+| `results/geometry_of_truth/tsp_generalisation/README.md` | updated | results, criteria, deviations |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | appended | documentation rule (CLAUDE.md §1); §56, D48; 81 checkpoint rows (checkpoints not committed) |

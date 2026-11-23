@@ -148,4 +148,4 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | XT-G0 Gemma task activations, K1 / K7 gates | VALIDATION (completed; gates passed) | `results/gemma/xtg_task_baselines/` |
 | XB matched splicing (GPT-2 vs Gemma) | PRE-REGISTERED, in progress; gate outputs only | `results/cross_model/xb_matched_splicing/` |
 | XT-G / DX truth preservation (both models) | PRE-REGISTERED, in progress; smoke outputs are EXPLORATORY, not citable | `results/cross_model/xtg_truth_preservation/` |
-| TI-1 TSP generalisation | PRE-REGISTERED, gates passed, in progress | `results/geometry_of_truth/tsp_generalisation/` |
+| TI-1 TSP generalisation | **VALIDATION (citable)**: GENERALISES, 3/3 cells SUPPORTED (L11 TopK −0.042, L8 BatchTopK −0.015, L8 ReLU −0.026 refit gap vs ctrl); cities only | `results/geometry_of_truth/tsp_generalisation/` (§56, D48) |

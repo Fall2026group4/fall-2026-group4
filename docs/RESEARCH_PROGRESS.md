@@ -1551,3 +1551,13 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * XT-G/DX: Gemma all layers, then the GPT-2 depth-matched layers;
   * TI-1: L11 TopK, L8 BatchTopK, L8 ReLU.
 * **Tracker:** `results/cross_model/FINAL_WEEK_TRACKER.md`.
+
+## 56. TI-1: TSP generalisation across layers and SAE types (2026-11-21). Status: COMPLETED (VALIDATION; pre-registered). Verdict: GENERALISES
+* **Question:** does the TSP-R cities effect (L8 TopK, −0.0207) hold at other layers and architectures under the identical recipe?
+* **Design:** R2 bases L11 TopK, L8 BatchTopK, L8 ReLU (L1 not eligible: no cities signal); arms base / ctrl (reconstruction-only GoT replay) / tsp / rand (random subspace); 3 seeds × 3 cross-fitted folds; readers fitted on fold B, scored on V; hierarchical seed + city-cluster bootstrap; Holm over cells. Pre-registration and gates (R0 bit-identical repro) committed in `b0f3e84`.
+* **Primary (refit-logistic gap, tsp − ctrl):** L11 TopK **−0.042** [−0.053, −0.030]; L8 BatchTopK **−0.015** [−0.024, −0.006]; L8 ReLU **−0.026** [−0.032, −0.020]; all p_holm < 1e-3, 3/3 seeds negative; all SUPPORTED (meaningful).
+* **Criteria:** cell_supported 3/3; generalises MET; cost guard MET (tsp vs base NMSE +2.5 / +1.6 / +0.3 %, L0 within ±0.2 %).
+* **Specificity:** tsp beats the random-subspace arm in every cell (−0.049 / −0.022 / −0.026). The ctrl arm's OWT cost equals tsp's, so the cost is from the GoT replay, not the truth term. MLP readers move the same way but less, and not always significantly.
+* **Limitations:** cities only (no fresh-family transfer tested; TI-2); 3 seeds; GPT-2 only (TI-G blocked on disk). Frozen-probe gains are partly circular and not used.
+* **Deviations:** OOM batch-size fix in `stage_eval`; a dict-access bug in `stage_analyze` (crashed before writing; re-run once). Neither changes any computation.
+* **Artifacts:** `results/geometry_of_truth/tsp_generalisation/` (README, ledgers, eval/, analysis/); 81 fine-tune checkpoints, not committed, listed in `docs/checkpoint_registry.csv`.

@@ -913,3 +913,13 @@ variability.
 | Q0b: T4 bf16 vs fp32 (layer 12, 16k/82, 64 docs) | mean error CI upper bound < margin | ΔCE_SAE WITHIN MARGIN: 0.00267 [0.00218, 0.00319] < 0.005; top-1 agreement BEYOND MARGIN: 0.00886 [0.00712, 0.01077] |
 
 * No layer ranking and no "best SAE" (pre-registered). Nothing is claimed for widths above 65k.
+
+## TI-1: TSP generalisation (2026-11-21; VALIDATION; pre-registered; 3 seeds × 3 folds per cell)
+| Cell | tsp − ctrl refit gap [95 % CI] | p_holm | tsp − rand | OWT NMSE vs base | L0 change | Label |
+|---|---|---|---|---|---|---|
+| L8 TopK (TSP-R reference, 8 seeds) | −0.0207 [−0.0261, −0.0153] | — | −0.0220 | non-inferior | 0 | SUPPORTED |
+| L11 TopK | −0.0415 [−0.0533, −0.0298] | 9.1e-5 | −0.0489 | +2.5 % | 0.0 % | SUPPORTED (meaningful) |
+| L8 BatchTopK | −0.0153 [−0.0241, −0.0065] | 7.1e-4 | −0.0217 | +1.6 % | +0.1 % | SUPPORTED (meaningful) |
+| L8 ReLU | −0.0258 [−0.0316, −0.0201] | 2.9e-10 | −0.0258 | +0.3 % | +0.2 % | SUPPORTED (meaningful) |
+
+Lower is better. Source: `results/geometry_of_truth/tsp_generalisation/analysis/`. L1 not eligible.
