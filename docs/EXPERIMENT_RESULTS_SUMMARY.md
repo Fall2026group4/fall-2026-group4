@@ -844,3 +844,17 @@ TI-4 (2 × 2 at L0 128; 3 seeds × 3 folds):
 | **Verdict** | **COMBINES** | |
 
 Sources: `results/geometry_of_truth/tsp_multifamily/analysis/`, `results/geometry_of_truth/tsp_kl_factorial/analysis/`.
+
+## XC-3 steering parity (RepE-LM persona, final token; TEST once, 344 pairs; confirmed test result for H1–H3)
+
+| Model / layer | E_patch | E_raw | E_rec | R = E_rec/E_raw | H1 | H2 | H3 |
+|---|---|---|---|---|---|---|---|
+| GPT-2 L3 | 0.160 | 0.048 [0.031, 0.067] | 0.034 [0.004, 0.068] | 0.69 [0.08, 1.60] | met | met | INCONCLUSIVE |
+| GPT-2 L6 | 0.288 | 0.068 [0.045, 0.090] | 0.023 [−0.022, 0.061] | 0.34 [−0.35, 1.00] | met | met | INCONCLUSIVE |
+| GPT-2 L9 | 0.662 | 0.130 [0.109, 0.156] | 0.107 [0.079, 0.135] | 0.83 [0.58, 1.11] | met | met | INCONCLUSIVE |
+| Gemma L5 | 0.103 | 0.002 [−0.009, 0.014] | −0.006 [−0.020, 0.008] | — | not met | not met | n/a |
+| Gemma L12 | 0.493 | 0.147 [0.090, 0.207] | 0.143 [0.086, 0.202] | 0.97 [0.52, 1.73] | met | met | INCONCLUSIVE |
+| Gemma L19 | 0.945 | 0.091 [0.056, 0.130] | 0.078 [0.036, 0.120] | 0.86 [0.36, 1.61] | met | met | INCONCLUSIVE |
+
+* H4 (descriptive): R_gemma − R_gpt2 = +0.63 [+0.14, +1.40] at mid depth and +0.03 [−0.25, +0.28] at late depth.
+* Source: `results/cross_model/xc3_steering_parity/`.

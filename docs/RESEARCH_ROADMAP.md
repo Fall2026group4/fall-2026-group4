@@ -382,3 +382,7 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * LOST: the TI-2 / TI-4 checkpoints (instance storage). Retraining is possible (about 3.7 GB, about 5.6 h) but not
   planned.
 * OPEN: integrate `sae-research` with the `final-week/p*` PR stack (needs the user's approval; no merge or rebase done).
+* DONE (2026-11-23 15:27 UTC): XC-3 steering parity.
+  * H1/H2 met at 5/6 cells (not at Gemma L5).
+  * H3 INCONCLUSIVE everywhere: retention CIs too wide with 86 statements.
+  * NEW (optional): a larger RepE-LM TEST would be needed to resolve retention (H3).

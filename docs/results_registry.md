@@ -143,3 +143,4 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | TI-3 minimal-pair preservation | WITHDRAWN: no result, not citable | `results/geometry_of_truth/minimal_pair_preservation/` |
 | Ladder batch 2 (XB L12 only) | PARTIAL: XB per-document outputs only; analysis not run, not yet citable | `results/cross_model/xb_ladder_batch2/` |
 | XC-3 steering parity | PRE-REGISTERED; smoke outputs (TRAIN) not citable | `results/cross_model/xc3_steering_parity/` |
+| XC-3 steering parity, GPT-2 vs Gemma (H1/H2 met 5/6; H3 INCONCLUSIVE) | CONFIRMED TEST RESULT for H1–H3 (GPT-2 TEST rows previously read once by H1-TEST; Gemma pristine); H4 descriptive | `results/cross_model/xc3_steering_parity/` |

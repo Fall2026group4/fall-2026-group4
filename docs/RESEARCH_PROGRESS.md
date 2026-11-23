@@ -1388,3 +1388,22 @@ D numbers are deliberately not assigned here.
   * T-B triplet, ≥ 200 controls, plus a reconstruction-direction arm.
 * **XC-2 Gemma GoT causal: PRE-REGISTERED** (port of `dhruv-causal` 22), queued.
 * **Deferred by the user:** XC-1, XF, M4. NOT RUN.
+
+### XC-3 steering parity: results (2026-11-23). Status: COMPLETED (confirmed test result for H1–H3; H4 descriptive)
+* **Setup.** One RepE-LM persona-steering protocol at the final token, run on both models. TEST was run once: 344
+  pairs, 86 statements. Every sanity check is exactly 0. About 46 GPU minutes.
+* **H1 (the honesty direction beats 200 Gaussian and 200 SAE-feature controls, Holm): met at 5/6 cells.**
+  * GPT-2 L3/6/9: E_raw 0.048 / 0.068 / 0.130.
+  * Gemma L12/19: 0.147 / 0.091.
+  * **Not met at Gemma L5** (0.002).
+* **H2 (the SAE-reconstruction direction steers): met at the same 5/6 cells.**
+* **H3 (retention E_rec/E_raw ≥ 0.8): INCONCLUSIVE at all 5 cells.**
+  * Point estimates: 0.69, 0.34, 0.83 (GPT-2); 0.97, 0.86 (Gemma).
+  * Every CI spans 0.8.
+* **H4 (descriptive).**
+  * Mid depth: Gemma retains more than GPT-2 (R difference +0.63 [+0.14, +1.40]), and its E_raw is higher (+0.079).
+  * Late depth: no difference.
+* **Reading.** The honesty direction steers specifically in both models at mid and late depth, and the public-SAE
+  reconstruction direction keeps a large but imprecisely measured share. Retention preservation is not established.
+* **Exposure.** The GPT-2 TEST rows had been read once before (H1-TEST); the Gemma rows were pristine.
+* Source: `results/cross_model/xc3_steering_parity/`.
