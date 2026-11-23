@@ -497,3 +497,12 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `docs/results_registry.md` | both sides, chronological (#35 R2-row update, AUDIT-SENS, TSP; #31 2026-11-15/16; final week) | — |
 | `docs/plain_summary.md` | #31 sentence kept | the version Aditi accepted; it does not restore the withdrawn S5 wording |
 | `docs/EXPERIMENT_CHANGELOG.md` | both sides, chronological; this entry added | — |
+
+## 2026-11-23: R3 status in the paper; OWT EDA PNGs moved out of `results/` (Review #10: F7; no experiment run)
+
+| File | Change | Reason |
+|---|---|---|
+| `research_paper/Latex/tables/t_evidence.tex` | R3 row: "(not used)" and "PR \#30, in review" replaced by "Tier A, 36 SAEs (Discussion only)" and "merged, PR \#30"; dagger removed from the R3 row and the now unused dagger note removed from the caption | PR #30 merged on 2026-11-22 (`094a6b9`); R3 was the last row with the dagger. No other row, number or label changed |
+| `research_paper/Latex/sections/09_discussion.tex` | "(PR \#30, under review)" → "(merged in PR \#30)" | same |
+| `research_paper/Latex/main.pdf` | not rebuilt (no LaTeX on this machine) | rebuild before submission |
+| `results/figures/eda_{token_count_distribution,token_vs_context_limit,word_count_distribution}.png` → `docs/eda_figures/` (moved, unchanged) + `docs/eda_figures/README.md` | moved | Review #10 F7: PNGs out of `results/`. Their notebook streamed 1,000 OWT documents from Hugging Face, not data in the repo, so they cannot be regenerated as SVG; not used in the paper |
