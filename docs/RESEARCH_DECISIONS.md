@@ -560,3 +560,6 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * **XC-1 outcome (2026-11-23):** selected L0 slot and L23 final, both confirmed on VALIDATION, so the stop rule is
     not triggered and M4-G runs. The mid site is L12 final by the pre-registered M4-G rule. No rule was changed after
     any VALIDATION number was seen.
+  * **M4-G reading (2026-11-23):** at L12 and L23 final the interaction exceeds the 0.2 limit, so per the frozen rule
+    only the T_rec / T_err bounds are cited there (no Shapley split). The Shapley share column is reported but not
+    interpreted at those sites.

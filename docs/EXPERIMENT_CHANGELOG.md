@@ -491,3 +491,11 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   `results_registry`, `experiment_manifest` and the recovery and final-day record.
 * Not committed: `run.log`. `results/cross_model/m4_gemma_patch_decomposition/site_selection.json` (written by the
   running M4-G job) is committed with M4-G.
+
+## 2026-11-23: M4-G results
+* Added under `results/cross_model/m4_gemma_patch_decomposition/`: `site_selection.json`, `per_pair.csv`,
+  `decomposition_summary.csv`, `hypotheses.csv`, `sanity_checks.json`, `control_draws.npz` (490 KB).
+* Updated the M4-G `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed: `run.log`.

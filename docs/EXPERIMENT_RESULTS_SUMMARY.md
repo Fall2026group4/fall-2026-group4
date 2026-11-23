@@ -906,3 +906,14 @@ E_share = R_A / KL(p_H‖p_U). 24/45 cells pass on TRAIN.
 TRAIN E_share by layer (slot / final): L0 0.98 / 0.00, L2 0.92 / 0.04, L5 0.69 / 0.12, L8 0.38 / 0.24,
 L12 0.15 / 0.51, L16 0.04 / 0.85, L19 0.03 / 0.93, L23 0.00 / 0.98. M4 on Gemma: justified.
 Source: `results/cross_model/xc1_gemma_site_sweep/`.
+
+## M4-G Gemma SAE patch decomposition (2026-11-23; validation finding)
+Gemma Scope 16k canonical at the XC-1 sites; VALIDATION T2–T4 (267 pairs); T in nats (higher = more effect restored).
+
+| Site | T_full | T_rec [95 % CI] | T_err [95 % CI] | T_rec/T_full [95 % CI] | \|I\|/T_full | H4a | H4b |
+|---|---|---|---|---|---|---|---|
+| L0 slot | 0.137 | 0.131 [0.093, 0.175] | 0.010 [0.006, 0.016] | 0.959 [0.945, 0.969] | 0.12 (additive) | PASS | PASS |
+| L12 final | 0.079 | 0.060 [0.035, 0.092] | 0.011 [−0.001, 0.028] | 0.753 [0.679, 0.807] | 0.29 (bounds only) | PASS | PASS |
+| L23 final | 0.137 | 0.096 [0.064, 0.137] | 0.007 [−0.005, 0.022] | 0.701 [0.640, 0.755] | 0.33 (bounds only) | PASS | PASS |
+
+BH over 3 sites; H4c not run. Source: `results/cross_model/m4_gemma_patch_decomposition/`.
