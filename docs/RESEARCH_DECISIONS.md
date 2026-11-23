@@ -632,3 +632,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **May say (TEST, rows previously exposed):** "On held-out cities TEST, no trained SAE retains less truth information than PCA with the same per-token active budget (k = 128; 0/20 cells worse)."
 * **May say, cell-specific:** an SAE advantage over capacity-matched PCA is confirmed at k = 128 for L11 R2 ReLU, and at task-matched k for L8 old ReLU, L8 res-jb, L11 R2 ReLU and L11 res-jb.
 * **May not say:** "SAEs are significantly better than PCA" in general (D34 wording rule). Not confirmed: P2 L8 res-jb (p = 0.048 fails Holm) and L8 R2 ReLU; four P3 cells.
+
+* **Large per-document outputs (2026-11-23).** Per-document result CSVs above the 25 MB repository-hygiene limit are
+  committed gzipped (`gzip -n -9`, lossless) with a SHA-256 of the uncompressed file next to them, rather than raising
+  the limit or dropping the data. Frozen analysis scripts are not edited; the README gives the decompress step.

@@ -538,3 +538,9 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 * `results/cross_model/xb_matched_splicing/README.md` and `docs/EXPERIMENT_RESULTS_SUMMARY.md`: the GPT-2 shared-span
   EV / L0 values are labelled OWT-XM (verified against `analysis_v1/summary_by_sae.csv`, corpus `owt_xm`). Wording only;
   no number changed.
+
+## 2026-11-23: oversize XB per-document CSVs stored gzipped (CI repository-hygiene fix)
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xb_matched_splicing/runs/{gpt2_owt_xm_shared_main,gpt2_pile_shared_main}/per_doc.csv` | replaced by `per_doc.csv.gz` (gzip -n -9, lossless) + `per_doc.csv.sha256` (hash of the uncompressed file; round trip verified) | 27.2 MB each, above the 25 MB limit of `scripts/shared/ci_repo_hygiene.py`; `main` CI failed after #39 merged |
+| `results/cross_model/xb_matched_splicing/README.md` | storage note and re-run instruction | frozen analysis scripts unchanged (decompress before re-running) |

@@ -128,7 +128,10 @@ Gemma Scope (trained at 1024 tokens) stays in distribution: EV 0.74–0.88 and L
 **Not to be cited:** any primary-arm GPT-2 vs Gemma comparison.
 
 **Files:**
-* `runs/*/per_doc.csv` and `DONE.json` (committed);
+* `runs/*/per_doc.csv` and `DONE.json` (committed). The two GPT-2 shared-span runs (`gpt2_owt_xm_shared_main`,
+  `gpt2_pile_shared_main`) are stored as `per_doc.csv.gz` (27.2 MB each uncompressed, above the 25 MB repository-hygiene
+  limit), with `per_doc.csv.sha256` holding the hash of the uncompressed file. To re-run the frozen analysis, first run
+  `gunzip -k runs/*/per_doc.csv.gz` (then `sha256sum -c` in each folder); the frozen scripts are unchanged;
 * `runs/*/sum_x.npz` (per-document activation sums; 38–243 MB each; not committed; SHA-256 in
   `runs_sum_x_sha256.txt`);
 * `analysis_v1/`.
