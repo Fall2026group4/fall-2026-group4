@@ -1464,3 +1464,19 @@ D numbers are deliberately not assigned here.
   * On fresh data, the benefit comes from domain replay, not from the truth-subspace term.
   * The public SAEs' truth losses are confirmed at TEST level.
 * Source: `results/cross_model/xf_fresh_cities_test/`.
+
+### XC-1 Gemma site sweep: results (2026-11-23). Status: COMPLETED (validation finding; TRAIN selection, VALIDATION confirmation; no SAE; TEST never loaded)
+* **Run.** 14,200 fixed-shape forwards, 5,084 s; 400 TRAIN pairs (100 statements), 356 VALIDATION pairs
+  (89 statements). Every hard sanity check exactly 0.0; script hash matches the frozen pre-registration.
+* **TRAIN.** 24 of 45 cells pass (Holm over 45, above the 200-draw random q95, non-trivial).
+* **Selected and confirmed (2/2):**
+  * earliest: L0 slot, R_A VALIDATION 0.108 [0.077, 0.144], E_share 0.98;
+  * peak + latest: L23 final, R_A VALIDATION 0.108 [0.077, 0.145], E_share 0.98.
+* **Stop rule not triggered: M4 on Gemma is justified.** M4-G started 20:48 UTC at L0 slot, L23 final and the
+  pre-registered mid site L12 final (E_share 0.51 TRAIN; confirmed on VALIDATION T2–T4 with original activations,
+  T_full 0.080 [0.051, 0.115], excess over synonym 0.030 [0.010, 0.054]).
+* **Site map.** Persona-token (slot) share falls 0.98 → 0.04 from L0 to L16; final-token share rises 0.24 → 0.98 from
+  L8 to L23; post-slot instruction tokens carry 0.46–0.56 at L5–L12. Same two-site structure as GPT-2 M3
+  (descriptive only).
+* **Limitations.** 9 of 26 layers; 100 of 417 TRAIN statements.
+* Source: `results/cross_model/xc1_gemma_site_sweep/`.

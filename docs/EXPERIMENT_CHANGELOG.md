@@ -481,3 +481,13 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   * `test/test_acts.npz` (activation cache, 37 MB);
   * `test/scores/` (184 per-SAE score files, 3 MB; kept on EBS);
   * `run.log`.
+
+## 2026-11-23: XC-1 results
+* Added under `results/cross_model/xc1_gemma_site_sweep/`: `cells_train.csv`, `cells_validation.csv`,
+  `cells_validation_by_template.csv`, `selected_sites.json`, `sanity_checks.json`, `pairs_info.json`,
+  `random_draws.npz` (80 KB): the full-run outputs.
+* Updated the XC-1 `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed: `run.log`. `results/cross_model/m4_gemma_patch_decomposition/site_selection.json` (written by the
+  running M4-G job) is committed with M4-G.

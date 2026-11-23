@@ -557,3 +557,6 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * **M4-G site rules:** both pre-registered before XC-1 read VALIDATION.
   * **H4c omitted.**
   * **Order:** XF first, then XC-1, then M4-G (user).
+  * **XC-1 outcome (2026-11-23):** selected L0 slot and L23 final, both confirmed on VALIDATION, so the stop rule is
+    not triggered and M4-G runs. The mid site is L12 final by the pre-registered M4-G rule. No rule was changed after
+    any VALIDATION number was seen.

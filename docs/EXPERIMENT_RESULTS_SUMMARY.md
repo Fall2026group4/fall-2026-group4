@@ -893,3 +893,16 @@ Gap = AUROC_orig − AUROC_reconstruction (lower is better), with 95 % CIs. 900 
 | TI-1 L8 ReLU (3) | +0.0020 [−0.0007, +0.0047] | NO MEANINGFUL EFFECT | −0.0026 | −0.0256 |
 
 P2 verdict: FAILS TO REPLICATE (0/4 SUPPORTED; Holm p ≥ 0.51).
+
+## XC-1 Gemma site sweep (2026-11-23; validation finding, TRAIN selection → VALIDATION confirmation)
+R_A = KL(p_H‖p_U) − KL(p_H‖p_{U←H at cell}) in nats (higher = the cell carries more of the persona effect);
+E_share = R_A / KL(p_H‖p_U). 24/45 cells pass on TRAIN.
+
+| Role | Cell | R_A TRAIN | R_A VALIDATION [95 % CI] | E_share val | Random q95 val | Confirmed |
+|---|---|---|---|---|---|---|
+| earliest | L0 slot | 0.0720 | 0.1079 [0.0772, 0.1438] | 0.983 | 0.0217 | yes |
+| peak + latest | L23 final | 0.0724 | 0.1080 [0.0771, 0.1455] | 0.984 | −0.0213 | yes |
+
+TRAIN E_share by layer (slot / final): L0 0.98 / 0.00, L2 0.92 / 0.04, L5 0.69 / 0.12, L8 0.38 / 0.24,
+L12 0.15 / 0.51, L16 0.04 / 0.85, L19 0.03 / 0.93, L23 0.00 / 0.98. M4 on Gemma: justified.
+Source: `results/cross_model/xc1_gemma_site_sweep/`.
