@@ -72,7 +72,7 @@ At 128 tokens the GPT-2 SAEs are back in distribution:
 | SAE | L0 | EV |
 |---|---|---|
 | res-jb L1 / L8 / L11 (OWT-XM) | 15 / 67 / 61 | 0.95 / 0.86 / 0.81, matching their 128-token OWT VAL ladder values |
-| R2 | ≈ 130 | 0.83–0.95 |
+| R2 | ≈ 130 | individual trained SAEs 0.81–0.98 (per-layer means 0.83–0.95 including the frozen-decoder control, which sits at 0.57–0.68) |
 
 ### Pre-registered outcomes (as computed)
 

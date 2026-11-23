@@ -1505,7 +1505,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 
 ## 61. XB A4: 128-token shared-span arm (2026-11-22). Status: COMPLETED (VALIDATION, sensitivity); Holm outcomes infeasible by design
 * **Design:** frozen and pushed (`0c15597`) before the primary analysis was read. The same documents, SAEs, controls and frozen runner / analysis were used, redirected to `a4_ctx128/`. Gates: identity / repeat exactly 0.
-* **Context fixes the GPT-2 breakdown:** res-jb EV 0.95 / 0.86 / 0.81 and L0 15 / 67 / 61 at L1 / L8 / L11, matching its 128-token values; R2 EV 0.83–0.95.
+* **Context fixes the GPT-2 breakdown:** res-jb EV 0.95 / 0.86 / 0.81 and L0 15 / 67 / 61 at L1 / L8 / L11, matching its 128-token values; R2 EV 0.81–0.98 for the individual trained SAEs (per-layer means 0.83–0.95, including the frozen-decoder control at 0.57–0.68).
 * **Outcomes:**
   * XB_H1 GPT-2: 297/318 supported by CI (Holm 0/318 is infeasible);
   * XB_H1 Gemma: 49/52;
