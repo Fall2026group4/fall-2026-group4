@@ -511,3 +511,8 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | File | Change | Reason |
 |---|---|---|
 | XB `README.md` §3.2, §59, D50, results summary | corrected | the GPT-2 XB_H1 "0/318" under Holm is mechanically impossible to pass with a 1,000-resample bootstrap over 159 tests. It was wrongly attributed to the out-of-distribution artefact; the uncorrected CI verdicts are now reported as descriptive. No result or rule changed |
+
+## 2026-11-23: XB primary review fix (PR #39, reviewer note)
+* `results/cross_model/xb_matched_splicing/README.md` and `docs/EXPERIMENT_RESULTS_SUMMARY.md`: the GPT-2 shared-span
+  EV / L0 values are labelled OWT-XM (verified against `analysis_v1/summary_by_sae.csv`, corpus `owt_xm`). Wording only;
+  no number changed.
