@@ -933,7 +933,7 @@ Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of recor
 ## XB A4: 128-token shared span (2026-11-22; VALIDATION, sensitivity; D52)
 | | GPT-2 (159 SAEs) | Gemma (16k canonical) |
 |---|---|---|
-| EV at triplet layers | res-jb 0.77–0.95; R2 0.83–0.95 (back in distribution) | 0.74–0.88 |
+| EV at triplet layers | res-jb 0.77–0.95; R2 trained SAEs 0.81–0.98, per-layer means 0.83–0.95 incl. the frozen-decoder control at 0.57–0.68 (back in distribution) | 0.74–0.88 |
 | XB_H1 by CI (Holm infeasible / feasible) | 297/318 supported (Holm 0/318, p floor) | 49/52 (Holm 49/52) |
 | SAE / random ΔCE (triplets) | 1.5–4.8 | 0.7–3.0 |
 | Loss recovered (triplets) | 0.91–1.00 | 0.97–1.00 |

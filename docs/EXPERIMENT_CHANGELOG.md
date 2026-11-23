@@ -548,3 +548,8 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 * README, `RESEARCH_PROGRESS`, `RESEARCH_DECISIONS`, `results_registry`, `RESEARCH_ROADMAP`: SUPPRESSION is described as
   error concentrated along the **task** direction (truth for GoT; the persona / neutral label direction for RepE),
   because for the RepE tasks the direction is not a truth direction. Wording only; no rule or count changed.
+
+## 2026-11-23: XB A4 review fix (PR #41, reviewer note)
+* `a4_ctx128/README.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/RESEARCH_PROGRESS.md`: "R2 0.83–0.95" was the range
+  of per-layer means; now also reports individual trained R2 SAEs 0.81–0.98 and the frozen-decoder control 0.57–0.68
+  (recomputed from `analysis_a4/summary_by_sae.csv`, both corpora). Wording only; no result changed.
