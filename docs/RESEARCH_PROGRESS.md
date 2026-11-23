@@ -1438,3 +1438,9 @@ D numbers are deliberately not assigned here.
   * (P2) TSP-R and TI-1 tsp − ctrl on never-used cities.
 * **Gate.** Every cell clears 0.70 on DEV (GPT-2 0.77–0.81, Gemma 0.95–1.00).
 * Source: `results/cross_model/xf_fresh_cities_test/`.
+
+### XC-1 Gemma site sweep and M4-G (2026-11-23). Status: IN PROGRESS (pre-registered and frozen; XC-1 full run started 19:23 UTC; M4-G queued)
+* **XC-1:** the M3 protocol on Gemma resid_post, 9 layers × 5 position groups.
+* **M4-G:** the M4 decomposition with Gemma Scope 16k at the confirmed XC-1 sites, plus the A1-style mid site.
+  H4c is omitted.
+* Both were frozen before any Gemma VALIDATION pair was scored. Smoke tests used TRAIN only.

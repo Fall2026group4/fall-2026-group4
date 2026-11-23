@@ -459,3 +459,14 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   * `gate/gate.json`.
 
   Activation caches (`gate/dev_acts.npz`, `smoke/acts.npz`) and the per-SAE smoke score files are not committed.
+
+## 2026-11-23: XC-1 and M4-G pre-registrations (frozen before the XC-1 full run)
+* Added `scripts/cross_model/24_xc1_gemma_site_sweep.py`: the M3 port to Gemma on a reduced grid, with fixed-shape
+  forwards.
+* Added `scripts/cross_model/25_m4_gemma_patch_decomposition.py`: the M4 port to Gemma Scope at the XC-1 sites; H4c is
+  omitted.
+* Added the `prereg_body.json`, `preregistration.json`, `.sha256`, `README.md` and smoke outputs under:
+  * `results/cross_model/xc1_gemma_site_sweep/`;
+  * `results/cross_model/m4_gemma_patch_decomposition/`.
+
+  Run logs are not committed.

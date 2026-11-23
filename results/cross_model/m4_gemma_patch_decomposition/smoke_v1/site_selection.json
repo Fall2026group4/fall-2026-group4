@@ -1,0 +1,30 @@
+{
+ "fixed": [
+  {
+   "layer": 12,
+   "group": "final",
+   "role": "smoke"
+  },
+  {
+   "layer": 0,
+   "group": "slot",
+   "role": "smoke"
+  }
+ ],
+ "mid": {
+  "selected": null,
+  "note": "smoke: no mid-site rule"
+ },
+ "sites": [
+  {
+   "layer": 12,
+   "group": "final",
+   "role": "smoke"
+  },
+  {
+   "layer": 0,
+   "group": "slot",
+   "role": "smoke"
+  }
+ ]
+}
