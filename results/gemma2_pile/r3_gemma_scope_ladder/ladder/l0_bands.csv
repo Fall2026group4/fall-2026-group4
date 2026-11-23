@@ -1,0 +1,5 @@
+layer,anchor_sae_id,target_l0,members,also_in_band
+12,layer_12/width_16k/average_l0_22,22.839693244774615,layer_12/width_16k/average_l0_22;layer_12/width_32k/average_l0_22;layer_12/width_65k/average_l0_21,
+12,layer_12/width_16k/average_l0_41,43.38488416016117,layer_12/width_16k/average_l0_41;layer_12/width_32k/average_l0_40;layer_12/width_65k/average_l0_38,
+12,layer_12/width_16k/average_l0_82,84.8070385293377,layer_12/width_16k/average_l0_82;layer_12/width_32k/average_l0_76;layer_12/width_65k/average_l0_72,
+19,layer_19/width_16k/average_l0_40,40.69961517879627,layer_19/width_16k/average_l0_40;layer_19/width_65k/average_l0_35,

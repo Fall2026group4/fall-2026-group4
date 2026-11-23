@@ -888,6 +888,32 @@ Sources: `results/shared/dead_latent_audit/{dead_latents_by_sae.csv,summary_by_f
   Data, training duration and recipe changed together; no single factor is isolated.
 * **Transcription correction:** the appendix JumpReLU alive-latent range is 469–2,941 (it previously read 2,947).
 
+## 27. R3: Gemma Scope width × L0 ladder on The Pile (VALIDATION; Tier A, 36 SAEs; Tier B not run, Deviation 2)
+Numbered §26 on PR #30 until 2026-11-21; renumbered §27 to avoid a collision with #31.
+Source: `results/gemma2_pile/r3_gemma_scope_ladder/` (README Section 2; `ladder/*.csv`; `precision_t4_vs_fp32/`).
+Same 512 Pile validation documents, metrics and controls as M6 (§25); V6: M6 reproduced within margin at all three
+layers. One SAE per configuration: intervals are 95 % document-bootstrap CIs (1,000 resamples, seed 0), not seed
+variability.
+
+**Range across the 36 SAEs, per layer (↑ EV, loss recovered; ↓ ΔCE_SAE):**
+
+| Layer | SAEs | Measured L0 | EV | ΔCE_SAE (nats per prediction) | Loss recovered | ΔCE_SAE / ΔCE_random |
+|---|---|---|---|---|---|---|
+| 5 | 10 (16k, 65k) | 17.4–319.7 | 0.744–0.909 | 0.019–0.168 | 0.981–0.998 | 1.62–3.95 |
+| 12 | 16 (16k, 32k, 65k) | 12.5–461.5 | 0.663–0.890 | 0.029–0.365 | 0.963–0.997 | 1.77–6.15 |
+| 19 | 10 (16k, 65k) | 20.5–282.5 | 0.710–0.885 | 0.063–0.374 | 0.957–0.993 | 1.45–3.42 |
+
+**Pre-registered tests:**
+
+| Test | Rule | Result |
+|---|---|---|
+| H1: higher L0 within a width lowers ΔCE_SAE | every adjacent pair's CI lower bound > 0 | SUPPORTED in 7/7 cells (29/29 pairs; smallest d 0.0132 [0.0114, 0.0152]); EV also 7/7 |
+| H2: wider SAE at matched L0 (±10 %) lowers ΔCE_SAE | same rule, per band | SUPPORTED in 4/4 bands formed (layer 12 at L0 ≈ 23, 43, 85; layer 19 at ≈ 41); no band at layer 5; smallest d 0.0081 [0.0059, 0.0104] |
+| H3: SAE-splice ΔCE > norm-matched random ΔCE, per SAE | Holm over 36, one-sided | HOLDS ACROSS THE LADDER: 36/36, no reversal; smallest d 0.0053 [0.0023, 0.0087] |
+| Q0b: T4 bf16 vs fp32 (layer 12, 16k/82, 64 docs) | mean error CI upper bound < margin | ΔCE_SAE WITHIN MARGIN: 0.00267 [0.00218, 0.00319] < 0.005; top-1 agreement BEYOND MARGIN: 0.00886 [0.00712, 0.01077] |
+
+* No layer ranking and no "best SAE" (pre-registered). Nothing is claimed for widths above 65k.
+
 ## TI-1: TSP generalisation (2026-11-21; VALIDATION; pre-registered; 3 seeds × 3 folds per cell)
 | Cell | tsp − ctrl refit gap [95 % CI] | p_holm | tsp − rand | OWT NMSE vs base | L0 change | Label |
 |---|---|---|---|---|---|---|

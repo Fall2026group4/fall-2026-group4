@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-11-17T14:21:15.841364+00:00",
+  "n_saes_aggregated": 36,
+  "not_run": [
+    "layer_12/width_131k/average_l0_12",
+    "layer_12/width_131k/average_l0_20",
+    "layer_12/width_131k/average_l0_36",
+    "layer_12/width_131k/average_l0_67",
+    "layer_12/width_131k/average_l0_129",
+    "layer_12/width_131k/average_l0_264",
+    "layer_12/width_262k/average_l0_11",
+    "layer_12/width_262k/average_l0_21",
+    "layer_12/width_262k/average_l0_36",
+    "layer_12/width_262k/average_l0_67",
+    "layer_12/width_262k/average_l0_121",
+    "layer_12/width_262k/average_l0_243",
+    "layer_12/width_524k/average_l0_22",
+    "layer_12/width_524k/average_l0_29",
+    "layer_12/width_524k/average_l0_46",
+    "layer_12/width_524k/average_l0_65",
+    "layer_12/width_524k/average_l0_115",
+    "layer_12/width_524k/average_l0_227"
+  ],
+  "output_sha256": {
+    "controls.csv": "46c9994d609e5002f39330628ceab394126ec3e2c4b449479ee8e18d63c7bb5b",
+    "gates.json": "d22292a1ff9970d94e08fc645b80736a5d4e1f0c97a1efdc0fec39ba6eb1ad19",
+    "h1_l0_within_width.csv": "203f98599baff42e6e72c4631cd282fce864eff41b7b2df43fa5d01a3ed25ef9",
+    "h2_width_matched_l0.csv": "2bd91d053c64aba81dad7a9a8a703e8de86824101da5fe8d72b9e386cbc77d2f",
+    "h3_hg1_ladder.csv": "cbfccdb5f97d30bb6807906906fcd449880a53860792f89f2b0786420e948d58",
+    "l0_bands.csv": "c6499818b3ae0b4baa97cd70e825b124dbf360f5c718cbfe79b225b9d995e9c7",
+    "per_doc_metrics.csv": "b5bb8a450181d0aeba6ee0d5bf734feda0075a64faf17a97d22299b3c8f29aea",
+    "summary_by_sae.csv": "341871b54b04e8c06739bd0c05c4b15a3962ea03ce96ba35fa5bdc1c78c01a42",
+    "summary_by_sae_source.csv": "353738cf0526a9667e882742a0d766d844b1c56966ef40849c060d39a54c7ae7",
+    "v6_m6_consistency.csv": "8875599c5c700cbc84446a6d72d506ea163f076665b012ac0d05eeada8d26a88"
+  },
+  "status": "aggregate of the R3 ladder runs"
+}
