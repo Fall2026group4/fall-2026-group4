@@ -1,4 +1,4 @@
-# XT-G / DX: truth and honesty representation preservation, both models, one protocol. Status: COMPLETED (2026-11-22; VALIDATION). No readout shift anywhere; persona information lost in both models; SAE error concentrated along the truth direction
+# XT-G / DX: truth and honesty representation preservation, both models, one protocol. Status: COMPLETED (2026-11-22; VALIDATION). No readout shift anywhere; persona information lost in both models; SAE error concentrated along the task direction (truth for GoT, persona / neutral label for RepE)
 
 **Pre-registration:** `preregistration.json`; amendments A1–A3 in `AMENDMENTS.md` (all made before any full-run
 output); hashes in `frozen_hashes.txt`.
@@ -67,9 +67,10 @@ RLM-RP `evaluate`. The new code is the task loading, the sources and the DX diag
 2. **Persona (honesty) information is lost in both models:** INFORMATION_LOSS in 26/26 Gemma and 56/56 GPT-2 cells,
    and beyond error-matched PCA in 21/26 and 34/56. **It is not honesty-specific:** the neutral control loses as
    much in Gemma (26/26), and in about half the GPT-2 cells (27/56).
-3. **The SAE error concentrates along the truth direction (SUPPRESSION) almost everywhere** (Gemma 130/130,
+3. **The SAE error concentrates along the task direction (SUPPRESSION) almost everywhere** (Gemma 130/130,
    GPT-2 258/280). Median enrichment: Gemma 6–34×, GPT-2 1.7–5.7×. The enrichment scale depends on d_model (2,304 vs
-   768), so it is compared within a model only.
+   768), so it is compared within a model only. For GoT the direction is the truth direction; for the RepE tasks it is
+   the task's own label direction (honest vs untruthful persona, or the neutral control), not a truth direction.
 4. **GoT cities:**
    * Gemma is at ceiling at 20/26 layers (A2), where d′ retention is the usable metric (0.72–1.01 at layers 12 / 16 / 19 / 23);
    * GPT-2 loses cities information in 35/56 cells, 22 beyond PCA.

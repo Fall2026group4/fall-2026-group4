@@ -1523,6 +1523,6 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Coverage:** Gemma Scope 16k at 26 layers; GPT-2 res-jb at 11 layers, plus R2 / old at the matched layers (410 SAE × task cells). GPT-2 L0 is not evaluable (statement-independent final-token embedding). Frozen analysis with deviations A4 (CI-derived BH p; conservative z-test).
 * **No READOUT_SHIFT in any cell:** frozen-probe drops are not a linear readout shift.
 * **Persona information is lost in both models:** INFORMATION_LOSS in Gemma 26/26 and GPT-2 56/56 cells; beyond error-matched PCA in 21/26 and 34/56. The neutral control loses as much in Gemma, so the loss is not honesty-specific.
-* **SUPPRESSION** (SAE error concentrated along the truth direction): Gemma 130/130, GPT-2 258/280 cells.
+* **SUPPRESSION** (SAE error concentrated along the task direction: truth for GoT, the persona / neutral label direction for RepE): Gemma 130/130, GPT-2 258/280 cells.
 * **GoT cities:** Gemma is mostly at ceiling (20/26); GPT-2 loses information in 35/56, 22 beyond PCA.
 * **Cross-model (descriptive):** Gemma Scope keeps relatively more persona information than res-jb at matched depth (headroom-normalised gap 0.33–0.52 vs 0.60–0.85). No ranking claim.

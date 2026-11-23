@@ -609,7 +609,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **May say (VALIDATION):**
   * frozen-probe degradation is not a linear readout shift in either model (0/410 cells);
   * SAE reconstructions lose persona information in both models, and more than error-matched PCA in most cells, but the neutral control shows that this is not honesty-specific;
-  * SAE error is concentrated along the truth direction.
+  * SAE error is concentrated along the task direction (the truth direction for GoT; the persona / neutral label direction for RepE).
 * **May not say:**
   * any cross-model ranking (different SAE families and training);
   * any Gemma cities claim at ceiling layers (use d′ retention).

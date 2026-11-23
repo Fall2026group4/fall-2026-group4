@@ -543,3 +543,8 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/cross_model/xtg_truth_preservation/runs/{gemma_main, gpt2_main}/` | added | per-cell, DX, RepE-extras outputs (GPT-2 L0 not evaluable) |
 | `results/cross_model/xtg_truth_preservation/analysis_v1/`, `README.md` | added / updated | rule counts, cross-model descriptive table |
 | `docs/*` ledgers | appended | §63, D54, summary, roadmap, registry, manifest, tracker |
+
+## 2026-11-23: XT-G / DX review fix (PR #43, reviewer note)
+* README, `RESEARCH_PROGRESS`, `RESEARCH_DECISIONS`, `results_registry`, `RESEARCH_ROADMAP`: SUPPRESSION is described as
+  error concentrated along the **task** direction (truth for GoT; the persona / neutral label direction for RepE),
+  because for the RepE tasks the direction is not a truth direction. Wording only; no rule or count changed.
