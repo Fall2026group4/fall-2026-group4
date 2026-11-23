@@ -1,0 +1,44 @@
+{
+ "run": "gemma_pile_shared_b2",
+ "args": {
+  "model": "gemma",
+  "corpus": "pile",
+  "context": "shared",
+  "saes": "canonical,ladder:16k:22,ladder:16k:41,ladder:16k:176,ladder:16k:445,ladder:32k:12,ladder:32k:22,ladder:32k:40,ladder:32k:76,ladder:32k:155,ladder:32k:360,ladder:65k:21,ladder:65k:38,ladder:65k:72,ladder:65k:141,ladder:65k:297",
+  "layers": "12",
+  "tag": "b2",
+  "smoke": false,
+  "resume": true
+ },
+ "layers": [
+  12
+ ],
+ "n_sae": 16,
+ "minutes": 37.0,
+ "torch": "2.14.1+cu130",
+ "gpu": "NVIDIA A10G",
+ "sae_ids": {
+  "12": [
+   "layer_12/width_16k/average_l0_82",
+   "layer_12/width_16k/average_l0_22",
+   "layer_12/width_16k/average_l0_41",
+   "layer_12/width_16k/average_l0_176",
+   "layer_12/width_16k/average_l0_445",
+   "layer_12/width_32k/average_l0_12",
+   "layer_12/width_32k/average_l0_22",
+   "layer_12/width_32k/average_l0_40",
+   "layer_12/width_32k/average_l0_76",
+   "layer_12/width_32k/average_l0_155",
+   "layer_12/width_32k/average_l0_360",
+   "layer_12/width_65k/average_l0_21",
+   "layer_12/width_65k/average_l0_38",
+   "layer_12/width_65k/average_l0_72",
+   "layer_12/width_65k/average_l0_141",
+   "layer_12/width_65k/average_l0_297"
+  ]
+ },
+ "script_sha256": "8536a86aa7e810c7461df82b5d0e61c522248301a5e1dbcfe8edc69d1cbbf0b3",
+ "backends_sha256": "9f60bbbbbf9a073ddb4e366f271040ff984e41db831d2fb4df7843cf280cc1a4",
+ "pile_splicing_sha256": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+ "prereg_sha256": "a462525f245f61f8230d31e0f431414c2112f233cc96b275c6d155106d3b3f25"
+}

@@ -134,3 +134,12 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | XB matched splicing (GPT-2 vs Gemma) | PRE-REGISTERED, in progress; gate outputs only | `results/cross_model/xb_matched_splicing/` |
 | XT-G / DX truth preservation (both models) | PRE-REGISTERED, in progress; smoke outputs are EXPLORATORY, not citable | `results/cross_model/xtg_truth_preservation/` |
 | TI-1 TSP generalisation | PRE-REGISTERED, gates passed, in progress | `results/geometry_of_truth/tsp_generalisation/` |
+
+## 2026-11-23 additions (recovery session)
+| Result | Status | Location |
+|---|---|---|
+| TI-2 TSP-MF: NO TRANSFER DETECTED (MF-H1 +0.0020 [−0.0096, +0.0137]) | VALIDATION (completed; analysis deviation declared) | `results/geometry_of_truth/tsp_multifamily/` |
+| TI-4 TSP × KL: COMBINES | VALIDATION (completed) | `results/geometry_of_truth/tsp_kl_factorial/` |
+| TI-3 minimal-pair preservation | WITHDRAWN: no result, not citable | `results/geometry_of_truth/minimal_pair_preservation/` |
+| Ladder batch 2 (XB L12 only) | PARTIAL: XB per-document outputs only; analysis not run, not yet citable | `results/cross_model/xb_ladder_batch2/` |
+| XC-3 steering parity | PRE-REGISTERED; smoke outputs (TRAIN) not citable | `results/cross_model/xc3_steering_parity/` |

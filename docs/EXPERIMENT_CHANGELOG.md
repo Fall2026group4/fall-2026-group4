@@ -409,3 +409,20 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | `results/gemma/xtg_task_baselines/` | added | XT-G0 README + gates |
 | `results/geometry_of_truth/tsp_generalisation/` | added | TI-1 pre-registration, gate outputs |
 | `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv` | appended | documentation rule (CLAUDE.md §1) |
+
+## 2026-11-23 (recovery session; committed on `sae-research`)
+| File | Change | Reason |
+|---|---|---|
+| `docs/2026-11-23_recovery_and_final_day.md` | added | recovery record, Phase 2 status, final-day plan, git placement |
+| `results/geometry_of_truth/tsp_multifamily/` (pre-registration, gates, ledger, subspaces, eval, analysis, README) | added (outputs from 2026-11-22), README results appended | TI-2 results; checkpoints lost, hashes in `ledger.csv` |
+| `scripts/geometry_of_truth/34_tsp_multifamily.py`, `src/tests/test_tsp_multifamily.py` | added (frozen, unchanged) | TI-2 pipeline |
+| `scripts/geometry_of_truth/34b_tsp_multifamily_analyze_allow_pickle.py` | added | declared deviation: re-run the frozen analysis (allow_pickle only for `eval/orig.npz`) |
+| `results/geometry_of_truth/tsp_kl_factorial/` (pre-registration, gates, ledger, eval, analysis, README) | added (outputs from 2026-11-22), README review appended | TI-4 results |
+| `scripts/geometry_of_truth/35_tsp_kl_factorial.py`, `src/tests/test_tsp_kl_factorial.py`, `scripts/shared/e1_task_l0_matched_topk.py` | added (frozen, unchanged) | TI-4 pipeline and its frozen dependency |
+| `results/geometry_of_truth/minimal_pair_preservation/` (pre-registration, README, WITHDRAWN, READY.hold.tf32) | added, README status appended | TI-3 withdrawal record |
+| `scripts/geometry_of_truth/36_minimal_pair_preservation.py`, `src/tests/test_minimal_pair_preservation.py` | added (unchanged) | TI-3 pre-registered code |
+| `results/cross_model/xb_ladder_batch2/`, `results/cross_model/assets/asset_manifest_b2b.json`, `results/cross_model/xb_matched_splicing/runs/gemma_pile_shared_b2/{DONE.json,per_doc.csv}` | added, README status appended | ladder partial state (`sum_x.npz` hash only) |
+| `scripts/cross_model/06_ladder_scratch.py`, `src/tests/test_ladder_scratch.py` | added (unchanged) | ladder pipeline |
+| `results/cross_model/xc3_steering_parity/` (pre-registration, body, sha256, README, smoke outputs on TRAIN rows) | added | XC-3 pre-registration (results committed separately) |
+| `scripts/cross_model/20_xc3_steering_parity.py` | added (frozen) | XC-3 runner |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `EXPERIMENT_CHANGELOG.md` | appended | documentation rule |

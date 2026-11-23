@@ -1,0 +1,116 @@
+{
+ "batch": "b2b",
+ "created": "2026-11-22 02:53:20",
+ "files": [
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_65k/average_l0_21/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_65k/average_l0_21/params.npz",
+   "bytes": 1208494296,
+   "sha256": "90a95b6c1ac70aabe3e7be5096c748dada7bb18a4ffd76e0fbfaa900e6be740c",
+   "seconds": 13.5
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_65k/average_l0_38/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_65k/average_l0_38/params.npz",
+   "bytes": 1208494296,
+   "sha256": "b4a8e50f0f459a731c3b0e036e543dd63bfa9403557cf20042c4aa941e8aa3be",
+   "seconds": 12.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_65k/average_l0_72/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_65k/average_l0_72/params.npz",
+   "bytes": 1208494296,
+   "sha256": "aca961dd911a607911829f5b7342decd739b5daee61635693f28e08dac7db12c",
+   "seconds": 13.1
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_65k/average_l0_141/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_65k/average_l0_141/params.npz",
+   "bytes": 1208494296,
+   "sha256": "534ef03a7a37d01ec87634d8c95ac60e0712b34f0e079dd48b76c92f952c4cba",
+   "seconds": 12.6
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_65k/average_l0_297/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_65k/average_l0_297/params.npz",
+   "bytes": 1208494296,
+   "sha256": "84ff0d3a4f18dbf0057415c60c25f5351a63d90fe69ced7a86601dc8ddf3992f",
+   "seconds": 13.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_32k/average_l0_12/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_32k/average_l0_12/params.npz",
+   "bytes": 604252376,
+   "sha256": "604b832d7cc064d272e056670b3ed424b686a405b61d6fb42d2b84090311e662",
+   "seconds": 7.1
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_32k/average_l0_22/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_32k/average_l0_22/params.npz",
+   "bytes": 604252376,
+   "sha256": "ed4a73045f778415aeb5812093f6af4ad2654f0999d48721d63cf3d8098ddc09",
+   "seconds": 6.6
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_32k/average_l0_40/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_32k/average_l0_40/params.npz",
+   "bytes": 604252376,
+   "sha256": "0a69111d9ba3888e7c896a755fd67000b5b0ae914c940551c2118118abb78a78",
+   "seconds": 6.9
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_32k/average_l0_76/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_32k/average_l0_76/params.npz",
+   "bytes": 604252376,
+   "sha256": "ac38762bf187404b91523ac5492995f57cce57508c28f411c6eab2cec6730e22",
+   "seconds": 6.7
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_32k/average_l0_155/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_32k/average_l0_155/params.npz",
+   "bytes": 604252376,
+   "sha256": "d1ec67bdf82a839599455f5f6a309a476ba466fc8c77bab0f3a62b18630e1b2f",
+   "seconds": 7.6
+  },
+  {
+   "repo_id": "google/gemma-scope-2b-pt-res",
+   "filename": "layer_12/width_32k/average_l0_360/params.npz",
+   "revision": "fd571b47c1c64851e9b1989792367b9babb4af63",
+   "cache_dir": "/mnt/scratch/hf_cache",
+   "local_path": "/mnt/scratch/hf_cache/models--google--gemma-scope-2b-pt-res/snapshots/fd571b47c1c64851e9b1989792367b9babb4af63/layer_12/width_32k/average_l0_360/params.npz",
+   "bytes": 604252376,
+   "sha256": "6b6579234e6cf39befe19c59ab5a67bad327ea8f6a22efcf163348d39e81db98",
+   "seconds": 6.2
+  }
+ ]
+}

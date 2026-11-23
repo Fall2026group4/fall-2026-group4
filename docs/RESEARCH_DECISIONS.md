@@ -516,3 +516,29 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * a non-destructive disk guard (pause, never delete);
   * one focused PR per completed and validated phase, based on `sae-research` (stacked), never merged without the
     user's approval.
+
+## 2026-11-23 (recovery session; no D number, to avoid colliding with the PR stack's numbering)
+* **Working repository and branch.**
+  * `sae-project/fall-2026-group4` (this repository, next to `../venv`) stays the working repository.
+  * Today's work is committed on `sae-research` (user, Option 1).
+  * The `final-week/p*` PR stack is not modified.
+* **TI-2 analysis deviation.** The frozen analysis is re-run through an import wrapper that allows pickle for the
+  pipeline's own `eval/orig.npz` only. No estimand, threshold or input changes, and the frozen script is untouched.
+  Alternative rejected: editing the frozen script, because its hash is checked.
+* **No retraining** of the lost TI-2/TI-4 checkpoints. The evaluation outputs are sufficient for the pre-registered
+  analyses (user).
+* **TI-3 stays withdrawn** (user); it is not re-run.
+* **Final-day scope (user):** Phase 2 + XC-3 + XC-2. XC-1, XF and M4 are deferred.
+  * Gemma decisions use VALIDATION only.
+  * TEST is reported once, with prior exposure disclosed.
+* **XC-3 task choice:**
+  * RepE-LM persona (not GoT judgment): both models pass its gates (K1, K7), and E is normalised within each model.
+  * The strength grid equals `scripts/repe/13`'s.
+  * H3 (retention) is tested only where H1 holds.
+  * All of this was fixed after a TRAIN-only smoke test and before freezing.
+* **XC-2 numerics:**
+  * Every Gemma forward has an identical batch shape, and the baseline uses the same path.
+  * The first smoke showed bf16 batch-shape effects of up to 0.34 nats per pair.
+  * Fixed before freezing; the path checks are hard stops.
+* **Storage:** the instance-store disk is not formatted (user). All outputs go to EBS; jobs start only at ≥ 60 GB free
+  and stop below 42 GB.
