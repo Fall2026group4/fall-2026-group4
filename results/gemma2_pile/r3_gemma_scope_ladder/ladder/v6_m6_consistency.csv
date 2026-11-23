@@ -1,0 +1,4 @@
+layer,sae_id,max_rel_diff_sums,active_latent_agreement,delta_ce_sae_verdict,delta_ce_random_verdict,kl_sae_verdict,top1_agreement_verdict,explained_variance_verdict,hg1_ours,hg1_m6,verdict
+5,layer_5/width_16k/average_l0_68,0.031055841635129443,0.9999999980787221,EQUIVALENT,EQUIVALENT,EQUIVALENT,EQUIVALENT,EQUIVALENT,supported,supported,M6 REPRODUCED WITHIN MARGIN
+12,layer_12/width_16k/average_l0_82,0.036036036036036036,0.9999999985590415,EQUIVALENT,EQUIVALENT,EQUIVALENT,EQUIVALENT,EQUIVALENT,supported,supported,M6 REPRODUCED WITHIN MARGIN
+19,layer_19/width_16k/average_l0_73,0.020618556701030927,0.9999999985590415,EQUIVALENT,EQUIVALENT,EQUIVALENT,EQUIVALENT,EQUIVALENT,supported,supported,M6 REPRODUCED WITHIN MARGIN

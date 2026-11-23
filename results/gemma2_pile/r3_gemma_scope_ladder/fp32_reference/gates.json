@@ -1,0 +1,72 @@
+{
+  "V2": {
+    "n_checks": 64,
+    "pass": true
+  },
+  "V3": {
+    "identity_mean_kl": 0.0,
+    "original_repeat_mean_kl": 0.0,
+    "pass": true,
+    "threshold": 1e-06
+  },
+  "V8": {
+    "V2_pass": true,
+    "V3_pass": true,
+    "cuda_launch_blocking": "1",
+    "device_map": {
+      "lm_head": 0,
+      "model.embed_tokens": 0,
+      "model.layers.0": 0,
+      "model.layers.1": 0,
+      "model.layers.10": 0,
+      "model.layers.11": 0,
+      "model.layers.12": 0,
+      "model.layers.13": 1,
+      "model.layers.14": 1,
+      "model.layers.15": 1,
+      "model.layers.16": 1,
+      "model.layers.17": 1,
+      "model.layers.18": 1,
+      "model.layers.19": 1,
+      "model.layers.2": 0,
+      "model.layers.20": 1,
+      "model.layers.21": 1,
+      "model.layers.22": 1,
+      "model.layers.23": 1,
+      "model.layers.24": 1,
+      "model.layers.25": 1,
+      "model.layers.3": 0,
+      "model.layers.4": 0,
+      "model.layers.5": 0,
+      "model.layers.6": 0,
+      "model.layers.7": 0,
+      "model.layers.8": 0,
+      "model.layers.9": 0,
+      "model.norm": 1,
+      "model.rotary_emb": 0
+    },
+    "logits_dtype": "torch.float32",
+    "param_dtypes": [
+      "torch.float32"
+    ],
+    "pass": true,
+    "tf32_matmul": false
+  },
+  "sae_info": {
+    "V3_original_logits_match": true,
+    "V4": {
+      "factor": 2.0,
+      "pass": true,
+      "release_l0": 82.0
+    },
+    "active_latent_agreement_chunked_vs_unchunked": null,
+    "d_sae": 16384,
+    "explained_variance": 0.7695793052660249,
+    "layer": 12,
+    "measured_l0": 85.19803970069879,
+    "n_docs": 64,
+    "params_sha256": "afae57c7fdfe6faace4b97d9fe9a184deb08bda8852a4c40b308cf6c72ed8384",
+    "sae_device": "cuda:0",
+    "sae_id": "layer_12/width_16k/average_l0_82"
+  }
+}

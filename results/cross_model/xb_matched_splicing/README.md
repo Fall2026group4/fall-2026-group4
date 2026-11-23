@@ -71,13 +71,13 @@ The GPT-2 SAEs were trained on 128-token contexts (R2 `CTX = 128`; res-jb 128). 
 703 / 512 GPT-2 tokens (OWT-XM / Pile), so most scored positions lie beyond position 127. There the GPT-2 SAEs break
 down:
 
-| GPT-2 SAE (shared span) | L0 per token | OWT VAL EV at 128 tokens (ladder) | EV here |
+| GPT-2 SAE (shared span, OWT-XM) | L0 per token (OWT-XM) | OWT VAL EV at 128 tokens (ladder) | EV on the OWT-XM shared span |
 |---|---|---|---|
-| res-jb L1 / L8 / L11 | 580 / 415 / 180 (vs 15 / 68 / 61 at 128 tokens) | 0.95 / 0.85 / 0.81 | **−20.3 / −5.1 / −0.06** (OWT-XM) |
+| res-jb L1 / L8 / L11 | 580 / 415 / 180 (vs 15 / 68 / 61 at 128 tokens) | 0.95 / 0.85 / 0.81 | **−20.3 / −5.1 / −0.06** |
 | res-jb L3 | 2,616 | — | **−3,266** |
 | R2 (TopK / BatchTopK / ReLU) L1 / L8 / L11 | 257 / 246 / 171 (mean) | 0.98 / 0.89 / 0.87 (mean of the three) | 0.15 / 0.28 / 0.72 |
 
-Negative EV means the reconstruction error is larger than the activation's variance.
+All GPT-2 shared-span values in this table are OWT-XM. Negative EV means the reconstruction error is larger than the activation's variance.
 
 Gemma Scope (trained at 1024 tokens) stays in distribution: EV 0.74–0.88 and L0 65–97 at the triplet layers.
 

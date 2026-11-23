@@ -246,7 +246,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
     causal faithfulness" claim.
 
 ## Unresolved hypotheses
-* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
+* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k. *(2026-11-14: for Gemma's published SAEs, width at matched L0 is pre-registered as R3's H2 (D46); completed, validation (Tier A): supported in the 4 bands that formed.)*
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
@@ -517,7 +517,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Hook:** `resid_post`, because that is where these SAEs were trained. Our GPT-2 SAEs use `resid_pre` (D4); the two are conventions of their SAE families.
 * **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
 * **Outcome (2026-11-12):** M6 COMPLETED, VALIDATION (`results/gemma2_pile/gemma_scope_splicing/`, README §2). Gates V1–V5 pass; H-G1 supported at layers 5, 12 and 19. SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; the experiment does not identify the mechanism responsible. No numerical ranking against GPT-2 (model, hook, SAE family, width, L0, corpus and context differ).
-* **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, PRE-REGISTERED, not run; its own decision record lives on that branch and is not part of M6.
+* **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, COMPLETED, VALIDATION (Tier A); its own decision record lives on that branch and is not part of M6.
 
 ## D45. Method A layers 5/6/9 extension excluded from the final scope (user, 2026-11-16; numbered D37 until 2026-11-17)
 * **Context:** this resolves the Instructor Review #9 scope-freeze item on the separate Method A multi-layer extension.
@@ -539,6 +539,55 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Consequences:**
   * The Method A evidence in the paper remains layer 6 plus IMP-L at layers 3, 8 and 9 (`multilayer_finetune/`).
   * No manuscript, results, experiment-manifest or checkpoint-registry change.
+
+## D46. R3 design and hardware: Gemma Scope width × L0 ladder on Kaggle T4 x2 (2026-11-13 to 2026-11-14)
+* **Numbering:** recorded as D22 on `dhruv-gemma-r3` before `main` was merged in; renumbered D37 on 2026-11-16 because `main` already uses D22 to D36 (M6 is D36); renumbered D46 on 2026-11-21 because D37 collides with #31 and #35 (numbering agreed on #30 by Aditi, 2026-11-17 and 2026-11-20).
+* **Decision** (made by the user, Dhruv Rai): R3 evaluates 54 published Gemma Scope residual SAEs on M6's sample.
+  * Tier A: 36 SAEs. Tier B: 18 SAEs (layer 12, widths 131k/262k/524k).
+  * Same data, metrics, controls and determinism settings as M6.
+  * The 1M width is excluded.
+  * This is a new pre-registered experiment, not a substitution in M6. D44's (M6, numbered D36 until 2026-11-21) "no other width or L0" rule applies
+    to M6's own SAEs, which are unchanged.
+* **Hardware (R3 Amendment 1):** Kaggle's free GPU T4 x2 instead of an AWS A10G, because the AWS account's free plan
+  has no GPU instances.
+  * **Consequence:** the T4 vs A10G question (Q0) and the A10G rerun of M6 are dropped.
+  * R3 runs on the same GPU class as M6. Gate V6 checks that comparability against M6's committed rows instead of
+    assuming it.
+  * Q0b asks how far T4 bf16 is from fp32 (layer 12, 16k SAE, 64 documents).
+  * **Alternative:** paid A10G time (not available on the free plan).
+* **Running within Kaggle limits:** each session is at most 12 h and the GPU quota is 30 h per week.
+  * Tier A is split into runs K0–K3, each planned at ≤ 10 h. Tier B (K4–K6) runs only after Tier A passes its gates,
+    only within the quota, and only if it can be documented before the 2026-11-22 freeze.
+  * Each SAE writes its own folder, with `DONE.json` written last; a resumed run skips finished SAEs.
+* **Resume check (gate V9, as changed by the user on 2026-11-13):** a resumed run passes if every recomputed value
+  matches the stored one within relative difference 1e-6. The mean-ablation vector uses the same tolerance on the
+  norm of the difference. Bit-identity is recorded separately and is not required. Only a larger difference stops
+  the run.
+  * **Reason:** a strict bit-for-bit rule could stop a valid run over harmless floating-point noise.
+  * **Alternative:** bit-identity required (rejected by the user).
+* **Credentials (gate V10):** the Hugging Face token comes from Kaggle Secrets into process memory only. All outputs
+  are scanned for it before they leave Kaggle; any hit means nothing is downloaded and the token is revoked.
+* **Clarification 1:** V6's active-latent agreement compares the chunked with the unchunked SAE on the same
+  activations, because M6 saved no active-latent sets.
+* **Scope:** the RepE-LM / K1–K2 part of the roadmap's R3 is split off as R3b, with its own pre-registration.
+* **Deviations (2026-11-16, decided by the team; recorded before any Tier A result was looked at):**
+  * **Deviation 1:** K1 took 7.64 h against 3.11 h projected. K3 is split into K3a (layer 12, widths 16k and 32k)
+    and K3b (width 65k), so each run stays under the 10 h Kaggle limit.
+    * **Alternative:** one K3 run, which would risk hitting the limit and losing the session.
+  * **Deviation 2:** Tier B (layer 12, widths 131k/262k/524k; K4–K6) is cancelled. H1–H3 are tested on Tier A only.
+    * **Reason:** the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota.
+    * **Consequence:** H2's width comparison stops at 65k; H3's Holm family is Tier A only.
+    * **Alternative:** running Tier B after the freeze, which would leave it undocumented in the deliverable.
+  * Recorded in the R3 README ("Deviations") and in `preregistration.json` (`deviations`). Section 1 is not edited.
+* **Outcome (2026-11-17):** COMPLETED, VALIDATION, Tier A only. H1 SUPPORTED in 7/7 Tier A cells; H2 SUPPORTED in 4/4 bands that formed (none at layer 5); H3 HOLDS ACROSS THE LADDER (36/36, no reversal); Q0b headline WITHIN MARGIN (ΔCE_SAE mean |T4 bf16 − fp32| 0.00267 [0.00218, 0.00319] < 0.005), top-1 agreement BEYOND MARGIN; V6 M6 REPRODUCED WITHIN MARGIN at all three layers. Details in the R3 README,
+  Section 2.
+* **Figures as SVG (2026-11-17, decided by the user per Instructor Review #9):** script 07 is pre-registered code,
+  so it is not edited; `scripts/gemma/08_r3_vector_figures.py` runs it unchanged and redirects PNG saves to SVG.
+  **Alternative:** PDF, which could not be written on the machine used (fontTools DLL blocked by Windows
+  Application Control).
+* **Committed outputs:** the files listed in Section 1 (ladder tables incl. the 6.3 MB `per_doc_metrics.csv`,
+  approved by the user; `fp32_reference/`; `precision_t4_vs_fp32/`; `figures/`). The 166 MB per-SAE folders and
+  per-run records stay in the Kaggle outputs (not listed in Section 1).
 
 ## D47. Final-week cross-model protocol and execution rules (2026-11-21). Status: DECIDED (user approved the plan)
 * **Numbering:** recorded as D44 in PR #36; renumbered D47 on 2026-11-21 to follow the team numbering plan (#35 D36–D43, #31 D44–D45, #30 D46). Content unchanged.
