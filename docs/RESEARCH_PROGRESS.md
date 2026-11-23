@@ -1444,3 +1444,23 @@ D numbers are deliberately not assigned here.
 * **M4-G:** the M4 decomposition with Gemma Scope 16k at the confirmed XC-1 sites, plus the A1-style mid site.
   H4c is omitted.
 * Both were frozen before any Gemma VALIDATION pair was scored. Smoke tests used TRAIN only.
+
+### XF fresh geonames cities TEST: results (2026-11-23). Status: COMPLETED (confirmed test result; pristine TEST, read once)
+* **Run.** One pass: 900 TEST statements (450 cities, never used before), 182 hash-verified SAEs, readers fitted on
+  fresh DEV, 606 s.
+* **P1, public-SAE preservation: LOSS at every informative cell.**
+  * Refit gap: GPT-2 L3/6/9 +0.045 / +0.053 / +0.037; Gemma L5 +0.036. All CIs exclude 0.
+  * Frozen gap: 0.09–0.13.
+  * Gemma L12/L19 are at ceiling (original AUROC 0.998), so uninformative.
+* **P2, TSP vs ctrl: FAILS TO REPLICATE (0/4 cells).**
+  * TSP-R L8 TopK −0.0007 [−0.0034, +0.0020], NO MEANINGFUL EFFECT.
+  * TI-1 L8 BatchTopK and L8 ReLU: NO MEANINGFUL EFFECT.
+  * TI-1 L11: INCONCLUSIVE.
+* **Secondary.**
+  * The GoT-replay control itself narrows the gap vs base (−0.014 L8 TopK, −0.026 L8 ReLU).
+  * tsp beats the random subspace at L8 TopK (−0.0048, 8/8 seeds).
+* **Reading.**
+  * The VALIDATION-level TSP advantage does not generalise to a new city population.
+  * On fresh data, the benefit comes from domain replay, not from the truth-subspace term.
+  * The public SAEs' truth losses are confirmed at TEST level.
+* Source: `results/cross_model/xf_fresh_cities_test/`.

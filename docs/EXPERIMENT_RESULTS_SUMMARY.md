@@ -872,3 +872,24 @@ Sources: `results/geometry_of_truth/tsp_multifamily/analysis/`, `results/geometr
 * Minimum detectable dose of the positive control: 0.01 at every layer.
 * Norm-matched Gaussian controls average −0.19 to −1.92.
 * Source: `results/cross_model/xc2_gemma_got_causal/`.
+
+## XF fresh geonames cities TEST (2026-11-23; confirmed test result, pristine TEST read once)
+Gap = AUROC_orig − AUROC_reconstruction (lower is better), with 95 % CIs. 900 TEST statements, 450 cities.
+
+| Cell | Original AUROC | Refit gap | Frozen gap | P1 |
+|---|---|---|---|---|
+| GPT-2 L3 res-jb | 0.801 | +0.045 [+0.022, +0.068] | +0.117 | LOSS |
+| GPT-2 L6 res-jb | 0.844 | +0.053 [+0.037, +0.069] | +0.095 | LOSS |
+| GPT-2 L9 res-jb | 0.846 | +0.037 [+0.022, +0.052] | +0.125 | LOSS |
+| Gemma L5 GS-16k | 0.949 | +0.036 [+0.024, +0.048] | +0.092 | LOSS |
+| Gemma L12 GS-16k | 0.999 | +0.0001 | +0.0007 | CEILING |
+| Gemma L19 GS-16k | 0.998 | +0.003 | +0.005 | CEILING |
+
+| TSP cell (seeds) | tsp − ctrl (refit) | Label | tsp − rand | ctrl − base |
+|---|---|---|---|---|
+| TSP-R L8 TopK (8) | −0.0007 [−0.0034, +0.0020] | NO MEANINGFUL EFFECT | −0.0048 [−0.0081, −0.0014] | −0.0143 |
+| TI-1 L11 TopK (3) | −0.0029 [−0.0171, +0.0113] | INCONCLUSIVE | −0.0039 | −0.0053 |
+| TI-1 L8 BatchTopK (3) | +0.0006 [−0.0053, +0.0065] | NO MEANINGFUL EFFECT | −0.0025 | −0.0070 |
+| TI-1 L8 ReLU (3) | +0.0020 [−0.0007, +0.0047] | NO MEANINGFUL EFFECT | −0.0026 | −0.0256 |
+
+P2 verdict: FAILS TO REPLICATE (0/4 SUPPORTED; Holm p ≥ 0.51).

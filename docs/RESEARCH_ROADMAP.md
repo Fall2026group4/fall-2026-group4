@@ -379,9 +379,9 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * DEFERRED (user, 2026-11-23): XC-1 (Gemma site sweep + M4; a like-for-like port is about 60 GPU h, so a reduced grid
   is needed), XF (fresh geonames TEST), M4 on Gemma. Re-approved by the user on 2026-11-23, in the order XF, then
   XC-1, then M4:
-  * XF: IN PROGRESS (pre-registered, DEV gate passed);
-  * XC-1: preparing;
-  * M4: waits for the XC-1 sites.
+  * XF: **COMPLETED** 2026-11-23. P1 LOSS at 4/4 informative cells; P2 TSP FAILS TO REPLICATE (0/4).
+  * XC-1: IN PROGRESS (pre-registered; full run started 19:23 UTC).
+  * M4-G: pre-registered and queued after XC-1. It runs only if XC-1 confirms a site.
 * OPTIONAL, not scheduled: TI-G, ladder completion. DROPPED from priority: XG-IH, XJ.
 * LOST: the TI-2 / TI-4 checkpoints (instance storage). Retraining is possible (about 3.7 GB, about 5.6 h) but not
   planned.

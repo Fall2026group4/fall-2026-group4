@@ -470,3 +470,14 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
   * `results/cross_model/m4_gemma_patch_decomposition/`.
 
   Run logs are not committed.
+
+## 2026-11-23: XF results (single TEST pass)
+* Added `results/cross_model/xf_fresh_cities_test/test/results.json` and `test_info.json`: the TEST statistics and run
+  record.
+* Updated the XF `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed:
+  * `test/test_acts.npz` (activation cache, 37 MB);
+  * `test/scores/` (184 per-SAE score files, 3 MB; kept on EBS);
+  * `run.log`.
