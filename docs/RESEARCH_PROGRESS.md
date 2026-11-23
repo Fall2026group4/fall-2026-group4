@@ -1429,3 +1429,12 @@ D numbers are deliberately not assigned here.
   * Baseline accuracy is 94 % (ceiling).
   * The cities TEST rows were previously exposed.
 * Source: `results/cross_model/xc2_gemma_got_causal/`.
+
+### XF fresh geonames cities TEST (2026-11-23). Status: IN PROGRESS (pre-registered and frozen; DEV gate passed 8/8; TEST not yet read)
+* **Build.** A new cities family from geonames: population 200k–500k, disjoint from GoT cities, GoT template and
+  country pool. 713 cities: DEV 263, TEST 450. All leakage checks are 0.
+* **Plan for the TEST pass, read once:**
+  * (P1) public-SAE refit and frozen truth gaps, GPT-2 L3/6/9 and Gemma L5/12/19;
+  * (P2) TSP-R and TI-1 tsp − ctrl on never-used cities.
+* **Gate.** Every cell clears 0.70 on DEV (GPT-2 0.77–0.81, Gemma 0.95–1.00).
+* Source: `results/cross_model/xf_fresh_cities_test/`.

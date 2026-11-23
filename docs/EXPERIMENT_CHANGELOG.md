@@ -448,3 +448,14 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | `results/cross_model/xc2_gemma_got_causal/{validation,test}/` | added (`interventions_partial.csv` omitted: byte-identical to `interventions.csv`) | XC-2 VALIDATION strength selection and the single TEST pass |
 | `results/cross_model/xc2_gemma_got_causal/README.md` | results appended, status COMPLETED | documentation rule |
 | `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `experiment_manifest.csv` | appended | documentation rule |
+
+## 2026-11-23: XF pre-registration, build and DEV gate
+* Added `scripts/cross_model/23_xf_fresh_cities_test.py`: the XF build, smoke, gate, test and analyze stages.
+* Added `data/got/fresh/geonames_cities/statements.csv` and `build_info.json`: the fresh family (text only).
+* Added `results/cross_model/xf_fresh_cities_test/`:
+  * `prereg_body.json`, `preregistration.json` and `.sha256`;
+  * `README.md`;
+  * `smoke/smoke_results.json`;
+  * `gate/gate.json`.
+
+  Activation caches (`gate/dev_acts.npz`, `smoke/acts.npz`) and the per-SAE smoke score files are not committed.
