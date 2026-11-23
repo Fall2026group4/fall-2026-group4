@@ -1,4 +1,4 @@
-# Research roadmap (as of 2026-11-10; final deadline 2026-12-08)
+# Research roadmap (as of 2026-11-15; technical freeze 2026-11-22; final deadline 2026-12-08)
 
 Update this file whenever a task starts, finishes, stops, changes plan, or a new outstanding task is identified (`CLAUDE.md` §1).
 
@@ -42,7 +42,21 @@ This roadmap therefore names tasks by content. Gap-plan letters appear as "plan-
 | R1 RepE honesty-preservation fine-tuning, layer 6 (27 runs, validation): ReLU INCONCLUSIVE (primary met, RepE-prompt L0 guard failed), TopK/JumpReLU NOT SUPPORTED | `results/repe/r1_honesty_preservation_layer6/` | `d17bb00`, `211218f` (pre-registration), `d283a49` |
 | R2 SAE-in-the-loop honesty-feature clamp, layer 6 (9 base SAEs with all controls, 18 R1 SAEs exploratory; validation): NOT SUPPORTED (descriptive) for all architectures and k; test stage deferred | `results/repe/r2_sae_in_the_loop_steering_layer6/` | `d17bb00`, `b232ce4` (pre-registration), this commit |
 
+| **M6** Gemma Scope SAE reconstruction and splicing on The Pile (Gemma-2-2B, layers 5/12/19): COMPLETED, VALIDATION. Gates V1–V5 pass; H-G1 supported at all three layers (also under Bonferroni) | `results/gemma2_pile/gemma_scope_splicing/` (README §2 Results, figures) | `0dbfc80` (results), `28a7d85`, `167fadb` (documentation); docs merged with #27 on 2026-11-15 (D44; originally D36) |
+| **R3** Gemma Scope width × L0 ladder on The Pile (Gemma-2-2B, layers 5/12/19, Tier A: 36 SAEs, 16k–65k): COMPLETED, VALIDATION (Dhruv Rai, D46). H1 SUPPORTED in 7/7 Tier A cells; H2 SUPPORTED in 4/4 bands that formed (none at layer 5); H3 HOLDS ACROSS THE LADDER (36/36, no reversal); Q0b headline WITHIN MARGIN (ΔCE_SAE mean |T4 bf16 − fp32| 0.00267 [0.00218, 0.00319] < 0.005), top-1 agreement BEYOND MARGIN; V6 M6 REPRODUCED WITHIN MARGIN at all three layers. Tier B not run (Deviation 2) | `results/gemma2_pile/r3_gemma_scope_ladder/` (README Section 2, figures) | `de58a2e`, on PR #30 (awaiting Simba's aggregate review) |
 ## 2. In progress
+* **Gemma M6 integration (2026-11-15):** PR #28 documentation reconciled with the merged #27 ledgers (M6 = D44, progress §51 (team numbering plan, 2026-11-21; originally D36 / §43), results summary §25). M6 itself is COMPLETED, VALIDATION (§1, §6). Merge needs the owner's approval and review.
+* **R3 (Gemma Scope width × L0 ladder):** PR #30 (`dhruv-gemma-r3`, owner Dhruv Rai). **COMPLETED, VALIDATION (Tier A)**; code implemented and CPU-tested. Separate from M6.
+* **R3 Gemma Scope width × L0 ladder (Dhruv Rai; D46; branch `dhruv-gemma-r3`, its own PR, separate from M6's
+  PR #28):** COMPLETED, VALIDATION (Tier A; see §1). Pre-registered with Amendment 1 (Kaggle T4 x2),
+  Clarifications 1–2, Deviations 1–2 and Amendment 2 (weekly cap 30 h → 45 h).
+  * **Status 2026-11-17:** all six runs finished with V10 PASS (K1 7.64 h, K2 8.01 h, K3a 8.85 h, K3b 3.61 h,
+    K0F 0.21 h); aggregate, Q0b and SVG figures done; all gates pass.
+  * **Deviation 1:** K3 is split into K3a (16k and 32k) and K3b (65k).
+  * **Deviation 2:** Tier B (K4–K6) is CANCELLED, because of the 2026-11-22 freeze and the weekly quota. H1–H3 are
+    tested on Tier A only.
+  * Next: Simba reviews the aggregate tables and gate checks on PR #30 before merge, before the freeze.
+  * PR #30's base is changed from `simba-gemma-m6-results` (already merged) to `main` (Instructor Review #9).
 * **M0–M5 measurement programme (D23, approved 2026-11-08).** P0.
   * **M0** within-layer reanalysis of existing validation results → `results/shared/m0_within_layer_reanalysis/`. **DONE 2026-11-08** (validation): splice damage tracks reconstruction within layer; truth-readout gap does not (formal pass fragile).
   * **M1** RepE-LM equal-length persona task + gates K1–K7 → `data/repe/repe_lm/`, `results/repe/repe_lm_gates/`. **DONE 2026-11-08:** K1–K7 all PASS (K5 narrowly, 0.701 at L8/L11). M2 and M3 allowed by the gates; awaiting user approval.
@@ -172,9 +186,13 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 |---|---|---|---|
 | M1 | Activation extraction pipeline (HF bf16 backend, since TransformerLens is OOM-killed on the 15 GB-RAM host); GoT/RepE final-token caches; grouped splits | PLANNED | P1 |
 | M2 | Original-activation truth/honesty probes per layer (frozen-probe protocol). The `aditi` layer table used a leaky row split, so it must be redone with grouped splits | PLANNED | P1 |
-| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | PLANNED (D30): load Gemma with HF bf16 (7.3 GB VRAM, 7.7k tok/s); port the ladder to HF hooks; re-tokenise RepE-LM and re-run its gates; disk has 97 GB free | P0 (next) |
+| M3 | **Gemma Scope SAE baselines** (JumpReLU; ~8 GB download, ~3–4 h by the 2026-11-06 estimate): reconstruction, frozen-probe gaps, splicing at chosen layers | Reconstruction + splicing part delivered by M6 (DONE 2026-11-12, VALIDATION, D44). Remaining (frozen-probe gaps, RepE-LM) PLANNED (D30): load Gemma with HF bf16 (7.3 GB VRAM, 7.7k tok/s); port the ladder to HF hooks; re-tokenise RepE-LM and re-run its gates; disk has 97 GB free | P0 (next) |
 | M4 | Gemma steering with 200 controls (C7) and a context-matched direction across layers | PLANNED | P1 |
 | M5 | Gemma version of the best GPT-2 improvement. Per D30: R2-recipe TopK/BatchTopK at one middle layer (100M tokens; about 3.6 h activation generation per pass), the full ladder, R5 skyline, optional R4 KL as a behaviour-only add-on. Not Method A. | PLANNED | P1 |
+| M6 | **Gemma Scope SAE reconstruction and splicing on The Pile:** Pile validation sample (512 eval + 64 reference docs) → Gemma-2-2B `resid_post` at layers 5/12/19 → pinned Gemma Scope width-16k residual SAEs → reconstruction metrics → splicing (ΔCE, KL, top-1, loss recovered) vs norm-matched random error, mean ablation, identity. Pre-registration `results/gemma2_pile/gemma_scope_splicing/` (D44) | DONE (2026-11-12; COMPLETED, VALIDATION; results `0dbfc80`; H-G1 supported at 5/12/19). Follow-ups in §2 | P0 (team plan: technical contribution before the freeze) |
+| R3 | **Gemma Scope width × L0 ladder on The Pile** (54 published SAEs at layers 5/12/19; same sample and controls as M6). PR #30, branch `dhruv-gemma-r3` | COMPLETED, VALIDATION (Tier A); code implemented and CPU-tested. Not part of M6 | set by the owner (Dhruv Rai) |
+| R3 | **Gemma Scope width × L0 ladder on The Pile** (named R3 on `sae-research`): M6's sample, data and controls; 54 pinned SAEs (Tier A 36, Tier B 18; 1M excluded) at layers 5/12/19; H1 L0 within width, H2 width at matched L0, H3 H-G1 across the ladder, Q0b T4 bf16 vs fp32. Pre-registration `results/gemma2_pile/r3_gemma_scope_ladder/` (D46); branch `dhruv-gemma-r3` | COMPLETED, VALIDATION (Tier A, 36 SAEs; see §1). Tier B (K4–K6) not run (Deviation 2, D46). Awaiting aggregate review on PR #30 | P1 |
+| R3b | **RepE-LM prompts re-tokenised for Gemma and the K1/K2 gates re-run** (the part of `sae-research`'s R3 not covered by the ladder) | PLANNED; needs its own pre-registration | P2 |
 
 ## 7. Final cross-model and cross-condition comparison (PLANNED, P0)
 * **X1. Cross-condition faithfulness table** (proposal Phase 6), crossing:
@@ -203,7 +221,7 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
 | Width other than 3072 | G5 |
 | Published JumpReLU | G4 |
 | Public-SAE baselines under our pipeline | G9 |
-| Gemma SAEs | M3 |
+| Gemma SAEs | M3, M6 |
 | Prompt-level sparsity matching | S3 |
 | Causal tests beyond layer 6 / on new SAEs | C1, C2 |
 | SAE-in-the-loop interventions | C3 |
@@ -219,6 +237,12 @@ Activation splicing (Phase 0) is behavioural faithfulness, not steering. Keep it
   * `architecture_summary.csv`;
   * warm-start/resume cross-layer runs;
   * Gemma row-split baseline.
+* **Method A layers 5/6/9 extension** (`simba-method-a-multilayer`, `28ad5cf`/`b64e6ed`/`7f2557b`): EXCLUDED from the
+  final scope before the 2026-11-22 technical freeze (`RESEARCH_DECISIONS.md` D45, 2026-11-16).
+  * Status: unmerged exploratory validation work, branch-only and not cited.
+  * Reasons: the criterion was met in 1/9 cells; layer 6 duplicates existing evidence; the layer-9 disagreement with
+    IMP-L is unresolved; there is no re-trained-reader analysis.
+  * Reconciling the two pipelines is out of scope.
 
 ## 11. Housekeeping awaiting approval (not to be done without explicit approval)
 * ~~Deleting `results/professor_review_corrections/`, `scripts/professor_review/`, `src/tests/test_professor_review.py`~~ **DONE 2026-11-07** (approved by the user): retired to `../backups/2026-11-07_retired_professor_review_folders/` after hash verification; Git history keeps the tracked files. The two `.bak` files remain on disk, now gitignored; deleting them still needs approval.
@@ -255,7 +279,7 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
 * **I1 KL × contrast factorial** at fixed L0 (P1, after H2).
 * **X3 modern JumpReLU pilot** (fixed λ / Anthropic 2025 loss / BatchTopK init), time-boxed (P1).
 * **R5 feature-patch arm on R2 SAEs** (P2; R5 used old SAEs only).
-* **M6 test pass** after a protocol freeze committed before the run (D31).
+* **M6 test pass** (GPT-2 label from the 2026-11-12 audit plan; planned, not run; unrelated to the completed Gemma M6 experiment in §6) after a protocol freeze committed before the run (D31).
 
 ## 2026-11-12 additions (documentation cleanup)
 * DONE: curated docs (`docs/{research_overview,methodology,experiment_history,results_summary,limitations_and_future_work}.md`), neutral renames, archive log, README navigation and reproduction commands.
@@ -328,6 +352,27 @@ All PLANNED, none approved; each needs a pre-registration and the user's approva
   pre-registered.
 * NEW (P2): minimal-pair difference-preservation loss (no fitted direction) as an exploratory nonlinear alternative.
 
+## 2026-11-15 additions (dead-latent audit)
+
+* DONE (descriptive audit; instructor request of 2026-11-10): dead-latent fraction for every base and R2 GPT-2 SAE.
+  * Covered: 108/108 base SAEs, 36/36 trained R2 SAEs, and 3 frozen-random-decoder baselines (separately).
+  * Outputs: `results/shared/dead_latent_audit/`, `docs/DEAD_LATENT_AUDIT.md`.
+  * Not a headline result. It quantifies the "dead latents" motivation of G3/G11, which stay PLANNED.
+* DONE: appendix transcription correction, JumpReLU alive latents 469–2,947 → 469–2,941.
+* OPEN (optional, not requested): whether the paper should cite the audit, for example one sentence in the appendix.
+  Needs the user's decision.
+
+## 2026-11-17 additions (PR #31 reviewer integration)
+
+* DONE in #31 (manuscript only; results stay on PR #35): H1-TEST (§7.3, Table `t_h1test`), AUDIT-SENS (Appendix
+  "Audit Sensitivity Analyses", `sec:audit`), TSP (§7.5, validation, confirmatory, TRADE-OFF qualifier), the S2
+  persona wording and the S3 task-level-L0 caveat; `docs/plain_summary.md` S5 sentence corrected.
+* DECIDED (numbering, agreed on PR #31): #35 keeps D36–D43 and progress §43–§50; M6 = D44 / §51; this PR = D45 /
+  §52–§53; R3 (PR #30) reserved as D46 / §54 / results summary §27.
+* Merge order: #31 → #30 → #35. Until #35 merges, the paper cites three result folders that are only on
+  `sae-research` (marked in Table `tab:evidence`).
+* OPEN: M6 figures in vector format (Review #9 F7), not part of this pass.
+
 ## 2026-11-21 (X2 fairness audit: GPT-2 vs Gemma-2-2B; analysis only, no experiment run)
 Audit of which GPT-2 and Gemma results can be shown side by side. Gemma evidence on teammates' branches, read with
 `git show` only: M6 Gemma Scope splicing (`origin/main`, `results/gemma2_pile/gemma_scope_splicing/`) and the R3
@@ -359,7 +404,7 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
   prompts, frozen-probe decomposition).
 
 ## 2026-11-21 (final-week execution; plan approved)
-* DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§51).
+* DONE: Phase 1 = audit, cross-model infrastructure, all gates, XT-G0 (Gemma task activations + K1/K7) (§55, D47).
 * IN PROGRESS: XB (matched splicing, both models), XT-G/DX (Gemma all layers; GPT-2 depth-matched), TI-1 (L11 TopK,
   L8 BatchTopK, L8 ReLU; L1 not eligible).
 * PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
@@ -367,6 +412,17 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or
   measured free space allows; disk guard active.
 * NEW (P1): cross-model truth claims must avoid ceiling tasks (Gemma GoT cities AUROC 1.000 at L12).
+
+## 2026-11-21 additions (PR #31 merged with `origin/main` after PR #35 and PR #36)
+
+* DONE (merge only; no experiment run): `origin/main` merged into `simba-paper-manuscript`. The restructured
+  manuscript is kept; the nine legacy section files that PR #35 edited stay deleted, because their H1-TEST,
+  AUDIT-SENS and TSP content is already in the new sections (checked claim by claim). `main.pdf` rebuilt.
+* SUPERSEDES the 2026-11-17 merge-order line: #35 merged first, so the H1-TEST, AUDIT-SENS and TSP result folders
+  the paper cites are now on `main`.
+* DONE: Table `tab:evidence` no longer marks those three folders with the "not yet on `main`" dagger; R3 stays
+  on PR #30 and keeps its dagger until #30 merges.
+* OPEN: final R3 integration into the manuscript after PR #30 merges (D46 / §54 / results summary §27 reserved).
 
 ## 2026-11-23 (recovery; final day)
 * DONE: recovery (897/897 checkpoints verified); TI-2 analysis (NO TRANSFER DETECTED, VALIDATION); TI-4 review

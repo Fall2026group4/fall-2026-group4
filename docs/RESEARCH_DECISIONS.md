@@ -15,7 +15,7 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **OWT** is GPT-2's training distribution, and the standard SAE training and evaluation corpus.
 * **GoT** provides paired true/false statements whose structure isolates truth. Used: cities + neg_cities (geographic), larger_than + smaller_than (numerical).
 * **RepE** persona prompts give a contrastive honesty signal.
-* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments.
+* **The Pile** (proposal): only EDA was done, on a team branch. It is not used in experiments. *(Updated 2026-11-12: used as the Gemma reconstruction and splicing dataset, D44.)*
 
 ## D3. Train SAEs in house instead of using public SAEs (2026-10-30, `8dc0b6e`)
 * **Reason:** public SAEs (`gpt2-small-res-jb`, the v5-32k TopK) differ in width, data, sparsity and training. An architecture comparison needs one protocol.
@@ -246,12 +246,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
     causal faithfulness" claim.
 
 ## Unresolved hypotheses
-* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k.
+* **H1:** Wider SAEs or longer training close the deep-layer reconstruction and behaviour gap. Not tested; validation EV was still rising at 15k. *(2026-11-14: for Gemma's published SAEs, width at matched L0 is pre-registered as R3's H2 (D46); completed, validation (Tier A): supported in the 4 bands that formed.)*
 * **H2:** A converged EV-vs-L0 frontier changes the architecture ranking at low L0. Not tested.
 * **H3:** Method A's MLP-probe gain replicates with more seeds and at other layers. **Tested at layers 3, 8, 9 (D26):** the direction replicates in 9/9 cells and the criterion is met in 4/9. Re-trained readers show no gain. More seeds are not tested.
 * **H4:** Combining Method A with a small KL weight keeps the truth gains and the behaviour gains. **Tested for TopK at layer 6 (D19): inconclusive.** Behaviour gains are kept (≈85 % at w = 0.25), and truth is non-inferior, but A and B themselves don't differ in truth. At layers 3, 8, 9 (D26), output-KL never improves truth over Method A and regresses at L3 ReLU/TopK. The ReLU/JumpReLU L0 drift persists at depth.
 * **H5:** Layer-0 JumpReLU failure can be fixed by threshold learning-rate control or dead-latent revival. Not tested.
-* **H6:** Results transfer to Gemma-2-2B SAEs. Not possible yet.
+* **H6:** Results transfer to Gemma-2-2B SAEs. *(2026-11-12, M6, D44, VALIDATION: the behavioural-splicing finding replicates in direction with Gemma Scope SAEs at layers 5/12/19 (H-G1 supported at all three); reconstruction measured descriptively. Gemma information (truth/persona) and causal preservation remain untested.)*
 * **H8:** A paired-contrast objective improves honesty preservation. **Tested at layer 6 (D21):** ReLU inconclusive (L0 confound), TopK/JumpReLU not supported.
 * **H9:** Fine-tuning improves causal preservation. **Tested at L8 final (E3, D28):** Method A no; output-KL not creditably (gains only with L0 drift; TopK unchanged).
 * **H7:** SAE-based interventions can have causal effects distinguishable from controls. All tested were null at layer 6. **R2 (D22), the first genuine SAE-in-the-loop clamp, is also not supported at layer 6 (validation): the edits are adverse rather than null.**
@@ -359,6 +359,10 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Decision (user-approved):** the paper and docs state the GoT null as "no change larger than about 0.05–0.09
   AUROC", not as preservation. The R2 L8 causal gain (+0.101, VAL) is reported as borderline, pending the RepE-LM test
   protocol. The A2 "regressions" are reported as not robust. No result or verdict in the committed outputs changes.
+
+> **Numbering (2026-11-17, agreed on PR #31):** D36–D43 are reserved for PR #35 (`sae-research`), whose frozen,
+> hash-pinned records cite them. M6 moved from D36 to D44, this PR's Method A decision from D37 to D45, D46 is
+> reserved for R3 (PR #30), and D47 is the final-week record from PR #36 (merged into `main` 2026-11-21).
 
 ## D36. How the H1-TEST outcome is reported (2026-11-13). Status: ADOPTED; paper revision APPROVED by the user and DONE (2026-11-13)
 * **Source:** `results/repe/repe_lm_test_evaluation/` (single TEST pass, Holm over 13 cells, rule frozen in the addendum).
@@ -500,7 +504,93 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * a multi-family "universal" truth subspace aimed at transfer (Q2);
   * a precision rerun of the persona/M4 guards with per-item paired bootstraps on the existing checkpoints.
 
-## D44. Final-week cross-model protocol and execution rules (2026-11-21). Status: DECIDED (user approved the plan)
+## D44. Gemma/Pile experiment design (M6): Gemma Scope SAEs at layers 5/12/19, Pile validation, 1024-token truncation (2026-11-12)
+* **Numbering:** recorded as D21 on PR #28 before PR #27 was merged; renumbered D36 on 2026-11-15 because #27 already uses D21–D35; renumbered D44 on 2026-11-17 so that PR #35 keeps D36–D43 (M6: D21 → D36 → D44). Content unchanged.
+* **Decision** (made by the user, Simbanegavi Simbarashe, after the completed Pile EDA): the next Gemma contribution is Pile → Gemma-2-2B activations → Gemma Scope SAE reconstruction → splicing evaluation (roadmap M6). No other new scientific objective. The Gemma GoT frozen-probe experiment is a stretch goal, started only after M6 is complete and only if the 2026-11-22 technical freeze is not at risk.
+* **Role of The Pile:** Gemma's natural-text evaluation corpus for reconstruction and behaviour, analogous in role (not in content) to OWT for GPT-2.
+* **Data:** `monology/pile-uncopyrighted/val.jsonl.zst` (revision and SHA-256 pinned). The EDA's parquet mirror has no validation split. The test file is never used.
+* **Sample:** seed-42 permutation; 512 evaluation + 64 reference documents, disjoint by construction; per-document identifiers and text/token hashes recorded so the exact sample can be rebuilt.
+* **Chunking:** BOS + first 1024 tokens, one window per document, no packing. **Reason:** the Gemma Scope training context length recorded by sae-lens is 1024; one window per document keeps documents independent for the bootstrap and keeps source labels clean. **Alternative:** packing contiguous windows (rejected: mixes sources inside a window).
+* **Layers 5, 12, 19:** representative lower/middle/later depths of the 26-layer model, and the residual layers for which the release also provides the largest (1M) SAEs. **Explicitly not** a mapping to GPT-2 layers 5/6/9; an earlier proposal (Gemma layers 10/12/18 as "depth-matched" to GPT-2) was rejected by the user because no defensible basis for such a mapping exists. The GPT-2 exclusion of layer 3 applied only to the GoT probe experiment.
+* **SAEs:** Gemma Scope residual width 16k, pinned IDs `layer_{5,12,19}/width_16k/average_l0_{68,82,73}` (what sae-lens `canonical` resolves to). No other width or L0 is substituted without asking the user.
+* **Model and tokenizer revision (Amendment 1, 2026-11-12, before any run):** pinned to `google/gemma-2-2b` commit `c5ebcd40d208330abc697524c919956e692655cf` instead of being looked up at run time, so the pre-registration freezes it. A later mismatch is recorded as a protocol deviation.
+* **Hook:** `resid_post`, because that is where these SAEs were trained. Our GPT-2 SAEs use `resid_pre` (D4); the two are conventions of their SAE families.
+* **Consequences:** pretrained SAEs → no seeds and no L0 matching; uncertainty is a document bootstrap; any GPT-2 vs Gemma comparison is descriptive only (roadmap X2).
+* **Outcome (2026-11-12):** M6 COMPLETED, VALIDATION (`results/gemma2_pile/gemma_scope_splicing/`, README §2). Gates V1–V5 pass; H-G1 supported at layers 5, 12 and 19. SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; the experiment does not identify the mechanism responsible. No numerical ranking against GPT-2 (model, hook, SAE family, width, L0, corpus and context differ).
+* **Follow-up kept separate:** R3 (Gemma Scope width × L0 ladder) is PR #30 / `dhruv-gemma-r3`, COMPLETED, VALIDATION (Tier A); its own decision record lives on that branch and is not part of M6.
+
+## D45. Method A layers 5/6/9 extension excluded from the final scope (user, 2026-11-16; numbered D37 until 2026-11-17)
+* **Context:** this resolves the Instructor Review #9 scope-freeze item on the separate Method A multi-layer extension.
+  The exact review text is not stored in the repository.
+* **Decision:** the extension on branch `simba-method-a-multilayer` stays unmerged, exploratory validation work.
+  * Commits: `28ad5cf`, `b64e6ed`, and `7f2557b` (results, on `origin` only).
+  * It is excluded from the final manuscript and from the final scientific scope.
+  * Its results are not cited and must not be used for final claims.
+  * The branch and its artifacts are kept unchanged: not merged, renamed, regenerated or deleted.
+* **Reasons:**
+  * validation-only exploratory work;
+  * the success criterion was met in 1/9 cells, and only layer-5 ReLU is genuinely new positive evidence;
+  * layer 6 duplicates `method_a_layer6/`;
+  * layer 9 disagrees with the IMP-L pipeline the manuscript uses, and the baseline discrepancy is unresolved;
+  * provenance is weaker than IMP-L's;
+  * there is no re-trained-reader analysis, which is central to the final Method A conclusion;
+  * the manuscript's conclusion does not change;
+  * reconciling the two pipelines would be new scope just before the 2026-11-22 technical freeze.
+* **Consequences:**
+  * The Method A evidence in the paper remains layer 6 plus IMP-L at layers 3, 8 and 9 (`multilayer_finetune/`).
+  * No manuscript, results, experiment-manifest or checkpoint-registry change.
+
+## D46. R3 design and hardware: Gemma Scope width × L0 ladder on Kaggle T4 x2 (2026-11-13 to 2026-11-14)
+* **Numbering:** recorded as D22 on `dhruv-gemma-r3` before `main` was merged in; renumbered D37 on 2026-11-16 because `main` already uses D22 to D36 (M6 is D36); renumbered D46 on 2026-11-21 because D37 collides with #31 and #35 (numbering agreed on #30 by Aditi, 2026-11-17 and 2026-11-20).
+* **Decision** (made by the user, Dhruv Rai): R3 evaluates 54 published Gemma Scope residual SAEs on M6's sample.
+  * Tier A: 36 SAEs. Tier B: 18 SAEs (layer 12, widths 131k/262k/524k).
+  * Same data, metrics, controls and determinism settings as M6.
+  * The 1M width is excluded.
+  * This is a new pre-registered experiment, not a substitution in M6. D44's (M6, numbered D36 until 2026-11-21) "no other width or L0" rule applies
+    to M6's own SAEs, which are unchanged.
+* **Hardware (R3 Amendment 1):** Kaggle's free GPU T4 x2 instead of an AWS A10G, because the AWS account's free plan
+  has no GPU instances.
+  * **Consequence:** the T4 vs A10G question (Q0) and the A10G rerun of M6 are dropped.
+  * R3 runs on the same GPU class as M6. Gate V6 checks that comparability against M6's committed rows instead of
+    assuming it.
+  * Q0b asks how far T4 bf16 is from fp32 (layer 12, 16k SAE, 64 documents).
+  * **Alternative:** paid A10G time (not available on the free plan).
+* **Running within Kaggle limits:** each session is at most 12 h and the GPU quota is 30 h per week.
+  * Tier A is split into runs K0–K3, each planned at ≤ 10 h. Tier B (K4–K6) runs only after Tier A passes its gates,
+    only within the quota, and only if it can be documented before the 2026-11-22 freeze.
+  * Each SAE writes its own folder, with `DONE.json` written last; a resumed run skips finished SAEs.
+* **Resume check (gate V9, as changed by the user on 2026-11-13):** a resumed run passes if every recomputed value
+  matches the stored one within relative difference 1e-6. The mean-ablation vector uses the same tolerance on the
+  norm of the difference. Bit-identity is recorded separately and is not required. Only a larger difference stops
+  the run.
+  * **Reason:** a strict bit-for-bit rule could stop a valid run over harmless floating-point noise.
+  * **Alternative:** bit-identity required (rejected by the user).
+* **Credentials (gate V10):** the Hugging Face token comes from Kaggle Secrets into process memory only. All outputs
+  are scanned for it before they leave Kaggle; any hit means nothing is downloaded and the token is revoked.
+* **Clarification 1:** V6's active-latent agreement compares the chunked with the unchunked SAE on the same
+  activations, because M6 saved no active-latent sets.
+* **Scope:** the RepE-LM / K1–K2 part of the roadmap's R3 is split off as R3b, with its own pre-registration.
+* **Deviations (2026-11-16, decided by the team; recorded before any Tier A result was looked at):**
+  * **Deviation 1:** K1 took 7.64 h against 3.11 h projected. K3 is split into K3a (layer 12, widths 16k and 32k)
+    and K3b (width 65k), so each run stays under the 10 h Kaggle limit.
+    * **Alternative:** one K3 run, which would risk hitting the limit and losing the session.
+  * **Deviation 2:** Tier B (layer 12, widths 131k/262k/524k; K4–K6) is cancelled. H1–H3 are tested on Tier A only.
+    * **Reason:** the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota.
+    * **Consequence:** H2's width comparison stops at 65k; H3's Holm family is Tier A only.
+    * **Alternative:** running Tier B after the freeze, which would leave it undocumented in the deliverable.
+  * Recorded in the R3 README ("Deviations") and in `preregistration.json` (`deviations`). Section 1 is not edited.
+* **Outcome (2026-11-17):** COMPLETED, VALIDATION, Tier A only. H1 SUPPORTED in 7/7 Tier A cells; H2 SUPPORTED in 4/4 bands that formed (none at layer 5); H3 HOLDS ACROSS THE LADDER (36/36, no reversal); Q0b headline WITHIN MARGIN (ΔCE_SAE mean |T4 bf16 − fp32| 0.00267 [0.00218, 0.00319] < 0.005), top-1 agreement BEYOND MARGIN; V6 M6 REPRODUCED WITHIN MARGIN at all three layers. Details in the R3 README,
+  Section 2.
+* **Figures as SVG (2026-11-17, decided by the user per Instructor Review #9):** script 07 is pre-registered code,
+  so it is not edited; `scripts/gemma/08_r3_vector_figures.py` runs it unchanged and redirects PNG saves to SVG.
+  **Alternative:** PDF, which could not be written on the machine used (fontTools DLL blocked by Windows
+  Application Control).
+* **Committed outputs:** the files listed in Section 1 (ladder tables incl. the 6.3 MB `per_doc_metrics.csv`,
+  approved by the user; `fp32_reference/`; `precision_t4_vs_fp32/`; `figures/`). The 166 MB per-SAE folders and
+  per-run records stay in the Kaggle outputs (not listed in Section 1).
+
+## D47. Final-week cross-model protocol and execution rules (2026-11-21). Status: DECIDED (user approved the plan)
+* **Numbering:** recorded as D44 in PR #36; renumbered D47 on 2026-11-21 to follow the team numbering plan (#35 D36–D43, #31 D44–D45, #30 D46). Content unchanged.
 * **Fair comparison.** GPT-2 vs Gemma claims use only within-model-normalised metrics, at depth-matched sites, on the
   same text, with the same controls and the same paired document bootstrap. Raw nats are never ranked.
 * **Separate tracks:** public-vs-public, in-house-vs-public, matched strata (L0/d and d_sae/d within ±15 %) and

@@ -1,4 +1,4 @@
-# Results registry (as of 2026-11-10)
+# Results registry (as of 2026-11-15: #27 state plus the M6 row from #28)
 
 Each results folder's `README.md` gives file-level detail. This page lists the results that support claims.
 
@@ -30,6 +30,8 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | GPT-2 improved SAEs (R2), reconstruction and behaviour, **CONFIRMED TEST** (M5, 2026-11-10) | Old vs R2 SAEs at L1/L8/L11: NMSE −31 to −74 %, spliced ΔCE −35 to −79 %; R4 KL fine-tune ΔCE −16 to −17 %; GoT information unchanged; single pre-registered run. Test rows previously scored for the old reference SAEs only (D31); independently re-verified in `docs/final_defense/EXPERIMENT_AUDIT.md` | `results/shared/m5_confirmatory_test/` |
 | GPT-2 improved SAEs (R2), all ladder levels, VALIDATION | 39 in-house SAEs (100M tokens, width 12,288/3,072) vs old base SAEs; causal T_rec/T_full 0.62 → 0.73 at L8 (validation only) | `results/openwebtext/r2_scaled_saes/` |
 | Gemma-2-2B truth steering (appendix only, D23) | Layer-11 sweep, grouped splits, 20 random controls per strength | `results/gemma/steering_sweep_layer11/` |
+| Gemma-2-2B SAE reconstruction and behavioural splicing (M6, D44; **VALIDATION**) | Pre-registered: Gemma Scope width-16k JumpReLU SAEs at `resid_post` layers 5/12/19 on 512 Pile validation documents; gates V1–V5 pass; **H-G1 supported at all three layers** (SAE-splice ΔCE > norm-matched random-error ΔCE; 95 % and Bonferroni 98.33 % CIs exclude 0). Cite as behavioural splicing and reconstruction only: no layer ranking, no representation-preservation, causal or GPT-2 vs Gemma superiority claim; bf16 logit-precision limitation (H4a). Gemma information and causal faithfulness not tested | `results/gemma2_pile/gemma_scope_splicing/` (README §2, `h_g1.csv`, `summary_by_layer*.csv`, `figures/`) |
+| Gemma-2-2B Gemma Scope width × L0 ladder (R3, D46; **VALIDATION**, Tier A only) | Pre-registered: 36 Gemma Scope JumpReLU SAEs (widths 16k/32k/65k) at `resid_post` layers 5/12/19 on M6's 512 Pile validation documents; all gates pass; V6: M6 reproduced within margin. **H1** (higher L0 lowers ΔCE_SAE) supported in 7/7 cells; **H2** (wider at ±10 % matched L0 lowers ΔCE_SAE) supported in 4/4 bands formed (none at layer 5); **H3** (SAE-splice ΔCE > norm-matched random) holds for 36/36; Q0b: T4 bf16 within margin of fp32 for ΔCE_SAE, beyond margin for top-1 agreement (one cell). Cite as reconstruction and behavioural splicing only: no layer ranking, no "best SAE", nothing for widths above 65k (Tier B not run, Deviation 2) | `results/gemma2_pile/r3_gemma_scope_ladder/` (README Section 2, `ladder/`, `precision_t4_vs_fp32/`, `figures/`) |
 
 ## Pilots (validation only, not for final claims)
 
@@ -126,6 +128,19 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/geometry_of_truth/truth_subspace_preservation/verification/` | VALIDATION verification (post-hoc checks exploratory) | Confirms the pilot numbers and the NOT SUPPORTED verdict. Supersedes the pilot's secondary CIs for error-only AUROC / MLP / sparse-z / kNN, which omitted statement sampling. Specificity holds for the frozen gap only |
 | `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/` | VALIDATION (DEV only; feasibility) | Fresh-family eligibility and headroom; no TSP result. The TEST splits in `data/got/fresh/splits/` are LOCKED (never read) |
 | `results/geometry_of_truth/truth_subspace_preservation/replication/` | VALIDATION, confirmatory (pre-registered) | Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear, with the TRADE-OFF qualifier (persona/M4 non-inferiority not demonstrated). Fresh-family TEST results are secondary or exploratory and null. Cite the cities effect only as in-distribution |
+
+## 2026-11-15 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/shared/dead_latent_audit/` (`docs/DEAD_LATENT_AUDIT.md`) | VALIDATION FINDING (descriptive diagnostic) | Dead fraction of 108 base and 36 trained R2 SAEs, plus 3 frozen-random-decoder baselines, on OWT validation (12,700 tokens). Cite as a diagnostic, not as evidence of faithfulness; it makes no attribution to data, recipe, duration or width |
+| Appendix / M0 JumpReLU alive-latent range "469–2,947" | SUPERSEDED by "469–2,941" (transcription correction) | Source value `architecture_by_layer.csv` is 2,941.0, unchanged |
+
+## 2026-11-16 additions
+
+| Item | Status | Notes |
+|---|---|---|
+| `results/geometry_of_truth/method_a_multilayer/` on branch `simba-method-a-multilayer` (`7f2557b`; Method A layers 5/6/9) | BRANCH-ONLY; EXPLORATORY / VALIDATION; UNMERGED; NOT CITED in the final manuscript | Do not use for final claims (D45). Criterion met in 1/9 cells; layer-9 disagreement with IMP-L unresolved; provenance caveats in `RESEARCH_PROGRESS.md` §53. Cite IMP-L (`multilayer_finetune/`) and `method_a_layer6/` instead |
 
 ## 2026-11-21 additions (final week)
 | Result | Status | Location |

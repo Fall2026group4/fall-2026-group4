@@ -9,7 +9,7 @@ Actual values from committed result files. Every table states its split, the met
 **Statuses:** TEST = held-out test split, evaluated once under a protocol. VALIDATION = validation split. EXPLORATORY.
 
 **Common setup:**
-* GPT-2 Small.
+* GPT-2 Small (except §25: Gemma-2-2B with Gemma Scope SAEs).
 * In-house SAEs: d_sae 3072, target L0 128, `blocks.L.hook_resid_pre`.
 * Seeds 42/1042/2042 unless stated.
 
@@ -819,6 +819,101 @@ Source: `results/geometry_of_truth/truth_subspace_preservation/replication_phase
 | counterfact TEST (exploratory) | +0.0008 [−0.0026, +0.0043] | no transfer |
 
 Source: `results/geometry_of_truth/truth_subspace_preservation/replication/`.
+## 25. Gemma-2-2B: Gemma Scope SAE reconstruction and splicing on The Pile (M6; VALIDATION; cross-model evidence for reconstruction and behaviour only)
+Numbered §10 on PR #28 before the merge with #27. **Scope:** generalisation evidence for reconstruction (§1) and behavioural splicing (§4) only; Gemma information faithfulness and causal faithfulness were **not tested** in M6.
+Source: `results/gemma2_pile/gemma_scope_splicing/` (`summary_by_layer.csv`, `h_g1.csv`, `summary_by_layer_source.csv`; README §2). **Not numerically comparable with §§1–24 or PCA-CM:** different model, SAE family (pretrained Gemma Scope JumpReLU, width 16,384), L0, hook (`resid_post`), data (The Pile) and context (1,024 tokens). Layers are described side by side, not ranked; each layer has its own SAE.
+
+* Gemma-2-2B (bf16), Pile validation file, 512 evaluation documents (254,144 non-BOS tokens; 253,632 predictions per layer); mean ablation from 64 disjoint reference documents.
+* One pretrained SAE per layer: intervals are 95 % document-bootstrap CIs (1,000 resamples, seed 0), **not** seed variability.
+* Validity gates V1–V5 all pass (identity/repeat KL = 0.0 exactly).
+
+**Reconstruction (↑ EV, cosine; ↓ relative squared error):**
+
+| Layer (SAE) | EV | Cosine | Relative sq. error | L0 measured (published release `average_l0`) |
+|---|---|---|---|---|
+| 5 (`average_l0_68`) | 0.813 [0.811, 0.815] | 0.932 [0.931, 0.932] | 0.137 [0.136, 0.139] | 69.5 (68) |
+| 12 (`average_l0_82`) | 0.770 [0.769, 0.772] | 0.913 [0.912, 0.915] | 0.155 [0.153, 0.156] | 84.8 (82) |
+| 19 (`average_l0_73`) | 0.789 [0.786, 0.792] | 0.922 [0.920, 0.924] | 0.140 [0.137, 0.144] | 75.1 (73) |
+
+**Behavioural splicing (nats per prediction; original CE 1.938; ↓ ΔCE, KL; ↑ top-1, loss recovered):**
+
+| Layer | ΔCE_SAE | ΔCE_random (norm-matched) | Ratio | KL | Top-1 agreement | Loss recovered |
+|---|---|---|---|---|---|---|
+| 5 | 0.071 [0.064, 0.079] | 0.029 [0.026, 0.032] | 2.48 | 0.082 | 0.887 | 0.9920 |
+| 12 | 0.115 [0.107, 0.124] | 0.039 [0.034, 0.044] | 2.97 | 0.120 | 0.857 | 0.9882 |
+| 19 | 0.177 [0.165, 0.192] | 0.080 [0.069, 0.094] | 2.22 | 0.179 | 0.838 | 0.9796 |
+
+**H-G1 (pre-registered; d = doc-mean ΔCE_SAE − doc-mean ΔCE_random, paired over documents; supported if the 95 % lower bound > 0):**
+
+| Layer | mean d | 95 % CI | 98.33 % CI (Bonferroni sensitivity) | Verdict |
+|---|---|---|---|---|
+| 5 | 0.0409546095 | [0.0356023883, 0.0462730588] | [0.0345367272, 0.0489496301] | supported (also under Bonferroni) |
+| 12 | 0.0773024324 | [0.0726969564, 0.0822346727] | [0.0715352214, 0.0832376495] | supported (also under Bonferroni) |
+| 19 | 0.0993482347 | [0.0938463665, 0.1051191262] | [0.0928295454, 0.1061658954] | supported (also under Bonferroni) |
+
+* SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers; this experiment does not identify the mechanism responsible.
+* No representation-preservation, causal-intervention or GPT-2 vs Gemma superiority claim.
+* **Limitation (H4a, measurement floor only, results not adjusted):** bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.0008297822, mean |CE difference| 0.0264414540, top-1 disagreement 0.0226209048 and max |logit difference| 0.1562862396. Hardened smoke outputs: `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`.
+
+## 26. Dead-latent audit, GPT-2 base and R2 SAEs (2026-11-15; VALIDATION; descriptive diagnostic)
+
+Sources: `results/shared/dead_latent_audit/{dead_latents_by_sae.csv,summary_by_family_layer.csv}`;
+`docs/DEAD_LATENT_AUDIT.md`.
+
+* **Definition:** dead = never fires (z > 0) on the layer's OWT validation cache (12,700 non-BOS tokens).
+  This is the existing `faithfulness_metrics.dead_fraction` rule, the same for base and R2.
+* **Coverage:**
+  * 108/108 base SAEs;
+  * 36/36 trained R2 SAEs;
+  * 3 frozen-random-decoder baselines, reported separately.
+* **Direction:** dead fraction ↓, but it is a diagnostic only. A lower dead fraction does not by itself imply better
+  information, behavioural or causal faithfulness.
+
+**% dead (mean over 3 seeds):**
+
+| SAE | Layer 1 | Layer 8 | Layer 11 | All audited layers (range per run) |
+|---|---|---|---|---|
+| Old ReLU-3072 | 4.64 | 0.30 | 4.96 | 1.95 (0.20–5.37) |
+| Old TopK-3072 | 44.30 | 8.39 | 31.37 | 23.19 (6.7–44.7) |
+| Old JumpReLU-3072 | 67.99 | 7.34 | 15.92 | 34.56 (4.2–95.7) |
+| R2 TopK-12288 | 0.024 | 0.103 | 0.130 | 0.09 |
+| R2 BatchTopK-12288 | 0.011 | 0.174 | 0.331 | 0.17 |
+| R2 ReLU-12288 | 0.100 | 0.014 | 0.019 | 0.04 |
+| R2 TopK-3072 | 0 | 0 | 0 | 0 |
+| R2 frozen-random-decoder (not trained; seed 42) | 0.008 | 0 | 0 | 0.003 |
+
+* The old SAEs cover all 12 layers; layer-0 JumpReLU is 88.4 % dead (84.7 % over the L0-matched seeds).
+* Every trained R2 SAE is at most 0.36 % dead.
+* The same-width R2 TopK-3072 arm also has zero dead latents, so increased width alone does not explain the reduction.
+  Data, training duration and recipe changed together; no single factor is isolated.
+* **Transcription correction:** the appendix JumpReLU alive-latent range is 469–2,941 (it previously read 2,947).
+
+## 27. R3: Gemma Scope width × L0 ladder on The Pile (VALIDATION; Tier A, 36 SAEs; Tier B not run, Deviation 2)
+Numbered §26 on PR #30 until 2026-11-21; renumbered §27 to avoid a collision with #31.
+Source: `results/gemma2_pile/r3_gemma_scope_ladder/` (README Section 2; `ladder/*.csv`; `precision_t4_vs_fp32/`).
+Same 512 Pile validation documents, metrics and controls as M6 (§25); V6: M6 reproduced within margin at all three
+layers. One SAE per configuration: intervals are 95 % document-bootstrap CIs (1,000 resamples, seed 0), not seed
+variability.
+
+**Range across the 36 SAEs, per layer (↑ EV, loss recovered; ↓ ΔCE_SAE):**
+
+| Layer | SAEs | Measured L0 | EV | ΔCE_SAE (nats per prediction) | Loss recovered | ΔCE_SAE / ΔCE_random |
+|---|---|---|---|---|---|---|
+| 5 | 10 (16k, 65k) | 17.4–319.7 | 0.744–0.909 | 0.019–0.168 | 0.981–0.998 | 1.62–3.95 |
+| 12 | 16 (16k, 32k, 65k) | 12.5–461.5 | 0.663–0.890 | 0.029–0.365 | 0.963–0.997 | 1.77–6.15 |
+| 19 | 10 (16k, 65k) | 20.5–282.5 | 0.710–0.885 | 0.063–0.374 | 0.957–0.993 | 1.45–3.42 |
+
+**Pre-registered tests:**
+
+| Test | Rule | Result |
+|---|---|---|
+| H1: higher L0 within a width lowers ΔCE_SAE | every adjacent pair's CI lower bound > 0 | SUPPORTED in 7/7 cells (29/29 pairs; smallest d 0.0132 [0.0114, 0.0152]); EV also 7/7 |
+| H2: wider SAE at matched L0 (±10 %) lowers ΔCE_SAE | same rule, per band | SUPPORTED in 4/4 bands formed (layer 12 at L0 ≈ 23, 43, 85; layer 19 at ≈ 41); no band at layer 5; smallest d 0.0081 [0.0059, 0.0104] |
+| H3: SAE-splice ΔCE > norm-matched random ΔCE, per SAE | Holm over 36, one-sided | HOLDS ACROSS THE LADDER: 36/36, no reversal; smallest d 0.0053 [0.0023, 0.0087] |
+| Q0b: T4 bf16 vs fp32 (layer 12, 16k/82, 64 docs) | mean error CI upper bound < margin | ΔCE_SAE WITHIN MARGIN: 0.00267 [0.00218, 0.00319] < 0.005; top-1 agreement BEYOND MARGIN: 0.00886 [0.00712, 0.01077] |
+
+* No layer ranking and no "best SAE" (pre-registered). Nothing is claimed for widths above 65k.
+
 
 ## TI-2 TSP-MF and TI-4 TSP × KL (GPT-2 R2 TopK L8; VALIDATION; analysed / reviewed 2026-11-23)
 

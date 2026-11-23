@@ -1,0 +1,36 @@
+{
+  "figures": [
+    "fig1_reconstruction_vs_l0.svg",
+    "fig2_splicing_vs_l0.svg",
+    "fig3_h3_sae_vs_random.svg",
+    "fig4_h2_width_bands.svg",
+    "fig5_source_variation.svg",
+    "fig6_q0b_t4_vs_fp32.svg"
+  ],
+  "input_sha256_lf": {
+    "ladder/summary_by_sae.csv": "341871b54b04e8c06739bd0c05c4b15a3962ea03ce96ba35fa5bdc1c78c01a42",
+    "ladder/summary_by_sae_source.csv": "353738cf0526a9667e882742a0d766d844b1c56966ef40849c060d39a54c7ae7",
+    "ladder/h3_hg1_ladder.csv": "cbfccdb5f97d30bb6807906906fcd449880a53860792f89f2b0786420e948d58",
+    "ladder/h2_width_matched_l0.csv": "2bd91d053c64aba81dad7a9a8a703e8de86824101da5fe8d72b9e386cbc77d2f",
+    "ladder/l0_bands.csv": "c6499818b3ae0b4baa97cd70e825b124dbf360f5c718cbfe79b225b9d995e9c7",
+    "ladder/gates.json": "d22292a1ff9970d94e08fc645b80736a5d4e1f0c97a1efdc0fec39ba6eb1ad19",
+    "precision_t4_vs_fp32/q0b_t4_vs_fp32.csv": "b64838e40caf5713759e1ea0f96ee958e4219cfa641fd4fe7f188ce8e50e28d2"
+  },
+  "v4_excluded": [],
+  "q0b_figure": "drawn",
+  "figures_png_names_in_script_07": [
+    "fig1_reconstruction_vs_l0.png",
+    "fig2_splicing_vs_l0.png",
+    "fig3_h3_sae_vs_random.png",
+    "fig4_h2_width_bands.png",
+    "fig5_source_variation.png",
+    "fig6_q0b_t4_vs_fp32.png"
+  ],
+  "vector_export": {
+    "script": "scripts/gemma/08_r3_vector_figures.py",
+    "how": "script 07 run unchanged; Figure.savefig(.png) redirected to .svg",
+    "formats": [
+      "svg"
+    ]
+  }
+}

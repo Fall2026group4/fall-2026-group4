@@ -904,7 +904,7 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * the R5 feature arm used old SAEs only;
   * there is no RepE-LM test split;
   * there is no modern JumpReLU.
-* **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6.
+* **Proposed** (roadmap 2026-11-12 additions; none approved): H1, T1, X0, X1 first; then H2, I1, X2, X3; then M6 (the GPT-2 test pass of the 2026-11-12 audit plan, planned; not the completed Gemma M6 experiment of §51).
 * **Evidence label:** no new result; the one new observation is VALIDATION, descriptive.
 
 ## 37. Documentation cleanup, consolidation and PR preparation (2026-11-12). Status: COMPLETED (no experiment run)
@@ -1060,6 +1060,9 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   needs the user's approval.
 * **Wording:** "not worse" is now "not classified worse" everywhere, with the note that the ±0.02 equivalence class
   was met in 0/40 capacity-matched cells. It is not an equivalence or non-inferiority claim.
+
+> **Numbering (2026-11-17, agreed on PR #31):** §43–§50 are reserved for PR #35 (`sae-research`). M6 moved from §43 to
+> §51; this PR's entries moved from §44–§45 to §52–§53; §54 is reserved for R3 (PR #30).
 
 ## 43. D36: paper and curated docs revised with the H1-TEST verdicts (2026-11-13). Status: COMPLETED (documentation only; no experiment run)
 
@@ -1316,7 +1319,202 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Deviation:** a loader fix in the `final` stage (`allow_pickle`); no metric changed.
 * Folder: `results/geometry_of_truth/truth_subspace_preservation/replication/`.
 
-## 51. Final-week programme: audit, cross-model infrastructure, Gemma task baselines (2026-11-21). Status: Phase 1 COMPLETED (infrastructure, gates, XT-G0); XB, XT-G/DX and TI-1 IN PROGRESS
+## 51. Gemma Scope SAE reconstruction and splicing on The Pile (pre-registered and run 2026-11-12; branch `simba-gemma-pile`, results on `simba-gemma-m6-results`; Simbanegavi Simbarashe; numbered §19 on #28, renumbered §43 when merged with #27 on 2026-11-15 and §51 on 2026-11-17). Status: COMPLETED, VALIDATION [VERIFIED]
+
+* **Why:** all SAE evidence so far is GPT-2 with in-house SAEs. This extends the reconstruction and behavioural-faithfulness measurements to Gemma-2-2B with published SAEs, on the proposal's Gemma dataset (The Pile). It follows the completed Pile EDA (§3e; `simba-gemma-pile-eda`, `5638350`), which recommended fixing a truncation policy first. Roadmap M6 (reconstruction and splicing part of M3).
+* **Design** (full pre-registration: `results/gemma2_pile/gemma_scope_splicing/README.md` and `preregistration.json`; decision D44):
+  * Pile validation file `monology/pile-uncopyrighted/val.jsonl.zst` (SHA-256 pinned); seed-42 permutation; 512 evaluation + 64 disjoint reference documents (≥ 32 text tokens); BOS + first 1024 tokens per document.
+  * Gemma-2-2B (HF, bf16), `resid_post` at layers 5, 12, 19 (representative depths; **not** mapped to GPT-2 layers).
+  * Gemma Scope width-16k residual SAEs, pinned: `layer_5/width_16k/average_l0_68`, `layer_12/width_16k/average_l0_82`, `layer_19/width_16k/average_l0_73` (= sae-lens `canonical`), HF revision `fd571b47…`.
+  * Reconstruction (EV, cosine, relative error, L0) and splicing (ΔCE, KL, top-1, loss recovered) reported separately, overall and per Pile source, with document-bootstrap CIs.
+  * Controls: repeat pass, identity splice, norm-matched random error, mean ablation (reference set).
+  * Descriptive questions Q1–Q3; one replication hypothesis H-G1 (SAE ΔCE > random-error ΔCE, as in GPT-2 Phase 0 §10); validity gates V1–V5.
+* **Found while preparing (2026-11-12):** the parquet mirror used by the EDA has only a train split, so the evaluation uses the original repository's validation file; Gemma Scope's hook is `resid_post` (sae-lens loader), unlike our GPT-2 `resid_pre`.
+* **Amendment 1 (2026-11-12, before any run):** Gemma-2-2B tokenizer and model pinned to Hugging Face commit `c5ebcd40d208330abc697524c919956e692655cf` (previously "recorded at run time"); any later mismatch is a protocol deviation.
+* **Implementation (2026-11-12):** sampling pipeline and tests (`39ed943`); committed evaluation sample (`a34d975`); splicing script, engineering safeguards A1–A11 and strict deterministic mode (`4708213`, `606a43d`, `13eaeca`); bf16 logits kept (decision H4a), with logit precision measured in the smoke run as a limitation only. Ronin test record: 74 passed, 0 skipped for `4708213` (before the safeguards).
+* **Post-run verification (after the full run):** the complete A11 suite (`python -m pytest -q -rs src/tests`) was run on Ronin on the M6 code/results branch: **85 passed, 0 failed, 0 skipped** (2 deprecation/future warnings; 9.02 s). This verifies the code that produced the results after the fact; it is not a pre-run check.
+* **Run:** full pre-registered run on Ronin (Tesla T4, bf16 emulated, strict determinism), code commit `13eaeca` with a clean tree; 8,067.5 s; peak GPU memory 8.58 GB. Results committed in `0dbfc80`; figures from `scripts/gemma/04_pile_gemma_scope_figures.py`.
+* **Validity gates:** V1–V5 all pass. Hook equals `hidden_states[L+1]` in 1,536/1,536 checks; identity and repeat KL = 0.0 exactly; measured L0 69.5 / 84.8 / 75.1 (our measurement) vs 68 / 82 / 73 (the published release `average_l0` values in the SAE IDs, not measured by us).
+* **Results (VALIDATION; 512 documents, 253,632 predictions per layer; 95 % document-bootstrap CIs):**
+  * Reconstruction (Q1): EV 0.813 / 0.770 / 0.789 at layers 5 / 12 / 19; cosine 0.932 / 0.913 / 0.922.
+  * Behavioural splicing (Q2): ΔCE_SAE 0.071 / 0.115 / 0.177 nats per prediction (original CE 1.938); ΔCE_random 0.029 / 0.039 / 0.080; KL 0.082 / 0.120 / 0.179; top-1 agreement 0.887 / 0.857 / 0.838; loss recovered 0.992 / 0.988 / 0.980 against a mean ablation costing ≈ 9 nats.
+  * **H-G1 supported at all three layers**, also under the Bonferroni 98.33 % sensitivity interval. Mean d (doc-mean ΔCE_SAE − doc-mean ΔCE_random): layer 5 0.0409546 [95 %: 0.0356024, 0.0462731; 98.33 %: 0.0345367, 0.0489496]; layer 12 0.0773024 [0.0726970, 0.0822347; 0.0715352, 0.0832376]; layer 19 0.0993482 [0.0938464, 0.1051191; 0.0928295, 0.1061659].
+  * Sources (Q3, descriptive; 6 sources with ≥ 20 documents): ΔCE_SAE varies more across sources than EV; the SAE/random ratio exceeds 1 in all six (no per-source test was pre-registered).
+* **Interpretation:** SAE-splice reconstruction error produced greater next-token behavioural damage than the norm-matched random-error control at all three pre-registered layers. This experiment does not identify the mechanism responsible. There is no layer ranking (each layer has a different SAE and L0), no representation-preservation or causal-intervention claim, and no GPT-2 vs Gemma superiority claim. The direction of the effect matches the GPT-2 Phase 0 finding (§10) that H-G1 replicates.
+* **Limitations:**
+  * bf16 logits. The smoke run (8 documents) measured mean KL(fp32 ‖ bf16) 0.00083, mean |CE difference| 0.026, top-1 disagreement 2.3 % and max |logit difference| 0.156. This is a measurement floor; results are not adjusted, its effect on the signed paired means was not measured. The hardened smoke run is retained as the evidence bundle `results/gemma2_pile/gemma_scope_splicing/smoke_hardened/`, committed from Ronin in the M6 evidence-bundle commit (the older `smoke/` folder is not used).
+  * One SAE per layer, so CIs are not seed variability.
+  * Possible pretraining exposure of Gemma to The Pile.
+  * Loaded model and tokenizer commits recorded as `unverifiable` (A6).
+  * Natural source mixture; 10 of 16 sources LOW-N.
+* **Next:** the Gemma GoT frozen-probe experiment remains a stretch goal only (roadmap M3); a descriptive GPT-2/Gemma side-by-side belongs to X2.
+* **Scope of the evidence:** cross-model generalisation evidence for reconstruction and behavioural faithfulness only. Gemma information faithfulness and causal faithfulness were not tested in M6.
+* **Related but separate:** R3 (Gemma Scope width × L0 ladder) moved to PR #30 (`dhruv-gemma-r3`) in `2bab391`; COMPLETED, VALIDATION (Tier A), code implemented. Not part of M6.
+
+## 52. Dead-latent audit of the GPT-2 base and R2 SAEs (2026-11-15). Status: COMPLETED (descriptive audit; no model trained or run). Evidence: VALIDATION [VERIFIED]
+
+* **Why:** the instructor asked on 2026-11-10 for the dead-latent fraction of every old (base) and R2 SAE.
+  * This is a diagnostic audit, not a new headline result.
+  * Gemma Scope is not included, because no document says the request covers it.
+* **Method:** stored evaluation artifacts only; no model, SAE or activation was loaded.
+  * Script: `results/shared/dead_latent_audit/build_dead_latent_audit.py`.
+  * Report: `docs/DEAD_LATENT_AUDIT.md`.
+* **Definition (existing, unchanged):** a latent is dead if it never fires (z > 0) on the evaluated corpus.
+  * Source: `src/evaluation/faithfulness_metrics.py`, `reconstruct` / `dead_fraction`.
+  * Corpus: the layer's OWT validation cache, 12,700 non-BOS tokens.
+  * Base and R2 were scored by the same function on the same corpus.
+  * The R2 training-time AuxK rule (no firing in the last 5M training tokens) is a different rule and is not used.
+* **Coverage:**
+  * 108/108 base SAEs;
+  * 36/36 trained R2 SAEs;
+  * 3 R2 frozen-random-decoder baselines, audited separately and not counted as trained SAEs;
+  * public res-jb (3 layers) as a labelled reference only.
+  * No run is missing.
+* **Checks:** all pass. These cover:
+  * alive + dead = width;
+  * fraction = dead / width;
+  * equality with the stored values;
+  * no duplicate IDs or hashes;
+  * all combinations present;
+  * the old-SAE rows of the R2 ladder equal the base rows;
+  * the appendix alive-latent ranges for ReLU, TopK and JumpReLU, after the correction below.
+* **Results (descriptive):**
+  * **Old SAEs have substantial dead fractions,** especially early-layer JumpReLU and TopK.
+    * Per run: ReLU 0.20–5.37 %, TopK 6.7–44.7 %, JumpReLU 4.2–95.7 %.
+    * Layer-0 JumpReLU is the worst cell: 88.4 % mean, or 84.7 % over the L0-matched seeds.
+  * **Every trained R2 SAE has a dead fraction ≤ 0.36 %.**
+  * **The same-width R2 TopK-3072 arm has zero dead latents.** So increased width alone cannot explain the reduction.
+  * Data, training duration and recipe changed together, so **no causal attribution to any single factor** is made.
+  * **No claim is made that a lower dead fraction implies greater information, behavioural or causal
+    faithfulness.**
+* **Transcription correction:** the JumpReLU alive-latent range "469–2,947" is corrected to **469–2,941**.
+  * Corrected in `research_paper/Latex/sections/12_appendix.tex`, `results/shared/m0_within_layer_reanalysis/README.md`
+    and `README.md`.
+  * 2,941.0 is the value in M0 `architecture_by_layer.csv`, which is unchanged. This is not a new result.
+* **Status:** documented, not committed. It awaits the user's local commit.
+
+## 53. Method A layers 5/6/9 extension audited and excluded from the final scope (2026-11-16). Status: EXCLUDED (documentation only; no experiment run). Evidence: VALIDATION, EXPLORATORY [BRANCH-ONLY]
+
+* **Branch:** `simba-method-a-multilayer` (Simbanegavi Simbarashe). The local ref is at `b64e6ed`; `origin` is at
+  `7f2557b`.
+* **Commits:**
+  * `28ad5cf`: scripts 22/23 for layers 3 and 9.
+  * `b64e6ed`: layer 3 replaced by layer 5. Scripts only; these are already in this branch's history.
+  * `7f2557b`: results in `results/geometry_of_truth/method_a_multilayer/`, 12 files. Not merged.
+* **Design:**
+  * Method A (GoT group-A reconstruction with OWT replay) vs an OWT-only control, 500 steps.
+  * ReLU / TopK / JumpReLU × seeds 42 / 1042 / 2042.
+  * New layers 5 and 9 (36 fine-tunes). Layer 6 reused from `method_a_layer6/per_sae.csv`.
+  * Validation only; no test rows.
+* **Result:**
+  * The success criterion was met in **1/9 cells** (L5 ReLU, paired change −0.066 in the frozen B-MLP gap). The
+    criterion: Method A lower than both base and OWT-only on all 3 seeds, with mean > 2 sd.
+  * All guards pass in every cell.
+  * Method A lowered the gap in 25/27 seed pairs.
+* **Unresolved layer-9 disagreement with IMP-L (`multilayer_finetune/`):**
+  * IMP-L classes L9 ReLU and L9 JumpReLU as PRELIMINARY IMPROVEMENT; this branch does not.
+  * The base B-MLP gaps for the same base SAEs differ (ReLU 0.214 vs 0.246, TopK 0.160 vs 0.198, JumpReLU 0.258 vs
+    0.234), so the two evaluation pipelines are not identical. The cause was not investigated.
+* **Provenance caveats:**
+  * Outputs renamed after the run. `eval_info.json` records the `b64e6ed` evaluation-script hash, whose code writes
+    `*_3_6_9` filenames. The committed files are named `*_5_6_9`, and the script was edited in `7f2557b`.
+  * The pre-registration was written by the script at run time and committed together with the results.
+  * `pretraining_hashes.json` still refers to "layer-3/layer-9".
+  * The 36 checkpoints are not in `checkpoint_registry.csv`.
+  * There is no re-trained-reader analysis.
+* **Final scope decision:** EXCLUDED (D45). Not merged and not cited; the branch is kept unchanged as the record.
+
+## 54. R3: Gemma Scope width × L0 ladder on The Pile (pre-registered 2026-11-13, implemented 2026-11-14; branch `dhruv-gemma-r3`, moved from `simba-gemma-m6-results` on 2026-11-14; Dhruv Rai; numbered §20 on `dhruv-gemma-r3`, renumbered §44 when `main` was merged in on 2026-11-16 and §54 on 2026-11-21 to avoid collisions with #31 and #35). Status: COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2)
+
+* **Why:** M6 measured one width-16k SAE per layer. For Gemma, the only lever on reconstruction that needs no
+  training is to move along the published width × L0 ladder. R3 measures that trade-off with M6's data, metrics and
+  controls. It addresses the main question's "improve reconstruction while preserving behaviour" for Gemma.
+  Roadmap R3 (named on `sae-research`); the RepE-LM / K1–K2 part is split off as R3b.
+* **Design** (full pre-registration: `results/gemma2_pile/r3_gemma_scope_ladder/README.md` and `preregistration.json`;
+  decision D46):
+  * Same 512 + 64 Pile documents as M6, read from M6's committed manifest.
+  * Gemma-2-2B bf16, `resid_post` at layers 5, 12, 19.
+  * 54 pinned Gemma Scope SAEs: Tier A, 36 SAEs (16k/65k at layers 5 and 19; 16k/32k/65k at layer 12); Tier B, 18
+    SAEs (131k/262k/524k at layer 12). The 1M width is excluded (memory).
+  * Per SAE: reconstruction and splicing (ΔCE, KL, top-1, loss recovered) plus a norm-matched random-error control
+    with the same random directions for every SAE of a layer.
+  * Questions: Q1–Q3 (descriptive); H1 (higher L0 within a width lowers ΔCE_SAE); H2 (wider at matched L0 ±10 % lowers
+    ΔCE_SAE); H3 (H-G1 for every SAE, Holm-corrected); Q0b (T4 bf16 vs fp32 on layer 12, 16k, 64 documents).
+  * Gates V0–V10.
+* **Amendment 1 (2026-11-13, before any code or run):** the hardware changed from an AWS A10G to Kaggle T4 x2,
+  because the AWS free plan has no GPU instances.
+  * Q0 (T4 vs A10G) and the A10G rerun of M6 are dropped.
+  * Q0b becomes "T4 bf16 vs fp32", with fp32 Gemma split across both T4s.
+  * Memory placement: 524k SAEs on GPU 1; 1M excluded.
+  * Kaggle run plan K0–K6 (each ≤ 10 h; ≤ 30 GPU-h per week). Tier B runs only after Tier A, and only before the
+    2026-11-22 freeze.
+  * Per-SAE output folders with `DONE.json` and resume. Gate V9: a resumed run must equal a fresh one within
+    relative difference 1e-6; bit-identity is recorded separately.
+  * `HF_TOKEN` comes from Kaggle Secrets; gate V10 is a secret scan.
+  * Gate V6 compares the ladder with M6's committed rows (EXACTLY / WITHIN MARGIN / FAILED).
+* **Clarification 1 (2026-11-13, before any run):** V6's active-latent agreement compares the 128-token-chunked SAE
+  with the unchunked SAE on the same activations, because M6 did not save its active-latent sets.
+* **Implementation (2026-11-14):**
+  * scripts `05_pile_gemma_scope_ladder.py`, `06_r3_precision_comparison.py`, `07_r3_figures.py`;
+  * tests `src/tests/test_gemma_r3_ladder.py`;
+  * `notebooks/r3_kaggle_runner.ipynb`;
+  * M6's `pile_splicing.py`, `summarize()` and figure style are reused unchanged;
+  * implementation choices are listed in the README, Section 2.
+* **Tests (local Windows CPU, before any run):**
+  * R3 tests: **51 passed**. They cover chunked SAE equality, identical random directions across SAEs, L0 bands
+    reproducing the README table, the H1/H2/H3 rules, placement and run plan, V9 within 1e-6, and an interrupted
+    then resumed toy run being byte-identical to an uninterrupted one.
+  * Full suite: 128 passed; the 2 failures and 5 errors were already present before R3 and are environment-specific.
+* **Dry runs on fake data (not results):** the aggregate step, Q0b and the figures ran end to end on folders built
+  from M6's rows. With M6's rows unchanged, V6 reported M6 REPRODUCED EXACTLY.
+* **Literature context:** `results/gemma2_pile/r3_gemma_scope_ladder/literature_comparison.md` compares M6 with
+  published Gemma Scope, JumpReLU, SAEBench, TopK and end-to-end SAE numbers. Context only; not evidence for R3.
+* **Not run (as of 2026-11-14):** no GPU step had executed. V0, V1, model loading, SAE download and the fp32 split
+  are first exercised by run K0.
+* **Clarification 2 (2026-11-15, `e2b7b3a`, before any result was read):** the first K0 attempt crashed at the end of
+  the fp32 step ("CUDA error: unspecified launch failure"). The fp32 reference became its own step, K0F, with
+  `CUDA_LAUNCH_BLOCKING=1`. Run records are now written even when a step stops or crashes. R3 tests: 58 passed.
+* **Runs so far (2026-11-16):** K1 (layer 5, Tier A) finished on Kaggle in 7.64 h, against 3.11 h projected. K2
+  (layer 19) is running. The outputs are on Kaggle, not in the repository, and no metric has been read.
+* **Deviation 1 (2026-11-16):** K3 is split into K3a (layer 12, widths 16k and 32k) and K3b (width 65k), so that
+  each run stays under Kaggle's 10 h limit. This uses the existing `--widths` option; no code changed.
+* **Deviation 2 (2026-11-16, before any Tier A result was looked at):** Tier B (131k/262k/524k, runs K4–K6) is
+  cancelled because of the 2026-11-22 technical freeze and the 30 h weekly Kaggle quota. H1–H3 are tested on
+  Tier A only (layers 5/12/19, widths 16k/32k/65k, 36 SAEs). Decision D46; README "Deviations".
+* **Runs (2026-11-16):** K2 (layer 19) finished in 8.01 h (`K2_20261116T044900Z`) and K3a (layer 12, 16k and
+  32k) in 8.85 h (`K3_20261116T141625Z`); V10 PASS for both. K3b (layer 12, 65k) has started. The outputs are
+  still on Kaggle and no metric has been read.
+* **Amendment 2 (2026-11-16, before any result was read):** the Kaggle weekly quota is now 45 h (Colab Pro
+  linked), so the pre-registered 30 h weekly cap is raised to 45 h. No SAE, metric or gate changes; Tier B stays
+  cancelled because of the freeze.
+* **Runs completed (2026-11-17):** K3b (layer 12, 65k) in 3.61 h (`K3_20261117T003032Z`) and K0F (fp32 reference)
+  in 0.21 h (`K0F_20261117T083512Z`). All six runs (K0, K1, K2, K3a, K3b, K0F) finished with V10 PASS; all 36
+  Tier A SAEs have complete outputs.
+* **Gates:** V0–V5, V7–V10 PASS; V6 **M6 REPRODUCED WITHIN MARGIN** at layers 5, 12 and 19 (not exactly: largest
+  relative difference of the per-document sums 0.021–0.036), so M6 and R3 can be shown side by side.
+* **Results (VALIDATION; README Section 2):**
+  * **H1** (higher L0 within a width lowers ΔCE_SAE): SUPPORTED in 7/7 Tier A cells; all 29 adjacent pairs have CI
+    lower bound > 0 (smallest d 0.0132 [0.0114, 0.0152], layer 5 65k). EV secondary: SUPPORTED in 7/7.
+  * **H2** (wider at matched L0 lowers ΔCE_SAE): SUPPORTED in all 4 bands formed from measured L0 (layer 12 at
+    L0 ≈ 23, 43, 85; layer 19 at ≈ 41). No band formed at layer 5 or at layer 19 L0 ≈ 23 (measured L0s 10.3 % and
+    11.7 % apart). Smallest d 0.0081 [0.0059, 0.0104] (layer 12, 32k → 65k at L0 ≈ 80). The wider SAE always had
+    the lower measured L0 (1.9–9.3 %).
+  * **H3** (H-G1 per SAE, Holm over 36): HOLDS ACROSS THE LADDER, 36/36, no reversal. Smallest d 0.0053
+    [0.0023, 0.0087] (layer 5 65k/211). At M6's three SAEs, d matches M6 to three decimals.
+  * **Q0b** (T4 bf16 vs fp32, layer 12 16k/82, 64 documents): headline ΔCE_SAE WITHIN MARGIN, mean error
+    0.00267 [0.00218, 0.00319] < 0.005. Top-1 agreement BEYOND MARGIN (0.00886 [0.00712, 0.01077] > 0.005);
+    the other secondary metrics WITHIN MARGIN.
+  * Q1–Q3 descriptive: EV 0.66–0.91, ΔCE_SAE 0.019–0.374, loss recovered 0.957–0.998 across the 36 SAEs.
+* **Limitations:** Tier A only (16k–65k); H2 has four bands, none at layer 5; one SAE per configuration (CIs over
+  documents, not seeds); the 512 documents were already read by M6; Q0b covers one cell.
+* **Analysis code:** `--aggregate` and script 06 unchanged. Figures: new `scripts/gemma/08_r3_vector_figures.py`
+  runs script 07 unchanged and writes SVG instead of PNG (Instructor Review #9); PDF could not be written on the
+  Windows machine (fontTools DLL blocked by Application Control).
+* **Status:** COMPLETED, VALIDATION (Tier A; Tier B not run, Deviation 2).
+* **Next:** Simba reviews the aggregate tables and gate checks on PR #30 before merge.
+
+## 55. Final-week programme: audit, cross-model infrastructure, Gemma task baselines (2026-11-21). Status: Phase 1 COMPLETED (infrastructure, gates, XT-G0); XB, XT-G/DX and TI-1 IN PROGRESS
+* **Numbering:** recorded as §51 in PR #36; renumbered §55 on 2026-11-21 to follow the team numbering plan (#35 §43–§50, #31 §51–§53, #30 §54).
 
 * **Audit:** `docs/2026-11-21_final_week_technical_audit.md`, approved by the user. Teammate evidence found:
   * M6 (merged into `main`);

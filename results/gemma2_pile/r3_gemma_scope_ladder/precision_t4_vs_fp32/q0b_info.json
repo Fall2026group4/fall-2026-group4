@@ -1,0 +1,33 @@
+{
+  "question": "Q0b: how far is T4 bf16 from fp32 (Amendment 1 (2))",
+  "cell": {
+    "layer": 12,
+    "sae_id": "layer_12/width_16k/average_l0_82",
+    "n_docs": 64
+  },
+  "headline": {
+    "metric": "delta_ce_sae",
+    "verdict": "WITHIN MARGIN",
+    "mean_abs_error": 0.0026667575278831812,
+    "ci95": [
+      0.002180924963888747,
+      0.0031875252382838073
+    ],
+    "margin": 0.005,
+    "mean_signed_diff": -0.0005606471719863968
+  },
+  "kaggle_ladder_rows": "included",
+  "limits": "one layer, one SAE, 64 documents; fp32 is a reference with smaller rounding, not exact truth",
+  "created_utc": "2026-11-17T14:21:22+00:00",
+  "input_sha256": {
+    "results/gemma2_pile/gemma_scope_splicing/per_doc_metrics.csv": "e39d28265431d14642ce0b31ef16ee70e193e38b2071cc8ab31bb5fb247bd704",
+    "results/gemma2_pile/gemma_scope_splicing/per_doc_sum_x.npz": "3b2becfbe17db243897a6df981a5e2f671da2d705850f4ad12abd916ab22dc93",
+    "per_doc_metrics.csv": "9460597d60a635a979994b79bb20f963efedda20fbecf037d3083fa14a62e8de",
+    "per_doc_sum_x.npz": "cd7c10ad237d5e6bb15dd63fa998a2e7c07353936fb7adfc8f8bffa428a133cc",
+    "results/gemma2_pile/r3_gemma_scope_ladder/preregistration.json": "3bfa6ccca0e7c2f2fa6775346eeb26f2d44d038eec2e9e5591e8c3a0fe9940b4",
+    "scripts/gemma/06_r3_precision_comparison.py": "5cf875266d296571ab2ea406e5f48d49328f3a3466f62f8e3dfd9448880830f1"
+  },
+  "output_sha256": {
+    "q0b_t4_vs_fp32.csv": "b64838e40caf5713759e1ea0f96ee958e4219cfa641fd4fe7f188ce8e50e28d2"
+  }
+}
