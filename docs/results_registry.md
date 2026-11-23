@@ -151,3 +151,5 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | TI-1 TSP generalisation | **VALIDATION (citable)**: GENERALISES, 3/3 cells SUPPORTED (L11 TopK −0.042, L8 BatchTopK −0.015, L8 ReLU −0.026 refit gap vs ctrl); cities only | `results/geometry_of_truth/tsp_generalisation/` (§56, D48) |
 | X0 token exposure within R2 runs | **VALIDATION (citable, descriptive)**: not saturated at 50M (25M→50M IMPROVES NMSE 12/12, ΔCE 11/12) | `results/openwebtext/r2_scaled_saes/scaling/` (§57) |
 | SIL SAE-in-the-loop persona mediation (GPT-2) | **VALIDATION**: MEDIATED by rule for all families, **but the negative control also passes**; cite only as "specificity inconclusive" plus D2 retention (0.82–0.92 TopK/BatchTopK/JumpReLU vs ≈ 0.5 ReLU and control) | `results/repe/sae_in_the_loop_mediation/` (§58, D49) |
+
+| PCA-CM-T capacity-matched PCA, TEST | **TEST (rows previously exposed in M5; PCA arms unseen)**: P1 confirmed (0/20 SAEs worse than PCA-128); advantage only in the confirmed cells (D51) | `results/shared/pca_capacity_matched_test_protocol/` (§60) |

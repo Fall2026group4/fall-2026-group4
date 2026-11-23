@@ -1,0 +1,100 @@
+{
+  "P1": {
+    "rule": "no trained cell at capacity_k128 classified SAE WORSE",
+    "n_cells": 20,
+    "n_sae_worse": 0,
+    "sae_worse_cells": [],
+    "confirmed": true
+  },
+  "P2": {
+    "reference": "capacity_k128",
+    "n_cells": 3,
+    "n_confirmed": 1,
+    "cells": {
+      "L8 r2 relu": {
+        "diff_mean": -0.04283159735818517,
+        "ci_high_max": 0.006755619402974843,
+        "p_cell": 0.11227416324194016,
+        "holm_reject": false,
+        "confirmed": false
+      },
+      "L8 resjb": {
+        "diff_mean": -0.03013156864280675,
+        "ci_high_max": -0.001673485338687906,
+        "p_cell": 0.04746214554734731,
+        "holm_reject": false,
+        "confirmed": false
+      },
+      "L11 r2 relu": {
+        "diff_mean": -0.055994987861226475,
+        "ci_high_max": -0.01859679687768221,
+        "p_cell": 0.0008967680272174339,
+        "holm_reject": true,
+        "confirmed": true
+      }
+    }
+  },
+  "P3": {
+    "reference": "task_l0_matched",
+    "n_cells": 8,
+    "n_confirmed": 4,
+    "cells": {
+      "L8 old relu": {
+        "diff_mean": -0.09354034510663849,
+        "ci_high_max": -0.05694748666137457,
+        "p_cell": 5.883164069624706e-08,
+        "holm_reject": true,
+        "confirmed": true
+      },
+      "L8 r2 relu": {
+        "diff_mean": -0.07249327799096768,
+        "ci_high_max": -0.01040948890149594,
+        "p_cell": 0.013641554173933774,
+        "holm_reject": false,
+        "confirmed": false
+      },
+      "L8 resjb": {
+        "diff_mean": -0.11016915968360874,
+        "ci_high_max": -0.07001478448510172,
+        "p_cell": 1.8640571388130253e-08,
+        "holm_reject": true,
+        "confirmed": true
+      },
+      "L11 old jumprelu": {
+        "diff_mean": -0.019121831519043453,
+        "ci_high_max": 0.04342694655060768,
+        "p_cell": 1.0,
+        "holm_reject": false,
+        "confirmed": false
+      },
+      "L11 old relu": {
+        "diff_mean": -0.03838071370767745,
+        "ci_high_max": 0.012221494689583775,
+        "p_cell": 0.2079480228083187,
+        "holm_reject": false,
+        "confirmed": false
+      },
+      "L11 r2 batchtopk": {
+        "diff_mean": -0.03487613229957968,
+        "ci_high_max": 0.006540737301111202,
+        "p_cell": 0.11415291428831048,
+        "holm_reject": false,
+        "confirmed": false
+      },
+      "L11 r2 relu": {
+        "diff_mean": -0.06673062364580884,
+        "ci_high_max": -0.031538788229227066,
+        "p_cell": 0.0001511979202900528,
+        "holm_reject": true,
+        "confirmed": true
+      },
+      "L11 resjb": {
+        "diff_mean": -0.07524081760513746,
+        "ci_high_max": -0.04402850177139044,
+        "p_cell": 1.6580038552663166e-06,
+        "holm_reject": true,
+        "confirmed": true
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+2026-11-22T00:11:37Z PCA-CM-T TEST attempt 1 stopped by ram_guard at 00:11:03 (avail 473 MB) after ~5,800 s, before writing any output (outputs are written only at the end); no TEST result was produced or inspected. Relaunched unchanged.

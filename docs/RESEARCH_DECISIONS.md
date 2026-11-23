@@ -627,3 +627,8 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Not citable:** any primary-arm GPT-2 vs Gemma difference; the GPT-2 "SAE less harmful than random" verdicts; and the GPT-2 Holm count (0/318). That count is infeasible by design: the 1,000-resample bootstrap p floor of about 0.002 is multiplied by 159 tests (correction 2026-11-22).
 * **Citable:** the Gemma results, the gates, and the GPT-2 long-context breakdown itself (a finding about 128-token SAEs).
 * **The cross-model comparison of record is A4** (`xb_matched_splicing/a4_ctx128/`), pre-registered before this analysis was read.
+
+## D51. Capacity-matched PCA wording after the TEST pass (2026-11-22). Status: DECIDED (by the frozen PCA-CM-T rules)
+* **May say (TEST, rows previously exposed):** "On held-out cities TEST, no trained SAE retains less truth information than PCA with the same per-token active budget (k = 128; 0/20 cells worse)."
+* **May say, cell-specific:** an SAE advantage over capacity-matched PCA is confirmed at k = 128 for L11 R2 ReLU, and at task-matched k for L8 old ReLU, L8 res-jb, L11 R2 ReLU and L11 res-jb.
+* **May not say:** "SAEs are significantly better than PCA" in general (D34 wording rule). Not confirmed: P2 L8 res-jb (p = 0.048 fails Holm) and L8 R2 ReLU; four P3 cells.

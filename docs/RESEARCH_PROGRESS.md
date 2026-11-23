@@ -1582,3 +1582,12 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * XB_H2: no matched stratum (0/54 pairs pass the frozen ±15 % rule), so all rows are descriptive;
   * XB_H3: no Gemma depth trend.
 * **Reading (D50):** no primary-arm GPT-2 vs Gemma comparison is interpretable as an SAE comparison. The context-controlled comparison is A4 (128 tokens; frozen before this analysis was read).
+
+## 60. PCA-CM-T: TEST confirmation of capacity-matched PCA (2026-11-22). Status: COMPLETED (TEST; rows previously exposed in M5, PCA arms unseen)
+* **Protocol:** rules frozen 2026-11-13. The runner reproduced the validation PCA-CM outputs exactly (116/116). The pre-TEST addendum was pushed (`0046569`) before any TEST row was read. One RAM-guard abort happened before any output; it was relaunched unchanged.
+* **Results (452 TEST rows):**
+  * **P1 CONFIRMED:** 0/20 trained SAEs worse than PCA at k = 128.
+  * **P2:** 1/3 confirmed (L11 R2 ReLU).
+  * **P3:** 4/8 confirmed (L8 old ReLU, L8 res-jb, L11 R2 ReLU, L11 res-jb).
+  * The counts match the validation multiplicity check.
+* **Reading (D51):** "no SAE is worse than capacity-matched PCA" is now TEST-confirmed. "SAEs beat capacity-matched PCA" holds only for the confirmed cells.

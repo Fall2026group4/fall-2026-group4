@@ -948,3 +948,10 @@ Retained = T_S / T_full (T_full = 0.0435). Specificity INCONCLUSIVE (D49).
 | GPT-2 (res-jb, R2, old; 159 SAEs) | Holm 0/318 (infeasible: p floor × 159 tests); by CI 243 supported, 70 contradicted | OWT-XM: res-jb −0.06 to −3,266; R2 0.15–0.72 (vs OWT VAL 0.87–0.98 at 128 tokens) | 128-token SAEs out of distribution |
 
 Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of record: A4 (128 tokens).
+
+## PCA-CM-T: capacity-matched PCA on TEST (2026-11-22; TEST, rows previously exposed in M5; PCA arms unseen)
+| Family | Result |
+|---|---|
+| P1: no SAE worse than PCA-128 (20 cells) | **CONFIRMED** (0/20 worse) |
+| P2: SAE better than PCA-128 (3 cells, Holm) | 1/3: L11 R2 ReLU (−0.056) |
+| P3: SAE better than task-L0 PCA (8 cells, Holm) | 4/8: L8 old ReLU (−0.094), L8 res-jb (−0.110), L11 R2 ReLU (−0.067), L11 res-jb (−0.075) |

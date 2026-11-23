@@ -522,6 +522,13 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/cross_model/xb_matched_splicing/README.md`, `AMENDMENTS.md` | updated | results with the context caveat; operational note (expandable_segments restart) |
 | `docs/*` ledgers | appended | §59, D50, results summary, roadmap, registry, manifest |
 
+## 2026-11-22: PCA-CM-T TEST pass
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/pca_cm_test_confirmation.py`, `src/tests/test_pca_cm_test_confirmation.py` | added | TEST runner implementing the frozen 2026-11-13 rules; validation-reproduction mode |
+| `results/shared/pca_capacity_matched_test_protocol/{validation_reproduction/, addendum_pre_test.json, test/, run_log.txt, README.md}` | added / updated | exact validation reproduction; pre-TEST freeze; single TEST pass; abort log |
+| `docs/*` ledgers | appended | §60, D51, summary, roadmap, registry, manifest |
+
 ## 2026-11-22: correction to the XB primary results
 | File | Change | Reason |
 |---|---|---|

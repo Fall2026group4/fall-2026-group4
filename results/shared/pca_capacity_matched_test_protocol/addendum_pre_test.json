@@ -1,0 +1,20 @@
+{
+ "id": "PCA-CM-T addendum (pre-TEST)",
+ "created": "2026-11-21T22:31:25Z",
+ "approved_by": "user (final-week approval: \"PCA test confirmation\"; Option B instructions 2026-11-21)",
+ "validation_reproduced": true,
+ "reproduction": "116/116 paired rows identical to results/shared/pca_capacity_matched/got_paired.csv (max |diff| 0.0 in pca_k, SAE and PCA refit gaps, CI bounds)",
+ "test_label": "TEST (GoT rows previously exposed in M5; PCA arms unseen)",
+ "rules": "unchanged from preregistration.json (families P1-P3, per-seed paired grouped bootstrap, Holm within family, intersection-union)",
+ "hashes": {
+  "scripts/shared/pca_cm_test_confirmation.py": "7ee4d069c9e3e8256eefae694de776d8af742f4753e15aa2ca761205d0d4a42c",
+  "scripts/shared/pca_capacity_matched.py": "f545601b129c77875c25202de5810dc7889fbb77b1766de4bc1e74e9e44340fd",
+  "results/shared/pca_capacity_matched_test_protocol/preregistration.json": "45d00f612089f9020cb3c5117d91f4dea07858b16128dbe6489e490450dbd957",
+  "results/shared/pca_capacity_matched_test_protocol/README.md": "68e7d3bbdf3ffe25d3e074e939e6edb640eb0bce49706400070dfd93c663e8de",
+  "results/shared/pca_capacity_matched_test_protocol/validation_reproduction/checks.json": "56a354023f86648c5a9baa079285abfafacfed391a507b3b7bb3a0af35753e32",
+  "results/shared/pca_capacity_matched_test_protocol/validation_reproduction/got_paired.csv": "80ef8c8ab8a752779af61c09d202a33982629bac773772e7c52816340c7a0655",
+  "results/shared/pca_capacity_matched/got_paired.csv": "5ba2bca1f78af42126e23924fe150694018389487d52cacb12997c2515fc1592",
+  "src/tests/test_pca_cm_test_confirmation.py": "b51c21c053d9521466f2c5a103dacf1bdaa3de29d9a2542344e578d754b1a065",
+  "src/evaluation/information_levels.py": "444cea21ce5956108f63ebfd6b0dde05bbd13e8991b5199426662df3e59fbc70"
+ }
+}
