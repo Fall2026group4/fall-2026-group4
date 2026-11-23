@@ -858,3 +858,17 @@ Sources: `results/geometry_of_truth/tsp_multifamily/analysis/`, `results/geometr
 
 * H4 (descriptive): R_gemma − R_gpt2 = +0.63 [+0.14, +1.40] at mid depth and +0.03 [−0.25, +0.28] at late depth.
 * Source: `results/cross_model/xc3_steering_parity/`.
+
+## XC-2 GoT causal truth-direction test on Gemma-2-2B (TEST once, 113 pairs; 600 controls; BH within families)
+
+| Layer (GPT-2 match) | mass-mean +s | probe +s | SAE rec +s | SAE top-1 +s | SAE top-10 +s | T1 (mm / probe) | T2 (rec / top1 / top10) |
+|---|---|---|---|---|---|---|---|
+| 8 (4) | +0.71 [0.40, 1.03] | −0.63 | +1.56 | +0.47 | +0.61 | yes / no | yes / yes / yes |
+| 12 (6) | +1.98 [1.69, 2.29] | −0.53 | +3.37 | −2.84 | +3.06 | yes / no | yes / no / yes |
+| 16 (8) | +2.55 [2.24, 2.87] | +2.52 | +3.75 | +0.05 | +1.32 | yes / yes | yes / no / no |
+| 21 (10) | +3.39 [2.82, 3.99] | −0.30 | +2.33 | −0.02 | −1.01 | yes / no | yes / no / no |
+
+* Effects are Δ(log P(true) − log P(false)) in nats.
+* Minimum detectable dose of the positive control: 0.01 at every layer.
+* Norm-matched Gaussian controls average −0.19 to −1.92.
+* Source: `results/cross_model/xc2_gemma_got_causal/`.

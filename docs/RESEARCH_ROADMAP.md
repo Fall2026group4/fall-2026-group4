@@ -386,3 +386,7 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
   * H1/H2 met at 5/6 cells (not at Gemma L5).
   * H3 INCONCLUSIVE everywhere: retention CIs too wide with 86 statements.
   * NEW (optional): a larger RepE-LM TEST would be needed to resolve retention (H3).
+* DONE (2026-11-23 16:40 UTC): XC-2 Gemma GoT causal.
+  * T1 (mass-mean) and T2 (reconstruction) met at all 4 layers; the positive control has full power.
+  * The cross-model contrast with the GPT-2 null is descriptive only.
+  * NEW (optional): a matched cross-model causal test, i.e. the same SAE family type and joint strength selection.

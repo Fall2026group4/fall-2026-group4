@@ -1407,3 +1407,25 @@ D numbers are deliberately not assigned here.
   reconstruction direction keeps a large but imprecisely measured share. Retention preservation is not established.
 * **Exposure.** The GPT-2 TEST rows had been read once before (H1-TEST); the Gemma rows were pristine.
 * Source: `results/cross_model/xc3_steering_parity/`.
+
+### XC-2 Gemma GoT causal test: results (2026-11-23). Status: COMPLETED (confirmed test result for families A, C1, C2; TEST rows previously exposed, disclosed)
+* **Setup.** Port of the `dhruv-causal` GPT-2 protocol to Gemma resid_post 8/12/16/21 with Gemma Scope 16k: 600
+  controls, BH within families. TEST run once: 113 pairs, about 61 GPU min. Every path check is exactly 0.
+* **Power:** the positive control is detectable at λ = 0.01 at every layer.
+* **T1 met for the mass-mean direction at all 4 layers.** +s effect: +0.71 / +1.98 / +2.55 / +3.39 nats, every CI
+  low > 0, BH p 0.003, and −s reverses the sign. The frozen logistic-probe direction meets T1 only at L16.
+* **T2.**
+  * The SAE reconstruction direction is met at all 4 layers (+1.56 to +3.75).
+  * Top-10 latents: L8, L12.
+  * Top-1 latent: only L8.
+* **Reading.**
+  * Unlike GPT-2 (null under the same protocol), Gemma's truth direction causally raises the true-country
+    preference.
+  * The Gemma Scope reconstruction direction keeps the effect; single latents mostly do not.
+* **Caveats.**
+  * At the selected strengths, random controls lower the margin by about 1.6–1.9 nats, so the absolute CIs are the
+    conservative evidence.
+  * The L8 strength came from a non-monotonic validation curve.
+  * Baseline accuracy is 94 % (ceiling).
+  * The cities TEST rows were previously exposed.
+* Source: `results/cross_model/xc2_gemma_got_causal/`.

@@ -542,3 +542,6 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * Fixed before freezing; the path checks are hard stops.
 * **Storage:** the instance-store disk is not formatted (user). All outputs go to EBS; jobs start only at ≥ 60 GB free
   and stop below 42 GB.
+* **XC-2 reading (2026-11-23).** Because norm-matched random directions lower Gemma's margin at the selected
+  strengths, absolute effect CIs (> 0) are cited alongside the control-based p-values. The pre-registered BH tests are
+  reported unchanged. The GPT-2 vs Gemma contrast stays descriptive.
