@@ -434,3 +434,10 @@ Gemma file or teammate file. Historical records that cite the old paths (`EXPERI
 | `scripts/cross_model/22_xc3_h4_parity.py`, `results/cross_model/xc3_steering_parity/test/h4_parity.json` | added | pre-registered descriptive H4 (cross-model parity) |
 | `results/cross_model/xc3_steering_parity/README.md` | results appended, status COMPLETED | documentation rule |
 | `docs/RESEARCH_PROGRESS.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `RESEARCH_ROADMAP.md`, `experiment_manifest.csv` | appended | documentation rule |
+
+## 2026-11-23 (XC-2 pre-registration)
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/21_xc2_gemma_got_causal.py` | added (frozen) | port of `dhruv-causal` 22 to Gemma + Gemma Scope 16k |
+| `results/cross_model/xc2_gemma_got_causal/{preregistration.json,preregistration.sha256,prereg_body.json,README.md,smoke/,smoke_v2/}` | added | frozen before any VALIDATION/TEST scoring; TRAIN-only smoke outputs (`smoke/` shows the bf16 batch-shape issue; `smoke_v2/` shows every path check exactly 0) |
+| `logs_xm/freeze_prereg.py`, `logs_xm/gpu_queue.sh` | not committed (operational helpers in `logs_xm/`) | — |
