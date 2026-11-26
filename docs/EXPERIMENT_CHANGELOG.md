@@ -657,6 +657,16 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
   * `test/scores/` (184 per-SAE score files, 3 MB; kept on EBS);
   * `run.log`.
 
+## 2026-11-23: XC-1 results
+* Added under `results/cross_model/xc1_gemma_site_sweep/`: `cells_train.csv`, `cells_validation.csv`,
+  `cells_validation_by_template.csv`, `selected_sites.json`, `sanity_checks.json`, `pairs_info.json`,
+  `random_draws.npz` (80 KB): the full-run outputs.
+* Updated the XC-1 `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed: `run.log`. `results/cross_model/m4_gemma_patch_decomposition/site_selection.json` (written by the
+  running M4-G job) is committed with M4-G.
+
 ## 2026-11-26: #53 prepared for integration (D55 heading; preflight against silently skipped gzipped runs)
 No experiment, result, frozen script, criterion or threshold changed.
 | File | Change | Reason |

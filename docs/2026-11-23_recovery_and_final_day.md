@@ -49,8 +49,8 @@
 | XC-3 steering parity | `results/cross_model/xc3_steering_parity/preregistration.json` (frozen 2026-11-23 ~14:40 UTC) | COMPLETED (TEST once) |
 | XC-2 Gemma GoT causal | `results/cross_model/xc2_gemma_got_causal/preregistration.json` | COMPLETED (TEST once) |
 | XF fresh cities TEST | `results/cross_model/xf_fresh_cities_test/preregistration.json` (frozen ~19:06 UTC) | COMPLETED (TEST once; P1 LOSS, P2 fails to replicate) |
-| XC-1 Gemma site sweep | `results/cross_model/xc1_gemma_site_sweep/preregistration.json` (frozen ~19:23 UTC) | running |
-| M4-G | `results/cross_model/m4_gemma_patch_decomposition/preregistration.json` (frozen ~19:23 UTC) | queued after XC-1 |
+| XC-1 Gemma site sweep | `results/cross_model/xc1_gemma_site_sweep/preregistration.json` (frozen ~19:23 UTC) | COMPLETED (validation; L0 slot + L23 final confirmed) |
+| M4-G | `results/cross_model/m4_gemma_patch_decomposition/preregistration.json` (frozen ~19:23 UTC) | running (started 20:48 UTC) |
 
 ## 4. Git placement (open question for the user)
 
