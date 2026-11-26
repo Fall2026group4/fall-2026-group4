@@ -1591,3 +1591,27 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * **P3:** 4/8 confirmed (L8 old ReLU, L8 res-jb, L11 R2 ReLU, L11 res-jb).
   * The counts match the validation multiplicity check.
 * **Reading (D51):** "no SAE is worse than capacity-matched PCA" is now TEST-confirmed. "SAEs beat capacity-matched PCA" holds only for the confirmed cells.
+
+## 64. Gzipped per-document outputs: verification, D55 heading and preflight (2026-11-26). Status: COMPLETED (infrastructure; no experiment run)
+* **Why:** CI failed on `main` and on PR #41 because two XB GPT-2 `per_doc.csv` files (27.2 MB) exceed the 25 MB
+  repository-hygiene limit. PR #53 stores them gzipped. Review found that the frozen loader
+  (`03_matched_splicing_analysis.py:load_runs`, reused by `07_a4_context_comparison.py`) **skips** a run folder
+  without `per_doc.csv`, so re-running from a fresh checkout would drop the GPT-2 runs without an error.
+* **Verification (evidence label: validation of storage, not of any result):** for #53's 2 files and #41's 2 A4 files,
+  `gzip -t` passes, the decompressed bytes are identical (`cmp`) to the uncompressed originals in Git history
+  (`main` for #53; `15e78e7` for A4), SHA-256 equals the committed sidecar, the gzip header has mtime 0 and no name,
+  and `gzip -n -9` reproduces the committed `.gz` exactly.
+* **Change:** D55 heading for the 2026-11-23 note (text unchanged); `scripts/shared/compressed_outputs_preflight.py`
+  (`--verify` read-only; default requires decompressed files with matching hash; `--decompress` never overwrites;
+  `-- CMD` runs the analysis only after a pass); 11 tests, including the hazard on the unmodified frozen loader and an
+  integrity check of every committed `.gz` (runs in CI through the unit tests); decompressed paths git-ignored.
+* **End-to-end check:** through the preflight (`--decompress`, then default mode `-- 03 --tag zz_full_check`, CI-pinned
+  environment, scratch worktree; locally held `sum_x.npz` symlinked after matching `runs_sum_x_sha256.txt`), the
+  **unmodified** frozen `03` reproduces the committed `analysis_v1/`: same 382 SAE rows and 54 cross-model rows,
+  identical columns, every verdict / label and gate identical (V_M6 within tolerance at layers 5 / 12 / 19), numeric
+  differences ≤ 1.4e-12 relative (summation noise). Without `sum_x.npz` (not committed, README §3) `03` stops at the
+  V_M6 gate because EV is undefined; that is pre-existing and unrelated to the gzip storage. Scratch outputs deleted.
+* **Not changed:** frozen scripts, criteria, thresholds, results, the hygiene limit, the CI workflow.
+* **Validation:** full CI step list run under the CI-pinned dependency set (torch 2.14.1+cpu, numpy 2.5.3,
+  pandas 3.0.5, scipy 1.18.1, scikit-learn 1.9.1, joblib 1.6.0, transformer-lens 3.9.0, pytest 8.4.2; Python 3.14.4
+  locally vs 3.14.10 on CI).

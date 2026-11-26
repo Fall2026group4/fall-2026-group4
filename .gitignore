@@ -83,3 +83,7 @@ results/geometry_of_truth/truth_subspace_preservation/replication/smoke_repro/
 results/geometry_of_truth/truth_subspace_preservation/replication/eval/cities/
 results/geometry_of_truth/truth_subspace_preservation/replication/eval/owt/
 results/geometry_of_truth/truth_subspace_preservation/replication/eval/test/
+
+# Decompressed copies of results committed gzipped (D55; X.gz + X.sha256 are tracked, X is local only)
+results/cross_model/xb_matched_splicing/runs/gpt2_owt_xm_shared_main/per_doc.csv
+results/cross_model/xb_matched_splicing/runs/gpt2_pile_shared_main/per_doc.csv

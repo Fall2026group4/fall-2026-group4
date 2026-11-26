@@ -544,3 +544,15 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 |---|---|---|
 | `results/cross_model/xb_matched_splicing/runs/{gpt2_owt_xm_shared_main,gpt2_pile_shared_main}/per_doc.csv` | replaced by `per_doc.csv.gz` (gzip -n -9, lossless) + `per_doc.csv.sha256` (hash of the uncompressed file; round trip verified) | 27.2 MB each, above the 25 MB limit of `scripts/shared/ci_repo_hygiene.py`; `main` CI failed after #39 merged |
 | `results/cross_model/xb_matched_splicing/README.md` | storage note and re-run instruction | frozen analysis scripts unchanged (decompress before re-running) |
+
+## 2026-11-26: #53 prepared for integration (D55 heading; preflight against silently skipped gzipped runs)
+No experiment, result, frozen script, criterion or threshold changed.
+| File | Change | Reason |
+|---|---|---|
+| `docs/RESEARCH_DECISIONS.md` | the 2026-11-23 gzip note gets its own heading **D55** (text kept verbatim) and a preflight bullet | it read as part of D51 |
+| `scripts/shared/compressed_outputs_preflight.py` | added | `03` `load_runs` (reused by `07`) skips folders without `per_doc.csv`, so a fresh checkout would silently drop the gzipped GPT-2 runs; `--verify` / default / `--decompress` / `-- CMD` |
+| `src/tests/test_compressed_outputs_preflight.py` | added (11 tests) | preflight behaviour; the hazard shown on the unmodified frozen `03` loader; integrity of every committed `.gz` (CI) |
+| `results/cross_model/xb_matched_splicing/README.md` | preflight command added to the storage note | re-run instructions |
+| `.gitignore` | the two decompressed `per_doc.csv` paths | cannot be re-committed above the 25 MB limit |
+| `docs/RESEARCH_PROGRESS.md` (§64), `docs/RESEARCH_ROADMAP.md` | appended | documentation rule (CLAUDE.md §1) |
+Verification: all 2 pairs here (and #41's 2 A4 pairs) are byte-identical to the uncompressed originals, match their sidecars, and are reproducible with `gzip -n -9`.
