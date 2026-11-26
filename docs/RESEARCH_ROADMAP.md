@@ -429,6 +429,21 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 
 * DONE 2026-11-22: E1 task-level matched TopK: NOT robust, 1/4 differences persist (§62, D53).
 
+## 2026-11-23 (recovery; final day)
+* DONE: recovery (897/897 checkpoints verified); TI-2 analysis (NO TRANSFER DETECTED, VALIDATION); TI-4 review
+  (COMBINES, VALIDATION).
+* WITHDRAWN: TI-3 (pre-registered schedule rule; not to be re-run).
+* PARTIAL: ladder batch 2.
+  * Done: XB L12, 16 SAEs.
+  * Missing: the XT-G `gemma_b2` arm (needs the 9.6 GB re-download) and the batch-2 analysis. Optional.
+* IN PROGRESS: XC-3 steering parity; XC-2 Gemma GoT causal (both pre-registered today).
+* DEFERRED (user, 2026-11-23): XC-1 (Gemma site sweep + M4; a like-for-like port is about 60 GPU h, so a reduced grid
+  is needed), XF (fresh geonames TEST), M4 on Gemma. NOT RUN.
+* OPTIONAL, not scheduled: TI-G, ladder completion. DROPPED from priority: XG-IH, XJ.
+* LOST: the TI-2 / TI-4 checkpoints (instance storage). Retraining is possible (about 3.7 GB, about 5.6 h) but not
+  planned.
+* OPEN: integrate `sae-research` with the `final-week/p*` PR stack (needs the user's approval; no merge or rebase done).
+
 ## 2026-11-26 additions (PR #53 prepared for integration)
 * DONE (infrastructure; no experiment run): D55 heading for the gzipped-outputs note; preflight
   `scripts/shared/compressed_outputs_preflight.py` and its tests; decompressed copies git-ignored (§64).

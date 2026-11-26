@@ -982,3 +982,29 @@ Context change 1024 → 128: 269/324 differences SHRINK by uncorrected CI (Holm 
 | Gemma 16k | GoT cities (20 at ceiling) | 5/26 | 6/26 | 0 | 26/26 |
 | GPT-2 (res-jb / R2 / old) | RepE persona | 56/56 | 34/56 | 0 | 54/56 |
 | GPT-2 | GoT cities | 35/56 | 22/56 | 0 | 49/56 |
+
+
+## TI-2 TSP-MF and TI-4 TSP × KL (GPT-2 R2 TopK L8; VALIDATION; analysed / reviewed 2026-11-23)
+
+TI-2 (4 arms × 8 seeds; refit-logistic gap, lower is better; hierarchical seed + group bootstrap):
+
+| Contrast | Estimate [95 % CI] | Verdict |
+|---|---|---|
+| MF-H1 companies DEV tsp_mf − ctrl (primary) | +0.0020 [−0.0096, +0.0137], p 0.73 | not met |
+| MF-H4 cities V tsp_mf − ctrl | −0.0254 [−0.0339, −0.0170] | met |
+| MF-H5 common_claim tsp_mf − ctrl (90 % CI) | +0.0015 [−0.0031, +0.0061] | met |
+| cost: NMSE / ΔCE vs base; L0 | +2.71 % / +2.78 %; 128 | met |
+| **Verdict** | **NO TRANSFER DETECTED (MDE ≈ 0.03)** | |
+
+TI-4 (2 × 2 at L0 128; 3 seeds × 3 folds):
+
+| Criterion | Value | Met |
+|---|---|---|
+| F-H1 cities gap tsp_kl − kl | −0.0259 [−0.0362, −0.0156] | yes (Holm 6.5e-4) |
+| F-H2 OWT ΔCE tsp_kl − tsp | −0.0120 ± 0.0006, 9/9 pairs | yes (Holm 6.5e-4) |
+| F-H3 interaction (90 % CI) | −0.0038 [−0.0158, +0.0082] | INCONCLUSIVE |
+| F-H4 better than base on both | cities −0.0487; ΔCE all seeds | yes |
+| cost: NMSE / L0 / persona gap | +2.77 % / 128 / −0.0055 | yes |
+| **Verdict** | **COMBINES** | |
+
+Sources: `results/geometry_of_truth/tsp_multifamily/analysis/`, `results/geometry_of_truth/tsp_kl_factorial/analysis/`.

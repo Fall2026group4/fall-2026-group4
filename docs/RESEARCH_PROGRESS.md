@@ -1616,6 +1616,41 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **GoT cities:** Gemma is mostly at ceiling (20/26); GPT-2 loses information in 35/56, 22 beyond PCA.
 * **Cross-model (descriptive):** Gemma Scope keeps relatively more persona information than res-jb at matched depth (headroom-normalised gap 0.33–0.52 vs 0.60–0.85). No ranking claim.
 
+## Recovery and final day (2026-11-23). Status: recovery COMPLETED; TI-2 / TI-4 analyses COMPLETED; TI-3 WITHDRAWN; ladder PARTIAL; XC-3 and XC-2 PRE-REGISTERED, running
+
+Full record: [`2026-11-23_recovery_and_final_day.md`](2026-11-23_recovery_and_final_day.md). This entry is appended on
+`sae-research` (user decision, 2026-11-23). The final-week PR stack (`final-week/p2…p16`) is left untouched, so § and
+D numbers are deliberately not assigned here.
+
+* **Recovery [VERIFIED]:**
+  * The original instance was lost. `sae-project/` and the HF cache were restored from its EBS volume: 120.7 GB,
+    0 errors.
+  * Checkpoints: 897/897 match the registry SHA-256 on both sides.
+  * Lost (instance storage): the TI-2 / TI-4 checkpoints (their hashes are kept in the ledgers) and the 32k/65k
+    ladder weights.
+* **TI-2 TSP-MF [VALIDATION, COMPLETED]: NO TRANSFER DETECTED.**
+  * MF-H1 (companies, tsp_mf − ctrl): +0.0020 [−0.0096, +0.0137], p 0.73.
+  * MF-H4 (cities): −0.0254, met.
+  * MF-H5 (guard): met.
+  * Costs met: NMSE +2.7 %, ΔCE +2.8 %, L0 128.
+  * Declared analysis deviation: a wrapper allows pickle for the pipeline's own `eval/orig.npz` only, because the
+    frozen analysis crashed on object arrays. No criterion changed.
+* **TI-4 TSP × KL [VALIDATION, COMPLETED]: COMBINES** (reviewed against the frozen rules; every verdict reproduces).
+  * F-H1 −0.0259 [−0.0362, −0.0156].
+  * F-H2 −0.0120 (9/9 pairs).
+  * Holm 6.5e-4.
+  * F-H3 INCONCLUSIVE.
+  * Costs met.
+* **TI-3: WITHDRAWN** under its pre-registered schedule rule; never trained, no result.
+* **Ladder batch 2: PARTIAL.**
+  * Done: XB L12 for 16 SAEs.
+  * Missing: the XT-G arm (weights lost) and the batch-2 analysis.
+* **XC-3 steering parity: PRE-REGISTERED** (frozen 14:40 UTC before any VALIDATION/TEST scoring), running.
+  * One RepE-LM persona protocol for both models.
+  * T-B triplet, ≥ 200 controls, plus a reconstruction-direction arm.
+* **XC-2 Gemma GoT causal: PRE-REGISTERED** (port of `dhruv-causal` 22), queued.
+* **Deferred by the user:** XC-1, XF, M4. NOT RUN.
+
 ## 64. Gzipped per-document outputs: verification, D55 heading and preflight (2026-11-26). Status: COMPLETED (infrastructure; no experiment run)
 * **Why:** CI failed on `main` and on PR #41 because two XB GPT-2 `per_doc.csv` files (27.2 MB) exceed the 25 MB
   repository-hygiene limit. PR #53 stores them gzipped. Review found that the frozen loader
