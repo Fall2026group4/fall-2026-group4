@@ -1603,6 +1603,11 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
 * **Design flaw disclosed (D52):** with a 1,000-resample bootstrap the p floor is about 0.002, so Holm over 159 or 324 tests cannot reach 0.05. This affects the frozen XB analysis and the A4 comparison alike. The Holm labels carry no evidential weight. No criterion changed. A higher-resolution re-analysis would be post hoc and needs approval.
 * **Reading:** at matched context both models' SAEs are more harmful than norm-matched random error (SAE / random ΔCE GPT-2 1.5–4.8, Gemma 0.7–3.0). The primary-arm cross-model gap is largely the GPT-2 context mismatch.
 
+## 62. E1: TopK at task-level matched sparsity (2026-11-22). Status: COMPLETED (VALIDATION). Headline NOT robust
+* **Design (pre-registered 2026-11-21; amendment E1-A1 single-threaded probe BLAS, user-approved after the first gate failed at 2.8e-4):** 36 old-recipe TopK SAEs (3,072 latents) at k\* = the task-prompt L0 of ReLU / JumpReLU (23–216; TRAIN prompts), layers 1 / 8 / 11, 3 seeds. M2 / M4 metrics compared with the committed M2 / M4 baselines. Gate after E1-A1: G1 0.0, G2 0.0, G3 1.2e-7.
+* **Result:** of the 4 architecture differences significant at OWT-matched k = 128, **1 persists** at task-matched k\* after BH (L11 persona, JumpReLU `preservation_rec`, +0.045); 3 are ATTENUATED. So 25 % < 75 %: **NOT robust**. GoT cities shows no difference at either k. TopK@k\* vs TopK@128: no clear change in 15/18 cells.
+* **Reading:** the M2 / M4 architecture differences on task prompts were largely confounded with the up-to-5× task-level L0 mismatch. Old SAEs only; no R2 or cross-model claim.
+
 ## 64. Gzipped per-document outputs: verification, D55 heading and preflight (2026-11-26). Status: COMPLETED (infrastructure; no experiment run)
 * **Why:** CI failed on `main` and on PR #41 because two XB GPT-2 `per_doc.csv` files (27.2 MB) exceed the 25 MB
   repository-hygiene limit. PR #53 stores them gzipped. Review found that the frozen loader

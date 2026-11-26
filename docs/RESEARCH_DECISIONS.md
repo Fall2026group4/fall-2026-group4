@@ -648,6 +648,12 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **May not say:** any Holm-significant cross-model difference; any architecture-matched comparison (0/54 matched pairs).
 * **Open option (needs the user's approval):** a post-hoc re-analysis with ≥ 100,000 resamples, labelled exploratory. Not run.
 
+## D53. How the M2/M4 architecture differences are reported after E1 (2026-11-22). Status: DECIDED (by the frozen E1 rule)
+* E1's headline is NOT robust: only 1 of 4 task-prompt architecture differences survives task-level L0 matching (BH).
+* **Report:** M2 / M4 ReLU / JumpReLU vs TopK differences on task prompts are "largely attributable to task-level sparsity mismatch (E1)", except L11 persona JumpReLU `preservation_rec`, which persists.
+* **Do not report:** any architecture ranking on task prompts from old SAEs at OWT-matched L0 as an architecture effect.
+* E1-A1 (single-threaded BLAS) is a reproduction fix, not a scientific change.
+
 ## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
 * **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
   heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);

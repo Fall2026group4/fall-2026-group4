@@ -965,3 +965,12 @@ Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of recor
 | Loss recovered (triplets) | 0.91–1.00 | 0.97–1.00 |
 
 Context change 1024 → 128: 269/324 differences SHRINK by uncorrected CI (Holm 0/324, uninformative). Matched pairs 0/54.
+
+## E1: TopK at task-matched L0 (2026-11-22; VALIDATION; old 3,072-latent SAEs; 3 seeds)
+| | Count |
+|---|---|
+| Tests (BH family) | 18 |
+| Significant at k = 128 | 4 |
+| PERSIST at k\* after BH | **1** (L11 persona JumpReLU `preservation_rec`: +0.058 → +0.045, q 0.028) |
+| ATTENUATED | 3 (L1 persona JumpReLU `preservation_rec`; L8 persona ReLU refit gap; L11 persona ReLU `preservation_rec`) |
+| Headline (≥ 75 % persist) | **NOT robust** (25 %) |
