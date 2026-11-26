@@ -708,3 +708,11 @@ End-to-end: through the preflight (`--decompress` from the committed `.gz`; hash
 | `src/tests/test_xf_rebuild.py` | added (3 tests; the rebuild test skips without the upstream checkout) | integrity, deterministic rebuild, no overwrite |
 | `.gitignore`, `results/cross_model/xf_fresh_cities_test/README.md` | path ignored; rebuild note | reproducibility |
 Verified 2026-11-26: the rebuild is byte-identical to the file used for the XF TEST pass (SHA-256 `00186e18…`); only `build_info.json`'s `created_utc` would differ, and `build_info.json` is not regenerated.
+
+## 2026-11-26: `append_experiment` rewrote other manifest rows (bug fix) and two erased cells restored
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/write_manifest.py` | `append_experiment` now appends one CSV line with the `csv` module and never re-reads or rewrites the file; unknown columns are rejected; `sha16` hashes only files | it round-tripped the file through pandas, which turned literal `n/a` cells in **other** rows into empty strings; `sha16('')` tried to hash the current directory |
+| `docs/experiment_manifest.csv` | rows `D` and `F/G`: `optimizer` restored from `""` to `n/a` | erased by the old helper in `9446e56` (2026-11-07); value taken from `9446e56^`. The same call would have erased XF's `intervention_strengths` `n/a` on the next append |
+| `src/tests/test_write_manifest.py` | added (3 tests) | existing bytes unchanged after an append; NA-like cells kept; unknown columns rejected |
+No result changed. The history scan found no other rewritten row (only `9446e56` ever removed manifest lines).
