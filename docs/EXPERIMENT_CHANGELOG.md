@@ -729,3 +729,11 @@ Excluded (D56): script 14 / 15 RepE results, frozen-probe error decomposition, s
 | `docs/experiment_manifest.csv` | rows `D` and `F/G`: `optimizer` restored from `""` to `n/a` | erased by the old helper in `9446e56` (2026-11-07); value taken from `9446e56^`. The same call would have erased XF's `intervention_strengths` `n/a` on the next append |
 | `src/tests/test_write_manifest.py` | added (3 tests) | existing bytes unchanged after an append; NA-like cells kept; unknown columns rejected |
 No result changed. The history scan found no other rewritten row (only `9446e56` ever removed manifest lines).
+
+## 2026-11-26: status corrections after the integration audit (D57)
+| File | Change | Reason |
+|---|---|---|
+| `docs/results_registry.md` | header date; dated annotations on the TSP-R, TI-1, TI-2, TI-4, XC-3 (two rows) entries; original text kept | TSP/TI-1 cited with XF; TI-2/TI-4 provenance-limited; XC-3 H3 inconclusive |
+| `docs/RESEARCH_ROADMAP.md` | incorrect "numbering collides" line struck through and corrected; integration-line status section | the stacked PRs number sequentially |
+| `docs/RESEARCH_DECISIONS.md` (D57), `docs/RESEARCH_PROGRESS.md` (§66) | appended | documentation rule (CLAUDE.md §1) |
+

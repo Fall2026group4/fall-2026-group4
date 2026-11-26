@@ -1789,3 +1789,18 @@ D numbers are deliberately not assigned here.
   exposure and rebuilt-checkpoint provenance recorded in the README §5.
 * **Reading:** within the test's sensitivity, the truth directions probes read from GPT-2 do not causally drive its
   answers on cities. Under the same protocol Gemma's mass-mean direction does (XC-2), a descriptive contrast.
+
+## 66. Integration audit of PRs #41–#53, #46 and C4 (2026-11-26). Status: integration line PREPARED locally (not pushed, not merged)
+* **Order:** #53, #41, #42, #43, #47, #48, #49, #50 (includes the XC-1/M4-G pre-registration commit) + XF Option B,
+  #51, #52, manifest-helper fix, C4 (D56), status corrections (D57); #46 is a separate PR. Every merge conflict was an end-of-file append in the doc
+  ledgers except one registry hunk (stale base rows updated on one side only); entries kept in number/date order.
+* **Verified per item:** pre-registration and frozen hashes against the committed scripts and inputs; headline
+  statistics recomputed from committed result files (E1 BH; XT-G rule counts; XC-3 E values from per-pair KL; XC-2 and
+  C4 BH per family; XF labels from the frozen `h1_label` rule and Holm; XC-1 selection/confirmation; M4-G
+  preservation and the decomposition identity); TEST exposure; checkpoint provenance; CI-pinned CI at every step.
+* **Found and recorded:** E1's BLAS diagnostic was edited after its hash was frozen (the E1 analysis script itself
+  matches); XT-G froze script 10 three times across amendments (the final hash matches); TI-2/TI-4 checkpoints lost
+  (D57); C4 ran on rebuilt SAEs (0/36 byte-identical, metric-equivalent); XF's geonames statements file (now ids + a
+  deterministic, hash-checked rebuild, D57); `append_experiment` had erased `n/a` cells in two historical manifest rows (fixed, restored).
+* **Not changed:** no experiment run; no result, frozen script or criterion edited; no branch created; nothing pushed.
+

@@ -465,8 +465,22 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * OPEN (needs the user's approval): merge #53 into `main`, then update #41 (`final-week/p14-xb-a4-results`).
 * DONE on the prepared #41 update (not pushed): #53 merged in with both sides' documentation kept; the two A4
   decompressed paths git-ignored; A4 README gives the preflight command for `07`.
-* OPEN: D/§ numbering of the open PR stack collides (#41, #42 and #43 each add D52 / §61); D55 / §64 are outside
-  that range. A renumbering pass is needed before the stack merges.
+* ~~OPEN: D/§ numbering of the open PR stack collides (#41, #42 and #43 each add D52 / §61); D55 / §64 are outside
+  that range. A renumbering pass is needed before the stack merges.~~ **CORRECTED 2026-11-26:** there is no collision.
+  The stacked PRs use D52/§61 (#41), D53/§62 (#42), D54/§63 (#43) in sequence; the earlier line compared each stacked
+  PR with `main` cumulatively. Stack B (#47–#52) entries are unnumbered by design. No renumbering is needed.
 * DONE on the integration line (not pushed): C4 (GPT-2 GoT causal test, Dhruv Rai) selectively extracted from
   `dhruv-causal` (D56, §65). OPEN: it needs its own PR into `main` (new branch, needs the user's approval) with
   Dhruv's review.
+
+## 2026-11-26 integration line (prepared locally; nothing pushed or merged)
+* DONE (verified; CI green at every step): #53 → #41 → #42 (E1) → #43 (XT-G) → #47 (recovery) → #48 (XC-3) →
+  #49 (XC-2) → #50 (XF, with the XC-1/M4-G pre-registration, plus XF Option B) → #51 (XC-1) → #52 (M4-G) →
+  manifest-helper fix → C4 (D56) → status corrections (D57). #46 (R3 evidence row) is handled as its own PR. See §66.
+* OPEN (needs the user's approval, and one teammate review per PR under `protect_main`): merge order on GitHub is
+  fixed by the stacks: #53, #41, #42, #43; then #47, #48, #49, #50, #51, #52; #46 independent. Each PR branch is
+  updated by a fast-forward push of its integration commit.
+* OPEN (needs a new branch, i.e. the user's approval): a PR for C4 + the manifest-helper fix, with Dhruv's review.
+* DONE (user decision, D57): XF data stored as GeoNames ids with a deterministic, hash-checked rebuild (Option B).
+* NOT IN THE NARRATIVE: TI-2 and TI-4 (provenance-limited, D57).
+

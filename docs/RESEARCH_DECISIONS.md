@@ -755,3 +755,37 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * The GPT-2 vs Gemma (XC-2) contrast is descriptive: different SAE families, hooks, strengths and baseline accuracy
     (GPT-2 0.743, Gemma 0.938). Gemma's random directions lower the margin at the selected strengths (XC-2 reading).
 * **Script name:** `22_` kept (pre-registration records the path; self-hash check), noted as a numbering exception.
+
+## D57. Status rules after the 2026-11-26 integration audit (2026-11-26). Status: DECIDED (user decisions of 2026-11-26)
+* **TI-2 and TI-4 are provenance-limited.** Their checkpoints were lost (instance storage), so their numbers come only
+  from saved evaluation outputs and cannot be re-evaluated; TI-2 also has a declared analysis deviation (pickle
+  wrapper). Their reproduction gates passed (TI-2 after amendment A-TF32; the failed first attempt is kept). They are
+  reported as such and are **not** confirmed findings or part of the main narrative. TI-2's "NO TRANSFER DETECTED"
+  has MDE ≈ 0.03 and is not evidence of no effect.
+* **TSP:** TSP-R and TI-1 are cited only together with XF: supported on cross-fitted cities (validation), failing to
+  replicate on the fresh TEST (0/4: three cells NO MEANINGFUL EFFECT by the pre-registered ±0.010 equivalence rule,
+  one INCONCLUSIVE). On fresh data the measurable gain comes from GoT replay (ctrl − base), not the truth-subspace term.
+* **XC-3:** "confirmed" applies to H1/H2 (5/6 cells). H3 (retention ≥ 0.8) is INCONCLUSIVE at 5/5 cells, so steering
+  retention through the SAE is not claimed.
+* **XF data (user decision: Option B).** `statements.csv` is no longer committed; `ids.csv` plus
+  `scripts/cross_model/23b_xf_rebuild_statements.py` rebuild it with the frozen XF build code, verified byte-identical
+  to the pre-registered SHA-256 (`00186e18…`). GeoNames is CC BY 4.0 (credit given in the data README); the GoT
+  repository states no licence. **Limit:** the file remains in the Git history of `final-week/p20-xf-fresh-cities`
+  (pushed 2026-11-23), because removing it from history would need a force-push, which is not done.
+* **E1 diagnostic hash (accepted after review).** `scripts/shared/e1_g2_blas_threads_diagnostic.py` was hash-frozen as
+  `cc0b31ef…` and committed as `a2a0cd4f…`. The only change is one line: the absolute home path
+  `REPO = Path('/home/…/fall-2026-group4')` became `REPO = Path(__file__).resolve().parents[2]` (required by the
+  repository-hygiene check). No logic changed; no script imports the diagnostic; the E1 analysis script and every
+  E1 input match their frozen hashes. The primary analysis is unaffected.
+* **C4 rebuilt SAEs (accepted as metric-equivalent, not byte-identical).** 0/36 checkpoints are byte-identical to the
+  originals. Against the original OWT test metrics, for the 36 SAEs C4 used (layers 4/6/8/10): |ΔEV| ≤ 0.00068
+  (mean 0.00024), |ΔL0| ≤ 0.55 (mean 0.16), |Δcos| ≤ 0.00021, relative |ΔMSE| ≤ 0.59 %; no systematic sign (EV higher
+  in 15/36). Over all 108 rebuilt SAEs: |ΔEV| ≤ 0.0013, |ΔL0| ≤ 1.19, relative |ΔMSE| ≤ 0.99 %. Only family C2
+  (SAE directions) depends on them; A and C1 use no SAE.
+* **Wording rules (user instruction):**
+  * C4: GPT-2 truth-direction effects were **not distinguishable from matched random controls under the tested
+    protocol**; never "non-causal".
+  * TEST evidence is labelled **fresh** (pristine rows: XF, H1-TEST, XC-3 Gemma) or **previously exposed** (rows seen
+    before for another quantity: M5, PCA-CM-T, XC-2, XC-3 GPT-2, C4).
+  * No claim that training scale matters more than architecture: no controlled comparison tests it.
+
