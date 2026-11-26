@@ -602,6 +602,14 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `scripts/cross_model/20_xc3_steering_parity.py` | added (frozen) | XC-3 runner |
 | `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `EXPERIMENT_CHANGELOG.md` | appended | documentation rule |
 
+## 2026-11-23 (XC-3 results)
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xc3_steering_parity/{validation,test}/` | added | XC-3 VALIDATION selection and the single TEST pass |
+| `scripts/cross_model/22_xc3_h4_parity.py`, `results/cross_model/xc3_steering_parity/test/h4_parity.json` | added | pre-registered descriptive H4 (cross-model parity) |
+| `results/cross_model/xc3_steering_parity/README.md` | results appended, status COMPLETED | documentation rule |
+| `docs/RESEARCH_PROGRESS.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `RESEARCH_ROADMAP.md`, `experiment_manifest.csv` | appended | documentation rule |
+
 ## 2026-11-26: #53 prepared for integration (D55 heading; preflight against silently skipped gzipped runs)
 No experiment, result, frozen script, criterion or threshold changed.
 | File | Change | Reason |

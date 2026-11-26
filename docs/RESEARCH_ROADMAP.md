@@ -444,6 +444,11 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
   planned.
 * OPEN: integrate `sae-research` with the `final-week/p*` PR stack (needs the user's approval; no merge or rebase done).
 
+* DONE (2026-11-23 15:27 UTC): XC-3 steering parity.
+  * H1/H2 met at 5/6 cells (not at Gemma L5).
+  * H3 INCONCLUSIVE everywhere: retention CIs too wide with 86 statements.
+  * NEW (optional): a larger RepE-LM TEST would be needed to resolve retention (H3).
+
 ## 2026-11-26 additions (PR #53 prepared for integration)
 * DONE (infrastructure; no experiment run): D55 heading for the gzipped-outputs note; preflight
   `scripts/shared/compressed_outputs_preflight.py` and its tests; decompressed copies git-ignored (§64).
