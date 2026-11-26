@@ -624,6 +624,39 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/cross_model/xc2_gemma_got_causal/README.md` | results appended, status COMPLETED | documentation rule |
 | `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `experiment_manifest.csv` | appended | documentation rule |
 
+## 2026-11-23: XF pre-registration, build and DEV gate
+* Added `scripts/cross_model/23_xf_fresh_cities_test.py`: the XF build, smoke, gate, test and analyze stages.
+* Added `data/got/fresh/geonames_cities/statements.csv` and `build_info.json`: the fresh family (text only).
+* Added `results/cross_model/xf_fresh_cities_test/`:
+  * `prereg_body.json`, `preregistration.json` and `.sha256`;
+  * `README.md`;
+  * `smoke/smoke_results.json`;
+  * `gate/gate.json`.
+
+  Activation caches (`gate/dev_acts.npz`, `smoke/acts.npz`) and the per-SAE smoke score files are not committed.
+
+## 2026-11-23: XC-1 and M4-G pre-registrations (frozen before the XC-1 full run)
+* Added `scripts/cross_model/24_xc1_gemma_site_sweep.py`: the M3 port to Gemma on a reduced grid, with fixed-shape
+  forwards.
+* Added `scripts/cross_model/25_m4_gemma_patch_decomposition.py`: the M4 port to Gemma Scope at the XC-1 sites; H4c is
+  omitted.
+* Added the `prereg_body.json`, `preregistration.json`, `.sha256`, `README.md` and smoke outputs under:
+  * `results/cross_model/xc1_gemma_site_sweep/`;
+  * `results/cross_model/m4_gemma_patch_decomposition/`.
+
+  Run logs are not committed.
+
+## 2026-11-23: XF results (single TEST pass)
+* Added `results/cross_model/xf_fresh_cities_test/test/results.json` and `test_info.json`: the TEST statistics and run
+  record.
+* Updated the XF `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed:
+  * `test/test_acts.npz` (activation cache, 37 MB);
+  * `test/scores/` (184 per-SAE score files, 3 MB; kept on EBS);
+  * `run.log`.
+
 ## 2026-11-26: #53 prepared for integration (D55 heading; preflight against silently skipped gzipped runs)
 No experiment, result, frozen script, criterion or threshold changed.
 | File | Change | Reason |

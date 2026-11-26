@@ -1,0 +1,40 @@
+{
+ "experiment": "M4-G: SAE causal-faithfulness (patch) decomposition on Gemma-2-2B at the XC-1 sites (port of M4, scripts/repe/24)",
+ "created": "2026-11-23",
+ "status": "PRE-REGISTERED (frozen before the XC-1 full run scores any VALIDATION pair, i.e. before any site or SAE outcome on Gemma is known; smoke on TRAIN rows only)",
+ "evidence_level_on_completion": "VALIDATION (decomposition, controls, hypotheses); site rule inputs from XC-1 TRAIN; TEST never loaded",
+ "research_question": "At the sites where original Gemma-2-2B carries the persona-instruction effect, is the Gemma Scope reconstruction of the activation difference behaviourally sufficient, and how much of the effect sits in the SAE error? Same question as GPT-2 M4.",
+ "why": "M4 exists only for GPT-2 (in-house SAEs). M4-G gives the causal-faithfulness decomposition for the second model with public SAEs, at sites chosen by the same protocol (XC-1).",
+ "sites_rule": {
+  "fixed": "every XC-1 selected cell (earliest / peak / latest) that XC-1 CONFIRMS on validation; none confirmed -> M4-G is not run (XC-1 stop rule)",
+  "mid_A1_port": "among XC-1 TRAIN-passing cells at layers {12, 16} (depth 0.50 / 0.65; GPT-2 A1 used resid_pre 6-8 = 0.50-0.67) in groups {slot, final}: E_share closest to 0.5, ties -> larger R_A; confirmed on VALIDATION T2-T4 with original activations only (T_full CI low > 0 and T_full - S_full CI low > 0); else the next candidate; none -> fixed sites only. Computed before any SAE is loaded.",
+  "disclosure": "rule written before any XC-1 VALIDATION number exists; the XC-1 TRAIN-only smoke (16 statements) was seen and is not evidence."
+ },
+ "sae": "Gemma Scope 16k canonical JumpReLU at the site layer (one SAE, no seeds), applied at the site positions only",
+ "pairs": "VALIDATION: T1-T4 (H/U/Hp) and neutral N1-N2 (Na/Nb); pairs whose variants differ in length or in more than one token are dropped (reported)",
+ "kept_from_M4": [
+  "Delta = x_H - x_U, Delta_rec = SAE(x_H) - SAE(x_U), Delta_err = Delta - Delta_rec (identity checked)",
+  "T(v) = KL(p_H||p_U) - KL(p_H||p_{U + v at site}); T_full, T_rec, T_err, I = T_full - T_rec - T_err, Shapley phi_rec / phi_err, linearity T(Delta_rec/2) - T_rec/2",
+  "preservation T_rec / T_full (ratio of statement means, bootstrap CI), Shapley share, |I| / T_full",
+  "other direction (H - v toward U), synonym control (Hp toward H), neutral control (Nb toward Na)",
+  "controls: 20 isotropic matched-norm draws for Delta_rec and Delta_err, 20 decoder-span shuffles (Delta_z permuted across features, rescaled to ||Delta_rec|| per position)",
+  "PRIMARY template set T2-T4; T1 and all T1-T4 reported",
+  "H4a sufficiency: max(p[T_rec - mean iso_rec], p[T_rec - mean shuf_rec]) BH-adjusted over sites < 0.05 AND T_rec CI low > 0 AND mean T_rec > q95 of both control distributions",
+  "H4b rec vs err: phi_rec - phi_err > 0, bootstrap p, BH over sites",
+  "additive (Shapley) reading only if |I|/T_full CI high < 0.2; otherwise only the T_rec / T_err bounds are interpreted",
+  "pre-written readings: high T_rec + low T_err = reconstruction behaviourally sufficient; low T_rec + high T_err = faithfulness failure (effect in the error); large |I| = interaction-dominated, bounds only"
+ ],
+ "deviations_declared": {
+  "H4c_features_omitted": "feature-level patching (gradient attribution on TRAIN, k grid, 200 frequency-matched random feature sets) is not run: it needs OWT activation-frequency statistics and gradient attribution for Gemma Scope, which do not fit the day's budget. M4-G therefore makes no feature-concentration claim.",
+  "claim_rule": "GPT-2 M4 needed >= 2 of 3 seeds per architecture; Gemma Scope has one SAE per site, so a claim per site is that SAE passing",
+  "model_site": "Gemma resid_post (output of model.model.layers[L]); patch = additive edit at the site positions; fixed forward shape [96, T_FIX] for every pass (XC-2 lesson); fp32 soft-capped final logits",
+  "seed": "20261125"
+ },
+ "sanity_checks_hard": "identity |Delta - Delta_rec - Delta_err| < 1e-3; v = 0 gives T = 0 (< 1e-6); Shapley sum error < 1e-9; T_full mean (all T1-T4) equals the XC-1 validation R_A mean of the same cell (< 1e-5). Failing checks -> results not valid.",
+ "comparison_with_gpt2": "descriptive only (different SAEs, widths, tokenizers, site layers)",
+ "test_data_used": "none",
+ "tf32": "off",
+ "outputs": "results/cross_model/m4_gemma_patch_decomposition/ (refuses to overwrite)",
+ "runtime_estimate": "about 300 fixed-shape forwards per site, ~5 min per site; < 30 min total",
+ "smoke": "smoke_v1/ and smoke/ (TRAIN only, 12 statements, sites L12 final and L0 slot, 3 control draws): mechanics only. After smoke_v1 the identity check was fixed (it compared Delta - Delta_rec with itself; it now compares e_H - e_U with Delta - Delta_rec: max 4.8e-7). No hypothesis outcome was used; no rule changed."
+}

@@ -1,0 +1,19 @@
+{
+ "finished_utc": "2026-11-23T19:20:57.271186+00:00",
+ "seconds": 606.4463932514191,
+ "eligible": [
+  "gemma_L12",
+  "gemma_L19",
+  "gemma_L5",
+  "gpt2_L11",
+  "gpt2_L3",
+  "gpt2_L6",
+  "gpt2_L8",
+  "gpt2_L9"
+ ],
+ "n_test": 900,
+ "prereg_sha256": "3ec9b1340cdc799d8dee582792476f4fc103e262bad7746950cc55dfed64a20e",
+ "head": "31c9cf0ff1b437a45a344f0aa506eae12875d16e",
+ "torch": "2.14.1+cu130",
+ "tf32": false
+}

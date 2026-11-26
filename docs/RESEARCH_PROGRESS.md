@@ -1692,6 +1692,41 @@ D numbers are deliberately not assigned here.
   * The cities TEST rows were previously exposed.
 * Source: `results/cross_model/xc2_gemma_got_causal/`.
 
+### XF fresh geonames cities TEST (2026-11-23). Status: IN PROGRESS (pre-registered and frozen; DEV gate passed 8/8; TEST not yet read)
+* **Build.** A new cities family from geonames: population 200k–500k, disjoint from GoT cities, GoT template and
+  country pool. 713 cities: DEV 263, TEST 450. All leakage checks are 0.
+* **Plan for the TEST pass, read once:**
+  * (P1) public-SAE refit and frozen truth gaps, GPT-2 L3/6/9 and Gemma L5/12/19;
+  * (P2) TSP-R and TI-1 tsp − ctrl on never-used cities.
+* **Gate.** Every cell clears 0.70 on DEV (GPT-2 0.77–0.81, Gemma 0.95–1.00).
+* Source: `results/cross_model/xf_fresh_cities_test/`.
+
+### XC-1 Gemma site sweep and M4-G (2026-11-23). Status: IN PROGRESS (pre-registered and frozen; XC-1 full run started 19:23 UTC; M4-G queued)
+* **XC-1:** the M3 protocol on Gemma resid_post, 9 layers × 5 position groups.
+* **M4-G:** the M4 decomposition with Gemma Scope 16k at the confirmed XC-1 sites, plus the A1-style mid site.
+  H4c is omitted.
+* Both were frozen before any Gemma VALIDATION pair was scored. Smoke tests used TRAIN only.
+
+### XF fresh geonames cities TEST: results (2026-11-23). Status: COMPLETED (confirmed test result; pristine TEST, read once)
+* **Run.** One pass: 900 TEST statements (450 cities, never used before), 182 hash-verified SAEs, readers fitted on
+  fresh DEV, 606 s.
+* **P1, public-SAE preservation: LOSS at every informative cell.**
+  * Refit gap: GPT-2 L3/6/9 +0.045 / +0.053 / +0.037; Gemma L5 +0.036. All CIs exclude 0.
+  * Frozen gap: 0.09–0.13.
+  * Gemma L12/L19 are at ceiling (original AUROC 0.998), so uninformative.
+* **P2, TSP vs ctrl: FAILS TO REPLICATE (0/4 cells).**
+  * TSP-R L8 TopK −0.0007 [−0.0034, +0.0020], NO MEANINGFUL EFFECT.
+  * TI-1 L8 BatchTopK and L8 ReLU: NO MEANINGFUL EFFECT.
+  * TI-1 L11: INCONCLUSIVE.
+* **Secondary.**
+  * The GoT-replay control itself narrows the gap vs base (−0.014 L8 TopK, −0.026 L8 ReLU).
+  * tsp beats the random subspace at L8 TopK (−0.0048, 8/8 seeds).
+* **Reading.**
+  * The VALIDATION-level TSP advantage does not generalise to a new city population.
+  * On fresh data, the benefit comes from domain replay, not from the truth-subspace term.
+  * The public SAEs' truth losses are confirmed at TEST level.
+* Source: `results/cross_model/xf_fresh_cities_test/`.
+
 ## 64. Gzipped per-document outputs: verification, D55 heading and preflight (2026-11-26). Status: COMPLETED (infrastructure; no experiment run)
 * **Why:** CI failed on `main` and on PR #41 because two XB GPT-2 `per_doc.csv` files (27.2 MB) exceed the 25 MB
   repository-hygiene limit. PR #53 stores them gzipped. Review found that the frozen loader

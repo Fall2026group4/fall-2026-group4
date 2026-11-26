@@ -42,13 +42,15 @@
 | TI-3 minimal pair | gate held (TF32), never trained | none (not re-run, as instructed) | **WITHDRAWN** under its pre-registered schedule rule ("withdrawn if it cannot start by 14:30 UTC"; queue log 15:38:26 `TI3_WITHDRAWN`). No result exists. |
 | Ladder batch 2 (option R, L12) | XB Pile shared-span at L12 DONE for 16 SAEs (37 min); XT-G arm started, verified 11 downloads, then died with the instance | none | **PARTIAL.** Missing: (1) the XT-G truth arm for 15 ladder SAEs at L12 (needs the 9.6 GB 32k/65k re-download); (2) the XB b2 analysis. Optional (Phase 4). |
 
-## 3. Final-day experiments (user-approved scope: XC-3, XC-2; XC-1, XF and M4 deferred)
+## 3. Final-day experiments (user-approved scope: XC-3, XC-2; then XF, XC-1 and M4, re-approved the same day)
 
 | ID | Pre-registration | State |
 |---|---|---|
-| XC-3 steering parity | `results/cross_model/xc3_steering_parity/preregistration.json` (frozen 2026-11-23 ~14:40 UTC) | queued |
-| XC-2 Gemma GoT causal | `results/cross_model/xc2_gemma_got_causal/preregistration.json` | smoke |
-| XC-1, XF, M4 | not written | **NOT RUN**: deferred by the user on 2026-11-23 |
+| XC-3 steering parity | `results/cross_model/xc3_steering_parity/preregistration.json` (frozen 2026-11-23 ~14:40 UTC) | COMPLETED (TEST once) |
+| XC-2 Gemma GoT causal | `results/cross_model/xc2_gemma_got_causal/preregistration.json` | COMPLETED (TEST once) |
+| XF fresh cities TEST | `results/cross_model/xf_fresh_cities_test/preregistration.json` (frozen ~19:06 UTC) | COMPLETED (TEST once; P1 LOSS, P2 fails to replicate) |
+| XC-1 Gemma site sweep | `results/cross_model/xc1_gemma_site_sweep/preregistration.json` (frozen ~19:23 UTC) | running |
+| M4-G | `results/cross_model/m4_gemma_patch_decomposition/preregistration.json` (frozen ~19:23 UTC) | queued after XC-1 |
 
 ## 4. Git placement (open question for the user)
 

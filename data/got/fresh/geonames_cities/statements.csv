@@ -1,0 +1,1427 @@
+statement,label,city,country,correct_country,population,geoname_id,split
+The city of Aachen is in Germany.,1,Aachen,Germany,Germany,265208,3247449,TEST
+The city of Aachen is in China.,0,Aachen,China,Germany,265208,3247449,TEST
+The city of Abha is in Saudi Arabia.,1,Abha,Saudi Arabia,Saudi Arabia,210886,110690,TEST
+The city of Abha is in Venezuela.,0,Abha,Venezuela,Saudi Arabia,210886,110690,TEST
+The city of Abomey-Calavi is in Benin.,1,Abomey-Calavi,Benin,Benin,385755,2395914,TEST
+The city of Abomey-Calavi is in Paraguay.,0,Abomey-Calavi,Paraguay,Benin,385755,2395914,TEST
+The city of Ado-Ekiti is in Nigeria.,1,Ado-Ekiti,Nigeria,Nigeria,424340,2352379,DEV
+The city of Ado-Ekiti is in France.,0,Ado-Ekiti,France,Nigeria,424340,2352379,DEV
+The city of Afyonkarahisar is in Turkey.,1,Afyonkarahisar,Turkey,Turkey,251799,325303,DEV
+The city of Afyonkarahisar is in Madagascar.,0,Afyonkarahisar,Madagascar,Turkey,251799,325303,DEV
+The city of Ahmadnagar is in India.,1,Ahmadnagar,India,India,367140,1279228,TEST
+The city of Ahmadnagar is in Malawi.,0,Ahmadnagar,Malawi,India,367140,1279228,TEST
+The city of Aizawl is in India.,1,Aizawl,India,India,265331,1279186,TEST
+The city of Aizawl is in Zimbabwe.,0,Aizawl,Zimbabwe,India,265331,1279186,TEST
+The city of Ajman City is in the United Arab Emirates.,1,Ajman City,the United Arab Emirates,the United Arab Emirates,490035,292932,TEST
+The city of Ajman City is in Poland.,0,Ajman City,Poland,the United Arab Emirates,490035,292932,TEST
+The city of Akola is in India.,1,Akola,India,India,428857,1279105,TEST
+The city of Akola is in Eritrea.,0,Akola,Eritrea,India,428857,1279105,TEST
+The city of Aksaray is in Turkey.,1,Aksaray,Turkey,Turkey,247147,324496,TEST
+The city of Aksaray is in Norway.,0,Aksaray,Norway,Turkey,247147,324496,TEST
+The city of Akure is in Nigeria.,1,Akure,Nigeria,Nigeria,420594,2350841,TEST
+The city of Akure is in Venezuela.,0,Akure,Venezuela,Nigeria,420594,2350841,TEST
+The city of Al Jubayl is in Saudi Arabia.,1,Al Jubayl,Saudi Arabia,Saudi Arabia,237274,109435,TEST
+The city of Al Jubayl is in Poland.,0,Al Jubayl,Poland,Saudi Arabia,237274,109435,TEST
+The city of Al Kharj is in Saudi Arabia.,1,Al Kharj,Saudi Arabia,Saudi Arabia,425300,109353,DEV
+The city of Al Kharj is in Nicaragua.,0,Al Kharj,Nicaragua,Saudi Arabia,425300,109353,DEV
+The city of Al Mubarraz is in Saudi Arabia.,1,Al Mubarraz,Saudi Arabia,Saudi Arabia,290802,109101,DEV
+The city of Al Mubarraz is in Tanzania.,0,Al Mubarraz,Tanzania,Saudi Arabia,290802,109101,DEV
+The city of Alor Setar is in Malaysia.,1,Alor Setar,Malaysia,Malaysia,417800,1736309,DEV
+The city of Alor Setar is in Yemen.,0,Alor Setar,Yemen,Malaysia,417800,1736309,DEV
+The city of Al Qadarif is in Sudan.,1,Al Qadarif,Sudan,Sudan,363945,379062,DEV
+The city of Al Qadarif is in Norway.,0,Al Qadarif,Norway,Sudan,363945,379062,DEV
+The city of Alto Barinas is in Venezuela.,1,Alto Barinas,Venezuela,Venezuela,284289,3487903,TEST
+The city of Alto Barinas is in Ghana.,0,Alto Barinas,Ghana,Venezuela,284289,3487903,TEST
+The city of Alvorada is in Brazil.,1,Alvorada,Brazil,Brazil,211352,12199880,DEV
+The city of Alvorada is in South Africa.,0,Alvorada,South Africa,Brazil,211352,12199880,DEV
+The city of Alwar is in India.,1,Alwar,India,India,283228,1278946,DEV
+The city of Alwar is in Benin.,0,Alwar,Benin,India,283228,1278946,DEV
+The city of Amagasaki is in Japan.,1,Amagasaki,Japan,Japan,442173,1865387,TEST
+The city of Amagasaki is in Sweden.,0,Amagasaki,Sweden,Japan,442173,1865387,TEST
+The city of Ambato is in Ecuador.,1,Ambato,Ecuador,Ecuador,387309,3660689,DEV
+The city of Ambato is in Myanmar.,0,Ambato,Myanmar,Ecuador,387309,3660689,DEV
+The city of Ambon is in Indonesia.,1,Ambon,Indonesia,Indonesia,347288,1651531,TEST
+The city of Ambon is in Myanmar.,0,Ambon,Myanmar,Indonesia,347288,1651531,TEST
+The city of Anaheim is in the United States.,1,Anaheim,the United States,the United States,350742,5323810,TEST
+The city of Anaheim is in Gabon.,0,Anaheim,Gabon,the United States,350742,5323810,TEST
+The city of Ananindeua is in Brazil.,1,Ananindeua,Brazil,Brazil,433956,3407669,TEST
+The city of Ananindeua is in Canada.,0,Ananindeua,Canada,Brazil,433956,3407669,TEST
+The city of Andijon is in Uzbekistan.,1,Andijon,Uzbekistan,Uzbekistan,447800,1514588,TEST
+The city of Andijon is in South Korea.,0,Andijon,South Korea,Uzbekistan,447800,1514588,TEST
+The city of Angeles City is in the Philippines.,1,Angeles City,the Philippines,the Philippines,299391,1730737,TEST
+The city of Angeles City is in Uganda.,0,Angeles City,Uganda,the Philippines,299391,1730737,TEST
+The city of Annaba is in Algeria.,1,Annaba,Algeria,Algeria,206570,2506999,DEV
+The city of Annaba is in Paraguay.,0,Annaba,Paraguay,Algeria,206570,2506999,DEV
+The city of Antakya is in Turkey.,1,Antakya,Turkey,Turkey,210000,323779,TEST
+The city of Antakya is in Guinea.,0,Antakya,Guinea,Turkey,210000,323779,TEST
+The city of Antofagasta is in Chile.,1,Antofagasta,Chile,Chile,352638,3899539,TEST
+The city of Antofagasta is in Indonesia.,0,Antofagasta,Indonesia,Chile,352638,3899539,TEST
+The city of Antsirabe is in Madagascar.,1,Antsirabe,Madagascar,Madagascar,265018,1069166,TEST
+The city of Antsirabe is in Iraq.,0,Antsirabe,Iraq,Madagascar,265018,1069166,TEST
+The city of Arlington is in the United States.,1,Arlington,the United States,the United States,388125,4671240,TEST
+The city of Arlington is in Zambia.,0,Arlington,Zambia,the United States,388125,4671240,TEST
+The city of Arroyo Naranjo is in Cuba.,1,Arroyo Naranjo,Cuba,Cuba,210053,3568342,TEST
+The city of Arroyo Naranjo is in Iraq.,0,Arroyo Naranjo,Iraq,Cuba,210053,3568342,TEST
+The city of Arusha is in Tanzania.,1,Arusha,Tanzania,Tanzania,341136,161325,TEST
+The city of Arusha is in Mexico.,0,Arusha,Mexico,Tanzania,341136,161325,TEST
+The city of Asahikawa is in Japan.,1,Asahikawa,Japan,Japan,333530,2130629,DEV
+The city of Asahikawa is in Vietnam.,0,Asahikawa,Vietnam,Japan,333530,2130629,DEV
+The city of Astana is in Kazakhstan.,1,Astana,Kazakhstan,Kazakhstan,345604,1526273,TEST
+The city of Astana is in Togo.,0,Astana,Togo,Kazakhstan,345604,1526273,TEST
+The city of Aswan is in Egypt.,1,Aswan,Egypt,Egypt,379774,359792,DEV
+The city of Aswan is in Cameroon.,0,Aswan,Cameroon,Egypt,379774,359792,DEV
+The city of Atani is in Nigeria.,1,Atani,Nigeria,Nigeria,230000,2349019,TEST
+The city of Atani is in North Korea.,0,Atani,North Korea,Nigeria,230000,2349019,TEST
+The city of Atsiaman is in Ghana.,1,Atsiaman,Ghana,Ghana,202932,2306079,DEV
+The city of Atsiaman is in Belgium.,0,Atsiaman,Belgium,Ghana,202932,2306079,DEV
+The city of Atsugi is in Japan.,1,Atsugi,Japan,Japan,223960,1847963,DEV
+The city of Atsugi is in Brazil.,0,Atsugi,Brazil,Japan,223960,1847963,DEV
+The city of Atyrau is in Kazakhstan.,1,Atyrau,Kazakhstan,Kazakhstan,290700,610529,DEV
+The city of Atyrau is in Lebanon.,0,Atyrau,Lebanon,Kazakhstan,290700,610529,DEV
+The city of Augsburg is in Germany.,1,Augsburg,Germany,Germany,259196,2954172,DEV
+The city of Augsburg is in Hungary.,0,Augsburg,Hungary,Germany,259196,2954172,DEV
+The city of Bab Ezzouar is in Algeria.,1,Bab Ezzouar,Algeria,Algeria,275630,2505854,DEV
+The city of Bab Ezzouar is in Morocco.,0,Bab Ezzouar,Morocco,Algeria,275630,2505854,DEV
+The city of Babruysk is in Belarus.,1,Babruysk,Belarus,Belarus,209675,630468,TEST
+The city of Babruysk is in Burkina Faso.,0,Babruysk,Burkina Faso,Belarus,209675,630468,TEST
+The city of Bacolod City is in the Philippines.,1,Bacolod City,the Philippines,the Philippines,454898,1729564,TEST
+The city of Bacolod City is in Australia.,0,Bacolod City,Australia,the Philippines,454898,1729564,TEST
+The city of Bacoor is in the Philippines.,1,Bacoor,the Philippines,the Philippines,356974,1729524,TEST
+The city of Bacoor is in the Democratic Republic of the Congo.,0,Bacoor,the Democratic Republic of the Congo,the Philippines,356974,1729524,TEST
+The city of Bafoussam is in Cameroon.,1,Bafoussam,Cameroon,Cameroon,290768,2235189,TEST
+The city of Bafoussam is in Azerbaijan.,0,Bafoussam,Azerbaijan,Cameroon,290768,2235189,TEST
+The city of Bagerhat is in Bangladesh.,1,Bagerhat,Bangladesh,Bangladesh,266388,1185281,DEV
+The city of Bagerhat is in Tajikistan.,0,Bagerhat,Tajikistan,Bangladesh,266388,1185281,DEV
+The city of Bago is in Myanmar.,1,Bago,Myanmar,Myanmar,244376,1300466,TEST
+The city of Bago is in Turkmenistan.,0,Bago,Turkmenistan,Myanmar,244376,1300466,TEST
+The city of Baguio is in the Philippines.,1,Baguio,the Philippines,the Philippines,272714,1728930,DEV
+The city of Baguio is in Kazakhstan.,0,Baguio,Kazakhstan,the Philippines,272714,1728930,DEV
+The city of Bahir Dar is in Ethiopia.,1,Bahir Dar,Ethiopia,Ethiopia,332856,342884,DEV
+The city of Bahir Dar is in Algeria.,0,Bahir Dar,Algeria,Ethiopia,332856,342884,DEV
+The city of Bakersfield is in the United States.,1,Bakersfield,the United States,the United States,373640,5325738,TEST
+The city of Bakersfield is in Ethiopia.,0,Bakersfield,Ethiopia,the United States,373640,5325738,TEST
+The city of Bamenda is in Cameroon.,1,Bamenda,Cameroon,Cameroon,393835,2234974,DEV
+The city of Bamenda is in Ghana.,0,Bamenda,Ghana,Cameroon,393835,2234974,DEV
+The city of Banda Aceh is in Indonesia.,1,Banda Aceh,Indonesia,Indonesia,255029,1215502,TEST
+The city of Banda Aceh is in Ecuador.,0,Banda Aceh,Ecuador,Indonesia,255029,1215502,TEST
+The city of Bandar Abbas is in Iran.,1,Bandar Abbas,Iran,Iran,352173,141681,TEST
+The city of Bandar Abbas is in Saudi Arabia.,0,Bandar Abbas,Saudi Arabia,Iran,352173,141681,TEST
+The city of Banja Luka is in Bosnia and Herzegovina.,1,Banja Luka,Bosnia and Herzegovina,Bosnia and Herzegovina,221106,3204541,DEV
+The city of Banja Luka is in Chile.,0,Banja Luka,Chile,Bosnia and Herzegovina,221106,3204541,DEV
+The city of Baranagar is in India.,1,Baranagar,India,India,260072,1277082,TEST
+The city of Baranagar is in Poland.,0,Baranagar,Poland,India,260072,1277082,TEST
+The city of Barinas is in Venezuela.,1,Barinas,Venezuela,Venezuela,397279,3648546,DEV
+The city of Barinas is in Eritrea.,0,Barinas,Eritrea,Venezuela,397279,3648546,DEV
+The city of Barishal is in Bangladesh.,1,Barishal,Bangladesh,Bangladesh,202242,1336137,DEV
+The city of Barishal is in Latvia.,0,Barishal,Latvia,Bangladesh,202242,1336137,DEV
+The city of Barueri is in Brazil.,1,Barueri,Brazil,Brazil,251994,3470353,TEST
+The city of Barueri is in Paraguay.,0,Barueri,Paraguay,Brazil,251994,3470353,TEST
+The city of Baruta is in Venezuela.,1,Baruta,Venezuela,Venezuela,244216,3648439,TEST
+The city of Baruta is in Lithuania.,0,Baruta,Lithuania,Venezuela,244216,3648439,TEST
+The city of Basuo is in China.,1,Basuo,China,China,444458,1816858,DEV
+The city of Basuo is in Malawi.,0,Basuo,Malawi,China,444458,1816858,DEV
+The city of Batangas is in the Philippines.,1,Batangas,the Philippines,the Philippines,237370,1726280,TEST
+The city of Batangas is in Cuba.,0,Batangas,Cuba,the Philippines,237370,1726280,TEST
+The city of Bathinda is in India.,1,Bathinda,India,India,242800,1276070,TEST
+The city of Bathinda is in Syria.,0,Bathinda,Syria,India,242800,1276070,TEST
+The city of Batikent is in Turkey.,1,Batikent,Turkey,Turkey,300000,442301,TEST
+The city of Batikent is in Chile.,0,Batikent,Chile,Turkey,300000,442301,TEST
+The city of Batman is in Turkey.,1,Batman,Turkey,Turkey,452157,321836,DEV
+The city of Batman is in Nigeria.,0,Batman,Nigeria,Turkey,452157,321836,DEV
+The city of Batna is in Algeria.,1,Batna,Algeria,Algeria,280798,2505572,DEV
+The city of Batna is in Venezuela.,0,Batna,Venezuela,Algeria,280798,2505572,DEV
+The city of Batu is in Indonesia.,1,Batu,Indonesia,Indonesia,213046,1649824,DEV
+The city of Batu is in Denmark.,0,Batu,Denmark,Indonesia,213046,1649824,DEV
+The city of Bauru is in Brazil.,1,Bauru,Brazil,Brazil,379297,3470279,TEST
+The city of Bauru is in Syria.,0,Bauru,Syria,Brazil,379297,3470279,TEST
+The city of Bawshar is in Oman.,1,Bawshar,Oman,Oman,383257,288764,DEV
+The city of Bawshar is in Cameroon.,0,Bawshar,Cameroon,Oman,383257,288764,DEV
+The city of Beibei is in China.,1,Beibei,China,China,247702,1816790,DEV
+The city of Beibei is in the Dominican Republic.,0,Beibei,the Dominican Republic,China,247702,1816790,DEV
+The city of Belgorod is in Russia.,1,Belgorod,Russia,Russia,345289,578072,TEST
+The city of Belgorod is in Algeria.,0,Belgorod,Algeria,Russia,345289,578072,TEST
+The city of Bello is in Colombia.,1,Bello,Colombia,Colombia,392939,3688928,DEV
+The city of Bello is in Azerbaijan.,0,Bello,Azerbaijan,Colombia,392939,3688928,DEV
+The city of Bengkulu is in Indonesia.,1,Bengkulu,Indonesia,Indonesia,373591,1649150,TEST
+The city of Bengkulu is in Norway.,0,Bengkulu,Norway,Indonesia,373591,1649150,TEST
+The city of Beni is in the Democratic Republic of the Congo.,1,Beni,the Democratic Republic of the Congo,the Democratic Republic of the Congo,232000,219057,TEST
+The city of Beni is in Australia.,0,Beni,Australia,the Democratic Republic of the Congo,232000,219057,TEST
+The city of Benito Juarez is in Mexico.,1,Benito Juarez,Mexico,Mexico,355017,3827406,TEST
+The city of Benito Juarez is in Cameroon.,0,Benito Juarez,Cameroon,Mexico,355017,3827406,TEST
+The city of Berbera is in Somalia.,1,Berbera,Somalia,Somalia,242344,64435,TEST
+The city of Berbera is in Eritrea.,0,Berbera,Eritrea,Somalia,242344,64435,TEST
+The city of Bertoua is in Cameroon.,1,Bertoua,Cameroon,Cameroon,218111,2234359,DEV
+The city of Bertoua is in South Korea.,0,Bertoua,South Korea,Cameroon,218111,2234359,DEV
+The city of Betim is in Brazil.,1,Betim,Brazil,Brazil,384000,3470044,TEST
+The city of Betim is in Poland.,0,Betim,Poland,Brazil,384000,3470044,TEST
+The city of Bhimber is in Pakistan.,1,Bhimber,Pakistan,Pakistan,342900,1182637,DEV
+The city of Bhimber is in Lithuania.,0,Bhimber,Lithuania,Pakistan,342900,1182637,DEV
+The city of Bielefeld is in Germany.,1,Bielefeld,Germany,Germany,331906,2949186,TEST
+The city of Bielefeld is in Mozambique.,0,Bielefeld,Mozambique,Germany,331906,2949186,TEST
+The city of Bila Tserkva is in Ukraine.,1,Bila Tserkva,Ukraine,Ukraine,207273,712165,TEST
+The city of Bila Tserkva is in Ecuador.,0,Bila Tserkva,Ecuador,Ukraine,207273,712165,TEST
+The city of Binangonan is in the Philippines.,1,Binangonan,the Philippines,the Philippines,219204,1725094,DEV
+The city of Binangonan is in Malaysia.,0,Binangonan,Malaysia,the Philippines,219204,1725094,DEV
+The city of Binjai is in Indonesia.,1,Binjai,Indonesia,Indonesia,279302,1215355,TEST
+The city of Binjai is in Colombia.,0,Binjai,Colombia,Indonesia,279302,1215355,TEST
+The city of Biratnagar is in Nepal.,1,Biratnagar,Nepal,Nepal,244750,1283582,TEST
+The city of Biratnagar is in Venezuela.,0,Biratnagar,Venezuela,Nepal,244750,1283582,TEST
+The city of Biskra is in Algeria.,1,Biskra,Algeria,Algeria,307987,2503826,DEV
+The city of Biskra is in Romania.,0,Biskra,Romania,Algeria,307987,2503826,DEV
+The city of Bitung is in Indonesia.,1,Bitung,Indonesia,Indonesia,225134,1648637,DEV
+The city of Bitung is in Senegal.,0,Bitung,Senegal,Indonesia,225134,1648637,DEV
+The city of Blagoveshchensk is in Russia.,1,Blagoveshchensk,Russia,Russia,225091,2026609,DEV
+The city of Blagoveshchensk is in Belgium.,0,Blagoveshchensk,Belgium,Russia,225091,2026609,DEV
+The city of Blumenau is in Brazil.,1,Blumenau,Brazil,Brazil,361855,3469968,TEST
+The city of Blumenau is in Somalia.,0,Blumenau,Somalia,Brazil,361855,3469968,TEST
+The city of Bochum-Hordel is in Germany.,1,Bochum-Hordel,Germany,Germany,380000,6941055,DEV
+The city of Bochum-Hordel is in Ghana.,0,Bochum-Hordel,Ghana,Germany,380000,6941055,DEV
+The city of Bogra is in Bangladesh.,1,Bogra,Bangladesh,Bangladesh,210000,1337233,TEST
+The city of Bogra is in Jordan.,0,Bogra,Jordan,Bangladesh,210000,1337233,TEST
+The city of Boksburg is in South Africa.,1,Boksburg,South Africa,South Africa,445168,1017780,TEST
+The city of Boksburg is in Tajikistan.,0,Boksburg,Tajikistan,South Africa,445168,1017780,TEST
+The city of Bole is in China.,1,Bole,China,China,235585,8521718,TEST
+The city of Bole is in Nicaragua.,0,Bole,Nicaragua,China,235585,8521718,TEST
+The city of Bologna is in Italy.,1,Bologna,Italy,Italy,394843,3181928,TEST
+The city of Bologna is in Moldova.,0,Bologna,Moldova,Italy,394843,3181928,TEST
+The city of Bonn is in Germany.,1,Bonn,Germany,Germany,330579,2946447,DEV
+The city of Bonn is in Chad.,0,Bonn,Chad,Germany,330579,2946447,DEV
+The city of Bordeaux is in France.,1,Bordeaux,France,France,260958,3031582,DEV
+The city of Bordeaux is in Romania.,0,Bordeaux,Romania,France,260958,3031582,DEV
+The city of Botshabelo is in South Africa.,1,Botshabelo,South Africa,South Africa,309714,1016670,DEV
+The city of Botshabelo is in Mongolia.,0,Botshabelo,Mongolia,South Africa,309714,1016670,DEV
+The city of Brahmapur is in India.,1,Brahmapur,India,India,324726,1275198,TEST
+The city of Brahmapur is in Australia.,0,Brahmapur,Australia,India,324726,1275198,TEST
+The city of Brakpan is in South Africa.,1,Brakpan,South Africa,South Africa,305692,1016181,DEV
+The city of Brakpan is in Denmark.,0,Brakpan,Denmark,South Africa,305692,1016181,DEV
+The city of Braunschweig is in Germany.,1,Braunschweig,Germany,Germany,244715,2945024,DEV
+The city of Braunschweig is in Thailand.,0,Braunschweig,Thailand,Germany,244715,2945024,DEV
+The city of Brescia is in Italy.,1,Brescia,Italy,Italy,200423,3181554,TEST
+The city of Brescia is in Vietnam.,0,Brescia,Vietnam,Italy,200423,3181554,TEST
+The city of Buenaventura is in Colombia.,1,Buenaventura,Colombia,Colombia,432385,3688452,TEST
+The city of Buenaventura is in Uzbekistan.,0,Buenaventura,Uzbekistan,Colombia,432385,3688452,TEST
+The city of Bukavu is in the Democratic Republic of the Congo.,1,Bukavu,the Democratic Republic of the Congo,the Democratic Republic of the Congo,225389,217831,TEST
+The city of Bukavu is in Iraq.,0,Bukavu,Iraq,the Democratic Republic of the Congo,225389,217831,TEST
+The city of Bukhara is in Uzbekistan.,1,Bukhara,Uzbekistan,Uzbekistan,280187,1217662,TEST
+The city of Bukhara is in Jamaica.,0,Bukhara,Jamaica,Uzbekistan,280187,1217662,TEST
+The city of Bukit Mertajam is in Malaysia.,1,Bukit Mertajam,Malaysia,Malaysia,212329,1735079,TEST
+The city of Bukit Mertajam is in Pakistan.,0,Bukit Mertajam,Pakistan,Malaysia,212329,1735079,TEST
+The city of Burnaby is in Canada.,1,Burnaby,Canada,Canada,202799,5911606,TEST
+The city of Burnaby is in China.,0,Burnaby,China,Canada,202799,5911606,TEST
+The city of Butuan is in the Philippines.,1,Butuan,the Philippines,the Philippines,309709,1722186,TEST
+The city of Butuan is in Argentina.,0,Butuan,Argentina,the Philippines,309709,1722186,TEST
+The city of Bydgoszcz is in Poland.,1,Bydgoszcz,Poland,Poland,366452,3102014,TEST
+The city of Bydgoszcz is in Myanmar.,0,Bydgoszcz,Myanmar,Poland,366452,3102014,TEST
+The city of Cabimas is in Venezuela.,1,Cabimas,Venezuela,Venezuela,291147,3647651,TEST
+The city of Cabimas is in Cameroon.,0,Cabimas,Cameroon,Venezuela,291147,3647651,TEST
+The city of Cabuyao is in the Philippines.,1,Cabuyao,the Philippines,the Philippines,308745,1721281,DEV
+The city of Cabuyao is in Nigeria.,0,Cabuyao,Nigeria,the Philippines,308745,1721281,DEV
+The city of Cagayan de Oro is in the Philippines.,1,Cagayan de Oro,the Philippines,the Philippines,445103,1721080,TEST
+The city of Cagayan de Oro is in Iraq.,0,Cagayan de Oro,Iraq,the Philippines,445103,1721080,TEST
+The city of Cainta is in the Philippines.,1,Cainta,the Philippines,the Philippines,283172,1720840,TEST
+The city of Cainta is in Tajikistan.,0,Cainta,Tajikistan,the Philippines,283172,1720840,TEST
+The city of Cajamarca is in Peru.,1,Cajamarca,Peru,Peru,201329,3699088,DEV
+The city of Cajamarca is in Rwanda.,0,Cajamarca,Rwanda,Peru,201329,3699088,DEV
+The city of Calabar is in Nigeria.,1,Calabar,Nigeria,Nigeria,461796,2346229,DEV
+The city of Calabar is in Guinea.,0,Calabar,Guinea,Nigeria,461796,2346229,DEV
+The city of Campeche is in Mexico.,1,Campeche,Mexico,Mexico,220389,3531732,TEST
+The city of Campeche is in Iraq.,0,Campeche,Iraq,Mexico,220389,3531732,TEST
+The city of Canberra is in Australia.,1,Canberra,Australia,Australia,367752,2172517,TEST
+The city of Canberra is in Peru.,0,Canberra,Peru,Australia,367752,2172517,TEST
+The city of Canoas is in Brazil.,1,Canoas,Brazil,Brazil,328291,3467467,DEV
+The city of Canoas is in Azerbaijan.,0,Canoas,Azerbaijan,Brazil,328291,3467467,DEV
+The city of Carrefour is in Haiti.,1,Carrefour,Haiti,Haiti,442156,3728338,DEV
+The city of Carrefour is in Benin.,0,Carrefour,Benin,Haiti,442156,3728338,DEV
+The city of Caruaru is in Brazil.,1,Caruaru,Brazil,Brazil,235371,3402655,DEV
+The city of Caruaru is in the United States.,0,Caruaru,the United States,Brazil,235371,3402655,DEV
+The city of Cascavel is in Brazil.,1,Cascavel,Brazil,Brazil,257172,3466779,DEV
+The city of Cascavel is in Lebanon.,0,Cascavel,Lebanon,Brazil,257172,3466779,DEV
+The city of Catania is in Italy.,1,Catania,Italy,Italy,311584,2525068,TEST
+The city of Catania is in Iran.,0,Catania,Iran,Italy,311584,2525068,TEST
+The city of Caucaia is in Brazil.,1,Caucaia,Brazil,Brazil,275019,3402429,TEST
+The city of Caucaia is in Indonesia.,0,Caucaia,Indonesia,Brazil,275019,3402429,TEST
+The city of Caxias do Sul is in Brazil.,1,Caxias do Sul,Brazil,Brazil,381270,3466537,TEST
+The city of Caxias do Sul is in Croatia.,0,Caxias do Sul,Croatia,Brazil,381270,3466537,TEST
+The city of Celaya is in Mexico.,1,Celaya,Mexico,Mexico,340387,4014875,TEST
+The city of Celaya is in Uzbekistan.,0,Celaya,Uzbekistan,Mexico,340387,4014875,TEST
+The city of Centurion is in South Africa.,1,Centurion,South Africa,South Africa,236580,1105777,TEST
+The city of Centurion is in Afghanistan.,0,Centurion,Afghanistan,South Africa,236580,1105777,TEST
+The city of Chakwama is in Nigeria.,1,Chakwama,Nigeria,Nigeria,200000,12129605,DEV
+The city of Chakwama is in Poland.,0,Chakwama,Poland,Nigeria,200000,12129605,DEV
+The city of Chandler is in the United States.,1,Chandler,the United States,the United States,260828,5289282,TEST
+The city of Chandler is in Turkmenistan.,0,Chandler,Turkmenistan,the United States,260828,5289282,TEST
+The city of Chaoyang is in China.,1,Chaoyang,China,China,410005,2038120,TEST
+The city of Chaoyang is in Yemen.,0,Chaoyang,Yemen,China,410005,2038120,TEST
+The city of Charleroi is in Belgium.,1,Charleroi,Belgium,Belgium,200132,2800481,TEST
+The city of Charleroi is in Myanmar.,0,Charleroi,Myanmar,Belgium,200132,2800481,TEST
+The city of Chemnitz is in Germany.,1,Chemnitz,Germany,Germany,247220,2940132,TEST
+The city of Chemnitz is in South Korea.,0,Chemnitz,South Korea,Germany,247220,2940132,TEST
+The city of Chengde is in China.,1,Chengde,China,China,449325,2038087,DEV
+The city of Chengde is in Nepal.,0,Chengde,Nepal,China,449325,2038087,DEV
+The city of Chengzhong is in China.,1,Chengzhong,China,China,265886,1786640,TEST
+The city of Chengzhong is in Chile.,0,Chengzhong,Chile,China,265886,1786640,TEST
+The city of Cherkasy is in Ukraine.,1,Cherkasy,Ukraine,Ukraine,272651,710791,TEST
+The city of Cherkasy is in Norway.,0,Cherkasy,Norway,Ukraine,272651,710791,TEST
+The city of Chernihiv is in Ukraine.,1,Chernihiv,Ukraine,Ukraine,285234,710735,TEST
+The city of Chernihiv is in Tajikistan.,0,Chernihiv,Tajikistan,Ukraine,285234,710735,TEST
+The city of Chernivtsi is in Ukraine.,1,Chernivtsi,Ukraine,Ukraine,265471,710719,TEST
+The city of Chernivtsi is in Sudan.,0,Chernivtsi,Sudan,Ukraine,265471,710719,TEST
+The city of Chesapeake is in the United States.,1,Chesapeake,the United States,the United States,235429,4752186,DEV
+The city of Chesapeake is in Nepal.,0,Chesapeake,Nepal,the United States,235429,4752186,DEV
+The city of Chimbote is in Peru.,1,Chimbote,Peru,Peru,316966,3698304,TEST
+The city of Chimbote is in Malaysia.,0,Chimbote,Malaysia,Peru,316966,3698304,TEST
+The city of Chimoio is in Mozambique.,1,Chimoio,Mozambique,Mozambique,372821,1049261,TEST
+The city of Chimoio is in South Korea.,0,Chimoio,South Korea,Mozambique,372821,1049261,TEST
+The city of Chiniot is in Pakistan.,1,Chiniot,Pakistan,Pakistan,201781,1181096,TEST
+The city of Chiniot is in Sudan.,0,Chiniot,Sudan,Pakistan,201781,1181096,TEST
+The city of Chinju is in South Korea.,1,Chinju,South Korea,South Korea,307242,1846052,TEST
+The city of Chinju is in Kyrgyzstan.,0,Chinju,Kyrgyzstan,South Korea,307242,1846052,TEST
+The city of Chipata is in Zambia.,1,Chipata,Zambia,Zambia,327059,918702,DEV
+The city of Chipata is in Pakistan.,0,Chipata,Pakistan,Zambia,327059,918702,DEV
+The city of Chitungwiza is in Zimbabwe.,1,Chitungwiza,Zimbabwe,Zimbabwe,371244,1106542,DEV
+The city of Chitungwiza is in Paraguay.,0,Chitungwiza,Paraguay,Zimbabwe,371244,1106542,DEV
+The city of Chon Buri is in Thailand.,1,Chon Buri,Thailand,Thailand,219164,1611110,DEV
+The city of Chon Buri is in Moldova.,0,Chon Buri,Moldova,Thailand,219164,1611110,DEV
+The city of Chongjin is in North Korea.,1,Chongjin,North Korea,North Korea,327000,2044757,TEST
+The city of Chongjin is in Sweden.,0,Chongjin,Sweden,North Korea,327000,2044757,TEST
+The city of Chongzuo is in China.,1,Chongzuo,China,China,384905,12159964,DEV
+The city of Chongzuo is in Cambodia.,0,Chongzuo,Cambodia,China,384905,12159964,DEV
+The city of Chuncheon is in South Korea.,1,Chuncheon,South Korea,South Korea,209746,1845136,TEST
+The city of Chuncheon is in Colombia.,0,Chuncheon,Colombia,South Korea,209746,1845136,TEST
+The city of Chungju is in South Korea.,1,Chungju,South Korea,South Korea,209483,1845033,DEV
+The city of Chungju is in Sweden.,0,Chungju,Sweden,South Korea,209483,1845033,DEV
+The city of Ciampea is in Indonesia.,1,Ciampea,Indonesia,Indonesia,207212,1647383,TEST
+The city of Ciampea is in Algeria.,0,Ciampea,Algeria,Indonesia,207212,1647383,TEST
+The city of Cilacap is in Indonesia.,1,Cilacap,Indonesia,Indonesia,256996,1646559,TEST
+The city of Cilacap is in Mauritania.,0,Cilacap,Mauritania,Indonesia,256996,1646559,TEST
+The city of Ciputat is in Indonesia.,1,Ciputat,Indonesia,Indonesia,207858,1646194,DEV
+The city of Ciputat is in Tajikistan.,0,Ciputat,Tajikistan,Indonesia,207858,1646194,DEV
+The city of Cirebon is in Indonesia.,1,Cirebon,Indonesia,Indonesia,333303,1646170,TEST
+The city of Cirebon is in the Republic of the Congo.,0,Cirebon,the Republic of the Congo,Indonesia,333303,1646170,TEST
+The city of Ciudad del Este is in Paraguay.,1,Ciudad del Este,Paraguay,Paraguay,301815,3439101,DEV
+The city of Ciudad del Este is in the United States.,0,Ciudad del Este,the United States,Paraguay,301815,3439101,DEV
+The city of Ciudad Victoria is in Mexico.,1,Ciudad Victoria,Mexico,Mexico,332100,3530580,DEV
+The city of Ciudad Victoria is in the United States.,0,Ciudad Victoria,the United States,Mexico,332100,3530580,DEV
+The city of Cluj-Napoca is in Romania.,1,Cluj-Napoca,Romania,Romania,316748,681290,TEST
+The city of Cluj-Napoca is in Tanzania.,0,Cluj-Napoca,Tanzania,Romania,316748,681290,TEST
+The city of Coacalco is in Mexico.,1,Coacalco,Mexico,Mexico,277959,3530569,TEST
+The city of Coacalco is in Côte d'Ivoire.,0,Coacalco,Côte d'Ivoire,Mexico,277959,3530569,TEST
+The city of Coatzacoalcos is in Mexico.,1,Coatzacoalcos,Mexico,Mexico,235983,3530517,DEV
+The city of Coatzacoalcos is in Italy.,0,Coatzacoalcos,Italy,Mexico,235983,3530517,DEV
+The city of Colonia del Valle is in Mexico.,1,Colonia del Valle,Mexico,Mexico,250000,7280708,DEV
+The city of Colonia del Valle is in Germany.,0,Colonia del Valle,Germany,Mexico,250000,7280708,DEV
+The city of Columbus is in the United States.,1,Columbus,the United States,the United States,206922,4188985,DEV
+The city of Columbus is in Mongolia.,0,Columbus,Mongolia,the United States,206922,4188985,DEV
+The city of Constantine is in Algeria.,1,Constantine,Algeria,Algeria,450097,2501152,DEV
+The city of Constantine is in Nigeria.,0,Constantine,Nigeria,Algeria,450097,2501152,DEV
+The city of Coro is in Venezuela.,1,Coro,Venezuela,Venezuela,246657,3645213,TEST
+The city of Coro is in Zimbabwe.,0,Coro,Zimbabwe,Venezuela,246657,3645213,TEST
+The city of Corrientes is in Argentina.,1,Corrientes,Argentina,Argentina,346334,3435217,TEST
+The city of Corrientes is in Nepal.,0,Corrientes,Nepal,Argentina,346334,3435217,TEST
+The city of Cotabato is in the Philippines.,1,Cotabato,the Philippines,the Philippines,325079,1716771,DEV
+The city of Cotabato is in Finland.,0,Cotabato,Finland,the Philippines,325079,1716771,DEV
+The city of Cotia is in Brazil.,1,Cotia,Brazil,Brazil,253608,3465284,TEST
+The city of Cotia is in Ecuador.,0,Cotia,Ecuador,Brazil,253608,3465284,TEST
+The city of Craiova is in Romania.,1,Craiova,Romania,Romania,305689,680332,TEST
+The city of Craiova is in Rwanda.,0,Craiova,Rwanda,Romania,305689,680332,TEST
+The city of Croix-des-Bouquets is in Haiti.,1,Croix-des-Bouquets,Haiti,Haiti,229127,3727135,TEST
+The city of Croix-des-Bouquets is in Tajikistan.,0,Croix-des-Bouquets,Tajikistan,Haiti,229127,3727135,TEST
+The city of Cuernavaca is in Mexico.,1,Cuernavaca,Mexico,Mexico,338650,3529947,TEST
+The city of Cuernavaca is in Azerbaijan.,0,Cuernavaca,Azerbaijan,Mexico,338650,3529947,TEST
+The city of Cusco is in Peru.,1,Cusco,Peru,Peru,428450,3941584,TEST
+The city of Cusco is in Russia.,0,Cusco,Russia,Peru,428450,3941584,TEST
+The city of Daliang is in China.,1,Daliang,China,China,210411,1814082,DEV
+The city of Daliang is in the United Arab Emirates.,0,Daliang,the United Arab Emirates,China,210411,1814082,DEV
+The city of Daloa is in Côte d'Ivoire.,1,Daloa,Côte d'Ivoire,Côte d'Ivoire,421871,2290486,DEV
+The city of Daloa is in Poland.,0,Daloa,Poland,Côte d'Ivoire,421871,2290486,DEV
+The city of Damietta is in Egypt.,1,Damietta,Egypt,Egypt,305920,358048,DEV
+The city of Damietta is in Bosnia and Herzegovina.,0,Damietta,Bosnia and Herzegovina,Egypt,305920,358048,DEV
+The city of Darbhanga is in India.,1,Darbhanga,India,India,287150,1273491,TEST
+The city of Darbhanga is in the United Arab Emirates.,0,Darbhanga,the United Arab Emirates,India,287150,1273491,TEST
+The city of Debrecen is in Hungary.,1,Debrecen,Hungary,Hungary,202402,721472,DEV
+The city of Debrecen is in Mali.,0,Debrecen,Mali,Hungary,202402,721472,DEV
+The city of Deir ez-Zor is in Syria.,1,Deir ez-Zor,Syria,Syria,271800,170794,TEST
+The city of Deir ez-Zor is in Guinea.,0,Deir ez-Zor,Guinea,Syria,271800,170794,TEST
+The city of Dengzhou is in China.,1,Dengzhou,China,China,285032,1812990,TEST
+The city of Dengzhou is in Chile.,0,Dengzhou,Chile,China,285032,1812990,TEST
+The city of Denizli is in Turkey.,1,Denizli,Turkey,Turkey,313238,317109,TEST
+The city of Denizli is in Brazil.,0,Denizli,Brazil,Turkey,313238,317109,TEST
+The city of Dera Ghazi Khan is in Pakistan.,1,Dera Ghazi Khan,Pakistan,Pakistan,236093,1180289,TEST
+The city of Dera Ghazi Khan is in Algeria.,0,Dera Ghazi Khan,Algeria,Pakistan,236093,1180289,TEST
+The city of Diepsloot is in South Africa.,1,Diepsloot,South Africa,South Africa,350000,8764562,DEV
+The city of Diepsloot is in Germany.,0,Diepsloot,Germany,South Africa,350000,8764562,DEV
+The city of Diez de Octubre is in Cuba.,1,Diez de Octubre,Cuba,Cuba,227293,6956648,TEST
+The city of Diez de Octubre is in Argentina.,0,Diez de Octubre,Argentina,Cuba,227293,6956648,TEST
+The city of Dihok is in Iraq.,1,Dihok,Iraq,Iraq,340900,96994,TEST
+The city of Dihok is in Italy.,0,Dihok,Italy,Iraq,340900,96994,TEST
+The city of Dindigul is in India.,1,Dindigul,India,India,292512,1272543,DEV
+The city of Dindigul is in Turkey.,0,Dindigul,Turkey,India,292512,1272543,DEV
+The city of Dingxi is in China.,1,Dingxi,China,China,420614,1812749,TEST
+The city of Dingxi is in Kuwait.,0,Dingxi,Kuwait,China,420614,1812749,TEST
+The city of Dire Dawa is in Ethiopia.,1,Dire Dawa,Ethiopia,Ethiopia,277000,338832,DEV
+The city of Dire Dawa is in Malawi.,0,Dire Dawa,Malawi,Ethiopia,277000,338832,DEV
+The city of Djougou is in Benin.,1,Djougou,Benin,Benin,237040,2394560,DEV
+The city of Djougou is in Yemen.,0,Djougou,Yemen,Benin,237040,2394560,DEV
+The city of Dosquebradas is in Colombia.,1,Dosquebradas,Colombia,Colombia,206693,3685095,TEST
+The city of Dosquebradas is in Burkina Faso.,0,Dosquebradas,Burkina Faso,Colombia,206693,3685095,TEST
+The city of Durg is in India.,1,Durg,India,India,255283,1272181,TEST
+The city of Durg is in Morocco.,0,Durg,Morocco,India,255283,1272181,TEST
+The city of Dzerzhinsk is in Russia.,1,Dzerzhinsk,Russia,Russia,233126,563708,DEV
+The city of Dzerzhinsk is in Zambia.,0,Dzerzhinsk,Zambia,Russia,233126,563708,DEV
+The city of East London is in South Africa.,1,East London,South Africa,South Africa,478676,1006984,TEST
+The city of East London is in Morocco.,0,East London,Morocco,South Africa,478676,1006984,TEST
+The city of Efon-Alaaye is in Nigeria.,1,Efon-Alaaye,Nigeria,Nigeria,279319,2343983,TEST
+The city of Efon-Alaaye is in Vietnam.,0,Efon-Alaaye,Vietnam,Nigeria,279319,2343983,TEST
+The city of El Daein is in Sudan.,1,El Daein,Sudan,Sudan,264734,380148,DEV
+The city of El Daein is in Kazakhstan.,0,El Daein,Kazakhstan,Sudan,264734,380148,DEV
+The city of Eldoret is in Kenya.,1,Eldoret,Kenya,Kenya,475716,198629,DEV
+The city of Eldoret is in Latvia.,0,Eldoret,Latvia,Kenya,475716,198629,DEV
+The city of El Fasher is in Sudan.,1,El Fasher,Sudan,Sudan,252609,379555,TEST
+The city of El Fasher is in France.,0,El Fasher,France,Sudan,252609,379555,TEST
+The city of El Obeid is in Sudan.,1,El Obeid,Sudan,Sudan,393311,379003,TEST
+The city of El Obeid is in the Democratic Republic of the Congo.,0,El Obeid,the Democratic Republic of the Congo,Sudan,393311,379003,TEST
+The city of Eloy Alfaro is in Ecuador.,1,Eloy Alfaro,Ecuador,Ecuador,315724,3658192,TEST
+The city of Eloy Alfaro is in Thailand.,0,Eloy Alfaro,Thailand,Ecuador,315724,3658192,TEST
+The city of El Tigre is in Venezuela.,1,El Tigre,Venezuela,Venezuela,222450,3641351,DEV
+The city of El Tigre is in Armenia.,0,El Tigre,Armenia,Venezuela,222450,3641351,DEV
+The city of Emalahleni is in South Africa.,1,Emalahleni,South Africa,South Africa,262491,939270,DEV
+The city of Emalahleni is in Senegal.,0,Emalahleni,Senegal,South Africa,262491,939270,DEV
+The city of Ensenada is in Mexico.,1,Ensenada,Mexico,Mexico,279765,4006702,DEV
+The city of Ensenada is in Japan.,0,Ensenada,Japan,Mexico,279765,4006702,DEV
+The city of Erfurt is in Germany.,1,Erfurt,Germany,Germany,213692,2929670,TEST
+The city of Erfurt is in Morocco.,0,Erfurt,Morocco,Germany,213692,2929670,TEST
+The city of Esenyurt is in Turkey.,1,Esenyurt,Turkey,Turkey,211330,747323,TEST
+The city of Esenyurt is in Haiti.,0,Esenyurt,Haiti,Turkey,211330,747323,TEST
+The city of Espoo is in Finland.,1,Espoo,Finland,Finland,256760,660158,TEST
+The city of Espoo is in Azerbaijan.,0,Espoo,Azerbaijan,Finland,256760,660158,TEST
+The city of Fergana is in Uzbekistan.,1,Fergana,Uzbekistan,Uzbekistan,299200,1514019,DEV
+The city of Fergana is in Guatemala.,0,Fergana,Guatemala,Uzbekistan,299200,1514019,DEV
+The city of Floridablanca is in Colombia.,1,Floridablanca,Colombia,Colombia,267591,3682385,DEV
+The city of Floridablanca is in Nicaragua.,0,Floridablanca,Nicaragua,Colombia,267591,3682385,DEV
+The city of Fort Wayne is in the United States.,1,Fort Wayne,the United States,the United States,260326,4920423,TEST
+The city of Fort Wayne is in Cameroon.,0,Fort Wayne,Cameroon,the United States,260326,4920423,TEST
+The city of Franca is in Brazil.,1,Franca,Brazil,Brazil,358539,3463011,TEST
+The city of Franca is in Italy.,0,Franca,Italy,Brazil,358539,3463011,TEST
+The city of Freiburg is in Germany.,1,Freiburg,Germany,Germany,215966,2925177,TEST
+The city of Freiburg is in Mexico.,0,Freiburg,Mexico,Germany,215966,2925177,TEST
+The city of Fukui-shi is in Japan.,1,Fukui-shi,Japan,Japan,248707,1863985,TEST
+The city of Fukui-shi is in France.,0,Fukui-shi,France,Japan,248707,1863985,TEST
+The city of Fukushima is in Japan.,1,Fukushima,Japan,Japan,294237,2112923,DEV
+The city of Fukushima is in Guatemala.,0,Fukushima,Guatemala,Japan,294237,2112923,DEV
+The city of Fuling is in China.,1,Fuling,China,China,268658,1810979,TEST
+The city of Fuling is in the Republic of the Congo.,0,Fuling,the Republic of the Congo,China,268658,1810979,TEST
+The city of Gagnoa is in Côte d'Ivoire.,1,Gagnoa,Côte d'Ivoire,Côte d'Ivoire,277044,2288829,TEST
+The city of Gagnoa is in Morocco.,0,Gagnoa,Morocco,Côte d'Ivoire,277044,2288829,TEST
+The city of Ganja is in Azerbaijan.,1,Ganja,Azerbaijan,Azerbaijan,335600,586523,TEST
+The city of Ganja is in South Korea.,0,Ganja,South Korea,Azerbaijan,335600,586523,TEST
+The city of Garoua is in Cameroon.,1,Garoua,Cameroon,Cameroon,436899,2231320,TEST
+The city of Garoua is in Turkey.,0,Garoua,Turkey,Cameroon,436899,2231320,TEST
+The city of Gatineau is in Canada.,1,Gatineau,Canada,Canada,242124,5959974,TEST
+The city of Gatineau is in Ethiopia.,0,Gatineau,Ethiopia,Canada,242124,5959974,TEST
+The city of Gdynia is in Poland.,1,Gdynia,Poland,Poland,244969,3099424,TEST
+The city of Gdynia is in South Africa.,0,Gdynia,South Africa,Poland,244969,3099424,TEST
+The city of Gebze is in Turkey.,1,Gebze,Turkey,Turkey,281436,747014,TEST
+The city of Gebze is in Rwanda.,0,Gebze,Rwanda,Turkey,281436,747014,TEST
+The city of Geelong is in Australia.,1,Geelong,Australia,Australia,268984,2165798,DEV
+The city of Geelong is in Mexico.,0,Geelong,Mexico,Australia,268984,2165798,DEV
+The city of Gelsenkirchen is in Germany.,1,Gelsenkirchen,Germany,Germany,270028,2921466,TEST
+The city of Gelsenkirchen is in Tanzania.,0,Gelsenkirchen,Tanzania,Germany,270028,2921466,TEST
+The city of Gent is in Belgium.,1,Gent,Belgium,Belgium,265086,2797656,DEV
+The city of Gent is in Peru.,0,Gent,Peru,Belgium,265086,2797656,DEV
+The city of Gifu-shi is in Japan.,1,Gifu-shi,Japan,Japan,400118,1863641,TEST
+The city of Gifu-shi is in Burundi.,0,Gifu-shi,Burundi,Japan,400118,1863641,TEST
+The city of Glendale is in the United States.,1,Glendale,the United States,the United States,240126,5295985,DEV
+The city of Glendale is in Cuba.,0,Glendale,Cuba,the United States,240126,5295985,DEV
+The city of Gombe is in Nigeria.,1,Gombe,Nigeria,Nigeria,250258,2340451,TEST
+The city of Gombe is in Paraguay.,0,Gombe,Paraguay,Nigeria,250258,2340451,TEST
+The city of Gondar is in Ethiopia.,1,Gondar,Ethiopia,Ethiopia,443156,336014,TEST
+The city of Gondar is in Burkina Faso.,0,Gondar,Burkina Faso,Ethiopia,443156,336014,TEST
+The city of Governador Valadares is in Brazil.,1,Governador Valadares,Brazil,Brazil,250878,3462315,TEST
+The city of Governador Valadares is in Benin.,0,Governador Valadares,Benin,Brazil,250878,3462315,TEST
+The city of Greensboro is in the United States.,1,Greensboro,the United States,the United States,285342,4469146,DEV
+The city of Greensboro is in Haiti.,0,Greensboro,Haiti,the United States,285342,4469146,DEV
+The city of Groznyy is in Russia.,1,Groznyy,Russia,Russia,297137,558418,DEV
+The city of Groznyy is in Denmark.,0,Groznyy,Denmark,Russia,297137,558418,DEV
+The city of Guarenas is in Venezuela.,1,Guarenas,Venezuela,Venezuela,248588,3640049,TEST
+The city of Guarenas is in Romania.,0,Guarenas,Romania,Venezuela,248588,3640049,TEST
+The city of Guatire is in Venezuela.,1,Guatire,Venezuela,Venezuela,227666,3639898,TEST
+The city of Guatire is in Togo.,0,Guatire,Togo,Venezuela,227666,3639898,TEST
+The city of Gujrat is in Pakistan.,1,Gujrat,Pakistan,Pakistan,301506,1177654,TEST
+The city of Gujrat is in Turkey.,0,Gujrat,Turkey,Pakistan,301506,1177654,TEST
+The city of Gumi is in South Korea.,1,Gumi,South Korea,South Korea,427770,1842225,TEST
+The city of Gumi is in Azerbaijan.,0,Gumi,Azerbaijan,South Korea,427770,1842225,TEST
+The city of Gunan is in China.,1,Gunan,China,China,208010,1809380,DEV
+The city of Gunan is in Côte d'Ivoire.,0,Gunan,Côte d'Ivoire,China,208010,1809380,DEV
+The city of Gunpo is in South Korea.,1,Gunpo,South Korea,South Korea,286485,1842030,TEST
+The city of Gunpo is in Guinea.,0,Gunpo,Guinea,South Korea,286485,1842030,TEST
+The city of Gunsan is in South Korea.,1,Gunsan,South Korea,South Korea,243406,1842025,DEV
+The city of Gunsan is in Mongolia.,0,Gunsan,Mongolia,South Korea,243406,1842025,DEV
+The city of Gusau is in Nigeria.,1,Gusau,Nigeria,Nigeria,226857,2339937,TEST
+The city of Gusau is in Guinea.,0,Gusau,Guinea,Nigeria,226857,2339937,TEST
+The city of Guyuan is in China.,1,Guyuan,China,China,411854,1809152,TEST
+The city of Guyuan is in Chad.,0,Guyuan,Chad,China,411854,1809152,TEST
+The city of Gwangmyeong is in South Korea.,1,Gwangmyeong,South Korea,South Korea,357545,1948005,DEV
+The city of Gwangmyeong is in Indonesia.,0,Gwangmyeong,Indonesia,South Korea,357545,1948005,DEV
+The city of Haeju is in North Korea.,1,Haeju,North Korea,North Korea,222396,1877615,DEV
+The city of Haeju is in Latvia.,0,Haeju,Latvia,North Korea,222396,1877615,DEV
+The city of Hafar Al-Batin is in Saudi Arabia.,1,Hafar Al-Batin,Saudi Arabia,Saudi Arabia,271642,106297,DEV
+The city of Hafar Al-Batin is in Cameroon.,0,Hafar Al-Batin,Cameroon,Saudi Arabia,271642,106297,DEV
+The city of Hamburg-Mitte is in Germany.,1,Hamburg-Mitte,Germany,Germany,301231,2911288,DEV
+The city of Hamburg-Mitte is in Honduras.,0,Hamburg-Mitte,Honduras,Germany,301231,2911288,DEV
+The city of Hamburg-Nord is in Germany.,1,Hamburg-Nord,Germany,Germany,315514,8354626,DEV
+The city of Hamburg-Nord is in Iran.,0,Hamburg-Nord,Iran,Germany,315514,8354626,DEV
+The city of Hanam is in South Korea.,1,Hanam,South Korea,South Korea,254415,1897007,TEST
+The city of Hanam is in Kyrgyzstan.,0,Hanam,Kyrgyzstan,South Korea,254415,1897007,TEST
+The city of Hargeysa is in Somalia.,1,Hargeysa,Somalia,Somalia,477876,57289,TEST
+The city of Hargeysa is in Morocco.,0,Hargeysa,Morocco,Somalia,477876,57289,TEST
+The city of Hawassa is in Ethiopia.,1,Hawassa,Ethiopia,Ethiopia,403288,343137,TEST
+The city of Hawassa is in Croatia.,0,Hawassa,Croatia,Ethiopia,403288,343137,TEST
+The city of Hechi is in China.,1,Hechi,China,China,330131,12358476,TEST
+The city of Hechi is in Latvia.,0,Hechi,Latvia,China,330131,12358476,TEST
+The city of Heroica Matamoros is in Mexico.,1,Heroica Matamoros,Mexico,Mexico,449815,3523466,TEST
+The city of Heroica Matamoros is in India.,0,Heroica Matamoros,India,Mexico,449815,3523466,TEST
+The city of Hiratsuka is in Japan.,1,Hiratsuka,Japan,Japan,257316,1862462,TEST
+The city of Hiratsuka is in Uzbekistan.,0,Hiratsuka,Uzbekistan,Japan,257316,1862462,TEST
+The city of Hisar is in India.,1,Hisar,India,India,296436,1270022,TEST
+The city of Hisar is in Chad.,0,Hisar,Chad,India,296436,1270022,TEST
+The city of Horlivka is in Ukraine.,1,Horlivka,Ukraine,Ukraine,239828,707753,DEV
+The city of Horlivka is in Burundi.,0,Horlivka,Burundi,Ukraine,239828,707753,DEV
+The city of Hrodna is in Belarus.,1,Hrodna,Belarus,Belarus,373547,627904,TEST
+The city of Hrodna is in Colombia.,0,Hrodna,Colombia,Belarus,373547,627904,TEST
+The city of Huancayo is in Peru.,1,Huancayo,Peru,Peru,456250,3939459,TEST
+The city of Huancayo is in Nigeria.,0,Huancayo,Nigeria,Peru,456250,3939459,TEST
+The city of Hulunbuir is in China.,1,Hulunbuir,China,China,349400,12548253,TEST
+The city of Hulunbuir is in Sudan.,0,Hulunbuir,Sudan,China,349400,12548253,TEST
+The city of Huntington Beach is in the United States.,1,Huntington Beach,the United States,the United States,201899,5358705,DEV
+The city of Huntington Beach is in Kyrgyzstan.,0,Huntington Beach,Kyrgyzstan,the United States,201899,5358705,DEV
+The city of Hurghada is in Egypt.,1,Hurghada,Egypt,Egypt,207132,361291,TEST
+The city of Hurghada is in the Republic of the Congo.,0,Hurghada,the Republic of the Congo,Egypt,207132,361291,TEST
+The city of Ibarra is in Ecuador.,1,Ibarra,Ecuador,Ecuador,221149,3655673,TEST
+The city of Ibarra is in Russia.,0,Ibarra,Russia,Ecuador,221149,3655673,TEST
+The city of Ibb is in Yemen.,1,Ibb,Yemen,Yemen,234837,74477,TEST
+The city of Ibb is in Argentina.,0,Ibb,Argentina,Yemen,234837,74477,TEST
+The city of Ica is in Peru.,1,Ica,Peru,Peru,282407,3938527,TEST
+The city of Ica is in the Republic of the Congo.,0,Ica,the Republic of the Congo,Peru,282407,3938527,TEST
+The city of Ichihara is in Japan.,1,Ichihara,Japan,Japan,283531,2112664,DEV
+The city of Ichihara is in Peru.,0,Ichihara,Peru,Japan,283531,2112664,DEV
+The city of Ichinomiya is in Japan.,1,Ichinomiya,Japan,Japan,379654,1861949,DEV
+The city of Ichinomiya is in Yemen.,0,Ichinomiya,Yemen,Japan,379654,1861949,DEV
+The city of Ijebu-Ode is in Nigeria.,1,Ijebu-Ode,Nigeria,Nigeria,209175,2338400,DEV
+The city of Ijebu-Ode is in Benin.,0,Ijebu-Ode,Benin,Nigeria,209175,2338400,DEV
+The city of Ikeja is in Nigeria.,1,Ikeja,Nigeria,Nigeria,313196,2338313,TEST
+The city of Ikeja is in Belarus.,0,Ikeja,Belarus,Nigeria,313196,2338313,TEST
+The city of Ikire is in Nigeria.,1,Ikire,Nigeria,Nigeria,222160,2338273,TEST
+The city of Ikire is in Armenia.,0,Ikire,Armenia,Nigeria,222160,2338273,TEST
+The city of Ikot Ekpene is in Nigeria.,1,Ikot Ekpene,Nigeria,Nigeria,254806,2338106,DEV
+The city of Ikot Ekpene is in Zimbabwe.,0,Ikot Ekpene,Zimbabwe,Nigeria,254806,2338106,DEV
+The city of Iksan is in South Korea.,1,Iksan,South Korea,South Korea,307000,1843491,DEV
+The city of Iksan is in Cameroon.,0,Iksan,Cameroon,South Korea,307000,1843491,DEV
+The city of Ilesa is in Nigeria.,1,Ilesa,Nigeria,Nigeria,277904,2337704,TEST
+The city of Ilesa is in Nepal.,0,Ilesa,Nepal,Nigeria,277904,2337704,TEST
+The city of Iligan is in the Philippines.,1,Iligan,the Philippines,the Philippines,342618,1711084,DEV
+The city of Iligan is in Turkey.,0,Iligan,Turkey,the Philippines,342618,1711084,DEV
+The city of Iligan City is in the Philippines.,1,Iligan City,the Philippines,the Philippines,312323,1711082,DEV
+The city of Iligan City is in Vietnam.,0,Iligan City,Vietnam,the Philippines,312323,1711082,DEV
+The city of Iloilo is in the Philippines.,1,Iloilo,the Philippines,the Philippines,387681,1711005,TEST
+The city of Iloilo is in Chile.,0,Iloilo,Chile,the Philippines,387681,1711005,TEST
+The city of Imus is in the Philippines.,1,Imus,the Philippines,the Philippines,216099,1710914,TEST
+The city of Imus is in Somalia.,0,Imus,Somalia,the Philippines,216099,1710914,TEST
+The city of Ipatinga is in Brazil.,1,Ipatinga,Brazil,Brazil,228746,3461144,TEST
+The city of Ipatinga is in the United Arab Emirates.,0,Ipatinga,the United Arab Emirates,Brazil,228746,3461144,TEST
+The city of Iquitos is in Peru.,1,Iquitos,Peru,Peru,377609,3696183,DEV
+The city of Iquitos is in Niger.,0,Iquitos,Niger,Peru,377609,3696183,DEV
+The city of Irapuato is in Mexico.,1,Irapuato,Mexico,Mexico,380941,4004330,DEV
+The city of Irapuato is in Romania.,0,Irapuato,Romania,Mexico,380941,4004330,DEV
+The city of Ironville is in the United States.,1,Ironville,the United States,the United States,288649,4295940,TEST
+The city of Ironville is in Iran.,0,Ironville,Iran,the United States,288649,4295940,TEST
+The city of Irving is in the United States.,1,Irving,the United States,the United States,236607,4700168,TEST
+The city of Irving is in Togo.,0,Irving,Togo,the United States,236607,4700168,TEST
+The city of Isfara is in Tajikistan.,1,Isfara,Tajikistan,Tajikistan,274000,1514896,DEV
+The city of Isfara is in Brazil.,0,Isfara,Brazil,Tajikistan,274000,1514896,DEV
+The city of Ismailia is in Egypt.,1,Ismailia,Egypt,Egypt,429465,361055,TEST
+The city of Ismailia is in Myanmar.,0,Ismailia,Myanmar,Egypt,429465,361055,TEST
+The city of Istaravshan is in Tajikistan.,1,Istaravshan,Tajikistan,Tajikistan,273500,1220253,TEST
+The city of Istaravshan is in Argentina.,0,Istaravshan,Argentina,Tajikistan,273500,1220253,TEST
+The city of Itabuna is in Brazil.,1,Itabuna,Brazil,Brazil,205660,3460949,TEST
+The city of Itabuna is in Rwanda.,0,Itabuna,Rwanda,Brazil,205660,3460949,TEST
+The city of Itapevi is in Brazil.,1,Itapevi,Brazil,Brazil,240961,3460718,DEV
+The city of Itapevi is in Iraq.,0,Itapevi,Iraq,Brazil,240961,3460718,DEV
+The city of Itaquaquecetuba is in Brazil.,1,Itaquaquecetuba,Brazil,Brazil,336679,3460644,TEST
+The city of Itaquaquecetuba is in Cuba.,0,Itaquaquecetuba,Cuba,Brazil,336679,3460644,TEST
+The city of Ivano-Frankivsk is in Ukraine.,1,Ivano-Frankivsk,Ukraine,Ukraine,238196,707471,TEST
+The city of Ivano-Frankivsk is in Kenya.,0,Ivano-Frankivsk,Kenya,Ukraine,238196,707471,TEST
+The city of Ivanovo is in Russia.,1,Ivanovo,Russia,Russia,406113,555312,DEV
+The city of Ivanovo is in Syria.,0,Ivanovo,Syria,Russia,406113,555312,DEV
+The city of Iwaki is in Japan.,1,Iwaki,Japan,Japan,357309,2112539,DEV
+The city of Iwaki is in Burkina Faso.,0,Iwaki,Burkina Faso,Japan,357309,2112539,DEV
+The city of Iwo is in Nigeria.,1,Iwo,Nigeria,Nigeria,250443,2336905,DEV
+The city of Iwo is in Nicaragua.,0,Iwo,Nicaragua,Nigeria,250443,2336905,DEV
+The city of Ixtapaluca is in Mexico.,1,Ixtapaluca,Mexico,Mexico,322271,3526682,DEV
+The city of Ixtapaluca is in Nigeria.,0,Ixtapaluca,Nigeria,Mexico,322271,3526682,DEV
+The city of Iztacalco is in Mexico.,1,Iztacalco,Mexico,Mexico,384326,3526700,TEST
+The city of Iztacalco is in Somalia.,0,Iztacalco,Somalia,Mexico,384326,3526700,TEST
+The city of Jalgaon is in India.,1,Jalgaon,India,India,429298,1269407,TEST
+The city of Jalgaon is in North Korea.,0,Jalgaon,North Korea,India,429298,1269407,TEST
+The city of Jammu is in India.,1,Jammu,India,India,465567,1269321,TEST
+The city of Jammu is in Oman.,0,Jammu,Oman,India,465567,1269321,TEST
+The city of Jayapura is in Indonesia.,1,Jayapura,Indonesia,Indonesia,404004,2082600,TEST
+The city of Jayapura is in Italy.,0,Jayapura,Italy,Indonesia,404004,2082600,TEST
+The city of Jeju City is in South Korea.,1,Jeju City,South Korea,South Korea,486306,1846266,TEST
+The city of Jeju City is in Belarus.,0,Jeju City,Belarus,South Korea,486306,1846266,TEST
+The city of Jember is in Indonesia.,1,Jember,Indonesia,Indonesia,298585,1642588,TEST
+The city of Jember is in Saudi Arabia.,0,Jember,Saudi Arabia,Indonesia,298585,1642588,TEST
+The city of Jersey City is in the United States.,1,Jersey City,the United States,the United States,264290,5099836,TEST
+The city of Jersey City is in Sudan.,0,Jersey City,Sudan,the United States,264290,5099836,TEST
+The city of Jessore is in Bangladesh.,1,Jessore,Bangladesh,Bangladesh,243987,1336140,TEST
+The city of Jessore is in Pakistan.,0,Jessore,Pakistan,Bangladesh,243987,1336140,TEST
+The city of Jhang Sadr is in Pakistan.,1,Jhang Sadr,Pakistan,Pakistan,341210,1175892,TEST
+The city of Jhang Sadr is in Latvia.,0,Jhang Sadr,Latvia,Pakistan,341210,1175892,TEST
+The city of Jijiga is in Ethiopia.,1,Jijiga,Ethiopia,Ethiopia,483000,333795,DEV
+The city of Jijiga is in Poland.,0,Jijiga,Poland,Ethiopia,483000,333795,DEV
+The city of Jimeta is in Nigeria.,1,Jimeta,Nigeria,Nigeria,248148,2336056,TEST
+The city of Jimeta is in Australia.,0,Jimeta,Australia,Nigeria,248148,2336056,TEST
+The city of Jimma is in Ethiopia.,1,Jimma,Ethiopia,Ethiopia,239022,333772,DEV
+The city of Jimma is in Somalia.,0,Jimma,Somalia,Ethiopia,239022,333772,DEV
+The city of Jingdezhen is in China.,1,Jingdezhen,China,China,473561,1805680,TEST
+The city of Jingdezhen is in Tanzania.,0,Jingdezhen,Tanzania,China,473561,1805680,TEST
+The city of Jingling is in China.,1,Jingling,China,China,224871,1805618,DEV
+The city of Jingling is in Paraguay.,0,Jingling,Paraguay,China,224871,1805618,DEV
+The city of Jinzhou is in China.,1,Jinzhou,China,China,215386,1805298,TEST
+The city of Jinzhou is in Bangladesh.,0,Jinzhou,Bangladesh,China,215386,1805298,TEST
+The city of Joinville is in Brazil.,1,Joinville,Brazil,Brazil,461304,3459712,DEV
+The city of Joinville is in Nepal.,0,Joinville,Nepal,Brazil,461304,3459712,DEV
+The city of Juazeiro do Norte is in Brazil.,1,Juazeiro do Norte,Brazil,Brazil,225230,3397147,TEST
+The city of Juazeiro do Norte is in Colombia.,0,Juazeiro do Norte,Colombia,Brazil,225230,3397147,TEST
+The city of Juliaca is in Peru.,1,Juliaca,Peru,Peru,245675,3937513,DEV
+The city of Juliaca is in Iraq.,0,Juliaca,Iraq,Peru,245675,3937513,DEV
+The city of Kaliningrad is in Russia.,1,Kaliningrad,Russia,Russia,475056,554234,DEV
+The city of Kaliningrad is in Tajikistan.,0,Kaliningrad,Tajikistan,Russia,475056,554234,DEV
+The city of Kamyanske is in Ukraine.,1,Kamyanske,Ukraine,Ukraine,226845,709932,DEV
+The city of Kamyanske is in Pakistan.,0,Kamyanske,Pakistan,Ukraine,226845,709932,DEV
+The city of Kananga is in the Democratic Republic of the Congo.,1,Kananga,the Democratic Republic of the Congo,the Democratic Republic of the Congo,463546,214481,DEV
+The city of Kananga is in Nigeria.,0,Kananga,Nigeria,the Democratic Republic of the Congo,463546,214481,DEV
+The city of Kanazawa is in Japan.,1,Kanazawa,Japan,Japan,466029,1860243,TEST
+The city of Kanazawa is in Cuba.,0,Kanazawa,Cuba,Japan,466029,1860243,TEST
+The city of Kanggye is in North Korea.,1,Kanggye,North Korea,North Korea,209530,2043572,TEST
+The city of Kanggye is in Lithuania.,0,Kanggye,Lithuania,North Korea,209530,2043572,TEST
+The city of Karagandy is in Kazakhstan.,1,Karagandy,Kazakhstan,Kazakhstan,497777,609655,DEV
+The city of Karagandy is in Chile.,0,Karagandy,Chile,Kazakhstan,497777,609655,DEV
+The city of Karamay is in China.,1,Karamay,China,China,261445,1529401,TEST
+The city of Karamay is in Guinea.,0,Karamay,Guinea,China,261445,1529401,TEST
+The city of Karlsruhe is in Germany.,1,Karlsruhe,Germany,Germany,283799,2892794,DEV
+The city of Karlsruhe is in Norway.,0,Karlsruhe,Norway,Germany,283799,2892794,DEV
+The city of Kashiwa is in Japan.,1,Kashiwa,Japan,Japan,433436,1859924,DEV
+The city of Kashiwa is in Malawi.,0,Kashiwa,Malawi,Japan,433436,1859924,DEV
+The city of Kassala is in Sudan.,1,Kassala,Sudan,Sudan,401477,372753,DEV
+The city of Kassala is in Eritrea.,0,Kassala,Eritrea,Sudan,401477,372753,DEV
+The city of Kasukabe is in Japan.,1,Kasukabe,Japan,Japan,206915,1859884,TEST
+The city of Kasukabe is in Cuba.,0,Kasukabe,Cuba,Japan,206915,1859884,TEST
+The city of Kasur is in Pakistan.,1,Kasur,Pakistan,Pakistan,290643,1174625,DEV
+The city of Kasur is in Kenya.,0,Kasur,Kenya,Pakistan,290643,1174625,DEV
+The city of Katowice is in Poland.,1,Katowice,Poland,Poland,317316,3096472,TEST
+The city of Katowice is in Tajikistan.,0,Katowice,Tajikistan,Poland,317316,3096472,TEST
+The city of Katsina is in Nigeria.,1,Katsina,Nigeria,Nigeria,432149,2334802,TEST
+The city of Katsina is in Malaysia.,0,Katsina,Malaysia,Nigeria,432149,2334802,TEST
+The city of Kaunas is in Lithuania.,1,Kaunas,Lithuania,Lithuania,289380,598316,TEST
+The city of Kaunas is in Armenia.,0,Kaunas,Armenia,Lithuania,289380,598316,TEST
+The city of Kenitra is in Morocco.,1,Kenitra,Morocco,Morocco,366570,2544571,TEST
+The city of Kenitra is in Germany.,0,Kenitra,Germany,Morocco,366570,2544571,TEST
+The city of Khamis Mushait is in Saudi Arabia.,1,Khamis Mushait,Saudi Arabia,Saudi Arabia,387553,105072,TEST
+The city of Khamis Mushait is in Guinea.,0,Khamis Mushait,Guinea,Saudi Arabia,387553,105072,TEST
+The city of Kherson is in Ukraine.,1,Kherson,Ukraine,Ukraine,283649,706448,TEST
+The city of Kherson is in Venezuela.,0,Kherson,Venezuela,Ukraine,283649,706448,TEST
+The city of Khimki is in Russia.,1,Khimki,Russia,Russia,239967,550280,TEST
+The city of Khimki is in India.,0,Khimki,India,Russia,239967,550280,TEST
+The city of Khmelnytskyi is in Ukraine.,1,Khmelnytskyi,Ukraine,Ukraine,274582,706369,TEST
+The city of Khmelnytskyi is in Cameroon.,0,Khmelnytskyi,Cameroon,Ukraine,274582,706369,TEST
+The city of Khorramabad is in Iran.,1,Khorramabad,Iran,Iran,329825,127349,TEST
+The city of Khorramabad is in Yemen.,0,Khorramabad,Yemen,Iran,329825,127349,TEST
+The city of Khorramshahr is in Iran.,1,Khorramshahr,Iran,Iran,330606,127319,TEST
+The city of Khorramshahr is in Ethiopia.,0,Khorramshahr,Ethiopia,Iran,330606,127319,TEST
+The city of Kiel is in Germany.,1,Kiel,Germany,Germany,246601,2891122,TEST
+The city of Kiel is in Thailand.,0,Kiel,Thailand,Germany,246601,2891122,TEST
+The city of Kielce is in Poland.,1,Kielce,Poland,Poland,208598,769250,TEST
+The city of Kielce is in Lebanon.,0,Kielce,Lebanon,Poland,208598,769250,TEST
+The city of Kikuyu is in Kenya.,1,Kikuyu,Kenya,Kenya,323881,192126,DEV
+The city of Kikuyu is in Moldova.,0,Kikuyu,Moldova,Kenya,323881,192126,DEV
+The city of Kismayo is in Somalia.,1,Kismayo,Somalia,Somalia,234852,55671,TEST
+The city of Kismayo is in Bosnia and Herzegovina.,0,Kismayo,Bosnia and Herzegovina,Somalia,234852,55671,TEST
+The city of Kisumu is in Kenya.,1,Kisumu,Kenya,Kenya,344487,191245,DEV
+The city of Kisumu is in Zimbabwe.,0,Kisumu,Zimbabwe,Kenya,344487,191245,DEV
+The city of Kitchener is in Canada.,1,Kitchener,Canada,Canada,256885,5992996,DEV
+The city of Kitchener is in Ghana.,0,Kitchener,Ghana,Canada,256885,5992996,DEV
+The city of Kitwe is in Zambia.,1,Kitwe,Zambia,Zambia,400914,911148,TEST
+The city of Kitwe is in Madagascar.,0,Kitwe,Madagascar,Zambia,400914,911148,TEST
+The city of Kolwezi is in the Democratic Republic of the Congo.,1,Kolwezi,the Democratic Republic of the Congo,the Democratic Republic of the Congo,418000,922773,TEST
+The city of Kolwezi is in Gabon.,0,Kolwezi,Gabon,the Democratic Republic of the Congo,418000,922773,TEST
+The city of Konibodom is in Tajikistan.,1,Konibodom,Tajikistan,Tajikistan,211100,1514891,TEST
+The city of Konibodom is in Jordan.,0,Konibodom,Jordan,Tajikistan,211100,1514891,TEST
+The city of Korhogo is in Côte d'Ivoire.,1,Korhogo,Côte d'Ivoire,Côte d'Ivoire,440926,2286304,TEST
+The city of Korhogo is in Ukraine.,0,Korhogo,Ukraine,Côte d'Ivoire,440926,2286304,TEST
+The city of Koshigaya is in Japan.,1,Koshigaya,Japan,Japan,345353,1858729,TEST
+The city of Koshigaya is in the United States.,0,Koshigaya,the United States,Japan,345353,1858729,TEST
+The city of Kostanay is in Kazakhstan.,1,Kostanay,Kazakhstan,Kazakhstan,210000,1519928,DEV
+The city of Kostanay is in Armenia.,0,Kostanay,Armenia,Kazakhstan,210000,1519928,DEV
+The city of Kosti is in Sudan.,1,Kosti,Sudan,Sudan,345068,371760,TEST
+The city of Kosti is in Australia.,0,Kosti,Australia,Sudan,345068,371760,TEST
+The city of Kostroma is in Russia.,1,Kostroma,Russia,Russia,277280,543878,DEV
+The city of Kostroma is in Uganda.,0,Kostroma,Uganda,Russia,277280,543878,DEV
+The city of Krefeld is in Germany.,1,Krefeld,Germany,Germany,237984,2884509,TEST
+The city of Krefeld is in Oman.,0,Krefeld,Oman,Germany,237984,2884509,TEST
+The city of Kremenchuk is in Ukraine.,1,Kremenchuk,Ukraine,Ukraine,217710,704147,TEST
+The city of Kremenchuk is in South Korea.,0,Kremenchuk,South Korea,Ukraine,217710,704147,TEST
+The city of Kropyvnytskyy is in Ukraine.,1,Kropyvnytskyy,Ukraine,Ukraine,219676,705812,TEST
+The city of Kropyvnytskyy is in Turkmenistan.,0,Kropyvnytskyy,Turkmenistan,Ukraine,219676,705812,TEST
+The city of Krugersdorp is in South Africa.,1,Krugersdorp,South Africa,South Africa,378821,986822,DEV
+The city of Krugersdorp is in Eritrea.,0,Krugersdorp,Eritrea,South Africa,378821,986822,DEV
+The city of Kuala Terengganu is in Malaysia.,1,Kuala Terengganu,Malaysia,Malaysia,426500,1734705,TEST
+The city of Kuala Terengganu is in Benin.,0,Kuala Terengganu,Benin,Malaysia,426500,1734705,TEST
+The city of Kuching is in Malaysia.,1,Kuching,Malaysia,Malaysia,402738,1735634,TEST
+The city of Kuching is in China.,0,Kuching,China,Malaysia,402738,1735634,TEST
+The city of Kurgan is in Russia.,1,Kurgan,Russia,Russia,309285,1501321,TEST
+The city of Kurgan is in Denmark.,0,Kurgan,Denmark,Russia,309285,1501321,TEST
+The city of Kurnool is in India.,1,Kurnool,India,India,460184,1265491,DEV
+The city of Kurnool is in Eritrea.,0,Kurnool,Eritrea,India,460184,1265491,DEV
+The city of Kyain Seikgyi Township is in Myanmar.,1,Kyain Seikgyi Township,Myanmar,Myanmar,246065,11810635,DEV
+The city of Kyain Seikgyi Township is in Iran.,0,Kyain Seikgyi Township,Iran,Myanmar,246065,11810635,DEV
+The city of Kyzylorda is in Kazakhstan.,1,Kyzylorda,Kazakhstan,Kazakhstan,354800,1519922,TEST
+The city of Kyzylorda is in Ethiopia.,0,Kyzylorda,Ethiopia,Kazakhstan,354800,1519922,TEST
+The city of La Ceiba is in Honduras.,1,La Ceiba,Honduras,Honduras,222055,3608248,TEST
+The city of La Ceiba is in the Dominican Republic.,0,La Ceiba,the Dominican Republic,Honduras,222055,3608248,TEST
+The city of Ladner is in Canada.,1,Ladner,Canada,Canada,200000,7602078,TEST
+The city of Ladner is in Uganda.,0,Ladner,Uganda,Canada,200000,7602078,TEST
+The city of Lankaran is in Azerbaijan.,1,Lankaran,Azerbaijan,Azerbaijan,240300,147622,DEV
+The city of Lankaran is in Afghanistan.,0,Lankaran,Afghanistan,Azerbaijan,240300,147622,DEV
+The city of La Pintana is in Chile.,1,La Pintana,Chile,Chile,201178,7281017,TEST
+The city of La Pintana is in Turkey.,0,La Pintana,Turkey,Chile,201178,7281017,TEST
+The city of Lapu-Lapu City is in the Philippines.,1,Lapu-Lapu City,the Philippines,the Philippines,350467,1707267,DEV
+The city of Lapu-Lapu City is in Belgium.,0,Lapu-Lapu City,Belgium,the Philippines,350467,1707267,DEV
+The city of Larkana is in Pakistan.,1,Larkana,Pakistan,Pakistan,364033,1172128,DEV
+The city of Larkana is in Brazil.,0,Larkana,Brazil,Pakistan,364033,1172128,DEV
+The city of La Romana is in the Dominican Republic.,1,La Romana,the Dominican Republic,the Dominican Republic,208437,3500957,TEST
+The city of La Romana is in Colombia.,0,La Romana,Colombia,the Dominican Republic,208437,3500957,TEST
+The city of Las Tunas is in Cuba.,1,Las Tunas,Cuba,Cuba,203684,3550598,TEST
+The city of Las Tunas is in Algeria.,0,Las Tunas,Algeria,Cuba,203684,3550598,TEST
+The city of Latacunga is in Ecuador.,1,Latacunga,Ecuador,Ecuador,205624,3654870,TEST
+The city of Latacunga is in Honduras.,0,Latacunga,Honduras,Ecuador,205624,3654870,TEST
+The city of Latur is in India.,1,Latur,India,India,348967,1265014,TEST
+The city of Latur is in Croatia.,0,Latur,Croatia,India,348967,1265014,TEST
+The city of Lekki is in Nigeria.,1,Lekki,Nigeria,Nigeria,401272,2332121,TEST
+The city of Lekki is in the Democratic Republic of the Congo.,0,Lekki,the Democratic Republic of the Congo,Nigeria,401272,2332121,TEST
+The city of Lianshan is in China.,1,Lianshan,China,China,313247,2036434,DEV
+The city of Lianshan is in Mali.,0,Lianshan,Mali,China,313247,2036434,DEV
+The city of Lichinga is in Mozambique.,1,Lichinga,Mozambique,Mozambique,213361,1043893,TEST
+The city of Lichinga is in Ecuador.,0,Lichinga,Ecuador,Mozambique,213361,1043893,TEST
+The city of Likasi is in the Democratic Republic of the Congo.,1,Likasi,the Democratic Republic of the Congo,the Democratic Republic of the Congo,422414,922741,TEST
+The city of Likasi is in Chad.,0,Likasi,Chad,the Democratic Republic of the Congo,422414,922741,TEST
+The city of Limeira is in Brazil.,1,Limeira,Brazil,Brazil,289665,3458575,DEV
+The city of Limeira is in Jamaica.,0,Limeira,Jamaica,Brazil,289665,3458575,DEV
+The city of Lipa City is in the Philippines.,1,Lipa City,the Philippines,the Philippines,212287,1706090,TEST
+The city of Lipa City is in Mexico.,0,Lipa City,Mexico,the Philippines,212287,1706090,TEST
+The city of Loa Janan is in Indonesia.,1,Loa Janan,Indonesia,Indonesia,212816,1637510,TEST
+The city of Loa Janan is in Togo.,0,Loa Janan,Togo,Indonesia,212816,1637510,TEST
+The city of Logan City is in Australia.,1,Logan City,Australia,Australia,326615,7281838,TEST
+The city of Logan City is in Lebanon.,0,Logan City,Lebanon,Australia,326615,7281838,TEST
+The city of Longueuil is in Canada.,1,Longueuil,Canada,Canada,229330,6059891,TEST
+The city of Longueuil is in France.,0,Longueuil,France,Canada,229330,6059891,TEST
+The city of Los Teques is in Venezuela.,1,Los Teques,Venezuela,Venezuela,252242,3633622,TEST
+The city of Los Teques is in the Philippines.,0,Los Teques,the Philippines,Venezuela,252242,3633622,TEST
+The city of Louisville is in the United States.,1,Louisville,the United States,the United States,243639,4299276,DEV
+The city of Louisville is in Kazakhstan.,0,Louisville,Kazakhstan,the United States,243639,4299276,DEV
+The city of Lublin is in Poland.,1,Lublin,Poland,Poland,360044,765876,DEV
+The city of Lublin is in Sweden.,0,Lublin,Sweden,Poland,360044,765876,DEV
+The city of Lubuklinggau is in Indonesia.,1,Lubuklinggau,Indonesia,Indonesia,234166,1637158,TEST
+The city of Lubuklinggau is in Zimbabwe.,0,Lubuklinggau,Zimbabwe,Indonesia,234166,1637158,TEST
+The city of Luhansk is in Ukraine.,1,Luhansk,Ukraine,Ukraine,397677,702658,TEST
+The city of Luhansk is in Ethiopia.,0,Luhansk,Ethiopia,Ukraine,397677,702658,TEST
+The city of Lutsk is in Ukraine.,1,Lutsk,Ukraine,Ukraine,215986,702569,TEST
+The city of Lutsk is in the Republic of the Congo.,0,Lutsk,the Republic of the Congo,Ukraine,215986,702569,TEST
+The city of Luxor is in Egypt.,1,Luxor,Egypt,Egypt,422407,360502,DEV
+The city of Luxor is in Mongolia.,0,Luxor,Mongolia,Egypt,422407,360502,DEV
+The city of Machala is in Ecuador.,1,Machala,Ecuador,Ecuador,289141,3654533,DEV
+The city of Machala is in Canada.,0,Machala,Canada,Ecuador,289141,3654533,DEV
+The city of Machida is in Japan.,1,Machida,Japan,Japan,399969,1857871,TEST
+The city of Machida is in Cameroon.,0,Machida,Cameroon,Japan,399969,1857871,TEST
+The city of Magdalena Contreras is in Mexico.,1,Magdalena Contreras,Mexico,Mexico,238431,3523760,TEST
+The city of Magdalena Contreras is in Colombia.,0,Magdalena Contreras,Colombia,Mexico,238431,3523760,TEST
+The city of Magdeburg is in Germany.,1,Magdeburg,Germany,Germany,235775,2874545,TEST
+The city of Magdeburg is in Nigeria.,0,Magdeburg,Nigeria,Germany,235775,2874545,TEST
+The city of Mahajanga is in Madagascar.,1,Mahajanga,Madagascar,Madagascar,246022,1062663,DEV
+The city of Mahajanga is in Mauritania.,0,Mahajanga,Mauritania,Madagascar,246022,1062663,DEV
+The city of Mahilyow is in Belarus.,1,Mahilyow,Belarus,Belarus,369200,625665,DEV
+The city of Mahilyow is in South Korea.,0,Mahilyow,South Korea,Belarus,369200,625665,DEV
+The city of Mainz is in Germany.,1,Mainz,Germany,Germany,217123,2874225,TEST
+The city of Mainz is in China.,0,Mainz,China,Germany,217123,2874225,TEST
+The city of Makiivka is in Ukraine.,1,Makiivka,Ukraine,Ukraine,338968,702320,TEST
+The city of Makiivka is in Guinea.,0,Makiivka,Guinea,Ukraine,338968,702320,TEST
+The city of Makurdi is in Nigeria.,1,Makurdi,Nigeria,Nigeria,292645,2331140,TEST
+The city of Makurdi is in Ukraine.,0,Makurdi,Ukraine,Nigeria,292645,2331140,TEST
+The city of Malir Cantonment is in Pakistan.,1,Malir Cantonment,Pakistan,Pakistan,300000,1171305,DEV
+The city of Malir Cantonment is in Chad.,0,Malir Cantonment,Chad,Pakistan,300000,1171305,DEV
+The city of Maltepe is in Turkey.,1,Maltepe,Turkey,Turkey,427040,741763,DEV
+The city of Maltepe is in Pakistan.,0,Maltepe,Pakistan,Turkey,427040,741763,DEV
+The city of Man is in Côte d'Ivoire.,1,Man,Côte d'Ivoire,Côte d'Ivoire,241969,2284647,DEV
+The city of Man is in Venezuela.,0,Man,Venezuela,Côte d'Ivoire,241969,2284647,DEV
+The city of Manado is in Indonesia.,1,Manado,Indonesia,Indonesia,451916,1636544,DEV
+The city of Manado is in Cameroon.,0,Manado,Cameroon,Indonesia,451916,1636544,DEV
+The city of Mandaluyong City is in the Philippines.,1,Mandaluyong City,the Philippines,the Philippines,425758,1701966,TEST
+The city of Mandaluyong City is in Germany.,0,Mandaluyong City,Germany,the Philippines,425758,1701966,TEST
+The city of Mandaue City is in the Philippines.,1,Mandaue City,the Philippines,the Philippines,331320,1701947,DEV
+The city of Mandaue City is in Sweden.,0,Mandaue City,Sweden,the Philippines,331320,1701947,DEV
+The city of Mangalore is in India.,1,Mangalore,India,India,417387,1263780,DEV
+The city of Mangalore is in Iraq.,0,Mangalore,Iraq,India,417387,1263780,DEV
+The city of Manisa is in Turkey.,1,Manisa,Turkey,Turkey,243971,304827,DEV
+The city of Manisa is in Afghanistan.,0,Manisa,Afghanistan,Turkey,243971,304827,DEV
+The city of Manizales is in Colombia.,1,Manizales,Colombia,Colombia,434403,3675443,TEST
+The city of Manizales is in Vietnam.,0,Manizales,Vietnam,Colombia,434403,3675443,TEST
+The city of Mannheim is in Germany.,1,Mannheim,Germany,Germany,307960,2873891,TEST
+The city of Mannheim is in Chad.,0,Mannheim,Chad,Germany,307960,2873891,TEST
+The city of Mansilingan is in the Philippines.,1,Mansilingan,the Philippines,the Philippines,454150,1701500,DEV
+The city of Mansilingan is in Gabon.,0,Mansilingan,Gabon,the Philippines,454150,1701500,DEV
+The city of Manta is in Ecuador.,1,Manta,Ecuador,Ecuador,264281,3654410,TEST
+The city of Manta is in Chile.,0,Manta,Chile,Ecuador,264281,3654410,TEST
+The city of Mantampay is in the Philippines.,1,Mantampay,the Philippines,the Philippines,265032,1701472,TEST
+The city of Mantampay is in Egypt.,0,Mantampay,Egypt,the Philippines,265032,1701472,TEST
+The city of Marcory is in Côte d'Ivoire.,1,Marcory,Côte d'Ivoire,Côte d'Ivoire,214061,2595323,TEST
+The city of Marcory is in Jamaica.,0,Marcory,Jamaica,Côte d'Ivoire,214061,2595323,TEST
+The city of Mardan is in Pakistan.,1,Mardan,Pakistan,Pakistan,300424,1170880,TEST
+The city of Mardan is in Japan.,0,Mardan,Japan,Pakistan,300424,1170880,TEST
+The city of Marienthal is in Germany.,1,Marienthal,Germany,Germany,287101,2911287,TEST
+The city of Marienthal is in Yemen.,0,Marienthal,Yemen,Germany,287101,2911287,TEST
+The city of Mariupol is in Ukraine.,1,Mariupol,Ukraine,Ukraine,431859,701822,TEST
+The city of Mariupol is in Myanmar.,0,Mariupol,Myanmar,Ukraine,431859,701822,TEST
+The city of Marka is in Somalia.,1,Marka,Somalia,Somalia,230100,54225,TEST
+The city of Marka is in Afghanistan.,0,Marka,Afghanistan,Somalia,230100,54225,TEST
+The city of Maroua is in Cameroon.,1,Maroua,Cameroon,Cameroon,319941,2228373,TEST
+The city of Maroua is in Cambodia.,0,Maroua,Cambodia,Cameroon,319941,2228373,TEST
+The city of Masan is in South Korea.,1,Masan,South Korea,South Korea,434371,1841246,DEV
+The city of Masan is in Russia.,0,Masan,Russia,South Korea,434371,1841246,DEV
+The city of Masina is in the Democratic Republic of the Congo.,1,Masina,the Democratic Republic of the Congo,the Democratic Republic of the Congo,485167,2593460,TEST
+The city of Masina is in Senegal.,0,Masina,Senegal,the Democratic Republic of the Congo,485167,2593460,TEST
+The city of Mathura is in India.,1,Mathura,India,India,330511,1263364,TEST
+The city of Mathura is in Finland.,0,Mathura,Finland,India,330511,1263364,TEST
+The city of Matsumoto is in Japan.,1,Matsumoto,Japan,Japan,239466,1857519,TEST
+The city of Matsumoto is in Myanmar.,0,Matsumoto,Myanmar,Japan,239466,1857519,TEST
+The city of Mau is in India.,1,Mau,India,India,246050,1263311,DEV
+The city of Mau is in Nepal.,0,Mau,Nepal,India,246050,1263311,DEV
+The city of Mawlamyine is in Myanmar.,1,Mawlamyine,Myanmar,Myanmar,438861,1308465,DEV
+The city of Mawlamyine is in Lithuania.,0,Mawlamyine,Lithuania,Myanmar,438861,1308465,DEV
+The city of Mbeya is in Tanzania.,1,Mbeya,Tanzania,Tanzania,291649,154380,TEST
+The city of Mbeya is in Finland.,0,Mbeya,Finland,Tanzania,291649,154380,TEST
+The city of Meads is in the United States.,1,Meads,the United States,the United States,288649,4300488,TEST
+The city of Meads is in Japan.,0,Meads,Japan,the United States,288649,4300488,TEST
+The city of Mek'ele is in Ethiopia.,1,Mek'ele,Ethiopia,Ethiopia,436910,331180,DEV
+The city of Mek'ele is in the Philippines.,0,Mek'ele,the Philippines,Ethiopia,436910,331180,DEV
+The city of Merkezefendi is in Turkey.,1,Merkezefendi,Turkey,Turkey,280341,11238838,DEV
+The city of Merkezefendi is in Tanzania.,0,Merkezefendi,Tanzania,Turkey,280341,11238838,DEV
+The city of Merlo is in Argentina.,1,Merlo,Argentina,Argentina,268961,3430697,DEV
+The city of Merlo is in Uganda.,0,Merlo,Uganda,Argentina,268961,3430697,DEV
+The city of Mesa is in the United States.,1,Mesa,the United States,the United States,471825,5304391,TEST
+The city of Mesa is in Iran.,0,Mesa,Iran,the United States,471825,5304391,TEST
+The city of Messina is in Italy.,1,Messina,Italy,Italy,219948,2524170,DEV
+The city of Messina is in Oman.,0,Messina,Oman,Italy,219948,2524170,DEV
+The city of Miguel Hidalgo is in Mexico.,1,Miguel Hidalgo,Mexico,Mexico,372889,3827408,TEST
+The city of Miguel Hidalgo is in Guinea.,0,Miguel Hidalgo,Guinea,Mexico,372889,3827408,TEST
+The city of Mingora is in Pakistan.,1,Mingora,Pakistan,Pakistan,279914,1170395,TEST
+The city of Mingora is in Cambodia.,0,Mingora,Cambodia,Pakistan,279914,1170395,TEST
+The city of Minna is in Nigeria.,1,Minna,Nigeria,Nigeria,291905,2330100,DEV
+The city of Minna is in Madagascar.,0,Minna,Madagascar,Nigeria,291905,2330100,DEV
+The city of Miri is in Malaysia.,1,Miri,Malaysia,Malaysia,300543,1738050,DEV
+The city of Miri is in Zambia.,0,Miri,Zambia,Malaysia,300543,1738050,DEV
+The city of Mirpur Khas is in Pakistan.,1,Mirpur Khas,Pakistan,Pakistan,215657,1170295,TEST
+The city of Mirpur Khas is in South Africa.,0,Mirpur Khas,South Africa,Pakistan,215657,1170295,TEST
+The city of Mito is in Japan.,1,Mito,Japan,Japan,246538,2111901,TEST
+The city of Mito is in Yemen.,0,Mito,Yemen,Japan,246538,2111901,TEST
+The city of Mixco is in Guatemala.,1,Mixco,Guatemala,Guatemala,465773,3592519,TEST
+The city of Mixco is in Uganda.,0,Mixco,Uganda,Guatemala,465773,3592519,TEST
+The city of Mokolo is in Cameroon.,1,Mokolo,Cameroon,Cameroon,275239,2226275,TEST
+The city of Mokolo is in Lithuania.,0,Mokolo,Lithuania,Cameroon,275239,2226275,TEST
+The city of Mokpo is in South Korea.,1,Mokpo,South Korea,South Korea,268402,1841066,DEV
+The city of Mokpo is in Kyrgyzstan.,0,Mokpo,Kyrgyzstan,South Korea,268402,1841066,DEV
+The city of Monclova is in Mexico.,1,Monclova,Mexico,Mexico,215271,3995523,TEST
+The city of Monclova is in Azerbaijan.,0,Monclova,Azerbaijan,Mexico,215271,3995523,TEST
+The city of Monghyr is in India.,1,Monghyr,India,India,203163,1262482,TEST
+The city of Monghyr is in Tanzania.,0,Monghyr,Tanzania,India,203163,1262482,TEST
+The city of Montes Claros is in Brazil.,1,Montes Claros,Brazil,Brazil,332379,3456814,DEV
+The city of Montes Claros is in Algeria.,0,Montes Claros,Algeria,Brazil,332379,3456814,DEV
+The city of Montpellier is in France.,1,Montpellier,France,France,248252,2992166,TEST
+The city of Montpellier is in Mexico.,0,Montpellier,Mexico,France,248252,2992166,TEST
+The city of Moreno Valley is in the United States.,1,Moreno Valley,the United States,the United States,204198,5374732,TEST
+The city of Moreno Valley is in Cuba.,0,Moreno Valley,Cuba,the United States,204198,5374732,TEST
+The city of Morogoro is in Tanzania.,1,Morogoro,Tanzania,Tanzania,250902,153220,TEST
+The city of Morogoro is in Denmark.,0,Morogoro,Denmark,Tanzania,250902,153220,TEST
+The city of Mubi is in Nigeria.,1,Mubi,Nigeria,Nigeria,225705,2329821,TEST
+The city of Mubi is in Cambodia.,0,Mubi,Cambodia,Nigeria,225705,2329821,TEST
+The city of Mueang Nonthaburi is in Thailand.,1,Mueang Nonthaburi,Thailand,Thailand,254375,1608133,TEST
+The city of Mueang Nonthaburi is in Bangladesh.,0,Mueang Nonthaburi,Bangladesh,Thailand,254375,1608133,TEST
+The city of Mulugu is in India.,1,Mulugu,India,India,297671,12165955,TEST
+The city of Mulugu is in Guinea.,0,Mulugu,Guinea,India,297671,12165955,TEST
+The city of Murmansk is in Russia.,1,Murmansk,Russia,Russia,295374,524305,TEST
+The city of Murmansk is in Rwanda.,0,Murmansk,Rwanda,Russia,295374,524305,TEST
+The city of Musaffah is in the United Arab Emirates.,1,Musaffah,the United Arab Emirates,the United Arab Emirates,243341,12042053,TEST
+The city of Musaffah is in Indonesia.,0,Musaffah,Indonesia,the United Arab Emirates,243341,12042053,TEST
+The city of Mutare is in Zimbabwe.,1,Mutare,Zimbabwe,Zimbabwe,224802,884979,DEV
+The city of Mutare is in Japan.,0,Mutare,Japan,Zimbabwe,224802,884979,DEV
+The city of Muzaffarnagar is in India.,1,Muzaffarnagar,India,India,349706,1262332,DEV
+The city of Muzaffarnagar is in Germany.,0,Muzaffarnagar,Germany,India,349706,1262332,DEV
+The city of Mykolayiv is in Ukraine.,1,Mykolayiv,Ukraine,Ukraine,470011,700569,DEV
+The city of Mykolayiv is in Indonesia.,0,Mykolayiv,Indonesia,Ukraine,470011,700569,DEV
+The city of Mymensingh is in Bangladesh.,1,Mymensingh,Bangladesh,Bangladesh,225126,1185162,DEV
+The city of Mymensingh is in Armenia.,0,Mymensingh,Armenia,Bangladesh,225126,1185162,DEV
+The city of Nacala is in Mozambique.,1,Nacala,Mozambique,Mozambique,225034,1035025,TEST
+The city of Nacala is in Eritrea.,0,Nacala,Eritrea,Mozambique,225034,1035025,TEST
+The city of Nagasaki is in Japan.,1,Nagasaki,Japan,Japan,407624,1856177,DEV
+The city of Nagasaki is in Eritrea.,0,Nagasaki,Eritrea,Japan,407624,1856177,DEV
+The city of Najaf is in Iraq.,1,Najaf,Iraq,Iraq,482576,98860,TEST
+The city of Najaf is in Iran.,0,Najaf,Iran,Iraq,482576,98860,TEST
+The city of Nakano is in Japan.,1,Nakano,Japan,Japan,344880,8715035,TEST
+The city of Nakano is in Nicaragua.,0,Nakano,Nicaragua,Japan,344880,8715035,TEST
+The city of Nakuru is in Kenya.,1,Nakuru,Kenya,Kenya,259903,184622,DEV
+The city of Nakuru is in Venezuela.,0,Nakuru,Venezuela,Kenya,259903,184622,DEV
+The city of Nalchik is in Russia.,1,Nalchik,Russia,Russia,239300,523523,DEV
+The city of Nalchik is in Bangladesh.,0,Nalchik,Bangladesh,Russia,239300,523523,DEV
+The city of Nantes is in France.,1,Nantes,France,France,318808,2990969,DEV
+The city of Nantes is in Indonesia.,0,Nantes,Indonesia,France,318808,2990969,DEV
+The city of Narsingdi is in Bangladesh.,1,Narsingdi,Bangladesh,Bangladesh,281080,1185117,TEST
+The city of Narsingdi is in Burundi.,0,Narsingdi,Burundi,Bangladesh,281080,1185117,TEST
+The city of Natore is in Bangladesh.,1,Natore,Bangladesh,Bangladesh,369138,7483813,TEST
+The city of Natore is in the United Arab Emirates.,0,Natore,the United Arab Emirates,Bangladesh,369138,7483813,TEST
+The city of Navotas is in the Philippines.,1,Navotas,the Philippines,the Philippines,249463,1697846,DEV
+The city of Navotas is in Finland.,0,Navotas,Finland,the Philippines,249463,1697846,DEV
+The city of Nawabshah is in Pakistan.,1,Nawabshah,Pakistan,Pakistan,229504,1169116,TEST
+The city of Nawabshah is in Moldova.,0,Nawabshah,Moldova,Pakistan,229504,1169116,TEST
+The city of Ndola is in Zambia.,1,Ndola,Zambia,Zambia,451246,901344,DEV
+The city of Ndola is in Kuwait.,0,Ndola,Kuwait,Zambia,451246,901344,DEV
+The city of Neiva is in Colombia.,1,Neiva,Colombia,Colombia,357392,3673899,DEV
+The city of Neiva is in Myanmar.,0,Neiva,Myanmar,Colombia,357392,3673899,DEV
+The city of Nellore is in India.,1,Nellore,India,India,404158,1261529,DEV
+The city of Nellore is in Croatia.,0,Nellore,Croatia,India,404158,1261529,DEV
+The city of Neue Neustadt is in Germany.,1,Neue Neustadt,Germany,Germany,226851,2864072,TEST
+The city of Neue Neustadt is in Pakistan.,0,Neue Neustadt,Pakistan,Germany,226851,2864072,TEST
+The city of Newark is in the United States.,1,Newark,the United States,the United States,281944,5101798,DEV
+The city of Newark is in Mauritania.,0,Newark,Mauritania,the United States,281944,5101798,DEV
+The city of New Cairo is in Egypt.,1,New Cairo,Egypt,Egypt,313139,7799991,TEST
+The city of New Cairo is in Myanmar.,0,New Cairo,Myanmar,Egypt,313139,7799991,TEST
+The city of Nha Trang is in Vietnam.,1,Nha Trang,Vietnam,Vietnam,283441,1572151,DEV
+The city of Nha Trang is in Cuba.,0,Nha Trang,Cuba,Vietnam,283441,1572151,DEV
+The city of Nice is in France.,1,Nice,France,France,342669,2990440,TEST
+The city of Nice is in North Korea.,0,Nice,North Korea,France,342669,2990440,TEST
+The city of Nizhnekamsk is in Russia.,1,Nizhnekamsk,Russia,Russia,234297,521118,DEV
+The city of Nizhnekamsk is in Belgium.,0,Nizhnekamsk,Belgium,Russia,234297,521118,DEV
+The city of Nizhnevartovsk is in Russia.,1,Nizhnevartovsk,Russia,Russia,244937,1497543,TEST
+The city of Nizhnevartovsk is in Lebanon.,0,Nizhnevartovsk,Lebanon,Russia,244937,1497543,TEST
+The city of Nizhny Tagil is in Russia.,1,Nizhny Tagil,Russia,Russia,381116,520494,DEV
+The city of Nizhny Tagil is in Chile.,0,Nizhny Tagil,Chile,Russia,381116,520494,DEV
+The city of Norfolk is in the United States.,1,Norfolk,the United States,the United States,246393,4776222,DEV
+The city of Norfolk is in Guinea.,0,Norfolk,Guinea,the United States,246393,4776222,DEV
+The city of Novo Hamburgo is in Brazil.,1,Novo Hamburgo,Brazil,Brazil,253841,3456068,TEST
+The city of Novo Hamburgo is in Zambia.,0,Novo Hamburgo,Zambia,Brazil,253841,3456068,TEST
+The city of Novorossiysk is in Russia.,1,Novorossiysk,Russia,Russia,241856,518255,TEST
+The city of Novorossiysk is in Moldova.,0,Novorossiysk,Moldova,Russia,241856,518255,TEST
+The city of Nuevo Laredo is in Mexico.,1,Nuevo Laredo,Mexico,Mexico,373725,3522551,TEST
+The city of Nuevo Laredo is in Belgium.,0,Nuevo Laredo,Belgium,Mexico,373725,3522551,TEST
+The city of Nukus is in Uzbekistan.,1,Nukus,Uzbekistan,Uzbekistan,332500,601294,DEV
+The city of Nukus is in the United Arab Emirates.,0,Nukus,the United Arab Emirates,Uzbekistan,332500,601294,DEV
+The city of Oakland is in the United States.,1,Oakland,the United States,the United States,419267,5378538,DEV
+The city of Oakland is in Benin.,0,Oakland,Benin,the United States,419267,5378538,DEV
+The city of Oaxaca is in Mexico.,1,Oaxaca,Mexico,Mexico,255029,3522507,DEV
+The city of Oaxaca is in Morocco.,0,Oaxaca,Morocco,Mexico,255029,3522507,DEV
+The city of Oberhausen is in Germany.,1,Oberhausen,Germany,Germany,219176,2860410,DEV
+The city of Oberhausen is in South Korea.,0,Oberhausen,South Korea,Germany,219176,2860410,DEV
+The city of Ogbomoso is in Nigeria.,1,Ogbomoso,Nigeria,Nigeria,433030,2327735,DEV
+The city of Ogbomoso is in Brazil.,0,Ogbomoso,Brazil,Nigeria,433030,2327735,DEV
+The city of Ojo de Agua is in Mexico.,1,Ojo de Agua,Mexico,Mexico,242272,3827598,TEST
+The city of Ojo de Agua is in Guinea.,0,Ojo de Agua,Guinea,Mexico,242272,3827598,TEST
+The city of Okanagan is in Canada.,1,Okanagan,Canada,Canada,297601,7281931,TEST
+The city of Okanagan is in Niger.,0,Okanagan,Niger,Canada,297601,7281931,TEST
+The city of Okara is in Pakistan.,1,Okara,Pakistan,Pakistan,223648,1168718,TEST
+The city of Okara is in Yemen.,0,Okara,Yemen,Pakistan,223648,1168718,TEST
+The city of Okene is in Nigeria.,1,Okene,Nigeria,Nigeria,479178,2327220,TEST
+The city of Okene is in Mozambique.,0,Okene,Mozambique,Nigeria,479178,2327220,TEST
+The city of Olongapo is in the Philippines.,1,Olongapo,the Philippines,the Philippines,221178,1697175,DEV
+The city of Olongapo is in the Republic of the Congo.,0,Olongapo,the Republic of the Congo,the Philippines,221178,1697175,DEV
+The city of Ondo is in Nigeria.,1,Ondo,Nigeria,Nigeria,257005,2326171,DEV
+The city of Ondo is in Burkina Faso.,0,Ondo,Burkina Faso,Nigeria,257005,2326171,DEV
+The city of Ooty is in India.,1,Ooty,India,India,233426,1253993,TEST
+The city of Ooty is in Rwanda.,0,Ooty,Rwanda,India,233426,1253993,TEST
+The city of Oradea is in Romania.,1,Oradea,Romania,Romania,206614,671768,TEST
+The city of Oradea is in Latvia.,0,Oradea,Latvia,Romania,206614,671768,TEST
+The city of Oral is in Kazakhstan.,1,Oral,Kazakhstan,Kazakhstan,330000,608668,DEV
+The city of Oral is in Japan.,0,Oral,Japan,Kazakhstan,330000,608668,DEV
+The city of Ordu is in Turkey.,1,Ordu,Turkey,Turkey,229214,741100,TEST
+The city of Ordu is in Venezuela.,0,Ordu,Venezuela,Turkey,229214,741100,TEST
+The city of Orlando is in the United States.,1,Orlando,the United States,the United States,307573,4167147,TEST
+The city of Orlando is in Somalia.,0,Orlando,Somalia,the United States,307573,4167147,TEST
+The city of Osh is in Kyrgyzstan.,1,Osh,Kyrgyzstan,Kyrgyzstan,322164,1527534,TEST
+The city of Osh is in Bulgaria.,0,Osh,Bulgaria,Kyrgyzstan,322164,1527534,TEST
+The city of Osmaniye is in Turkey.,1,Osmaniye,Turkey,Turkey,202837,303195,DEV
+The city of Osmaniye is in Madagascar.,0,Osmaniye,Madagascar,Turkey,202837,303195,DEV
+The city of Oujda-Angad is in Morocco.,1,Oujda-Angad,Morocco,Morocco,405253,2540483,DEV
+The city of Oujda-Angad is in Senegal.,0,Oujda-Angad,Senegal,Morocco,405253,2540483,DEV
+The city of Oulu is in Finland.,1,Oulu,Finland,Finland,209648,643492,TEST
+The city of Oulu is in North Korea.,0,Oulu,North Korea,Finland,209648,643492,TEST
+The city of Owerri is in Nigeria.,1,Owerri,Nigeria,Nigeria,215038,2325330,TEST
+The city of Owerri is in Ukraine.,0,Owerri,Ukraine,Nigeria,215038,2325330,TEST
+The city of Owo is in Nigeria.,1,Owo,Nigeria,Nigeria,276574,2325314,TEST
+The city of Owo is in Niger.,0,Owo,Niger,Nigeria,276574,2325314,TEST
+The city of Pachuca de Soto is in Mexico.,1,Pachuca de Soto,Mexico,Mexico,256584,3522210,TEST
+The city of Pachuca de Soto is in Algeria.,0,Pachuca de Soto,Algeria,Mexico,256584,3522210,TEST
+The city of Padangsidempuan is in Indonesia.,1,Padangsidempuan,Indonesia,Indonesia,225105,1214369,TEST
+The city of Padangsidempuan is in Sudan.,0,Padangsidempuan,Sudan,Indonesia,225105,1214369,TEST
+The city of Padova is in Italy.,1,Padova,Italy,Italy,203725,3171728,TEST
+The city of Padova is in Malawi.,0,Padova,Malawi,Italy,203725,3171728,TEST
+The city of Palangkaraya is in Indonesia.,1,Palangkaraya,Indonesia,Indonesia,293500,1633118,DEV
+The city of Palangkaraya is in Turkey.,0,Palangkaraya,Turkey,Indonesia,293500,1633118,DEV
+The city of Palmas is in Brazil.,1,Palmas,Brazil,Brazil,306296,3474574,TEST
+The city of Palmas is in Niger.,0,Palmas,Niger,Brazil,306296,3474574,TEST
+The city of Pangkalpinang is in Indonesia.,1,Pangkalpinang,Indonesia,Indonesia,216893,1632654,TEST
+The city of Pangkalpinang is in Kuwait.,0,Pangkalpinang,Kuwait,Indonesia,216893,1632654,TEST
+The city of Pasarkemis is in Indonesia.,1,Pasarkemis,Indonesia,Indonesia,273659,1632228,TEST
+The city of Pasarkemis is in Pakistan.,0,Pasarkemis,Pakistan,Indonesia,273659,1632228,TEST
+The city of Pasay is in the Philippines.,1,Pasay,the Philippines,the Philippines,416522,1694611,TEST
+The city of Pasay is in the Dominican Republic.,0,Pasay,the Dominican Republic,the Philippines,416522,1694611,TEST
+The city of Pasir Mas is in Malaysia.,1,Pasir Mas,Malaysia,Malaysia,230424,1736372,DEV
+The city of Pasir Mas is in Italy.,0,Pasir Mas,Italy,Malaysia,230424,1736372,DEV
+The city of Pasto is in Colombia.,1,Pasto,Colombia,Colombia,392930,3672778,TEST
+The city of Pasto is in France.,0,Pasto,France,Colombia,392930,3672778,TEST
+The city of Pasuruan is in Indonesia.,1,Pasuruan,Indonesia,Indonesia,208006,1632033,TEST
+The city of Pasuruan is in Nicaragua.,0,Pasuruan,Nicaragua,Indonesia,208006,1632033,TEST
+The city of Pathein is in Myanmar.,1,Pathein,Myanmar,Myanmar,237089,1328421,TEST
+The city of Pathein is in Burkina Faso.,0,Pathein,Burkina Faso,Myanmar,237089,1328421,TEST
+The city of Paulista is in Brazil.,1,Paulista,Brazil,Brazil,289971,3392740,TEST
+The city of Paulista is in Honduras.,0,Paulista,Honduras,Brazil,289971,3392740,TEST
+The city of Pavlodar is in Kazakhstan.,1,Pavlodar,Kazakhstan,Kazakhstan,329002,1520240,TEST
+The city of Pavlodar is in Russia.,0,Pavlodar,Russia,Kazakhstan,329002,1520240,TEST
+The city of Pekalongan is in Indonesia.,1,Pekalongan,Indonesia,Indonesia,307097,1631766,TEST
+The city of Pekalongan is in Kazakhstan.,0,Pekalongan,Kazakhstan,Indonesia,307097,1631766,TEST
+The city of Pelotas is in Brazil.,1,Pelotas,Brazil,Brazil,320674,3454244,DEV
+The city of Pelotas is in Indonesia.,0,Pelotas,Indonesia,Brazil,320674,3454244,DEV
+The city of Pematangsiantar is in Indonesia.,1,Pematangsiantar,Indonesia,Indonesia,268254,1214204,TEST
+The city of Pematangsiantar is in Japan.,0,Pematangsiantar,Japan,Indonesia,268254,1214204,TEST
+The city of Pemba is in Mozambique.,1,Pemba,Mozambique,Mozambique,201846,1028918,TEST
+The city of Pemba is in Jamaica.,0,Pemba,Jamaica,Mozambique,201846,1028918,TEST
+The city of Percut is in Indonesia.,1,Percut,Indonesia,Indonesia,311063,1214189,TEST
+The city of Percut is in Tanzania.,0,Percut,Tanzania,Indonesia,311063,1214189,TEST
+The city of Pereira is in Colombia.,1,Pereira,Colombia,Colombia,467269,3672486,DEV
+The city of Pereira is in Uzbekistan.,0,Pereira,Uzbekistan,Colombia,467269,3672486,DEV
+The city of Petare is in Venezuela.,1,Petare,Venezuela,Venezuela,364684,3630297,TEST
+The city of Petare is in Moldova.,0,Petare,Moldova,Venezuela,364684,3630297,TEST
+The city of Petropavl is in Kazakhstan.,1,Petropavl,Kazakhstan,Kazakhstan,200920,1520172,TEST
+The city of Petropavl is in Canada.,0,Petropavl,Canada,Kazakhstan,200920,1520172,TEST
+The city of Petrozavodsk is in Russia.,1,Petrozavodsk,Russia,Russia,279190,509820,DEV
+The city of Petrozavodsk is in South Africa.,0,Petrozavodsk,South Africa,Russia,279190,509820,DEV
+The city of Piura is in Peru.,1,Piura,Peru,Peru,484475,3693528,TEST
+The city of Piura is in Kuwait.,0,Piura,Kuwait,Peru,484475,3693528,TEST
+The city of Plano is in the United States.,1,Plano,the United States,the United States,283558,4719457,DEV
+The city of Plano is in Nicaragua.,0,Plano,Nicaragua,the United States,283558,4719457,DEV
+The city of Plovdiv is in Bulgaria.,1,Plovdiv,Bulgaria,Bulgaria,346893,728193,DEV
+The city of Plovdiv is in Germany.,0,Plovdiv,Germany,Bulgaria,346893,728193,DEV
+The city of Pokhara is in Nepal.,1,Pokhara,Nepal,Nepal,200000,1282898,TEST
+The city of Pokhara is in Kenya.,0,Pokhara,Kenya,Nepal,200000,1282898,TEST
+The city of Poltava is in Ukraine.,1,Poltava,Ukraine,Ukraine,283402,696643,TEST
+The city of Poltava is in Australia.,0,Poltava,Australia,Ukraine,283402,696643,TEST
+The city of Porlamar is in Venezuela.,1,Porlamar,Venezuela,Venezuela,216234,3629965,TEST
+The city of Porlamar is in Bulgaria.,0,Porlamar,Bulgaria,Venezuela,216234,3629965,TEST
+The city of Port-de-Paix is in Haiti.,1,Port-de-Paix,Haiti,Haiti,306217,3718420,TEST
+The city of Port-de-Paix is in Tanzania.,0,Port-de-Paix,Tanzania,Haiti,306217,3718420,TEST
+The city of Porto-Novo is in Benin.,1,Porto-Novo,Benin,Benin,234168,2392087,TEST
+The city of Porto-Novo is in Cuba.,0,Porto-Novo,Cuba,Benin,234168,2392087,TEST
+The city of Portoviejo is in Ecuador.,1,Portoviejo,Ecuador,Ecuador,321800,3652941,TEST
+The city of Portoviejo is in the United States.,0,Portoviejo,the United States,Ecuador,321800,3652941,TEST
+The city of Port Sudan is in Sudan.,1,Port Sudan,Sudan,Sudan,489725,377039,TEST
+The city of Port Sudan is in the Republic of the Congo.,0,Port Sudan,the Republic of the Congo,Sudan,489725,377039,TEST
+The city of Posadas is in Argentina.,1,Posadas,Argentina,Argentina,305874,3429886,DEV
+The city of Posadas is in Sweden.,0,Posadas,Sweden,Argentina,305874,3429886,DEV
+The city of Pskov is in Russia.,1,Pskov,Russia,Russia,210501,504341,DEV
+The city of Pskov is in Malawi.,0,Pskov,Malawi,Russia,210501,504341,DEV
+The city of Pucallpa is in Peru.,1,Pucallpa,Peru,Peru,326040,3693345,TEST
+The city of Pucallpa is in Italy.,0,Pucallpa,Italy,Peru,326040,3693345,TEST
+The city of Puerto La Cruz is in Venezuela.,1,Puerto La Cruz,Venezuela,Venezuela,370000,3629672,TEST
+The city of Puerto La Cruz is in Ethiopia.,0,Puerto La Cruz,Ethiopia,Venezuela,370000,3629672,TEST
+The city of Puerto Montt is in Chile.,1,Puerto Montt,Chile,Chile,245902,3874960,DEV
+The city of Puerto Montt is in Belgium.,0,Puerto Montt,Belgium,Chile,245902,3874960,DEV
+The city of Puerto Princesa is in the Philippines.,1,Puerto Princesa,the Philippines,the Philippines,222673,1692685,TEST
+The city of Puerto Princesa is in Uzbekistan.,0,Puerto Princesa,Uzbekistan,the Philippines,222673,1692685,TEST
+The city of Puerto Vallarta is in Mexico.,1,Puerto Vallarta,Mexico,Mexico,203342,3991328,TEST
+The city of Puerto Vallarta is in Egypt.,0,Puerto Vallarta,Egypt,Mexico,203342,3991328,TEST
+The city of Purwokerto is in Indonesia.,1,Purwokerto,Indonesia,Indonesia,230235,1630328,TEST
+The city of Purwokerto is in Denmark.,0,Purwokerto,Denmark,Indonesia,230235,1630328,TEST
+The city of Pyeongtaek is in South Korea.,1,Pyeongtaek,South Korea,South Korea,364694,1838343,DEV
+The city of Pyeongtaek is in Finland.,0,Pyeongtaek,Finland,South Korea,364694,1838343,DEV
+The city of Qarchak is in Iran.,1,Qarchak,Iran,Iran,251834,32767,DEV
+The city of Qarchak is in Morocco.,0,Qarchak,Morocco,Iran,251834,32767,DEV
+The city of Qarshi is in Uzbekistan.,1,Qarshi,Uzbekistan,Uzbekistan,278300,1216311,TEST
+The city of Qarshi is in Honduras.,0,Qarshi,Honduras,Uzbekistan,278300,1216311,TEST
+The city of Qazvin is in Iran.,1,Qazvin,Iran,Iran,333635,119505,TEST
+The city of Qazvin is in Burkina Faso.,0,Qazvin,Burkina Faso,Iran,333635,119505,TEST
+The city of Quelimane is in Mozambique.,1,Quelimane,Mozambique,Mozambique,349842,1028434,TEST
+The city of Quelimane is in Burkina Faso.,0,Quelimane,Burkina Faso,Mozambique,349842,1028434,TEST
+The city of Quevedo is in Ecuador.,1,Quevedo,Ecuador,Ecuador,213842,3652567,DEV
+The city of Quevedo is in Zambia.,0,Quevedo,Zambia,Ecuador,213842,3652567,DEV
+The city of Quilmes is in Argentina.,1,Quilmes,Argentina,Argentina,262379,3429652,DEV
+The city of Quilmes is in Malawi.,0,Quilmes,Malawi,Argentina,262379,3429652,DEV
+The city of Qui Nhon is in Vietnam.,1,Qui Nhon,Vietnam,Vietnam,210338,1568574,TEST
+The city of Qui Nhon is in Mozambique.,0,Qui Nhon,Mozambique,Vietnam,210338,1568574,TEST
+The city of Quthbullapur is in India.,1,Quthbullapur,India,India,225816,7302845,TEST
+The city of Quthbullapur is in Mexico.,0,Quthbullapur,Mexico,India,225816,7302845,TEST
+The city of Radom is in Poland.,1,Radom,Poland,Poland,226794,760778,TEST
+The city of Radom is in Mongolia.,0,Radom,Mongolia,Poland,226794,760778,TEST
+The city of Ramadi is in Iraq.,1,Ramadi,Iraq,Iraq,223500,98717,TEST
+The city of Ramadi is in Vietnam.,0,Ramadi,Vietnam,Iraq,223500,98717,TEST
+The city of Ramagundam is in India.,1,Ramagundam,India,India,235000,8347656,TEST
+The city of Ramagundam is in Argentina.,0,Ramagundam,Argentina,India,235000,8347656,TEST
+The city of Rancagua is in Chile.,1,Rancagua,Chile,Chile,212695,3873775,TEST
+The city of Rancagua is in France.,0,Rancagua,France,Chile,212695,3873775,TEST
+The city of Randburg is in South Africa.,1,Randburg,South Africa,South Africa,337053,963241,TEST
+The city of Randburg is in Cameroon.,0,Randburg,Cameroon,South Africa,337053,963241,TEST
+The city of Ras Al Khaimah City is in the United Arab Emirates.,1,Ras Al Khaimah City,the United Arab Emirates,the United Arab Emirates,351943,291074,TEST
+The city of Ras Al Khaimah City is in Turkmenistan.,0,Ras Al Khaimah City,Turkmenistan,the United Arab Emirates,351943,291074,TEST
+The city of Rengasdengklok is in Indonesia.,1,Rengasdengklok,Indonesia,Indonesia,201463,1629710,DEV
+The city of Rengasdengklok is in Canada.,0,Rengasdengklok,Canada,Indonesia,201463,1629710,DEV
+The city of Rennes is in France.,1,Rennes,France,France,220488,2983990,DEV
+The city of Rennes is in Honduras.,0,Rennes,Honduras,France,220488,2983990,DEV
+The city of Reno is in the United States.,1,Reno,the United States,the United States,241445,5511077,DEV
+The city of Reno is in Italy.,0,Reno,Italy,the United States,241445,5511077,DEV
+The city of Resistencia is in Argentina.,1,Resistencia,Argentina,Argentina,290793,3429577,TEST
+The city of Resistencia is in Turkmenistan.,0,Resistencia,Turkmenistan,Argentina,290793,3429577,TEST
+The city of Richards Bay is in South Africa.,1,Richards Bay,South Africa,South Africa,252968,962367,TEST
+The city of Richards Bay is in Venezuela.,0,Richards Bay,Venezuela,South Africa,252968,962367,TEST
+The city of Riobamba is in Ecuador.,1,Riobamba,Ecuador,Ecuador,264048,3652350,TEST
+The city of Riobamba is in Hungary.,0,Riobamba,Hungary,Ecuador,264048,3652350,TEST
+The city of Rivne is in Ukraine.,1,Rivne,Ukraine,Ukraine,245289,695594,DEV
+The city of Rivne is in Turkmenistan.,0,Rivne,Turkmenistan,Ukraine,245289,695594,DEV
+The city of Roodepoort is in South Africa.,1,Roodepoort,South Africa,South Africa,326416,936374,TEST
+The city of Roodepoort is in the United Arab Emirates.,0,Roodepoort,the United Arab Emirates,South Africa,326416,936374,TEST
+The city of Rouen is in France.,1,Rouen,France,France,234475,2982652,TEST
+The city of Rouen is in Togo.,0,Rouen,Togo,France,234475,2982652,TEST
+The city of Ruiru is in Kenya.,1,Ruiru,Kenya,Kenya,490120,181032,TEST
+The city of Ruiru is in Senegal.,0,Ruiru,Senegal,Kenya,490120,181032,TEST
+The city of Russeifa is in Jordan.,1,Russeifa,Jordan,Jordan,268237,7838895,TEST
+The city of Russeifa is in Madagascar.,0,Russeifa,Madagascar,Jordan,268237,7838895,TEST
+The city of Sabzevar is in Iran.,1,Sabzevar,Iran,Iran,226183,118063,DEV
+The city of Sabzevar is in North Korea.,0,Sabzevar,North Korea,Iran,226183,118063,DEV
+The city of Sa Dec is in Vietnam.,1,Sa Dec,Vietnam,Vietnam,203588,1568212,TEST
+The city of Sa Dec is in Yemen.,0,Sa Dec,Yemen,Vietnam,203588,1568212,TEST
+The city of Sahiwal is in Pakistan.,1,Sahiwal,Pakistan,Pakistan,235695,1166548,DEV
+The city of Sahiwal is in Finland.,0,Sahiwal,Finland,Pakistan,235695,1166548,DEV
+The city of Samsun is in Turkey.,1,Samsun,Turkey,Turkey,394050,740264,DEV
+The city of Samsun is in Pakistan.,0,Samsun,Pakistan,Turkey,394050,740264,DEV
+The city of Samut Prakan is in Thailand.,1,Samut Prakan,Thailand,Thailand,388920,1606590,TEST
+The city of Samut Prakan is in Chad.,0,Samut Prakan,Chad,Thailand,388920,1606590,TEST
+The city of Sanandaj is in Iran.,1,Sanandaj,Iran,Iran,349176,117574,TEST
+The city of Sanandaj is in Togo.,0,Sanandaj,Togo,Iran,349176,117574,TEST
+The city of Sancaktepe is in Turkey.,1,Sancaktepe,Turkey,Turkey,241000,7628420,DEV
+The city of Sancaktepe is in Nicaragua.,0,Sancaktepe,Nicaragua,Turkey,241000,7628420,DEV
+The city of Sandakan is in Malaysia.,1,Sandakan,Malaysia,Malaysia,439050,1734052,TEST
+The city of Sandakan is in Moldova.,0,Sandakan,Moldova,Malaysia,439050,1734052,TEST
+The city of San Fernando de Apure is in Venezuela.,1,San Fernando de Apure,Venezuela,Venezuela,229197,3805673,TEST
+The city of San Fernando de Apure is in Uzbekistan.,0,San Fernando de Apure,Uzbekistan,Venezuela,229197,3805673,TEST
+The city of San Jose del Monte is in the Philippines.,1,San Jose del Monte,the Philippines,the Philippines,357828,1689395,TEST
+The city of San Jose del Monte is in Haiti.,0,San Jose del Monte,Haiti,the Philippines,357828,1689395,TEST
+The city of San Salvador de Jujuy is in Argentina.,1,San Salvador de Jujuy,Argentina,Argentina,257970,3836564,TEST
+The city of San Salvador de Jujuy is in Algeria.,0,San Salvador de Jujuy,Algeria,Argentina,257970,3836564,TEST
+The city of Santa Luzia is in Brazil.,1,Santa Luzia,Brazil,Brazil,243503,3450144,TEST
+The city of Santa Luzia is in Indonesia.,0,Santa Luzia,Indonesia,Brazil,243503,3450144,TEST
+The city of Santa Marta is in Colombia.,1,Santa Marta,Colombia,Colombia,499192,3668605,DEV
+The city of Santa Marta is in Guinea.,0,Santa Marta,Guinea,Colombia,499192,3668605,DEV
+The city of Santa Teresa del Tuy is in Venezuela.,1,Santa Teresa del Tuy,Venezuela,Venezuela,278890,3627047,TEST
+The city of Santa Teresa del Tuy is in Croatia.,0,Santa Teresa del Tuy,Croatia,Venezuela,278890,3627047,TEST
+The city of Santiago del Estero is in Argentina.,1,Santiago del Estero,Argentina,Argentina,252192,3835869,DEV
+The city of Santiago del Estero is in Algeria.,0,Santiago del Estero,Algeria,Argentina,252192,3835869,DEV
+The city of Santiago de Surco is in Peru.,1,Santiago de Surco,Peru,Peru,251648,3928245,TEST
+The city of Santiago de Surco is in Malawi.,0,Santiago de Surco,Malawi,Peru,251648,3928245,TEST
+The city of Santo Domingo de los Colorados is in Ecuador.,1,Santo Domingo de los Colorados,Ecuador,Ecuador,458580,3651297,DEV
+The city of Santo Domingo de los Colorados is in Mali.,0,Santo Domingo de los Colorados,Mali,Ecuador,458580,3651297,DEV
+The city of Santol is in the Philippines.,1,Santol,the Philippines,the Philippines,298976,1687687,TEST
+The city of Santol is in Armenia.,0,Santol,Armenia,the Philippines,298976,1687687,TEST
+The city of Saransk is in Russia.,1,Saransk,Russia,Russia,318841,498698,TEST
+The city of Saransk is in Jamaica.,0,Saransk,Jamaica,Russia,318841,498698,TEST
+The city of Sari is in Iran.,1,Sari,Iran,Iran,255396,116996,TEST
+The city of Sari is in Vietnam.,0,Sari,Vietnam,Iran,255396,116996,TEST
+The city of Satna is in India.,1,Satna,India,India,257778,1257022,DEV
+The city of Satna is in Romania.,0,Satna,Romania,India,257778,1257022,DEV
+The city of Secunderabad is in India.,1,Secunderabad,India,India,204182,1256922,TEST
+The city of Secunderabad is in Rwanda.,0,Secunderabad,Rwanda,India,204182,1256922,TEST
+The city of Seeb is in Oman.,1,Seeb,Oman,Oman,470878,288967,TEST
+The city of Seeb is in Haiti.,0,Seeb,Haiti,Oman,470878,288967,TEST
+The city of Sejong is in South Korea.,1,Sejong,South Korea,South Korea,351007,11523293,TEST
+The city of Sejong is in Mongolia.,0,Sejong,Mongolia,South Korea,351007,11523293,TEST
+The city of Semey is in Kazakhstan.,1,Semey,Kazakhstan,Kazakhstan,292780,1519422,TEST
+The city of Semey is in Hungary.,0,Semey,Hungary,Kazakhstan,292780,1519422,TEST
+The city of Sepang is in Malaysia.,1,Sepang,Malaysia,Malaysia,212050,1734821,TEST
+The city of Sepang is in Cambodia.,0,Sepang,Cambodia,Malaysia,212050,1734821,TEST
+The city of Seremban is in Malaysia.,1,Seremban,Malaysia,Malaysia,372917,1734810,TEST
+The city of Seremban is in Cuba.,0,Seremban,Cuba,Malaysia,372917,1734810,TEST
+The city of Sete Lagoas is in Brazil.,1,Sete Lagoas,Brazil,Brazil,201334,3447624,TEST
+The city of Sete Lagoas is in Nigeria.,0,Sete Lagoas,Nigeria,Brazil,201334,3447624,TEST
+The city of Severnyy is in Russia.,1,Severnyy,Russia,Russia,200000,496348,DEV
+The city of Severnyy is in Kuwait.,0,Severnyy,Kuwait,Russia,200000,496348,DEV
+The city of Shagamu is in Nigeria.,1,Shagamu,Nigeria,Nigeria,214558,2323411,DEV
+The city of Shagamu is in Senegal.,0,Shagamu,Senegal,Nigeria,214558,2323411,DEV
+The city of Shakhty is in Russia.,1,Shakhty,Russia,Russia,221312,496015,TEST
+The city of Shakhty is in Gabon.,0,Shakhty,Gabon,Russia,221312,496015,TEST
+The city of Shekhupura is in Pakistan.,1,Shekhupura,Pakistan,Pakistan,361303,1165221,DEV
+The city of Shekhupura is in Poland.,0,Shekhupura,Poland,Pakistan,361303,1165221,DEV
+The city of Shibganj is in Bangladesh.,1,Shibganj,Bangladesh,Bangladesh,378701,1185107,TEST
+The city of Shibganj is in Yemen.,0,Shibganj,Yemen,Bangladesh,378701,1185107,TEST
+The city of Shimonoseki is in Japan.,1,Shimonoseki,Japan,Japan,265684,1852225,DEV
+The city of Shimonoseki is in Kenya.,0,Shimonoseki,Kenya,Japan,265684,1852225,DEV
+The city of Shyamnagar is in India.,1,Shyamnagar,India,India,441956,1256409,TEST
+The city of Shyamnagar is in Senegal.,0,Shyamnagar,Senegal,India,441956,1256409,TEST
+The city of Sialkot is in Pakistan.,1,Sialkot,Pakistan,Pakistan,477396,1164909,DEV
+The city of Sialkot is in Nepal.,0,Sialkot,Nepal,Pakistan,477396,1164909,DEV
+The city of Simferopol is in Ukraine.,1,Simferopol,Ukraine,Ukraine,336460,693805,TEST
+The city of Simferopol is in the United States.,0,Simferopol,the United States,Ukraine,336460,693805,TEST
+The city of Sincelejo is in Colombia.,1,Sincelejo,Colombia,Colombia,277773,3667983,TEST
+The city of Sincelejo is in Belarus.,0,Sincelejo,Belarus,Colombia,277773,3667983,TEST
+The city of Sinfra is in Côte d'Ivoire.,1,Sinfra,Côte d'Ivoire,Côte d'Ivoire,245226,2281606,TEST
+The city of Sinfra is in South Africa.,0,Sinfra,South Africa,Côte d'Ivoire,245226,2281606,TEST
+The city of Singa is in Sudan.,1,Singa,Sudan,Sudan,250000,366847,DEV
+The city of Singa is in Uzbekistan.,0,Singa,Uzbekistan,Sudan,250000,366847,DEV
+The city of Singkawang is in Indonesia.,1,Singkawang,Indonesia,Indonesia,235064,1626916,TEST
+The city of Singkawang is in Thailand.,0,Singkawang,Thailand,Indonesia,235064,1626916,TEST
+The city of Sirjan is in Iran.,1,Sirjan,Iran,Iran,207645,114259,DEV
+The city of Sirjan is in Mongolia.,0,Sirjan,Mongolia,Iran,207645,114259,DEV
+The city of Sivas is in Turkey.,1,Sivas,Turkey,Turkey,264022,300619,DEV
+The city of Sivas is in Guinea.,0,Sivas,Guinea,Turkey,264022,300619,DEV
+The city of Smolensk is in Russia.,1,Smolensk,Russia,Russia,330025,491687,TEST
+The city of Smolensk is in Zambia.,0,Smolensk,Zambia,Russia,330025,491687,TEST
+The city of Soacha is in Colombia.,1,Soacha,Colombia,Colombia,313945,3667905,TEST
+The city of Soacha is in Russia.,0,Soacha,Russia,Colombia,313945,3667905,TEST
+The city of Sochi is in Russia.,1,Sochi,Russia,Russia,327608,491422,DEV
+The city of Sochi is in the Dominican Republic.,0,Sochi,the Dominican Republic,Russia,327608,491422,DEV
+The city of Sohag is in Egypt.,1,Sohag,Egypt,Egypt,266944,347796,DEV
+The city of Sohag is in Jordan.,0,Sohag,Jordan,Egypt,266944,347796,DEV
+The city of Sorong is in Indonesia.,1,Sorong,Indonesia,Indonesia,254294,1626542,TEST
+The city of Sorong is in Hungary.,0,Sorong,Hungary,Indonesia,254294,1626542,TEST
+The city of Sosnowiec is in Poland.,1,Sosnowiec,Poland,Poland,227295,3085128,TEST
+The city of Sosnowiec is in Haiti.,0,Sosnowiec,Haiti,Poland,227295,3085128,TEST
+The city of Spokane is in the United States.,1,Spokane,the United States,the United States,213272,5811696,DEV
+The city of Spokane is in Romania.,0,Spokane,Romania,the United States,213272,5811696,DEV
+The city of Staryy Oskol is in Russia.,1,Staryy Oskol,Russia,Russia,226977,487928,DEV
+The city of Staryy Oskol is in Oman.,0,Staryy Oskol,Oman,Russia,226977,487928,DEV
+The city of Stockton is in the United States.,1,Stockton,the United States,the United States,305658,5399020,DEV
+The city of Stockton is in Norway.,0,Stockton,Norway,the United States,305658,5399020,DEV
+The city of Strasbourg is in France.,1,Strasbourg,France,France,274845,2973783,TEST
+The city of Strasbourg is in Argentina.,0,Strasbourg,Argentina,France,274845,2973783,TEST
+The city of Suicheng is in China.,1,Suicheng,China,China,256665,1793899,TEST
+The city of Suicheng is in Croatia.,0,Suicheng,Croatia,China,256665,1793899,TEST
+The city of Sukkur is in Pakistan.,1,Sukkur,Pakistan,Pakistan,417767,1164408,DEV
+The city of Sukkur is in Croatia.,0,Sukkur,Croatia,Pakistan,417767,1164408,DEV
+The city of Sultanbeyli is in Turkey.,1,Sultanbeyli,Turkey,Turkey,286622,7628419,TEST
+The city of Sultanbeyli is in Azerbaijan.,0,Sultanbeyli,Azerbaijan,Turkey,286622,7628419,TEST
+The city of Sultangazi is in Turkey.,1,Sultangazi,Turkey,Turkey,436935,7628416,TEST
+The city of Sultangazi is in Myanmar.,0,Sultangazi,Myanmar,Turkey,436935,7628416,TEST
+The city of Sumedang is in Indonesia.,1,Sumedang,Indonesia,Indonesia,200000,1626103,DEV
+The city of Sumedang is in Yemen.,0,Sumedang,Yemen,Indonesia,200000,1626103,DEV
+The city of Sumy is in Ukraine.,1,Sumy,Ukraine,Ukraine,259660,692194,TEST
+The city of Sumy is in Mexico.,0,Sumy,Mexico,Ukraine,259660,692194,TEST
+The city of Suncheon is in South Korea.,1,Suncheon,South Korea,South Korea,230796,1835648,TEST
+The city of Suncheon is in Mozambique.,0,Suncheon,Mozambique,South Korea,230796,1835648,TEST
+The city of Sungai Petani is in Malaysia.,1,Sungai Petani,Malaysia,Malaysia,228843,1735498,TEST
+The city of Sungai Petani is in the United States.,0,Sungai Petani,the United States,Malaysia,228843,1735498,TEST
+The city of Surrey is in Canada.,1,Surrey,Canada,Canada,394976,6159905,TEST
+The city of Surrey is in Chad.,0,Surrey,Chad,Canada,394976,6159905,TEST
+The city of Suzano is in Brazil.,1,Suzano,Brazil,Brazil,283314,3447212,TEST
+The city of Suzano is in Canada.,0,Suzano,Canada,Brazil,283314,3447212,TEST
+The city of Sylhet is in Bangladesh.,1,Sylhet,Bangladesh,Bangladesh,237000,1185099,TEST
+The city of Sylhet is in Denmark.,0,Sylhet,Denmark,Bangladesh,237000,1185099,TEST
+The city of Szczecin is in Poland.,1,Szczecin,Poland,Poland,407811,3083829,TEST
+The city of Szczecin is in Bosnia and Herzegovina.,0,Szczecin,Bosnia and Herzegovina,Poland,407811,3083829,TEST
+The city of Tacloban is in the Philippines.,1,Tacloban,the Philippines,the Philippines,242089,1684712,TEST
+The city of Tacloban is in Côte d'Ivoire.,0,Tacloban,Côte d'Ivoire,the Philippines,242089,1684712,TEST
+The city of Tacna is in Peru.,1,Tacna,Peru,Peru,286240,3928128,DEV
+The city of Tacna is in Sweden.,0,Tacna,Sweden,Peru,286240,3928128,DEV
+The city of Takamatsu is in Japan.,1,Takamatsu,Japan,Japan,418994,1851100,TEST
+The city of Takamatsu is in Algeria.,0,Takamatsu,Algeria,Japan,418994,1851100,TEST
+The city of Takatsuki is in Japan.,1,Takatsuki,Japan,Japan,354468,1850910,TEST
+The city of Takatsuki is in Malawi.,0,Takatsuki,Malawi,Japan,354468,1850910,TEST
+The city of Takoradi is in Ghana.,1,Takoradi,Ghana,Ghana,232919,2294915,DEV
+The city of Takoradi is in France.,0,Takoradi,France,Ghana,232919,2294915,DEV
+The city of Talcahuano is in Chile.,1,Talcahuano,Chile,Chile,252968,3870282,TEST
+The city of Talcahuano is in Cuba.,0,Talcahuano,Cuba,Chile,252968,3870282,TEST
+The city of Tamale is in Ghana.,1,Tamale,Ghana,Ghana,360579,2294877,TEST
+The city of Tamale is in North Korea.,0,Tamale,North Korea,Ghana,360579,2294877,TEST
+The city of Tampa is in the United States.,1,Tampa,the United States,the United States,384959,4174757,TEST
+The city of Tampa is in Cameroon.,0,Tampa,Cameroon,the United States,384959,4174757,TEST
+The city of Tampere is in Finland.,1,Tampere,Finland,Finland,244315,634963,TEST
+The city of Tampere is in the Republic of the Congo.,0,Tampere,the Republic of the Congo,Finland,244315,634963,TEST
+The city of Tampico is in Mexico.,1,Tampico,Mexico,Mexico,309003,3516355,TEST
+The city of Tampico is in Somalia.,0,Tampico,Somalia,Mexico,309003,3516355,TEST
+The city of Tanga is in Tanzania.,1,Tanga,Tanzania,Tanzania,224876,149606,DEV
+The city of Tanga is in Mozambique.,0,Tanga,Mozambique,Tanzania,224876,149606,DEV
+The city of Tanjung Pinang is in Indonesia.,1,Tanjung Pinang,Indonesia,Indonesia,227663,1624863,TEST
+The city of Tanjung Pinang is in Ethiopia.,0,Tanjung Pinang,Ethiopia,Indonesia,227663,1624863,TEST
+The city of Tapachula is in Mexico.,1,Tapachula,Mexico,Mexico,202672,3516266,TEST
+The city of Tapachula is in Ukraine.,0,Tapachula,Ukraine,Mexico,202672,3516266,TEST
+The city of Taraz is in Kazakhstan.,1,Taraz,Kazakhstan,Kazakhstan,358153,1516905,TEST
+The city of Taraz is in Tanzania.,0,Taraz,Tanzania,Kazakhstan,358153,1516905,TEST
+The city of Tarsus is in Turkey.,1,Tarsus,Turkey,Turkey,346715,299817,TEST
+The city of Tarsus is in Thailand.,0,Tarsus,Thailand,Turkey,346715,299817,TEST
+The city of Tawau is in Malaysia.,1,Tawau,Malaysia,Malaysia,372615,1734199,DEV
+The city of Tawau is in Sweden.,0,Tawau,Sweden,Malaysia,372615,1734199,DEV
+The city of Taytay is in the Philippines.,1,Taytay,the Philippines,the Philippines,231460,1682598,DEV
+The city of Taytay is in Syria.,0,Taytay,Syria,the Philippines,231460,1682598,DEV
+The city of Temara is in Morocco.,1,Temara,Morocco,Morocco,313510,2529013,TEST
+The city of Temara is in Cameroon.,0,Temara,Cameroon,Morocco,313510,2529013,TEST
+The city of Temuco is in Chile.,1,Temuco,Chile,Chile,238129,3870011,DEV
+The city of Temuco is in Ghana.,0,Temuco,Ghana,Chile,238129,3870011,DEV
+The city of Tepic is in Mexico.,1,Tepic,Mexico,Mexico,332863,3981941,DEV
+The city of Tepic is in Oman.,0,Tepic,Oman,Mexico,332863,3981941,DEV
+The city of Ternopil is in Ukraine.,1,Ternopil,Ukraine,Ukraine,225238,691650,TEST
+The city of Ternopil is in Armenia.,0,Ternopil,Armenia,Ukraine,225238,691650,TEST
+The city of Tete is in Mozambique.,1,Tete,Mozambique,Mozambique,305722,1026014,DEV
+The city of Tete is in Somalia.,0,Tete,Somalia,Mozambique,305722,1026014,DEV
+The city of Thika is in Kenya.,1,Thika,Kenya,Kenya,200000,179330,TEST
+The city of Thika is in the United Arab Emirates.,0,Thika,the United Arab Emirates,Kenya,200000,179330,TEST
+The city of Tirupati is in India.,1,Tirupati,India,India,250821,1254360,DEV
+The city of Tirupati is in the United States.,0,Tirupati,the United States,India,250821,1254360,DEV
+The city of Toamasina is in Madagascar.,1,Toamasina,Madagascar,Madagascar,325857,1053384,TEST
+The city of Toamasina is in Eritrea.,0,Toamasina,Eritrea,Madagascar,325857,1053384,TEST
+The city of Toluca is in Mexico.,1,Toluca,Mexico,Mexico,489333,3515302,DEV
+The city of Toluca is in Togo.,0,Toluca,Togo,Mexico,489333,3515302,DEV
+The city of Tongchuan is in China.,1,Tongchuan,China,China,417740,7064006,TEST
+The city of Tongchuan is in Turkey.,0,Tongchuan,Turkey,China,417740,7064006,TEST
+The city of Toulouse is in France.,1,Toulouse,France,France,493465,2972315,TEST
+The city of Toulouse is in Canada.,0,Toulouse,Canada,France,493465,2972315,TEST
+The city of Toyama is in Japan.,1,Toyama,Japan,Japan,415844,1849876,TEST
+The city of Toyama is in Kazakhstan.,0,Toyama,Kazakhstan,Japan,415844,1849876,TEST
+The city of Toyota is in Japan.,1,Toyota,Japan,Japan,426162,1849814,DEV
+The city of Toyota is in Vietnam.,0,Toyota,Vietnam,Japan,426162,1849814,DEV
+The city of Trabzon is in Turkey.,1,Trabzon,Turkey,Turkey,244083,738648,DEV
+The city of Trabzon is in Latvia.,0,Trabzon,Latvia,Turkey,244083,738648,DEV
+The city of Tri-Cities is in the United States.,1,Tri-Cities,the United States,the United States,244036,7289169,DEV
+The city of Tri-Cities is in Bulgaria.,0,Tri-Cities,Bulgaria,the United States,244036,7289169,DEV
+The city of Trieste is in Italy.,1,Trieste,Italy,Italy,204338,3165185,TEST
+The city of Trieste is in Mongolia.,0,Trieste,Mongolia,Italy,204338,3165185,TEST
+The city of Tshikapa is in the Democratic Republic of the Congo.,1,Tshikapa,the Democratic Republic of the Congo,the Democratic Republic of the Congo,267462,204953,DEV
+The city of Tshikapa is in Bangladesh.,0,Tshikapa,Bangladesh,the Democratic Republic of the Congo,267462,204953,DEV
+The city of Tungi is in Bangladesh.,1,Tungi,Bangladesh,Bangladesh,337579,1185098,DEV
+The city of Tungi is in Indonesia.,0,Tungi,Indonesia,Bangladesh,337579,1185098,DEV
+The city of Turkestan is in Kazakhstan.,1,Turkestan,Kazakhstan,Kazakhstan,227098,1517945,TEST
+The city of Turkestan is in Belarus.,0,Turkestan,Belarus,Kazakhstan,227098,1517945,TEST
+The city of Turmero is in Venezuela.,1,Turmero,Venezuela,Venezuela,344700,3625829,DEV
+The city of Turmero is in Sudan.,0,Turmero,Sudan,Venezuela,344700,3625829,DEV
+The city of Turpan is in China.,1,Turpan,China,China,273385,1529114,DEV
+The city of Turpan is in Afghanistan.,0,Turpan,Afghanistan,China,273385,1529114,DEV
+The city of Ugep is in Nigeria.,1,Ugep,Nigeria,Nigeria,200276,2320831,TEST
+The city of Ugep is in Moldova.,0,Ugep,Moldova,Nigeria,200276,2320831,TEST
+The city of Uijeongbu-si is in South Korea.,1,Uijeongbu-si,South Korea,South Korea,479141,1833788,TEST
+The city of Uijeongbu-si is in Cuba.,0,Uijeongbu-si,Cuba,South Korea,479141,1833788,TEST
+The city of Uitenhage is in South Africa.,1,Uitenhage,South Africa,South Africa,228912,946877,TEST
+The city of Uitenhage is in Turkmenistan.,0,Uitenhage,Turkmenistan,South Africa,228912,946877,TEST
+The city of Umuahia is in Nigeria.,1,Umuahia,Nigeria,Nigeria,264662,2320576,TEST
+The city of Umuahia is in South Africa.,0,Umuahia,South Africa,Nigeria,264662,2320576,TEST
+The city of Uruapan is in Mexico.,1,Uruapan,Mexico,Mexico,356786,3980760,TEST
+The city of Uruapan is in Ethiopia.,0,Uruapan,Ethiopia,Mexico,356786,3980760,TEST
+The city of Ust-Kamenogorsk is in Kazakhstan.,1,Ust-Kamenogorsk,Kazakhstan,Kazakhstan,319067,1520316,DEV
+The city of Ust-Kamenogorsk is in Iran.,0,Ust-Kamenogorsk,Iran,Kazakhstan,319067,1520316,DEV
+The city of Utsunomiya is in Japan.,1,Utsunomiya,Japan,Japan,449865,1849053,TEST
+The city of Utsunomiya is in Vietnam.,0,Utsunomiya,Vietnam,Japan,449865,1849053,TEST
+The city of Uyo is in Nigeria.,1,Uyo,Nigeria,Nigeria,436606,2319480,TEST
+The city of Uyo is in Indonesia.,0,Uyo,Indonesia,Nigeria,436606,2319480,TEST
+The city of Valera is in Venezuela.,1,Valera,Venezuela,Venezuela,244708,3625542,TEST
+The city of Valera is in the Democratic Republic of the Congo.,0,Valera,the Democratic Republic of the Congo,Venezuela,244708,3625542,TEST
+The city of Valledupar is in Colombia.,1,Valledupar,Colombia,Colombia,490075,3666304,TEST
+The city of Valledupar is in Honduras.,0,Valledupar,Honduras,Colombia,490075,3666304,TEST
+The city of Vanderbijlpark is in South Africa.,1,Vanderbijlpark,South Africa,South Africa,246754,944986,TEST
+The city of Vanderbijlpark is in Mauritania.,0,Vanderbijlpark,Mauritania,South Africa,246754,944986,TEST
+The city of Varna is in Bulgaria.,1,Varna,Bulgaria,Bulgaria,312770,726050,DEV
+The city of Varna is in Ethiopia.,0,Varna,Ethiopia,Bulgaria,312770,726050,DEV
+The city of Vaughan is in Canada.,1,Vaughan,Canada,Canada,306233,6173577,TEST
+The city of Vaughan is in Poland.,0,Vaughan,Poland,Canada,306233,6173577,TEST
+The city of Velikiy Novgorod is in Russia.,1,Velikiy Novgorod,Russia,Russia,222868,519336,TEST
+The city of Velikiy Novgorod is in Brazil.,0,Velikiy Novgorod,Brazil,Russia,222868,519336,TEST
+The city of Vellore is in India.,1,Vellore,India,India,484690,1253286,TEST
+The city of Vellore is in Croatia.,0,Vellore,Croatia,India,484690,1253286,TEST
+The city of Venustiano Carranza is in Mexico.,1,Venustiano Carranza,Mexico,Mexico,430978,3827407,DEV
+The city of Venustiano Carranza is in the Democratic Republic of the Congo.,0,Venustiano Carranza,the Democratic Republic of the Congo,Mexico,430978,3827407,DEV
+The city of Vereeniging is in South Africa.,1,Vereeniging,South Africa,South Africa,474681,944385,DEV
+The city of Vereeniging is in India.,0,Vereeniging,India,South Africa,474681,944385,DEV
+The city of Vila Velha is in Brazil.,1,Vila Velha,Brazil,Brazil,394930,3445026,DEV
+The city of Vila Velha is in Thailand.,0,Vila Velha,Thailand,Brazil,394930,3445026,DEV
+The city of Villahermosa is in Mexico.,1,Villahermosa,Mexico,Mexico,353577,3514670,DEV
+The city of Villahermosa is in Côte d'Ivoire.,0,Villahermosa,Côte d'Ivoire,Mexico,353577,3514670,DEV
+The city of Villavicencio is in Colombia.,1,Villavicencio,Colombia,Colombia,321717,3665900,DEV
+The city of Villavicencio is in Thailand.,0,Villavicencio,Thailand,Colombia,321717,3665900,DEV
+The city of Vinnytsya is in Ukraine.,1,Vinnytsya,Ukraine,Ukraine,369839,689558,TEST
+The city of Vinnytsya is in Finland.,0,Vinnytsya,Finland,Ukraine,369839,689558,TEST
+The city of Virginia Beach is in the United States.,1,Virginia Beach,the United States,the United States,452745,4791259,TEST
+The city of Virginia Beach is in Indonesia.,0,Virginia Beach,Indonesia,the United States,452745,4791259,TEST
+The city of Vitebsk is in Belarus.,1,Vitebsk,Belarus,Belarus,342700,620127,DEV
+The city of Vitebsk is in the Republic of the Congo.,0,Vitebsk,the Republic of the Congo,Belarus,342700,620127,DEV
+The city of Vladikavkaz is in Russia.,1,Vladikavkaz,Russia,Russia,306258,473249,TEST
+The city of Vladikavkaz is in Turkmenistan.,0,Vladikavkaz,Turkmenistan,Russia,306258,473249,TEST
+The city of Vladimir is in Russia.,1,Vladimir,Russia,Russia,357024,473247,TEST
+The city of Vladimir is in Nicaragua.,0,Vladimir,Nicaragua,Russia,357024,473247,TEST
+The city of Vologda is in Russia.,1,Vologda,Russia,Russia,312420,472459,TEST
+The city of Vologda is in Ukraine.,0,Vologda,Ukraine,Russia,312420,472459,TEST
+The city of Volzhsky is in Russia.,1,Volzhsky,Russia,Russia,323293,472231,TEST
+The city of Volzhsky is in Mauritania.,0,Volzhsky,Mauritania,Russia,323293,472231,TEST
+The city of Wad Medani is in Sudan.,1,Wad Medani,Sudan,Sudan,332714,364103,TEST
+The city of Wad Medani is in Morocco.,0,Wad Medani,Morocco,Sudan,332714,364103,TEST
+The city of Wakayama is in Japan.,1,Wakayama,Japan,Japan,351000,1926004,TEST
+The city of Wakayama is in Poland.,0,Wakayama,Poland,Japan,351000,1926004,TEST
+The city of Wandsbek is in Germany.,1,Wandsbek,Germany,Germany,411422,2911285,TEST
+The city of Wandsbek is in Finland.,0,Wandsbek,Finland,Germany,411422,2911285,TEST
+The city of Welkom is in South Africa.,1,Welkom,South Africa,South Africa,431944,940909,TEST
+The city of Welkom is in Hungary.,0,Welkom,Hungary,South Africa,431944,940909,TEST
+The city of Wichita is in the United States.,1,Wichita,the United States,the United States,389965,4281730,TEST
+The city of Wichita is in Denmark.,0,Wichita,Denmark,the United States,389965,4281730,TEST
+The city of Wiesbaden is in Germany.,1,Wiesbaden,Germany,Germany,278609,2809346,DEV
+The city of Wiesbaden is in the United Arab Emirates.,0,Wiesbaden,the United Arab Emirates,Germany,278609,2809346,DEV
+The city of Winston-Salem is in the United States.,1,Winston-Salem,the United States,the United States,241218,4499612,TEST
+The city of Winston-Salem is in Mauritania.,0,Winston-Salem,Mauritania,the United States,241218,4499612,TEST
+The city of Wollongong is in Australia.,1,Wollongong,Australia,Australia,280153,2171507,TEST
+The city of Wollongong is in Chile.,0,Wollongong,Chile,Australia,280153,2171507,TEST
+The city of Wuhai is in China.,1,Wuhai,China,China,218427,1791249,TEST
+The city of Wuhai is in Afghanistan.,0,Wuhai,Afghanistan,China,218427,1791249,TEST
+The city of Wuppertal is in Germany.,1,Wuppertal,Germany,Germany,360797,2805753,TEST
+The city of Wuppertal is in Eritrea.,0,Wuppertal,Eritrea,Germany,360797,2805753,TEST
+The city of Wuxue is in China.,1,Wuxue,China,China,220661,1790894,TEST
+The city of Wuxue is in Cameroon.,0,Wuxue,Cameroon,China,220661,1790894,TEST
+The city of Xichang is in China.,1,Xichang,China,China,481796,1789647,TEST
+The city of Xichang is in Côte d'Ivoire.,0,Xichang,Côte d'Ivoire,China,481796,1789647,TEST
+The city of Xico is in Mexico.,1,Xico,Mexico,Mexico,356352,3514519,DEV
+The city of Xico is in Cuba.,0,Xico,Cuba,Mexico,356352,3514519,DEV
+The city of Xingyi is in China.,1,Xingyi,China,China,322890,1807566,TEST
+The city of Xingyi is in Lebanon.,0,Xingyi,Lebanon,China,322890,1807566,TEST
+The city of Xochimilco is in Mexico.,1,Xochimilco,Mexico,Mexico,407885,3514450,TEST
+The city of Xochimilco is in Cuba.,0,Xochimilco,Cuba,Mexico,407885,3514450,TEST
+The city of Xuanhua is in China.,1,Xuanhua,China,China,373422,2033574,TEST
+The city of Xuanhua is in Thailand.,0,Xuanhua,Thailand,China,373422,2033574,TEST
+The city of Yamato is in Japan.,1,Yamato,Japan,Japan,242065,11611478,TEST
+The city of Yamato is in Peru.,0,Yamato,Peru,Japan,242065,11611478,TEST
+The city of Yanbu is in Saudi Arabia.,1,Yanbu,Saudi Arabia,Saudi Arabia,200161,100425,TEST
+The city of Yanbu is in Sweden.,0,Yanbu,Sweden,Saudi Arabia,200161,100425,TEST
+The city of Yao is in Japan.,1,Yao,Japan,Japan,273213,1848522,TEST
+The city of Yao is in Cambodia.,0,Yao,Cambodia,Japan,273213,1848522,TEST
+The city of Yazd is in Iran.,1,Yazd,Iran,Iran,477905,111822,DEV
+The city of Yazd is in Algeria.,0,Yazd,Algeria,Iran,477905,111822,DEV
+The city of Yeosu is in South Korea.,1,Yeosu,South Korea,South Korea,295538,1884138,DEV
+The city of Yeosu is in Sweden.,0,Yeosu,Sweden,South Korea,295538,1884138,DEV
+The city of Yingtan is in China.,1,Yingtan,China,China,214229,1786577,TEST
+The city of Yingtan is in South Africa.,0,Yingtan,South Africa,China,214229,1786577,TEST
+The city of Yogyakarta is in Indonesia.,1,Yogyakarta,Indonesia,Indonesia,373589,1621177,TEST
+The city of Yogyakarta is in Cuba.,0,Yogyakarta,Cuba,Indonesia,373589,1621177,TEST
+The city of Yokkaichi is in Japan.,1,Yokkaichi,Japan,Japan,295841,1848373,TEST
+The city of Yokkaichi is in Eritrea.,0,Yokkaichi,Eritrea,Japan,295841,1848373,TEST
+The city of Yokosuka is in Japan.,1,Yokosuka,Japan,Japan,409478,1848313,TEST
+The city of Yokosuka is in the Dominican Republic.,0,Yokosuka,the Dominican Republic,Japan,409478,1848313,TEST
+The city of Yoshkar-Ola is in Russia.,1,Yoshkar-Ola,Russia,Russia,268272,466806,DEV
+The city of Yoshkar-Ola is in Colombia.,0,Yoshkar-Ola,Colombia,Russia,268272,466806,DEV
+The city of Zagazig is in Egypt.,1,Zagazig,Egypt,Egypt,430445,359493,TEST
+The city of Zagazig is in Kazakhstan.,0,Zagazig,Kazakhstan,Egypt,430445,359493,TEST
+The city of Zamboanga is in the Philippines.,1,Zamboanga,the Philippines,the Philippines,457623,1679432,TEST
+The city of Zamboanga is in Mozambique.,0,Zamboanga,Mozambique,the Philippines,457623,1679432,TEST
+The city of Zanzibar is in Tanzania.,1,Zanzibar,Tanzania,Tanzania,403658,148730,TEST
+The city of Zanzibar is in Kazakhstan.,0,Zanzibar,Kazakhstan,Tanzania,403658,148730,TEST
+The city of Zelenograd is in Russia.,1,Zelenograd,Russia,Russia,215727,463829,TEST
+The city of Zelenograd is in Guinea.,0,Zelenograd,Guinea,Russia,215727,463829,TEST
+The city of Zeytinburnu is in Turkey.,1,Zeytinburnu,Turkey,Turkey,288743,737071,DEV
+The city of Zeytinburnu is in Saudi Arabia.,0,Zeytinburnu,Saudi Arabia,Turkey,288743,737071,DEV
+The city of Zhytomyr is in Ukraine.,1,Zhytomyr,Ukraine,Ukraine,261624,686967,DEV
+The city of Zhytomyr is in Sudan.,0,Zhytomyr,Sudan,Ukraine,261624,686967,DEV
+The city of Zitong is in China.,1,Zitong,China,China,212819,1783700,TEST
+The city of Zitong is in Honduras.,0,Zitong,Honduras,China,212819,1783700,TEST

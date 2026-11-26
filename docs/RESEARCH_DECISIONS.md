@@ -694,6 +694,19 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   strengths, absolute effect CIs (> 0) are cited alongside the control-based p-values. The pre-registered BH tests are
   reported unchanged. The GPT-2 vs Gemma contrast stays descriptive.
 
+* **XF (2026-11-23).**
+  * **Fresh family design:** cities of 200k–500k from geonames, disjoint from GoT cities, with DEV 40 % / TEST 60 % by
+    city.
+  * **Ceiling rule:** added after the TRAIN-only smoke, before any fresh row was embedded.
+  * **Reading of the TSP claim:** after XF, the truth-subspace fine-tune's advantage over its reconstruction-only
+    control is a VALIDATION-only finding that **did not replicate on a fresh TEST population**. Cite it as
+    "validation effect, failed fresh-TEST replication".
+* **XC-1 and M4-G (2026-11-23).**
+  * **Reduced Gemma grid:** 9 layers × 5 groups, with TRAIN screening on 100 statements.
+  * **M4-G site rules:** both pre-registered before XC-1 read VALIDATION.
+  * **H4c omitted.**
+  * **Order:** XF first, then XC-1, then M4-G (user).
+
 ## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
 * **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
   heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);
