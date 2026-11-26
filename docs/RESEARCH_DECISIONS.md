@@ -647,3 +647,23 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
   * "most cross-model differences seen at 1024 tokens shrink when context is matched (269/324 rows)".
 * **May not say:** any Holm-significant cross-model difference; any architecture-matched comparison (0/54 matched pairs).
 * **Open option (needs the user's approval):** a post-hoc re-analysis with ≥ 100,000 resamples, labelled exploratory. Not run.
+
+## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
+* **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
+  heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);
+  renumber under the team plan if needed. Content of the original note unchanged (first bullet below).
+* **Large per-document outputs (2026-11-23).** Per-document result CSVs above the 25 MB repository-hygiene limit are
+  committed gzipped (`gzip -n -9`, lossless) with a SHA-256 of the uncompressed file next to them, rather than raising
+  the limit or dropping the data. Frozen analysis scripts are not edited; the README gives the decompress step.
+* **Preflight (2026-11-26).** Frozen loaders skip a run folder that has no `per_doc.csv`
+  (`03_matched_splicing_analysis.py:load_runs`, reused by `07_a4_context_comparison.py`), so a fresh checkout would
+  drop the gzipped GPT-2 runs from the analysis **without an error**. `scripts/shared/compressed_outputs_preflight.py`
+  closes this without touching any frozen script:
+  * `--verify` (read-only; run by the unit tests, hence by CI): every `X.gz` with an `X.sha256` sidecar decompresses to
+    the recorded hash; every tracked `.gz` under `results/` must have a sidecar;
+  * default mode: also requires each `X` to exist with that hash (missing or stale → exit 1);
+  * `--decompress`: creates missing `X` (hash checked before the file appears), never overwrites;
+  * `-- CMD`: runs the frozen analysis only after a passing preflight.
+* **Rule:** re-run frozen XB / A4 analyses through the preflight (command in the XB README §3). Decompressed copies are
+  listed in `.gitignore` so they cannot be re-committed by accident.
+* **Not changed:** no frozen script, criterion, threshold or result. The hygiene limit stays at 25 MB.

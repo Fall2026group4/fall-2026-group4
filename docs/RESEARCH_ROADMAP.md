@@ -426,3 +426,11 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * DONE: Table `tab:evidence` no longer marks those three folders with the "not yet on `main`" dagger; R3 stays
   on PR #30 and keeps its dagger until #30 merges.
 * OPEN: final R3 integration into the manuscript after PR #30 merges (D46 / §54 / results summary §27 reserved).
+
+## 2026-11-26 additions (PR #53 prepared for integration)
+* DONE (infrastructure; no experiment run): D55 heading for the gzipped-outputs note; preflight
+  `scripts/shared/compressed_outputs_preflight.py` and its tests; decompressed copies git-ignored (§64).
+* OPEN (needs the user's approval): merge #53 into `main`, then merge `main` into #41 (`final-week/p14-xb-a4-results`)
+  keeping both sides' documentation; #41 adds its two A4 paths to `.gitignore` and the A4 README preflight command.
+* OPEN: D/§ numbering of the open PR stack collides (#41, #42 and #43 each add D52 / §61); D55 / §64 are outside
+  that range. A renumbering pass is needed before the stack merges.
