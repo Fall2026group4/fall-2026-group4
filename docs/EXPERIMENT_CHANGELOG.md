@@ -737,3 +737,8 @@ No result changed. The history scan found no other rewritten row (only `9446e56`
 | `docs/RESEARCH_ROADMAP.md` | incorrect "numbering collides" line struck through and corrected; integration-line status section | the stacked PRs number sequentially |
 | `docs/RESEARCH_DECISIONS.md` (D57), `docs/RESEARCH_PROGRESS.md` (§66) | appended | documentation rule (CLAUDE.md §1) |
 
+
+## 2026-11-26: architecture diagrams removed (user request)
+| File | Change | Reason |
+|---|---|---|
+| `architecture/diagrams/{OpenWebText.drawio.png, Sae_cloud_architecture.png, gpt2_sae_faithfulness_pipeline.svg, gpt2_sae_faithfulness_pipeline.drawio, build_gpt2_pipeline_diagram.py}` | removed; folder kept (`.gitkeep`) | diagrams no longer used; no script, test, result or paper references them. The SAE implementations are unaffected |
