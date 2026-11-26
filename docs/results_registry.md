@@ -171,4 +171,4 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | XF fresh geonames cities TEST: P1 public-SAE LOSS at GPT-2 L3/6/9 and Gemma L5 (Gemma L12/19 ceiling); P2 TSP vs ctrl FAILS TO REPLICATE (0/4) | CONFIRMED TEST RESULT (pristine TEST, read once) | `results/cross_model/xf_fresh_cities_test/` |
 | TSP-R / TI-1 tsp − ctrl advantage | VALIDATION finding; did NOT replicate on XF fresh TEST (cite both) | `results/geometry_of_truth/truth_subspace_preservation/replication/`, `results/geometry_of_truth/tsp_generalisation/` |
 | XC-1 Gemma site sweep: L0 slot and L23 final selected and confirmed (R_A val 0.108, E_share 0.98) | VALIDATION finding (TRAIN selection, VALIDATION confirmation; reduced 9-layer grid) | `results/cross_model/xc1_gemma_site_sweep/` |
-| M4-G | PRE-REGISTERED, running; smoke outputs (TRAIN) not citable | `results/cross_model/m4_gemma_patch_decomposition/` |
+| M4-G Gemma SAE patch decomposition: preservation 0.96 (L0 slot), 0.75 (L12 final), 0.70 (L23 final); H4a/H4b 3/3; final-token sites interaction-dominated (bounds only) | VALIDATION finding (H4c not run) | `results/cross_model/m4_gemma_patch_decomposition/` |

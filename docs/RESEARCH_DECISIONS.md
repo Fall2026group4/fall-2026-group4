@@ -711,6 +711,10 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
     not triggered and M4-G runs. The mid site is L12 final by the pre-registered M4-G rule. No rule was changed after
     any VALIDATION number was seen.
 
+  * **M4-G reading (2026-11-23):** at L12 and L23 final the interaction exceeds the 0.2 limit, so per the frozen rule
+    only the T_rec / T_err bounds are cited there (no Shapley split). The Shapley share column is reported but not
+    interpreted at those sites.
+
 ## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
 * **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
   heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);

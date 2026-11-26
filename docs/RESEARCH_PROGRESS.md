@@ -1743,6 +1743,19 @@ D numbers are deliberately not assigned here.
 * **Limitations.** 9 of 26 layers; 100 of 417 TRAIN statements.
 * Source: `results/cross_model/xc1_gemma_site_sweep/`.
 
+### M4-G Gemma SAE patch decomposition: results (2026-11-23). Status: COMPLETED (validation finding; TEST never loaded)
+* **Run.** 945 fixed-shape forwards, 392 s; 356 persona and 178 neutral VALIDATION pairs; Gemma Scope 16k canonical
+  at L0, L12, L23. Hard sanity checks pass, and T_full equals the XC-1 R_A exactly at all three cells.
+* **Preservation T_rec / T_full (T2–T4):** L0 slot 0.959 [0.945, 0.969]; L12 final 0.753 [0.679, 0.807]; L23 final
+  0.701 [0.640, 0.755].
+* **H4a (sufficiency) and H4b (rec > err) met at 3/3 sites** (BH q ≤ 7.5e-6).
+* **Reading.** At the early persona token the reconstruction is behaviourally sufficient (additive reading allowed).
+  At the final token (L12, L23) the effect is interaction-dominated (|I|/T_full 0.29–0.33): reconstruction alone
+  restores 70–75 %, error alone 5–14 %, so only bounds are interpreted. Same pattern as GPT-2 M4 (93–97 % early slot,
+  62–68 % late final; descriptive).
+* **Not run:** H4c (feature patches), a declared deviation; no feature-level claim.
+* Source: `results/cross_model/m4_gemma_patch_decomposition/`.
+
 ## 64. Gzipped per-document outputs: verification, D55 heading and preflight (2026-11-26). Status: COMPLETED (infrastructure; no experiment run)
 * **Why:** CI failed on `main` and on PR #41 because two XB GPT-2 `per_doc.csv` files (27.2 MB) exceed the 25 MB
   repository-hygiene limit. PR #53 stores them gzipped. Review found that the frozen loader

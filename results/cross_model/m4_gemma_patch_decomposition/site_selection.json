@@ -1,0 +1,91 @@
+{
+ "fixed": [
+  {
+   "layer": 0,
+   "group": "slot",
+   "role": "earliest"
+  },
+  {
+   "layer": 23,
+   "group": "final",
+   "role": "peak+latest"
+  }
+ ],
+ "mid": {
+  "rule": "among XC-1 TRAIN-passing cells at layers {12,16} in {slot, final}: E_share closest to 0.5, ties -> larger R_A; confirm on validation T2-T4 with original activations: T_full CI low > 0 and (T_full - S_full) CI low > 0; else next; none -> fixed sites only",
+  "candidates": [
+   {
+    "layer": 12,
+    "group": "final",
+    "E_share": 0.5112071964216665,
+    "R_A_mean": 0.037657464873898164,
+    "dist": 0.011207196421666454
+   },
+   {
+    "layer": 16,
+    "group": "final",
+    "E_share": 0.8466660158766095,
+    "R_A_mean": 0.0623686363884791,
+    "dist": 0.3466660158766095
+   },
+   {
+    "layer": 12,
+    "group": "slot",
+    "E_share": 0.1519923611302451,
+    "R_A_mean": 0.011196334950734792,
+    "dist": 0.3480076388697549
+   },
+   {
+    "layer": 16,
+    "group": "slot",
+    "E_share": 0.04297588130995852,
+    "R_A_mean": 0.003165766742296957,
+    "dist": 0.4570241186900415
+   }
+  ],
+  "tried": [
+   {
+    "layer": 12,
+    "group": "final",
+    "T_full_val_T2_T4": {
+     "mean": 0.07955954584415488,
+     "se": 0.01661243087249912,
+     "ci_low": 0.050631753180861175,
+     "ci_high": 0.1152025213626456,
+     "p": 8.374154791861228e-07,
+     "n_statements": 89
+    },
+    "excess_over_synonym_val_T2_T4": {
+     "mean": 0.02983002985324794,
+     "se": 0.011170278488701973,
+     "ci_low": 0.0104107022417501,
+     "ci_high": 0.05433869556424259,
+     "p": 0.003787119387641664,
+     "n_statements": 89
+    },
+    "confirmed": true
+   }
+  ],
+  "selected": {
+   "layer": 12,
+   "group": "final"
+  }
+ },
+ "sites": [
+  {
+   "layer": 0,
+   "group": "slot",
+   "role": "earliest"
+  },
+  {
+   "layer": 23,
+   "group": "final",
+   "role": "peak+latest"
+  },
+  {
+   "layer": 12,
+   "group": "final",
+   "role": "mid (A1)"
+  }
+ ]
+}

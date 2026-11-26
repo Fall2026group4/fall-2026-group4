@@ -1,0 +1,36 @@
+{
+ "L0|slot|persona": {
+  "identity_max_abs": 4.76837158203125e-07,
+  "zero_patch_max_abs_T": 0.0,
+  "shapley_sum_max_err": 2.220446049250313e-16
+ },
+ "L0|slot|neutral": {
+  "identity_max_abs": 4.76837158203125e-07,
+  "zero_patch_max_abs_T": 0.0,
+  "shapley_sum_max_err": 1.3877787807814457e-17
+ },
+ "L23|final|persona": {
+  "identity_max_abs": 1.9073486328125e-06,
+  "zero_patch_max_abs_T": 0.0,
+  "shapley_sum_max_err": 2.220446049250313e-16
+ },
+ "L23|final|neutral": {
+  "identity_max_abs": 1.9073486328125e-06,
+  "zero_patch_max_abs_T": 0.0,
+  "shapley_sum_max_err": 2.7755575615628914e-17
+ },
+ "L12|final|persona": {
+  "identity_max_abs": 7.152557373046875e-07,
+  "zero_patch_max_abs_T": 0.0,
+  "shapley_sum_max_err": 2.220446049250313e-16
+ },
+ "L12|final|neutral": {
+  "identity_max_abs": 4.76837158203125e-07,
+  "zero_patch_max_abs_T": 0.0,
+  "shapley_sum_max_err": 1.734723475976807e-18
+ },
+ "L0|slot|T_full_vs_XC1_R_A_abs_diff": 0.0,
+ "L23|final|T_full_vs_XC1_R_A_abs_diff": 0.0,
+ "L12|final|T_full_vs_XC1_R_A_abs_diff": 0.0,
+ "pass": true
+}

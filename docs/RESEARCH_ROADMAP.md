@@ -442,7 +442,8 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
   XC-1, then M4:
   * XF: **COMPLETED** 2026-11-23. P1 LOSS at 4/4 informative cells; P2 TSP FAILS TO REPLICATE (0/4).
   * XC-1: **COMPLETED** 2026-11-23 (validation). L0 slot and L23 final confirmed; M4 on Gemma justified.
-  * M4-G: IN PROGRESS (started 20:48 UTC at L0 slot, L23 final, L12 final).
+  * M4-G: **COMPLETED** 2026-11-23 (validation). Preservation 0.96 / 0.75 / 0.70 at L0 slot / L12 final / L23 final;
+    H4a and H4b met at 3/3. H4c (feature patches) not run; a possible follow-up.
 * OPTIONAL, not scheduled: TI-G, ladder completion. DROPPED from priority: XG-IH, XJ.
 * LOST: the TI-2 / TI-4 checkpoints (instance storage). Retraining is possible (about 3.7 GB, about 5.6 h) but not
   planned.
