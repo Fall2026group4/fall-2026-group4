@@ -610,6 +610,20 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `results/cross_model/xc3_steering_parity/README.md` | results appended, status COMPLETED | documentation rule |
 | `docs/RESEARCH_PROGRESS.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `RESEARCH_ROADMAP.md`, `experiment_manifest.csv` | appended | documentation rule |
 
+## 2026-11-23 (XC-2 pre-registration)
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/21_xc2_gemma_got_causal.py` | added (frozen) | port of `dhruv-causal` 22 to Gemma + Gemma Scope 16k |
+| `results/cross_model/xc2_gemma_got_causal/{preregistration.json,preregistration.sha256,prereg_body.json,README.md,smoke/,smoke_v2/}` | added | frozen before any VALIDATION/TEST scoring; TRAIN-only smoke outputs (`smoke/` shows the bf16 batch-shape issue; `smoke_v2/` shows every path check exactly 0) |
+| `logs_xm/freeze_prereg.py`, `logs_xm/gpu_queue.sh` | not committed (operational helpers in `logs_xm/`) | — |
+
+## 2026-11-23 (XC-2 results)
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xc2_gemma_got_causal/{validation,test}/` | added (`interventions_partial.csv` omitted: byte-identical to `interventions.csv`) | XC-2 VALIDATION strength selection and the single TEST pass |
+| `results/cross_model/xc2_gemma_got_causal/README.md` | results appended, status COMPLETED | documentation rule |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `experiment_manifest.csv` | appended | documentation rule |
+
 ## 2026-11-26: #53 prepared for integration (D55 heading; preflight against silently skipped gzipped runs)
 No experiment, result, frozen script, criterion or threshold changed.
 | File | Change | Reason |

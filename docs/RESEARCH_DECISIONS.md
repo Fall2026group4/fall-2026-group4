@@ -690,6 +690,10 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Storage:** the instance-store disk is not formatted (user). All outputs go to EBS; jobs start only at ≥ 60 GB free
   and stop below 42 GB.
 
+* **XC-2 reading (2026-11-23).** Because norm-matched random directions lower Gemma's margin at the selected
+  strengths, absolute effect CIs (> 0) are cited alongside the control-based p-values. The pre-registered BH tests are
+  reported unchanged. The GPT-2 vs Gemma contrast stays descriptive.
+
 ## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
 * **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
   heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);
