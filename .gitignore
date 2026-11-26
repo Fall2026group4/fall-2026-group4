@@ -89,3 +89,7 @@ results/cross_model/xb_matched_splicing/runs/gpt2_owt_xm_shared_main/per_doc.csv
 results/cross_model/xb_matched_splicing/runs/gpt2_pile_shared_main/per_doc.csv
 results/cross_model/xb_matched_splicing/a4_ctx128/runs/gpt2_owt_xm_shared_main/per_doc.csv
 results/cross_model/xb_matched_splicing/a4_ctx128/runs/gpt2_pile_shared_main/per_doc.csv
+
+# XF fresh-cities statements: rebuilt locally from upstream GeoNames data (not redistributed; see
+# data/got/fresh/geonames_cities/README.md and scripts/cross_model/23b_xf_rebuild_statements.py)
+data/got/fresh/geonames_cities/statements.csv

@@ -679,3 +679,14 @@ No experiment, result, frozen script, criterion or threshold changed.
 | `docs/RESEARCH_ROADMAP.md` | status line | documentation rule (CLAUDE.md §1) |
 Verified: the two A4 `.gz` files are byte-identical to the originals in `15e78e7`, match their sidecars, and are reproducible with `gzip -n -9`; the preflight `--verify` test now covers all four committed pairs.
 End-to-end: through the preflight (`--decompress` from the committed `.gz`; hash-matched local `sum_x.npz`; CI-pinned environment; scratch worktree), the unmodified frozen `07` reproduces the committed `a4_ctx128/context_comparison_a4/`: `info.json` byte-identical; `context_change.csv` 324 rows, every label identical (SHRINKS 269 / GROWS 29 / NO CLEAR CHANGE 26; Holm 324 × NO CLEAR CHANGE), numeric differences ≤ 1.5e-12 relative. Scratch outputs deleted.
+
+## 2026-11-26: XF fresh-cities data stored as identifiers only (Option B, user decision)
+| File | Change | Reason |
+|---|---|---|
+| `data/got/fresh/geonames_cities/statements.csv` | removed from Git (kept locally, git-ignored); its SHA-256 stays frozen in XF's `preregistration.json` | GeoNames text/names/populations via the unlicensed GoT repository are not redistributed (same rule as `raw_*/`) |
+| `data/got/fresh/geonames_cities/ids.csv` | added: `geoname_id`, `label`, `country`, `split` (1,426 rows) | our own assignments, enough to verify a rebuild row for row |
+| `scripts/cross_model/23b_xf_rebuild_statements.py` | added | runs the **unchanged** frozen XF `stage_build` into a temp folder; checks the upstream SHA-256, the pre-registered output SHA-256 and `ids.csv`; never overwrites |
+| `data/got/fresh/geonames_cities/README.md` | added | GeoNames CC BY 4.0 attribution; GoT repository has no licence; OpenDataSoft page not verified |
+| `src/tests/test_xf_rebuild.py` | added (3 tests; the rebuild test skips without the upstream checkout) | integrity, deterministic rebuild, no overwrite |
+| `.gitignore`, `results/cross_model/xf_fresh_cities_test/README.md` | path ignored; rebuild note | reproducibility |
+Verified 2026-11-26: the rebuild is byte-identical to the file used for the XF TEST pass (SHA-256 `00186e18…`); only `build_info.json`'s `created_utc` would differ, and `build_info.json` is not regenerated.

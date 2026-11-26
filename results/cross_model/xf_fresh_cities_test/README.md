@@ -5,6 +5,7 @@ Evidence level on completion: confirmed test result on a pristine TEST split.
 Frozen protocol and hashes: [`preregistration.json`](preregistration.json) (sha256 3ec9b134…, frozen 2026-11-23 ~19:06 UTC).
 Script: [`scripts/cross_model/23_xf_fresh_cities_test.py`](../../../scripts/cross_model/23_xf_fresh_cities_test.py).
 Data: `data/got/fresh/geonames_cities/statements.csv` + `build_info.json`.
+*(2026-11-26: `statements.csv` is no longer committed; rebuild it with `python scripts/cross_model/23b_xf_rebuild_statements.py`, which reproduces the pre-registered SHA-256 byte for byte. Only `ids.csv` and `build_info.json` are committed; see `data/got/fresh/geonames_cities/README.md` for the GeoNames CC BY 4.0 attribution.)*
 
 ## 1. Before implementation
 
