@@ -409,7 +409,7 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * DONE: X0 (§57) and SIL / XC-4 GPT-2 part (§58, D49). Gemma SIL not started (needs XC-1 site sweep first).
 * DONE: XB primary arm (§59, D50): Gemma H1 64/64; GPT-2 128-token SAEs break down on long spans; no matched stratum. Context-controlled comparison = A4.
 * DONE: XB A4 (128-token arm; §61, D52): GPT-2 back in distribution; most cross-model differences shrink; Holm p-floor disclosed.
-* IN PROGRESS: XT-G/DX (Gemma done; GPT-2 depth-matched).
+* DONE: XT-G/DX (§63, D54): no readout shift; persona loss in both models (not honesty-specific); error concentrated along the task direction (truth for GoT, persona / neutral for RepE).
 * PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
   XC-4/SIL, TI-G, X0, E1, PCA-CM-T, XG-IH / XJ (feasibility), XF.
 * BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or

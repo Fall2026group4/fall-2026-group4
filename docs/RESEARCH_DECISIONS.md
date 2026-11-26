@@ -654,6 +654,16 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Do not report:** any architecture ranking on task prompts from old SAEs at OWT-matched L0 as an architecture effect.
 * E1-A1 (single-threaded BLAS) is a reproduction fix, not a scientific change.
 
+## D54. How XT-G is reported (2026-11-22). Status: DECIDED (by the frozen rules + A4)
+* **May say (VALIDATION):**
+  * frozen-probe degradation is not a linear readout shift in either model (0/410 cells);
+  * SAE reconstructions lose persona information in both models, and more than error-matched PCA in most cells, but the neutral control shows that this is not honesty-specific;
+  * SAE error is concentrated along the task direction (the truth direction for GoT; the persona / neutral label direction for RepE).
+* **May not say:**
+  * any cross-model ranking (different SAE families and training);
+  * any Gemma cities claim at ceiling layers (use d′ retention).
+* **Caveat:** BH and LOSS_BEYOND_PCA use the A4 approximations (no stored bootstrap arrays).
+
 ## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
 * **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
   heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);

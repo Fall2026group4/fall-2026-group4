@@ -551,6 +551,19 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `docs/*` ledgers | appended | §62, D53, summary, roadmap, registry, manifest |
 | `scripts/shared/e1_g2_blas_threads_diagnostic.py` | path sanitised for commit | its hard-coded absolute repo path is replaced by `Path(__file__).resolve().parents[2]` (the same directory; behaviour unchanged). SHA-256 (16 characters) cc0b31ef9089ba30 → a2a0cd4f5586a68c; the E1 pre-registration records the original. Not used by any E1 stage |
 
+## 2026-11-22: XT-G / DX results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/11_xtg_analysis.py`, `src/tests/test_xtg_analysis.py`, XT-G `AMENDMENTS.md` (A4), `frozen_hashes_analysis.txt` | added | analysis frozen in `cdefced` before any output value was read |
+| `results/cross_model/xtg_truth_preservation/runs/{gemma_main, gpt2_main}/` | added | per-cell, DX, RepE-extras outputs (GPT-2 L0 not evaluable) |
+| `results/cross_model/xtg_truth_preservation/analysis_v1/`, `README.md` | added / updated | rule counts, cross-model descriptive table |
+| `docs/*` ledgers | appended | §63, D54, summary, roadmap, registry, manifest, tracker |
+
+## 2026-11-23: XT-G / DX review fix (PR #43, reviewer note)
+* README, `RESEARCH_PROGRESS`, `RESEARCH_DECISIONS`, `results_registry`, `RESEARCH_ROADMAP`: SUPPRESSION is described as
+  error concentrated along the **task** direction (truth for GoT; the persona / neutral label direction for RepE),
+  because for the RepE tasks the direction is not a truth direction. Wording only; no rule or count changed.
+
 ## 2026-11-23: XB A4 review fix (PR #41, reviewer note)
 * `a4_ctx128/README.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/RESEARCH_PROGRESS.md`: "R2 0.83–0.95" was the range
   of per-layer means; now also reports individual trained R2 SAEs 0.81–0.98 and the frozen-decoder control 0.57–0.68
