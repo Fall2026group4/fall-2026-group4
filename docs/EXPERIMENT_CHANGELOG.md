@@ -574,3 +574,14 @@ No experiment, result, frozen script, criterion or threshold changed.
 | `.gitignore` | the two decompressed `per_doc.csv` paths | cannot be re-committed above the 25 MB limit |
 | `docs/RESEARCH_PROGRESS.md` (§64), `docs/RESEARCH_ROADMAP.md` | appended | documentation rule (CLAUDE.md §1) |
 Verification: all 2 pairs here (and #41's 2 A4 pairs) are byte-identical to the uncompressed originals, match their sidecars, and are reproducible with `gzip -n -9`.
+
+## 2026-11-26: #41 integrated with #53 (A4 side of D55)
+No experiment, result, frozen script, criterion or threshold changed.
+| File | Change | Reason |
+|---|---|---|
+| `docs/{EXPERIMENT_CHANGELOG,RESEARCH_DECISIONS,RESEARCH_PROGRESS}.md` | merge of #53: both sides kept (D52 then D55; §61 then §64; changelog in date order) | append-only ledgers |
+| `.gitignore` | the two decompressed A4 `per_doc.csv` paths | cannot be re-committed above the 25 MB limit |
+| `results/cross_model/xb_matched_splicing/a4_ctx128/README.md` | preflight command for `07` added to the storage note | `07` reuses `03`'s `load_runs`, which skips folders without `per_doc.csv` |
+| `docs/RESEARCH_ROADMAP.md` | status line | documentation rule (CLAUDE.md §1) |
+Verified: the two A4 `.gz` files are byte-identical to the originals in `15e78e7`, match their sidecars, and are reproducible with `gzip -n -9`; the preflight `--verify` test now covers all four committed pairs.
+End-to-end: through the preflight (`--decompress` from the committed `.gz`; hash-matched local `sum_x.npz`; CI-pinned environment; scratch worktree), the unmodified frozen `07` reproduces the committed `a4_ctx128/context_comparison_a4/`: `info.json` byte-identical; `context_change.csv` 324 rows, every label identical (SHRINKS 269 / GROWS 29 / NO CLEAR CHANGE 26; Holm 324 × NO CLEAR CHANGE), numeric differences ≤ 1.5e-12 relative. Scratch outputs deleted.

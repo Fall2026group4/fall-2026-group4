@@ -121,3 +121,7 @@ Context change by metric (uncorrected SHRINKS / GROWS / no clear change):
 `per_doc.csv.sha256` (hash of the uncompressed file): the uncompressed files are 27.2 MB, above the 25 MB
 repository-hygiene limit. Before re-running the frozen A4 analysis, run `gunzip -k runs/*/per_doc.csv.gz` and
 `sha256sum -c per_doc.csv.sha256` in each folder. The same applies to the two primary-arm runs (#53). No number changed.
+**Without this step the frozen loader skips those runs without an error** (`07` reuses `03`'s `load_runs`, which skips
+folders without `per_doc.csv`), so re-run A4 through the preflight (D55), which covers both trees and refuses to start on
+a missing or stale file (added 2026-11-26):
+`python scripts/shared/compressed_outputs_preflight.py --decompress results/cross_model/xb_matched_splicing -- python scripts/cross_model/07_a4_context_comparison.py --tag <new tag>`.
