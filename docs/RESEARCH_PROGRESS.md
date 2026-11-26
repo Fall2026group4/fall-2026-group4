@@ -1779,3 +1779,13 @@ D numbers are deliberately not assigned here.
 * **Validation:** full CI step list run under the CI-pinned dependency set (torch 2.14.1+cpu, numpy 2.5.3,
   pandas 3.0.5, scipy 1.18.1, scikit-learn 1.9.1, joblib 1.6.0, transformer-lens 3.9.0, pytest 8.4.2; Python 3.14.4
   locally vs 3.14.10 on CI).
+
+## 65. C4 integrated: GPT-2 GoT causal truth-direction test, selective extraction from `dhruv-causal` (2026-11-26). Status: COMPLETED (integration; no experiment run)
+* **Work by Dhruv Rai** (pre-registered and run 2026-11-10 on Kaggle; PR #26 closed unmerged). Integrated under D56.
+* **Result (TEST, single pass, 113 cities pairs, 600 controls per layer):** the unembedding positive control is
+  detectable at a 1 % dose at layers 4/6/8/10 (p = 1/601); mass-mean and logistic-probe truth directions are not
+  distinguishable from random directions (best one-sided p 0.188; BH ≥ 0.932); 0/108 SAE-direction tests survive BH.
+* **Verification:** pre-registration hashes (script, data, splits) match; BH recomputed in all three families; TEST
+  exposure and rebuilt-checkpoint provenance recorded in the README §5.
+* **Reading:** within the test's sensitivity, the truth directions probes read from GPT-2 do not causally drive its
+  answers on cities. Under the same protocol Gemma's mass-mean direction does (XC-2), a descriptive contrast.

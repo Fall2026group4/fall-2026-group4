@@ -467,3 +467,6 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
   decompressed paths git-ignored; A4 README gives the preflight command for `07`.
 * OPEN: D/§ numbering of the open PR stack collides (#41, #42 and #43 each add D52 / §61); D55 / §64 are outside
   that range. A renumbering pass is needed before the stack merges.
+* DONE on the integration line (not pushed): C4 (GPT-2 GoT causal test, Dhruv Rai) selectively extracted from
+  `dhruv-causal` (D56, §65). OPEN: it needs its own PR into `main` (new branch, needs the user's approval) with
+  Dhruv's review.

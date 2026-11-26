@@ -172,3 +172,10 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | TSP-R / TI-1 tsp − ctrl advantage | VALIDATION finding; did NOT replicate on XF fresh TEST (cite both) | `results/geometry_of_truth/truth_subspace_preservation/replication/`, `results/geometry_of_truth/tsp_generalisation/` |
 | XC-1 Gemma site sweep: L0 slot and L23 final selected and confirmed (R_A val 0.108, E_share 0.98) | VALIDATION finding (TRAIN selection, VALIDATION confirmation; reduced 9-layer grid) | `results/cross_model/xc1_gemma_site_sweep/` |
 | M4-G Gemma SAE patch decomposition: preservation 0.96 (L0 slot), 0.75 (L12 final), 0.70 (L23 final); H4a/H4b 3/3; final-token sites interaction-dominated (bounds only) | VALIDATION finding (H4c not run) | `results/cross_model/m4_gemma_patch_decomposition/` |
+
+## 2026-11-26 additions (integration)
+| Result | Status | Location |
+|---|---|---|
+| C4 GPT-2 GoT causal truth-direction test (Dhruv Rai) | **TEST, pre-registered (single pass; TEST rows previously scored for probe AUROC only)**: C1 raw truth directions not distinguishable from random (null within a 1 %-dose sensitivity, not proof of no effect); C2 0/108 on rebuilt SAEs. Cross-model contrast with XC-2 descriptive only (D56) | `results/geometry_of_truth/causal_truth_steering/` (§65) |
+| Rebuild reproducibility check, 108 in-house SAEs | CONFIRMED (metric-equivalent: EV within 0.0013, L0 within 1.19; checkpoints not byte-identical) | `results/openwebtext/rebuild_reproducibility_check/` |
+

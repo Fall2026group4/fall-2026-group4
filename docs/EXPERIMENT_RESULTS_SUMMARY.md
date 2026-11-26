@@ -1081,3 +1081,17 @@ Gemma Scope 16k canonical at the XC-1 sites; VALIDATION T2–T4 (267 pairs); T i
 | L23 final | 0.137 | 0.096 [0.064, 0.137] | 0.007 [−0.005, 0.022] | 0.701 [0.640, 0.755] | 0.33 (bounds only) | PASS | PASS |
 
 BH over 3 sites; H4c not run. Source: `results/cross_model/m4_gemma_patch_decomposition/`.
+
+## C4: GPT-2 GoT causal truth-direction test (TEST 2026-11-10, Dhruv Rai; integrated 2026-11-26, D56)
+Outcome: change of log P(true token) − log P(false token) at the final prefix token; 113 test pairs; 600 norm-matched
+random directions per layer; empirical p = (1 + #controls ≥ effect)/601; BH within families. Baseline pair accuracy 0.743.
+
+| Family | Layers 4 / 6 / 8 / 10 | Result |
+|---|---|---|
+| A, positive control (unembedding contrast) | detectable at λ = 0.01 at every layer | p = 1/601; 28/28 BH < 0.05 |
+| C1, mass-mean direction (+s) | −0.001 / +0.005 / +0.129 / +0.080 | not distinguishable from random; best one-sided p 0.188 |
+| C1, logistic-probe direction (+s) | −0.000 / −0.128 / −0.352 / −0.169 | wrong direction at L6–10; BH ≥ 0.932 |
+| C2, SAE reconstruction / top-1 / top-10 (3 archs × 3 seeds, rebuilt SAEs) | — | 0/108 BH < 0.05 (smallest 0.599); 6 nominal two-sided |
+
+Source: `results/geometry_of_truth/causal_truth_steering/summary.csv`.
+

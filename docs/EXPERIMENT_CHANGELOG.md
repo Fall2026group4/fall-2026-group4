@@ -709,6 +709,19 @@ End-to-end: through the preflight (`--decompress` from the committed `.gz`; hash
 | `.gitignore`, `results/cross_model/xf_fresh_cities_test/README.md` | path ignored; rebuild note | reproducibility |
 Verified 2026-11-26: the rebuild is byte-identical to the file used for the XF TEST pass (SHA-256 `00186e18…`); only `build_info.json`'s `created_utc` would differ, and `build_info.json` is not regenerated.
 
+## 2026-11-26: C4 selectively integrated from `dhruv-causal` (Dhruv Rai's work; D56)
+No experiment run; files copied unchanged from `origin/dhruv-causal` (`989d313`) except where stated.
+| File | Change | Reason |
+|---|---|---|
+| `results/geometry_of_truth/causal_truth_steering/` | added (unchanged) + README §5 integration note appended | C4 TEST result; provenance and verification recorded |
+| `results/openwebtext/rebuild_reproducibility_check/` | added (unchanged) | provenance of the rebuilt SAEs C4 used |
+| `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | added (unchanged; hash = pre-registered) | C4 script; `22_` kept (pre-registered path) |
+| `scripts/repe/15_sae_in_the_loop_causal.py` | added (unchanged) | code dependency of C4 (statistics, latent helpers); its own results are not integrated |
+| `src/tests/test_followup_part3.py` | added (unchanged) | FinalTokenTail equals the hooked forward pass |
+| `src/tests/test_got_causal_c4.py` | added: tests copied verbatim from `test_followup_part2.py` and `test_causal_followup.py` | the original files import excluded scripts |
+| `docs/RESEARCH_DECISIONS.md` (D56), `RESEARCH_PROGRESS.md` (§65), `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `RESEARCH_ROADMAP.md`, `experiment_manifest.csv` | appended | documentation rule (CLAUDE.md §1) |
+Excluded (D56): script 14 / 15 RepE results, frozen-probe error decomposition, sparsity-matched preservation, public-SAE splicing, follow-up figures.
+
 ## 2026-11-26: `append_experiment` rewrote other manifest rows (bug fix) and two erased cells restored
 | File | Change | Reason |
 |---|---|---|

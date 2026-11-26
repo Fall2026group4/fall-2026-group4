@@ -734,3 +734,24 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **Rule:** re-run frozen XB / A4 analyses through the preflight (command in the XB README §3). Decompressed copies are
   listed in `.gitignore` so they cannot be re-committed by accident.
 * **Not changed:** no frozen script, criterion, threshold or result. The hygiene limit stays at 25 MB.
+
+## D56. Selective integration of the GPT-2 GoT causal test (C4) from `dhruv-causal` (2026-11-26). Status: DECIDED (user-approved integration plan)
+* **Included:** `results/geometry_of_truth/causal_truth_steering/` (C4, Dhruv Rai, TEST 2026-11-10),
+  `results/openwebtext/rebuild_reproducibility_check/` (provenance of the SAEs C4 used), the C4 script, its code
+  dependency `scripts/repe/15_sae_in_the_loop_causal.py` (helpers only), and the tests for both (verbatim).
+* **Excluded, with reason:**
+  * `results/repe/steering/` re-analysis and SAE-in-the-loop results (scripts 14 and 15): old RepE prompts with the
+    length confound (D23);
+  * `results/shared/frozen_probe_error_decomposition/`, `sparsity_matched_truth_preservation/`: superseded for every
+    claim by M2, AUDIT-SENS S5, PCA-CM and E1;
+  * `results/shared/public_sae_spliced_evaluation/`: superseded by E2 and XB;
+  * `results/shared/followup_figures/` and its script: figures for the excluded experiments.
+  The branch is kept unchanged; nothing is deleted.
+* **Reporting rule:**
+  * C1 (raw mass-mean and probe directions): "not distinguishable from 600 norm-matched random directions at any of
+    layers 4/6/8/10 (BH ≥ 0.93), with a positive control detectable at a 1 % dose". It is a null within that
+    sensitivity, not proof that truth has no causal role. It uses no SAE.
+  * C2 (SAE directions, 0/108): measured on rebuilt SAEs (metric-equivalent, not byte-identical).
+  * The GPT-2 vs Gemma (XC-2) contrast is descriptive: different SAE families, hooks, strengths and baseline accuracy
+    (GPT-2 0.743, Gemma 0.938). Gemma's random directions lower the margin at the selected strengths (XC-2 reading).
+* **Script name:** `22_` kept (pre-registration records the path; self-hash check), noted as a numbering exception.
