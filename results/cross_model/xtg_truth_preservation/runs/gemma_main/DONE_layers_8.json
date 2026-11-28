@@ -1,0 +1,15 @@
+{
+ "args": {
+  "model": "gemma",
+  "saes": "canonical",
+  "layers": "8",
+  "tag": "main",
+  "smoke": false,
+  "jobs": 2
+ },
+ "layers": [
+  8
+ ],
+ "minutes": 47.0602065483729,
+ "script_sha256": "2b199c4184b4f927c1112a23a8dfe3d251f5d665b427e43b6a6869ce4a9e1f15"
+}

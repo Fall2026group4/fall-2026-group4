@@ -1,0 +1,36 @@
+{
+ "G1_training_reproduction": {
+  "max_abs_param_diff": 0.0,
+  "passed": true,
+  "seconds": 61
+ },
+ "G2_m2_eval_reproduction": {
+  "abs_diff": {
+   "got_cities": {
+    "refit_logistic_gap": 0.00021922831632648077,
+    "frozen_logistic_gap": 9.964923469374387e-05,
+    "task_nmse": 0.0,
+    "refit_mlp_gap": 0.0
+   },
+   "repe_persona": {
+    "refit_logistic_gap": 5.523292513565092e-05,
+    "frozen_logistic_gap": 0.0,
+    "task_nmse": 0.0,
+    "refit_mlp_gap": 0.00028405504355510924
+   },
+   "repe_neutral": {
+    "refit_logistic_gap": 0.0,
+    "frozen_logistic_gap": 0.0,
+    "task_nmse": 0.0,
+    "refit_mlp_gap": 0.0
+   }
+  },
+  "max_abs_diff": 0.00028405504355510924,
+  "passed": false
+ },
+ "G3_m4_reproduction": {
+  "abs_diff_preservation_rec": 0.0,
+  "passed": true
+ },
+ "all_passed": false
+}

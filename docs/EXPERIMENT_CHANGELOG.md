@@ -534,10 +534,146 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 |---|---|---|
 | XB `README.md` §3.2, §59, D50, results summary | corrected | the GPT-2 XB_H1 "0/318" under Holm is mechanically impossible to pass with a 1,000-resample bootstrap over 159 tests. It was wrongly attributed to the out-of-distribution artefact; the uncorrected CI verdicts are now reported as descriptive. No result or rule changed |
 
+## 2026-11-22: XB A4 results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/0{4,5,7}_*.py`, `src/tests/test_xb_a4.py` | added | A4 manifest builder, wrapper (frozen 02/03 unchanged), paired context comparison; frozen in `0c15597` |
+| `results/cross_model/xb_matched_splicing/samples/*ctx128*` | added | 128-token re-cut manifests |
+| `results/cross_model/xb_matched_splicing/a4_ctx128/` | added | protocol, runs (`per_doc.csv`; `sum_x.npz` hashed, not committed), analysis, comparison, README |
+| `docs/*` ledgers | appended | §61, D52, summary, roadmap, registry, manifest, tracker |
+
+## 2026-11-22: E1 results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/e1_task_l0_matched_topk.py` (+ E1-A1), `scripts/shared/e1_g2_blas_threads_diagnostic.py`, `src/tests/test_e1_task_l0_matched.py` | added | E1 implementation; single-threaded probe BLAS (E1-A1) and its diagnostic |
+| `results/shared/e1_task_l0_matched_topk/{gate.json, gate_attempt1_failed_G2_blas_threads.json, ledger.csv, eval_*.csv, analysis/, README.md}` | added / updated | gates, 36 SAEs, evaluation, pre-registered analysis |
+| `docs/checkpoint_registry.csv` | appended | 36 E1 keeper checkpoints (EBS copy, gitignored) |
+| `docs/*` ledgers | appended | §62, D53, summary, roadmap, registry, manifest |
+| `scripts/shared/e1_g2_blas_threads_diagnostic.py` | path sanitised for commit | its hard-coded absolute repo path is replaced by `Path(__file__).resolve().parents[2]` (the same directory; behaviour unchanged). SHA-256 (16 characters) cc0b31ef9089ba30 → a2a0cd4f5586a68c; the E1 pre-registration records the original. Not used by any E1 stage |
+
+## 2026-11-22: XT-G / DX results
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/11_xtg_analysis.py`, `src/tests/test_xtg_analysis.py`, XT-G `AMENDMENTS.md` (A4), `frozen_hashes_analysis.txt` | added | analysis frozen in `cdefced` before any output value was read |
+| `results/cross_model/xtg_truth_preservation/runs/{gemma_main, gpt2_main}/` | added | per-cell, DX, RepE-extras outputs (GPT-2 L0 not evaluable) |
+| `results/cross_model/xtg_truth_preservation/analysis_v1/`, `README.md` | added / updated | rule counts, cross-model descriptive table |
+| `docs/*` ledgers | appended | §63, D54, summary, roadmap, registry, manifest, tracker |
+
+## 2026-11-23: XT-G / DX review fix (PR #43, reviewer note)
+* README, `RESEARCH_PROGRESS`, `RESEARCH_DECISIONS`, `results_registry`, `RESEARCH_ROADMAP`: SUPPRESSION is described as
+  error concentrated along the **task** direction (truth for GoT; the persona / neutral label direction for RepE),
+  because for the RepE tasks the direction is not a truth direction. Wording only; no rule or count changed.
+
+## 2026-11-23: XB A4 review fix (PR #41, reviewer note)
+* `a4_ctx128/README.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/RESEARCH_PROGRESS.md`: "R2 0.83–0.95" was the range
+  of per-layer means; now also reports individual trained R2 SAEs 0.81–0.98 and the frozen-decoder control 0.57–0.68
+  (recomputed from `analysis_a4/summary_by_sae.csv`, both corpora). Wording only; no result changed.
+
 ## 2026-11-23: XB primary review fix (PR #39, reviewer note)
 * `results/cross_model/xb_matched_splicing/README.md` and `docs/EXPERIMENT_RESULTS_SUMMARY.md`: the GPT-2 shared-span
   EV / L0 values are labelled OWT-XM (verified against `analysis_v1/summary_by_sae.csv`, corpus `owt_xm`). Wording only;
   no number changed.
+
+## 2026-11-23: oversize XB per-document CSVs stored gzipped (CI repository-hygiene fix)
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xb_matched_splicing/runs/{gpt2_owt_xm_shared_main,gpt2_pile_shared_main}/per_doc.csv` | replaced by `per_doc.csv.gz` (gzip -n -9, lossless) + `per_doc.csv.sha256` (hash of the uncompressed file; round trip verified) | 27.2 MB each, above the 25 MB limit of `scripts/shared/ci_repo_hygiene.py`; `main` CI failed after #39 merged |
+| `results/cross_model/xb_matched_splicing/README.md` | storage note and re-run instruction | frozen analysis scripts unchanged (decompress before re-running) |
+
+## 2026-11-23: oversize XB A4 per-document CSVs stored gzipped (CI repository-hygiene fix)
+* `results/cross_model/xb_matched_splicing/a4_ctx128/runs/{gpt2_owt_xm_shared_main,gpt2_pile_shared_main}/per_doc.csv`
+  replaced by lossless `per_doc.csv.gz` + `per_doc.csv.sha256` (round trip verified); 27.2 MB each, above the 25 MB
+  hygiene limit. README storage note added. Frozen scripts unchanged. Same treatment as the primary-arm runs (#53).
+
+## 2026-11-23 (recovery session; committed on `sae-research`)
+| File | Change | Reason |
+|---|---|---|
+| `docs/2026-11-23_recovery_and_final_day.md` | added | recovery record, Phase 2 status, final-day plan, git placement |
+| `results/geometry_of_truth/tsp_multifamily/` (pre-registration, gates, ledger, subspaces, eval, analysis, README) | added (outputs from 2026-11-22), README results appended | TI-2 results; checkpoints lost, hashes in `ledger.csv` |
+| `scripts/geometry_of_truth/34_tsp_multifamily.py`, `src/tests/test_tsp_multifamily.py` | added (frozen, unchanged) | TI-2 pipeline |
+| `scripts/geometry_of_truth/34b_tsp_multifamily_analyze_allow_pickle.py` | added | declared deviation: re-run the frozen analysis (allow_pickle only for `eval/orig.npz`) |
+| `results/geometry_of_truth/tsp_kl_factorial/` (pre-registration, gates, ledger, eval, analysis, README) | added (outputs from 2026-11-22), README review appended | TI-4 results |
+| `scripts/geometry_of_truth/35_tsp_kl_factorial.py`, `src/tests/test_tsp_kl_factorial.py`, `scripts/shared/e1_task_l0_matched_topk.py` | added (frozen, unchanged) | TI-4 pipeline and its frozen dependency |
+| `results/geometry_of_truth/minimal_pair_preservation/` (pre-registration, README, WITHDRAWN, READY.hold.tf32) | added, README status appended | TI-3 withdrawal record |
+| `scripts/geometry_of_truth/36_minimal_pair_preservation.py`, `src/tests/test_minimal_pair_preservation.py` | added (unchanged) | TI-3 pre-registered code |
+| `results/cross_model/xb_ladder_batch2/`, `results/cross_model/assets/asset_manifest_b2b.json`, `results/cross_model/xb_matched_splicing/runs/gemma_pile_shared_b2/{DONE.json,per_doc.csv}` | added, README status appended | ladder partial state (`sum_x.npz` hash only) |
+| `scripts/cross_model/06_ladder_scratch.py`, `src/tests/test_ladder_scratch.py` | added (unchanged) | ladder pipeline |
+| `results/cross_model/xc3_steering_parity/` (pre-registration, body, sha256, README, smoke outputs on TRAIN rows) | added | XC-3 pre-registration (results committed separately) |
+| `scripts/cross_model/20_xc3_steering_parity.py` | added (frozen) | XC-3 runner |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `EXPERIMENT_CHANGELOG.md` | appended | documentation rule |
+
+## 2026-11-23 (XC-3 results)
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xc3_steering_parity/{validation,test}/` | added | XC-3 VALIDATION selection and the single TEST pass |
+| `scripts/cross_model/22_xc3_h4_parity.py`, `results/cross_model/xc3_steering_parity/test/h4_parity.json` | added | pre-registered descriptive H4 (cross-model parity) |
+| `results/cross_model/xc3_steering_parity/README.md` | results appended, status COMPLETED | documentation rule |
+| `docs/RESEARCH_PROGRESS.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `RESEARCH_ROADMAP.md`, `experiment_manifest.csv` | appended | documentation rule |
+
+## 2026-11-23 (XC-2 pre-registration)
+| File | Change | Reason |
+|---|---|---|
+| `scripts/cross_model/21_xc2_gemma_got_causal.py` | added (frozen) | port of `dhruv-causal` 22 to Gemma + Gemma Scope 16k |
+| `results/cross_model/xc2_gemma_got_causal/{preregistration.json,preregistration.sha256,prereg_body.json,README.md,smoke/,smoke_v2/}` | added | frozen before any VALIDATION/TEST scoring; TRAIN-only smoke outputs (`smoke/` shows the bf16 batch-shape issue; `smoke_v2/` shows every path check exactly 0) |
+| `logs_xm/freeze_prereg.py`, `logs_xm/gpu_queue.sh` | not committed (operational helpers in `logs_xm/`) | — |
+
+## 2026-11-23 (XC-2 results)
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xc2_gemma_got_causal/{validation,test}/` | added (`interventions_partial.csv` omitted: byte-identical to `interventions.csv`) | XC-2 VALIDATION strength selection and the single TEST pass |
+| `results/cross_model/xc2_gemma_got_causal/README.md` | results appended, status COMPLETED | documentation rule |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `experiment_manifest.csv` | appended | documentation rule |
+
+## 2026-11-23: XF pre-registration, build and DEV gate
+* Added `scripts/cross_model/23_xf_fresh_cities_test.py`: the XF build, smoke, gate, test and analyze stages.
+* Added `data/got/fresh/geonames_cities/statements.csv` and `build_info.json`: the fresh family (text only).
+* Added `results/cross_model/xf_fresh_cities_test/`:
+  * `prereg_body.json`, `preregistration.json` and `.sha256`;
+  * `README.md`;
+  * `smoke/smoke_results.json`;
+  * `gate/gate.json`.
+
+  Activation caches (`gate/dev_acts.npz`, `smoke/acts.npz`) and the per-SAE smoke score files are not committed.
+
+## 2026-11-23: XC-1 and M4-G pre-registrations (frozen before the XC-1 full run)
+* Added `scripts/cross_model/24_xc1_gemma_site_sweep.py`: the M3 port to Gemma on a reduced grid, with fixed-shape
+  forwards.
+* Added `scripts/cross_model/25_m4_gemma_patch_decomposition.py`: the M4 port to Gemma Scope at the XC-1 sites; H4c is
+  omitted.
+* Added the `prereg_body.json`, `preregistration.json`, `.sha256`, `README.md` and smoke outputs under:
+  * `results/cross_model/xc1_gemma_site_sweep/`;
+  * `results/cross_model/m4_gemma_patch_decomposition/`.
+
+  Run logs are not committed.
+
+## 2026-11-23: XF results (single TEST pass)
+* Added `results/cross_model/xf_fresh_cities_test/test/results.json` and `test_info.json`: the TEST statistics and run
+  record.
+* Updated the XF `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed:
+  * `test/test_acts.npz` (activation cache, 37 MB);
+  * `test/scores/` (184 per-SAE score files, 3 MB; kept on EBS);
+  * `run.log`.
+
+## 2026-11-23: XC-1 results
+* Added under `results/cross_model/xc1_gemma_site_sweep/`: `cells_train.csv`, `cells_validation.csv`,
+  `cells_validation_by_template.csv`, `selected_sites.json`, `sanity_checks.json`, `pairs_info.json`,
+  `random_draws.npz` (80 KB): the full-run outputs.
+* Updated the XC-1 `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed: `run.log`. `results/cross_model/m4_gemma_patch_decomposition/site_selection.json` (written by the
+  running M4-G job) is committed with M4-G.
+
+## 2026-11-23: M4-G results
+* Added under `results/cross_model/m4_gemma_patch_decomposition/`: `site_selection.json`, `per_pair.csv`,
+  `decomposition_summary.csv`, `hypotheses.csv`, `sanity_checks.json`, `control_draws.npz` (490 KB).
+* Updated the M4-G `README.md` with results, criteria and status.
+* Updated docs: `RESEARCH_PROGRESS`, `EXPERIMENT_RESULTS_SUMMARY`, `RESEARCH_DECISIONS`, `RESEARCH_ROADMAP`,
+  `results_registry`, `experiment_manifest` and the recovery and final-day record.
+* Not committed: `run.log`.
 
 ## 2026-11-23: R3 status in the paper; OWT EDA PNGs moved out of `results/` (Review #10: F7; no experiment run)
 
@@ -547,3 +683,71 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `research_paper/Latex/sections/09_discussion.tex` | "(PR \#30, under review)" → "(merged in PR \#30)" | same |
 | `research_paper/Latex/main.pdf` | not rebuilt (no LaTeX on this machine) | rebuild before submission |
 | `results/figures/eda_{token_count_distribution,token_vs_context_limit,word_count_distribution}.png` → `docs/eda_figures/` (moved, unchanged) + `docs/eda_figures/README.md` | moved | Review #10 F7: PNGs out of `results/`. Their notebook streamed 1,000 OWT documents from Hugging Face, not data in the repo, so they cannot be regenerated as SVG; not used in the paper |
+
+## 2026-11-26: #53 prepared for integration (D55 heading; preflight against silently skipped gzipped runs)
+No experiment, result, frozen script, criterion or threshold changed.
+| File | Change | Reason |
+|---|---|---|
+| `docs/RESEARCH_DECISIONS.md` | the 2026-11-23 gzip note gets its own heading **D55** (text kept verbatim) and a preflight bullet | it read as part of D51 |
+| `scripts/shared/compressed_outputs_preflight.py` | added | `03` `load_runs` (reused by `07`) skips folders without `per_doc.csv`, so a fresh checkout would silently drop the gzipped GPT-2 runs; `--verify` / default / `--decompress` / `-- CMD` |
+| `src/tests/test_compressed_outputs_preflight.py` | added (11 tests) | preflight behaviour; the hazard shown on the unmodified frozen `03` loader; integrity of every committed `.gz` (CI) |
+| `results/cross_model/xb_matched_splicing/README.md` | preflight command added to the storage note | re-run instructions |
+| `.gitignore` | the two decompressed `per_doc.csv` paths | cannot be re-committed above the 25 MB limit |
+| `docs/RESEARCH_PROGRESS.md` (§64), `docs/RESEARCH_ROADMAP.md` | appended | documentation rule (CLAUDE.md §1) |
+Verification: all 2 pairs here (and #41's 2 A4 pairs) are byte-identical to the uncompressed originals, match their sidecars, and are reproducible with `gzip -n -9`.
+
+## 2026-11-26: #41 integrated with #53 (A4 side of D55)
+No experiment, result, frozen script, criterion or threshold changed.
+| File | Change | Reason |
+|---|---|---|
+| `docs/{EXPERIMENT_CHANGELOG,RESEARCH_DECISIONS,RESEARCH_PROGRESS}.md` | merge of #53: both sides kept (D52 then D55; §61 then §64; changelog in date order) | append-only ledgers |
+| `.gitignore` | the two decompressed A4 `per_doc.csv` paths | cannot be re-committed above the 25 MB limit |
+| `results/cross_model/xb_matched_splicing/a4_ctx128/README.md` | preflight command for `07` added to the storage note | `07` reuses `03`'s `load_runs`, which skips folders without `per_doc.csv` |
+| `docs/RESEARCH_ROADMAP.md` | status line | documentation rule (CLAUDE.md §1) |
+Verified: the two A4 `.gz` files are byte-identical to the originals in `15e78e7`, match their sidecars, and are reproducible with `gzip -n -9`; the preflight `--verify` test now covers all four committed pairs.
+End-to-end: through the preflight (`--decompress` from the committed `.gz`; hash-matched local `sum_x.npz`; CI-pinned environment; scratch worktree), the unmodified frozen `07` reproduces the committed `a4_ctx128/context_comparison_a4/`: `info.json` byte-identical; `context_change.csv` 324 rows, every label identical (SHRINKS 269 / GROWS 29 / NO CLEAR CHANGE 26; Holm 324 × NO CLEAR CHANGE), numeric differences ≤ 1.5e-12 relative. Scratch outputs deleted.
+
+## 2026-11-26: XF fresh-cities data stored as identifiers only (Option B, user decision)
+| File | Change | Reason |
+|---|---|---|
+| `data/got/fresh/geonames_cities/statements.csv` | removed from Git (kept locally, git-ignored); its SHA-256 stays frozen in XF's `preregistration.json` | GeoNames text/names/populations via the unlicensed GoT repository are not redistributed (same rule as `raw_*/`) |
+| `data/got/fresh/geonames_cities/ids.csv` | added: `geoname_id`, `label`, `country`, `split` (1,426 rows) | our own assignments, enough to verify a rebuild row for row |
+| `scripts/cross_model/23b_xf_rebuild_statements.py` | added | runs the **unchanged** frozen XF `stage_build` into a temp folder; checks the upstream SHA-256, the pre-registered output SHA-256 and `ids.csv`; never overwrites |
+| `data/got/fresh/geonames_cities/README.md` | added | GeoNames CC BY 4.0 attribution; GoT repository has no licence; OpenDataSoft page not verified |
+| `src/tests/test_xf_rebuild.py` | added (3 tests; the rebuild test skips without the upstream checkout) | integrity, deterministic rebuild, no overwrite |
+| `.gitignore`, `results/cross_model/xf_fresh_cities_test/README.md` | path ignored; rebuild note | reproducibility |
+Verified 2026-11-26: the rebuild is byte-identical to the file used for the XF TEST pass (SHA-256 `00186e18…`); only `build_info.json`'s `created_utc` would differ, and `build_info.json` is not regenerated.
+
+## 2026-11-26: C4 selectively integrated from `dhruv-causal` (Dhruv Rai's work; D56)
+No experiment run; files copied unchanged from `origin/dhruv-causal` (`989d313`) except where stated.
+| File | Change | Reason |
+|---|---|---|
+| `results/geometry_of_truth/causal_truth_steering/` | added (unchanged) + README §5 integration note appended | C4 TEST result; provenance and verification recorded |
+| `results/openwebtext/rebuild_reproducibility_check/` | added (unchanged) | provenance of the rebuilt SAEs C4 used |
+| `scripts/geometry_of_truth/22_truth_direction_causal_test.py` | added (unchanged; hash = pre-registered) | C4 script; `22_` kept (pre-registered path) |
+| `scripts/repe/15_sae_in_the_loop_causal.py` | added (unchanged) | code dependency of C4 (statistics, latent helpers); its own results are not integrated |
+| `src/tests/test_followup_part3.py` | added (unchanged) | FinalTokenTail equals the hooked forward pass |
+| `src/tests/test_got_causal_c4.py` | added: tests copied verbatim from `test_followup_part2.py` and `test_causal_followup.py` | the original files import excluded scripts |
+| `docs/RESEARCH_DECISIONS.md` (D56), `RESEARCH_PROGRESS.md` (§65), `EXPERIMENT_RESULTS_SUMMARY.md`, `results_registry.md`, `RESEARCH_ROADMAP.md`, `experiment_manifest.csv` | appended | documentation rule (CLAUDE.md §1) |
+Excluded (D56): script 14 / 15 RepE results, frozen-probe error decomposition, sparsity-matched preservation, public-SAE splicing, follow-up figures.
+
+## 2026-11-26: `append_experiment` rewrote other manifest rows (bug fix) and two erased cells restored
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/write_manifest.py` | `append_experiment` now appends one CSV line with the `csv` module and never re-reads or rewrites the file; unknown columns are rejected; `sha16` hashes only files | it round-tripped the file through pandas, which turned literal `n/a` cells in **other** rows into empty strings; `sha16('')` tried to hash the current directory |
+| `docs/experiment_manifest.csv` | rows `D` and `F/G`: `optimizer` restored from `""` to `n/a` | erased by the old helper in `9446e56` (2026-11-07); value taken from `9446e56^`. The same call would have erased XF's `intervention_strengths` `n/a` on the next append |
+| `src/tests/test_write_manifest.py` | added (3 tests) | existing bytes unchanged after an append; NA-like cells kept; unknown columns rejected |
+No result changed. The history scan found no other rewritten row (only `9446e56` ever removed manifest lines).
+
+## 2026-11-26: status corrections after the integration audit (D57)
+| File | Change | Reason |
+|---|---|---|
+| `docs/results_registry.md` | header date; dated annotations on the TSP-R, TI-1, TI-2, TI-4, XC-3 (two rows) entries; original text kept | TSP/TI-1 cited with XF; TI-2/TI-4 provenance-limited; XC-3 H3 inconclusive |
+| `docs/RESEARCH_ROADMAP.md` | incorrect "numbering collides" line struck through and corrected; integration-line status section | the stacked PRs number sequentially |
+| `docs/RESEARCH_DECISIONS.md` (D57), `docs/RESEARCH_PROGRESS.md` (§66) | appended | documentation rule (CLAUDE.md §1) |
+
+
+## 2026-11-26: architecture diagrams removed (user request)
+| File | Change | Reason |
+|---|---|---|
+| `architecture/diagrams/{OpenWebText.drawio.png, Sae_cloud_architecture.png, gpt2_sae_faithfulness_pipeline.svg, gpt2_sae_faithfulness_pipeline.drawio, build_gpt2_pipeline_diagram.py}` | removed; folder kept (`.gitkeep`) | diagrams no longer used; no script, test, result or paper references them. The SAE implementations are unaffected |

@@ -1,0 +1,39 @@
+{
+ "experiment": "XC-1: reduced positive-control causal site sweep on original Gemma-2-2B (port of M3, scripts/repe/23)",
+ "created": "2026-11-23",
+ "status": "PRE-REGISTERED (frozen after a TRAIN-only smoke; before any VALIDATION pair is scored on Gemma by this protocol)",
+ "evidence_level_on_completion": "TRAIN selection; VALIDATION confirmation (validation finding). No SAE. No TEST row is loaded.",
+ "research_question": "Where does original Gemma-2-2B carry the effect of the persona instruction (RepE-LM T1-T4), under the M3 protocol? Which sites are confirmed for an M4-style SAE patch decomposition on Gemma?",
+ "why": "Audit 2026-11-21: the causal-site and SAE-decomposition evidence (M3/M4) exists only for GPT-2. XC-1 gives the Gemma site map at matched protocol and decides whether M4 on Gemma is justified (stop rule).",
+ "source_protocol": {
+  "script": "scripts/repe/23_positive_control_site_sweep.py",
+  "preregistration": "results/repe/causal_site_sweep/preregistration.json (M3, 2026-11-08)"
+ },
+ "kept_from_source": [
+  "RepE-LM T1-T4 pairs (H, U, Hp; one-token persona swap), statement-level grouping",
+  "outcomes R_A (primary) = KL(p_H||p_U) - KL(p_H||p_{U<-H at cell}); R_B (other direction); R_S (synonym); R_W (wrong statement, same template and token length); matched-norm random (||eta|| = ||x_H - x_U|| per patched position); C_A continuation (secondary); E_share",
+  "statistics: per-statement means, 2000 statement-bootstrap resamples, one-sided normal-approximation p",
+  "cell p = max(p[R_A>0], p[R_A-R_S>0], p[R_B>0]); Holm over all cells",
+  "PASS = Holm p < 0.05 AND R_A > q95 of 200 random draws AND not trivial; candidates for the extra 150 draws: R_A CI low > 0 and R_A > q95 of the 50 screening draws",
+  "select at most 3 cells: earliest (lowest layer, ties larger R_A), peak (largest R_A), latest (highest layer)",
+  "VALIDATION: all cells with controls (descriptive) + selected cells with 200 random draws on all validation pairs; CONFIRMED if R_A CI low > 0",
+  "stop rule: no passing cell or no confirmed selected cell -> M4 on Gemma not justified"
+ ],
+ "substitutions_declared": {
+  "model_site": "HF Gemma-2-2B rev c5ebcd40, bf16, eager attention; site = output of model.model.layers[L] (resid_post); final-token logits = lm_head(final-norm hidden) with the soft-cap in fp32",
+  "reduced_grid": "layers {0, 2, 5, 8, 12, 16, 19, 23, 25} (9 of 26; depth (L+1)/26 = 0.04, 0.12, 0.23, 0.35, 0.50, 0.65, 0.77, 0.92, 1.00) x position groups {slot, post_slot_instruction, assistant_span, prefix_excl_final, final} = 45 cells (GPT-2 M3: 13 sites x 5 = 65). Holm is over 45 cells. Reason: a like-for-like 26-layer port with all TRAIN pairs is ~60 GPU h.",
+  "trivial_cell": "(25, final) only: patching the last layer's output at the final token reproduces p_H exactly. (GPT-2's layer-0 slot is the embedding; Gemma's layer-0 resid_post is not trivial and is kept.)",
+  "train_subset": "100 TRAIN statements (seeded, seed 20261124) x T1-T4 for screening and selection (GPT-2: all 417); random controls on a fixed 30-statement subset of these (x 4 templates, <= 120 pairs; GPT-2: 480 pairs). Validation: all 89 statements x T1-T4 (as GPT-2).",
+  "positions": "slot = the single token where H and U differ under the Gemma tokenizer (pairs whose H/U/Hp lengths differ or differ in more than one token are dropped; smoke: 0 dropped); ' ASSISTANT:' span = 2 Gemma tokens (GPT-2: 4)",
+  "continuation": "C_A uses the Gemma tokenization of the statement remainder; pairs whose prompt+continuation does not tokenise as prompt ids + continuation ids get no C_A (smoke: 144 of 1668 TRAIN pairs). C_A is secondary and not used in selection.",
+  "shapes": "every forward pass has the identical shape [96, T_FIX] (C_A runs a second fixed shape [96, T_FIX_LONG] and is compared only within that shape). Reason: the XC-2 smoke showed bf16 batch-shape differences up to 0.34 nats.",
+  "seed": "20261124 (GPT-2 M3: 20261108)"
+ },
+ "sanity_checks_hard": "run stops unless all hold (tolerance 1e-6; all-position 1e-5): all-positions patch at L0/12/23 reproduces p_H; zero patch R = 0; (25, final) R_A = KL(p_H||p_U); same rows in another batch position give identical log-probs; zero additive edit is the identity. Smoke: every check exactly 0.0.",
+ "comparison_with_gpt2": "descriptive: GPT-2 M3 selected blocks.1 slot (earliest + peak) and blocks.11 final (latest), both confirmed (E_share ~0.96-0.97). Depth-matched comparison is reported, not tested.",
+ "leakage": "selection on TRAIN only; VALIDATION only confirms; TEST never loaded; hashes checked before the run.",
+ "tf32": "off",
+ "outputs": "results/cross_model/xc1_gemma_site_sweep/ (refuses to overwrite)",
+ "runtime_estimate": "about 13,500 forwards x ~0.55 s = ~2.1 GPU h",
+ "smoke": "smoke/ (TRAIN only: 16 statements screening, 12 other TRAIN statements as the validation stand-in, 4-8 random draws): every hard sanity check exactly 0.0; 556 fixed-shape forwards in 330 s (~0.59 s per forward). No rule, threshold or grid changed after the smoke. Smoke selections are not evidence."
+}

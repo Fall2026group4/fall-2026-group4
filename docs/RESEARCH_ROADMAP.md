@@ -408,7 +408,8 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * DONE: TI-1 TSP generalisation: GENERALISES, 3/3 cells SUPPORTED, cost guard met (§56, D48).
 * DONE: X0 (§57) and SIL / XC-4 GPT-2 part (§58, D49). Gemma SIL not started (needs XC-1 site sweep first).
 * DONE: XB primary arm (§59, D50): Gemma H1 64/64; GPT-2 128-token SAEs break down on long spans; no matched stratum. Context-controlled comparison = A4.
-* IN PROGRESS: XB A4 (128-token arm), XT-G/DX (Gemma all layers; GPT-2 depth-matched).
+* DONE: XB A4 (128-token arm; §61, D52): GPT-2 back in distribution; most cross-model differences shrink; Holm p-floor disclosed.
+* DONE: XT-G/DX (§63, D54): no readout shift; persona loss in both models (not honesty-specific); error concentrated along the task direction (truth for GoT, persona / neutral for RepE).
 * PLANNED (approved, in order): batch-2 ladder (16k downloaded; 65k waits for disk), TI-2, TI-3, TI-4, XC-1…XC-3,
   XC-4/SIL, TI-G, X0, E1, PCA-CM-T, XG-IH / XJ (feasibility), XF.
 * BLOCKED (disk): 65k downloads, TI-2/TI-4/TI-G/XG-IH training until the EBS increase (requested by the user) or
@@ -425,3 +426,61 @@ width/L0 ladder (`origin/dhruv-gemma-r3`, unmerged).
 * DONE: Table `tab:evidence` no longer marks those three folders with the "not yet on `main`" dagger; R3 stays
   on PR #30 and keeps its dagger until #30 merges.
 * OPEN: final R3 integration into the manuscript after PR #30 merges (D46 / §54 / results summary §27 reserved).
+
+* DONE 2026-11-22: E1 task-level matched TopK: NOT robust, 1/4 differences persist (§62, D53).
+
+## 2026-11-23 (recovery; final day)
+* DONE: recovery (897/897 checkpoints verified); TI-2 analysis (NO TRANSFER DETECTED, VALIDATION); TI-4 review
+  (COMBINES, VALIDATION).
+* WITHDRAWN: TI-3 (pre-registered schedule rule; not to be re-run).
+* PARTIAL: ladder batch 2.
+  * Done: XB L12, 16 SAEs.
+  * Missing: the XT-G `gemma_b2` arm (needs the 9.6 GB re-download) and the batch-2 analysis. Optional.
+* IN PROGRESS: XC-3 steering parity; XC-2 Gemma GoT causal (both pre-registered today).
+* DEFERRED (user, 2026-11-23): XC-1 (Gemma site sweep + M4; a like-for-like port is about 60 GPU h, so a reduced grid
+  is needed), XF (fresh geonames TEST), M4 on Gemma. Re-approved by the user on 2026-11-23, in the order XF, then
+  XC-1, then M4:
+  * XF: **COMPLETED** 2026-11-23. P1 LOSS at 4/4 informative cells; P2 TSP FAILS TO REPLICATE (0/4).
+  * XC-1: **COMPLETED** 2026-11-23 (validation). L0 slot and L23 final confirmed; M4 on Gemma justified.
+  * M4-G: **COMPLETED** 2026-11-23 (validation). Preservation 0.96 / 0.75 / 0.70 at L0 slot / L12 final / L23 final;
+    H4a and H4b met at 3/3. H4c (feature patches) not run; a possible follow-up.
+* OPTIONAL, not scheduled: TI-G, ladder completion. DROPPED from priority: XG-IH, XJ.
+* LOST: the TI-2 / TI-4 checkpoints (instance storage). Retraining is possible (about 3.7 GB, about 5.6 h) but not
+  planned.
+* OPEN: integrate `sae-research` with the `final-week/p*` PR stack (needs the user's approval; no merge or rebase done).
+
+* DONE (2026-11-23 15:27 UTC): XC-3 steering parity.
+  * H1/H2 met at 5/6 cells (not at Gemma L5).
+  * H3 INCONCLUSIVE everywhere: retention CIs too wide with 86 statements.
+  * NEW (optional): a larger RepE-LM TEST would be needed to resolve retention (H3).
+
+* DONE (2026-11-23 16:40 UTC): XC-2 Gemma GoT causal.
+  * T1 (mass-mean) and T2 (reconstruction) met at all 4 layers; the positive control has full power.
+  * The cross-model contrast with the GPT-2 null is descriptive only.
+  * NEW (optional): a matched cross-model causal test, i.e. the same SAE family type and joint strength selection.
+
+## 2026-11-26 additions (PR #53 prepared for integration)
+* DONE (infrastructure; no experiment run): D55 heading for the gzipped-outputs note; preflight
+  `scripts/shared/compressed_outputs_preflight.py` and its tests; decompressed copies git-ignored (§64).
+* OPEN (needs the user's approval): merge #53 into `main`, then update #41 (`final-week/p14-xb-a4-results`).
+* DONE on the prepared #41 update (not pushed): #53 merged in with both sides' documentation kept; the two A4
+  decompressed paths git-ignored; A4 README gives the preflight command for `07`.
+* ~~OPEN: D/§ numbering of the open PR stack collides (#41, #42 and #43 each add D52 / §61); D55 / §64 are outside
+  that range. A renumbering pass is needed before the stack merges.~~ **CORRECTED 2026-11-26:** there is no collision.
+  The stacked PRs use D52/§61 (#41), D53/§62 (#42), D54/§63 (#43) in sequence; the earlier line compared each stacked
+  PR with `main` cumulatively. Stack B (#47–#52) entries are unnumbered by design. No renumbering is needed.
+* DONE on the integration line (not pushed): C4 (GPT-2 GoT causal test, Dhruv Rai) selectively extracted from
+  `dhruv-causal` (D56, §65). OPEN: it needs its own PR into `main` (new branch, needs the user's approval) with
+  Dhruv's review.
+
+## 2026-11-26 integration line (prepared locally; nothing pushed or merged)
+* DONE (verified; CI green at every step): #53 → #41 → #42 (E1) → #43 (XT-G) → #47 (recovery) → #48 (XC-3) →
+  #49 (XC-2) → #50 (XF, with the XC-1/M4-G pre-registration, plus XF Option B) → #51 (XC-1) → #52 (M4-G) →
+  manifest-helper fix → C4 (D56) → status corrections (D57). #46 (R3 evidence row) is handled as its own PR. See §66.
+* OPEN (needs the user's approval, and one teammate review per PR under `protect_main`): merge order on GitHub is
+  fixed by the stacks: #53, #41, #42, #43; then #47, #48, #49, #50, #51, #52; #46 independent. Each PR branch is
+  updated by a fast-forward push of its integration commit.
+* OPEN (needs a new branch, i.e. the user's approval): a PR for C4 + the manifest-helper fix, with Dhruv's review.
+* DONE (user decision, D57): XF data stored as GeoNames ids with a deterministic, hash-checked rebuild (Option B).
+* NOT IN THE NARRATIVE: TI-2 and TI-4 (provenance-limited, D57).
+

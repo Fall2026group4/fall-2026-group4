@@ -632,3 +632,160 @@ Each entry: decision, date, reason, alternatives considered, consequence, and th
 * **May say (TEST, rows previously exposed):** "On held-out cities TEST, no trained SAE retains less truth information than PCA with the same per-token active budget (k = 128; 0/20 cells worse)."
 * **May say, cell-specific:** an SAE advantage over capacity-matched PCA is confirmed at k = 128 for L11 R2 ReLU, and at task-matched k for L8 old ReLU, L8 res-jb, L11 R2 ReLU and L11 res-jb.
 * **May not say:** "SAEs are significantly better than PCA" in general (D34 wording rule). Not confirmed: P2 L8 res-jb (p = 0.048 fails Holm) and L8 R2 ReLU; four P3 cells.
+
+## D52. How A4 and the Holm p-floor are reported (2026-11-22). Status: DECIDED (no criterion changed)
+* **Finding:**
+  * XB's frozen analysis (and the A4 comparison that copies it) uses a 1,000-resample bootstrap p with floor ≈ 0.002;
+  * Holm over large families (159 GPT-2 cells; 324 context rows) therefore cannot reject at 0.05, whatever the effect;
+  * Gemma's 6- and 26-cell families are unaffected.
+* **Reporting:**
+  * the pre-registered Holm outcomes are shown as computed and explicitly labelled **"uninformative (p floor)"**;
+  * the uncorrected 95 % CI verdicts are the descriptive results;
+  * neither is called a confirmed finding.
+* **May say (VALIDATION, descriptive):**
+  * "At matched 128-token context both models' SAEs degrade next-token prediction more than norm-matched random error";
+  * "most cross-model differences seen at 1024 tokens shrink when context is matched (269/324 rows)".
+* **May not say:** any Holm-significant cross-model difference; any architecture-matched comparison (0/54 matched pairs).
+* **Open option (needs the user's approval):** a post-hoc re-analysis with ≥ 100,000 resamples, labelled exploratory. Not run.
+
+## D53. How the M2/M4 architecture differences are reported after E1 (2026-11-22). Status: DECIDED (by the frozen E1 rule)
+* E1's headline is NOT robust: only 1 of 4 task-prompt architecture differences survives task-level L0 matching (BH).
+* **Report:** M2 / M4 ReLU / JumpReLU vs TopK differences on task prompts are "largely attributable to task-level sparsity mismatch (E1)", except L11 persona JumpReLU `preservation_rec`, which persists.
+* **Do not report:** any architecture ranking on task prompts from old SAEs at OWT-matched L0 as an architecture effect.
+* E1-A1 (single-threaded BLAS) is a reproduction fix, not a scientific change.
+
+## D54. How XT-G is reported (2026-11-22). Status: DECIDED (by the frozen rules + A4)
+* **May say (VALIDATION):**
+  * frozen-probe degradation is not a linear readout shift in either model (0/410 cells);
+  * SAE reconstructions lose persona information in both models, and more than error-matched PCA in most cells, but the neutral control shows that this is not honesty-specific;
+  * SAE error is concentrated along the task direction (the truth direction for GoT; the persona / neutral label direction for RepE).
+* **May not say:**
+  * any cross-model ranking (different SAE families and training);
+  * any Gemma cities claim at ceiling layers (use d′ retention).
+* **Caveat:** BH and LOSS_BEYOND_PCA use the A4 approximations (no stored bootstrap arrays).
+
+## 2026-11-23 (recovery session; no D number, to avoid colliding with the PR stack's numbering)
+* **Working repository and branch.**
+  * `sae-project/fall-2026-group4` (this repository, next to `../venv`) stays the working repository.
+  * Today's work is committed on `sae-research` (user, Option 1).
+  * The `final-week/p*` PR stack is not modified.
+* **TI-2 analysis deviation.** The frozen analysis is re-run through an import wrapper that allows pickle for the
+  pipeline's own `eval/orig.npz` only. No estimand, threshold or input changes, and the frozen script is untouched.
+  Alternative rejected: editing the frozen script, because its hash is checked.
+* **No retraining** of the lost TI-2/TI-4 checkpoints. The evaluation outputs are sufficient for the pre-registered
+  analyses (user).
+* **TI-3 stays withdrawn** (user); it is not re-run.
+* **Final-day scope (user):** Phase 2 + XC-3 + XC-2. XC-1, XF and M4 are deferred.
+  * Gemma decisions use VALIDATION only.
+  * TEST is reported once, with prior exposure disclosed.
+* **XC-3 task choice:**
+  * RepE-LM persona (not GoT judgment): both models pass its gates (K1, K7), and E is normalised within each model.
+  * The strength grid equals `scripts/repe/13`'s.
+  * H3 (retention) is tested only where H1 holds.
+  * All of this was fixed after a TRAIN-only smoke test and before freezing.
+* **XC-2 numerics:**
+  * Every Gemma forward has an identical batch shape, and the baseline uses the same path.
+  * The first smoke showed bf16 batch-shape effects of up to 0.34 nats per pair.
+  * Fixed before freezing; the path checks are hard stops.
+* **Storage:** the instance-store disk is not formatted (user). All outputs go to EBS; jobs start only at ≥ 60 GB free
+  and stop below 42 GB.
+
+* **XC-2 reading (2026-11-23).** Because norm-matched random directions lower Gemma's margin at the selected
+  strengths, absolute effect CIs (> 0) are cited alongside the control-based p-values. The pre-registered BH tests are
+  reported unchanged. The GPT-2 vs Gemma contrast stays descriptive.
+
+* **XF (2026-11-23).**
+  * **Fresh family design:** cities of 200k–500k from geonames, disjoint from GoT cities, with DEV 40 % / TEST 60 % by
+    city.
+  * **Ceiling rule:** added after the TRAIN-only smoke, before any fresh row was embedded.
+  * **Reading of the TSP claim:** after XF, the truth-subspace fine-tune's advantage over its reconstruction-only
+    control is a VALIDATION-only finding that **did not replicate on a fresh TEST population**. Cite it as
+    "validation effect, failed fresh-TEST replication".
+* **XC-1 and M4-G (2026-11-23).**
+  * **Reduced Gemma grid:** 9 layers × 5 groups, with TRAIN screening on 100 statements.
+  * **M4-G site rules:** both pre-registered before XC-1 read VALIDATION.
+  * **H4c omitted.**
+  * **Order:** XF first, then XC-1, then M4-G (user).
+
+  * **XC-1 outcome (2026-11-23):** selected L0 slot and L23 final, both confirmed on VALIDATION, so the stop rule is
+    not triggered and M4-G runs. The mid site is L12 final by the pre-registered M4-G rule. No rule was changed after
+    any VALIDATION number was seen.
+
+  * **M4-G reading (2026-11-23):** at L12 and L23 final the interaction exceeds the 0.2 limit, so per the frozen rule
+    only the T_rec / T_err bounds are cited there (no Shapley split). The Shapley share column is reported but not
+    interpreted at those sites.
+
+## D55. Large per-document outputs are committed gzipped, behind a preflight (2026-11-23; heading and preflight 2026-11-26). Status: DECIDED
+* **Numbering:** first recorded (PR #53, 2026-11-23) as an unheaded bullet that read as part of D51. Given its own
+  heading on 2026-11-26. D55 is the first number not used by `main` (D51) or by any open PR (#41–#43 use D52–D54);
+  renumber under the team plan if needed. Content of the original note unchanged (first bullet below).
+* **Large per-document outputs (2026-11-23).** Per-document result CSVs above the 25 MB repository-hygiene limit are
+  committed gzipped (`gzip -n -9`, lossless) with a SHA-256 of the uncompressed file next to them, rather than raising
+  the limit or dropping the data. Frozen analysis scripts are not edited; the README gives the decompress step.
+* **Preflight (2026-11-26).** Frozen loaders skip a run folder that has no `per_doc.csv`
+  (`03_matched_splicing_analysis.py:load_runs`, reused by `07_a4_context_comparison.py`), so a fresh checkout would
+  drop the gzipped GPT-2 runs from the analysis **without an error**. `scripts/shared/compressed_outputs_preflight.py`
+  closes this without touching any frozen script:
+  * `--verify` (read-only; run by the unit tests, hence by CI): every `X.gz` with an `X.sha256` sidecar decompresses to
+    the recorded hash; every tracked `.gz` under `results/` must have a sidecar;
+  * default mode: also requires each `X` to exist with that hash (missing or stale → exit 1);
+  * `--decompress`: creates missing `X` (hash checked before the file appears), never overwrites;
+  * `-- CMD`: runs the frozen analysis only after a passing preflight.
+* **Rule:** re-run frozen XB / A4 analyses through the preflight (command in the XB README §3). Decompressed copies are
+  listed in `.gitignore` so they cannot be re-committed by accident.
+* **Not changed:** no frozen script, criterion, threshold or result. The hygiene limit stays at 25 MB.
+
+## D56. Selective integration of the GPT-2 GoT causal test (C4) from `dhruv-causal` (2026-11-26). Status: DECIDED (user-approved integration plan)
+* **Included:** `results/geometry_of_truth/causal_truth_steering/` (C4, Dhruv Rai, TEST 2026-11-10),
+  `results/openwebtext/rebuild_reproducibility_check/` (provenance of the SAEs C4 used), the C4 script, its code
+  dependency `scripts/repe/15_sae_in_the_loop_causal.py` (helpers only), and the tests for both (verbatim).
+* **Excluded, with reason:**
+  * `results/repe/steering/` re-analysis and SAE-in-the-loop results (scripts 14 and 15): old RepE prompts with the
+    length confound (D23);
+  * `results/shared/frozen_probe_error_decomposition/`, `sparsity_matched_truth_preservation/`: superseded for every
+    claim by M2, AUDIT-SENS S5, PCA-CM and E1;
+  * `results/shared/public_sae_spliced_evaluation/`: superseded by E2 and XB;
+  * `results/shared/followup_figures/` and its script: figures for the excluded experiments.
+  The branch is kept unchanged; nothing is deleted.
+* **Reporting rule:**
+  * C1 (raw mass-mean and probe directions): "not distinguishable from 600 norm-matched random directions at any of
+    layers 4/6/8/10 (BH ≥ 0.93), with a positive control detectable at a 1 % dose". It is a null within that
+    sensitivity, not proof that truth has no causal role. It uses no SAE.
+  * C2 (SAE directions, 0/108): measured on rebuilt SAEs (metric-equivalent, not byte-identical).
+  * The GPT-2 vs Gemma (XC-2) contrast is descriptive: different SAE families, hooks, strengths and baseline accuracy
+    (GPT-2 0.743, Gemma 0.938). Gemma's random directions lower the margin at the selected strengths (XC-2 reading).
+* **Script name:** `22_` kept (pre-registration records the path; self-hash check), noted as a numbering exception.
+
+## D57. Status rules after the 2026-11-26 integration audit (2026-11-26). Status: DECIDED (user decisions of 2026-11-26)
+* **TI-2 and TI-4 are provenance-limited.** Their checkpoints were lost (instance storage), so their numbers come only
+  from saved evaluation outputs and cannot be re-evaluated; TI-2 also has a declared analysis deviation (pickle
+  wrapper). Their reproduction gates passed (TI-2 after amendment A-TF32; the failed first attempt is kept). They are
+  reported as such and are **not** confirmed findings or part of the main narrative. TI-2's "NO TRANSFER DETECTED"
+  has MDE ≈ 0.03 and is not evidence of no effect.
+* **TSP:** TSP-R and TI-1 are cited only together with XF: supported on cross-fitted cities (validation), failing to
+  replicate on the fresh TEST (0/4: three cells NO MEANINGFUL EFFECT by the pre-registered ±0.010 equivalence rule,
+  one INCONCLUSIVE). On fresh data the measurable gain comes from GoT replay (ctrl − base), not the truth-subspace term.
+* **XC-3:** "confirmed" applies to H1/H2 (5/6 cells). H3 (retention ≥ 0.8) is INCONCLUSIVE at 5/5 cells, so steering
+  retention through the SAE is not claimed.
+* **XF data (user decision: Option B).** `statements.csv` is no longer committed; `ids.csv` plus
+  `scripts/cross_model/23b_xf_rebuild_statements.py` rebuild it with the frozen XF build code, verified byte-identical
+  to the pre-registered SHA-256 (`00186e18…`). GeoNames is CC BY 4.0 (credit given in the data README); the GoT
+  repository states no licence. **Limit:** the file remains in the Git history of `final-week/p20-xf-fresh-cities`
+  (pushed 2026-11-23), because removing it from history would need a force-push, which is not done.
+* **E1 diagnostic hash (accepted after review).** `scripts/shared/e1_g2_blas_threads_diagnostic.py` was hash-frozen as
+  `cc0b31ef…` and committed as `a2a0cd4f…`. The only change is one line: the absolute home path
+  `REPO = Path('/home/…/fall-2026-group4')` became `REPO = Path(__file__).resolve().parents[2]` (required by the
+  repository-hygiene check). No logic changed; no script imports the diagnostic; the E1 analysis script and every
+  E1 input match their frozen hashes. The primary analysis is unaffected.
+* **C4 rebuilt SAEs (accepted as metric-equivalent, not byte-identical).** 0/36 checkpoints are byte-identical to the
+  originals. Against the original OWT test metrics, for the 36 SAEs C4 used (layers 4/6/8/10): |ΔEV| ≤ 0.00068
+  (mean 0.00024), |ΔL0| ≤ 0.55 (mean 0.16), |Δcos| ≤ 0.00021, relative |ΔMSE| ≤ 0.59 %; no systematic sign (EV higher
+  in 15/36). Over all 108 rebuilt SAEs: |ΔEV| ≤ 0.0013, |ΔL0| ≤ 1.19, relative |ΔMSE| ≤ 0.99 %. Only family C2
+  (SAE directions) depends on them; A and C1 use no SAE.
+* **Wording rules (user instruction):**
+  * C4: GPT-2 truth-direction effects were **not distinguishable from matched random controls under the tested
+    protocol**; never "non-causal".
+  * TEST evidence is labelled **fresh** (pristine rows: XF, H1-TEST, XC-3 Gemma) or **previously exposed** (rows seen
+    before for another quantity: M5, PCA-CM-T, XC-2, XC-3 GPT-2, C4).
+  * No claim that training scale matters more than architecture: no controlled comparison tests it.
+

@@ -1,0 +1,13 @@
+{
+ "corpus": "owt_xm",
+ "amendment": "A4",
+ "source_manifest": "owt_xm_manifest.csv",
+ "source_manifest_sha256": "ce24c96e3ac14e18923200c1c140ed40565b8dc251f5febee17695cdc23fa621",
+ "manifest_sha256": "e9ababb53106b142497bf0009a82c190f78ff41db83d499039ca76ac2dcd4a73",
+ "max_text_tokens": 127,
+ "seconds": 18.2,
+ "span_tokens_gpt2_mean": 125.21354166666667,
+ "span_tokens_gemma_mean": 122.74305555555556,
+ "n_gpt2_binds": 401,
+ "n_short_docs": 12
+}

@@ -1,0 +1,18 @@
+{
+ "test_rows_used": 0,
+ "got_cities": {
+  "n_train": 2092,
+  "n_validation": 448,
+  "group_overlap": 0
+ },
+ "repe_persona": {
+  "n_train": 3336,
+  "n_validation": 712,
+  "group_overlap": 0
+ },
+ "repe_neutral": {
+  "n_train": 1668,
+  "n_validation": 356,
+  "group_overlap": 0
+ }
+}

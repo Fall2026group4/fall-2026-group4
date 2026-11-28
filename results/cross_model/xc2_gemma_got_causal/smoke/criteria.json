@@ -1,0 +1,42 @@
+{
+  "8": {
+    "T1_mass_mean_direction": false,
+    "T1_logistic_probe_direction": false,
+    "T2_sae_reconstruction_direction": false,
+    "T2_sae_reconstruction_direction_effect": 1.6822010278701782,
+    "T2_sae_top1_direction": false,
+    "T2_sae_top1_direction_effect": 0.45992904901504517,
+    "T2_sae_top10_direction": false,
+    "T2_sae_top10_direction_effect": 0.6129186749458313
+  },
+  "12": {
+    "T1_mass_mean_direction": false,
+    "T1_logistic_probe_direction": false,
+    "T2_sae_reconstruction_direction": false,
+    "T2_sae_reconstruction_direction_effect": 3.6385700702667236,
+    "T2_sae_top1_direction": false,
+    "T2_sae_top1_direction_effect": -2.714087963104248,
+    "T2_sae_top10_direction": false,
+    "T2_sae_top10_direction_effect": 3.449450969696045
+  },
+  "16": {
+    "T1_mass_mean_direction": false,
+    "T1_logistic_probe_direction": false,
+    "T2_sae_reconstruction_direction": false,
+    "T2_sae_reconstruction_direction_effect": 3.9132323265075684,
+    "T2_sae_top1_direction": false,
+    "T2_sae_top1_direction_effect": -0.18973739445209503,
+    "T2_sae_top10_direction": false,
+    "T2_sae_top10_direction_effect": 1.577075719833374
+  },
+  "21": {
+    "T1_mass_mean_direction": false,
+    "T1_logistic_probe_direction": false,
+    "T2_sae_reconstruction_direction": false,
+    "T2_sae_reconstruction_direction_effect": 2.7800800800323486,
+    "T2_sae_top1_direction": false,
+    "T2_sae_top1_direction_effect": -0.1917983591556549,
+    "T2_sae_top10_direction": false,
+    "T2_sae_top10_direction_effect": -0.798999011516571
+  }
+}

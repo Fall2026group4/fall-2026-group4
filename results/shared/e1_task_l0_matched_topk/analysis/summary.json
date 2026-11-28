@@ -1,0 +1,17 @@
+{
+ "n_tests": 18,
+ "n_significant_at_128": 4,
+ "share_persists": 0.25,
+ "robust": false,
+ "class_counts": {
+  "NO DIFFERENCE": 10,
+  "PERSISTS": 6,
+  "ATTENUATED": 2
+ },
+ "class_counts_bh": {
+  "NO DIFFERENCE": 14,
+  "ATTENUATED": 3,
+  "PERSISTS": 1
+ },
+ "n_degenerate_cells": 0
+}
