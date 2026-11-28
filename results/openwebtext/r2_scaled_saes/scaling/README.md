@@ -1,4 +1,4 @@
-# X0: token exposure within the R2 runs (10M / 25M / 50M / final checkpoints). Status: PRE-REGISTERED (2026-11-13)
+# X0: token exposure within the R2 runs (10M / 25M / 50M / final checkpoints). Status: COMPLETED (2026-11-21; VALIDATION, descriptive)
 
 * **Evidence level:** VALIDATION, descriptive. No test row is read; nothing is trained.
 * **Remediation item:** S8 / Review #8 ("is the gain from more data?").
@@ -61,6 +61,30 @@ The checkpoints were verified from their stored configs and from `scripts/openwe
 * About 108 light ladder passes on one A10G (OWT reconstruction plus splicing): roughly 30–60 minutes.
 * It runs after, or alongside, the H1-TEST pass.
 
-## 2. Results
+## 2. Results (run 2026-11-21; frozen commands unchanged, all 108 checkpoint hashes verified first)
 
-Pending.
+**Outputs:** `ladder_layer{1,8,11}_r2scaling.{csv,json}`, `per_checkpoint.csv`, `comparisons.csv`, `summary.json`,
+`figures/` (from `scripts/shared/r2_scaling_analysis.py`). 144 checkpoint rows. **No cell is outside the L0 band**
+(128 ± 10 %), so none is excluded. Paired-by-seed rule, 3 seeds per cell, 12 cells (4 families × 3 layers).
+
+| Step | OWT NMSE: IMPROVES / 12 (median change) | Spliced ΔCE: IMPROVES / 12 (median) | SAE/noise ΔCE ratio: IMPROVES / 12 |
+|---|---|---|---|
+| 10M → 25M (exposure only) | **12** (−17.1 %) | **11** (−26.7 %) | 9 |
+| 25M → 50M (exposure only) | **12** (−8.8 %) | **11** (−12.9 %) | 2 |
+| 50M → final (exposure + LR decay; confounded) | 12 (−6.7 %) | 8 (−8.9 %) | 2 |
+
+No cell WORSENS on NMSE or ΔCE at any step. The non-IMPROVES ΔCE cells are all at layer 1 (BatchTopK 10M→25M,
+ReLU 25M→50M; four at 50M→final, including TopK-3072 +1.4 %), where ΔCE is small and seed noise is relatively large.
+
+**Pre-registered reading:** 25M → 50M IMPROVES on NMSE and ΔCE in most cells (12/12 and 11/12), so **R2 had not
+saturated in token exposure at 50M at constant LR**. Returns diminish: each doubling-or-so of exposure roughly halves
+the relative gain (NMSE −17 % → −9 %).
+
+**Secondary observation (descriptive):** the SAE/noise ΔCE ratio improves 10M → 25M (9/12) but is flat after 25M
+(2/12 IMPROVES; 10 NO CLEAR CHANGE). Past 25M, the SAE's behavioural damage falls in step with that of norm-matched
+random noise at the shrinking error norm, i.e. extra exposure mainly shrinks the error rather than making it less
+harmful per unit norm.
+
+**Limitations (as pre-registered):** mid-run checkpoints are not models trained to completion on that budget; this is
+not a data-scaling law, and it does not attribute the old → R2 gain to data (width and recipe changed too). Seeds share
+one data stream, so seed sd understates variance. Validation only; no TEST row was read.

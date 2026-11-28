@@ -498,6 +498,47 @@ Historical changelog rows above that say "D36" for M6 describe those commits as 
 | `docs/plain_summary.md` | #31 sentence kept | the version Aditi accepted; it does not restore the withdrawn S5 wording |
 | `docs/EXPERIMENT_CHANGELOG.md` | both sides, chronological; this entry added | — |
 
+## 2026-11-21: TI-1 results (TSP generalisation)
+| File | Change | Reason |
+|---|---|---|
+| `scripts/geometry_of_truth/32_tsp_generalisation.py` | modified | OOM fix in `stage_eval` (batch 16 → 4, same for original log-probs); `stage_analyze` dict-access fix (`r.seed` → `r['seed']`). Neither changes any computation |
+| `results/geometry_of_truth/tsp_generalisation/{ledger_*.csv, eval/, analysis/}` | added | 81 fine-tunes evaluated; pre-registered analysis |
+| `results/geometry_of_truth/tsp_generalisation/README.md` | updated | results, criteria, deviations |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv`, `docs/checkpoint_registry.csv` | appended | documentation rule (CLAUDE.md §1); §56, D48; 81 checkpoint rows (checkpoints not committed) |
+
+## 2026-11-21: X0 and SIL results (pre-registered 2026-11-13)
+| File | Change | Reason |
+|---|---|---|
+| `results/openwebtext/r2_scaled_saes/scaling/{ladder_layer*_r2scaling.*, per_checkpoint.csv, comparisons.csv, summary.json, figures/}` | added | X0 frozen commands and analysis (checkpoint hashes verified first) |
+| `results/repe/sae_in_the_loop_mediation/{pilot/, validation/}` | added | SIL pilot gate (passed) and full run |
+| both `README.md` | updated | results, criteria, the SIL negative-control caveat |
+| `docs/RESEARCH_{PROGRESS,DECISIONS,ROADMAP}.md`, `docs/EXPERIMENT_RESULTS_SUMMARY.md`, `docs/results_registry.md`, `docs/experiment_manifest.csv` | appended | documentation rule; §57, §58, D49. No code changed; no checkpoints created |
+
+## 2026-11-21: XB primary results
+| File | Change | Reason |
+|---|---|---|
+| `results/cross_model/xb_matched_splicing/runs/*/{per_doc.csv, DONE.json}` | added | six completed runs; `sum_x.npz` (38–243 MB each) not committed, SHA-256 in `runs_sum_x_sha256.txt` |
+| `results/cross_model/xb_matched_splicing/analysis_v1/` | added | frozen analysis |
+| `results/cross_model/xb_matched_splicing/README.md`, `AMENDMENTS.md` | updated | results with the context caveat; operational note (expandable_segments restart) |
+| `docs/*` ledgers | appended | §59, D50, results summary, roadmap, registry, manifest |
+
+## 2026-11-22: PCA-CM-T TEST pass
+| File | Change | Reason |
+|---|---|---|
+| `scripts/shared/pca_cm_test_confirmation.py`, `src/tests/test_pca_cm_test_confirmation.py` | added | TEST runner implementing the frozen 2026-11-13 rules; validation-reproduction mode |
+| `results/shared/pca_capacity_matched_test_protocol/{validation_reproduction/, addendum_pre_test.json, test/, run_log.txt, README.md}` | added / updated | exact validation reproduction; pre-TEST freeze; single TEST pass; abort log |
+| `docs/*` ledgers | appended | §60, D51, summary, roadmap, registry, manifest |
+
+## 2026-11-22: correction to the XB primary results
+| File | Change | Reason |
+|---|---|---|
+| XB `README.md` §3.2, §59, D50, results summary | corrected | the GPT-2 XB_H1 "0/318" under Holm is mechanically impossible to pass with a 1,000-resample bootstrap over 159 tests. It was wrongly attributed to the out-of-distribution artefact; the uncorrected CI verdicts are now reported as descriptive. No result or rule changed |
+
+## 2026-11-23: XB primary review fix (PR #39, reviewer note)
+* `results/cross_model/xb_matched_splicing/README.md` and `docs/EXPERIMENT_RESULTS_SUMMARY.md`: the GPT-2 shared-span
+  EV / L0 values are labelled OWT-XM (verified against `analysis_v1/summary_by_sae.csv`, corpus `owt_xm`). Wording only;
+  no number changed.
+
 ## 2026-11-23: R3 status in the paper; OWT EDA PNGs moved out of `results/` (Review #10: F7; no experiment run)
 
 | File | Change | Reason |

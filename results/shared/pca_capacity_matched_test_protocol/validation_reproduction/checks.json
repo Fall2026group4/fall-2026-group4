@@ -1,0 +1,24 @@
+{
+  "eval_split": "val",
+  "n_got_eval_rows": 448,
+  "n_pca_train_tokens": 101600,
+  "L8_original_auroc": 0.8439094387755102,
+  "L11_original_auroc": 0.8245974170918368,
+  "runtime_s": 11057.469911575317,
+  "mode": "validate",
+  "script_sha256": "7ee4d069c9e3e8256eefae694de776d8af742f4753e15aa2ca761205d0d4a42c",
+  "n_paired": 116,
+  "test_label": "VALIDATION reproduction",
+  "reproduction": {
+    "pca_k": 0.0,
+    "sae_refit_logistic_gap": 0.0,
+    "pca_refit_logistic_gap": 0.0,
+    "diff_refit_logistic_gap_ci_low": 0.0,
+    "diff_refit_logistic_gap_ci_high": 0.0
+  },
+  "reproduction_rows": [
+    116,
+    116
+  ],
+  "validation_reproduced": true
+}

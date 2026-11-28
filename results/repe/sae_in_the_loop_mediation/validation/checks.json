@@ -1,0 +1,8 @@
+{
+  "script_sha256": "7218d12cf7bc8852b2d46f7fb4a4729be76b0e2d070b491bac82f180f2125c9f",
+  "mode": "run",
+  "n_sources": 19,
+  "runtime_s": 1535.1126639842987,
+  "split": "validation",
+  "test_rows_used": 0
+}

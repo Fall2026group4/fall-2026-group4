@@ -146,6 +146,10 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | Result | Status | Location |
 |---|---|---|
 | XT-G0 Gemma task activations, K1 / K7 gates | VALIDATION (completed; gates passed) | `results/gemma/xtg_task_baselines/` |
-| XB matched splicing (GPT-2 vs Gemma) | PRE-REGISTERED, in progress; gate outputs only | `results/cross_model/xb_matched_splicing/` |
+| XB matched splicing, primary 1024 arm (GPT-2 vs Gemma) | **VALIDATION**: Gemma results and gates citable; **GPT-2 primary-arm results NOT citable as SAE comparisons** (128-token SAEs out of distribution; D50); no matched stratum | `results/cross_model/xb_matched_splicing/` (§59) |
 | XT-G / DX truth preservation (both models) | PRE-REGISTERED, in progress; smoke outputs are EXPLORATORY, not citable | `results/cross_model/xtg_truth_preservation/` |
-| TI-1 TSP generalisation | PRE-REGISTERED, gates passed, in progress | `results/geometry_of_truth/tsp_generalisation/` |
+| TI-1 TSP generalisation | **VALIDATION (citable)**: GENERALISES, 3/3 cells SUPPORTED (L11 TopK −0.042, L8 BatchTopK −0.015, L8 ReLU −0.026 refit gap vs ctrl); cities only | `results/geometry_of_truth/tsp_generalisation/` (§56, D48) |
+| X0 token exposure within R2 runs | **VALIDATION (citable, descriptive)**: not saturated at 50M (25M→50M IMPROVES NMSE 12/12, ΔCE 11/12) | `results/openwebtext/r2_scaled_saes/scaling/` (§57) |
+| SIL SAE-in-the-loop persona mediation (GPT-2) | **VALIDATION**: MEDIATED by rule for all families, **but the negative control also passes**; cite only as "specificity inconclusive" plus D2 retention (0.82–0.92 TopK/BatchTopK/JumpReLU vs ≈ 0.5 ReLU and control) | `results/repe/sae_in_the_loop_mediation/` (§58, D49) |
+
+| PCA-CM-T capacity-matched PCA, TEST | **TEST (rows previously exposed in M5; PCA arms unseen)**: P1 confirmed (0/20 SAEs worse than PCA-128); advantage only in the confirmed cells (D51) | `results/shared/pca_capacity_matched_test_protocol/` (§60) |

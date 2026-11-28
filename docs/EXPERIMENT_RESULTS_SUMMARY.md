@@ -913,3 +913,45 @@ variability.
 | Q0b: T4 bf16 vs fp32 (layer 12, 16k/82, 64 docs) | mean error CI upper bound < margin | ΔCE_SAE WITHIN MARGIN: 0.00267 [0.00218, 0.00319] < 0.005; top-1 agreement BEYOND MARGIN: 0.00886 [0.00712, 0.01077] |
 
 * No layer ranking and no "best SAE" (pre-registered). Nothing is claimed for widths above 65k.
+
+## TI-1: TSP generalisation (2026-11-21; VALIDATION; pre-registered; 3 seeds × 3 folds per cell)
+| Cell | tsp − ctrl refit gap [95 % CI] | p_holm | tsp − rand | OWT NMSE vs base | L0 change | Label |
+|---|---|---|---|---|---|---|
+| L8 TopK (TSP-R reference, 8 seeds) | −0.0207 [−0.0261, −0.0153] | — | −0.0220 | non-inferior | 0 | SUPPORTED |
+| L11 TopK | −0.0415 [−0.0533, −0.0298] | 9.1e-5 | −0.0489 | +2.5 % | 0.0 % | SUPPORTED (meaningful) |
+| L8 BatchTopK | −0.0153 [−0.0241, −0.0065] | 7.1e-4 | −0.0217 | +1.6 % | +0.1 % | SUPPORTED (meaningful) |
+| L8 ReLU | −0.0258 [−0.0316, −0.0201] | 2.9e-10 | −0.0258 | +0.3 % | +0.2 % | SUPPORTED (meaningful) |
+
+Lower is better. Source: `results/geometry_of_truth/tsp_generalisation/analysis/`. L1 not eligible.
+
+## X0: token exposure within R2 runs (2026-11-21; VALIDATION, descriptive; 12 cells × 3 seeds)
+| Step | OWT NMSE IMPROVES /12 (median) | Spliced ΔCE IMPROVES /12 (median) | SAE/noise ratio IMPROVES /12 |
+|---|---|---|---|
+| 10M → 25M | 12 (−17.1 %) | 11 (−26.7 %) | 9 |
+| 25M → 50M | 12 (−8.8 %) | 11 (−12.9 %) | 2 |
+| 50M → final (+ LR decay) | 12 (−6.7 %) | 8 (−8.9 %) | 2 |
+
+## SIL: SAE-in-the-loop persona mediation (2026-11-21; VALIDATION; 3 seeds)
+| Family | Retained at D0 | D1 {8} | D2 {8, 11} | Rule (D2) |
+|---|---|---|---|---|
+| R2 TopK / BatchTopK | 1.02 / 1.00 | 0.88 / 0.95 | 0.90 / 0.92 | MEDIATED 3/3 |
+| old TopK / JumpReLU-3072 | 1.04 / 1.03 | 0.93 / 0.99 | 0.82 / 0.91 | MEDIATED 3/3 |
+| R2 ReLU / old ReLU | 1.01 / 0.97 | 0.68 / 0.72 | 0.47 / 0.53 | MEDIATED 3/3 |
+| random-decoder control | 0.83 | 0.59 | 0.51 | MEDIATED (control fails) |
+
+Retained = T_S / T_full (T_full = 0.0435). Specificity INCONCLUSIVE (D49).
+
+## XB primary: matched splicing, 1024-token shared span (2026-11-21; VALIDATION; see §59 / D50 caveat)
+| Model / SAE | XB_H1 (SAE > random) | EV at triplet layers (shared span) | Note |
+|---|---|---|---|
+| Gemma Scope 16k canonical | supported 64/64 cells | 0.74–0.88 | in distribution; SAE / random 1.3–3.3; loss recovered 0.97–1.00 |
+| GPT-2 (res-jb, R2, old; 159 SAEs) | Holm 0/318 (infeasible: p floor × 159 tests); by CI 243 supported, 70 contradicted | OWT-XM: res-jb −0.06 to −3,266; R2 0.15–0.72 (vs OWT VAL 0.87–0.98 at 128 tokens) | 128-token SAEs out of distribution |
+
+Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of record: A4 (128 tokens).
+
+## PCA-CM-T: capacity-matched PCA on TEST (2026-11-22; TEST, rows previously exposed in M5; PCA arms unseen)
+| Family | Result |
+|---|---|
+| P1: no SAE worse than PCA-128 (20 cells) | **CONFIRMED** (0/20 worse) |
+| P2: SAE better than PCA-128 (3 cells, Holm) | 1/3: L11 R2 ReLU (−0.056) |
+| P3: SAE better than task-L0 PCA (8 cells, Holm) | 4/8: L8 old ReLU (−0.094), L8 res-jb (−0.110), L11 R2 ReLU (−0.067), L11 res-jb (−0.075) |

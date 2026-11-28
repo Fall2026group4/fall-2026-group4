@@ -1,0 +1,112 @@
+{
+  "evidence": "VALIDATION, descriptive",
+  "n_checkpoint_rows": 144,
+  "unmatched_l0": [],
+  "counts": {
+    "r2_10M->r2_25M|owt_cosine": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_10M->r2_25M|owt_dead_fraction": {
+      "IMPROVES": 3,
+      "NO CLEAR CHANGE": 8,
+      "WORSENS": 1
+    },
+    "r2_10M->r2_25M|owt_explained_variance": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_10M->r2_25M|owt_nmse": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_10M->r2_25M|splice_delta_ce": {
+      "IMPROVES": 11,
+      "NO CLEAR CHANGE": 1,
+      "WORSENS": 0
+    },
+    "r2_10M->r2_25M|splice_kl_mean": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_10M->r2_25M|splice_sae_vs_noise_delta_ce_ratio": {
+      "IMPROVES": 9,
+      "NO CLEAR CHANGE": 3,
+      "WORSENS": 0
+    },
+    "r2_25M->r2_50M|owt_cosine": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_25M->r2_50M|owt_dead_fraction": {
+      "IMPROVES": 3,
+      "NO CLEAR CHANGE": 5,
+      "WORSENS": 4
+    },
+    "r2_25M->r2_50M|owt_explained_variance": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_25M->r2_50M|owt_nmse": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_25M->r2_50M|splice_delta_ce": {
+      "IMPROVES": 11,
+      "NO CLEAR CHANGE": 1,
+      "WORSENS": 0
+    },
+    "r2_25M->r2_50M|splice_kl_mean": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_25M->r2_50M|splice_sae_vs_noise_delta_ce_ratio": {
+      "IMPROVES": 2,
+      "NO CLEAR CHANGE": 10,
+      "WORSENS": 0
+    },
+    "r2_50M->r2|owt_cosine": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_50M->r2|owt_dead_fraction": {
+      "IMPROVES": 2,
+      "NO CLEAR CHANGE": 8,
+      "WORSENS": 2
+    },
+    "r2_50M->r2|owt_explained_variance": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_50M->r2|owt_nmse": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_50M->r2|splice_delta_ce": {
+      "IMPROVES": 8,
+      "NO CLEAR CHANGE": 4,
+      "WORSENS": 0
+    },
+    "r2_50M->r2|splice_kl_mean": {
+      "IMPROVES": 12,
+      "NO CLEAR CHANGE": 0,
+      "WORSENS": 0
+    },
+    "r2_50M->r2|splice_sae_vs_noise_delta_ce_ratio": {
+      "IMPROVES": 2,
+      "NO CLEAR CHANGE": 10,
+      "WORSENS": 0
+    }
+  }
+}

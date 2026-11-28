@@ -25,3 +25,4 @@
   * The running `gpt2_owt_xm_shared_main` was stopped at about 100/512 documents and resumed under the A1/A2 rule.
   * Its document-major rows and the new layer-major rows are bit-identical by construction: deterministic algorithms,
     batch 1, same seeds. The Gemma smoke check showed exactly this.
+* **Operational (2026-11-21 ~12:50).** The Gemma queue was restarted with `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`: the caching allocator had grown to 15 GB, against a peak need of about 7 GB. `gemma_pile_shared_main` resumed under A1/A2. Memory management only; no numerical change.

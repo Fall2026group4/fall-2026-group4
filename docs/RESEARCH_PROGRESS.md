@@ -1551,3 +1551,43 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * XT-G/DX: Gemma all layers, then the GPT-2 depth-matched layers;
   * TI-1: L11 TopK, L8 BatchTopK, L8 ReLU.
 * **Tracker:** `results/cross_model/FINAL_WEEK_TRACKER.md`.
+
+## 56. TI-1: TSP generalisation across layers and SAE types (2026-11-21). Status: COMPLETED (VALIDATION; pre-registered). Verdict: GENERALISES
+* **Question:** does the TSP-R cities effect (L8 TopK, −0.0207) hold at other layers and architectures under the identical recipe?
+* **Design:** R2 bases L11 TopK, L8 BatchTopK, L8 ReLU (L1 not eligible: no cities signal); arms base / ctrl (reconstruction-only GoT replay) / tsp / rand (random subspace); 3 seeds × 3 cross-fitted folds; readers fitted on fold B, scored on V; hierarchical seed + city-cluster bootstrap; Holm over cells. Pre-registration and gates (R0 bit-identical repro) committed in `b0f3e84`.
+* **Primary (refit-logistic gap, tsp − ctrl):** L11 TopK **−0.042** [−0.053, −0.030]; L8 BatchTopK **−0.015** [−0.024, −0.006]; L8 ReLU **−0.026** [−0.032, −0.020]; all p_holm < 1e-3, 3/3 seeds negative; all SUPPORTED (meaningful).
+* **Criteria:** cell_supported 3/3; generalises MET; cost guard MET (tsp vs base NMSE +2.5 / +1.6 / +0.3 %, L0 within ±0.2 %).
+* **Specificity:** tsp beats the random-subspace arm in every cell (−0.049 / −0.022 / −0.026). The ctrl arm's OWT cost equals tsp's, so the cost is from the GoT replay, not the truth term. MLP readers move the same way but less, and not always significantly.
+* **Limitations:** cities only (no fresh-family transfer tested; TI-2); 3 seeds; GPT-2 only (TI-G blocked on disk). Frozen-probe gains are partly circular and not used.
+* **Deviations:** OOM batch-size fix in `stage_eval`; a dict-access bug in `stage_analyze` (crashed before writing; re-run once). Neither changes any computation.
+* **Artifacts:** `results/geometry_of_truth/tsp_generalisation/` (README, ledgers, eval/, analysis/); 81 fine-tune checkpoints, not committed, listed in `docs/checkpoint_registry.csv`.
+
+## 57. X0: token exposure within the R2 runs (run 2026-11-21; pre-registered 2026-11-13). Status: COMPLETED (VALIDATION, descriptive)
+* **Run:** the frozen ladder commands at layers 1/8/11 on 108 mid-run checkpoints (10M/25M/50M; hashes verified first), plus the committed final-checkpoint rows; analysis `scripts/shared/r2_scaling_analysis.py`. No cell outside the L0 band.
+* **Result:** 25M → 50M (exposure only, constant LR) IMPROVES on OWT NMSE in 12/12 cells (median −8.8 %) and spliced ΔCE in 11/12 (−12.9 %); 10M → 25M: 12/12 (−17.1 %) and 11/12 (−26.7 %). No cell WORSENS. Pre-registered reading: **R2 had not saturated in exposure at 50M**, with diminishing returns.
+* **Secondary:** the SAE/noise ΔCE ratio stops improving after 25M (2/12), i.e. extra exposure shrinks the error rather than making it less harmful per unit norm.
+* **Limits:** mid-run checkpoints are not budget-matched runs; not a scaling law; does not attribute old → R2 to data.
+
+## 58. SIL: SAE-in-the-loop mediated persona intervention (run 2026-11-21; pre-registered 2026-11-13). Status: COMPLETED (VALIDATION); specificity INCONCLUSIVE
+* **Gate:** PASSED (pilot R2/old TopK s42: spliced persona KL CI low 0.035 / 0.036; ~2 min per triple).
+* **Full run:** 19 triples (6 families × 3 seeds + random-decoder control). Every trained family is **MEDIATED** at D0, D1 and D2 on every seed by the pre-registered rule.
+* **Validity caveat:** the pre-registered **negative control (random-decoder TopK) is also MEDIATED**. So the rule does not separate trained SAEs from a random-decoder autoencoder, and MEDIATED is not evidence of SAE-specific mediation (D49).
+* **Descriptive (discriminating):** effect retained at D2 (SAEs at layers 1, 8, 11): TopK / BatchTopK / JumpReLU 0.82–0.92; both ReLU families ≈ 0.5, the same as the random-decoder control (0.51). The control's neutral-swap effect is 3–10× larger.
+
+## 59. XB: matched cross-model SAE splicing, primary 1024-token arm (2026-11-21). Status: COMPLETED (VALIDATION); decisive context caveat
+* **Runs:** Gemma (26 layers, Pile + OWT-XM shared span; own-1024 at triplets) and GPT-2 (12 layers, 159 SAEs, shared span). Frozen analysis v1. Gates: identity / repeat 0.0, V_M6 PASS.
+* **Finding that dominates the arm:** the GPT-2 SAEs (trained at 128 tokens) break down on the ~700-token shared span. res-jb EV −0.06 to −3,266 with L0 180–2,616 (vs 15–68 at 128 tokens); R2 EV 0.15–0.72 (vs 0.87–0.98). Gemma Scope (trained at 1024) stays in distribution (EV 0.74–0.88).
+* **Pre-registered outcomes as computed:**
+  * XB_H1 supported for Gemma 64/64 cells. GPT-2: 0/318 under Holm, but that is **infeasible by design** (bootstrap p floor 0.002 × 159 tests; correction 2026-11-22). 243/318 are supported by their own CI (descriptive); 70 are contradicted (the inflated-error-norm artefact);
+  * XB_H2: no matched stratum (0/54 pairs pass the frozen ±15 % rule), so all rows are descriptive;
+  * XB_H3: no Gemma depth trend.
+* **Reading (D50):** no primary-arm GPT-2 vs Gemma comparison is interpretable as an SAE comparison. The context-controlled comparison is A4 (128 tokens; frozen before this analysis was read).
+
+## 60. PCA-CM-T: TEST confirmation of capacity-matched PCA (2026-11-22). Status: COMPLETED (TEST; rows previously exposed in M5, PCA arms unseen)
+* **Protocol:** rules frozen 2026-11-13. The runner reproduced the validation PCA-CM outputs exactly (116/116). The pre-TEST addendum was pushed (`0046569`) before any TEST row was read. One RAM-guard abort happened before any output; it was relaunched unchanged.
+* **Results (452 TEST rows):**
+  * **P1 CONFIRMED:** 0/20 trained SAEs worse than PCA at k = 128.
+  * **P2:** 1/3 confirmed (L11 R2 ReLU).
+  * **P3:** 4/8 confirmed (L8 old ReLU, L8 res-jb, L11 R2 ReLU, L11 res-jb).
+  * The counts match the validation multiplicity check.
+* **Reading (D51):** "no SAE is worse than capacity-matched PCA" is now TEST-confirmed. "SAEs beat capacity-matched PCA" holds only for the confirmed cells.
