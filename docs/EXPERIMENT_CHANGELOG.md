@@ -759,6 +759,11 @@ No result changed. The history scan found no other rewritten row (only `9446e56`
 | `architecture/diagrams/{OpenWebText.drawio.png, Sae_cloud_architecture.png, build_gpt2_pipeline_diagram.py, gpt2_sae_faithfulness_pipeline.drawio, .svg}` | deleted (also removed by #54) | superseded by the diagram above (user decision) |
 | `README.md`, `presentation/gpt2_results_slides.md` | updated | point to the new diagram |
 
+## 2026-11-28: README rewritten as a short project overview (user request)
+| File | Change | Reason |
+|---|---|---|
+| `README.md` | replaced by a short overview: what the project studies (with the architecture diagram), the four faithfulness levels, setup and the repository structure | results, status and reproduction details live in `docs/` (`docs/README.md` is the map); no result or claim changed |
+
 ## 2026-11-28: repository cleanup, obsolete notebooks removed (user request)
 | File | Change | Reason |
 |---|---|---|
