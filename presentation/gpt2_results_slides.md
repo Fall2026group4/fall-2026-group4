@@ -11,7 +11,7 @@ decision. One slide per section; the speaker note says what to say. Labels: **TE
 Can we improve SAE reconstruction of GPT-2 activations **without** losing truth information or causal behaviour?
 
 *Note:* four levels, measured separately: reconstruction, information, behaviour and causal.
-Figure: `architecture/diagrams/gpt2_sae_faithfulness_pipeline.svg`.
+Figure: `architecture/diagrams/sae_faithfulness_architecture.svg`.
 
 ## 2. Baseline: 108 SAEs, all 12 layers (TEST)
 
