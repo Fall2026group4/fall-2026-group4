@@ -763,3 +763,12 @@ No result changed. The history scan found no other rewritten row (only `9446e56`
 | File | Change | Reason |
 |---|---|---|
 | `README.md` | replaced by a short overview: what the project studies (with the architecture diagram), the four faithfulness levels, setup and the repository structure | results, status and reproduction details live in `docs/` (`docs/README.md` is the map); no result or claim changed |
+
+## 2026-11-28: SIL, PCA-CM-T and E1 status in the paper (issue #59; no experiment run)
+| File | Change | Reason |
+|---|---|---|
+| `research_paper/Latex/tables/t_evidence.tex` | SIL row: pre-registered only → validation, specificity inconclusive; PCA-CM test confirmation row: pre-registered only → test, P1 confirmed (0/20) | both have run since #38 and #40 merged; labels follow `docs/results_registry.md` and the result READMEs |
+| `research_paper/Latex/tables/t_evidence.tex` | E1 row: draft pre-registration, not run → validation, 1 of 4 differences persists after BH, not robust | E1 has run (`results/shared/e1_task_l0_matched_topk/README.md`, `analysis/summary.json`) |
+| `research_paper/Latex/sections/09_discussion.tex` | Causal-evidence limitation: "pre-registered but not run" → ran on validation, specificity inconclusive | same reason (`results/repe/sae_in_the_loop_mediation/README.md`) |
+| `research_paper/Latex/sections/09_discussion.tex` | Evidence-status limitation: names the PCA-CM test confirmation as a test result; the rest stay validation | `results/shared/pca_capacity_matched_test_protocol/README.md` |
+| `research_paper/Latex/sections/09_discussion.tex` | Sparsity-matching limitation: the task-matched TopK experiment (E1) "drafted but not run" → ran at validation level; 1 of 4 architecture differences persists after BH, not robust | `results/shared/e1_task_l0_matched_topk/README.md` |
