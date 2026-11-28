@@ -1,0 +1,1 @@
+Week-2 OpenWebText EDA figures (raster, not results figures), made on 2026-09-22 by `notebooks/01_data_exploration.ipynb` (commit `354b7ac`, deleted from `main` in `30e3aab`) from 1,000 documents streamed from Hugging Face `Skylion007/openwebtext`; moved here from `results/figures/` because that data is not in the repo, so they cannot be regenerated as SVG.
