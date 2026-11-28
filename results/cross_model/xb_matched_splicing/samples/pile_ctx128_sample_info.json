@@ -1,0 +1,13 @@
+{
+ "corpus": "pile",
+ "amendment": "A4",
+ "source_manifest": "pile_manifest.csv",
+ "source_manifest_sha256": "a6dc803f603489cda5e0147576f6599df91588a05fdc1adba76f326a2152b91a",
+ "manifest_sha256": "19213fc874e726b181730fe6f918402483866fdabb627794e4e759721338aeb8",
+ "max_text_tokens": 127,
+ "seconds": 31.2,
+ "span_tokens_gpt2_mean": 120.45833333333333,
+ "span_tokens_gemma_mean": 112.93229166666667,
+ "n_gpt2_binds": 386,
+ "n_short_docs": 69
+}

@@ -1,0 +1,48 @@
+{
+ "rule": "eligible if grouped-CV (3-fold by city) logistic AUROC on DEV original activations >= 0.7",
+ "n_dev": 526,
+ "cells": {
+  "gpt2_L3": {
+   "auroc_grouped_cv": 0.7683644407176626,
+   "C": 0.01,
+   "eligible": true
+  },
+  "gpt2_L6": {
+   "auroc_grouped_cv": 0.79505269701745,
+   "C": 0.01,
+   "eligible": true
+  },
+  "gpt2_L8": {
+   "auroc_grouped_cv": 0.8090763203169049,
+   "C": 0.01,
+   "eligible": true
+  },
+  "gpt2_L9": {
+   "auroc_grouped_cv": 0.8071534936170828,
+   "C": 0.01,
+   "eligible": true
+  },
+  "gpt2_L11": {
+   "auroc_grouped_cv": 0.7887926672353222,
+   "C": 0.01,
+   "eligible": true
+  },
+  "gemma_L5": {
+   "auroc_grouped_cv": 0.9481704231664474,
+   "C": 0.01,
+   "eligible": true
+  },
+  "gemma_L12": {
+   "auroc_grouped_cv": 0.9990313579782851,
+   "C": 0.1,
+   "eligible": true
+  },
+  "gemma_L19": {
+   "auroc_grouped_cv": 0.997108531278463,
+   "C": 0.01,
+   "eligible": true
+  }
+ },
+ "seconds": 98.94665837287903,
+ "test_rows_used": 0
+}

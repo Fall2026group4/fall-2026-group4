@@ -30,3 +30,17 @@
     that requested them; k is identical, so the reference is identical.
   * **Gemma:** unchanged (one SAE per layer).
 * **Operational.** One layer per process, to bound host RAM (15.8 GB, no swap).
+* **A4 (2026-11-22 ~00:35, analysis implementation; written and hash-frozen before any XT-G output value was
+  inspected; only column headers and category labels were read).** Script `scripts/cross_model/11_xtg_analysis.py`,
+  tests `src/tests/test_xtg_analysis.py`; hashes in `frozen_hashes_analysis.txt`.
+  * **Deviation 1 (BH p-values):** the runner did not store bootstrap arrays. BH within (model, task, rule) uses
+    normal-approximation p-values from the stored 95 % CIs (se = (hi − lo) / 3.92, as `pca_cm_posthoc_multiplicity`).
+    Two-part rules use the intersection-union (max p).
+  * **Deviation 2 (LOSS_BEYOND_PCA):** the pre-registered paired bootstrap CI is replaced by
+    z = (gap_SAE − gap_PCA) / √(se²_SAE + se²_PCA). This ignores the positive SAE / PCA covariance, so it is
+    conservative (fewer labels).
+  * **Exact mapping:** each SAE's error-matched PCA row is found by recomputing
+    k_err = `il.pca_k_for_val_nmse` with the runner's own `owt_refs`, because the runner de-duplicated PCA rows by
+    (kind, k) under A3.
+  * **Unchanged:** all rule thresholds, the ceiling flag and d′ (A2), descriptive-only cross-model reporting, and the
+    batch-2 sparsity mechanism.

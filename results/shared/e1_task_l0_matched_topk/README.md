@@ -1,4 +1,4 @@
-# E1: TopK trained at task-level matched sparsity (layers 1, 8, 11). Status: DRAFT PRE-REGISTRATION, awaiting user approval
+# E1: TopK trained at task-level matched sparsity (layers 1, 8, 11). Status: COMPLETED (2026-11-22; VALIDATION). Headline NOT robust: 1/4 significant architecture differences persist at task-matched L0
 
 Evidence level, once run: **VALIDATION**. No test row is read: OWT test evaluation is deliberately **not** run for
 these SAEs. Nothing in this folder has been run.
@@ -100,3 +100,150 @@ an artefact of matching sparsity on OWT rather than on the task prompts?
 * **Total about 1.2 h GPU.** Peak memory is as in the baseline training (single A10G). Disk: 36 × about 19 MB
   checkpoints, gitignored.
 * **No download.** OWT activations for layers 1, 8 and 11 are cached.
+
+## 1.7 Additions for review (2026-11-21; nothing above is changed)
+
+**Matched-sparsity requirement:**
+* TopK@k* fires exactly k* latents per token, so its task L0 equals k* by construction.
+* A k* is valid only if |k* − L0_task(X)| / L0_task(X) ≤ 10 % (the CLAUDE.md baseline rule), where L0_task(X) is
+  measured on TRAIN prompts. Rounding makes this hold automatically.
+* L0 is also reported on OWT VAL and on the other task. TopK@k* is deliberately not OWT-matched.
+
+**Evaluation splits:**
+* GoT cities: readers fitted on TRAIN and scored on VALIDATION (M2 protocol).
+* RepE-LM persona and neutral: TRAIN / VALIDATION.
+* OWT VAL for reconstruction and splicing.
+* **No TEST split is loaded** (`test_rows_used = 0` is asserted).
+
+**Success criteria (pre-registered, unchanged in substance):**
+* E1-H1 classes per cell (PERSISTS / ATTENUATED / REVERSED / NO DIFFERENCE).
+* The headline is the count of ATTENUATED + REVERSED among cells where the k = 128 difference was significant.
+* "The M2/M4 architecture differences are robust to task-level matching" is claimed **only if** ≥ 75 % of those
+  cells PERSIST after BH.
+* E1-H2 uses the IMP-L paired rule (all 3 seeds the same sign and |mean d| > 2 sd).
+
+**Behavioural cost limits (reported, not a guard, because TopK@k* is not OWT-matched by design):**
+* OWT spliced ΔCE and KL of TopK@k* vs TopK@128.
+* Any cell where TopK@k* has OWT EV < 0.5 is flagged as "degenerate sparsity" and reported separately. This mainly
+  matters at L1 GoT, where k* ≈ 23–32.
+
+**Failure conditions (stop and report, no re-tuning):**
+1. The training reproduction gate fails (TopK@128 L8 seed 42 differs from the committed checkpoint beyond 1e-6).
+2. The evaluation reproduction gate fails (M2 / M4 committed values not reproduced).
+3. Any k* violates the ±10 % rule.
+4. Any run diverges (NaN, or OWT EV < 0). It is flagged and excluded from classes, never re-run with new
+   hyperparameters.
+
+**Scope caveat (added):**
+* E1 retrains the **old 3072-width recipe** (101,600 tokens), because its question concerns the M2/M4 comparisons,
+  which used those SAEs.
+* These SAEs are under-trained (audit §3.3). E1's conclusions therefore apply to the old-SAE architecture comparisons
+  only, not to R2 or to cross-model claims.
+* An R2-recipe E1 (36 × 100M tokens) is out of scope.
+
+**Storage:**
+* 36 × about 19 MB checkpoints, about 0.7 GB, written to `/mnt/scratch/checkpoints/e1/` during training.
+* Keepers (all 36, because they are small) are copied to the gitignored EBS path listed in §1.2 and
+  SHA-256-verified.
+
+## 1.8 Freeze notes (2026-11-21, before any E1 training or outcome; approved by the user as Option B item 3)
+
+* **k\* (TRAIN prompts; `k_star.json`):**
+
+  | Layer | GoT ReLU / JumpReLU | RepE ReLU / JumpReLU |
+  |---|---|---|
+  | L1 | 32 / 23 | 216 / 214 |
+  | L8 | 76 / 63 | 161 / 170 |
+  | L11 | 111 / 92 | 162 / 141 |
+
+  All 12 are distinct, so 36 SAEs are trained, and all are within ±10 % of task L0. Split checks are in
+  `pretraining_checks.json`: test_rows_used 0, group overlap 0 for all three tasks.
+* **Primary BH family (clarified):**
+  * GoT cities: refit logistic gap;
+  * RepE persona: refit logistic gap and M4 `preservation_rec` (M4 exists for RepE only);
+  * per (layer, X): 3 × 2 × 3 = **18 tests**.
+* **Classes:** E1-H1 classes are computed uncorrected (`cls`) and with BH on the k\* contrast (`cls_bh`). The §1.7
+  headline uses `cls_bh`.
+* **Gates (`gate` stage; E1 stops if any fails):**
+  * G1: training reproduction ≤ 1e-6;
+  * G2: M2 evaluation reproduction ≤ 1e-6 (M2's exact job-seed index and bootstrap);
+  * G3: M4 `preservation_rec` reproduction ≤ 1e-6.
+* **Seeds for new evaluation calls:** M2 seed SEED + 1000·L + 500 + 10·j + task index, and +900 for the PCA reference.
+  They are fixed here.
+* **Script:** `scripts/shared/e1_task_l0_matched_topk.py`; tests in `src/tests/test_e1_task_l0_matched.py`.
+* **Checkpoints:** written to `/mnt/scratch/checkpoints/e1/` (ephemeral), and copied with hash verification to the
+  gitignored `results/openwebtext/e1_task_matched_topk/` as keepers.
+
+## 1.9 Amendment E1-A1 (2026-11-22 ~03:45 UTC; approved by the user; before any counted E1 run)
+
+**Trigger:** the frozen `gate` stage failed on G2 (M2 evaluation reproduction).
+* G1 (training reproduction, max param diff **0.0**) and G3 (M4 `preservation_rec`, **0.0**) passed.
+* G2 differed from M2's committed values by up to **2.8e-4** (refit and MLP gaps; one frozen gap), against the
+  frozen tolerance of 1e-6.
+* `task_nmse` was identical, so the reconstructions were identical.
+* The record is kept as `gate_attempt1_failed_G2_blas_threads.json`.
+* As required, E1 stopped: no SAE was trained and no outcome exists.
+
+**Diagnosis:**
+* Library versions are unchanged since before M2 (all installed 2026-10-27).
+* M2 fitted its probes inside 4 loky worker processes, which cap BLAS at one thread. The E1 gate fitted them in the
+  main process with multi-threaded BLAS.
+* Multi-threaded BLAS changes floating-point summation order, so a few validation pairs re-order and the AUROC gap
+  moves by about 1e-4.
+* **Test** (`scripts/shared/e1_g2_blas_threads_diagnostic.py`, which uses E1's frozen helpers unchanged): with BLAS
+  limited to one thread, G2 reproduces M2 **exactly (0.0 on every metric and task)**.
+
+**Change:**
+* probe fitting in the gate's G2 / G3 and in the whole `eval` stage runs under `threadpool_limits(1)`, matching M2;
+* this also makes E1's new values numerically comparable with M2's committed baseline values, which E1 contrasts
+  them against.
+
+**Unchanged:** every gate and its **1e-6 tolerance**, which must pass exactly as frozen; k\*; the classes; the BH
+family; the success criteria.
+
+**Schedule (user-approved Option A):** TI-2 → TI-4 → E1 → TI-3. TI-3 is dropped if it cannot start by 14:30 UTC.
+
+## 2. Results (2026-11-22; `analysis/`, `eval_*.csv`, `ledger.csv`)
+
+**Execution:**
+* Gate after E1-A1: G1 0.0, **G2 0.0**, G3 1.2e-7 (all ≤ 1e-6).
+* 36 TopK SAEs trained (12 k\* × 3 seeds; `ledger.csv`).
+* Evaluated with M2 (all three tasks), PCA at matched task NMSE, M4 at the layer's site (RepE-matched SAEs), and OWT
+  splicing.
+* No degenerate-sparsity cell (every OWT EV ≥ 0.5). No TEST row read.
+
+**E1-H1** (X − TopK, Welch 95 % CI over seeds; X ∈ {ReLU, JumpReLU}, old 3,072-latent recipe):
+
+| Layer | Task | X | k\* | Metric | X − TopK@128 [CI] | X − TopK@k\* [CI] | q (BH) | Class (uncorrected / BH) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | persona | JumpReLU | 214 | preservation_rec | +0.037 [+0.007, +0.067] | +0.006 [−0.016, +0.027] | 0.54 | ATTENUATED / ATTENUATED |
+| 8 | persona | ReLU | 161 | refit gap | +0.056 [+0.017, +0.094] | +0.072 [+0.037, +0.106] | 0.077 | PERSISTS / **ATTENUATED** |
+| 11 | persona | ReLU | 162 | preservation_rec | +0.057 [+0.026, +0.089] | +0.017 [−0.014, +0.048] | 0.29 | ATTENUATED / ATTENUATED |
+| 11 | persona | JumpReLU | 141 | preservation_rec | +0.058 [+0.043, +0.073] | +0.045 [+0.029, +0.060] | 0.028 | **PERSISTS / PERSISTS** |
+
+These are the four cells significant at k = 128. Full table: `analysis/e1_h1_classes.csv`.
+
+* All 18 cells, uncorrected: PERSISTS 6, ATTENUATED 2, NO DIFFERENCE 10.
+* BH: PERSISTS 1, ATTENUATED 3, NO DIFFERENCE 14.
+* Four uncorrected PERSISTS cells are persona refit-gap cells **not** significant at k = 128 (L1 ReLU, L1 JumpReLU,
+  L8 JumpReLU, L11 ReLU). The difference appears only once TopK fires the task-matched number of latents. None
+  survives BH.
+
+**Pre-registered headline: NOT robust.**
+* 1 of the 4 cells significant at k = 128 PERSISTS after BH (25 % < 75 %).
+* So most M2/M4 architecture differences on task prompts were confounded with the task-level L0 mismatch (TopK fires
+  exactly 128 latents; ReLU / JumpReLU fire 23–216).
+* GoT cities shows no architecture difference at either k (6/6 NO DIFFERENCE).
+
+**E1-H2** (TopK@k\* vs TopK@128, paired by seed; IMP-L rule):
+* NO CLEAR CHANGE in 15/18 cells.
+* The 3 that differ are all L11 persona: refit gap −0.028 for ReLU-matched k = 162; `preservation_rec` +0.040
+  (k = 162) and +0.014 (k = 141).
+* (The analysis labels these "DIFFERS (k\* < 128 side)"; the label does not encode direction, so the per-seed
+  values in the CSV are authoritative.)
+
+**Scope:** old 3,072-latent SAEs (101,600 training tokens), as pre-registered. These conclusions do not transfer to
+R2 or to cross-model claims.
+
+**Keepers:** the 36 checkpoints (649 MB) were copied to `results/openwebtext/e1_task_matched_topk/` (gitignored),
+hash-verified, and registered in `/mnt/scratch/KEEPERS.tsv`.

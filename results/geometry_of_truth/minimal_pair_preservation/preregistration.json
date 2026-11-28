@@ -1,0 +1,67 @@
+{
+ "experiment": "TI-3: minimal-pair difference preservation (EXPLORATORY pilot), GPT-2 R2 TopK L8",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED, EXPLORATORY (frozen before any gate, training or outcome)",
+ "approved_by": "user, 2026-11-21 (Option B item 6)",
+ "evidence_level_on_completion": "EXPLORATORY (no confirmatory claim)",
+ "pilot_reading": "promising iff mp-ctrl cities refit gap CI high < 0 AND mp-mp_shuf < 0 on >= 2/3 folds AND cost limits (NMSE <= +3 %, dCE <= +5 %, L0 = 128) AND pair term decreased in every mp run",
+ "gates": {
+  "R0": "no-pair trainer reproduces TSP-R f0_ctrl_s42 <= 1e-6",
+  "pairs": "true pairs same city/pol, shuffled derangement",
+  "tspr_ctrl_hashes": "match run_ledger"
+ },
+ "failure_conditions": [
+  "any gate fails -> stop TI-3",
+  "divergence -> exclude and report"
+ ],
+ "runs": {
+  "new": 18,
+  "reused_tspr_ctrl": 9
+ },
+ "schedule_rule": "skipped if it cannot start by 2026-11-22 14:30 UTC",
+ "test_data_used": false,
+ "hashes": {
+  "scripts/geometry_of_truth/36_minimal_pair_preservation.py": "5792d7e7b547ab15eebef9325811dd863c229cb0ad07ff13c1d4a56df1aa3c5b",
+  "scripts/geometry_of_truth/34_tsp_multifamily.py": "fb7247d58a1060b3fd36f68e277271737440919c22769f8e1802d3feafd47bac",
+  "scripts/geometry_of_truth/35_tsp_kl_factorial.py": "c0a4e01a3ee1b104fa608ce722cdda642297bf704cc82b2e748f2651b5118d26",
+  "scripts/shared/e1_task_l0_matched_topk.py": "0a3bf91dddf91b72fab93282befc71280b749cfbe5b21cce0b2ffe72710ce828",
+  "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+  "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
+  "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "8e93527a8a3a55d79bc753bba8ea97688c24e88e3e8933616471e8d8cf40f7ed",
+  "scripts/geometry_of_truth/29_tsp_r_phase0_fresh_families.py": "8d4eb535a8a0f2041811a06c02247eaee44fcce23dd1ef96ca231ee540e86f89",
+  "src/evaluation/tspr_stats.py": "e3eb4593887875a29d955264e7700961118f9d9083a2d9d8fa4dfdc40f634fd6",
+  "data/got/fresh/splits/cities_crossfit_folds.csv": "fdfb0f6e3fabc57761dbd5846c9a6fa457eb1814192f06826ce20ede5c90dba7",
+  "data/got/fresh/splits/companies_true_false_splits.csv": "2b65934710d71d7b98c60c4f5ad15205cf2539d653c95a8b2a2a52e3abcd0cb6",
+  "results/geometry_of_truth/truth_subspace_preservation/replication/run_ledger.csv": "589d8d986d908b71cec2a4d2957255651e8478c623f4620154d1c9ff8ae708d6",
+  "results/geometry_of_truth/minimal_pair_preservation/README.md": "9d3a8af0c3ad2e00cf014c9d1959ce59f125802ea2da8f1597e48784d4db6c6d",
+  "src/tests/test_minimal_pair_preservation.py": "69a0d83e665f2bd0a2fbf134f6f89e9875827ef39c1a99e41738d98ccbeaf9e7"
+ },
+ "amendments": [
+  {
+   "id": "TI3-A1",
+   "date": "2026-11-22",
+   "type": "dependency hash refresh (no protocol change)",
+   "file": "scripts/shared/e1_task_l0_matched_topk.py",
+   "old_sha256": "6b6f0cd36ac37b4f9e0cad2da2f8e210dec0606f88342edc03851efd27fb5f6f",
+   "new_sha256": "0a3bf91dddf91b72fab93282befc71280b749cfbe5b21cce0b2ffe72710ce828",
+   "reason": "E1 amendment E1-A1 (user-approved) added threadpool_limits only inside E1's own gate/eval stage functions; the helpers used here (m2_layer_context, m2_eval, M4Ctx) are byte-identical, so this experiment's computation is unchanged",
+   "before_any_counted_run": true
+  },
+  {
+   "id": "TI3-A-TF32",
+   "date": "2026-11-22",
+   "approved_by": "user",
+   "change": "training paths set torch.backends.cuda.matmul.allow_tf32 = True; eval stage sets it False (TSP-R configuration: 30:216, 25:126 train True; 31:250 eval False)",
+   "reason": "R0 failed at 0.168 max |param diff| because TSP-R trained with TF32; diagnostic with TF32 on reproduces f0_tsp_s42 exactly (0.0)",
+   "unchanged": "all gates and tolerances (R0 <= 1e-6), criteria, arms, seeds, cost limits",
+   "files_rehashed": [
+    "results/geometry_of_truth/minimal_pair_preservation/README.md",
+    "scripts/geometry_of_truth/34_tsp_multifamily.py",
+    "scripts/geometry_of_truth/35_tsp_kl_factorial.py",
+    "scripts/geometry_of_truth/36_minimal_pair_preservation.py"
+   ],
+   "failed_gate_record": "none (gate not run; withheld)",
+   "before_any_counted_run": true
+  }
+ ]
+}

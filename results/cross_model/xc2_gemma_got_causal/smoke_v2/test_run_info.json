@@ -1,0 +1,32 @@
+{
+  "n_pairs": 40,
+  "baseline_pair_accuracy": 1.0,
+  "baseline_margin": 11.667021751403809,
+  "n_controls": 8,
+  "n_interventions": 388,
+  "sae": {
+    "8": {
+      "sae_id": "layer_8/width_16k/average_l0_71",
+      "sha256": "43a3c3ad66d97890a1965780ea4d73f844b8b7ac9ea4562a0f5bc98c4a06c264"
+    },
+    "12": {
+      "sae_id": "layer_12/width_16k/average_l0_82",
+      "sha256": "afae57c7fdfe6faace4b97d9fe9a184deb08bda8852a4c40b308cf6c72ed8384"
+    },
+    "16": {
+      "sae_id": "layer_16/width_16k/average_l0_78",
+      "sha256": "3e1558c7f0ecb6f954f63c287bb342cca38961a8fa249d5a3d60dcd5bcb54865"
+    },
+    "21": {
+      "sae_id": "layer_21/width_16k/average_l0_70",
+      "sha256": "1f584a214a5283bb433f14127ea6b5df29b246f8ce2495efc4d6b3746d8202e2"
+    }
+  },
+  "runtime_s": 356.2154850959778,
+  "selection_sha256": null,
+  "script_sha256": "9b67362ecb81c04641ad05b88b4a50297e5fbcd8213cf6a36eda9c7e249c4fed",
+  "torch": "2.14.1+cu130",
+  "python": "3.14.4",
+  "gpu": "NVIDIA A10G",
+  "written_utc": "2026-11-23T15:33:39.929503+00:00"
+}

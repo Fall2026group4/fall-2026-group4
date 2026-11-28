@@ -14,6 +14,7 @@ This script builds the living manifest from that historical record:
 Future experiments append rows with `append_experiment(...)`; they are never overwritten.
 Run from repository root:  python scripts/shared/write_manifest.py
 """
+import csv
 import hashlib
 from pathlib import Path
 
@@ -44,17 +45,37 @@ OUTPUTS_CURRENT = {
 
 def sha16(path):
     p = Path(path)
-    return hashlib.sha256(p.read_bytes()).hexdigest()[:16] if p.exists() else 'MISSING'
+    return hashlib.sha256(p.read_bytes()).hexdigest()[:16] if p.is_file() else 'MISSING'
 
 
 def append_experiment(row: dict, manifest: Path = MANIFEST):
-    """Append one experiment row (dict of manifest columns). Existing rows are never modified."""
+    """Append one experiment row (dict of manifest columns). Existing rows are never modified.
+
+    Appends a single CSV line; the existing bytes of the file are never re-read through pandas or rewritten.
+    (Until 2026-11-26 this function round-tripped the whole file through pandas, which turned literal cells such as
+    "n/a" into empty strings in other rows; see docs/EXPERIMENT_CHANGELOG.md 2026-11-26.) Unknown columns are
+    rejected, because adding a column would rewrite every row.
+    """
     row = dict(row)
     row.setdefault('script_path_current', row.get('script', ''))
     row['script_sha256_16_at_run'] = sha16(row['script_path_current'])
     row['script_sha256_16_current'] = row['script_sha256_16_at_run']
-    df = pd.read_csv(manifest) if manifest.exists() else pd.DataFrame()
-    pd.concat([df, pd.DataFrame([row])], ignore_index=True).to_csv(manifest, index=False)
+    manifest = Path(manifest)
+    if not manifest.exists() or manifest.stat().st_size == 0:
+        header = list(row)
+        with open(manifest, 'w', newline='') as f:
+            csv.writer(f, lineterminator='\n').writerow(header)
+    else:
+        with open(manifest, newline='') as f:
+            header = next(csv.reader(f))
+    unknown = [k for k in row if k not in header]
+    if unknown:
+        raise ValueError(f'columns not in {manifest}: {unknown}')
+    data = manifest.read_bytes()
+    with open(manifest, 'a', newline='') as f:
+        if data and not data.endswith(b'\n'):
+            f.write('\n')
+        csv.writer(f, lineterminator='\n').writerow([row.get(k, '') for k in header])
 
 
 def build():

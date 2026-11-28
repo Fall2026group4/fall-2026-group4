@@ -955,3 +955,143 @@ Matched strata: 0/54 pairs (frozen ±15 % rule). Cross-model comparison of recor
 | P1: no SAE worse than PCA-128 (20 cells) | **CONFIRMED** (0/20 worse) |
 | P2: SAE better than PCA-128 (3 cells, Holm) | 1/3: L11 R2 ReLU (−0.056) |
 | P3: SAE better than task-L0 PCA (8 cells, Holm) | 4/8: L8 old ReLU (−0.094), L8 res-jb (−0.110), L11 R2 ReLU (−0.067), L11 res-jb (−0.075) |
+
+## XB A4: 128-token shared span (2026-11-22; VALIDATION, sensitivity; D52)
+| | GPT-2 (159 SAEs) | Gemma (16k canonical) |
+|---|---|---|
+| EV at triplet layers | res-jb 0.77–0.95; R2 trained SAEs 0.81–0.98, per-layer means 0.83–0.95 incl. the frozen-decoder control at 0.57–0.68 (back in distribution) | 0.74–0.88 |
+| XB_H1 by CI (Holm infeasible / feasible) | 297/318 supported (Holm 0/318, p floor) | 49/52 (Holm 49/52) |
+| SAE / random ΔCE (triplets) | 1.5–4.8 | 0.7–3.0 |
+| Loss recovered (triplets) | 0.91–1.00 | 0.97–1.00 |
+
+Context change 1024 → 128: 269/324 differences SHRINK by uncorrected CI (Holm 0/324, uninformative). Matched pairs 0/54.
+
+## E1: TopK at task-matched L0 (2026-11-22; VALIDATION; old 3,072-latent SAEs; 3 seeds)
+| | Count |
+|---|---|
+| Tests (BH family) | 18 |
+| Significant at k = 128 | 4 |
+| PERSIST at k\* after BH | **1** (L11 persona JumpReLU `preservation_rec`: +0.058 → +0.045, q 0.028) |
+| ATTENUATED | 3 (L1 persona JumpReLU `preservation_rec`; L8 persona ReLU refit gap; L11 persona ReLU `preservation_rec`) |
+| Headline (≥ 75 % persist) | **NOT robust** (25 %) |
+
+## XT-G / DX (2026-11-22; VALIDATION; 410 SAE × task cells)
+| Model | Task | INFORMATION_LOSS | LOSS_BEYOND_PCA | READOUT_SHIFT | SUPPRESSION |
+|---|---|---|---|---|---|
+| Gemma 16k | RepE persona | 26/26 | 21/26 | 0 | 26/26 |
+| Gemma 16k | GoT cities (20 at ceiling) | 5/26 | 6/26 | 0 | 26/26 |
+| GPT-2 (res-jb / R2 / old) | RepE persona | 56/56 | 34/56 | 0 | 54/56 |
+| GPT-2 | GoT cities | 35/56 | 22/56 | 0 | 49/56 |
+
+
+## TI-2 TSP-MF and TI-4 TSP × KL (GPT-2 R2 TopK L8; VALIDATION; analysed / reviewed 2026-11-23)
+
+TI-2 (4 arms × 8 seeds; refit-logistic gap, lower is better; hierarchical seed + group bootstrap):
+
+| Contrast | Estimate [95 % CI] | Verdict |
+|---|---|---|
+| MF-H1 companies DEV tsp_mf − ctrl (primary) | +0.0020 [−0.0096, +0.0137], p 0.73 | not met |
+| MF-H4 cities V tsp_mf − ctrl | −0.0254 [−0.0339, −0.0170] | met |
+| MF-H5 common_claim tsp_mf − ctrl (90 % CI) | +0.0015 [−0.0031, +0.0061] | met |
+| cost: NMSE / ΔCE vs base; L0 | +2.71 % / +2.78 %; 128 | met |
+| **Verdict** | **NO TRANSFER DETECTED (MDE ≈ 0.03)** | |
+
+TI-4 (2 × 2 at L0 128; 3 seeds × 3 folds):
+
+| Criterion | Value | Met |
+|---|---|---|
+| F-H1 cities gap tsp_kl − kl | −0.0259 [−0.0362, −0.0156] | yes (Holm 6.5e-4) |
+| F-H2 OWT ΔCE tsp_kl − tsp | −0.0120 ± 0.0006, 9/9 pairs | yes (Holm 6.5e-4) |
+| F-H3 interaction (90 % CI) | −0.0038 [−0.0158, +0.0082] | INCONCLUSIVE |
+| F-H4 better than base on both | cities −0.0487; ΔCE all seeds | yes |
+| cost: NMSE / L0 / persona gap | +2.77 % / 128 / −0.0055 | yes |
+| **Verdict** | **COMBINES** | |
+
+Sources: `results/geometry_of_truth/tsp_multifamily/analysis/`, `results/geometry_of_truth/tsp_kl_factorial/analysis/`.
+
+## XC-3 steering parity (RepE-LM persona, final token; TEST once, 344 pairs; confirmed test result for H1–H3)
+
+| Model / layer | E_patch | E_raw | E_rec | R = E_rec/E_raw | H1 | H2 | H3 |
+|---|---|---|---|---|---|---|---|
+| GPT-2 L3 | 0.160 | 0.048 [0.031, 0.067] | 0.034 [0.004, 0.068] | 0.69 [0.08, 1.60] | met | met | INCONCLUSIVE |
+| GPT-2 L6 | 0.288 | 0.068 [0.045, 0.090] | 0.023 [−0.022, 0.061] | 0.34 [−0.35, 1.00] | met | met | INCONCLUSIVE |
+| GPT-2 L9 | 0.662 | 0.130 [0.109, 0.156] | 0.107 [0.079, 0.135] | 0.83 [0.58, 1.11] | met | met | INCONCLUSIVE |
+| Gemma L5 | 0.103 | 0.002 [−0.009, 0.014] | −0.006 [−0.020, 0.008] | — | not met | not met | n/a |
+| Gemma L12 | 0.493 | 0.147 [0.090, 0.207] | 0.143 [0.086, 0.202] | 0.97 [0.52, 1.73] | met | met | INCONCLUSIVE |
+| Gemma L19 | 0.945 | 0.091 [0.056, 0.130] | 0.078 [0.036, 0.120] | 0.86 [0.36, 1.61] | met | met | INCONCLUSIVE |
+
+* H4 (descriptive): R_gemma − R_gpt2 = +0.63 [+0.14, +1.40] at mid depth and +0.03 [−0.25, +0.28] at late depth.
+* Source: `results/cross_model/xc3_steering_parity/`.
+
+## XC-2 GoT causal truth-direction test on Gemma-2-2B (TEST once, 113 pairs; 600 controls; BH within families)
+
+| Layer (GPT-2 match) | mass-mean +s | probe +s | SAE rec +s | SAE top-1 +s | SAE top-10 +s | T1 (mm / probe) | T2 (rec / top1 / top10) |
+|---|---|---|---|---|---|---|---|
+| 8 (4) | +0.71 [0.40, 1.03] | −0.63 | +1.56 | +0.47 | +0.61 | yes / no | yes / yes / yes |
+| 12 (6) | +1.98 [1.69, 2.29] | −0.53 | +3.37 | −2.84 | +3.06 | yes / no | yes / no / yes |
+| 16 (8) | +2.55 [2.24, 2.87] | +2.52 | +3.75 | +0.05 | +1.32 | yes / yes | yes / no / no |
+| 21 (10) | +3.39 [2.82, 3.99] | −0.30 | +2.33 | −0.02 | −1.01 | yes / no | yes / no / no |
+
+* Effects are Δ(log P(true) − log P(false)) in nats.
+* Minimum detectable dose of the positive control: 0.01 at every layer.
+* Norm-matched Gaussian controls average −0.19 to −1.92.
+* Source: `results/cross_model/xc2_gemma_got_causal/`.
+
+## XF fresh geonames cities TEST (2026-11-23; confirmed test result, pristine TEST read once)
+Gap = AUROC_orig − AUROC_reconstruction (lower is better), with 95 % CIs. 900 TEST statements, 450 cities.
+
+| Cell | Original AUROC | Refit gap | Frozen gap | P1 |
+|---|---|---|---|---|
+| GPT-2 L3 res-jb | 0.801 | +0.045 [+0.022, +0.068] | +0.117 | LOSS |
+| GPT-2 L6 res-jb | 0.844 | +0.053 [+0.037, +0.069] | +0.095 | LOSS |
+| GPT-2 L9 res-jb | 0.846 | +0.037 [+0.022, +0.052] | +0.125 | LOSS |
+| Gemma L5 GS-16k | 0.949 | +0.036 [+0.024, +0.048] | +0.092 | LOSS |
+| Gemma L12 GS-16k | 0.999 | +0.0001 | +0.0007 | CEILING |
+| Gemma L19 GS-16k | 0.998 | +0.003 | +0.005 | CEILING |
+
+| TSP cell (seeds) | tsp − ctrl (refit) | Label | tsp − rand | ctrl − base |
+|---|---|---|---|---|
+| TSP-R L8 TopK (8) | −0.0007 [−0.0034, +0.0020] | NO MEANINGFUL EFFECT | −0.0048 [−0.0081, −0.0014] | −0.0143 |
+| TI-1 L11 TopK (3) | −0.0029 [−0.0171, +0.0113] | INCONCLUSIVE | −0.0039 | −0.0053 |
+| TI-1 L8 BatchTopK (3) | +0.0006 [−0.0053, +0.0065] | NO MEANINGFUL EFFECT | −0.0025 | −0.0070 |
+| TI-1 L8 ReLU (3) | +0.0020 [−0.0007, +0.0047] | NO MEANINGFUL EFFECT | −0.0026 | −0.0256 |
+
+P2 verdict: FAILS TO REPLICATE (0/4 SUPPORTED; Holm p ≥ 0.51).
+
+## XC-1 Gemma site sweep (2026-11-23; validation finding, TRAIN selection → VALIDATION confirmation)
+R_A = KL(p_H‖p_U) − KL(p_H‖p_{U←H at cell}) in nats (higher = the cell carries more of the persona effect);
+E_share = R_A / KL(p_H‖p_U). 24/45 cells pass on TRAIN.
+
+| Role | Cell | R_A TRAIN | R_A VALIDATION [95 % CI] | E_share val | Random q95 val | Confirmed |
+|---|---|---|---|---|---|---|
+| earliest | L0 slot | 0.0720 | 0.1079 [0.0772, 0.1438] | 0.983 | 0.0217 | yes |
+| peak + latest | L23 final | 0.0724 | 0.1080 [0.0771, 0.1455] | 0.984 | −0.0213 | yes |
+
+TRAIN E_share by layer (slot / final): L0 0.98 / 0.00, L2 0.92 / 0.04, L5 0.69 / 0.12, L8 0.38 / 0.24,
+L12 0.15 / 0.51, L16 0.04 / 0.85, L19 0.03 / 0.93, L23 0.00 / 0.98. M4 on Gemma: justified.
+Source: `results/cross_model/xc1_gemma_site_sweep/`.
+
+## M4-G Gemma SAE patch decomposition (2026-11-23; validation finding)
+Gemma Scope 16k canonical at the XC-1 sites; VALIDATION T2–T4 (267 pairs); T in nats (higher = more effect restored).
+
+| Site | T_full | T_rec [95 % CI] | T_err [95 % CI] | T_rec/T_full [95 % CI] | \|I\|/T_full | H4a | H4b |
+|---|---|---|---|---|---|---|---|
+| L0 slot | 0.137 | 0.131 [0.093, 0.175] | 0.010 [0.006, 0.016] | 0.959 [0.945, 0.969] | 0.12 (additive) | PASS | PASS |
+| L12 final | 0.079 | 0.060 [0.035, 0.092] | 0.011 [−0.001, 0.028] | 0.753 [0.679, 0.807] | 0.29 (bounds only) | PASS | PASS |
+| L23 final | 0.137 | 0.096 [0.064, 0.137] | 0.007 [−0.005, 0.022] | 0.701 [0.640, 0.755] | 0.33 (bounds only) | PASS | PASS |
+
+BH over 3 sites; H4c not run. Source: `results/cross_model/m4_gemma_patch_decomposition/`.
+
+## C4: GPT-2 GoT causal truth-direction test (TEST 2026-11-10, Dhruv Rai; integrated 2026-11-26, D56)
+Outcome: change of log P(true token) − log P(false token) at the final prefix token; 113 test pairs; 600 norm-matched
+random directions per layer; empirical p = (1 + #controls ≥ effect)/601; BH within families. Baseline pair accuracy 0.743.
+
+| Family | Layers 4 / 6 / 8 / 10 | Result |
+|---|---|---|
+| A, positive control (unembedding contrast) | detectable at λ = 0.01 at every layer | p = 1/601; 28/28 BH < 0.05 |
+| C1, mass-mean direction (+s) | −0.001 / +0.005 / +0.129 / +0.080 | not distinguishable from random; best one-sided p 0.188 |
+| C1, logistic-probe direction (+s) | −0.000 / −0.128 / −0.352 / −0.169 | wrong direction at L6–10; BH ≥ 0.932 |
+| C2, SAE reconstruction / top-1 / top-10 (3 archs × 3 seeds, rebuilt SAEs) | — | 0/108 BH < 0.05 (smallest 0.599); 6 nominal two-sided |
+
+Source: `results/geometry_of_truth/causal_truth_steering/summary.csv`.
+

@@ -1,0 +1,62 @@
+{
+ "experiment": "XF: fresh never-used cities-style truth TEST from geonames; single frozen final pass (GPT-2 Small + Gemma-2-2B)",
+ "created": "2026-11-23",
+ "status": "PRE-REGISTERED (frozen after the text-only build and a smoke on GoT cities TRAIN rows; before any fresh DEV or TEST row is embedded)",
+ "evidence_level_on_completion": "confirmed test result on a pristine TEST split (never tokenised, embedded or scored before the test stage)",
+ "research_question": "Do the project's representation-preservation findings hold on truth statements no decision has ever touched? (a) Do the public SAEs (res-jb for GPT-2, Gemma Scope 16k canonical for Gemma) preserve linearly decodable city truth at depth-matched layers? (b) Does the truth-subspace-preserving fine-tune (TSP-R L8 TopK; TI-1 L11 TopK, L8 BatchTopK, L8 ReLU) reduce the re-fit truth gap relative to its reconstruction-only control on fresh cities?",
+ "why": "Audit 2026-11-21 row 23: the GoT cities TEST rows were exposed during GPT-2 method decisions, and TSP-R / TI-1 / TI-4 are VALIDATION-level. XF is the only route to a TEST-level claim for the method and the preservation findings. It connects to the main research question (preserve truth information while keeping reconstruction).",
+ "data": {
+  "source": "got-repo/datasets/geonames.csv (GoT upstream; sha256 recorded in build_info.json)",
+  "construction": "places with population in [200k, 500k) (GoT cities.csv uses > 500k), country in the GoT cities country pool (geonames names mapped to GoT strings), ASCII simple name, not a GoT cities / neg_cities name, not a country name, unambiguous (no other-country place >= 10k with the same normalised name), at most 30 cities per country (salted-hash order). One TRUE and one FALSE statement per city with the GoT template 'The city of X is in Y.'; the FALSE country is uniform over the pool minus the true country (seeded).",
+  "split": "city-level salted hash (salt XF-geonames-2026-11-23): DEV 40 % / TEST 60 %. 713 cities: DEV 263 cities (526 statements), TEST 450 cities (900 statements). Labels balanced by construction.",
+  "leakage_checks": "hard asserts in build: 0 statements duplicate any project text (GoT cities, neg_cities, larger_than, smaller_than, RepE facts); 0 city-name overlap with GoT cities / neg_cities (so with every TSP / TI-1 training row and subspace); 0 duplicate statements; 0 cities in both splits; exactly one TRUE + one FALSE per city."
+ },
+ "models_sites": {
+  "gpt2": "TransformerLens gpt2-small, blocks.L.hook_resid_pre, BOS + statement, final token (identical to scripts/geometry_of_truth/31 extract). Layers 3/6/9 (public), 8 and 11 (TSP cells).",
+  "gemma": "HF Gemma-2-2B rev c5ebcd40, bf16, eager; output of model.model.layers[L] (resid_post); BOS + statement, final token (as scripts/gemma/10). Layers 5/12/19 (triplet T-B, as XC-3)."
+ },
+ "saes": {
+  "public": "res-jb (GPT-2 L3/6/9) and Gemma Scope 16k canonical (Gemma L5/12/19)",
+  "tsp": "every surviving checkpoint of TSP-R L8 TopK (8 seeds x 3 folds; arms base, ctrl, tsp, rand) and TI-1 L11 TopK / L8 BatchTopK / L8 ReLU (3 seeds x 3 folds; arms base, ctrl, tsp, rand), each SHA-256-verified against its ledger. Arms pca/shuf of TSP-R are not evaluated (not part of TI-1 either). TI-2 / TI-4 checkpoints were lost with the old instance's scratch disk and cannot be evaluated."
+ },
+ "gate": "DEV only, per (model, layer): grouped 3-fold (by city) cross-validated logistic AUROC on ORIGINAL activations (C grid 0.01/0.1/1, best C) >= 0.70 (TSP-R Phase 0 rule). Ineligible cells are not scored on TEST and are reported as not run.",
+ "readers": "fitted on DEV only, applied to TEST: frozen logistic (fit on DEV original activations, C by grouped CV) and frozen mass-mean (DEV original); refit logistic (fit on DEV SAE reconstructions, C by grouped CV). Original AUROC = frozen logistic on TEST original activations.",
+ "metrics": {
+  "gap": "AUROC(original) - AUROC(reconstruction) for the matching reader on TEST (lower is better)",
+  "primary_reader": "refit_logistic (as TSP-R / TI-1)",
+  "also_reported": "frozen_logistic and frozen_massmean gaps; TEST NMSE of the reconstruction normalised by the between-statement variance of the final-token activations (as TI-1 task_nmse; values > 1 are expected because final-token activations vary little across statements); mean L0 on the fresh rows"
+ },
+ "uncertainty": "city-cluster bootstrap, 2000 resamples, seed 20261124, shared across all SAEs. Public SAEs: percentile CI. TSP contrasts: per-seed estimates (fold-averaged, equal weights over the 3 folds; base shared across folds) with tspr_stats.hierarchical (seed + city uncertainty).",
+ "criteria": {
+  "P1_public_preservation": "per public cell (6 cells, both models), refit-logistic gap: LOSS if the 95 % CI lower bound > 0; NON-INFERIOR if the CI upper bound < SESOI 0.010; else INCONCLUSIVE. Same labels reported for frozen_logistic.",
+  "P2_tsp_vs_ctrl": "per TSP cell (4), contrast tsp - ctrl refit-logistic gap: tspr_stats.h1_label (SESOI 0.010); SUPPORTED if the label starts with SUPPORTED and Holm-adjusted p (over the eligible TSP cells) < 0.05",
+  "P2_overall": "the TSP effect REPLICATES on fresh TEST if >= 3 of the 4 cells are SUPPORTED and no cell is HARM; it FAILS TO REPLICATE if <= 1 cell is SUPPORTED; otherwise PARTIAL",
+  "secondary": "tsp - rand (geometry control), tsp - base, ctrl - base; frozen-logistic versions; cross-model comparison of P1 at matched depth (descriptive only)",
+  "P1_ceiling_rule": "if the original-activation TEST AUROC 95 % CI upper bound is >= 0.995, the cell's P1 label is prefixed 'CEILING (uninformative)': with no headroom a zero gap is not evidence of preservation. Added after the TRAIN-only smoke (Gemma L12/L19 AUROC 1.0 on GoT cities TRAIN), before any fresh row is embedded."
+ },
+ "predictions_from_validation": "TSP-R L8 TopK tsp - ctrl = -0.0207 (VALIDATION, 8 seeds); TI-1: SUPPORTED at 3/3 eligible cells (VALIDATION). XF tests whether these replicate on a different, never-used city population (smaller cities, 200k-500k).",
+ "leakage": "fresh DEV is used only for the gate and for reader fitting; fresh TEST is embedded and scored once by the test stage, which refuses unless gate.json is committed and unchanged; all hashes are checked before gate/test/analyze. No TSP / TI-1 SAE was trained or selected on any fresh row.",
+ "smoke": "GoT cities TRAIN rows only (half of TRAIN cities, split into pseudo-DEV / pseudo-TEST by city), 2 seeds per TSP cell; checks the extraction, readers, bootstrap and analysis code paths. Not evidence.",
+ "tf32": "off",
+ "test_data_used": "gate: none; test: fresh TEST once",
+ "runtime_estimate": "gate ~3 min; test ~20-30 min (about 220 SAEs x readers on CPU)",
+ "smoke_findings": "smoke/ (GoT cities TRAIN only, 2 seeds per TSP cell, 85 SAEs): pipeline runs end to end; GPT-2 L3 fails the 0.70 gate on TRAIN (0.65); Gemma L12/L19 at AUROC 1.0 (ceiling rule added); TI-1 L8 ReLU fine-tunes have GoT-row L0 ~250 vs base 83 (known from TI-1: L0 is matched on OWT, not on GoT). Smoke numbers are not evidence and no criterion was set from them other than the ceiling rule.",
+ "frozen_utc": "2026-11-23T19:06:46.844872+00:00",
+ "hashes": {
+  "scripts/cross_model/23_xf_fresh_cities_test.py": "9d3b9d984a7381bd330c5e571305380a8a8277bf3d3748c341f2d8f431393c8b",
+  "scripts/cross_model/02_matched_splicing.py": "8536a86aa7e810c7461df82b5d0e61c522248301a5e1dbcfe8edc69d1cbbf0b3",
+  "src/evaluation/pile_splicing.py": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+  "src/models/backends.py": "9f60bbbbbf9a073ddb4e366f271040ff984e41db831d2fb4df7843cf280cc1a4",
+  "scripts/shared/sae_ladder_evaluation.py": "a3742a8071c6a9f89980054589f70788442b7082f2baec4bdd1a4abff451ceb8",
+  "src/evaluation/tspr_stats.py": "e3eb4593887875a29d955264e7700961118f9d9083a2d9d8fa4dfdc40f634fd6",
+  "src/evaluation/faithfulness_metrics.py": "805e62fc651b4045ffbbd42b727a31e5581d7d8ceed911dbc69fd89243f1aeb8",
+  "scripts/geometry_of_truth/25_truth_subspace_finetune.py": "90a1ee56bd0412500b7c8dd94f0d12b9d2ff45812a2e6e3069ac9e0b20522273",
+  "scripts/geometry_of_truth/30_tsp_r_phase1_training.py": "6e3dee90ac7bd1710a18c26842edb3822fb1ae1f68c4f5a6f450104be533f69b",
+  "scripts/geometry_of_truth/31_tsp_r_phase1_evaluation.py": "8e93527a8a3a55d79bc753bba8ea97688c24e88e3e8933616471e8d8cf40f7ed",
+  "scripts/geometry_of_truth/32_tsp_generalisation.py": "6ddd1638870d496a2b8b24624021c214d3019f78edc8805a37c6ddc4115195f2",
+  "data/got/fresh/geonames_cities/statements.csv": "00186e184ebc692f7a81359b44126fbfea3629b180f2c9e7badb2a7626b67cbc",
+  "data/got/fresh/geonames_cities/build_info.json": "dfecca5f9bb50e945cf2e12c49403d496c4c330017e93fd5f527f0f5416157e5",
+  "data/got/cities.csv": "f2560a0c1758c69935b50125111b574b71896bb75930dd87b1d8c973c1fa086e",
+  "data/got/splits/cities_splits.csv": "e4951ef2f8c57c8c9e1f59bfdc0c98eb502e31fa342e1a334a2e958093d53e9f"
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "n_pairs": {
+    "train": 523,
+    "test": 113,
+    "val": 112
+  },
+  "pairs_dropped": 0,
+  "validation_baseline_pair_accuracy": 1.0,
+  "validation_baseline_margin": 11.667021751403809,
+  "strength_per_layer": {
+    "8": {
+      "strength_multiple": 8.0,
+      "strength_norm": 141.0080676538608,
+      "mass_mean_difference_norm_train": 17.6260084567326
+    },
+    "12": {
+      "strength_multiple": 4.0,
+      "strength_norm": 197.1125061151105,
+      "mass_mean_difference_norm_train": 49.278126528777626
+    },
+    "16": {
+      "strength_multiple": 2.0,
+      "strength_norm": 141.2480404028223,
+      "mass_mean_difference_norm_train": 70.62402020141116
+    },
+    "21": {
+      "strength_multiple": 4.0,
+      "strength_norm": 351.52066797491614,
+      "mass_mean_difference_norm_train": 87.88016699372903
+    }
+  },
+  "runtime_s": 174.05763244628906,
+  "written_utc": "2026-11-23T15:30:37.771552+00:00",
+  "script_sha256": "9b67362ecb81c04641ad05b88b4a50297e5fbcd8213cf6a36eda9c7e249c4fed"
+}

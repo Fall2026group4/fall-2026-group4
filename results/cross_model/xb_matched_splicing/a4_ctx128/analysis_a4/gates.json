@@ -1,0 +1,47 @@
+{
+ "V_IDENT": [
+  {
+   "run": "gemma_owt_xm_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  },
+  {
+   "run": "gemma_pile_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  },
+  {
+   "run": "gpt2_owt_xm_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  },
+  {
+   "run": "gpt2_pile_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  }
+ ],
+ "V_REPEAT": [
+  {
+   "run": "gemma_owt_xm_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  },
+  {
+   "run": "gemma_pile_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  },
+  {
+   "run": "gpt2_owt_xm_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  },
+  {
+   "run": "gpt2_pile_shared_main",
+   "max_abs_dce": 0.0,
+   "max_kl": 0.0
+  }
+ ],
+ "V_M6": []
+}

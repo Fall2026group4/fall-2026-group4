@@ -1,4 +1,4 @@
-# Results registry (as of 2026-11-15: #27 state plus the M6 row from #28)
+# Results registry (as of 2026-11-26: integration line for PRs #41–#53 and C4; rows annotated "2026-11-26" were updated then)
 
 Each results folder's `README.md` gives file-level detail. This page lists the results that support claims.
 
@@ -127,7 +127,7 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 | `results/geometry_of_truth/truth_subspace_preservation/pilot/` | VALIDATION PILOT, NOT SUPPORTED (frozen rule) | Cite effect sizes only with their CIs and the verdict; never as an improvement |
 | `results/geometry_of_truth/truth_subspace_preservation/verification/` | VALIDATION verification (post-hoc checks exploratory) | Confirms the pilot numbers and the NOT SUPPORTED verdict. Supersedes the pilot's secondary CIs for error-only AUROC / MLP / sparse-z / kNN, which omitted statement sampling. Specificity holds for the frozen gap only |
 | `results/geometry_of_truth/truth_subspace_preservation/replication_phase0/` | VALIDATION (DEV only; feasibility) | Fresh-family eligibility and headroom; no TSP result. The TEST splits in `data/got/fresh/splits/` are LOCKED (never read) |
-| `results/geometry_of_truth/truth_subspace_preservation/replication/` | VALIDATION, confirmatory (pre-registered) | Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear, with the TRADE-OFF qualifier (persona/M4 non-inferiority not demonstrated). Fresh-family TEST results are secondary or exploratory and null. Cite the cities effect only as in-distribution |
+| `results/geometry_of_truth/truth_subspace_preservation/replication/` | VALIDATION, confirmatory (pre-registered) | *(2026-11-26: in distribution only; did not replicate on the XF fresh TEST, 0/4 — cite both)* Cities: SUPPORTED (meaningful), truth-specific, linear and nonlinear, with the TRADE-OFF qualifier (persona/M4 non-inferiority not demonstrated). Fresh-family TEST results are secondary or exploratory and null. Cite the cities effect only as in-distribution |
 
 ## 2026-11-15 additions
 
@@ -147,9 +147,35 @@ The 2026-11-04 professor-review corrections are cited from their dataset folders
 |---|---|---|
 | XT-G0 Gemma task activations, K1 / K7 gates | VALIDATION (completed; gates passed) | `results/gemma/xtg_task_baselines/` |
 | XB matched splicing, primary 1024 arm (GPT-2 vs Gemma) | **VALIDATION**: Gemma results and gates citable; **GPT-2 primary-arm results NOT citable as SAE comparisons** (128-token SAEs out of distribution; D50); no matched stratum | `results/cross_model/xb_matched_splicing/` (§59) |
-| XT-G / DX truth preservation (both models) | PRE-REGISTERED, in progress; smoke outputs are EXPLORATORY, not citable | `results/cross_model/xtg_truth_preservation/` |
-| TI-1 TSP generalisation | **VALIDATION (citable)**: GENERALISES, 3/3 cells SUPPORTED (L11 TopK −0.042, L8 BatchTopK −0.015, L8 ReLU −0.026 refit gap vs ctrl); cities only | `results/geometry_of_truth/tsp_generalisation/` (§56, D48) |
+| XT-G / DX truth preservation (both models) | **VALIDATION (citable)**: 0/410 readout shift; persona information loss in both models (not honesty-specific); SAE error concentrated along the task direction (truth for GoT, persona / neutral for RepE); cross-model descriptive only (D54) | `results/cross_model/xtg_truth_preservation/` (§63) |
+| TI-1 TSP generalisation | **VALIDATION (citable)** *(2026-11-26: "generalises" means across these three cross-fitted cities cells only; FAILS TO REPLICATE on the XF fresh TEST, 0/4)*: GENERALISES, 3/3 cells SUPPORTED (L11 TopK −0.042, L8 BatchTopK −0.015, L8 ReLU −0.026 refit gap vs ctrl); cities only | `results/geometry_of_truth/tsp_generalisation/` (§56, D48) |
 | X0 token exposure within R2 runs | **VALIDATION (citable, descriptive)**: not saturated at 50M (25M→50M IMPROVES NMSE 12/12, ΔCE 11/12) | `results/openwebtext/r2_scaled_saes/scaling/` (§57) |
 | SIL SAE-in-the-loop persona mediation (GPT-2) | **VALIDATION**: MEDIATED by rule for all families, **but the negative control also passes**; cite only as "specificity inconclusive" plus D2 retention (0.82–0.92 TopK/BatchTopK/JumpReLU vs ≈ 0.5 ReLU and control) | `results/repe/sae_in_the_loop_mediation/` (§58, D49) |
 
 | PCA-CM-T capacity-matched PCA, TEST | **TEST (rows previously exposed in M5; PCA arms unseen)**: P1 confirmed (0/20 SAEs worse than PCA-128); advantage only in the confirmed cells (D51) | `results/shared/pca_capacity_matched_test_protocol/` (§60) |
+
+| XB A4, 128-token shared span (GPT-2 vs Gemma) | **VALIDATION, sensitivity (descriptive)**: both models' SAEs worse than norm-matched random by CI; 269/324 cross-model differences shrink vs 1024 tokens; Holm labels uninformative (p floor, D52); no matched pair | `results/cross_model/xb_matched_splicing/a4_ctx128/` (§61) |
+
+| E1 TopK at task-matched L0 (old SAEs) | **VALIDATION**: headline NOT robust (1/4 significant architecture differences persist after BH); M2/M4 task-prompt architecture differences largely sparsity-confounded (D53) | `results/shared/e1_task_l0_matched_topk/` (§62) |
+
+## 2026-11-23 additions (recovery session)
+| Result | Status | Location |
+|---|---|---|
+| TI-2 TSP-MF: NO TRANSFER DETECTED (MF-H1 +0.0020 [−0.0096, +0.0137]; MDE ≈ 0.03, so not evidence of no effect) | VALIDATION (completed; analysis deviation declared). *(2026-11-26: **PROVENANCE-LIMITED** — checkpoints lost, numbers come from saved evaluation outputs only and cannot be re-evaluated; R0 gate passed after amendment A-TF32. Not a confirmed finding; not in the main narrative, D57)* | `results/geometry_of_truth/tsp_multifamily/` |
+| TI-4 TSP × KL: COMBINES | VALIDATION (completed). *(2026-11-26: **PROVENANCE-LIMITED** — 18 new checkpoints lost; cross-fitted cities only, the population on which TSP did not replicate (XF); additivity INCONCLUSIVE. Not a confirmed finding; not in the main narrative, D57)* | `results/geometry_of_truth/tsp_kl_factorial/` |
+| TI-3 minimal-pair preservation | WITHDRAWN: no result, not citable | `results/geometry_of_truth/minimal_pair_preservation/` |
+| Ladder batch 2 (XB L12 only) | PARTIAL: XB per-document outputs only; analysis not run, not yet citable | `results/cross_model/xb_ladder_batch2/` |
+| XC-3 steering parity | PRE-REGISTERED; smoke outputs (TRAIN) not citable *(2026-11-26: SUPERSEDED by the next row)* | `results/cross_model/xc3_steering_parity/` |
+| XC-3 steering parity, GPT-2 vs Gemma (H1/H2 met 5/6; H3 INCONCLUSIVE) | TEST, confirmatory for H1–H3 *(2026-11-26 wording: H1/H2 CONFIRMED at 5/6 cells; H3 INCONCLUSIVE at 5/5 — retention is **not** confirmed)* (GPT-2 TEST rows previously read once by H1-TEST; Gemma pristine); H4 descriptive | `results/cross_model/xc3_steering_parity/` |
+| XC-2 Gemma GoT causal (T1 mass-mean met at L8/12/16/21; T2 reconstruction met at all 4) | CONFIRMED TEST RESULT for families A/C1/C2 (cities TEST rows previously exposed: GPT-2 decisions, 2026-11-01 Gemma L11 sweep; disclosed) | `results/cross_model/xc2_gemma_got_causal/` |
+| XF fresh geonames cities TEST: P1 public-SAE LOSS at GPT-2 L3/6/9 and Gemma L5 (Gemma L12/19 ceiling); P2 TSP vs ctrl FAILS TO REPLICATE (0/4) | CONFIRMED TEST RESULT (pristine TEST, read once) | `results/cross_model/xf_fresh_cities_test/` |
+| TSP-R / TI-1 tsp − ctrl advantage | VALIDATION finding; did NOT replicate on XF fresh TEST (cite both) | `results/geometry_of_truth/truth_subspace_preservation/replication/`, `results/geometry_of_truth/tsp_generalisation/` |
+| XC-1 Gemma site sweep: L0 slot and L23 final selected and confirmed (R_A val 0.108, E_share 0.98) | VALIDATION finding (TRAIN selection, VALIDATION confirmation; reduced 9-layer grid) | `results/cross_model/xc1_gemma_site_sweep/` |
+| M4-G Gemma SAE patch decomposition: preservation 0.96 (L0 slot), 0.75 (L12 final), 0.70 (L23 final); H4a/H4b 3/3; final-token sites interaction-dominated (bounds only) | VALIDATION finding (H4c not run) | `results/cross_model/m4_gemma_patch_decomposition/` |
+
+## 2026-11-26 additions (integration)
+| Result | Status | Location |
+|---|---|---|
+| C4 GPT-2 GoT causal truth-direction test (Dhruv Rai) | **TEST, pre-registered (single pass; TEST rows previously scored for probe AUROC only)**: C1 raw truth directions not distinguishable from random (null within a 1 %-dose sensitivity, not proof of no effect); C2 0/108 on rebuilt SAEs. Cross-model contrast with XC-2 descriptive only (D56) | `results/geometry_of_truth/causal_truth_steering/` (§65) |
+| Rebuild reproducibility check, 108 in-house SAEs | CONFIRMED (metric-equivalent: EV within 0.0013, L0 within 1.19; checkpoints not byte-identical) | `results/openwebtext/rebuild_reproducibility_check/` |
+

@@ -1,0 +1,12 @@
+{
+ "runs": [
+  "gemma_main",
+  "gpt2_main"
+ ],
+ "n_sae_cells": 410,
+ "script_sha256": "9369d46dc77bf27011cdf2c2459a39ac748afe093f032af3c9849f8060b74868",
+ "approximations": [
+  "BH p from stored 95 % CIs (normal approx)",
+  "LOSS_BEYOND_PCA z-test ignoring SAE/PCA covariance (conservative)"
+ ]
+}
