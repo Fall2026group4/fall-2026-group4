@@ -1,6 +1,6 @@
 """Concept-detection and steering-result scoring helpers (Phases 3-5).
 
-Pulled out of ``cookbooks/02_pretained_sae_baseline.ipynb`` so the scoring
+Pulled out of ``cookbooks/02_pretained_sae_baseline.ipynb`` (since removed; see ``cookbooks/README.md``) so the scoring
 logic can be unit tested (Instructor Review #2, "Nothing in the repo is
 testable") instead of only being checkable by re-running the whole notebook
 against a downloaded model.

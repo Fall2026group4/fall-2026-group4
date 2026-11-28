@@ -1,19 +1,14 @@
 # Cookbooks
 
-Narrative, run-it-top-to-bottom notebooks. Each one imports its actual
-logic from `src/` and contains only narrative text, function calls, and
-figure/table output — no model loading, hooks, or scoring logic defined
-inline. See `src/` for the implementation and `src/tests/` for coverage.
+This folder held the early exploratory notebooks. They were removed on 2026-11-28 as obsolete: the project's
+pipelines now live in `scripts/` and `src/`. The last version of each notebook is in the Git history at commit
+`8d0bac0`:
 
-- `01_data_exploration.ipynb` — OpenWebText EDA (document/token length
-  distributions, GPT-2 context-window compliance). Saves figures/tables to
-  `../results/figures/` and `../results/tables/`.
-- `02_pretained_sae_baseline.ipynb` — Loads GPT-2 Small + a pretrained SAE
-  (`src/models/gpt2_sae.py`), scores Feature 974 on positive/negative
-  examples (`src/evaluation/detection.py`), and runs a causal steering
-  sweep (`src/sae/steering.py`).
-- `03_geometry_of_truth_eda.ipynb` — EDA on the Geometry of Truth dataset
-  for Phase 5 concept-detection work.
+- `02_pretained_sae_baseline.ipynb`: GPT-2 Small + pretrained SAE, Feature 974 detection and steering (Phase 1). Produced
+  `results/figures/feature_974_paris_vs_nonparis.svg` and `results/tables/feature_974_detection_results.csv`.
+- `03_geometry_of_truth_eda.ipynb`: Geometry of Truth EDA. Produced `results/geometry_of_truth_eda_summary.csv`.
+- `04_geometry_of_truth_baseline.ipynb`: legacy layer-10 GoT SAE feature baseline. Produced
+  `results/geometry_of_truth/geometry_of_truth_feature_stats.csv` and
+  `results/figures/geometry_of_truth_sae_feature_differences.svg`.
 
-Run these from inside `cookbooks/` (relative paths to `../results/` and
-`../src/` assume that working directory).
+Restore one with `git show 8d0bac0:cookbooks/<name>.ipynb > <name>.ipynb`.

@@ -67,7 +67,7 @@ sae_matrix:
     sae_id: null
     hook_name: null
 
-# Default steering sweep, used by cookbooks/02_pretained_sae_baseline.ipynb.
+# Default steering sweep from the Phase 1 Feature 974 notebook (removed; see cookbooks/README.md).
 steering:
   feature_id: 974
   prompt: "The best place to spend my vacation is"
