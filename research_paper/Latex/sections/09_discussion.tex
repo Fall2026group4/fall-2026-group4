@@ -42,7 +42,8 @@ honesty-specific information.
   \item \textbf{No controlled cross-model comparison.} Gemma was evaluated at two levels only, and the settings
         differ in too many respects to compare the models.
   \item \textbf{Sparsity matching.} Architectures are matched on OWT, not on task prompts; a TopK experiment trained
-        at task-matched sparsity has been drafted but not run. Post-hoc truncation to a common task-level L0 leaves 54
+        at task-matched sparsity ran at validation level, and only 1 of 4 architecture differences persists after BH
+        correction, so those differences are not robust. Post-hoc truncation to a common task-level L0 leaves 54
         of 57 scaled-versus-base comparison classes unchanged but changes 13 of 19 orderings of the base architectures
         on task metrics, so architecture rankings on task prompts are not robust (Appendix~\ref{sec:audit}).
   \item \textbf{Causal evidence.} One persona-instruction effect of 0.02--0.04 nats at three sites of one model. The
