@@ -1,0 +1,45 @@
+{
+ "experiment": "XB amendment A4: 128-token shared-span sensitivity arm (GPT-2 Small and Gemma-2-2B)",
+ "created": "2026-11-21",
+ "status": "PRE-REGISTERED (frozen before any A4 run, including smoke)",
+ "approved_by": "user, 2026-11-21 (priority 1 of Option B; subject to the team's cutoff extension)",
+ "evidence_level_on_completion": "VALIDATION, sensitivity analysis (Pile validation / OWT shard 00077 samples; no TEST split exists for XB)",
+ "trigger": "GPT-2 SAEs (R2 CTX=128; res-jb 128) are scored on ~700-token spans in the primary XB arm while Gemma Scope (trained at 1024) is in-distribution. Found from per-token L0 only (res-jb 15/68/61 at 128 tokens vs 580/415/180 on the 1024 shared span, layers 1/8/11); no XB outcome metric (dCE, KL, loss recovered, ratio) had been computed or inspected.",
+ "unchanged": [
+  "primary 1024 shared and own runs and their frozen analysis (analysis_v1), reported exactly as pre-registered with the context caveat disclosed",
+  "documents, sets, ranks, SAEs, seeds, controls, gates, bootstrap (NB=1000, seed 0), Holm rules",
+  "02_matched_splicing.py and 03_matched_splicing_analysis.py are imported unchanged (no edit)"
+ ],
+ "design": {
+  "documents": "the frozen 512 eval + 64 reference documents of each corpus",
+  "span": "longest prefix with <= 127 text tokens under BOTH tokenizers (01_build_xm_samples.span_end with the cap at 127; BOS prepended separately)",
+  "manifests": {
+   "pile": "samples/pile_ctx128_manifest.csv",
+   "owt_xm": "samples/owt_xm_ctx128_manifest.csv"
+  },
+  "models_layers_saes": "as the primary shared runs: GPT-2 all 12 layers resjb,old,r2; Gemma all 26 layers canonical 16k",
+  "scoring": "BOS excluded; positions 1 <= t <= len-2; mean-ablation from the 64 reference docs at 128 tokens; norm-matched random; identity and repeat gates on the first 8 docs",
+  "runner": "scripts/cross_model/05_xb_ctx128.py run ... (results root redirected to a4_ctx128/)"
+ },
+ "analyses": {
+  "within_A4": "05_xb_ctx128.py analyze --tag a4 = the frozen 03 analysis on the A4 tree: XB_H1 (Holm within model x corpus), XB_H2 cross-model differences with the frozen +-15 % matched-stratum rule re-applied with L0 measured at 128 tokens, XB_H3 depth trend",
+  "context_change": "07_a4_context_comparison.py --tag a4: per (corpus, triplet slot, family pair, normalised metric) shrink = |d_1024| - |d_128| with the identical paired document resample; SHRINKS if CI low > 0, GROWS if CI high < 0, else NO CLEAR CHANGE; Holm over the whole table"
+ },
+ "pre_registered_reading": {
+  "SHRINKS (Holm) on the normalised metrics (ratio_sae_random, excess_rel, loss_recovered) in most slots": "the 1024 cross-model gap is attributed partly to the GPT-2 context mismatch",
+  "NO CLEAR CHANGE": "the cross-model gap is not explained by context",
+  "GROWS": "reported as such; context mismatch does not account for the gap",
+  "reporting": "all slots and metrics reported; positive, negative and inconclusive rows listed separately"
+ },
+ "gates": {
+  "V_IDENT/V_REPEAT": "identity and original-repeat dCE exactly 0 (as primary)",
+  "pairing": "the same documents in the same rank order in both trees (asserted by hash in 07)",
+  "integrity": "05 refuses to run unless the A4 tree copies are hash-identical to the derived manifests and inputs/m6"
+ },
+ "failure_conditions": [
+  "any gate fails -> stop and report",
+  "a run cannot complete -> reported as incomplete; incomplete runs never enter 07 (DONE.json required)"
+ ],
+ "compute": "~1.5 h per corpus for GPT-2, ~1 h per corpus for Gemma; < 0.5 GB outputs on EBS; RAM/GPU as the primary XB runs, run in the XB slot only after the primary XB runs have exited",
+ "test_data_used": false
+}

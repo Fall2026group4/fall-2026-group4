@@ -1,0 +1,158 @@
+[
+ {
+  "layer": 1,
+  "task": "got_cities",
+  "X": "relu",
+  "task_l0_train_per_seed": [
+   33.90535372848949,
+   31.18546845124283,
+   31.876673040152962
+  ],
+  "task_l0_train": 32.322498406628426,
+  "k_star": 32,
+  "within_10pct": true
+ },
+ {
+  "layer": 1,
+  "task": "got_cities",
+  "X": "jumprelu",
+  "task_l0_train_per_seed": [
+   19.625239005736137,
+   24.4282982791587,
+   24.192160611854685
+  ],
+  "task_l0_train": 22.748565965583172,
+  "k_star": 23,
+  "within_10pct": true
+ },
+ {
+  "layer": 1,
+  "task": "repe_persona",
+  "X": "relu",
+  "task_l0_train_per_seed": [
+   215.61900479616307,
+   219.36360911270984,
+   212.26708633093526
+  ],
+  "task_l0_train": 215.74990007993605,
+  "k_star": 216,
+  "within_10pct": true
+ },
+ {
+  "layer": 1,
+  "task": "repe_persona",
+  "X": "jumprelu",
+  "task_l0_train_per_seed": [
+   214.3312350119904,
+   212.29406474820144,
+   214.47541966426857
+  ],
+  "task_l0_train": 213.70023980815347,
+  "k_star": 214,
+  "within_10pct": true
+ },
+ {
+  "layer": 8,
+  "task": "got_cities",
+  "X": "relu",
+  "task_l0_train_per_seed": [
+   78.11281070745697,
+   73.26099426386233,
+   77.66300191204589
+  ],
+  "task_l0_train": 76.34560229445508,
+  "k_star": 76,
+  "within_10pct": true
+ },
+ {
+  "layer": 8,
+  "task": "got_cities",
+  "X": "jumprelu",
+  "task_l0_train_per_seed": [
+   65.17543021032505,
+   60.33269598470363,
+   62.23087954110898
+  ],
+  "task_l0_train": 62.57966857871256,
+  "k_star": 63,
+  "within_10pct": true
+ },
+ {
+  "layer": 8,
+  "task": "repe_persona",
+  "X": "relu",
+  "task_l0_train_per_seed": [
+   162.7571942446043,
+   160.72841726618705,
+   159.19034772182255
+  ],
+  "task_l0_train": 160.8919864108713,
+  "k_star": 161,
+  "within_10pct": true
+ },
+ {
+  "layer": 8,
+  "task": "repe_persona",
+  "X": "jumprelu",
+  "task_l0_train_per_seed": [
+   171.11600719424462,
+   169.72452038369303,
+   169.9079736211031
+  ],
+  "task_l0_train": 170.24950039968027,
+  "k_star": 170,
+  "within_10pct": true
+ },
+ {
+  "layer": 11,
+  "task": "got_cities",
+  "X": "relu",
+  "task_l0_train_per_seed": [
+   112.77342256214149,
+   113.69024856596559,
+   105.70889101338432
+  ],
+  "task_l0_train": 110.72418738049714,
+  "k_star": 111,
+  "within_10pct": true
+ },
+ {
+  "layer": 11,
+  "task": "got_cities",
+  "X": "jumprelu",
+  "task_l0_train_per_seed": [
+   88.77963671128107,
+   94.61185468451242,
+   92.07409177820267
+  ],
+  "task_l0_train": 91.82186105799872,
+  "k_star": 92,
+  "within_10pct": true
+ },
+ {
+  "layer": 11,
+  "task": "repe_persona",
+  "X": "relu",
+  "task_l0_train_per_seed": [
+   163.4664268585132,
+   163.98860911270984,
+   159.1984412470024
+  ],
+  "task_l0_train": 162.21782573940848,
+  "k_star": 162,
+  "within_10pct": true
+ },
+ {
+  "layer": 11,
+  "task": "repe_persona",
+  "X": "jumprelu",
+  "task_l0_train_per_seed": [
+   142.86121103117506,
+   140.33842925659474,
+   139.88309352517985
+  ],
+  "task_l0_train": 141.02757793764988,
+  "k_star": 141,
+  "within_10pct": true
+ }
+]

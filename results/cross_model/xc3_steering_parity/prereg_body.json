@@ -1,0 +1,51 @@
+{
+ "experiment": "XC-3 steering parity: one persona-steering protocol for GPT-2 Small and Gemma-2-2B",
+ "created": "2026-11-23",
+ "status": "PRE-REGISTERED (frozen before any VALIDATION or TEST row is scored; smoke used TRAIN rows only)",
+ "evidence_level_on_completion": "VALIDATION phase: validation finding (strength selection, descriptive controls). TEST phase: confirmed test result for H1-H3; H4 descriptive.",
+ "research_question": "Does a reconstruction-derived (SAE) honesty direction keep the causal steering effect of the original-activation honesty direction, and is the answer the same for GPT-2 Small and Gemma-2-2B under one protocol?",
+ "why": "Audit 2026-11-21 row 14: GPT-2 steering (RepE L6, 200 controls) and Gemma steering (GoT L11, 20 controls, no SAE) used different tasks, sites and control counts, so no cross-model steering comparison is valid. XC-3 runs one protocol on both models with >= 200 controls and adds the reconstruction-direction arm, which links steering to the SAE-faithfulness question (causal behaviour preserved through the SAE).",
+ "task": "RepE-LM fit templates T1-T4, honest (H) vs untruthful (U) persona prompts, one-token swaps (K1 re-checked per model tokenizer; failing pairs dropped and counted). Neutral templates and T5-T8 are not used.",
+ "splits": {
+  "train": "data/repe/repe_lm/prompts.csv split=train: directions and alive SAE latents only (from cached final-token activations).",
+  "validation": "same file split=validation (89 statements x 4 templates): strength selection (argmax E_raw over GRID) and gate G1; descriptive Gaussian controls.",
+  "test": "data/repe/repe_lm_test/prompts.csv T1-T4 (86 statements x 4 templates): scored ONCE by --phase test with the frozen selection.json."
+ },
+ "test_exposure_disclosure": "GPT-2: RepE-LM TEST was read once on 2026-11-13 by the pre-registered H1-TEST pass (HT1-HT4: M4 causal preservation, pair-direction cosine, refit gap, probe transfer). No steering direction or strength of XC-3 was evaluated on it, and nothing in this protocol was chosen after seeing it, but the rows are NOT pristine for GPT-2. Gemma: RepE-LM TEST has never been run through Gemma.",
+ "models_sites": {
+  "gpt2": "TransformerLens gpt2-small (default processing), blocks.L.hook_resid_pre, L = 3, 6, 9 (depth 0.25/0.50/0.75)",
+  "gemma": "HF google/gemma-2-2b rev c5ebcd40 bf16 eager, output of model.model.layers[L] (resid_post), L = 5, 12, 19 (depth 0.23/0.50/0.77)",
+  "triplet": "T-B of the 2026-11-21 audit section 6",
+  "position": "final prompt token only"
+ },
+ "outcome": "E(v) = 1 - sum_i KL(p_H,i || p_{U+v},i) / sum_i KL(p_H,i || p_U,i); p = next-token distribution at the final prompt token; higher is better (1 = honest-persona output recovered). Category: steering (causal intervention). Within-model normalised, so it is comparable across models.",
+ "arms": {
+  "raw": "u_raw = unit(mean_H - mean_U), ORIGINAL final-token activations, TRAIN, T1-T4",
+  "rec": "u_rec = unit(mean SAE(x_H) - mean SAE(x_U)), TRAIN; SAE = res-jb (GPT-2, 24576 latents) / Gemma Scope 16k canonical (Gemma, L0 68/82/73 at L5/12/19)",
+  "patch": "positive control: x_U <- x_H at the site and final token, per pair (unconstrained norm)"
+ },
+ "strength": "s = c* x ||mean_H - mean_U||_TRAIN; c in [0.05, 0.1, 0.25, 0.5, 1, 2, 4, 8] (= scripts/repe/13 grid); c* = argmax E_raw on VALIDATION per (model, layer). The same s for rec and all controls.",
+ "controls": "at s: 200 Gaussian random unit directions (seed 20261123 / +1 for Gemma); 200 random single alive SAE decoder columns with random sign (alive = fires on >= 1 TRAIN H/U row). VALIDATION: Gaussian only (descriptive). TEST: both families.",
+ "gates": {
+  "G1": "E_patch bootstrap CI low > 0 on VALIDATION at the cell; a failing cell is reported as not eligible and its hypotheses are not tested.",
+  "sanity": "zero-edit max |KL diff| < 1e-6; Gemma final-token logit path equals the full forward (max |dlogp| < 1e-3)"
+ },
+ "hypotheses_test": {
+  "H1": "per eligible (model, layer): E_raw > Gaussian controls AND > SAE-feature controls, one-sided empirical p, Holm over the 6 cells within each control family, both < 0.05.",
+  "H2": "per eligible cell: E_rec > Gaussian controls, Holm over 6 cells < 0.05.",
+  "H3": "only where H1 holds: retention R = E_rec / E_raw with statement-clustered bootstrap 95% CI: PRESERVED if CI low >= 0.8; DEGRADED if CI high < 0.8; else INCONCLUSIVE.",
+  "H4_descriptive": "cross-model parity per depth-matched pair (3/5, 6/12, 9/19): E_raw, E_rec, R and E_patch side by side; R_gemma - R_gpt2 with a bootstrap CI only where H1 holds in both models."
+ },
+ "statistics": "empirical p = (1 + #controls >= target)/(1 + n); bootstrap over statements (2000 resamples, numpy seed 0), clustering the 4 templates of a statement.",
+ "comparisons": [
+  "raw vs Gaussian / SAE-feature controls: does the honesty direction steer specifically?",
+  "rec vs Gaussian: does the SAE-derived direction steer?",
+  "rec vs raw (R): is the causal steering effect preserved through the SAE?",
+  "GPT-2 vs Gemma at matched depth: parity of E_raw, R, E_patch (descriptive)"
+ ],
+ "leakage": "directions/latents from TRAIN only; strength from VALIDATION only; TEST read once after selection.json is written; evaluation is not a probe so no probe circularity; no SAE training.",
+ "deviations_from_audit_plan": "The audit row said 'one protocol, both models'. The task chosen is RepE-LM persona (not GoT judgment) because both models pass its behaviour gates (K1, K7) and its outcome E is within-model normalised; GoT on Gemma is covered by XC-2.",
+ "multiplicity": "Holm within each pre-registered family (H1-Gaussian, H1-SAE-feature, H2) over 6 cells.",
+ "tf32": "TF32 off (evaluation; amendment A-TF32)",
+ "test_data_used": "VALIDATION phase: none. TEST phase: RepE-LM TEST T1-T4 once."
+}

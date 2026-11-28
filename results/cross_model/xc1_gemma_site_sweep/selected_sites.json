@@ -1,0 +1,68 @@
+{
+  "selected": [
+    {
+      "role": "earliest",
+      "layer": 0,
+      "group": "slot",
+      "depth": 0.038461538461538464,
+      "R_A_train": 0.07196715510558914,
+      "E_share": 0.9769677199240274,
+      "R_A_validation": 0.1078607726766574,
+      "R_A_validation_ci": [
+        0.07723382904512609,
+        0.14381312440628252
+      ],
+      "R_B_validation": 0.1284312871274093,
+      "R_S_validation": 0.060560319485064476,
+      "E_share_validation": 0.9825540994754386,
+      "random_q95_validation": 0.021650985346197887,
+      "confirmed": true
+    },
+    {
+      "role": "peak+latest",
+      "layer": 23,
+      "group": "final",
+      "depth": 0.9230769230769231,
+      "R_A_train": 0.07240418637240743,
+      "E_share": 0.9829005018945325,
+      "R_A_validation": 0.10802426091614693,
+      "R_A_validation_ci": [
+        0.077087216908027,
+        0.14547705635734456
+      ],
+      "R_B_validation": 0.12823724814174003,
+      "R_S_validation": 0.0607849438225728,
+      "E_share_validation": 0.9840433901224471,
+      "random_q95_validation": -0.021339990613582563,
+      "confirmed": true
+    }
+  ],
+  "n_passing_cells": 24,
+  "n_candidates": 36,
+  "M4_justified": true,
+  "rule": "Holm(max p of R_A>0, R_A-R_S>0, R_B>0) < 0.05 over 45 cells AND R_A > q95 of 200 matched-norm random draws AND not a trivial sanity cell; earliest/peak/latest; confirmed on validation if R_A CI low > 0",
+  "runtime_s": 5083.902466535568,
+  "n_forward": 14200,
+  "script_sha256": "4dcac3d05682f59118aca4b8f9c08667805f67f4b7a5605c587dd71a2a1bbfc0",
+  "sanity_pass": true,
+  "test_rows_used": 0,
+  "finished_utc": "2026-11-23T20:48:22.419293+00:00",
+  "torch": "2.14.1+cu130",
+  "tf32": false,
+  "n_train_pairs": 400,
+  "n_train_statements": 100,
+  "n_random_statements": 30,
+  "n_validation_pairs": 356,
+  "n_validation_statements": 89,
+  "drops_train": {
+    "length_or_multi_token_swap": 0,
+    "continuation_not_clean": 144
+  },
+  "drops_validation": {
+    "length_or_multi_token_swap": 0,
+    "continuation_not_clean": 8
+  },
+  "t_fix": 33,
+  "t_long": 53,
+  "smoke": false
+}

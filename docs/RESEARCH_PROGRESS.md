@@ -1591,3 +1591,216 @@ Full report: `docs/archive/2026-11-04_methodology_review_corrections_report.md`,
   * **P3:** 4/8 confirmed (L8 old ReLU, L8 res-jb, L11 R2 ReLU, L11 res-jb).
   * The counts match the validation multiplicity check.
 * **Reading (D51):** "no SAE is worse than capacity-matched PCA" is now TEST-confirmed. "SAEs beat capacity-matched PCA" holds only for the confirmed cells.
+
+## 61. XB A4: 128-token shared-span arm (2026-11-22). Status: COMPLETED (VALIDATION, sensitivity); Holm outcomes infeasible by design
+* **Design:** frozen and pushed (`0c15597`) before the primary analysis was read. The same documents, SAEs, controls and frozen runner / analysis were used, redirected to `a4_ctx128/`. Gates: identity / repeat exactly 0.
+* **Context fixes the GPT-2 breakdown:** res-jb EV 0.95 / 0.86 / 0.81 and L0 15 / 67 / 61 at L1 / L8 / L11, matching its 128-token values; R2 EV 0.81–0.98 for the individual trained SAEs (per-layer means 0.83–0.95, including the frozen-decoder control at 0.57–0.68).
+* **Outcomes:**
+  * XB_H1 GPT-2: 297/318 supported by CI (Holm 0/318 is infeasible);
+  * XB_H1 Gemma: 49/52;
+  * matched pairs: 0/54;
+  * context change: 269/324 cross-model differences SHRINK by uncorrected CI (loss recovered 54/54, KL 53/54); Holm 0/324 is infeasible.
+* **Design flaw disclosed (D52):** with a 1,000-resample bootstrap the p floor is about 0.002, so Holm over 159 or 324 tests cannot reach 0.05. This affects the frozen XB analysis and the A4 comparison alike. The Holm labels carry no evidential weight. No criterion changed. A higher-resolution re-analysis would be post hoc and needs approval.
+* **Reading:** at matched context both models' SAEs are more harmful than norm-matched random error (SAE / random ΔCE GPT-2 1.5–4.8, Gemma 0.7–3.0). The primary-arm cross-model gap is largely the GPT-2 context mismatch.
+
+## 62. E1: TopK at task-level matched sparsity (2026-11-22). Status: COMPLETED (VALIDATION). Headline NOT robust
+* **Design (pre-registered 2026-11-21; amendment E1-A1 single-threaded probe BLAS, user-approved after the first gate failed at 2.8e-4):** 36 old-recipe TopK SAEs (3,072 latents) at k\* = the task-prompt L0 of ReLU / JumpReLU (23–216; TRAIN prompts), layers 1 / 8 / 11, 3 seeds. M2 / M4 metrics compared with the committed M2 / M4 baselines. Gate after E1-A1: G1 0.0, G2 0.0, G3 1.2e-7.
+* **Result:** of the 4 architecture differences significant at OWT-matched k = 128, **1 persists** at task-matched k\* after BH (L11 persona, JumpReLU `preservation_rec`, +0.045); 3 are ATTENUATED. So 25 % < 75 %: **NOT robust**. GoT cities shows no difference at either k. TopK@k\* vs TopK@128: no clear change in 15/18 cells.
+* **Reading:** the M2 / M4 architecture differences on task prompts were largely confounded with the up-to-5× task-level L0 mismatch. Old SAEs only; no R2 or cross-model claim.
+
+## 63. XT-G / DX: truth and honesty preservation in both models, with rotation-vs-loss diagnostics (2026-11-22). Status: COMPLETED (VALIDATION)
+* **Coverage:** Gemma Scope 16k at 26 layers; GPT-2 res-jb at 11 layers, plus R2 / old at the matched layers (410 SAE × task cells). GPT-2 L0 is not evaluable (statement-independent final-token embedding). Frozen analysis with deviations A4 (CI-derived BH p; conservative z-test).
+* **No READOUT_SHIFT in any cell:** frozen-probe drops are not a linear readout shift.
+* **Persona information is lost in both models:** INFORMATION_LOSS in Gemma 26/26 and GPT-2 56/56 cells; beyond error-matched PCA in 21/26 and 34/56. The neutral control loses as much in Gemma, so the loss is not honesty-specific.
+* **SUPPRESSION** (SAE error concentrated along the task direction: truth for GoT, the persona / neutral label direction for RepE): Gemma 130/130, GPT-2 258/280 cells.
+* **GoT cities:** Gemma is mostly at ceiling (20/26); GPT-2 loses information in 35/56, 22 beyond PCA.
+* **Cross-model (descriptive):** Gemma Scope keeps relatively more persona information than res-jb at matched depth (headroom-normalised gap 0.33–0.52 vs 0.60–0.85). No ranking claim.
+
+## Recovery and final day (2026-11-23). Status: recovery COMPLETED; TI-2 / TI-4 analyses COMPLETED; TI-3 WITHDRAWN; ladder PARTIAL; XC-3 and XC-2 PRE-REGISTERED, running
+
+Full record: [`2026-11-23_recovery_and_final_day.md`](2026-11-23_recovery_and_final_day.md). This entry is appended on
+`sae-research` (user decision, 2026-11-23). The final-week PR stack (`final-week/p2…p16`) is left untouched, so § and
+D numbers are deliberately not assigned here.
+
+* **Recovery [VERIFIED]:**
+  * The original instance was lost. `sae-project/` and the HF cache were restored from its EBS volume: 120.7 GB,
+    0 errors.
+  * Checkpoints: 897/897 match the registry SHA-256 on both sides.
+  * Lost (instance storage): the TI-2 / TI-4 checkpoints (their hashes are kept in the ledgers) and the 32k/65k
+    ladder weights.
+* **TI-2 TSP-MF [VALIDATION, COMPLETED]: NO TRANSFER DETECTED.**
+  * MF-H1 (companies, tsp_mf − ctrl): +0.0020 [−0.0096, +0.0137], p 0.73.
+  * MF-H4 (cities): −0.0254, met.
+  * MF-H5 (guard): met.
+  * Costs met: NMSE +2.7 %, ΔCE +2.8 %, L0 128.
+  * Declared analysis deviation: a wrapper allows pickle for the pipeline's own `eval/orig.npz` only, because the
+    frozen analysis crashed on object arrays. No criterion changed.
+* **TI-4 TSP × KL [VALIDATION, COMPLETED]: COMBINES** (reviewed against the frozen rules; every verdict reproduces).
+  * F-H1 −0.0259 [−0.0362, −0.0156].
+  * F-H2 −0.0120 (9/9 pairs).
+  * Holm 6.5e-4.
+  * F-H3 INCONCLUSIVE.
+  * Costs met.
+* **TI-3: WITHDRAWN** under its pre-registered schedule rule; never trained, no result.
+* **Ladder batch 2: PARTIAL.**
+  * Done: XB L12 for 16 SAEs.
+  * Missing: the XT-G arm (weights lost) and the batch-2 analysis.
+* **XC-3 steering parity: PRE-REGISTERED** (frozen 14:40 UTC before any VALIDATION/TEST scoring), running.
+  * One RepE-LM persona protocol for both models.
+  * T-B triplet, ≥ 200 controls, plus a reconstruction-direction arm.
+* **XC-2 Gemma GoT causal: PRE-REGISTERED** (port of `dhruv-causal` 22), queued.
+* **Deferred by the user:** XC-1, XF, M4. NOT RUN.
+
+### XC-3 steering parity: results (2026-11-23). Status: COMPLETED (confirmed test result for H1–H3; H4 descriptive)
+* **Setup.** One RepE-LM persona-steering protocol at the final token, run on both models. TEST was run once: 344
+  pairs, 86 statements. Every sanity check is exactly 0. About 46 GPU minutes.
+* **H1 (the honesty direction beats 200 Gaussian and 200 SAE-feature controls, Holm): met at 5/6 cells.**
+  * GPT-2 L3/6/9: E_raw 0.048 / 0.068 / 0.130.
+  * Gemma L12/19: 0.147 / 0.091.
+  * **Not met at Gemma L5** (0.002).
+* **H2 (the SAE-reconstruction direction steers): met at the same 5/6 cells.**
+* **H3 (retention E_rec/E_raw ≥ 0.8): INCONCLUSIVE at all 5 cells.**
+  * Point estimates: 0.69, 0.34, 0.83 (GPT-2); 0.97, 0.86 (Gemma).
+  * Every CI spans 0.8.
+* **H4 (descriptive).**
+  * Mid depth: Gemma retains more than GPT-2 (R difference +0.63 [+0.14, +1.40]), and its E_raw is higher (+0.079).
+  * Late depth: no difference.
+* **Reading.** The honesty direction steers specifically in both models at mid and late depth, and the public-SAE
+  reconstruction direction keeps a large but imprecisely measured share. Retention preservation is not established.
+* **Exposure.** The GPT-2 TEST rows had been read once before (H1-TEST); the Gemma rows were pristine.
+* Source: `results/cross_model/xc3_steering_parity/`.
+
+### XC-2 Gemma GoT causal test: results (2026-11-23). Status: COMPLETED (confirmed test result for families A, C1, C2; TEST rows previously exposed, disclosed)
+* **Setup.** Port of the `dhruv-causal` GPT-2 protocol to Gemma resid_post 8/12/16/21 with Gemma Scope 16k: 600
+  controls, BH within families. TEST run once: 113 pairs, about 61 GPU min. Every path check is exactly 0.
+* **Power:** the positive control is detectable at λ = 0.01 at every layer.
+* **T1 met for the mass-mean direction at all 4 layers.** +s effect: +0.71 / +1.98 / +2.55 / +3.39 nats, every CI
+  low > 0, BH p 0.003, and −s reverses the sign. The frozen logistic-probe direction meets T1 only at L16.
+* **T2.**
+  * The SAE reconstruction direction is met at all 4 layers (+1.56 to +3.75).
+  * Top-10 latents: L8, L12.
+  * Top-1 latent: only L8.
+* **Reading.**
+  * Unlike GPT-2 (null under the same protocol), Gemma's truth direction causally raises the true-country
+    preference.
+  * The Gemma Scope reconstruction direction keeps the effect; single latents mostly do not.
+* **Caveats.**
+  * At the selected strengths, random controls lower the margin by about 1.6–1.9 nats, so the absolute CIs are the
+    conservative evidence.
+  * The L8 strength came from a non-monotonic validation curve.
+  * Baseline accuracy is 94 % (ceiling).
+  * The cities TEST rows were previously exposed.
+* Source: `results/cross_model/xc2_gemma_got_causal/`.
+
+### XF fresh geonames cities TEST (2026-11-23). Status: IN PROGRESS (pre-registered and frozen; DEV gate passed 8/8; TEST not yet read)
+* **Build.** A new cities family from geonames: population 200k–500k, disjoint from GoT cities, GoT template and
+  country pool. 713 cities: DEV 263, TEST 450. All leakage checks are 0.
+* **Plan for the TEST pass, read once:**
+  * (P1) public-SAE refit and frozen truth gaps, GPT-2 L3/6/9 and Gemma L5/12/19;
+  * (P2) TSP-R and TI-1 tsp − ctrl on never-used cities.
+* **Gate.** Every cell clears 0.70 on DEV (GPT-2 0.77–0.81, Gemma 0.95–1.00).
+* Source: `results/cross_model/xf_fresh_cities_test/`.
+
+### XC-1 Gemma site sweep and M4-G (2026-11-23). Status: IN PROGRESS (pre-registered and frozen; XC-1 full run started 19:23 UTC; M4-G queued)
+* **XC-1:** the M3 protocol on Gemma resid_post, 9 layers × 5 position groups.
+* **M4-G:** the M4 decomposition with Gemma Scope 16k at the confirmed XC-1 sites, plus the A1-style mid site.
+  H4c is omitted.
+* Both were frozen before any Gemma VALIDATION pair was scored. Smoke tests used TRAIN only.
+
+### XF fresh geonames cities TEST: results (2026-11-23). Status: COMPLETED (confirmed test result; pristine TEST, read once)
+* **Run.** One pass: 900 TEST statements (450 cities, never used before), 182 hash-verified SAEs, readers fitted on
+  fresh DEV, 606 s.
+* **P1, public-SAE preservation: LOSS at every informative cell.**
+  * Refit gap: GPT-2 L3/6/9 +0.045 / +0.053 / +0.037; Gemma L5 +0.036. All CIs exclude 0.
+  * Frozen gap: 0.09–0.13.
+  * Gemma L12/L19 are at ceiling (original AUROC 0.998), so uninformative.
+* **P2, TSP vs ctrl: FAILS TO REPLICATE (0/4 cells).**
+  * TSP-R L8 TopK −0.0007 [−0.0034, +0.0020], NO MEANINGFUL EFFECT.
+  * TI-1 L8 BatchTopK and L8 ReLU: NO MEANINGFUL EFFECT.
+  * TI-1 L11: INCONCLUSIVE.
+* **Secondary.**
+  * The GoT-replay control itself narrows the gap vs base (−0.014 L8 TopK, −0.026 L8 ReLU).
+  * tsp beats the random subspace at L8 TopK (−0.0048, 8/8 seeds).
+* **Reading.**
+  * The VALIDATION-level TSP advantage does not generalise to a new city population.
+  * On fresh data, the benefit comes from domain replay, not from the truth-subspace term.
+  * The public SAEs' truth losses are confirmed at TEST level.
+* Source: `results/cross_model/xf_fresh_cities_test/`.
+
+### XC-1 Gemma site sweep: results (2026-11-23). Status: COMPLETED (validation finding; TRAIN selection, VALIDATION confirmation; no SAE; TEST never loaded)
+* **Run.** 14,200 fixed-shape forwards, 5,084 s; 400 TRAIN pairs (100 statements), 356 VALIDATION pairs
+  (89 statements). Every hard sanity check exactly 0.0; script hash matches the frozen pre-registration.
+* **TRAIN.** 24 of 45 cells pass (Holm over 45, above the 200-draw random q95, non-trivial).
+* **Selected and confirmed (2/2):**
+  * earliest: L0 slot, R_A VALIDATION 0.108 [0.077, 0.144], E_share 0.98;
+  * peak + latest: L23 final, R_A VALIDATION 0.108 [0.077, 0.145], E_share 0.98.
+* **Stop rule not triggered: M4 on Gemma is justified.** M4-G started 20:48 UTC at L0 slot, L23 final and the
+  pre-registered mid site L12 final (E_share 0.51 TRAIN; confirmed on VALIDATION T2–T4 with original activations,
+  T_full 0.080 [0.051, 0.115], excess over synonym 0.030 [0.010, 0.054]).
+* **Site map.** Persona-token (slot) share falls 0.98 → 0.04 from L0 to L16; final-token share rises 0.24 → 0.98 from
+  L8 to L23; post-slot instruction tokens carry 0.46–0.56 at L5–L12. Same two-site structure as GPT-2 M3
+  (descriptive only).
+* **Limitations.** 9 of 26 layers; 100 of 417 TRAIN statements.
+* Source: `results/cross_model/xc1_gemma_site_sweep/`.
+
+### M4-G Gemma SAE patch decomposition: results (2026-11-23). Status: COMPLETED (validation finding; TEST never loaded)
+* **Run.** 945 fixed-shape forwards, 392 s; 356 persona and 178 neutral VALIDATION pairs; Gemma Scope 16k canonical
+  at L0, L12, L23. Hard sanity checks pass, and T_full equals the XC-1 R_A exactly at all three cells.
+* **Preservation T_rec / T_full (T2–T4):** L0 slot 0.959 [0.945, 0.969]; L12 final 0.753 [0.679, 0.807]; L23 final
+  0.701 [0.640, 0.755].
+* **H4a (sufficiency) and H4b (rec > err) met at 3/3 sites** (BH q ≤ 7.5e-6).
+* **Reading.** At the early persona token the reconstruction is behaviourally sufficient (additive reading allowed).
+  At the final token (L12, L23) the effect is interaction-dominated (|I|/T_full 0.29–0.33): reconstruction alone
+  restores 70–75 %, error alone 5–14 %, so only bounds are interpreted. Same pattern as GPT-2 M4 (93–97 % early slot,
+  62–68 % late final; descriptive).
+* **Not run:** H4c (feature patches), a declared deviation; no feature-level claim.
+* Source: `results/cross_model/m4_gemma_patch_decomposition/`.
+
+## 64. Gzipped per-document outputs: verification, D55 heading and preflight (2026-11-26). Status: COMPLETED (infrastructure; no experiment run)
+* **Why:** CI failed on `main` and on PR #41 because two XB GPT-2 `per_doc.csv` files (27.2 MB) exceed the 25 MB
+  repository-hygiene limit. PR #53 stores them gzipped. Review found that the frozen loader
+  (`03_matched_splicing_analysis.py:load_runs`, reused by `07_a4_context_comparison.py`) **skips** a run folder
+  without `per_doc.csv`, so re-running from a fresh checkout would drop the GPT-2 runs without an error.
+* **Verification (evidence label: validation of storage, not of any result):** for #53's 2 files and #41's 2 A4 files,
+  `gzip -t` passes, the decompressed bytes are identical (`cmp`) to the uncompressed originals in Git history
+  (`main` for #53; `15e78e7` for A4), SHA-256 equals the committed sidecar, the gzip header has mtime 0 and no name,
+  and `gzip -n -9` reproduces the committed `.gz` exactly.
+* **Change:** D55 heading for the 2026-11-23 note (text unchanged); `scripts/shared/compressed_outputs_preflight.py`
+  (`--verify` read-only; default requires decompressed files with matching hash; `--decompress` never overwrites;
+  `-- CMD` runs the analysis only after a pass); 11 tests, including the hazard on the unmodified frozen loader and an
+  integrity check of every committed `.gz` (runs in CI through the unit tests); decompressed paths git-ignored.
+* **End-to-end check:** through the preflight (`--decompress`, then default mode `-- 03 --tag zz_full_check`, CI-pinned
+  environment, scratch worktree; locally held `sum_x.npz` symlinked after matching `runs_sum_x_sha256.txt`), the
+  **unmodified** frozen `03` reproduces the committed `analysis_v1/`: same 382 SAE rows and 54 cross-model rows,
+  identical columns, every verdict / label and gate identical (V_M6 within tolerance at layers 5 / 12 / 19), numeric
+  differences ≤ 1.4e-12 relative (summation noise). Without `sum_x.npz` (not committed, README §3) `03` stops at the
+  V_M6 gate because EV is undefined; that is pre-existing and unrelated to the gzip storage. Scratch outputs deleted.
+* **Not changed:** frozen scripts, criteria, thresholds, results, the hygiene limit, the CI workflow.
+* **Validation:** full CI step list run under the CI-pinned dependency set (torch 2.14.1+cpu, numpy 2.5.3,
+  pandas 3.0.5, scipy 1.18.1, scikit-learn 1.9.1, joblib 1.6.0, transformer-lens 3.9.0, pytest 8.4.2; Python 3.14.4
+  locally vs 3.14.10 on CI).
+
+## 65. C4 integrated: GPT-2 GoT causal truth-direction test, selective extraction from `dhruv-causal` (2026-11-26). Status: COMPLETED (integration; no experiment run)
+* **Work by Dhruv Rai** (pre-registered and run 2026-11-10 on Kaggle; PR #26 closed unmerged). Integrated under D56.
+* **Result (TEST, single pass, 113 cities pairs, 600 controls per layer):** the unembedding positive control is
+  detectable at a 1 % dose at layers 4/6/8/10 (p = 1/601); mass-mean and logistic-probe truth directions are not
+  distinguishable from random directions (best one-sided p 0.188; BH ≥ 0.932); 0/108 SAE-direction tests survive BH.
+* **Verification:** pre-registration hashes (script, data, splits) match; BH recomputed in all three families; TEST
+  exposure and rebuilt-checkpoint provenance recorded in the README §5.
+* **Reading:** within the test's sensitivity, the truth directions probes read from GPT-2 do not causally drive its
+  answers on cities. Under the same protocol Gemma's mass-mean direction does (XC-2), a descriptive contrast.
+
+## 66. Integration audit of PRs #41–#53, #46 and C4 (2026-11-26). Status: integration line PREPARED locally (not pushed, not merged)
+* **Order:** #53, #41, #42, #43, #47, #48, #49, #50 (includes the XC-1/M4-G pre-registration commit) + XF Option B,
+  #51, #52, manifest-helper fix, C4 (D56), status corrections (D57); #46 is a separate PR. Every merge conflict was an end-of-file append in the doc
+  ledgers except one registry hunk (stale base rows updated on one side only); entries kept in number/date order.
+* **Verified per item:** pre-registration and frozen hashes against the committed scripts and inputs; headline
+  statistics recomputed from committed result files (E1 BH; XT-G rule counts; XC-3 E values from per-pair KL; XC-2 and
+  C4 BH per family; XF labels from the frozen `h1_label` rule and Holm; XC-1 selection/confirmation; M4-G
+  preservation and the decomposition identity); TEST exposure; checkpoint provenance; CI-pinned CI at every step.
+* **Found and recorded:** E1's BLAS diagnostic was edited after its hash was frozen (the E1 analysis script itself
+  matches); XT-G froze script 10 three times across amendments (the final hash matches); TI-2/TI-4 checkpoints lost
+  (D57); C4 ran on rebuilt SAEs (0/36 byte-identical, metric-equivalent); XF's geonames statements file (now ids + a
+  deterministic, hash-checked rebuild, D57); `append_experiment` had erased `n/a` cells in two historical manifest rows (fixed, restored).
+* **Not changed:** no experiment run; no result, frozen script or criterion edited; no branch created; nothing pushed.
+

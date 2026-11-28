@@ -1,0 +1,46 @@
+{
+ "eligibility": {
+  "numeric": {
+   "auroc": 0.9976830715850986,
+   "eligible": true
+  },
+  "common_claim": {
+   "auroc": 0.719321836530997,
+   "eligible": true
+  },
+  "counterfact": {
+   "auroc": 0.6838133197744343,
+   "eligible": false
+  },
+  "companies_cv": {
+   "auroc": 0.7910904712762298,
+   "eligible": true
+  }
+ },
+ "checks": {
+  "test_rows_loaded": 0,
+  "companies_rows": 341,
+  "companies_groups": 86,
+  "leakage_dropped": {
+   "common_claim": 3,
+   "counterfact": 288
+  },
+  "companies_in_S_or_replay": 0,
+  "S_rows": {
+   "cities": 844,
+   "numeric": 1000,
+   "common_claim": 805
+  },
+  "S_families": [
+   "cities",
+   "numeric",
+   "common_claim"
+  ],
+  "cc_guard_rows": 538
+ },
+ "R0_max_abs_param_diff": 0.16834795475006104,
+ "R0_passed": false,
+ "family_vectors_max_dev": 1.3322676295501878e-15,
+ "family_vectors_passed": true,
+ "all_passed": false
+}

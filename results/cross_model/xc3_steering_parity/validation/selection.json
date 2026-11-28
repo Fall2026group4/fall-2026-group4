@@ -1,0 +1,30 @@
+{
+  "gpt2": {
+    "3": {
+      "c_star": 4.0,
+      "gate_patch_ci_low_gt0": true
+    },
+    "6": {
+      "c_star": 4.0,
+      "gate_patch_ci_low_gt0": true
+    },
+    "9": {
+      "c_star": 2.0,
+      "gate_patch_ci_low_gt0": true
+    }
+  },
+  "gemma": {
+    "5": {
+      "c_star": 2.0,
+      "gate_patch_ci_low_gt0": true
+    },
+    "12": {
+      "c_star": 4.0,
+      "gate_patch_ci_low_gt0": true
+    },
+    "19": {
+      "c_star": 2.0,
+      "gate_patch_ci_low_gt0": true
+    }
+  }
+}

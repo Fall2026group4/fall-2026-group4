@@ -1,0 +1,62 @@
+{
+ "experiment": "XC-2 GoT causal truth-direction test on Gemma-2-2B (port of dhruv-causal 22_truth_direction_causal_test.py)",
+ "created": "2026-11-23",
+ "status": "PRE-REGISTERED (frozen before any VALIDATION or TEST pair is scored on Gemma by this protocol; smoke used 40 TRAIN pairs)",
+ "evidence_level_on_completion": "validation phase: strength selection only. Test phase: confirmed test result for families A, C1, C2 (with the TEST-exposure disclosure below); anything else exploratory.",
+ "research_question": "Do the original truth directions (mass-mean, frozen logistic probe) and Gemma Scope truth latents causally move Gemma-2-2B's next-token preference for the TRUE country, and is the GPT-2 null (dhruv-causal 989d313) model-specific?",
+ "why": "Audit 2026-11-21 row 13: the GoT causal test exists only for GPT-2 (null, 600 controls, rebuilt SAEs). XC-2 ports the same protocol to Gemma at depth-matched layers with public SAEs, giving the causal category for the second model.",
+ "source_protocol": {
+  "branch": "dhruv-causal",
+  "commit": "989d313",
+  "script": "scripts/geometry_of_truth/22_truth_direction_causal_test.py",
+  "script_sha256": "7506d525fcfeee7f0ea50563c0f97ab320c0b078075ac553b299d6f8912b51cd"
+ },
+ "kept_from_source": [
+  "GoT cities grouped splits (cities_splits.csv)",
+  "pair construction: prefix before the first differing token; c/w = true/false next token",
+  "outcome: mean change in log P(c) - log P(w) at the final prefix token, higher is better",
+  "targets: mass-mean, frozen logistic probe direction (C on validation; all_layer_frozen_probe_evaluation.fit_original_probes), SAE reconstruction / top-1 / top-10 directions, each at +s and -s",
+  "strength grid 0.05-8 x ||train mass-mean difference||, chosen on VALIDATION as argmax mass-mean effect",
+  "graded positive control: unembedding contrast at lambda in {0.01,0.02,0.05,0.1,0.25,0.5,1} x s",
+  "600 controls per family: Gaussian; random alive latent with random sign; random 10-latent set with the target coefficients",
+  "control seed 20261110 (hash-derived per layer/tag; tag string 'got-gemma')",
+  "statistics: empirical one-/two-sided p, BH within families, bootstrap CI over test pairs (2000, seed 0)",
+  "criteria T1, T2, power (minimum detectable dose)"
+ ],
+ "substitutions": {
+  "model": "Gemma-2-2B HF rev c5ebcd40, bf16, eager attention; final-token logits = lm_head + fp32 soft-cap (HF applies the soft-cap in bf16; the bf16 path is used only to check the indexing)",
+  "site": "output of model.model.layers[L] (resid_post), L = 8, 12, 16, 21; depth (L+1)/26 = 0.35/0.50/0.65/0.85 vs GPT-2 resid_pre 4/6/8/10 = 0.33/0.50/0.67/0.83",
+  "saes": "one Gemma Scope 16k canonical JumpReLU per layer (average_l0 per canonical list); no seeds, so T2's 'same sign in all SAE seeds' clause is not applicable",
+  "train_activations": "data/gemma/activations/got/cities_final_layer{L}.npy (XT-G0; statement-final token; TRAIN rows only are read)",
+  "families": "A: 28 tests (4 layers x 7 lambdas); C1: 8 (2 raw directions x 4 layers); C2: 12 (3 SAE directions x 4 layers x 1 SAE)",
+  "validation_controls": "50 Gaussian controls per grid point, descriptive (as source)"
+ },
+ "criteria": {
+  "T1_truth_direction_steers": "a raw direction at a layer: BH-adjusted one-sided p <= 0.05 at +s AND the effect at -s has the opposite sign",
+  "T2_sae_directions": "an SAE direction at a layer: BH-adjusted two-sided p <= 0.05 (single SAE per layer)",
+  "power": "minimum detectable dose of the positive control reported per layer before any null is read; a null at a layer with no detectable dose (NaN) is uninformative"
+ },
+ "pipeline_checks": "Every forward pass has the identical shape [k*n, T] (k = 2048 // n interventions; short chunks padded with zero deltas); the baseline is the zero delta through the same path, per layer. Hard checks (run aborts if violated, tolerance 1e-4 nats): zero-delta identity; final-token path == HF full forward (bf16 soft-cap replica); the same delta gives the same margin at any chunk position. Reason: the first smoke (smoke/) showed 0.26-0.34 nats per-pair differences between batch shapes (bf16 kernel selection); fixed before freezing.",
+ "test_exposure_disclosure": "GoT cities TEST rows are NOT pristine: (1) they were exposed for GPT-2 method decisions (audit 2026-11-21 row 23); (2) the earlier Gemma L11 steering sweep (results/gemma/steering_sweep_layer11, 2026-11-01) scored them with a different (4-shot TRUE/FALSE judgment) protocol and 20 controls. No choice in XC-2 was made from those numbers: every protocol element is the source protocol, and Gemma strength is selected on VALIDATION. TEST is scored once.",
+ "comparisons": [
+  "mass-mean / probe direction vs Gaussian: do original truth directions steer Gemma's TRUE preference? (T1)",
+  "SAE directions vs their matched controls: do SAE truth latents steer? (T2)",
+  "positive control: what dose this readout can detect (power)",
+  "Gemma vs GPT-2 (dhruv-causal) at matched depth: descriptive only (different SAEs, different tokenizers)"
+ ],
+ "leakage": "directions/latents/probe from TRAIN; C on VALIDATION; strength on VALIDATION; TEST once after validation/selection.json exists; hashes checked before every non-smoke phase.",
+ "tf32": "off (evaluation)",
+ "test_data_used": "validation phase: none; test phase: cities TEST pairs once",
+ "ceiling_note": "Smoke on 40 TRAIN pairs: Gemma's baseline pair accuracy is 1.0 (mean margin 11.7 nats), consistent with the XT-G finding that Gemma cities AUROC is at ceiling. The pre-registered outcome is the continuous margin change, which has no ceiling; pair accuracy is reported but is uninformative for Gemma. Recorded before any VALIDATION or TEST pair is scored; no criterion changed.",
+ "runtime_estimate": "validation ~10 min; test ~2 h GPU (smoke throughput ~390 sequences/s)",
+ "frozen_utc": "2026-11-23T15:33:41.389012+00:00",
+ "hashes": {
+  "scripts/cross_model/21_xc2_gemma_got_causal.py": "9b67362ecb81c04641ad05b88b4a50297e5fbcd8213cf6a36eda9c7e249c4fed",
+  "scripts/cross_model/02_matched_splicing.py": "8536a86aa7e810c7461df82b5d0e61c522248301a5e1dbcfe8edc69d1cbbf0b3",
+  "src/evaluation/pile_splicing.py": "cac45f2efe0a30e5e6629dae331725f5a89cdc6401343ec02f4b656d6bfbdbe9",
+  "src/models/backends.py": "9f60bbbbbf9a073ddb4e366f271040ff984e41db831d2fb4df7843cf280cc1a4",
+  "scripts/shared/all_layer_frozen_probe_evaluation.py": "8615801c9d5a126e73a82d16f7a244c9b6a0a6271b527680dc4f070778db1100",
+  "data/got/cities.csv": "f2560a0c1758c69935b50125111b574b71896bb75930dd87b1d8c973c1fa086e",
+  "data/got/splits/cities_splits.csv": "e4951ef2f8c57c8c9e1f59bfdc0c98eb502e31fa342e1a334a2e958093d53e9f"
+ }
+}

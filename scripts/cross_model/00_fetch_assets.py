@@ -7,6 +7,8 @@ results/cross_model/assets/asset_manifest_<batch>.json; refuses to overwrite an 
 Batches:
   b1: Gemma Scope 16k canonical SAEs, all 26 layers (repo revision fd571b47, as pinned by M6/R3);
       res-jb GPT-2 SAEs, layers 0-11; Pile validation file (M6 pin); OWT shard 00077 (fresh cross-model OWT sample).
+  b2a: 16k L0 ladder at the T_B layers.
+  b2b: 65k (5) + 32k (6) L0 ladders at layer 12 only (reduced option), into /mnt/scratch/hf_cache (ephemeral).
 Run from the repository root:  python scripts/cross_model/00_fetch_assets.py --batch b1
 """
 import argparse, hashlib, json, time
@@ -21,6 +23,9 @@ PILE = ('monology/pile-uncopyrighted', 'val.jsonl.zst', '3be90335b66f24456a5d665
 OWT = ('Skylion007/openwebtext', 'plain_text/train-00077-of-00080.parquet')
 RESJB = 'jbloom/GPT2-Small-SAEs-Reformatted'
 LADDER_16K = {5: [18, 34, 143, 309], 12: [22, 41, 176, 445], 19: [23, 40, 137, 279]}  # non-canonical, sae_lens 6.54.12
+# b2b (Option B, reduced 65k ladder, user-approved 2026-11-21): layer 12 only; published L0s at revision fd571b47
+LADDER_B2B = {'65k': [21, 38, 72, 141, 297], '32k': [12, 22, 40, 76, 155, 360]}
+SCRATCH_CACHE = '/mnt/scratch/hf_cache'      # EC2 instance store: re-downloadable public weights only
 
 
 def sha(p):
@@ -41,12 +46,20 @@ def get(rows, **kw):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--batch', required=True, choices=['b1', 'b2a'])
+    ap.add_argument('--batch', required=True, choices=['b1', 'b2a', 'b2b'])
     a = ap.parse_args()
     out = REPO / f'results/cross_model/assets/asset_manifest_{a.batch}.json'
     if out.exists():
         raise SystemExit(f'{out} exists; refusing to overwrite')
     rows = []
+    if a.batch == 'b2b':        # 65k / 32k ladder at layer 12, into the scratch cache (XB/XT-G batch 2, reduced option)
+        for w, l0s in LADDER_B2B.items():
+            for l0 in l0s:
+                get(rows, repo_id=GS_REPO, filename=f'layer_12/width_{w}/average_l0_{l0}/params.npz', revision=GS_REV,
+                    cache_dir=SCRATCH_CACHE)
+        out.write_text(json.dumps({'batch': a.batch, 'created': time.strftime('%Y-%m-%d %H:%M:%S'), 'files': rows},
+                                  indent=1))
+        return
     if a.batch == 'b2a':        # 16k L0 ladder at the T_B layers (sparsity-mechanism analysis; XB/XT-G batch 2)
         for L, l0s in LADDER_16K.items():
             for l0 in l0s:

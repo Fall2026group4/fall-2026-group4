@@ -1,0 +1,42 @@
+{
+ "created_utc": "2026-11-23T18:53:41.210249+00:00",
+ "source": "got-repo/datasets/geonames.csv",
+ "source_sha256": "64ec3de8153970138f59cfa9f43cc46d24337a0caae25742753fb8aee07fca08",
+ "salt": "XF-geonames-2026-11-23",
+ "population_band": [
+  200000,
+  500000
+ ],
+ "ambiguity_pop": 10000,
+ "cap_per_country": 30,
+ "dev_frac": 0.4,
+ "filter_counts": {
+  "in_population_band": 1473,
+  "country_in_got_pool": 1322,
+  "ascii_simple_name": 1073,
+  "not_in_got_cities_or_neg_cities": 1073,
+  "not_a_country_name": 1071,
+  "unambiguous_unique_name": 984,
+  "after_cap_30_per_country": 713
+ },
+ "checks": {
+  "statement_dup_with_project_text": 0,
+  "city_overlap_with_got": 0,
+  "duplicate_statements": 0,
+  "cities_in_both_splits": 0,
+  "true_false_per_city_ok": true
+ },
+ "n_cities": 713,
+ "n_statements": 1426,
+ "n_countries": 78,
+ "dev": {
+  "cities": 263,
+  "statements": 526,
+  "label_mean": 0.5
+ },
+ "test": {
+  "cities": 450,
+  "statements": 900
+ },
+ "note": "TEST labels are balanced by construction (one TRUE + one FALSE per city); no TEST row is tokenised, embedded or scored before the test stage."
+}

@@ -1,0 +1,10 @@
+{
+  "all_positions_L0_max_kl_to_H": 0.0,
+  "all_positions_L12_max_kl_to_H": 0.0,
+  "all_positions_L23_max_kl_to_H": 0.0,
+  "zero_patch_max_abs_R": 0.0,
+  "(25,final)_max_abs(R_A-kl_HU)": 0.0,
+  "row_position_max_abs_logprob_diff": 0.0,
+  "zero_add_max_abs_logprob_diff": 0.0,
+  "pass": true
+}

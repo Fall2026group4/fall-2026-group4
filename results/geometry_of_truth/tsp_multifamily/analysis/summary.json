@@ -1,0 +1,30 @@
+{
+ "MF_H1": false,
+ "MF_H1_estimate": 0.0020123839009287825,
+ "MF_H1_ci": [
+  -0.00963566141929716,
+  0.013660429221154725
+ ],
+ "MF_H1_p": 0.7282908812597136,
+ "MF_H1_label": "INCONCLUSIVE",
+ "MF_H2": false,
+ "MF_H3": false,
+ "holm_H2_H3": [
+  NaN,
+  NaN
+ ],
+ "MF_H4": true,
+ "MF_H4_estimate": -0.02543442951228196,
+ "MF_H5": true,
+ "MF_H5_ci90": [
+  -0.0031371541627913486,
+  0.006138429531539267
+ ],
+ "cost": {
+  "nmse_rel": 0.027148977574596035,
+  "dce_rel": 0.02779340383797979,
+  "l0_all_128": true
+ },
+ "cost_ok": true,
+ "verdict": "NO TRANSFER DETECTED (MDE about 0.03)"
+}
