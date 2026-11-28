@@ -27,12 +27,12 @@ the stream rather than materializing the full ~40GB corpus to disk.
 ### Geometry of Truth
 
 Used for Phase 5 concept-detection work on truth/falsehood features
-(`cookbooks/03_geometry_of_truth_eda.ipynb`, `results/geometry_of_truth_*`).
+(`results/geometry_of_truth_*`).
 
 Sourced from the public Geometry of Truth dataset release
 (saprmarks/geometry-of-truth on GitHub / the associated HuggingFace
-dataset). See `cookbooks/03_geometry_of_truth_eda.ipynb` for the exact
-loading code and `results/geometry_of_truth_observations.md` for findings.
+dataset). The EDA notebook with the exact loading code was removed on 2026-11-28
+(see `cookbooks/README.md`). See `results/geometry_of_truth_observations.md` for findings.
 
 ### Representation Engineering (RepE)
 

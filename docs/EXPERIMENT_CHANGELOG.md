@@ -763,3 +763,9 @@ No result changed. The history scan found no other rewritten row (only `9446e56`
 | File | Change | Reason |
 |---|---|---|
 | `README.md` | replaced by a short overview: what the project studies (with the architecture diagram), the four faithfulness levels, setup and the repository structure | results, status and reproduction details live in `docs/` (`docs/README.md` is the map); no result or claim changed |
+
+## 2026-11-28: repository cleanup, obsolete notebooks removed (user request)
+| File | Change | Reason |
+|---|---|---|
+| `cookbooks/{02_pretained_sae_baseline, 03_geometry_of_truth_eda, 04_geometry_of_truth_baseline}.ipynb` | deleted | obsolete early notebooks; pipelines now live in `scripts/` and `src/`. Their committed outputs are kept; the notebooks stay in Git history (`8d0bac0`) |
+| `cookbooks/README.md`, `data/README.md`, `configs/config.yaml` (comment), `src/evaluation/detection.py` (docstring) | updated | references to the removed notebooks |
