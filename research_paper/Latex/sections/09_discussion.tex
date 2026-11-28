@@ -46,14 +46,16 @@ honesty-specific information.
         of 57 scaled-versus-base comparison classes unchanged but changes 13 of 19 orderings of the base architectures
         on task metrics, so architecture rankings on task prompts are not robust (Appendix~\ref{sec:audit}).
   \item \textbf{Causal evidence.} One persona-instruction effect of 0.02--0.04 nats at three sites of one model. The
-        patches retain the error term and do not test mediation through SAE latents; a mediated SAE-in-the-loop
-        experiment is pre-registered but not run.
+        patches retain the error term and do not test mediation through SAE latents. A mediated SAE-in-the-loop
+        experiment was run on validation data, but its random-decoder control was also classified as mediated, so
+        whether the effect is mediated specifically by SAE latents is inconclusive.
   \item \textbf{Evidence status.} The held-out results are the base reconstruction table, the improvement-phase
         comparisons on OWT and truth data, and one pre-registered RepE-LM test evaluation. In that evaluation the
         per-pair persona direction cosine was confirmed in all nine cells; the causal-preservation and persona re-fit
         hypotheses were not confirmed, only their TopK layer-8 cells passed, and both of those cells are fragile once
-        statement sampling is included (Section~\ref{sec:h1test}). Every other persona, causal, capacity-matched PCA,
-        truth-subspace and Gemma result is a validation finding. Three seeds share training data, so seed spread
+        statement sampling is included (Section~\ref{sec:h1test}). The capacity-matched PCA test
+        confirmation is a test result (P1 confirmed: no trained SAE worse than PCA in any of the 20 cells). Every other
+        persona, causal, capacity-matched PCA, truth-subspace and Gemma result is a validation finding. Three seeds share training data, so seed spread
         understates uncertainty, and fine-tuning criteria are applied per cell without multiplicity correction.
   \item \textbf{Inference over seeds, not statements.} The pre-registered comparison rules treat the evaluation set as
         fixed. With statement and document sampling added (Appendix~\ref{sec:audit}), the TopK cells of HT1 and HT3 and
