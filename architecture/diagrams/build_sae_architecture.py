@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SAE faithfulness architecture diagram: one element list -> .drawio (editable) + .svg + .png.
+"""SAE faithfulness architecture diagram: one element list -> .drawio (editable) + .svg.
 
 Notation verified against the implementation:
   encoder / activation / decoder  scripts/openwebtext/03_training_sae.py (SAE.forward), src/sae/modern_sae.py
@@ -164,7 +164,7 @@ text(800, 996, 'GPT-2 Small: in-house ReLU, TopK and JumpReLU SAEs (d = 768, m =
                'BOS is excluded from SAE training and splicing.', 10.5, w=1540)
 
 
-# ----------------------------------------------------------------- matplotlib renderer (SVG + PNG)
+# ----------------------------------------------------------------- matplotlib renderer (SVG)
 def render_mpl(out):
     plt.rcParams.update({'font.family': 'STIXGeneral', 'mathtext.fontset': 'stix', 'svg.fonttype': 'path',
                          'svg.hashsalt': NAME})   # deterministic SVG ids
@@ -205,7 +205,6 @@ def render_mpl(out):
             ax.add_patch(FancyArrowPatch(pts[-2], pts[-1], arrowstyle=style, mutation_scale=14, color=FG,
                                          lw=e['lw'], shrinkA=0, shrinkB=0))
     fig.savefig(out / f'{NAME}.svg', facecolor=BG, metadata={'Date': None})
-    fig.savefig(out / f'{NAME}.png', dpi=400, facecolor=BG)
     plt.close(fig)
 
 
